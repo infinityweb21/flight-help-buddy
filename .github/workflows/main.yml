@@ -1,0 +1,55 @@
+name: Flight Help Buddy
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1️⃣ Checkout code 
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      # 2️⃣ Setup Node.js
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      # 3️⃣ Install dependencies 
+      - name: Install dependencies
+        run: npm install
+
+      # 4️⃣ Build Angular app
+      - name: Build Angular
+        run: npm run build:ssr
+
+      # 5️⃣ Setup SSH
+      - name: Setup SSH
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.SSH_KEY }}" > ~/.ssh/id_ed25519
+          chmod 600 ~/.ssh/id_ed25519
+          ssh-keyscan -H ${{ secrets.SSH_HOST }} >> ~/.ssh/known_hosts
+
+      # 🔧 Install rsync
+      - name: Install rsync
+        run: sudo apt-get update && sudo apt-get install -y rsync
+
+      # 6️⃣ Deploy build output only 
+      - name: Deploy to server
+        run: |
+          rsync -avz --delete \
+            /home/runner/work/flight-help-buddy/flight-help-buddy/dist/the-infinity-travel/ \
+            ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:/var/www/
+
+      # 7️⃣ Reload PM2
+      - name: Reload PM2
+        run: |
+          ssh -o StrictHostKeyChecking=no \
+            ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} \
+            "pm2 reload all"
