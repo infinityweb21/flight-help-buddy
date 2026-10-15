@@ -1,0 +1,90 @@
+// @import url("../../../hotels-tab/hotels-tab.component.scss");
+@import url("../../../hotels-tab/hotels-tab.component.scss");
+
+.hotel-guest-drawer-content-wrap {
+  padding: 12px 18px 12px;
+}
+/* iOS */
+@supports (-webkit-touch-callout: none) {
+  .hotel-guest-drawer-content-wrap {
+    padding-top: 56px;
+  }
+}
+/* Android */
+.hotel-guest-drawer-content-wrap.android {
+  padding-top: 56px;
+}
+
+
+.hotel-guest-dropdown {
+  &__header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 1px;
+    padding-bottom: 48px;
+    &--title {
+      color: #1c1c1c;
+      text-align: center;
+      font-family: "Montserrat", sans-serif;
+      font-size: 20px;
+      font-style: normal;
+      font-weight: 600;
+      line-height: 28px;
+      letter-spacing: 0.35px;
+      margin-bottom: 0px;
+    }
+    &--guest-select-content-wrap {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+    }
+    &--guest-label {
+      color: #6e6e6e;
+      font-family: "Inter", sans-serif;
+      font-size: 14px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 18px;
+    }
+    &--guest-label-devider {
+      width: 4px;
+      height: 4px;
+      background-color: #6e6e6e;
+      border-radius: 50%;
+      display: flex;
+      aspect-ratio: 1/1;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+}
+
+.hotel-guest-drawer-content-wrap .hotel-guest-dropdown__content {
+    justify-content: space-between;
+    height: calc(100vh - 125px);
+}
+/* iOS */
+@supports (-webkit-touch-callout: none) {
+  .hotel-guest-drawer-content-wrap .hotel-guest-dropdown__content {
+    height: calc(100vh - 190px);
+  }
+}
+/* Android */
+.hotel-guest-drawer-content-wrap .hotel-guest-dropdown__content.android {
+  height: calc(100vh - 212px);
+}
+
+.guest-error {
+  margin-top: 10px;
+  padding: 10px 14px;
+  border-radius: 8px;
+  background: #fff1f0;
+  border: 1px solid #ffccc7;
+  color: #d93025;
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1.4;
+}

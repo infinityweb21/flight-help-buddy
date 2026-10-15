@@ -1,0 +1,892 @@
+<!--=========== Banner Section Start  ==============-->
+<app-main-filter />
+<!--=========== Banner Section End  ==============-->
+
+
+<section class="common-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-7 col-md-6 col-sm-7 col-9">
+                <div class="common-heading-box">
+                    <h2 class="common-heading-title">Select Your Preferred Cruise</h2>
+                    <p>Vitamin Sea, served daily.</p>
+                </div>
+            </div>
+            <div class="col-lg-5 col-md-6 col-sm-5 col-3">
+                <div class="flex-end-sec">
+                    <div class="common-nav-arrow-box">
+                        <button class="tabhotels-slider-ai-prev">
+                            <i class="fa-solid fa-arrow-left"></i>
+                        </button>
+
+                        <button class="tabhotels-slider-ai-next">
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </button>
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-12">
+                <div class="tabhotels-slider owl-carousel">
+
+                    <a href="tel:{{ getData?.phoneNumber }}" class="route-card" *ngFor="let cruise of cruiseList">
+
+                        <div class="route-card__image">
+                            <img [src]="cruise.image" [alt]="cruise.name" loading="lazy">
+                        </div>
+
+                        <div class="route-card__details">
+
+                            <h3 class="route-card__title">
+                                {{ cruise.name }}
+                            </h3>
+
+                            <p class="route-card__meta">
+                                {{ cruise.cruises }}
+                            </p>
+
+                        </div>
+
+                    </a>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="common-section section-padding cruise-why-choose-section">
+    <div class="container">
+
+        <div class="common-heading-box text-center">
+            <h2 class="common-heading-title">Reasons We’re The Perfect Choice For You</h2>
+            <p>We’re here to make your cruise booking easy and simple. Starting from attractive deals to an easy cancellation process, you’ll get everything.</p>
+        </div>
+
+        <div class="cruise-reasons-wrapper">
+
+            <!-- Reason 01 -->
+            <div class="cruise-reason-card">
+                <div class="cruise-reason-icon">
+                    <i class="fa-solid fa-calendar-check"></i>
+                </div>
+
+                <div class="cruise-reason-content">
+                    <h4>Get Smooth Booking:</h4>
+
+                    <p>
+                        Choose the cruise you want to venture into the sea. Book it smoothly and start your adventure.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Reason 02 -->
+            <div class="cruise-reason-card">
+                <div class="cruise-reason-icon">
+                    <i class="fa-solid fa-tags"></i>
+                </div>
+
+                <div class="cruise-reason-content">
+                    <h4>Enjoy Lucrative Deals:</h4>
+
+                    <p>
+                        Don’t want to pay more for your cruise? We’ve amazing deals that you can use for booking your next cruise.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Reason 03 -->
+            <div class="cruise-reason-card">
+                <div class="cruise-reason-icon">
+                    <i class="fa-solid fa-headset"></i>
+                </div>
+
+                <div class="cruise-reason-content">
+                    <h4>Helpful Support:</h4>
+
+                    <p>
+                        Stuck with your booking? Don’t hesitate to call us whenever you need help; we’ll bne always be there to assist you.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Reason 04 -->
+            <div class="cruise-reason-card">
+                <div class="cruise-reason-icon">
+                    <i class="fa-solid fa-ship"></i>
+                </div>
+
+                <div class="cruise-reason-content">
+                    <h4>Wide Selection of Travel Options:</h4>
+
+                    <p>
+                        Plan your perfect trip with more choices on the cruise. Explore options that suit your travel perfectly.
+                    </p>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</section>
+
+<section class="common-section section-padding cruise-destination-section">
+    <div class="container">
+        <div class="cruise-destination-wrapper">
+
+            <div class="cruise-destination-content">
+                <div class="common-heading-box">
+                    <h2 class="common-heading-title">Sail To Your Favorite Destination</h2>
+                    <p>Ready to escape into the oceans? Book your cruise, pack your bags, and discover new destinations. Make beautiful memories with the sound of the waves.</p>
+                </div>
+            </div>
+
+            <div class="cruise-destination-list">
+
+                <a href="tel:{{ getData?.phoneNumber }}" class="cruise-destination-item">
+                    <div class="cruise-destination-image">
+                        <img src="assets/images/cruise/Top-Cruise-Destination/caribbean.webp"
+                            alt="Caribbean">
+                        <span>CRUISE</span>
+                    </div>
+                    <h4>Caribbean</h4>
+                </a>
+
+                <a href="tel:{{ getData?.phoneNumber }}" class="cruise-destination-item">
+                    <div class="cruise-destination-image">
+                        <img src="assets/images/cruise/Top-Cruise-Destination/alaska.webp"
+                            alt="Alaska">
+                        <span>CRUISE</span>
+                    </div>
+                    <h4>Alaska</h4>
+                </a>
+
+                <a href="tel:{{ getData?.phoneNumber }}" class="cruise-destination-item">
+                    <div class="cruise-destination-image">
+                        <img src="assets/images/cruise/Top-Cruise-Destination/south_pacific.webp"
+                            alt="South Pacific">
+                        <span>CRUISE</span>
+                    </div>
+                    <h4>South Pacific</h4>
+                </a>
+
+                <a href="tel:{{ getData?.phoneNumber }}" class="cruise-destination-item">
+                    <div class="cruise-destination-image">
+                        <img src="assets/images/cruise/Top-Cruise-Destination/mediterranean.webp"
+                            alt="Mediterranean">
+                        <span>CRUISE</span>
+                    </div>
+                    <h4>Mediterranean</h4>
+                </a>
+
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<section class="common-section section-padding cruise-experience-section">
+    <div class="container">
+        <div class="cruise-experience-wrapper">
+
+            <div class="cruise-experience-content">
+                <div class="common-heading-box">
+                    <h2 class="common-heading-title">
+                        To See The Wonders Of The Oceans?
+                    </h2>
+                    <p>
+                        Why restrict your travel plans to just one location when you can move to multiple places? Book your cruise with us and set sail on an unforgettable journey across 100+ destinations in more than 30 locations. Get ready to explore the world from the open seas!
+                    </p>
+                </div>
+
+                <div class="cruise-experience-points">
+
+                    <div class="cruise-experience-point">
+                        <div class="cruise-experience-point-icon">
+                            <i class="fa-solid fa-tags"></i>
+                        </div>
+
+                        <div class="cruise-experience-point-content">
+                            <h4>Best Price Available:</h4>
+                            <p>
+                                Make your dream cruise true without putting pressure on your budget. We bring the most competitive price to make your journey smooth and exciting.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="cruise-experience-point">
+                        <div class="cruise-experience-point-icon">
+                            <i class="fa-solid fa-user-tie"></i>
+                        </div>
+
+                        <div class="cruise-experience-point-content">
+                            <h4>Skilled Help at Every Step:</h4>
+                            <p>
+                                With us, you will get a team of professional travel experts who are always ready to help you at every step.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="cruise-experience-point">
+                        <div class="cruise-experience-point-icon">
+                            <i class="fa-solid fa-arrows-rotate"></i>
+                        </div>
+
+                        <div class="cruise-experience-point-content">
+                            <h4>Easy Changes:</h4>
+                            <p>
+                                Plans can change anytime, and we know that! With us, you’ll get easy reservation and cancellation options. Plan your journey with peace of mind.
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="cruise-experience-images">
+                <div class="cruise-experience-image cruise-experience-image-one">
+                    <img src="assets/images/cruise/Top-Cruise-Destination/cruise_Des_img2.jpeg"
+                        alt="Luxury Cruise Ship">
+                </div>
+
+                <div class="cruise-experience-image cruise-experience-image-two">
+                    <img src="assets/images/cruise/Top-Cruise-Destination/cruise_Des_img1.jpg"
+                        alt="Cruise Deck">
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+<section class="common-section text-section book-with-us">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-12">
+                <div class="main-box-card m-0">
+                    <h2 class="tp-trust-title">
+                        Why Book With Us?
+                    </h2>
+                    <div class="tp-trust-box">
+
+                        <div class="tp-trust-item">
+                            <div class="tp-trust-icon">
+                                <i class="fa-solid fa-tags"></i>
+                            </div>
+
+                            <div class="tp-trust-info">
+                                <h5>Better Pricing</h5>
+                                <p>We offer the best price available.</p>
+                            </div>
+                        </div>
+
+                        <div class="tp-trust-item">
+                            <div class="tp-trust-icon">
+                                <i class="fa-solid fa-headset"></i>
+                            </div>
+
+                            <div class="tp-trust-info">
+                                <h5>24/7 Live Support</h5>
+                                <p>Speak with our travel expert for guidance.</p>
+                            </div>
+                        </div>
+
+                        <div class="tp-trust-item">
+                            <div class="tp-trust-icon">
+                                <i class="fa-solid fa-medal"></i>
+                            </div>
+
+                            <div class="tp-trust-info">
+                                <h5>ClubMiles Rewards</h5>
+                                <p>Stack points and use them for other bookings.</p>
+                            </div>
+                        </div>
+
+                        <div class="tp-trust-item">
+                            <div class="tp-trust-icon">
+                                <i class="fa-solid fa-bolt"></i>
+                            </div>
+
+                            <div class="tp-trust-info">
+                                <h5>Quick Booking</h5>
+                                <p>Book your cruise within a few minutes.</p>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="common-section flight-list-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-7 col-md-6 col-sm-7 col-9">
+                <div class="common-heading-box">
+                    <h2 class="common-heading-title">Breathe Fresh Ocean Breeze With Endless Vibes</h2>
+                    <p>Where every journey feels like an adventure. Book Now</p>
+                </div>
+            </div>
+            <div class="col-lg-5 col-md-6 col-sm-5 col-3">
+                <div class="flex-end-sec">
+                    <div class="common-nav-arrow-box">
+                        <button class="c-slider-ai-prev">
+                            <i class="fa-solid fa-arrow-left"></i>
+                        </button>
+
+                        <button class="c-slider-ai-next">
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 mt-2">
+                <div class="c-slider owl-carousel">
+
+                    <a href="tel:{{ getData?.phoneNumber }}" class="card-journey-small"
+                        *ngFor="let cruise of cruiseDetailsList" (click)="bookCruise(cruise)">
+
+                        <div class="card-image">
+
+                            <span class="label">
+                                {{ cruise.badge }}
+                            </span>
+
+                            <button type="button" class="wish" (click)="$event.stopPropagation()">
+                                <i class="fa-regular fa-heart"></i>
+                            </button>
+
+                            <img [src]="cruise.image" [alt]="cruise.name" loading="lazy">
+
+                        </div>
+
+
+                        <div class="card-info">
+
+                            <!-- Rating -->
+
+                            <div class="card-rating">
+
+                                <div class="card-left"></div>
+
+                                <div class="card-right">
+
+                                    <span class="rating">
+
+                                        <i class="fa-solid fa-star"></i>
+
+                                        {{ cruise.rating }}
+
+                                        <span class="text-sm-medium neutral-500">
+                                            ({{ cruise.reviews }} reviews)
+                                        </span>
+
+                                    </span>
+
+                                </div>
+
+                            </div>
+
+
+                            <!-- Name -->
+
+                            <div class="card-title">
+
+                                <div class="text-lg-bold neutral-1000">
+                                    {{ cruise.name }}
+                                </div>
+
+                            </div>
+
+
+                            <!-- Details -->
+
+                            <div class="card-program">
+
+                                <div class="card-location">
+
+                                    <p class="text-location text-sm-medium neutral-500">
+
+                                        <i class="bi bi-geo-alt"></i>
+
+                                        {{ cruise.location }}
+
+                                    </p>
+
+
+                                    <div class="marina-specs-grid">
+
+                                        <!-- Year -->
+
+                                        <div class="marina-spec-item">
+
+                                            <i class="far fa-calendar marina-spec-icon"></i>
+
+                                            <span class="marina-spec-label">
+                                                Year :
+                                            </span>
+
+                                            <span class="marina-spec-value">
+                                                {{ cruise.year }}
+                                            </span>
+
+                                        </div>
+
+
+                                        <!-- Width -->
+
+                                        <div class="marina-spec-item">
+
+                                            <i class="fas fa-ruler-horizontal marina-spec-icon"></i>
+
+                                            <span class="marina-spec-label">
+                                                Width :
+                                            </span>
+
+                                            <span class="marina-spec-value">
+                                                {{ cruise.width }}
+                                            </span>
+
+                                        </div>
+
+
+                                        <!-- Guests -->
+
+                                        <div class="marina-spec-item">
+
+                                            <i class="fas fa-users marina-spec-icon"></i>
+
+                                            <span class="marina-spec-label">
+                                                Guests :
+                                            </span>
+
+                                            <span class="marina-spec-value">
+                                                {{ cruise.guests }}
+                                            </span>
+
+                                        </div>
+
+
+                                        <!-- Speed -->
+
+                                        <div class="marina-spec-item">
+
+                                            <i class="fas fa-tachometer-alt marina-spec-icon"></i>
+
+                                            <span class="marina-spec-label">
+                                                Speed :
+                                            </span>
+
+                                            <span class="marina-spec-value">
+                                                {{ cruise.speed }}
+                                            </span>
+
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+
+                                <!-- Price -->
+
+                                <div class="endtime">
+
+                                    <div class="card-price">
+
+                                        <h6 class="heading-6 neutral-1000">
+                                            ${{ cruise.price }}
+                                        </h6>
+
+                                        <p class="text-md-medium neutral-500">
+                                            / night
+                                        </p>
+
+                                    </div>
+
+
+                                    <!-- Book -->
+
+                                    <div class="card-button">
+
+                                        <button type="button" class="btn common-bgbookBtn"
+                                            (click)="bookCruise(cruise); $event.stopPropagation()">
+                                            Book Now
+                                        </button>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </a>
+
+                </div>
+                <div class="div-text m-0"><strong>*Note:</strong> The prices that are displayed are in USD. The fares
+                    may vary depending on reservation and availability.</div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="common-section feature-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="tp-feature-strip">
+
+                    <div class="tp-feature-item">
+
+                        <div class="tp-feature-icon">
+                            <img src="assets/images/search-icon.png" alt="Search">
+                        </div>
+
+                        <div class="tp-feature-content">
+                            <h4>Compare Cruise Prices</h4>
+                            <p>Choose the cruise that fits your budget.</p>
+                        </div>
+
+                    </div>
+
+                    <div class="tp-feature-item">
+
+                        <div class="tp-feature-icon">
+                            <img src="assets/images/fees-icon.png" alt="Fees">
+                        </div>
+
+                        <div class="tp-feature-content">
+                            <h4>Transparent Pricing</h4>
+                            <p>No hidden fees, clear pricing.</p>
+                        </div>
+
+                    </div>
+
+                    <div class="tp-feature-item">
+
+                        <div class="tp-feature-icon">
+                            <img src="assets/images/flexible-icon.png" alt="Flexible">
+                        </div>
+
+                        <div class="tp-feature-content">
+                            <h4>Offers Flexibility</h4>
+                            <p>Flexible ticket options available.</p>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+<section class="common-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4 col-md-7 col-8">
+                <div class="common-heading-box">
+                    <h2 class="common-heading-title">Book Your Cruise Today</h2>
+                    <p>Get Hands-On Best Deals</p>
+                </div>
+            </div>
+            <div class="col-lg-8 col-md-5 col-4">
+                <div class="flex-end-sec">
+                    <a href="tel:{{ getData?.phoneNumber }}" class="common-bgBtn"><span>Show more</span></a>
+                </div>
+            </div>
+
+            <div class="col-12">
+                <ul class="nav nav-pills travel-type-tabs__nav" id="travelTypeTab" role="tablist">
+
+                    <!-- Top Cruise Destinations -->
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link active travel-type-tabs__item" id="domestic-tab" data-bs-toggle="pill"
+                            data-bs-target="#domestic" type="button" role="tab" aria-controls="domestic"
+                            aria-selected="true">
+                            <span class="travel-type-tabs__content">
+                                <strong>Top Cruise Destinations</strong>
+                            </span>
+                        </button>
+                    </li>
+
+                    <!-- Top US Cruise Departure Ports -->
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link travel-type-tabs__item" id="international-tab" data-bs-toggle="pill"
+                            data-bs-target="#international" type="button" role="tab" aria-controls="international"
+                            aria-selected="false">
+                            <span class="travel-type-tabs__content">
+                                <strong>Top US Cruise Departure Ports</strong>
+                            </span>
+                        </button>
+                    </li>
+                    <!-- Top Cruise Lines -->
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link travel-type-tabs__item" id="asia-tab" data-bs-toggle="pill"
+                            data-bs-target="#asia" type="button" role="tab" aria-controls="asia" aria-selected="false">
+                            <span class="travel-type-tabs__content">
+                                <strong>Top Cruise Lines</strong>
+                            </span>
+                        </button>
+                    </li>
+
+                </ul>
+                <div class="tab-content travel-type-tabs__content-area" id="travelTypeTabContent">
+
+                    <div class="tab-pane fade show active" id="domestic" role="tabpanel" aria-labelledby="domestic-tab">
+
+                        <div class="popular-hotels__grid">
+
+                            <a href="tel:{{ getData?.phoneNumber }}" class="popular-hotel">
+                                <img src="assets/images/cruise/Top-Cruise-Destination/caribbean.webp" alt="Caribbean">
+
+                                <div class="popular-hotel__info">
+                                    <h3>Caribbean</h3>
+                                    <p>Top Cruise Destination</p>
+                                    <span>Popular Cruise Destination</span>
+                                </div>
+                            </a>
+
+                            <a href="tel:{{ getData?.phoneNumber }}" class="popular-hotel">
+                                <img src="assets/images/cruise/Top-Cruise-Destination/alaska.webp" alt="Alaska">
+
+                                <div class="popular-hotel__info">
+                                    <h3>Alaska</h3>
+                                    <p>Top Cruise Destination</p>
+                                    <span>Popular Cruise Destination</span>
+                                </div>
+                            </a>
+
+                            <a href="tel:{{ getData?.phoneNumber }}" class="popular-hotel">
+                                <img src="assets/images/cruise/Top-Cruise-Destination/south_pacific.webp" alt="South Pacific">
+
+                                <div class="popular-hotel__info">
+                                    <h3>South Pacific</h3>
+                                    <p>Top Cruise Destination</p>
+                                    <span>Popular Cruise Destination</span>
+                                </div>
+                            </a>
+
+                            <a href="tel:{{ getData?.phoneNumber }}" class="popular-hotel">
+                                <img src="assets/images/cruise/Top-Cruise-Destination/mediterranean.webp" alt="Mediterranean">
+
+                                <div class="popular-hotel__info">
+                                    <h3>Mediterranean</h3>
+                                    <p>Top Cruise Destination</p>
+                                    <span>Popular Cruise Destination</span>
+                                </div>
+                            </a>
+
+                        </div>
+                    </div>
+
+                    <div class="tab-pane fade" id="international" role="tabpanel" aria-labelledby="international-tab">
+
+                        <div class="popular-hotels__grid">
+
+                            <a href="tel:{{ getData?.phoneNumber }}" class="popular-hotel">
+                                <img src="assets/images/cruise/Top-Us-Cruise/miami.webp" alt="Miami, Florida">
+
+                                <div class="popular-hotel__info">
+                                    <h3>Miami, Florida</h3>
+                                    <p>Top US Cruise Departure Port</p>
+                                    <span>Popular Cruise Port</span>
+                                </div>
+                            </a>
+
+                            <a href="tel:{{ getData?.phoneNumber }}" class="popular-hotel">
+                                <img src="assets/images/cruise/Top-Us-Cruise/fort_lauderdale.webp" alt="Fort Lauderdale, Florida">
+
+                                <div class="popular-hotel__info">
+                                    <h3>Fort Lauderdale, Florida</h3>
+                                    <p>Top US Cruise Departure Port</p>
+                                    <span>Popular Cruise Port</span>
+                                </div>
+                            </a>
+
+                            <a href="tel:{{ getData?.phoneNumber }}" class="popular-hotel">
+                                <img src="assets/images/cruise/Top-Us-Cruise/baltimore.webp" alt="Baltimore, Maryland">
+
+                                <div class="popular-hotel__info">
+                                    <h3>Baltimore, Maryland</h3>
+                                    <p>Top US Cruise Departure Port</p>
+                                    <span>Popular Cruise Port</span>
+                                </div>
+                            </a>
+
+                            <a href="tel:{{ getData?.phoneNumber }}" class="popular-hotel">
+                                <img src="assets/images/cruise/Top-Us-Cruise/new_orleans.webp" alt="New Orleans, Louisiana">
+
+                                <div class="popular-hotel__info">
+                                    <h3>New Orleans, Louisiana</h3>
+                                    <p>Top US Cruise Departure Port</p>
+                                    <span>Popular Cruise Port</span>
+                                </div>
+                            </a>
+
+                        </div>
+                    </div>
+
+                    <div class="tab-pane fade" id="asia" role="tabpanel" aria-labelledby="asia-tab">
+
+                        <div class="popular-hotels__grid cruiselinetab">
+
+                            <a href="tel:{{ getData?.phoneNumber }}" class="popular-hotel">
+                                <img src="assets/images/cruise/carnival.webp" alt="Carnival Cruise Lines">
+
+                                <div class="popular-hotel__info">
+                                    <h3>Carnival Cruise Lines</h3>
+                                    <span>8.3 Very Good · 12,155 reviews</span>
+                                </div>
+                            </a>
+
+                            <a href="tel:{{ getData?.phoneNumber }}" class="popular-hotel">
+                                <img src="assets/images/cruise/MSC.webp" alt="MSC Cruises">
+
+                                <div class="popular-hotel__info">
+                                    <h3>MSC Cruises</h3>
+                                    <span>8.1 Very Good · 12,991 reviews</span>
+                                </div>
+                            </a>
+
+                            <a href="tel:{{ getData?.phoneNumber }}" class="popular-hotel">
+                                <img src="assets/images/cruise/princess.webp" alt="Princess Cruises">
+                                <div class="popular-hotel__info">
+                                    <h3>Princess Cruises </h3>
+                                    <span>8.0 Very Good · 7,641 reviews</span>
+                                </div>
+                            </a>
+
+                            <a href="tel:{{ getData?.phoneNumber }}" class="popular-hotel">
+                                <img src="assets/images/cruise/holland.webp" alt="Holland America Line">
+                                <div class="popular-hotel__info">
+                                    <h3>Holland America Line</h3>
+                                    <span>8.5 Very Good · 14,991 reviews</span>
+                                </div>
+                            </a> <a href="tel:{{ getData?.phoneNumber }}" class="popular-hotel">
+                                <img src="assets/images/cruise/norwegian.webp" alt="Norwegian Cruise Line">
+
+                                <div class="popular-hotel__info">
+                                    <h3>Norwegian Cruise Line</h3>
+                                    <span>8.1 Very Good · 10,155 reviews</span>
+                                </div>
+                            </a>
+
+                            <a href="tel:{{ getData?.phoneNumber }}" class="popular-hotel">
+                                <img src="assets/images/cruise/royal-caribbean-international.webp"
+                                    alt="Royal Caribbean International">
+
+                                <div class="popular-hotel__info">
+                                    <h3>Royal Caribbean International</h3>
+                                    <span>8.2 Very Good · 6,991 reviews</span>
+                                </div>
+                            </a>
+
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="common-section text-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-7 col-md-10 col-12">
+                <div class="common-heading-box">
+                    <h2 class="common-heading-title">Frequently Asked Questions - FAQs
+                    </h2>
+                    <p>Get your cruise today.</p>
+                </div>
+            </div>
+            <!-- Column 1 -->
+            <div class="col-lg-6">
+                <div class="cst-acc-col-title">General Information</div>
+                <div class="accordion" id="cstAccLeft">
+
+                    <div class="cst-acc__item">
+                        <h2 class="cst-acc__header" id="lHead1">
+                            <button class="cst-acc__btn" type="button" data-bs-toggle="collapse" data-bs-target="#lCol1"
+                                aria-expanded="true" aria-controls="lCol1">
+                                <span class="cst-acc__title">Can I earn and redeem ClubMiles Rewards?</span>
+                                <i class="fa-solid fa-chevron-down cst-acc__chevron"></i>
+                            </button>
+                        </h2>
+                        <div id="lCol1" class="collapse show" aria-labelledby="lHead1" data-bs-parent="#cstAccLeft">
+                            <div class="cst-acc__body">
+                                Yes, when you confirm your booking, you will earn ClubMiles rewards. Stack your points
+                                and redeem them in your future bookings.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="cst-acc__item">
+                        <h2 class="cst-acc__header" id="lHead2">
+                            <button class="cst-acc__btn collapsed" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#lCol2" aria-expanded="false" aria-controls="lCol2">
+                                <span class="cst-acc__title">Is Wi-Fi available on my cruise?</span>
+                                <i class="fa-solid fa-chevron-down cst-acc__chevron"></i>
+                            </button>
+                        </h2>
+                        <div id="lCol2" class="collapse" aria-labelledby="lHead2" data-bs-parent="#cstAccLeft">
+                            <div class="cst-acc__body">
+                                Yes, most of the ships do offer wifi. It is best to talk to our travel expert and know
+                                if Wi-Fi is available in your booked cruise.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="cst-acc__item">
+                        <h2 class="cst-acc__header" id="lHead3">
+                            <button class="cst-acc__btn collapsed" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#lCol3" aria-expanded="false" aria-controls="lCol3">
+                                <span class="cst-acc__title">What documents are required when I board?</span>
+                                <i class="fa-solid fa-chevron-down cst-acc__chevron"></i>
+                            </button>
+                        </h2>
+                        <div id="lCol3" class="collapse" aria-labelledby="lHead3" data-bs-parent="#cstAccLeft">
+                            <div class="cst-acc__body">
+                                The documents that are required include a valid passport and travel visas. You can
+                                talk to our customer support and know if any additional documents are required or not.
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Column 2 -->
+            <div class="col-lg-6">
+                <div class="cst-acc-col-title">Travel Information &amp; Support</div>
+                <div class="accordion" id="cstAccRight">
+
+                    <div class="cst-acc__item">
+                        <h2 class="cst-acc__header" id="rHead1">
+                            <button class="cst-acc__btn" type="button" data-bs-toggle="collapse" data-bs-target="#rCol1"
+                                aria-expanded="true" aria-controls="rCol1">
+                                <span class="cst-acc__title">What happens if I get seasick?</span>
+                                <i class="fa-solid fa-chevron-down cst-acc__chevron"></i>
+                            </button>
+                        </h2>
+                        <div id="rCol1" class="collapse show" aria-labelledby="rHead1" data-bs-parent="#cstAccRight">
+                            <div class="cst-acc__body">
+                                Most of the modern cruise ships have stabilizers to keep your ride safe. If you feel
+                                unwell, just talk to the medical staff on board.
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,286 @@
+<!--=========== Banner Section Start  ==============-->
+<section class="banner banner-content-wrap innerbannersection">
+    <div class="section-shape section-shape1 top-inherit bottom-0"
+        style="background-image: url(assets/images/Careers/shape8.png)"></div>
+    <div class="innerbannerimgbox">
+        <img src="assets/images/about/banner1.webp" alt="banner1" class="innerbannerimg" />
+    </div>
+    <div class="container container-xxl">
+        <div class="row justify-content-center">
+            <div class="col-lg-8 col-md-6 col-12">
+                <div class="innerbanner-txt">
+                    <h1>
+                        <!-- Our reinvention <span class="subtitletext">starts with you {{phoneNumber}} </span> -->
+                        Cycle Maine & <span class="subtitletext">Acadia National Park</span>
+                    </h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--=========== Banner Section End  ==============-->
+
+<section class="common-section">
+    <div class="container container-xxl">
+        <div class="row mobscreenrow mb-2">
+            <div class="col-lg-8 col-md-7 col-12">
+                <div class="common-titlebox">
+                    <h2>There is much more to riding in Maine than the headline-grabbing untamed beauty of Acadia
+                        National Park</h2>
+                    <div class="common-para">
+                        <p>
+                            Maine has much to offer cyclists of every skill level, from the coastal scenery that served
+                            as the inspiration for the ferocious seascape paintings of renowned American painter Winslow
+                            Homer in the 19th century to the classic New England fishing communities and lighthouses.
+                            The ideal remedy for bustling city life is to spend your days riding the peaceful and lovely
+                            tree-lined roads and your nights indulging in some of America's best seafood cuisine
+                        </p>
+                    </div>
+                    <div class="inclusions-section">
+                        <h2>Inclusions</h2>
+                        <div class="inclusions-list">
+                            <div class="inclusion-item">
+                                <h3>Meals</h3>
+                                <ul>
+                                    <li>5 breakfasts</li>
+                                </ul>
+                            </div>
+
+                            <div class="inclusion-item">
+                                <h3>Transport</h3>
+                                <ul>
+                                    <li>Bicycle (e-bike option available, subject to availability)</li>
+                                    <li>Support Vehicle</li>
+                                </ul>
+                            </div>
+
+                            <div class="inclusion-item">
+                                <h3>Accommodation</h3>
+                                <ul>
+                                    <li>Simple Hotel/Motel (5 nights)</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-5 col-12">
+                <div class="card shadow rounded" style="max-width: 400px; width: 100%">
+                    <div class="card-header">
+                        <h5 class="card-title text-center fw-semibold my-3 package-card-form-header">
+                            Complete the form to unlock a free guide on choosing the
+                            right travel package
+                        </h5>
+                    </div>
+                    <div class="card-body p-4">
+                        <form [formGroup]="inquiryForm" (ngSubmit)="onSubmit()">
+                            <div class="mb-3">
+                                <input type="text" placeholder="Full Name" formControlName="fullName" [ngClass]="{
+                          'form-control': true,
+                          'is-valid':
+                            inquiryForm.get('fullName')?.valid &&
+                            inquiryForm.get('fullName')?.touched,
+                          'is-invalid':
+                            inquiryForm.get('fullName')?.invalid &&
+                            inquiryForm.get('fullName')?.touched
+                        }" />
+                            </div>
+
+                            <div class="mb-3">
+                                <input type="email" placeholder="Email" formControlName="email" [ngClass]="{
+                          'form-control': true,
+                          'is-valid':
+                            inquiryForm.get('email')?.valid &&
+                            inquiryForm.get('email')?.touched,
+                          'is-invalid':
+                            inquiryForm.get('email')?.invalid &&
+                            inquiryForm.get('email')?.touched
+                        }" />
+                            </div>
+
+                            <div class="mb-3">
+                                <ngx-intl-tel-input [cssClass]="
+                          'form-control ' +
+                          (inquiryForm.get('phone')?.valid &&
+                          inquiryForm.get('phone')?.touched
+                            ? 'is-valid'
+                            : inquiryForm.get('phone')?.invalid &&
+                              inquiryForm.get('phone')?.touched
+                            ? 'is-invalid'
+                            : '')
+                        " [preferredCountries]="preferredCountries" [enableAutoCountrySelect]="true"
+                                    [enablePlaceholder]="true" [searchCountryFlag]="true" [searchCountryField]="[
+                          SearchCountryField.Iso2,
+                          SearchCountryField.Name
+                        ]" [selectFirstCountry]="false" [selectedCountryISO]="CountryISO.UnitedStates" [maxLength]="15"
+                                    [phoneValidation]="true" [separateDialCode]="separateDialCode"
+                                    [numberFormat]="PhoneNumberFormat.National" name="phone"
+                                    formControlName="phone"></ngx-intl-tel-input>
+                            </div>
+
+                            <div class="mb-3">
+                                <input type="text" placeholder="Departure" formControlName="departure" [ngClass]="{
+                          'form-control': true,
+                          'is-valid':
+                            inquiryForm.get('departure')?.valid &&
+                            inquiryForm.get('departure')?.touched,
+                          'is-invalid':
+                            inquiryForm.get('departure')?.invalid &&
+                            inquiryForm.get('departure')?.touched
+                        }" />
+                            </div>
+
+                            <div class="mb-3">
+                                <input type="text" placeholder="Destination" formControlName="destination" [ngClass]="{
+                          'form-control': true,
+                          'is-valid':
+                            inquiryForm.get('destination')?.valid &&
+                            inquiryForm.get('destination')?.touched,
+                          'is-invalid':
+                            inquiryForm.get('destination')?.invalid &&
+                            inquiryForm.get('destination')?.touched
+                        }" />
+                            </div>
+
+                            <div class="mb-3 d-flex gap-2">
+                                <input type="number" placeholder="No. Of Days" formControlName="days" [ngClass]="{
+                          'form-control': true,
+                          'is-valid':
+                            inquiryForm.get('days')?.valid &&
+                            inquiryForm.get('days')?.touched,
+                          'is-invalid':
+                            inquiryForm.get('days')?.invalid &&
+                            inquiryForm.get('days')?.touched
+                        }" />
+                                <input type="number" placeholder="No. Of Pax" formControlName="pax" [ngClass]="{
+                          'form-control': true,
+                          'is-valid':
+                            inquiryForm.get('pax')?.valid &&
+                            inquiryForm.get('pax')?.touched,
+                          'is-invalid':
+                            inquiryForm.get('pax')?.invalid &&
+                            inquiryForm.get('pax')?.touched
+                        }" />
+                            </div>
+
+                            <div class="d-grid">
+                                <button type="submit" class="btn text-black fw-semibold inquiry-btn">
+                                    Inquiry Now
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-6 col-md-6 col-12">
+                <h2 class="cttitle">Gallery</h2>
+                <p-galleria [value]="images" [responsiveOptions]="responsiveOptions"
+                    [containerStyle]="{ 'max-width': '100%' }" [numVisible]="5">
+                    <ng-template #item let-item>
+                        <img [src]="item.itemImageSrc" style="width:100%" />
+                    </ng-template>
+                    <ng-template #thumbnail let-item>
+                        <img [src]="item.thumbnailImageSrc" />
+                    </ng-template>
+                </p-galleria>
+            </div>
+            <div class="col-lg-6 col-md-6 col-12">
+                <div class="mapsecinner">
+                    <h2 class="cttitle">LOCATION</h2>
+                    <iframe width="100%" height="600" style="border:0;" allowfullscreen="" loading="lazy"
+                        frameborder="0" scrolling="no" marginheight="0" marginwidth="0"
+                        src="https://maps.google.com/maps?q=37.297817,-113.028770&amp;hl=es&amp;z=14&amp;output=embed"></iframe>
+                </div>
+            </div>
+            <div class="col-12">
+                <div class="accordion custom-accordion" id="itineraryAccordion">
+
+                    <!-- Day 1 -->
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingOne">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                                Day 1: Las Vegas / Zion National Park
+                            </button>
+                        </h2>
+                        <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne"
+                            data-bs-parent="#itineraryAccordion">
+                            <div class="accordion-body">
+                                <p>Day 1 description goes here...</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Day 2 -->
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingTwo">
+                            <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+                                Day 2: Zion and Bryce Canyon
+                            </button>
+                        </h2>
+                        <div id="collapseTwo" class="accordion-collapse collapse show" aria-labelledby="headingTwo"
+                            data-bs-parent="#itineraryAccordion">
+                            <div class="accordion-body">
+                                <p>You'll be traveling to Bryce Canyon National Park for the day after breakfast this
+                                    morning...</p>
+
+                                <div class="custom-section-title">Accommodation</div>
+                                <ul class="custom-list">
+                                    <li>Ranch (1 night)</li>
+                                </ul>
+
+                                <div class="custom-section-title">Included Activities</div>
+                                <ul class="custom-list">
+                                    <li>Bryce Canyon - Leader-led Walk</li>
+                                </ul>
+
+                                <div class="custom-section-title">Meals Included</div>
+                                <ul class="custom-list">
+                                    <li>Breakfast</li>
+                                    <li>Lunch</li>
+                                    <li>Dinner</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Day 3 -->
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingThree">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                Day 3: Zion and Monument Valley
+                            </button>
+                        </h2>
+                        <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree"
+                            data-bs-parent="#itineraryAccordion">
+                            <div class="accordion-body">
+                                <p>Day 3 description goes here...</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Day 4 -->
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingFour">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                                Day 4: Slot Canyon Peekaboo / Las Vegas
+                            </button>
+                        </h2>
+                        <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour"
+                            data-bs-parent="#itineraryAccordion">
+                            <div class="accordion-body">
+                                <p>Day 4 description goes here...</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

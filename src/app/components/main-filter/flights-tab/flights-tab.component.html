@@ -1,0 +1,537 @@
+<form [formGroup]="flightForm"  ngSkipHydration>
+
+  <div class="fsr-stage for-flight" >
+    <div class="fsr-widget" id="fsrWidget">
+      <div class="fsr-toprow" id="fsrToprow">
+        <label class="fsr-radio">
+          <input type="radio" name="fsrTripType" value="roundtrip" formControlName="tripType" checked />
+          Round-trip
+        </label>
+        <label class="fsr-radio">
+          <input type="radio" name="fsrTripType" value="oneway" formControlName="tripType" />
+          One-way
+        </label>
+        <!-- <label class="fsr-radio">
+          <input type="radio" name="fsrTripType" value="multicity" formControlName="tripType" />
+          Multi-city
+        </label> -->
+        <div class="fsr-select-wrap fsr-select-wrap--class d-none">
+
+          <button class="fsr-select-btn" id="fsrClassBtn" type="button" (click)="toggleCabinMenu()">
+            <span id="fsrClassLabel">
+              {{ getCabinLabel() }}
+            </span>
+
+            <i class="fa-solid fa-chevron-down"></i>
+          </button>
+
+          <div class="fsr-select-menu" id="fsrClassMenu" [class.fsr-show]="cabinMenuOpen">
+
+            <button type="button" [class.fsr-active]="flightForm.get('passengers.cabin')?.value === 'E'"
+              (click)="selectCabin('E')">
+              Economy
+            </button>
+
+            <button type="button" [class.fsr-active]="flightForm.get('passengers.cabin')?.value === 'PE'"
+              (click)="selectCabin('PE')">
+              Premium Economy
+            </button>
+
+            <button type="button" [class.fsr-active]="flightForm.get('passengers.cabin')?.value === 'B'"
+              (click)="selectCabin('B')">
+              Business
+            </button>
+
+            <button type="button" [class.fsr-active]="flightForm.get('passengers.cabin')?.value === 'F'"
+              (click)="selectCabin('F')">
+              First Class
+            </button>
+
+          </div>
+        </div>
+        <!-- <label class="fsr-checkbox mobhide" id="fsrDirectWrap">
+        <input type="checkbox" id="fsrDirectOnly" /> Direct
+        flights only
+      </label> -->
+        <div class="fsr-select-wrap" id="fsrTopTravelersWrap" style="display: none">
+          <button class="fsr-select-btn" id="fsrTopTravelersBtn" type="button">
+            <span id="fsrTopTravelersLabel">1 adult</span>
+            <i class="fa-solid fa-chevron-down"></i>
+          </button>
+          <div class="fsr-select-menu fsr-travelers-menu" id="fsrTopTravelersMenu"></div>
+        </div>
+      </div>
+      <!-- ROUND-TRIP / ONE-WAY -->
+      <div class="fsr-mainrow" id="fsrMainrow" #datepop>
+        <div class="fsr-field" data-field="from" id="fsrFieldFrom"  >
+          <div class="fsr-field__icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+              <path
+                d="M18.33 3.57 5.7 9.955l.79.07-1.96-1.478a.75.75 0 0 0-.753-.087l-2.1.925C.73 9.856.359 10.967.817 11.88c.11.22.263.417.45.577l3.997 3.402a2.94 2.94 0 0 0 3.22.4l3.62-1.8-1.084-.671v5.587a1.833 1.833 0 0 0 2.654 1.657l1.88-.932a1.85 1.85 0 0 0 .975-1.226l1.87-7.839-.396.498 3.441-1.707a3.494 3.494 0 1 0-3.11-6.259zm.672 1.342a1.994 1.994 0 0 1 1.775 3.571l-3.44 1.707a.75.75 0 0 0-.396.498l-1.87 7.838a.35.35 0 0 1-.185.232l-1.88.932a.335.335 0 0 1-.486-.304V13.79a.75.75 0 0 0-1.084-.672l-3.62 1.8a1.44 1.44 0 0 1-1.578-.197l-3.997-3.402a.35.35 0 0 1 .073-.577l2.067-.91-.754-.087 1.96 1.478a.75.75 0 0 0 .79.07l12.63-6.383zm-3.272.319-4.46-2.26a1.85 1.85 0 0 0-1.656-.001l-1.846.912a1.85 1.85 0 0 0-.295 3.128l2.573 1.955a.75.75 0 1 0 .908-1.194L8.38 5.816a.35.35 0 0 1 .055-.591l1.845-.912a.35.35 0 0 1 .315 0l4.456 2.256a.75.75 0 0 0 .678-1.338z">
+              </path>
+            </svg>
+          </div>
+          <div class="fsr-field__body"  (click)="focusDepartureInput()">
+            <div class="fsr-field__label">Leaving from</div>
+            <div class="fsr-field__value fsr-placeholder" id="fsrFromValue">
+            </div>
+
+
+
+            <p-autoComplete #departureAC formControlName="departureAirport" [suggestions]="departureAirports"
+              (completeMethod)="filterCountry($event)" (onSelect)="onDepartSelected($event)" field="displayName"
+              [panelStyleClass]="'airport-autocomplete-panel'" placeholder="Add Origin" class=" form-control"
+              (keypress)="allowOnlyLetters($event)" (paste)="sanitizePaste($event)"
+               (mousedown)="checkDepartOpen()"
+              (onFocus)="highlightDepartureText($event)" (mousedown)="handleDepartureClick($event)"
+               (keydown)="clearDepartureIfHighlightedOnKey($event)"
+              [class.is-invalid]="
+                (f['departureAirport'].touched || submitted || departSubmit) &&
+                f['departureAirport'].invalid
+              ">
+              <ng-template let-airport pTemplate="item">
+                <div class="fd-airport-item-wrap fsr-airport">
+                  @if (airport.type === 'main') {
+                  <div class="fd-airport-item fsr-airport__name" [ngClass]="{
+                      active:
+                        flightForm.get('departureAirport')?.value
+                          ?.displayName === airport.displayName
+                    }">
+                    <div class="fd-airport-icon">
+                      <i class="fa-solid fa-plane fsr-airport__icon"></i>
+                    </div>
+                    <div class="fd-airport-details">
+                      <span class="fd-airport-name fsr-airport__name">{{
+                        airport.airport_name
+                        }}</span>
+                      <div class="fd-single-airport-meta">
+                        <span class="fd-airport-location fsr-airport__sub"> {{
+                          airport.city
+                          ? airport.city +
+                          (airport.state ? ', ' + airport.state : '') +
+                          ', ' + airport.country
+                          : (airport.state
+                          ? airport.state + ', ' + airport.country
+                          : airport.country)
+                          }}</span>
+                        <span class="fd-single-airport-code fsr-airport__code">{{
+                          airport.code
+                          }}</span>
+                      </div>
+                    </div>
+                  </div>
+                  } @if (airport.nearbyAirports.length>0) {
+                  <ul class="fd-airport-sub-info-list">
+                    @for (item of airport.nearbyAirports; track $index) {
+                    <li>
+                      <div class="fd-airport-sub-info" (click)="onNearbyDepartSelected(item, $event)">
+                        <div class="fd-airport-sub-icon">
+                          <i class="fa-solid fa-location-dot"></i>
+                        </div>
+                        <div class="fd-airport-sub-details">
+                          <span class="fd-sub-airport-name fsr-airport__name">{{
+                            item.airport_name
+                            }}</span>
+                          <div class="fd-sub-airport-meta">
+                            <span class="fd-sub-airport-distance fsr-airport__sub">{{
+                              item?.distanceInfoText
+                              }}</span>
+                            <span class="fd-sub-airport-code fsr-airport__code">{{
+                              item.code
+                              }}</span>
+                          </div>
+                        </div>
+                      </div>
+                    </li>
+                    }
+                  </ul>
+                  }
+                </div>
+              </ng-template>
+
+              <ng-template #header>
+                <h6 class="desktop-search-result-list-title">
+                  Suggested Airports
+                </h6>
+              </ng-template>
+            </p-autoComplete>
+            <div class="text-danger isinvalid-text" *ngIf="
+                flightForm.get('departureAirport')?.touched &&
+                flightForm.get('departureAirport')?.hasError('required')
+              ">
+              Please select valid origin
+            </div>
+            <div class="text-danger isinvalid-text" *ngIf="departureError != ''">
+              {{ departureError }}
+            </div>
+          </div>
+        </div>
+        <button class="fsr-swap" id="fsrSwapBtn" type="button" title="Swap airports" (click)="switchAirports()">
+          <i class="fa-solid fa-right-left"></i>
+        </button>
+        <div class="fsr-field" data-field="to" id="fsrFieldTo">
+          <div class="fsr-field__icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+              <path
+                d="m19.906 12.996-12.72-6.2.421.672-.006-2.457a.75.75 0 0 0-.386-.654L5.207 3.244c-.95-.468-2.058-.091-2.51.826a1.9 1.9 0 0 0-.187.706l-.295 5.242a2.95 2.95 0 0 0 1.63 2.802l3.618 1.8-.117-1.27-4.461 3.359a1.85 1.85 0 0 0 .289 3.13l1.883.933a1.85 1.85 0 0 0 1.564.037l7.381-3.248-.636-.014 3.44 1.71a3.494 3.494 0 1 0 3.11-6.259.75.75 0 0 0-.334-.078h-.005v.75zm-.658 1.348a.75.75 0 0 0 .329.076h.005v-.75l-.334.672a1.994 1.994 0 1 1-1.774 3.571l-3.44-1.71a.75.75 0 0 0-.636-.014l-7.38 3.247a.35.35 0 0 1-.295-.008l-1.881-.932a.35.35 0 0 1-.053-.59l4.46-3.358a.75.75 0 0 0-.118-1.27l-3.618-1.8a1.45 1.45 0 0 1-.8-1.377l.295-5.238a.35.35 0 0 1 .504-.29l1.975 1.096-.386-.654.006 2.457a.75.75 0 0 0 .421.672zm-2.234-2.419-.9-4.918a1.85 1.85 0 0 0-.995-1.32l-1.853-.92a1.85 1.85 0 0 0-2.669 1.657v3.234a.75.75 0 0 0 1.5 0V6.425a.35.35 0 0 1 .505-.313l1.85.918a.35.35 0 0 1 .187.249l.9 4.916a.75.75 0 1 0 1.475-.27">
+              </path>
+            </svg>
+          </div>
+          <div class="fsr-field__body" (click)="focusArrivalInput()">
+            <div class="fsr-field__label">Going to</div>
+            <div class="fsr-field__value fsr-placeholder" id="fsrToValue">
+            </div>
+            <p-autoComplete #arrivalAC formControlName="arrivalAirport" [suggestions]="departureAirports"
+              (completeMethod)="filterCountry($event)" (onSelect)="onArrivalSelected($event)" field="displayName"
+              [panelStyleClass]="'airport-autocomplete-panel'" placeholder="Add Destination" class="form-control"
+              (keypress)="allowOnlyLetters($event)" (paste)="sanitizePaste($event)" 
+              (onFocus)="highlightArrivalText($event)" (mousedown)="checkArrivalOpen()"
+              (mousedown)="handleArrivalClick($event)" (keydown)="clearArrivalIfHighlightedOnKey($event)"
+               [class.is-invalid]="
+                (f['arrivalAirport'].touched || submitted || arriveSubmit) &&
+                f['arrivalAirport'].invalid
+              ">
+              <ng-template let-airport pTemplate="item">
+                <div class="fd-airport-item-wrap fsr-airport">
+                  @if (airport.type === 'main') {
+                  <div class="fd-airport-item fsr-airport__name" [ngClass]="{
+                      active:
+                        flightForm.get('arrivalAirport')?.value?.displayName ===
+                        airport.displayName
+                    }">
+                    <div class="fd-airport-icon">
+                      <i class="fa-solid fa-plane fsr-airport__icon"></i>
+                    </div>
+                    <div class="fd-airport-details">
+                      <span class="fd-airport-name fsr-airport__name">{{
+                        airport.airport_name
+                        }}</span>
+                      <div class="fd-single-airport-meta">
+                        <span class="fd-airport-location fsr-airport__sub">{{airport.city ? airport.city +
+                          (airport.state ? ', ' + airport.state : '') +
+                          ', ' + airport.country
+                          : (airport.state
+                          ? airport.state + ', ' + airport.country
+                          : airport.country)
+                          }}</span>
+                        <span class="fd-single-airport-code fsr-airport__code">{{
+                          airport.code
+                          }}</span>
+                      </div>
+                    </div>
+                  </div>
+                  } @if (airport.nearbyAirports.length>0) {
+                  <ul class="fd-airport-sub-info-list">
+                    @for (item of airport.nearbyAirports; track $index) {
+                    <li>
+                      <div class="fd-airport-sub-info" (click)="onNearbyArrivalSelected(item, $event)">
+                        <div class="fd-airport-sub-icon">
+                          <i class="fa-solid fa-location-dot"></i>
+                        </div>
+                        <div class="fd-airport-sub-details">
+                          <span class="fd-sub-airport-name fsr-airport__name">{{
+                            item.airport_name
+                            }}</span>
+                          <div class="fd-sub-airport-meta">
+                            <span class="fd-sub-airport-distance fsr-airport__sub">{{
+                              item?.distanceInfoText
+                              }}</span>
+                            <span class="fd-sub-airport-code fsr-airport__code">{{
+                              item.code
+                              }}</span>
+                          </div>
+                        </div>
+                      </div>
+                    </li>
+                    }
+                  </ul>
+                  }
+                </div>
+                <!-- </div> -->
+              </ng-template>
+
+              <ng-template #header>
+                <h6 class="desktop-search-result-list-title">
+                  Suggested Airports
+                </h6>
+              </ng-template>
+            </p-autoComplete>
+
+            <div class="text-danger isinvalid-text" *ngIf="
+                flightForm.get('arrivalAirport')?.touched &&
+                flightForm.get('arrivalAirport')?.hasError('required')
+              ">
+              Please select valid destination
+            </div>
+
+            <div class="text-danger isinvalid-text" *ngIf="arrivalError != ''">
+              {{ arrivalError }}
+            </div>
+          </div>
+          <!-- <div class="fsr-dropdown" id="fsrToDropdown">
+          <input class="fsr-dropdown__search" id="fsrToSearch" placeholder="City or airport" />
+          <div class="fsr-dropdown__list" id="fsrToList"></div>
+        </div> -->
+        </div>
+        @if(isMobile === false){
+        <div class="fsr-field" data-field="dates" [formGroup]="passengersGroup" id="fsrFieldDates" #datepop2
+          (click)="showDeparturePopover($event,flightForm.get('tripType')?.value === 'multicity' ? datepop2 : datepop,'departureDate')"
+           >
+          <div class="fsr-field__icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+              <path
+                d="M22.5 13.5v8.25a.75.75 0 0 1-.75.75H2.25a.75.75 0 0 1-.75-.75V5.25a.75.75 0 0 1 .75-.75h19.5a.75.75 0 0 1 .75.75zm1.5 0V5.25A2.25 2.25 0 0 0 21.75 3H2.25A2.25 2.25 0 0 0 0 5.25v16.5A2.25 2.25 0 0 0 2.25 24h19.5A2.25 2.25 0 0 0 24 21.75zm-23.25-3h22.5a.75.75 0 0 0 0-1.5H.75a.75.75 0 0 0 0 1.5M7.5 6V.75a.75.75 0 0 0-1.5 0V6a.75.75 0 0 0 1.5 0M18 6V.75a.75.75 0 0 0-1.5 0V6A.75.75 0 0 0 18 6M5.095 14.03a.75.75 0 1 0 1.06-1.06.75.75 0 0 0-1.06 1.06m.53-1.28a1.125 1.125 0 1 0 0 2.25 1.125 1.125 0 0 0 0-2.25.75.75 0 0 0 0 1.5.375.375 0 1 1 0-.75.375.375 0 0 1 0 .75.75.75 0 0 0 0-1.5m-.53 6.53a.75.75 0 1 0 1.06-1.06.75.75 0 0 0-1.06 1.06m.53-1.28a1.125 1.125 0 1 0 0 2.25 1.125 1.125 0 0 0 0-2.25.75.75 0 0 0 0 1.5.375.375 0 1 1 0-.75.375.375 0 0 1 0 .75.75.75 0 0 0 0-1.5m5.845-3.97a.75.75 0 1 0 1.06-1.06.75.75 0 0 0-1.06 1.06m.53-1.28A1.125 1.125 0 1 0 12 15a1.125 1.125 0 0 0 0-2.25.75.75 0 0 0 0 1.5.375.375 0 1 1 0-.75.375.375 0 0 1 0 .75.75.75 0 0 0 0-1.5m-.53 6.53a.75.75 0 1 0 1.06-1.06.75.75 0 0 0-1.06 1.06M12 18a1.125 1.125 0 1 0 0 2.25A1.125 1.125 0 0 0 12 18a.75.75 0 0 0 0 1.5.375.375 0 1 1 0-.75.375.375 0 0 1 0 .75.75.75 0 0 0 0-1.5m5.845-3.97a.75.75 0 1 0 1.06-1.06.75.75 0 0 0-1.06 1.06m.53-1.28a1.125 1.125 0 1 0 0 2.25 1.125 1.125 0 0 0 0-2.25.75.75 0 0 0 0 1.5.375.375 0 1 1 0-.75.375.375 0 0 1 0 .75.75.75 0 0 0 0-1.5m-.53 6.53a.75.75 0 1 0 1.06-1.06.75.75 0 0 0-1.06 1.06m.53-1.28a1.125 1.125 0 1 0 0 2.25 1.125 1.125 0 0 0 0-2.25.75.75 0 0 0 0 1.5.375.375 0 1 1 0-.75.375.375 0 0 1 0 .75.75.75 0 0 0 0-1.5">
+              </path>
+            </svg>
+          </div>
+          <div class="fsr-field__body">
+            <div class="fsr-field__label" id="fsrDatesLabel">
+              Travel dates
+            </div>
+            <div class="fsr-field__value" id="fsrDatesValue">
+
+               <ng-container *ngIf="formattedDepartureDate || formattedArrivalDate; else noDates">
+  {{ formattedDepartureDate  }}
+
+  <ng-container *ngIf="formattedArrivalDate  ;else noDates1">
+    –
+    {{ formattedArrivalDate }}
+  </ng-container>
+  <ng-template #noDates1>
+  - Select Arrival date
+</ng-template>
+</ng-container>
+
+<ng-template #noDates>
+  Select dates
+</ng-template>
+           
+            </div>
+          </div>
+
+
+
+
+          <div class="text-danger isinvalid-text" *ngIf="
+                    flightForm.get('departureDate')?.touched &&
+                    flightForm.get('departureDate')?.hasError('required')
+                  ">
+            Please select valid Departure date
+          </div>
+          @if(flightForm.get('tripType')?.value === 'roundtrip'){
+          <div class="text-danger isinvalid-text" *ngIf="
+                    flightForm.get('arrivalDate')?.touched &&
+                    flightForm.get('arrivalDate')?.hasError('required')
+                  ">
+            Please select valid return date
+          </div>
+          }
+
+        </div>
+      }@else if(isMobile === true){
+     <div class="fsr-field" data-field="dates" [formGroup]="passengersGroup" id="fsrFieldDates" 
+          
+                   (click)="onInputFocus('departureDate')"  >
+          <div class="fsr-field__icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+              <path
+                d="M22.5 13.5v8.25a.75.75 0 0 1-.75.75H2.25a.75.75 0 0 1-.75-.75V5.25a.75.75 0 0 1 .75-.75h19.5a.75.75 0 0 1 .75.75zm1.5 0V5.25A2.25 2.25 0 0 0 21.75 3H2.25A2.25 2.25 0 0 0 0 5.25v16.5A2.25 2.25 0 0 0 2.25 24h19.5A2.25 2.25 0 0 0 24 21.75zm-23.25-3h22.5a.75.75 0 0 0 0-1.5H.75a.75.75 0 0 0 0 1.5M7.5 6V.75a.75.75 0 0 0-1.5 0V6a.75.75 0 0 0 1.5 0M18 6V.75a.75.75 0 0 0-1.5 0V6A.75.75 0 0 0 18 6M5.095 14.03a.75.75 0 1 0 1.06-1.06.75.75 0 0 0-1.06 1.06m.53-1.28a1.125 1.125 0 1 0 0 2.25 1.125 1.125 0 0 0 0-2.25.75.75 0 0 0 0 1.5.375.375 0 1 1 0-.75.375.375 0 0 1 0 .75.75.75 0 0 0 0-1.5m-.53 6.53a.75.75 0 1 0 1.06-1.06.75.75 0 0 0-1.06 1.06m.53-1.28a1.125 1.125 0 1 0 0 2.25 1.125 1.125 0 0 0 0-2.25.75.75 0 0 0 0 1.5.375.375 0 1 1 0-.75.375.375 0 0 1 0 .75.75.75 0 0 0 0-1.5m5.845-3.97a.75.75 0 1 0 1.06-1.06.75.75 0 0 0-1.06 1.06m.53-1.28A1.125 1.125 0 1 0 12 15a1.125 1.125 0 0 0 0-2.25.75.75 0 0 0 0 1.5.375.375 0 1 1 0-.75.375.375 0 0 1 0 .75.75.75 0 0 0 0-1.5m-.53 6.53a.75.75 0 1 0 1.06-1.06.75.75 0 0 0-1.06 1.06M12 18a1.125 1.125 0 1 0 0 2.25A1.125 1.125 0 0 0 12 18a.75.75 0 0 0 0 1.5.375.375 0 1 1 0-.75.375.375 0 0 1 0 .75.75.75 0 0 0 0-1.5m5.845-3.97a.75.75 0 1 0 1.06-1.06.75.75 0 0 0-1.06 1.06m.53-1.28a1.125 1.125 0 1 0 0 2.25 1.125 1.125 0 0 0 0-2.25.75.75 0 0 0 0 1.5.375.375 0 1 1 0-.75.375.375 0 0 1 0 .75.75.75 0 0 0 0-1.5m-.53 6.53a.75.75 0 1 0 1.06-1.06.75.75 0 0 0-1.06 1.06m.53-1.28a1.125 1.125 0 1 0 0 2.25 1.125 1.125 0 0 0 0-2.25.75.75 0 0 0 0 1.5.375.375 0 1 1 0-.75.375.375 0 0 1 0 .75.75.75 0 0 0 0-1.5">
+              </path>
+            </svg>
+          </div>
+          <div class="fsr-field__body">
+            <div class="fsr-field__label" id="fsrDatesLabel">
+              Travel dates
+            </div>
+            <div class="fsr-field__value" id="fsrDatesValue">
+                        <ng-container *ngIf="formattedDepartureDate || formattedArrivalDate; else noDates">
+  {{ formattedDepartureDate  }}
+
+  <ng-container *ngIf="formattedArrivalDate  ;else noDates1">
+    –
+    {{ formattedArrivalDate }}
+  </ng-container>
+  <ng-template #noDates1>
+  - Select Arrival date
+</ng-template>
+</ng-container>
+
+<ng-template #noDates>
+  Select dates
+</ng-template>
+            </div>
+          </div>
+
+
+
+
+          <div class="text-danger isinvalid-text" *ngIf="
+                    flightForm.get('departureDate')?.touched &&
+                    flightForm.get('departureDate')?.hasError('required')
+                  ">
+            Please select valid Departure date
+          </div>
+          @if(flightForm.get('tripType')?.value === 'roundtrip'){
+          <div class="text-danger isinvalid-text" *ngIf="
+                    flightForm.get('arrivalDate')?.touched &&
+                    flightForm.get('arrivalDate')?.hasError('required')
+                  ">
+            Please select valid return date
+          </div>
+          }
+
+        </div>
+      }
+      @if(isMobile === false){
+        <div class="fsr-field" data-field="travelers" id="fsrFieldTravelers" #guestInputWrapper
+          (click)="showGuestPopover($event, guestInputWrapper)" 
+          >
+          <div class="fsr-field__icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+              <path
+                d="M16.5 6a4.5 4.5 0 1 1-9 0 4.5 4.5 0 0 1 9 0M18 6A6 6 0 1 0 6 6a6 6 0 0 0 12 0M3 23.25a9 9 0 1 1 18 0 .75.75 0 0 0 1.5 0c0-5.799-4.701-10.5-10.5-10.5S1.5 17.451 1.5 23.25a.75.75 0 0 0 1.5 0">
+              </path>
+            </svg>
+          </div>
+          <div class="fsr-field__body">
+            <div class="fsr-field__label">Travelers</div>
+            <div class="fsr-field__value" id="fsrTravelersValue">
+              {{inputValue}}
+            </div>
+
+          </div>
+        </div>
+      }
+        @else if(isMobile === true){
+        <div class="fsr-field" data-field="travelers" id="fsrFieldTravelers" (click)="onInputFocus('guests')"
+          >
+          <div class="fsr-field__icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+              <path
+                d="M16.5 6a4.5 4.5 0 1 1-9 0 4.5 4.5 0 0 1 9 0M18 6A6 6 0 1 0 6 6a6 6 0 0 0 12 0M3 23.25a9 9 0 1 1 18 0 .75.75 0 0 0 1.5 0c0-5.799-4.701-10.5-10.5-10.5S1.5 17.451 1.5 23.25a.75.75 0 0 0 1.5 0">
+              </path>
+            </svg>
+          </div>
+          <div class="fsr-field__body">
+            <div class="fsr-field__label">Travelers</div>
+            <div class="fsr-field__value" id="fsrTravelersValue">
+              {{inputValue}}
+            </div>
+
+          </div>
+        </div>
+      }
+        <button class="fsr-explore" id="fsrExploreBtn" type="button" [disabled]="ismodifySearch && !isFormChanged"
+          (click)="searchFlights()">
+          @if (ismodifySearch) {
+
+          Modify
+
+          } @else {
+          Search
+          }
+        </button>
+
+      </div>
+      <!-- MULTI-CITY -->
+      <div class="fsr-multicity" id="fsrMulticity" style="display: none">
+        <div id="fsrLegRows">
+
+          <div class="fsr-field" data-field="travelers" id="fsrFieldTravelers">
+            <div class="fsr-field__icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                <path
+                  d="M16.5 6a4.5 4.5 0 1 1-9 0 4.5 4.5 0 0 1 9 0M18 6A6 6 0 1 0 6 6a6 6 0 0 0 12 0M3 23.25a9 9 0 1 1 18 0 .75.75 0 0 0 1.5 0c0-5.799-4.701-10.5-10.5-10.5S1.5 17.451 1.5 23.25a.75.75 0 0 0 1.5 0">
+                </path>
+              </svg>
+            </div>
+            <div class="fsr-field__body">
+              <div class="fsr-field__label">Travelers</div>
+              <div class="fsr-field__value" id="fsrTravelersValue">
+                1 adult
+              </div>
+            </div>
+            <div class="fsr-dropdown fsr-travelers-menu" id="fsrTravelersDropdown"></div>
+          </div>
+        </div>
+        <div class="fsr-multicity-actions">
+          <button class="fsr-addflight" id="fsrAddFlight" type="button">
+            <i class="fa-solid fa-plus"></i> Add a flight
+          </button>
+          <button class="fsr-search" id="fsrSearchBtn" type="button">
+            Search
+          </button>
+        </div>
+      </div>
+
+      <!-- <label class="fsr-checkbox mobactive" id="fsrDirectWrap">
+      <input type="checkbox" id="fsrDirectOnly"> Direct
+      flights only
+    </label> -->
+    </div>
+  </div>
+</form>
+
+<p-popover #op styleClass="guest-popover guest-popover-wrap" appendTo="body" (onHide)="onGuestPopoverClose()">
+  <div class="guest-drawer-content">
+    <app-guest-drawer #guestDrawer [formGroup]="passengersGroup" controlName="guest" placeholder="Destination" hea
+      (applyPassengers)="onPassengersApply($event)" (closeDrawer)="op.hide(); onPassengersApply($event) " />
+  </div>
+</p-popover>
+<p-popover #popdeparture styleClass="departure-popover departure-popover-wrap" appendTo="body"
+  (onHide)="resetActiveInput()">
+  <div class="departure-drawer-content">
+
+    <app-dates-drawer [formGroup]="flightForm" controlName="departureDate" placeholder="Destination"
+      [startDate]="departureDateObj" [endDate]="arrivalDateObj" [isArrival]="false" [isDomestic]="isDomestic " [mode]="
+      flightForm.get('tripType')?.value === 'roundtrip' ? 'range' : 'single'
+    " [isOpen]="true" (datesChanged)="onDatesChanged($event)" (closeDrawer)="popdeparture.hide(); resetActiveInput()"
+      (datesApplied)="onDatesApplied($event)" />
+  </div>
+</p-popover>
+<p-popover #poparrival styleClass="arrival-popover arrival-popover-wrap" appendTo="body" (onHide)="resetActiveInput()">
+  <div class="arrival-drawer-content">
+    <app-dates-drawer [formGroup]="flightForm" [isArrival]="true" controlName="arrivalDate" placeholder="Destination"
+      [startDate]="departureDateObj" [endDate]="arrivalDateObj" [isDomestic]="isDomestic " [mode]="
+      flightForm.get('tripType')?.value === 'roundtrip' ? 'range' : 'single'
+    " [isOpen]="true" (datesChanged)="onDatesChanged($event)" (datesApplied)="onDatesApplied($event)"
+      (closeDrawer)="poparrival.hide(); resetActiveInput()" />
+  </div>
+</p-popover>
+<p-popover *ngFor="let segment of multiCitySegments.controls; let i = index" #multiPopDeparture
+  styleClass="departure-popover departure-popover-wrap" appendTo="body" (onHide)="onPopoverHide()">
+  <div class="departure-drawer-content">
+    <app-dates-drawer [formGroup]="getMultiSegmentFormGroup(i)" controlName="departure" [startDate]="departureDateObj"
+      [isArrival]="false" [isDomestic]="isDomestic " [mode]="'multiple'" [isOpen]="activeMultiPopoverIndex === i"
+      [segmentIndex]="i" [allSegments]="multiCitySegments.value" (datesChanged)="onMultiDatesSelected($event, i)"
+      (datesApplied)="onMultiDatesApplied($event, i)" (closeDrawer)="multiPopDeparture.hide(); onPopoverHide()">
+    </app-dates-drawer>
+  </div>
+</p-popover>
+
+
+<app-drawer-wrapper [visible]="showDrawer" [title]="drawerTitle" [attr.data-key]="activeDrawer" (close)="closeDrawer()">
+  @switch (activeDrawer) {  @case ('departureDate') {
+  <app-dates-drawer [formGroup]="getActiveFormGroup()" controlName="departureDate" placeholder="Destination"
+    [titleTemplate]="titleTemplate" [startDate]="departureDateObj" [endDate]="arrivalDateObj" [isArrival]="false"
+    [isDomestic]="isDomestic " [mode]="
+      flightForm.get('tripType')?.value === 'roundtrip' ? 'range' : 'single'
+    " (closeDrawer)="showDrawer = false" (datesApplied)="onDatesApplied($event)" />
+  <ng-template #titleTemplate>
+    <!-- <div class="datepickr-title">Select Departure Date</div> -->
+    <div class="weekdays-container" [class.android]="isAndroid">
+      <span class="weekdays-day mo">Mo</span>
+      <span class="weekdays-day tu">Tu</span>
+      <span class="weekdays-day we">We</span>
+      <span class="weekdays-day th">Th</span>
+      <span class="weekdays-day fr">Fr</span>
+      <span class="weekdays-day sa weekend">Sa</span>
+      <span class="weekdays-day su weekend">Su</span>
+    </div>
+  </ng-template>
+  } @case ('guests') {
+  <app-guest-drawer #guestDrawer [formGroup]="passengersGroup" controlName="guest" placeholder="Destination"
+    (applyPassengers)="onPassengersApply($event)" (closeDrawer)="closeDrawer()" />
+
+  }  }
+</app-drawer-wrapper>

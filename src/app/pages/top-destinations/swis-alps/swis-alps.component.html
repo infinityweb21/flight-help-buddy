@@ -1,0 +1,582 @@
+<!-- == Main Banner Part Start == -->
+<app-top-destinations-head></app-top-destinations-head>
+<!-- == Main Banner Part End == -->
+<!-- == Flight Search Start == -->
+<!-- <div class="container container-xxl py-3"><app-flights-tab></app-flights-tab></div> -->
+<!-- == Flight Search End == -->
+<!-- == Main Body Start == -->
+<!--=========== Banner Section Start  ==============-->
+
+<!--=========== Banner Section end  ==============-->
+
+<section class="details-contentntsec">
+    <div class="container container-xxl">
+        <div class="row">
+            <div class="col-12 d-flex justify-content-between align-items-center flex-wrap">
+                <h5 class="customhead">Swiss Alps Escape</h5>
+                <div class="custom-topbar">
+                    Call Us Toll-Free to Get the Best Deal! <a
+                        href="tel:{{getData?.phoneNumber}}">{{getData?.phoneNumber}}</a>
+                </div>
+            </div>
+        </div>
+        <!-- Tabs Navigation -->
+        <ul class="nav custom-nav-tabs mt-3" id="customTab" role="tablist">
+            <li class="nav-item" role="presentation">
+                <button class="nav-link active" id="overview-tab" data-bs-toggle="tab" data-bs-target="#overview"
+                    type="button" role="tab">Overview</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="things-tab" data-bs-toggle="tab" data-bs-target="#things" type="button"
+                    role="tab">Things to Do</button>
+            </li>
+            <!-- <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="hotels-tab" data-bs-toggle="tab" data-bs-target="#hotels"
+                            type="button" role="tab">Best Hotels</button>
+                    </li> -->
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="visit-tab" data-bs-toggle="tab" data-bs-target="#visit" type="button"
+                    role="tab">When to visit</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="map-tab" data-bs-toggle="tab" data-bs-target="#map" type="button"
+                    role="tab">Map</button>
+            </li>
+            <!-- <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="photos-tab" data-bs-toggle="tab" data-bs-target="#photos"
+                            type="button" role="tab">Photos</button>
+                    </li> -->
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="support-tab" data-bs-toggle="tab" data-bs-target="#support" type="button"
+                    role="tab">Get Support</button>
+            </li>
+        </ul>
+    </div>
+</section>
+<section class="content-boxsection">
+    <div class="container container-xxl">
+        <!-- Tabs Content -->
+        <div class="tab-content custom-tab-content" id="customTabContent">
+            <div class="tab-pane fade show active" id="overview" role="tabpanel">
+                <div class="custom-tab-title">Echoes of Serenity: Your Swiss Alps Escape</div>
+                <p class="custom-tab-paragraph">
+                    Imagine a world where majestic peaks kiss the sky and the only sounds are soft winds and distant
+                    cowbells. Welcome to the Swiss Alps, an escape where time slows, and every view feels like a living
+                    masterpiece.
+                </p>
+                <p class="custom-tab-paragraph">
+                    Your journey begins aboard panoramic trains, gliding through winding valleys, glistening glaciers,
+                    and emerald meadows. Each turn of the track unveils a scene straight from a fairy tale, where
+                    snow-draped peaks and sunlit villages create an ever-changing canvas of beauty.
+                </p>
+                <p class="custom-tab-paragraph">
+                    Wander through storybook villages, where flower-draped chalets and cobbled lanes invite you to
+                    linger in the quiet magic of Alpine life. Savor steaming hot chocolate in snug little cafés, breathe
+                    in the crisp mountain air, and let the gentle warmth of Swiss hospitality wrap around you.
+                </p>
+                <p class="custom-tab-paragraph">
+                    Adventure calls to the bold, ski powdery slopes, trek rugged trails, and explore shimmering glaciers
+                    that reveal nature’s raw magnificence. Yet serenity seekers will find bliss in simply resting by a
+                    crystal-clear lake, watching the peaks reflect like a mirror while the world grows hushed around
+                    you. As twilight paints the mountains gold, indulge in hearty Alpine meals, bubbling cheese fondue,
+                    rustic breads, and velvety Swiss chocolate, all the perfect companions to a cool, starlit night.
+                </p>
+                <p class="custom-tab-paragraph">The Swiss Alps Escape is more than a trip, it is a retreat for the
+                    senses, a journey where every sunrise feels like a new beginning and the mountains whisper their
+                    timeless poetry to the heart.</p>
+                <div class="row mt-4">
+                    <div class="col-lg-8 col-md-6 col-12">
+
+                        <div class="custom-tab-title">Best Time To Visit SWISS ALPS</div>
+                        <div class="accordion season-accordion" id="seasonAccordion">
+
+                            <!-- Item 1 -->
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="headingOne">
+                                    <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#collapseOne" aria-expanded="true">
+                                        <span class="season-label label-green">Jun to Sep
+                                        </span>
+                                        <span class="season-subtext">Peak Season</span>
+                                    </button>
+                                </h2>
+                                <div id="collapseOne" class="accordion-collapse collapse show"
+                                    data-bs-parent="#seasonAccordion">
+                                    <div class="accordion-body">
+                                        Perfect hiking weather with clear mountain views and accessible alpine trails,
+                                        also the wildflower blooms and warm temperatures ideal for cable car rides and
+                                        outdoor adventures.
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Item 2 -->
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="headingTwo">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#collapseTwo">
+                                        <span class="season-label label-blue">Dec to Mar</span>
+                                        <span class="season-subtext">Moderate Season</span>
+                                    </button>
+                                </h2>
+                                <div id="collapseTwo" class="accordion-collapse collapse"
+                                    data-bs-parent="#seasonAccordion">
+                                    <div class="accordion-body">
+                                        Prime season for skiing and snowboarding with fresh powder and festive Christmas
+                                        markets, though accommodation prices is higher and slopes are crowded during
+                                        holidays.
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Item 3 -->
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="headingThree">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#collapseThree">
+                                        <span class="season-label label-orange">Apr to May & Oct to Nov</span>
+                                        <span class="season-subtext">Off Season</span>
+                                    </button>
+                                </h2>
+                                <div id="collapseThree" class="accordion-collapse collapse"
+                                    data-bs-parent="#seasonAccordion">
+                                    <div class="accordion-body">
+                                        Shoulder seasons offer lower prices and fewer crowds, but weather is too
+                                        unpredictable with possible trail closures and limited mountain transport
+                                        services.
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-12">
+                        <div class="weather-table-wrapper">
+
+                            <div class="weather-table bg-white">
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>Month</th>
+                                            <th>Temp (Max/Min)</th>
+                                            <th>Rain mm</th>
+                                            <th>Weather Opinion</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td><a href="#" class="month-link">Jan</a></td>
+                                            <td class="temp-col">26º/15º</td>
+                                            <td class="rain-col">10</td>
+                                            <td class="opinion-col"><i class="fa-regular fa-face-grin-hearts"></i> Peak
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><a href="#" class="month-link">Feb</a></td>
+                                            <td class="temp-col">26º/15º</td>
+                                            <td class="rain-col">10</td>
+                                            <td class="opinion-col"><i class="fa-regular fa-face-smile-beam"></i>
+                                                Moderate</td>
+                                        </tr>
+                                        <tr>
+                                            <td><a href="#" class="month-link">Mar</a></td>
+                                            <td class="temp-col">26º/15º</td>
+                                            <td class="rain-col">10</td>
+                                            <td class="opinion-col"><i class="fa-regular fa-face-sad-cry"></i>
+                                                Off</td>
+                                        </tr>
+                                        <tr>
+                                            <td><a href="#" class="month-link">Apr</a></td>
+                                            <td class="temp-col">26º/15º</td>
+                                            <td class="rain-col">10</td>
+                                            <td class="opinion-col"><i class="fa-regular fa-face-grin-hearts"></i>
+                                                Moderate</td>
+                                        </tr>
+                                        <tr>
+                                            <td><a href="#" class="month-link">May</a></td>
+                                            <td class="temp-col">26º/15º</td>
+                                            <td class="rain-col">10</td>
+                                            <td class="opinion-col"><i class="fa-regular fa-face-grin-hearts"></i>
+                                                Moderate</td>
+                                        </tr>
+                                        <tr>
+                                            <td><a href="#" class="month-link">Jun</a></td>
+                                            <td class="temp-col">26º/15º</td>
+                                            <td class="rain-col">10</td>
+                                            <td class="opinion-col"><i class="fa-regular fa-face-grin-hearts"></i>
+                                                Moderate</td>
+                                        </tr>
+                                        <tr>
+                                            <td><a href="#" class="month-link">Jul</a></td>
+                                            <td class="temp-col">26º/15º</td>
+                                            <td class="rain-col">10</td>
+                                            <td class="opinion-col"><i class="fa-regular fa-face-grin-hearts"></i>
+                                                Moderate</td>
+                                        </tr>
+                                        <tr>
+                                            <td><a href="#" class="month-link">Aug</a></td>
+                                            <td class="temp-col">26º/15º</td>
+                                            <td class="rain-col">10</td>
+                                            <td class="opinion-col"><i class="fa-regular fa-face-grin-hearts"></i>
+                                                Moderate</td>
+                                        </tr>
+                                        <tr>
+                                            <td><a href="#" class="month-link">Sep</a></td>
+                                            <td class="temp-col">26º/15º</td>
+                                            <td class="rain-col">10</td>
+                                            <td class="opinion-col"><i class="fa-regular fa-face-grin-hearts"></i>
+                                                Moderate</td>
+                                        </tr>
+                                        <tr>
+                                            <td><a href="#" class="month-link">Oct</a></td>
+                                            <td class="temp-col">26º/15º</td>
+                                            <td class="rain-col">10</td>
+                                            <td class="opinion-col"><i class="fa-regular fa-face-grin-hearts"></i>
+                                                Moderate</td>
+                                        </tr>
+                                        <tr>
+                                            <td><a href="#" class="month-link">Nov</a></td>
+                                            <td class="temp-col">26º/15º</td>
+                                            <td class="rain-col">10</td>
+                                            <td class="opinion-col"><i class="fa-regular fa-face-grin-hearts"></i>
+                                                Moderate</td>
+                                        </tr>
+                                        <tr>
+                                            <td><a href="#" class="month-link">Dec</a></td>
+                                            <td class="temp-col">26º/15º</td>
+                                            <td class="rain-col">10</td>
+                                            <td class="opinion-col"><i class="fa-regular fa-face-grin-hearts"></i>
+                                                Moderate</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Placeholder tabs for other sections -->
+            <div class="tab-pane fade" id="things" role="tabpanel">
+                <div class="desilistcard">
+                    <div class="destination-card">
+                        <div class="destination-image">
+                            <img src="assets/images/tab_photos/swiss/things_to_do/lauterbrunnen-valley.webp"
+                                alt="lauterbrunnen-valley">
+                        </div>
+                        <div class="destination-content">
+                            <h3>Lauterbrunnen Valley</h3>
+                            <p>
+                                Known as the Valley of 72 Waterfalls, Lauterbrunnen is a breathtaking alpine paradise.
+                                Towering cliffs, wildflower meadows, and cascading waterfalls create a cinematic
+                                landscape. Visitors can hike to Trümmelbach Falls, ride the cable car to Mürren, or take
+                                the train to Wengen, enjoying dramatic mountain views along the way. Lauterbrunnen is
+                                also a base for exploring Jungfrau and Schilthorn peaks, blending serene countryside
+                                charm with thrilling alpine adventures. It’s the perfect escape for photographers,
+                                hikers, and nature enthusiasts seeking raw Swiss beauty.
+                            </p>
+                            <div class="last-updated">Last Update: 20/07/2025</div>
+                        </div>
+                    </div>
+                    <div class="destination-card">
+                        <div class="destination-image">
+                            <img src="assets/images/tab_photos/swiss/things_to_do/st-moritz.webp" alt="st-moritz">
+                        </div>
+                        <div class="destination-content">
+                            <h3>St. Moritz</h3>
+                            <p>
+                                Famous as a luxury alpine resort, St. Moritz combines glamorous experiences with natural
+                                splendor. Winter transforms it into a world-class ski destination, hosting international
+                                events like the White Turf horse races on the frozen lake. Summer travelers can explore
+                                hiking trails, sparkling lakes, and cable car rides offering unforgettable vistas. Its
+                                upscale boutiques, gourmet dining, and iconic spas attract elite travelers seeking
+                                relaxation. Whether skiing, sailing, or indulging in luxury, St. Moritz offers an
+                                unparalleled Swiss Alps escape that’s both elegant and adventurous.
+                            </p>
+                            <div class="last-updated">Last Update: 20/07/2025</div>
+                        </div>
+                    </div>
+                    <div class="destination-card">
+                        <div class="destination-image">
+                            <img src="assets/images/tab_photos/swiss/things_to_do/aletsch-glacier.webp"
+                                alt="aletsch-glacier">
+                        </div>
+                        <div class="destination-content">
+                            <h3>Aletsch Glacier</h3>
+                            <p>
+                                The Aletsch Glacier, the largest in the Alps, is a UNESCO World Heritage Site and a
+                                must-visit natural wonder. Spanning 23 kilometers, it showcases the raw beauty and scale
+                                of Switzerland’s alpine landscape. Visitors can hike scenic trails around Eggishorn and
+                                Bettmerhorn, capturing mesmerizing glacier views. Guided tours offer insights into
+                                glacial history and climate significance. Whether admired from a distance or explored on
+                                foot, Aletsch Glacier delivers a humbling, once-in-a-lifetime experience that highlights
+                                the grandeur and fragility of the Swiss Alps.
+                            </p>
+                            <div class="last-updated">Last Update: 20/07/2025</div>
+                        </div>
+                    </div>
+                    <div class="destination-card">
+                        <div class="destination-image">
+                            <img src="assets/images/tab_photos/swiss/things_to_do/grindelwald.webp" alt="grindelwald">
+                        </div>
+                        <div class="destination-content">
+                            <h3>Grindelwald</h3>
+                            <p>
+                                Grindelwald is a charming mountain village surrounded by dramatic peaks like Eiger and
+                                Wetterhorn. It offers a perfect mix of adventure and relaxation, from skiing and
+                                snowboarding in winter to hiking and biking in summer. The First Cliff Walk, and cable
+                                car rides deliver heart-stopping alpine views. Grindelwald also serves as a gateway to
+                                Jungfraujoch and Schilthorn, making it a central hub for explorers. Its postcard-perfect
+                                landscapes and cozy Swiss atmosphere ensure every traveler experiences the authentic
+                                charm of alpine life.
+                            </p>
+                            <div class="last-updated">Last Update: 20/07/2025</div>
+                        </div>
+                    </div>
+                    <div class="destination-card">
+                        <div class="destination-image">
+                            <img src="assets/images/tab_photos/swiss/things_to_do/gstaad.webp" alt="gstaad">
+                        </div>
+                        <div class="destination-content">
+                            <h3>Gstaad</h3>
+                            <p>
+                                Synonymous with luxury and elegance, Gstaad is a glamorous Swiss village offering a
+                                tranquil yet sophisticated alpine escape. It’s renowned for upscale hotels, designer
+                                boutiques, and gourmet restaurants, attracting celebrities and luxury travelers. Beyond
+                                its lavish reputation, Gstaad is surrounded by pristine hiking trails, lush meadows, and
+                                ski slopes, providing year-round adventure. Traditional Swiss chalets and vibrant
+                                cultural events add local charm. Whether indulging in relaxation or alpine thrills,
+                                Gstaad seamlessly combines natural beauty with world-class sophistication in the Swiss
+                                Alps.
+                            </p>
+                            <div class="last-updated">Last Update: 20/07/2025</div>
+                        </div>
+                    </div>
+                    <div class="destination-card">
+                        <div class="destination-image">
+                            <img src="assets/images/tab_photos/swiss/things_to_do/jungfraujoch.webp"
+                                alt="Statue of Liberty">
+                        </div>
+                        <div class="destination-content">
+                            <h3>Jungfraujoch</h3>
+                            <p>
+                                The Jungfraujoch, famously called the Top of Europe, is a high-altitude wonderland
+                                reachable by an extraordinary cogwheel train. Sitting at 3,454 meters, it offers
+                                panoramic views of Aletsch Glacier and surrounding peaks. Visitors can explore the Ice
+                                Palace, enjoy snow sports year-round, and capture surreal photographs of the Alps. The
+                                journey itself, passing through Eiger and Mönch mountains, is part of the magic.
+                                Jungfraujoch delivers an unforgettable blend of adventure, natural beauty, and
+                                engineering marvel, making it a crown jewel of Swiss travel.
+                            </p>
+                            <div class="last-updated">Last Update: 20/07/2025</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- <div class="tab-pane fade" id="hotels" role="tabpanel">Coming soon...</div> -->
+            <div class="tab-pane fade" id="visit" role="tabpanel">
+
+                <div class="row">
+                    <div class="col-lg-8 col-md-6 col-12">
+
+                        <div class="custom-tab-title">Best Time To Visit SWISS ALPS</div>
+                        <div class="accordion season-accordion" id="seasonAccordion01">
+
+                            <!-- Item 1 -->
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="headingOne">
+                                    <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#collapseOne" aria-expanded="true">
+                                        <span class="season-label label-green">Jun to Sep</span>
+                                        <span class="season-subtext">Is Peak Season</span>
+                                    </button>
+                                </h2>
+                                <div id="collapseOne" class="accordion-collapse collapse show"
+                                    data-bs-parent="#seasonAccordion01">
+                                    <div class="accordion-body">
+                                        Perfect hiking weather with clear mountain views and accessible alpine trails,
+                                        also the wildflower blooms and warm temperatures ideal for cable car rides and
+                                        outdoor adventures.
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Item 2 -->
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="headingTwo">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#collapseTwo">
+                                        <span class="season-label label-blue">Dec to Mar
+                                        </span>
+                                        <span class="season-subtext">Is Moderate Season</span>
+                                    </button>
+                                </h2>
+                                <div id="collapseTwo" class="accordion-collapse collapse"
+                                    data-bs-parent="#seasonAccordion01">
+                                    <div class="accordion-body">
+                                        Prime season for skiing and snowboarding with fresh powder and festive Christmas
+                                        markets, though accommodation prices is higher and slopes are crowded during
+                                        holidays.
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Item 3 -->
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="headingThree">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#collapseThree">
+                                        <span class="season-label label-orange">Apr to May & Oct to Nov</span>
+                                        <span class="season-subtext">Is Off Season</span>
+                                    </button>
+                                </h2>
+                                <div id="collapseThree" class="accordion-collapse collapse"
+                                    data-bs-parent="#seasonAccordion01">
+                                    <div class="accordion-body">
+                                        Shoulder seasons offer lower prices and fewer crowds, but weather is too
+                                        unpredictable with possible trail closures and limited mountain transport
+                                        services.
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-12">
+                        <div class="weather-table-wrapper">
+
+                            <div class="weather-table bg-white">
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>Month</th>
+                                            <th>Temp (Max/Min)</th>
+                                            <th>Rain mm</th>
+                                            <th>Weather Opinion</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td><a href="#" class="month-link">Jan</a></td>
+                                            <td class="temp-col">26º/15º</td>
+                                            <td class="rain-col">10</td>
+                                            <td class="opinion-col"><i class="fa-regular fa-face-grin-hearts"></i> Peak
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><a href="#" class="month-link">Feb</a></td>
+                                            <td class="temp-col">26º/15º</td>
+                                            <td class="rain-col">10</td>
+                                            <td class="opinion-col"><i class="fa-regular fa-face-smile-beam"></i>
+                                                Moderate</td>
+                                        </tr>
+                                        <tr>
+                                            <td><a href="#" class="month-link">Mar</a></td>
+                                            <td class="temp-col">26º/15º</td>
+                                            <td class="rain-col">10</td>
+                                            <td class="opinion-col"><i class="fa-regular fa-face-sad-cry"></i>
+                                                Off</td>
+                                        </tr>
+                                        <tr>
+                                            <td><a href="#" class="month-link">Apr</a></td>
+                                            <td class="temp-col">26º/15º</td>
+                                            <td class="rain-col">10</td>
+                                            <td class="opinion-col"><i class="fa-regular fa-face-grin-hearts"></i>
+                                                Moderate</td>
+                                        </tr>
+                                        <tr>
+                                            <td><a href="#" class="month-link">May</a></td>
+                                            <td class="temp-col">26º/15º</td>
+                                            <td class="rain-col">10</td>
+                                            <td class="opinion-col"><i class="fa-regular fa-face-grin-hearts"></i>
+                                                Moderate</td>
+                                        </tr>
+                                        <tr>
+                                            <td><a href="#" class="month-link">Jun</a></td>
+                                            <td class="temp-col">26º/15º</td>
+                                            <td class="rain-col">10</td>
+                                            <td class="opinion-col"><i class="fa-regular fa-face-grin-hearts"></i>
+                                                Moderate</td>
+                                        </tr>
+                                        <tr>
+                                            <td><a href="#" class="month-link">Jul</a></td>
+                                            <td class="temp-col">26º/15º</td>
+                                            <td class="rain-col">10</td>
+                                            <td class="opinion-col"><i class="fa-regular fa-face-grin-hearts"></i>
+                                                Moderate</td>
+                                        </tr>
+                                        <tr>
+                                            <td><a href="#" class="month-link">Aug</a></td>
+                                            <td class="temp-col">26º/15º</td>
+                                            <td class="rain-col">10</td>
+                                            <td class="opinion-col"><i class="fa-regular fa-face-grin-hearts"></i>
+                                                Moderate</td>
+                                        </tr>
+                                        <tr>
+                                            <td><a href="#" class="month-link">Sep</a></td>
+                                            <td class="temp-col">26º/15º</td>
+                                            <td class="rain-col">10</td>
+                                            <td class="opinion-col"><i class="fa-regular fa-face-grin-hearts"></i>
+                                                Moderate</td>
+                                        </tr>
+                                        <tr>
+                                            <td><a href="#" class="month-link">Oct</a></td>
+                                            <td class="temp-col">26º/15º</td>
+                                            <td class="rain-col">10</td>
+                                            <td class="opinion-col"><i class="fa-regular fa-face-grin-hearts"></i>
+                                                Moderate</td>
+                                        </tr>
+                                        <tr>
+                                            <td><a href="#" class="month-link">Nov</a></td>
+                                            <td class="temp-col">26º/15º</td>
+                                            <td class="rain-col">10</td>
+                                            <td class="opinion-col"><i class="fa-regular fa-face-grin-hearts"></i>
+                                                Moderate</td>
+                                        </tr>
+                                        <tr>
+                                            <td><a href="#" class="month-link">Dec</a></td>
+                                            <td class="temp-col">26º/15º</td>
+                                            <td class="rain-col">10</td>
+                                            <td class="opinion-col"><i class="fa-regular fa-face-grin-hearts"></i>
+                                                Moderate</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="tab-pane fade" id="map" role="tabpanel">
+                <div class="mapsec">
+                    <agm-map [latitude]="this.lat" [longitude]="this.lng" style="width:100%; height:450px;"
+                        frameborder="0" scrolling="no" id="gmap_canvas" marginheight="0" marginwidth="0">
+                        <agm-marker [latitude]="this.lat" [longitude]="this.lng"></agm-marker>
+                    </agm-map>
+                    <div class="locationname">
+                        <i class="fa-solid fa-location-dot"></i>New York City, USA
+                    </div>
+                </div>
+            </div>
+            <!-- <div class="tab-pane fade" id="photos" role="tabpanel">Coming soon...</div> -->
+            <div class="tab-pane fade" id="support" role="tabpanel">
+                <div class="booking-cta-banner">
+                    <div class="ctatex">
+                        <img src="assets/images/global-vacation-hotsport/ctatex.png" alt="">
+                    </div>
+                    <div class="booking-cta-text">
+                        <h2>MAKE EASY BOOKINGS HAPPEN NOW</h2>
+                        <p>Your travel experts are here to make each trip of yours more memorable and exciting
+                        </p>
+                        <a href="tel:{{getData?.phoneNumber}}" class="booking-cta-button">
+                                    <i class="fas fa-phone-volume"></i>{{getData?.phoneNumber}}
+                                </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- == Main Body End == -->
+<!-- == Destination List Part Start == -->
+<div class="container container-xxl"><app-top-destinations-list></app-top-destinations-list></div>
+<!-- == Destination List Part End == -->

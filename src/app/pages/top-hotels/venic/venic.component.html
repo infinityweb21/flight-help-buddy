@@ -1,0 +1,503 @@
+
+<app-main-filter></app-main-filter>
+
+        <section class="details-contentntsec">
+            <div class="container container-xxl">
+                <div class="row">
+                    <div class="col-12 d-flex justify-content-between align-items-center flex-wrap">
+                        <h5 class="customhead">Venice</h5>
+                        <div class="custom-topbar">
+                            Call Us Toll-Free to Get the Best Deal! <a href="tel:{{getData?.phoneNumber}}">{{getData?.phoneNumber}}</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Tabs Navigation -->
+                <ul class="nav custom-nav-tabs mt-3" id="customTab" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link active" id="overview-tab" data-bs-toggle="tab"
+                            data-bs-target="#overview" type="button" role="tab">Overview</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="things-tab" data-bs-toggle="tab" data-bs-target="#things"
+                            type="button" role="tab">Things to Do</button>
+                    </li>
+                    <!-- <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="hotels-tab" data-bs-toggle="tab" data-bs-target="#hotels"
+                            type="button" role="tab">Best Hotels</button>
+                    </li> -->
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="visit-tab" data-bs-toggle="tab" data-bs-target="#visit"
+                            type="button" role="tab">When to visit</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="map-tab" data-bs-toggle="tab" data-bs-target="#map" type="button"
+                            role="tab">Map</button>
+                    </li>
+                    <!-- <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="photos-tab" data-bs-toggle="tab" data-bs-target="#photos"
+                            type="button" role="tab">Photos</button>
+                    </li> -->
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="support-tab" data-bs-toggle="tab" data-bs-target="#support"
+                            type="button" role="tab">Get Support</button>
+                    </li>
+                </ul>
+            </div>
+        </section>
+        <section class="content-boxsection">
+            <div class="container container-xxl">
+                <!-- Tabs Content -->
+                <div class="tab-content custom-tab-content" id="customTabContent">
+                    <div class="tab-pane fade show active" id="overview" role="tabpanel">
+                        <div class="custom-tab-title">Venice: The Floating City with Timeless Romance</div>
+                        <p class="custom-tab-paragraph">
+                            Venice is a magical city built on a network of canals, renowned for its romantic ambiance, historic architecture, and vibrant culture. If you haven't experienced this enchanting destination yet, now is the perfect time! Whether you’re captivated by the scenic gondola rides, the stunning St. Mark’s Basilica, or the charming alleyways filled with cafes and art, Venice will leave you spellbound. Every turn reveals a new surprise, whether it's a secret courtyard, a lively marketplace, or a historic church dating back centuries. 
+                        </p>
+                        <p class="custom-tab-paragraph">
+                            Take a leisurely stroll through the winding streets of the city, hop on a vaporetto to explore the lagoon islands of Murano and Burano, or relax by the Grand Canal. With delicious Venetian cuisine, warm hospitality, and an atmosphere like no other, Venice is a feast for the senses. Immerse yourself in the colors, sounds, and history that make this city truly unique. 
+                        </p>
+                        <p class="custom-tab-paragraph">
+                            So, get ready to pack your bags and explore the marvels of Venice. Travel to this floating city and create memories that will last a lifetime!
+                        </p>
+                        
+                        <div class="row mt-4">
+                            <div class="col-lg-8 col-md-6 col-12">
+
+                                <div class="custom-tab-title">Best Time To Visit Venice, Italy</div>
+                                <div class="accordion season-accordion" id="seasonAccordion">
+
+                                    <!-- Item 1 -->
+                                    <div class="accordion-item">
+                                        <h2 class="accordion-header" id="headingOne">
+                                            <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                                data-bs-target="#collapseOne" aria-expanded="true">
+                                                <span class="season-label label-green">Apr to Jun & Sep to Nov </span>
+                                                <span class="season-subtext">Is Peak Season</span>
+                                            </button>
+                                        </h2>
+                                        <div id="collapseOne" class="accordion-collapse collapse show"
+                                            data-bs-parent="#seasonAccordion">
+                                            <div class="accordion-body">
+                                                During these months, Venice boasts warm weather and lively festivals, making it perfect for exploring outdoor attractions, historic sites, and lagoon islands. The city comes alive with events, open-air markets, and pleasant strolls, offering an energetic and vibrant atmosphere ideal for sightseeing and leisure.
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Item 2 -->
+                                    <div class="accordion-item">
+                                        <h2 class="accordion-header" id="headingTwo">
+                                            <button class="accordion-button collapsed" type="button"
+                                                data-bs-toggle="collapse" data-bs-target="#collapseTwo">
+                                                <span class="season-label label-blue">Jul and Aug </span>
+                                                <span class="season-subtext">Is Moderate Season</span>
+                                            </button>
+                                        </h2>
+                                        <div id="collapseTwo" class="accordion-collapse collapse"
+                                            data-bs-parent="#seasonAccordion">
+                                            <div class="accordion-body">
+                                                Expect larger crowds, bustling streets, and higher prices during these summer months. Despite the crowds, immerse yourself in Venice’s lively summer festivals, al fresco dining, and the city’s vibrant, bustling atmosphere. It’s the best time for lively events and enjoying the warm weather, though early planning is recommended for accommodations.
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Item 3 -->
+                                    <div class="accordion-item">
+                                        <h2 class="accordion-header" id="headingThree">
+                                            <button class="accordion-button collapsed" type="button"
+                                                data-bs-toggle="collapse" data-bs-target="#collapseThree">
+                                                <span class="season-label label-orange">Dec to Mar </span>
+                                                <span class="season-subtext">Is Off Season</span>
+                                            </button>
+                                        </h2>
+                                        <div id="collapseThree" class="accordion-collapse collapse"
+                                            data-bs-parent="#seasonAccordion">
+                                            <div class="accordion-body">
+                                                Venice is quieter and more peaceful, with fewer tourists and a cozy winter ambiance. The city is beautifully decorated for the holidays, and the cooler weather adds a charming, intimate feel. Perfect for leisurely visits, exploring museums, and experiencing Venice’s festive holiday atmosphere without the crowds. 
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-6 col-12">
+                                <div class="weather-table-wrapper">
+
+                                    <div class="weather-table bg-white">
+                                        <table>
+                                            <thead>
+                                                <tr>
+                                                    <th>Month</th>
+                                                    <th>Temp (Max/Min)</th>
+                                                    <th>Rain mm</th>
+                                                    <th>Weather Opinion</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td><a href="#" class="month-link">Jan</a></td>
+                                                    <td class="temp-col">26º/15º</td>
+                                                    <td class="rain-col">10</td>
+                                                    <td class="opinion-col"><i
+                                                            class="fa-regular fa-face-grin-hearts"></i> Peak</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><a href="#" class="month-link">Feb</a></td>
+                                                    <td class="temp-col">26º/15º</td>
+                                                    <td class="rain-col">10</td>
+                                                    <td class="opinion-col"><i
+                                                            class="fa-regular fa-face-smile-beam"></i> Moderate</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><a href="#" class="month-link">Mar</a></td>
+                                                    <td class="temp-col">26º/15º</td>
+                                                    <td class="rain-col">10</td>
+                                                    <td class="opinion-col"><i class="fa-regular fa-face-sad-cry"></i>
+                                                        Off</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><a href="#" class="month-link">Apr</a></td>
+                                                    <td class="temp-col">26º/15º</td>
+                                                    <td class="rain-col">10</td>
+                                                    <td class="opinion-col"><i
+                                                            class="fa-regular fa-face-grin-hearts"></i> Moderate</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><a href="#" class="month-link">May</a></td>
+                                                    <td class="temp-col">26º/15º</td>
+                                                    <td class="rain-col">10</td>
+                                                    <td class="opinion-col"><i
+                                                            class="fa-regular fa-face-grin-hearts"></i> Moderate</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><a href="#" class="month-link">Jun</a></td>
+                                                    <td class="temp-col">26º/15º</td>
+                                                    <td class="rain-col">10</td>
+                                                    <td class="opinion-col"><i
+                                                            class="fa-regular fa-face-grin-hearts"></i> Moderate</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><a href="#" class="month-link">Jul</a></td>
+                                                    <td class="temp-col">26º/15º</td>
+                                                    <td class="rain-col">10</td>
+                                                    <td class="opinion-col"><i
+                                                            class="fa-regular fa-face-grin-hearts"></i> Moderate</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><a href="#" class="month-link">Aug</a></td>
+                                                    <td class="temp-col">26º/15º</td>
+                                                    <td class="rain-col">10</td>
+                                                    <td class="opinion-col"><i
+                                                            class="fa-regular fa-face-grin-hearts"></i> Moderate</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><a href="#" class="month-link">Sep</a></td>
+                                                    <td class="temp-col">26º/15º</td>
+                                                    <td class="rain-col">10</td>
+                                                    <td class="opinion-col"><i
+                                                            class="fa-regular fa-face-grin-hearts"></i> Moderate</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><a href="#" class="month-link">Oct</a></td>
+                                                    <td class="temp-col">26º/15º</td>
+                                                    <td class="rain-col">10</td>
+                                                    <td class="opinion-col"><i
+                                                            class="fa-regular fa-face-grin-hearts"></i> Moderate</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><a href="#" class="month-link">Nov</a></td>
+                                                    <td class="temp-col">26º/15º</td>
+                                                    <td class="rain-col">10</td>
+                                                    <td class="opinion-col"><i
+                                                            class="fa-regular fa-face-grin-hearts"></i> Moderate</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><a href="#" class="month-link">Dec</a></td>
+                                                    <td class="temp-col">26º/15º</td>
+                                                    <td class="rain-col">10</td>
+                                                    <td class="opinion-col"><i
+                                                            class="fa-regular fa-face-grin-hearts"></i> Moderate</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Placeholder tabs for other sections -->
+                    <div class="tab-pane fade" id="things" role="tabpanel">
+                        <div class="desilistcard">
+                            <div class="destination-card">
+                                <div class="destination-image">
+                                    <img src="assets/images/hotel/things-to-do/venice_gondola_ride_canals.webp" alt="venice_gondola_ride_canals">
+                                </div>
+                                <div class="destination-content">
+                                    <h3>Gondola Ride & Canals </h3>
+                                    <p>
+                                        Enjoy a romantic gondola ride through Venice’s winding waterways, offering unique views of historic buildings and bridges. Glide past hidden courtyards and scenic spots, soaking in the city's enchanting atmosphere. It’s a perfect way to experience Venice’s timeless charm and capture memorable moments on the water. 
+                                    </p>
+                                    <div class="last-updated">Last Update: 20/07/2025</div>
+                                </div>
+                            </div>
+                            <div class="destination-card">
+                                <div class="destination-image">
+                                    <img src="assets/images/hotel/things-to-do/st_mark_basilica_square.webp" alt="st_mark_basilica_square">
+                                </div>
+                                <div class="destination-content">
+                                    <h3>St. Mark’s Basilica & Square </h3>
+                                    <p>
+                                        Marvel at the stunning mosaics and golden domes of St. Mark’s Basilica, a masterpiece of Byzantine architecture. Wander around the lively square filled with cafes, musicians, and vendors. It’s the heart of Venice’s history and culture, offering a vibrant setting to soak in the city’s rich heritage. 
+                                    </p>
+                                    <div class="last-updated">Last Update: 20/07/2025</div>
+                                </div>
+                            </div>
+                            <div class="destination-card">
+                                <div class="destination-image">
+                                    <img src="assets/images/hotel/things-to-do/doge_palace.webp" alt="doge_palace">
+                                </div>
+                                <div class="destination-content">
+                                    <h3>Doge’s Palace </h3>
+                                    <p>
+                                        Discover Venice’s political history at Doge’s Palace, an impressive Gothic structure with ornate interiors and art collections. Walk across the historic Bridge of Sighs and explore the chambers where ducal decisions were made. It offers a captivating glimpse into Venice’s former splendor and its historical governance
+                                    </p>
+                                    <div class="last-updated">Last Update: 20/07/2025</div>
+                                </div>
+                            </div>
+                            <div class="destination-card">
+                                <div class="destination-image">
+                                    <img src="assets/images/hotel/things-to-do/murano_burano_islands.webp" alt="Statue of Liberty">
+                                </div>
+                                <div class="destination-content">
+                                    <h3>Murano & Burano Islands </h3>
+                                    <p>
+                                        Visit Murano, famous for exquisite glass-blowing demonstrations, and explore vibrant, colorful houses on Burano, renowned for lace-making. Take a scenic boat trip between these islands to enjoy their unique crafts, picturesque scenery, and peaceful atmosphere, making for a memorable day escape from the busy city.   
+                                    </p>
+                                    <div class="last-updated">Last Update: 20/07/2025</div>
+                                </div>
+                            </div>
+                            <!-- <div class="destination-card">
+                                <div class="destination-image">
+                                    <img src="assets/images/hotel/things-to-do/trastevere.webp" alt="Statue of Liberty">
+                                </div>
+                                <div class="destination-content">
+                                    <h3>Vondelpark</h3>
+                                    <p>
+                                        The most famous park is an escape right in the heart of the city with open lawns, small lakes and bike paths. It’s ideal for a picnic or simply watching the world go by and attend a free concert at the open-air theatre during summer.
+                                    </p>
+                                    <div class="last-updated">Last Update: 20/07/2025</div>
+                                </div>
+                            </div>
+                            <div class="destination-card">
+                                <div class="destination-image">
+                                    <img src="assets/images/hotel/things-to-do/trastevere.webp" alt="Statue of Liberty">
+                                </div>
+                                <div class="destination-content">
+                                    <h3>Heineken Experience</h3>
+                                    <p>
+                                        A former brewery turned interactive museum offering a fun look into one of the world's most iconic beer brands. It’s a great mix of entertainment and tradition from brewing history to a rooftop bar with city views.
+                                    </p>
+                                    <div class="last-updated">Last Update: 20/07/2025</div>
+                                </div>
+                            </div> -->
+                        </div>
+                    </div>
+                    <!-- <div class="tab-pane fade" id="hotels" role="tabpanel">Coming soon...</div> -->
+                    <div class="tab-pane fade" id="visit" role="tabpanel">
+
+                        <div class="row">
+                            <div class="col-lg-8 col-md-6 col-12">
+
+                                <div class="custom-tab-title">Best Time To Visit New York City, USA</div>
+                                <div class="accordion season-accordion" id="seasonAccordion01">
+
+                                    <!-- Item 1 -->
+                                    <div class="accordion-item">
+                                        <h2 class="accordion-header" id="headingOne">
+                                            <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                                data-bs-target="#collapseOne" aria-expanded="true">
+                                                <span class="season-label label-green">Apr to Jun & Sep to Nov </span>
+                                                <span class="season-subtext">Is Peak Season</span>
+                                            </button>
+                                        </h2>
+                                        <div id="collapseOne" class="accordion-collapse collapse show"
+                                            data-bs-parent="#seasonAccordion01">
+                                            <div class="accordion-body">
+                                                During these months, Venice boasts warm weather and lively festivals, making it perfect for exploring outdoor attractions, historic sites, and lagoon islands. The city comes alive with events, open-air markets, and pleasant strolls, offering an energetic and vibrant atmosphere ideal for sightseeing and leisure.
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Item 2 -->
+                                    <div class="accordion-item">
+                                        <h2 class="accordion-header" id="headingTwo">
+                                            <button class="accordion-button collapsed" type="button"
+                                                data-bs-toggle="collapse" data-bs-target="#collapseTwo">
+                                                <span class="season-label label-blue">Jul and Aug </span>
+                                                <span class="season-subtext">Is Moderate Season</span>
+                                            </button>
+                                        </h2>
+                                        <div id="collapseTwo" class="accordion-collapse collapse"
+                                            data-bs-parent="#seasonAccordion01">
+                                            <div class="accordion-body">
+                                                Expect larger crowds, bustling streets, and higher prices during these summer months. Despite the crowds, immerse yourself in Venice’s lively summer festivals, al fresco dining, and the city’s vibrant, bustling atmosphere. It’s the best time for lively events and enjoying the warm weather, though early planning is recommended for accommodations.
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Item 3 -->
+                                    <div class="accordion-item">
+                                        <h2 class="accordion-header" id="headingThree">
+                                            <button class="accordion-button collapsed" type="button"
+                                                data-bs-toggle="collapse" data-bs-target="#collapseThree">
+                                                <span class="season-label label-orange">Dec to Mar </span>
+                                                <span class="season-subtext">Is Off Season</span>
+                                            </button>
+                                        </h2>
+                                        <div id="collapseThree" class="accordion-collapse collapse"
+                                            data-bs-parent="#seasonAccordion01">
+                                            <div class="accordion-body">
+                                                Venice is quieter and more peaceful, with fewer tourists and a cozy winter ambiance. The city is beautifully decorated for the holidays, and the cooler weather adds a charming, intimate feel. Perfect for leisurely visits, exploring museums, and experiencing Venice’s festive holiday atmosphere without the crowds. 
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-6 col-12">
+                                <div class="weather-table-wrapper">
+
+                                    <div class="weather-table bg-white">
+                                        <table>
+                                            <thead>
+                                                <tr>
+                                                    <th>Month</th>
+                                                    <th>Temp (Max/Min)</th>
+                                                    <th>Rain mm</th>
+                                                    <th>Weather Opinion</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td><a href="#" class="month-link">Jan</a></td>
+                                                    <td class="temp-col">26º/15º</td>
+                                                    <td class="rain-col">10</td>
+                                                    <td class="opinion-col"><i
+                                                            class="fa-regular fa-face-grin-hearts"></i> Peak</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><a href="#" class="month-link">Feb</a></td>
+                                                    <td class="temp-col">26º/15º</td>
+                                                    <td class="rain-col">10</td>
+                                                    <td class="opinion-col"><i
+                                                            class="fa-regular fa-face-smile-beam"></i> Moderate</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><a href="#" class="month-link">Mar</a></td>
+                                                    <td class="temp-col">26º/15º</td>
+                                                    <td class="rain-col">10</td>
+                                                    <td class="opinion-col"><i class="fa-regular fa-face-sad-cry"></i>
+                                                        Off</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><a href="#" class="month-link">Apr</a></td>
+                                                    <td class="temp-col">26º/15º</td>
+                                                    <td class="rain-col">10</td>
+                                                    <td class="opinion-col"><i
+                                                            class="fa-regular fa-face-grin-hearts"></i> Moderate</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><a href="#" class="month-link">May</a></td>
+                                                    <td class="temp-col">26º/15º</td>
+                                                    <td class="rain-col">10</td>
+                                                    <td class="opinion-col"><i
+                                                            class="fa-regular fa-face-grin-hearts"></i> Moderate</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><a href="#" class="month-link">Jun</a></td>
+                                                    <td class="temp-col">26º/15º</td>
+                                                    <td class="rain-col">10</td>
+                                                    <td class="opinion-col"><i
+                                                            class="fa-regular fa-face-grin-hearts"></i> Moderate</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><a href="#" class="month-link">Jul</a></td>
+                                                    <td class="temp-col">26º/15º</td>
+                                                    <td class="rain-col">10</td>
+                                                    <td class="opinion-col"><i
+                                                            class="fa-regular fa-face-grin-hearts"></i> Moderate</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><a href="#" class="month-link">Aug</a></td>
+                                                    <td class="temp-col">26º/15º</td>
+                                                    <td class="rain-col">10</td>
+                                                    <td class="opinion-col"><i
+                                                            class="fa-regular fa-face-grin-hearts"></i> Moderate</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><a href="#" class="month-link">Sep</a></td>
+                                                    <td class="temp-col">26º/15º</td>
+                                                    <td class="rain-col">10</td>
+                                                    <td class="opinion-col"><i
+                                                            class="fa-regular fa-face-grin-hearts"></i> Moderate</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><a href="#" class="month-link">Oct</a></td>
+                                                    <td class="temp-col">26º/15º</td>
+                                                    <td class="rain-col">10</td>
+                                                    <td class="opinion-col"><i
+                                                            class="fa-regular fa-face-grin-hearts"></i> Moderate</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><a href="#" class="month-link">Nov</a></td>
+                                                    <td class="temp-col">26º/15º</td>
+                                                    <td class="rain-col">10</td>
+                                                    <td class="opinion-col"><i
+                                                            class="fa-regular fa-face-grin-hearts"></i> Moderate</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><a href="#" class="month-link">Dec</a></td>
+                                                    <td class="temp-col">26º/15º</td>
+                                                    <td class="rain-col">10</td>
+                                                    <td class="opinion-col"><i
+                                                            class="fa-regular fa-face-grin-hearts"></i> Moderate</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="map" role="tabpanel">
+                        <div class="mapsec">
+                                       <agm-map [latitude]="this.lat" [longitude]="this.lng" style="width:100%; height:450px;"
+                    frameborder="0" scrolling="no" id="gmap_canvas" marginheight="0" marginwidth="0">
+                    <agm-marker [latitude]="this.lat" [longitude]="this.lng"></agm-marker>
+                  </agm-map>
+                            <div class="locationname">
+                                <i class="fa-solid fa-location-dot"></i>New York City, USA
+                            </div>
+                        </div>
+                    </div>
+                    <!-- <div class="tab-pane fade" id="photos" role="tabpanel">Coming soon...</div> -->
+                    <div class="tab-pane fade" id="support" role="tabpanel">
+                        <div class="booking-cta-banner">
+                            <div class="ctatex">
+                                <img src="assets/images/global-vacation-hotsport/ctatex.png" alt="">
+                            </div>
+                            <div class="booking-cta-text">
+                                <h2>MAKE EASY BOOKINGS HAPPEN NOW</h2>
+                                <p>Your travel experts are here to make each trip of yours more memorable and exciting
+                                </p>
+                                <a href="tel:0000000000" class="booking-cta-button">
+                                    <i class="fas fa-phone-volume"></i> (000)000-0000
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+<!-- == Main Body End == -->
+<!-- == Destination List Part Start == -->
+<div class="container container-xxl"><app-top-hotel-list></app-top-hotel-list></div>

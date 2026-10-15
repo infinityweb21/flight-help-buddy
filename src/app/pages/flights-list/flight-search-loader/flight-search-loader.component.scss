@@ -1,0 +1,403 @@
+.hotel-loader-section {
+  padding-top: 80px;
+}
+
+.loader-container {
+  width: 100%;
+  height: 10px;
+  background-color: #656565;
+  overflow: hidden;
+  position: relative;
+}
+
+.loader-bar {
+  width: 46%;
+  height: 100%;
+  background: linear-gradient(to right, #fbb040, #f9962d, #f7821f);
+  animation: moveBar 6s linear infinite;
+  border-radius: 5px;
+}
+
+@keyframes moveBar {
+  0% {
+    transform: translateX(-100%);
+  }
+
+  100% {
+    transform: translateX(200%);
+  }
+}
+
+.infoboxflight img {
+  width: 45px;
+  height: 45px;
+  object-fit: contain;
+}
+
+.infoboxflight {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  height: 122px;
+}
+
+.infoboxsubflight h3 {
+  font-size: 11px;
+  color: var(--color-black);
+  font-weight: 600;
+  margin-bottom: 0.2rem;
+}
+
+.infoboxsubflight p {
+  color: #767676;
+  font-size: 8px;
+  margin-bottom: 0;
+  line-height: normal;
+}
+
+.infolistflight {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 38px;
+}
+
+.infolistflight li {
+  box-shadow: 0px 4px 8.6px 0px rgba(0, 0, 0, 0.09);
+  padding: 15px 30px;
+  border-radius: 6px;
+  max-width: 265px;
+}
+
+.flightmidimg {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  margin-top: 2rem;
+}
+
+.flightmidimg img {
+  width: 325px;
+  height: 325px;
+  object-fit: contain;
+  margin: 0 auto;
+}
+
+.flightmidimg h4 {
+  color: var(--color-black) ;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.flight-route-content-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: left;
+  gap: 53px;
+  margin-top: 75px;
+  position: relative;
+}
+.flight-route {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+.flight-route-path {
+  border-top: 2px dashed #868686;
+  width: 182px;
+  display: flex;
+  position: relative;
+}
+.flight-route-path::before {
+  content: "";
+  width: 9px;
+  height: 9px;
+  background-color: #01032b;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  position: absolute;
+  left: -9px;
+  top: -6px;
+}
+.flight-route-path::after {
+  content: "";
+  width: 9px;
+  height: 9px;
+  background-color: #01032b;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  position: absolute;
+  right: -9px;
+  top: -6px;
+}
+
+.route-both-icon {
+  background-color: var(--color-white);
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  border-radius: 5px;
+  padding: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.bookdate h3 {
+  font-size: 15px;
+  color: #747474;
+  margin-bottom: 0rem;
+}
+
+.bookdate {
+  display: flex;
+  align-items: start;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.bookdate span {
+  font-size: 11px;
+  color: var(--color-black) ;
+  font-weight: bold;
+}
+
+.flightbookingdate img {
+  width: 132px;
+  height: 30px;
+  object-fit: contain;
+}
+
+.textpara {
+  text-align: center;
+  width: 350px;
+  font-size: 13px;
+  color: var(--color-black) ;
+  margin: 0 auto;
+  margin-top: 36px;
+}
+
+.infolistflight li.calllist {
+  max-width: 407px;
+  padding: 20px;
+}
+
+.callbtnhotel,
+.callbtnhotel:hover,
+.callbtnhotel:focus {
+  background-color: #01032b;
+  color: var(--color-white);
+  font-size: 13px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px 20px;
+  width: max-content;
+  gap: 8px;
+  border-radius: 5px;
+}
+
+.calllist .infoboxsubflight p {
+  font-size: 13px;
+  font-weight: 400;
+  color: #4b4b4b;
+  margin-bottom: 0.5rem;
+}
+
+/* === === */
+.circle-wrapper {
+  margin-top: 45px;
+  position: relative;
+  width: 257px;
+  height: 257px;
+  border-radius: 50%;
+  background: var(--color-white);
+  margin: 45px auto 0 auto;
+}
+.circle-wrapper::after {
+  content: "";
+  position: absolute;
+  top: 0px;
+  left: 0px;
+//   background-image: url("../images/flight-details/shape.png");
+  background-image: url("../../../../../public/assets/images/flight-details/shape.png");
+  background-position: left 4px;
+  background-repeat: no-repeat;
+  background-size: contain;
+  width: 100%;
+  height: 100%;
+  transform: rotate(21deg);
+  border: 2px dashed #878787;
+  border-top: 0;
+  border-left: 0;
+  border-right: 0;
+  border-radius: 50%;
+}
+.plane-path {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  animation: rotate 5s linear infinite;
+  transform-origin: center;
+  z-index: 99;
+}
+
+.plane {
+  position: absolute;
+  width: 40px;
+  top: -17px;
+  left: calc(50% - 23px);
+  transform: rotate(90deg);
+}
+
+.center-plane {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 140px;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+}
+
+@keyframes rotate {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+.orange-dot {
+  position: absolute;
+  bottom: 67px;
+  left: 9px;
+  width: 10px;
+  height: 10px;
+  background: #ff7a00;
+  border-radius: 50%;
+  z-index: 5;
+}
+.orange-dot-right {
+  position: absolute;
+  bottom: 74px;
+  right: 8px;
+  width: 10px;
+  height: 10px;
+  background: #ff7a00;
+  border-radius: 50%;
+  z-index: 5;
+}
+/* === === */
+.flight-departure-title {
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 100%;
+  color: var(--color-black);
+}
+.flight-arrival-title {
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 100%;
+  color: var(--color-black);
+}
+@media (max-width: 991px) {
+  .infolistflight {
+    flex-wrap: wrap;
+    margin-top: 1rem;
+  }
+
+  .flightmidimg {
+    margin-top: 0;
+  }
+
+  .flightmidimg img {
+    width: 220px;
+    height: 220px;
+  }
+  .circle-wrapper {
+    width: 170px;
+    height: 170px;
+  }
+  .center-plane {
+    width: 90px;
+  }
+  .orange-dot {
+    left: -3px;
+  }
+  .orange-dot-right {
+    right: -2px;
+  }
+  .flight-route-content-box{
+    gap: 24px;
+  }
+  .flight-arrival-title, .flight-departure-title{
+    font-size: 20px;
+  }
+  .flight-route-content-box{
+    margin-bottom: 32px;
+    margin-top: 32px;
+  }
+}
+
+@media (max-width: 767px) {
+  .infolistflight li {
+    padding: 15px 20px;
+    max-width: 237px;
+  }
+
+  .infoboxflight img {
+    width: 35px;
+    height: 35px;
+  }
+
+  .infolistflight li.calllist {
+    max-width: 370px;
+    padding: 20px;
+  }
+
+  .infolistflight li.calllist .infoboxflight img {
+    width: 45px;
+    height: 45px;
+  }
+}
+
+@media (max-width: 580px) {
+  .hotel-loader-section {
+    padding-top: 60px;
+  }
+
+  .loader-container {
+    width: 100%;
+    height: 5px;
+  }
+
+  .textpara {
+    margin-top: 0.4rem;
+  }
+
+  .bookdate h3,
+  .calllist .infoboxsubflight p,
+  .textpara {
+    font-size: 10px;
+  }
+
+  .flightmidimg img {
+    width: 160px;
+    height: 160px;
+  }
+
+  .textpara {
+    width: auto;
+  }
+
+  .flightmidimg h4 {
+    font-size: 15px;
+  }
+}

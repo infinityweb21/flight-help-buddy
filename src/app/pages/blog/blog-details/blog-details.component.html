@@ -1,0 +1,200 @@
+<!-- == Banner Section Start=== -->
+<app-main-filter></app-main-filter>
+<!-- == Banner Section End === -->
+<!-- == Blog content-part Start == -->
+<section class="bpc-blog-content-details bpc-blog-details-sec">
+  <div class="container container-xxl">
+    <div class="row">
+      <div class="col-md-8 col-xxl-9">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="post-single">
+              <div class="post-single__image">
+                <img
+                  [src]="imageBasePath + '/blog/' + blogDetails?.thumb"
+                  alt="Blog Single"
+                  class="post-single__image-img"
+                />
+              </div>
+
+              <div class="post-single__content">
+                <a href="#" class="category"> Cruise Booking </a>
+                <!-- <h2 class="post-single__title">What The Secrets You Will know about Jordan Petra if Visit it One Day?</h2> -->
+                <ul class="post-single__meta list-inline">
+                  <li class="post-single__meta-item">
+                    <span class="dot"></span>
+                    {{ blogDetails?.date | date : "MMM dd,yyyy" }}
+                  </li>
+                </ul>
+              </div>
+
+              <div
+                class="post-single__body"
+                [innerHTML]="blogDetails?.description"
+              ></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 col-xxl-3">
+        <div class="row stickyrow">
+          <div class="col-12">
+            <div class="catwidget">
+              <h5 class="catwidget__title">Categories</h5>
+              <ul class="catwidget__categories">
+                <li class="catwidget__categories-item">
+                  <a class="catwidget__categories-link">
+                    All <span class="catwidget__categories-number">68</span>
+                  </a>
+                </li>
+                <li class="catwidget__categories-item">
+                  <a class="catwidget__categories-link">
+                    Flight Cancellation Policy
+                    <span class="catwidget__categories-number">1</span>
+                  </a>
+                </li>
+                <li class="catwidget__categories-item">
+                  <a class="catwidget__categories-link">
+                    Cruise Booking
+                    <span class="catwidget__categories-number">1</span>
+                  </a>
+                </li>
+                <li class="catwidget__categories-item">
+                  <a class="catwidget__categories-link">
+                    International Flights Booking
+                    <span class="catwidget__categories-number">2</span>
+                  </a>
+                </li>
+                <li class="catwidget__categories-item">
+                  <a class="catwidget__categories-link">
+                    Business Class Flight
+                    <span class="catwidget__categories-number">13</span>
+                  </a>
+                </li>
+                <li class="catwidget__categories-item">
+                  <a class="catwidget__categories-link">
+                    Domestic Flights Booking
+                    <span class="catwidget__categories-number">6</span>
+                  </a>
+                </li>
+                <li class="catwidget__categories-item">
+                  <a class="catwidget__categories-link">
+                    Special Deals
+                    <span class="catwidget__categories-number">2</span>
+                  </a>
+                </li>
+                <li class="catwidget__categories-item">
+                  <a class="catwidget__categories-link">
+                    First Class International Flights
+                    <span class="catwidget__categories-number">14</span>
+                  </a>
+                </li>
+                <li class="catwidget__categories-item">
+                  <a class="catwidget__categories-link">
+                    Best Flight Deals
+                    <span class="catwidget__categories-number">6</span>
+                  </a>
+                </li>
+                <li class="catwidget__categories-item">
+                  <a class="catwidget__categories-link">
+                    News <span class="catwidget__categories-number">23</span>
+                  </a>
+                </li>
+              </ul>
+              <!-- <button class="category-read-more-btn">Read More</button> -->
+            </div>
+          </div>
+          <div class="col-12">
+            <div class="catwidget mb-0">
+              <h5 class="catwidget__title">Recent Blogs</h5>
+              <ul class="widget__latest-posts">
+                @for (blog of blogDetails?.recentblogs; track $index) {
+                <li class="widget__latest-posts__item">
+                  <div class="widget__latest-posts__content">
+                    <p class="widget__latest-posts-title">
+                      <a
+                        [routerLink]="['/blog-details', blog.s_url]"
+                        class="widget__latest-posts-link"
+                        >{{ blog.name }}</a
+                      >
+                    </p>
+                    <small class="widget__latest-posts-date">
+                      <i
+                        class="fa-solid fa-clock widget__latest-posts-icon"
+                      ></i>
+                      {{ blog.date | date : "MMMM d, y" }}
+                    </small>
+                  </div>
+                </li>
+                }
+              </ul>
+              <!-- <button class="category-read-more-btn">Read More</button> -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- == Blog content-part end == -->
+
+<!-- === FAQ Start === -->
+
+@if(faqList.length>0){
+<section class="faq-section">
+  <div class="container">
+    <div class="row justify-content-start w-100">
+      <div class="col-lg-7 mx-auto">
+        <div class="faq-section-title-wrap text-center faq-title-wrap">
+          <h1 class="faq-section-title">Commonly Asked Travel Quarries</h1>
+        </div>
+        <div class="section-sub-title-wrap text-center">
+          <p class="faq-section-sub-title">
+            We offer tailored travel experienced based on each traveler's
+            preference. Read more to know!
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="faq-content-wrap mb-3 bg-transparent">
+      <div class="row justify-content-start w-100">
+        <div class="col-lg-12 mx-auto">
+          <div class="accordion accordion-flush" id="accordionFaq">
+            <div
+              class="accordion-item mb-3 pb-3"
+              *ngFor="let faq of faqList; let i = index"
+            >
+              <h2 class="accordion-header" [id]="'heading' + i">
+                <button
+                  class="accordion-button"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  [attr.data-bs-target]="'#collapse' + i"
+                  [attr.aria-controls]="'collapse' + i"
+                  [attr.aria-expanded]="i === 0 ? 'true' : 'false'"
+                  [ngClass]="{ collapsed: i !== 0 }"
+                >
+                  {{ faq.question }}
+                </button>
+              </h2>
+              <div
+                [id]="'collapse' + i"
+                class="accordion-collapse collapse"
+                [ngClass]="{ show: i === 0 }"
+                [attr.aria-labelledby]="'heading' + i"
+                data-bs-parent="#accordionFaq"
+              >
+                <div class="accordion-body">
+                  <p>{{ faq.answers }}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+}
+<!-- === FAQ End === -->

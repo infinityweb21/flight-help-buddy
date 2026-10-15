@@ -1,0 +1,115 @@
+<div class="fsr-stage for-hotel">
+    <div class="fsr-widget">
+        <form class="tab-pane fade active show" id="cruises-tab"  [formGroup]="cruisesForm"
+            (ngSubmit)="submitForm()">
+            <div class="fsr-mainrow">
+                <div class="fsr-field">
+                    <div class="fsr-field__icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                            <path
+                                d="M17.464 6.56a8.313 8.313 0 1 1-15.302 6.504A8.313 8.313 0 0 1 17.464 6.56m1.38-.586C16.724.986 10.963-1.339 5.974.781.988 2.9-1.337 8.662.783 13.65s7.881 7.312 12.87 5.192c4.987-2.12 7.312-7.881 5.192-12.87zM15.691 16.75l7.029 7.03a.75.75 0 0 0 1.06-1.06l-7.029-7.03a.75.75 0 0 0-1.06 1.06">
+                            </path>
+                        </svg>
+                    </div>
+                    <div class="fsr-field__body">
+                        <div class="fsr-field__label">Enter Cruise Destination</div>
+                        <div class="fsr-field__value fsr-placeholder">
+                            <p-autoComplete formControlName="departureCruises" field="name" [suggestions]="cruiseList"
+                                (completeMethod)="filtercruise($event)"
+                                [panelStyleClass]="'airport-autocomplete-panel'" placeholder="Add Destination"
+                                class="form-control cruise-add-destination-input"
+                                [panelStyle]="{ 'max-height': '250px', overflow: 'auto' }" (forceSelection)="(true)"
+                                [class.is-invalid]="(f['departureCruises'].touched || submitted) && f['departureCruises'].invalid ">
+                                <ng-template let-cruise pTemplate="item">
+                                    <div class="airport-item">
+                                        <div class="d-flex align-items-center newcswidth">
+                                            <!-- Image -->
+                                            <div class="airport-icon">
+                                               <i class="fa-solid fa-ship"></i>
+                                            </div>
+
+                                            <!-- Info -->
+                                            <div class="airport-text">
+                                                @if (cruise.flag === 'cruise_line') {
+                                                <div class="city-country">{{ cruise.name }}</div>
+                                                <div class="airport-name">{{ cruise.cruise_type }}</div>
+                                                } @if (cruise.flag === 'cruise_port') {
+                                                <div class="city-country">{{ cruise.portCode }}</div>
+                                                <div class="airport-name">{{ cruise.name }}</div>
+                                                }
+                                            </div>
+                                        </div>
+                                        <!-- @if(cruise.flag === 'cruise_port'){
+                                        <div class="airport-code">{{ cruise.portCode }}</div>
+                                        } -->
+                                    </div>
+                                </ng-template>
+                            </p-autoComplete>
+                            @if(cruisesForm.get('departureCruises')?.touched &&
+                            cruisesForm.get('departureCruises')?.hasError('required')){
+                            <div class="text-danger isinvalid-text">Departure is required</div>
+                            }
+                        </div>
+                    </div>
+                </div>
+                <div class="fsr-field">
+                    <div class="fsr-field__icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                            <path
+                                d="M22.5 13.5v8.25a.75.75 0 0 1-.75.75H2.25a.75.75 0 0 1-.75-.75V5.25a.75.75 0 0 1 .75-.75h19.5a.75.75 0 0 1 .75.75zm1.5 0V5.25A2.25 2.25 0 0 0 21.75 3H2.25A2.25 2.25 0 0 0 0 5.25v16.5A2.25 2.25 0 0 0 2.25 24h19.5A2.25 2.25 0 0 0 24 21.75zm-23.25-3h22.5a.75.75 0 0 0 0-1.5H.75a.75.75 0 0 0 0 1.5M7.5 6V.75a.75.75 0 0 0-1.5 0V6a.75.75 0 0 0 1.5 0M18 6V.75a.75.75 0 0 0-1.5 0V6A.75.75 0 0 0 18 6M5.095 14.03a.75.75 0 1 0 1.06-1.06.75.75 0 0 0-1.06 1.06m.53-1.28a1.125 1.125 0 1 0 0 2.25 1.125 1.125 0 0 0 0-2.25.75.75 0 0 0 0 1.5.375.375 0 1 1 0-.75.375.375 0 0 1 0 .75.75.75 0 0 0 0-1.5m-.53 6.53a.75.75 0 1 0 1.06-1.06.75.75 0 0 0-1.06 1.06m.53-1.28a1.125 1.125 0 1 0 0 2.25 1.125 1.125 0 0 0 0-2.25.75.75 0 0 0 0 1.5.375.375 0 1 1 0-.75.375.375 0 0 1 0 .75.75.75 0 0 0 0-1.5m5.845-3.97a.75.75 0 1 0 1.06-1.06.75.75 0 0 0-1.06 1.06m.53-1.28A1.125 1.125 0 1 0 12 15a1.125 1.125 0 0 0 0-2.25.75.75 0 0 0 0 1.5.375.375 0 1 1 0-.75.375.375 0 0 1 0 .75.75.75 0 0 0 0-1.5m-.53 6.53a.75.75 0 1 0 1.06-1.06.75.75 0 0 0-1.06 1.06M12 18a1.125 1.125 0 1 0 0 2.25A1.125 1.125 0 0 0 12 18a.75.75 0 0 0 0 1.5.375.375 0 1 1 0-.75.375.375 0 0 1 0 .75.75.75 0 0 0 0-1.5m5.845-3.97a.75.75 0 1 0 1.06-1.06.75.75 0 0 0-1.06 1.06m.53-1.28a1.125 1.125 0 1 0 0 2.25 1.125 1.125 0 0 0 0-2.25.75.75 0 0 0 0 1.5.375.375 0 1 1 0-.75.375.375 0 0 1 0 .75.75.75 0 0 0 0-1.5m-.53 6.53a.75.75 0 1 0 1.06-1.06.75.75 0 0 0-1.06 1.06m.53-1.28a1.125 1.125 0 1 0 0 2.25 1.125 1.125 0 0 0 0-2.25.75.75 0 0 0 0 1.5.375.375 0 1 1 0-.75.375.375 0 0 1 0 .75.75.75 0 0 0 0-1.5">
+                            </path>
+                        </svg>
+                    </div>
+                    <div class="fsr-field__body">
+                        <div class="fsr-field__label">Date From
+                        </div>
+                        <div class="fsr-field__value">
+                            <input type="text"  id="cruiseStartDate" class="form-control calender-icon commonDatePicker"
+                                placeholder="Start Date"readonly
+                                [appFlatpickr]="'basic'" formControlName="startDate"
+                                [class.is-invalid]="(f['startDate'].touched || submitted) && f['startDate'].invalid " />
+                            @if(cruisesForm.get('startDate')?.touched &&
+                            cruisesForm.get('startDate')?.hasError('required')){
+                            <div class="text-danger isinvalid-text">Start date is requird</div>
+                            }
+                        </div>
+                    </div>
+                    <div class="fsr-dropdown fsr-datepicker">
+                    </div>
+                </div>
+                <div class="fsr-field">
+                    <div class="fsr-field__icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                            <path
+                                d="M22.5 13.5v8.25a.75.75 0 0 1-.75.75H2.25a.75.75 0 0 1-.75-.75V5.25a.75.75 0 0 1 .75-.75h19.5a.75.75 0 0 1 .75.75zm1.5 0V5.25A2.25 2.25 0 0 0 21.75 3H2.25A2.25 2.25 0 0 0 0 5.25v16.5A2.25 2.25 0 0 0 2.25 24h19.5A2.25 2.25 0 0 0 24 21.75zm-23.25-3h22.5a.75.75 0 0 0 0-1.5H.75a.75.75 0 0 0 0 1.5M7.5 6V.75a.75.75 0 0 0-1.5 0V6a.75.75 0 0 0 1.5 0M18 6V.75a.75.75 0 0 0-1.5 0V6A.75.75 0 0 0 18 6M5.095 14.03a.75.75 0 1 0 1.06-1.06.75.75 0 0 0-1.06 1.06m.53-1.28a1.125 1.125 0 1 0 0 2.25 1.125 1.125 0 0 0 0-2.25.75.75 0 0 0 0 1.5.375.375 0 1 1 0-.75.375.375 0 0 1 0 .75.75.75 0 0 0 0-1.5m-.53 6.53a.75.75 0 1 0 1.06-1.06.75.75 0 0 0-1.06 1.06m.53-1.28a1.125 1.125 0 1 0 0 2.25 1.125 1.125 0 0 0 0-2.25.75.75 0 0 0 0 1.5.375.375 0 1 1 0-.75.375.375 0 0 1 0 .75.75.75 0 0 0 0-1.5m5.845-3.97a.75.75 0 1 0 1.06-1.06.75.75 0 0 0-1.06 1.06m.53-1.28A1.125 1.125 0 1 0 12 15a1.125 1.125 0 0 0 0-2.25.75.75 0 0 0 0 1.5.375.375 0 1 1 0-.75.375.375 0 0 1 0 .75.75.75 0 0 0 0-1.5m-.53 6.53a.75.75 0 1 0 1.06-1.06.75.75 0 0 0-1.06 1.06M12 18a1.125 1.125 0 1 0 0 2.25A1.125 1.125 0 0 0 12 18a.75.75 0 0 0 0 1.5.375.375 0 1 1 0-.75.375.375 0 0 1 0 .75.75.75 0 0 0 0-1.5m5.845-3.97a.75.75 0 1 0 1.06-1.06.75.75 0 0 0-1.06 1.06m.53-1.28a1.125 1.125 0 1 0 0 2.25 1.125 1.125 0 0 0 0-2.25.75.75 0 0 0 0 1.5.375.375 0 1 1 0-.75.375.375 0 0 1 0 .75.75.75 0 0 0 0-1.5m-.53 6.53a.75.75 0 1 0 1.06-1.06.75.75 0 0 0-1.06 1.06m.53-1.28a1.125 1.125 0 1 0 0 2.25 1.125 1.125 0 0 0 0-2.25.75.75 0 0 0 0 1.5.375.375 0 1 1 0-.75.375.375 0 0 1 0 .75.75.75 0 0 0 0-1.5">
+                            </path>
+                        </svg>
+                    </div>
+                    <div class="fsr-field__body">
+                        <div class="fsr-field__label">Date To
+                        </div>
+                        <div class="fsr-field__value">
+                            <input type="text" id="cruiseEndDate" class="form-control calender-icon commonDatePicker"
+                                placeholder="End Date" readonly [appFlatpickr]="'basic'" formControlName="endDate"
+                                [minDate]="cruisesForm.get('startDate')?.value"
+                                [class.is-invalid]="(f['endDate'].touched || submitted) && f['endDate'].invalid " />
+
+                            @if(cruisesForm.get('endDate')?.touched &&
+                            cruisesForm.get('endDate')?.hasError('required')){
+                            <div class="text-danger isinvalid-text">End date is requird</div>
+                            } @if(cruisesForm.hasError('checkOutBeforeCheckIn') && cruisesForm.touched){
+                            <div class="text-danger">
+                                Check-out date must be after check-in date.
+                            </div>
+                            }
+                        </div>
+
+                    </div>
+                    <div class="fsr-dropdown fsr-datepicker">
+                    </div>
+                </div>
+                <button class="fsr-explore" id="fsrExploreBtn" type="submit">Search</button>
+            </div>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,137 @@
+.trend-package-card-wrap .swiper-slide {
+  height: 487px;
+}
+// == Add card design Start ==
+.dealassist-item {
+  padding: 0 24px 5px 0;
+  width: 100%;
+}
+
+.dealassist-card {
+  border: 1px solid #dbdbdb;
+  background: linear-gradient(180deg, #ffffff 0%, #f9f9f9 100%);
+  box-shadow: 0px 3.92px 15.69px 0px rgba(158, 158, 158, 0.25);
+  padding: 20px;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 8px;
+  transition: box-shadow 0.3s ease;
+  cursor: pointer;
+  text-decoration: none;
+  margin: 8px;
+  min-height: 377px;
+}
+
+.dealassist-card:hover {
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+  // transform: translateY(-2px);
+}
+
+.dealassist-icon {
+  width: 117px;
+  height: 117px;
+  border-radius: 50%;
+  background-image: url("../../../../../public/assets/images/assist-agent.webp");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.dealassist-details {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.dealassist-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: #262933;
+}
+
+.dealassist-subtitle {
+  font-size: 14px;
+  font-weight: 400;
+  color: #444;
+}
+
+.dealassist-msg {
+  font-size: 14px;
+  font-weight: 500;
+  color: #007c04;
+  margin-top: 1rem;
+}
+
+.dealassist-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+}
+
+.dealassist-callbtn {
+  border: 2px solid #007c04;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-left: 2.5rem;
+  position: relative;
+  height: 44px;
+  background-color: #f0fff2;
+  transition: background-color 0.2s ease;
+}
+
+.dealassist-callbtn:hover {
+  background-color: #e4ffe9;
+}
+
+.dealassist-dialicon {
+  position: absolute;
+  left: 4px;
+  width: 32px;
+  height: 32px;
+  background-color: #007c04;
+  border-radius: 4px;
+  background-image: url("data:image/svg+xml,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cpath%20d%3D%22M15.2514%2011.4262C14.8156%2011.2404%2012.9401%2010.3247%2012.5529%2010.1668C12.1662%2010.0084%2011.5372%2010.0451%2011.0501%2010.4888C10.5635%2010.9319%2010.2726%2011.1503%2010.1344%2011.2741C9.99618%2011.3973%209.38068%2011.6359%208.52448%2011.0991C7.85204%2010.6777%206.94511%209.8686%206.53823%209.46172C6.13135%209.05484%205.32225%208.1479%204.90088%207.47546C4.36407%206.61925%204.60219%206.00375%204.72591%205.86554C4.84911%205.72732%205.06808%205.4364%205.51068%204.9498C5.95431%204.46268%205.99107%203.83372%205.83266%203.44703C5.67478%203.05982%204.75904%201.18433%204.5732%200.748461C4.3884%200.312591%204.02811%200.00717122%203.28683%200.00717122C3.10202%200.000441629%202.94724%20-0.00214699%202.69618%200.00199429C2.0548%20-0.00369997%201.53145%200.323461%201.29126%200.563138C0.190203%201.6642%20-0.713626%203.79023%200.800521%206.85427C2.18525%209.65636%204.13009%2011.4268%204.35165%2011.6483C4.5732%2011.8699%206.34359%2013.8147%209.14567%2015.1995C12.2097%2016.7136%2014.3357%2015.8098%2015.4367%2014.7087C15.6764%2014.4691%2016.0036%2013.9457%2015.9979%2013.3038C16.002%2013.0533%2016%2012.898%2015.9927%2012.7132C15.9927%2011.9719%2015.6873%2011.6111%2015.2514%2011.4262Z%22%20fill%3D%22white%22%2F%3E%3C/svg%3E");
+  background-size: 50%;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.dealassist-number {
+  font-size: 16px;
+  font-weight: 700;
+  color: #007c04;
+}
+
+.dealassist-availability {
+  font-size: 14px;
+  font-weight: 400;
+  color: #636770;
+}
+// @media(min-width: 768px) {
+//     .dealassist-item {
+//         width: 325px;
+//     }
+// }
+// == Add card design End ==
+@media (max-width: 1366px) {
+  .dealassist-icon {
+    width: 75px;
+    height: 75px;
+  }
+}
+@media (min-width: 1280px) {
+  .dealassist-subtitle {
+    font-size: 13px;
+  }
+  .dealassist-msg {
+    margin-top: 0;
+  }
+}
+

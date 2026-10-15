@@ -1,0 +1,1554 @@
+.hotel-loader-section {
+  padding-top: 0px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: #ffffff;
+  z-index: 4;
+  overflow: hidden;
+  z-index: 999999;
+}
+
+.loader-container {
+  width: 100%;
+  height: 10px;
+  background-color: #656565;
+  overflow: hidden;
+  position: relative;
+}
+
+.loader-bar {
+  width: 46%;
+  height: 100%;
+  background: linear-gradient(to right, #fbb040, #f9962d, #f7821f);
+  animation: moveBar 6s linear infinite;
+  border-radius: 5px;
+}
+
+@keyframes moveBar {
+  0% {
+    transform: translateX(-100%);
+  }
+
+  100% {
+    transform: translateX(200%);
+  }
+}
+
+.infoboxflight img {
+  width: 45px;
+  height: 45px;
+  object-fit: contain;
+}
+
+.infoboxflight {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.infoboxsubflight h3 {
+  font-size: 11px;
+  color: #000000;
+  font-weight: 600;
+  margin-bottom: 0.2rem;
+}
+
+.infoboxsubflight p {
+  color: #767676;
+  font-size: 8px;
+  margin-bottom: 0;
+  line-height: normal;
+}
+
+.infolistflight {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 38px;
+  padding: 0px;
+}
+
+.infolistflight li {
+  box-shadow: 0px 4px 8.6px 0px rgba(0, 0, 0, 0.09);
+  padding: 16px;
+  border-radius: 6px;
+  // max-width: 265px;
+  width: 100%;
+  height: 87px;
+}
+
+.flightmidimg {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  margin-top: 2rem;
+}
+
+.flightmidimg img {
+  width: 325px;
+  height: 325px;
+  object-fit: contain;
+  margin: 0 auto;
+}
+
+.flightmidimg h4 {
+  color: #000;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.flight-route-content-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: left;
+  gap: 53px;
+  margin-top: 75px;
+  position: relative;
+}
+
+.flight-route {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.flight-route-path {
+  border-top: 2px dashed #868686;
+  width: 182px;
+  display: flex;
+  position: relative;
+}
+
+.flight-route-path::before {
+  content: "";
+  width: 9px;
+  height: 9px;
+  background-color: #01032b;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  position: absolute;
+  left: -9px;
+  top: -6px;
+}
+
+.flight-route-path::after {
+  content: "";
+  width: 9px;
+  height: 9px;
+  background-color: #01032b;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  position: absolute;
+  right: -9px;
+  top: -6px;
+}
+
+.route-both-icon {
+  background-color: #fff;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  border-radius: 5px;
+  padding: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.bookdate h3 {
+  font-size: 15px;
+  color: #747474;
+  margin-bottom: 0rem;
+}
+
+.bookdate {
+  display: flex;
+  align-items: start;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.bookdate span {
+  font-size: 11px;
+  color: #000;
+  font-weight: bold;
+}
+
+.flightbookingdate img {
+  width: 132px;
+  height: 30px;
+  object-fit: contain;
+}
+
+.textpara {
+  text-align: center;
+  width: 350px;
+  font-size: 13px;
+  color: #000;
+  margin: 0 auto;
+  margin-top: 36px;
+}
+
+.infolistflight li.calllist {
+  max-width: 100%;
+  padding: 16px;
+}
+
+.infolistflight.info-box-sub-flight-list li {
+  width: 100%;
+  height: auto;
+}
+
+.callbtnhotel,
+.callbtnhotel:hover,
+.callbtnhotel:focus {
+  background-color: #01032b;
+  color: #fff;
+  font-size: 13px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px 20px;
+  width: max-content;
+  gap: 8px;
+  border-radius: 5px;
+}
+
+.calllist .infoboxsubflight p {
+  font-size: 13px;
+  font-weight: 400;
+  color: #4b4b4b;
+  margin-bottom: 0.5rem;
+}
+
+/* === === */
+.circle-wrapper {
+  margin-top: 45px;
+  position: relative;
+  width: 257px;
+  height: 257px;
+  border-radius: 50%;
+  background: #fff;
+  margin: 45px auto 0 auto;
+}
+
+.circle-wrapper::after {
+  content: "";
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  //   background-image: url("../images/flight-details/shape.png");
+  background-image: url("../../../../public/assets/images/spinner/shape.png");
+  background-position: left 4px;
+  background-repeat: no-repeat;
+  background-size: contain;
+  width: 100%;
+  height: 100%;
+  transform: rotate(21deg);
+  border: 2px dashed #878787;
+  border-top: 0;
+  border-left: 0;
+  border-right: 0;
+  border-radius: 50%;
+}
+
+.plane-path {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  animation: rotate 5s linear infinite;
+  transform-origin: center;
+  z-index: 99;
+}
+
+.plane {
+  position: absolute;
+  width: 40px;
+  top: -17px;
+  left: calc(50% - 23px);
+  transform: rotate(90deg);
+}
+
+.center-plane {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 140px;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+}
+
+@keyframes rotate {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.orange-dot {
+  position: absolute;
+  bottom: 67px;
+  left: 9px;
+  width: 10px;
+  height: 10px;
+  background: #ff7a00;
+  border-radius: 50%;
+  z-index: 5;
+}
+
+.orange-dot-right {
+  position: absolute;
+  bottom: 74px;
+  right: 8px;
+  width: 10px;
+  height: 10px;
+  background: #ff7a00;
+  border-radius: 50%;
+  z-index: 5;
+}
+
+/* === === */
+.flight-departure-title {
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 100%;
+  color: #000000;
+}
+
+.flight-arrival-title {
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 100%;
+  color: #000000;
+}
+
+@media (max-width: 991px) {
+  .infolistflight {
+    flex-wrap: wrap;
+    margin-top: 1rem;
+  }
+
+  .flightmidimg {
+    margin-top: 0;
+  }
+
+  .flightmidimg img {
+    width: 220px;
+    height: 220px;
+  }
+
+  .circle-wrapper {
+    width: 170px;
+    height: 170px;
+  }
+
+  .center-plane {
+    width: 90px;
+  }
+
+  .orange-dot {
+    left: -3px;
+  }
+
+  .orange-dot-right {
+    right: -2px;
+  }
+
+  .flight-route-content-box {
+    gap: 24px;
+  }
+
+  .flight-arrival-title,
+  .flight-departure-title {
+    font-size: 20px;
+  }
+
+  .flight-route-content-box {
+    margin-bottom: 32px;
+    margin-top: 32px;
+  }
+}
+
+@media (max-width: 767px) {
+  .infolistflight li {
+    padding: 15px;
+    // max-width: 237px;
+  }
+
+  .infoboxflight img {
+    width: 35px;
+    height: 35px;
+  }
+
+  .infolistflight li.calllist {
+    // max-width: 370px;
+    padding: 15px;
+  }
+
+  .infolistflight li.calllist .infoboxflight img {
+    width: 45px;
+    height: 45px;
+  }
+}
+
+@media (max-width: 580px) {
+  .hotel-loader-section {
+    padding-top: 0px;
+  }
+
+  .loader-container {
+    width: 100%;
+    height: 5px;
+  }
+
+  .textpara {
+    margin-top: 0.4rem;
+  }
+
+  .bookdate h3,
+  .calllist .infoboxsubflight p,
+  .textpara {
+    font-size: 10px;
+  }
+
+  .flightmidimg img {
+    width: 160px;
+    height: 160px;
+  }
+
+  .textpara {
+    width: auto;
+  }
+
+  .flightmidimg h4 {
+    font-size: 15px;
+  }
+}
+
+.loader-container {
+  width: 100%;
+  height: 10px;
+  background-color: #656565;
+  overflow: hidden;
+  position: relative;
+}
+
+.loader-bar {
+  width: 46%;
+  height: 100%;
+  background: linear-gradient(to right, #fbb040, #f9962d, #f7821f);
+  animation: moveBar 6s linear infinite;
+  border-radius: 5px;
+}
+
+@keyframes moveBar {
+  0% {
+    transform: translateX(-100%);
+  }
+
+  100% {
+    transform: translateX(200%);
+  }
+}
+
+.infoboxhotel img {
+  width: 45px;
+  height: 45px;
+  object-fit: contain;
+}
+
+.infoboxhotel {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.infoboxsubhotel h3 {
+  font-size: 14px;
+  color: #000000;
+  font-weight: 600;
+  margin-bottom: 0.2rem;
+}
+
+.infoboxsubhotel p {
+  color: #767676;
+  font-size: 11px;
+  margin-bottom: 0;
+  line-height: normal;
+}
+
+.infolisthotel {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 2rem;
+}
+
+.infolisthotel li {
+  box-shadow: 0px 3px 11px 0px rgba(0, 0, 0, 10%);
+  padding: 15px 30px;
+  border-radius: 6px;
+  // max-width: 265px;
+}
+
+.hotelmidimg {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  margin-top: 2rem;
+}
+
+.hotelmidimg img {
+  width: 325px;
+  height: 325px;
+  object-fit: contain;
+  margin: 0 auto;
+}
+
+.hotelmidimg h4 {
+  color: #000;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.hotelbookingdate {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: left;
+  gap: 25px;
+  margin-top: 1rem;
+}
+
+.bookdate h3 {
+  font-size: 15px;
+  color: #747474;
+  margin-bottom: 0rem;
+}
+
+.bookdate {
+  display: flex;
+  align-items: start;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.bookdate span {
+  font-size: 11px;
+  color: #000;
+  font-weight: bold;
+}
+
+.hotelbookingdate img {
+  width: 132px;
+  height: 30px;
+  object-fit: contain;
+}
+
+.textpara {
+  text-align: center;
+  width: 350px;
+  font-size: 13px;
+  color: #000;
+  margin: 0 auto;
+  margin-top: 2rem;
+}
+
+.infolisthotel li.calllist {
+  max-width: 407px;
+  padding: 20px;
+}
+
+.callbtnhotel,
+.callbtnhotel:hover,
+.callbtnhotel:focus {
+  background-color: #01032b;
+  color: #fff;
+  font-size: 13px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px 20px;
+  width: max-content;
+  gap: 8px;
+  border-radius: 5px;
+}
+
+.calllist .infoboxsubhotel p {
+  font-size: 13px;
+  font-weight: 400;
+  color: #4b4b4b;
+  margin-bottom: 0.5rem;
+}
+
+@media (max-width: 991px) {
+  .infolisthotel {
+    flex-wrap: wrap;
+    margin-top: 1rem;
+  }
+
+  .hotelmidimg {
+    margin-top: 0;
+  }
+
+  .hotelmidimg img {
+    width: 220px;
+    height: 220px;
+  }
+}
+
+@media (max-width: 767px) {
+  .infolisthotel li {
+    padding: 15px 20px;
+    max-width: 237px;
+  }
+
+  .infoboxhotel img {
+    width: 35px;
+    height: 35px;
+  }
+
+  .infolisthotel li.calllist {
+    max-width: 370px;
+    padding: 20px;
+  }
+
+  .infolisthotel li.calllist .infoboxhotel img {
+    width: 45px;
+    height: 45px;
+  }
+}
+
+@media (max-width: 580px) {
+  .hotel-loader-section {
+    padding-top: 0px;
+  }
+
+  .loader-container {
+    width: 100%;
+    height: 5px;
+  }
+
+  .textpara {
+    margin-top: 0.4rem;
+  }
+
+  .bookdate h3,
+  .calllist .infoboxsubhotel p,
+  .textpara {
+    font-size: 10px;
+  }
+
+  .hotelmidimg img {
+    width: 160px;
+    height: 160px;
+  }
+
+  .hotelbookingdate img {
+    width: 102px;
+  }
+
+  .textpara {
+    width: auto;
+  }
+
+  .hotelmidimg h4 {
+    font-size: 15px;
+  }
+
+  .flight-route-path {
+    width: 120px !important;
+  }
+
+  .flight-arrival-title,
+  .flight-departure-title {
+    font-size: 14px;
+  }
+
+  .topinfobox {
+    display: none;
+  }
+}
+
+@media (min-width: 414px) {
+  .infolistflight li {
+    width: 48%;
+  }
+
+  .infolistflight.info-box-sub-flight-list li {
+    width: 76%;
+    height: auto;
+  }
+}
+
+@media (min-width: 768px) {
+  .infolistflight li {
+    height: auto;
+  }
+
+  .infolistflight.info-box-sub-flight-list li {
+    width: 407px;
+  }
+}
+
+@media (min-width: 992px) {
+  .infolistflight li {
+    width: 25%;
+  }
+}
+
+// new car loader css :start
+
+/* ============ Tokens ============ */
+.search-wait {
+  --sw-blue: #006ce4;
+  --sw-blue-dark: #0057b8;
+  --sw-blue-tint: #ebf3ff;
+  --sw-blue-line: #b9d4fb;
+  --sw-ink: #1a1a1a;
+  --sw-muted: #595959;
+  --sw-border: #e0e6ee;
+  --sw-radius: 8px;
+
+  max-width: 1140px;
+  margin: 0 auto;
+  padding: 24px 16px 32px;
+  display: grid;
+  gap: 24px;
+  color: var(--sw-ink);
+  font-family:
+    -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue",
+    Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ============ Perks ============ */
+.search-wait__perks {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.perk {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 16px;
+  background: #fff;
+  border: 1px solid var(--sw-border);
+  border-radius: var(--sw-radius);
+}
+
+.perk__icon {
+  flex: none;
+  width: 48px;
+  height: 48px;
+  object-fit: contain;
+}
+
+.perk__body {
+  min-width: 0;
+}
+
+.perk__title {
+  margin: 0 0 4px;
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 700;
+  color: var(--sw-ink);
+}
+
+.perk__text {
+  margin: 0;
+  font-size: 14px;
+  line-height: 20px;
+  color: var(--sw-muted);
+}
+
+/* ============ Loader ============ */
+.search-wait__loader {
+  text-align: center;
+}
+
+.search-wait__status {
+  margin: 16px 0 0;
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 600;
+  color: var(--sw-ink);
+}
+
+.ride {
+  --car-w: 200px;
+  position: relative;
+  height: 210px;
+  overflow: hidden;
+  border: 1px solid #dbe6f5;
+  border-radius: var(--sw-radius);
+  background: linear-gradient(#e6f1ff 0%, #f8fbff 100%);
+}
+
+/* clouds */
+.ride__cloud {
+  position: absolute;
+  left: 100%;
+  width: 64px;
+  height: 16px;
+  border-radius: 16px;
+  background: #fff;
+  opacity: 0.9;
+  animation: ride-cloud 28s linear infinite;
+}
+
+.ride__cloud::after {
+  content: "";
+  position: absolute;
+  left: 14px;
+  bottom: 6px;
+  width: 26px;
+  height: 20px;
+  border-radius: 50%;
+  background: inherit;
+}
+
+.ride__cloud--a {
+  top: 26px;
+  animation-delay: -6s;
+}
+
+.ride__cloud--b {
+  top: 58px;
+  width: 48px;
+  height: 12px;
+  opacity: 0.7;
+  animation-duration: 40s;
+  animation-delay: -22s;
+}
+
+/* skyline (slow parallax) */
+.ride__skyline {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 32px;
+  height: 70px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='70' fill='%23dbe8fb'%3E%3Crect x='0' y='30' width='40' height='40'/%3E%3Crect x='50' y='14' width='30' height='56'/%3E%3Crect x='90' y='36' width='50' height='34'/%3E%3Crect x='150' y='22' width='34' height='48'/%3E%3Crect x='196' y='38' width='44' height='32'/%3E%3Crect x='250' y='10' width='28' height='60'/%3E%3Crect x='290' y='28' width='46' height='42'/%3E%3Crect x='346' y='40' width='54' height='30'/%3E%3C/svg%3E");
+  background-repeat: repeat-x;
+  background-size: 400px 70px;
+  animation: ride-skyline 14s linear infinite;
+}
+
+/* car */
+.ride__car {
+  position: absolute;
+  bottom: 12px;
+  left: 0;
+  right: 0;
+  width: var(--car-w);
+  margin-inline: auto;
+  z-index: 1;
+  animation: ride-bob 0.5s ease-in-out infinite alternate;
+}
+
+.ride__svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.ride__spin {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: ride-spin 0.7s linear infinite;
+}
+
+/* road */
+.ride__road {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 32px;
+  background: #243244;
+}
+
+.ride__road::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 3px;
+  background: #3d4f66;
+}
+
+.ride__road::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 18px;
+  height: 3px;
+  background: repeating-linear-gradient(
+    90deg,
+    #fff 0 28px,
+    transparent 28px 56px
+  );
+  background-size: 56px 3px;
+  animation: ride-road 0.6s linear infinite;
+}
+
+@keyframes ride-road {
+  to {
+    background-position: -56px 0;
+  }
+}
+
+@keyframes ride-skyline {
+  to {
+    background-position: -400px 0;
+  }
+}
+
+@keyframes ride-cloud {
+  from {
+    left: 100%;
+  }
+  to {
+    left: -80px;
+  }
+}
+
+@keyframes ride-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes ride-bob {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-1.5px);
+  }
+}
+
+/* ============ Help bar ============ */
+.help-bar {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px 20px;
+  background: var(--sw-blue-tint);
+  border: 1px solid var(--sw-blue-line);
+  border-radius: var(--sw-radius);
+}
+
+.help-bar__icon {
+  flex: none;
+  width: 48px;
+  height: 48px;
+  object-fit: contain;
+}
+
+.help-bar__text {
+  flex: 1 1 0;
+  min-width: 0;
+  margin: 0;
+  font-size: 15px;
+  line-height: 22px;
+  color: var(--sw-ink);
+}
+
+.help-bar__btn {
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 44px;
+  padding: 0 20px;
+  border-radius: 4px;
+  background: var(--sw-blue);
+  color: #fff;
+  font-size: 15px;
+  line-height: 20px;
+  font-weight: 600;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: background-color 0.15s ease;
+}
+
+.help-bar__btn:hover {
+  background: var(--sw-blue-dark);
+  color: #fff;
+}
+
+.help-bar__btn:focus-visible {
+  outline: 3px solid rgba(0, 108, 228, 0.4);
+  outline-offset: 2px;
+}
+
+/* ============ Responsive ============ */
+@media (max-width: 1023.98px) {
+  .search-wait__perks {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 599.98px) {
+  .search-wait {
+    padding: 16px 12px 24px;
+    gap: 16px;
+  }
+
+  .search-wait__perks {
+    grid-template-columns: 1fr;
+    gap: 12px;
+    display: none;
+  }
+  .search-wait__loader {
+    margin-top: 20px;
+  }
+
+  .ride {
+    --car-w: 150px;
+    height: 176px;
+  }
+
+  .ride__skyline {
+    height: 56px;
+    background-size: 320px 56px;
+    animation-name: ride-skyline-sm;
+  }
+
+  .help-bar {
+    flex-wrap: wrap;
+    padding: 16px;
+  }
+
+  .help-bar__btn {
+    flex: 1 1 100%;
+  }
+}
+
+@keyframes ride-skyline-sm {
+  to {
+    background-position: -320px 0;
+  }
+}
+
+/* ============ Reduced motion ============ */
+@media (prefers-reduced-motion: reduce) {
+  .ride__cloud,
+  .ride__skyline,
+  .ride__car,
+  .ride__spin,
+  .ride__road::after {
+    animation: none;
+  }
+
+  .ride__cloud--a {
+    left: 18%;
+  }
+  .ride__cloud--b {
+    left: 62%;
+  }
+}
+
+// new car loader css :End
+
+// new cruise loader css :start
+
+/* ============ Tokens ============ */
+.cruise-wait {
+  --cw-navy: #0b2e4f;
+  --cw-blue: #0a6ebd;
+  --cw-coral: #ff6a3d;
+  --cw-ink: #14202e;
+  --cw-muted: #55606c;
+  --cw-line: #dbe4ee;
+  --cw-radius: 8px;
+
+  max-width: 1140px;
+  margin: 0 auto;
+  padding: 24px 16px 32px;
+  display: grid;
+  gap: 24px;
+  color: var(--cw-ink);
+  font-family:
+    -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue",
+    Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ============ Benefits (one panel, hairline dividers) ============ */
+.benefits {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1px;
+  background: var(--cw-line);
+  border: 1px solid var(--cw-line);
+  border-radius: var(--cw-radius);
+  overflow: hidden;
+}
+
+.benefit {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 20px;
+  background: #fff;
+}
+
+.benefit__icon {
+  width: 44px;
+  height: 44px;
+  object-fit: contain;
+}
+
+.benefit__body {
+  min-width: 0;
+}
+
+.benefit__title {
+  margin: 0 0 4px;
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 700;
+  color: var(--cw-navy);
+}
+
+.benefit__text {
+  margin: 0;
+  font-size: 14px;
+  line-height: 20px;
+  color: var(--cw-muted);
+}
+
+/* ============ Loader ============ */
+.cruise-wait__loader {
+  text-align: center;
+}
+
+.cruise-wait__status {
+  margin: 16px 0 0;
+  font-size: 14px;
+  line-height: 20px;
+  color: var(--cw-muted);
+}
+
+.cruise-wait__port {
+  margin: 2px 0 0;
+  font-size: 22px;
+  line-height: 30px;
+  font-weight: 700;
+  color: var(--cw-navy);
+}
+
+.sail {
+  --ship-w: 320px;
+  position: relative;
+  height: 240px;
+  overflow: hidden;
+  border-radius: var(--cw-radius);
+  background: linear-gradient(#bfe0fa 0%, #e9f5ff 62%, #f6fbff 100%);
+}
+
+.sail__sun {
+  position: absolute;
+  top: 28px;
+  right: 14%;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: #ffd98a;
+  box-shadow:
+    0 0 0 10px rgba(255, 217, 138, 0.35),
+    0 0 0 22px rgba(255, 217, 138, 0.18);
+}
+
+.sail__cloud {
+  position: absolute;
+  left: 100%;
+  width: 70px;
+  height: 16px;
+  border-radius: 16px;
+  background: #fff;
+  opacity: 0.95;
+  animation: sail-cloud 36s linear infinite;
+}
+
+.sail__cloud::after {
+  content: "";
+  position: absolute;
+  left: 16px;
+  bottom: 6px;
+  width: 28px;
+  height: 20px;
+  border-radius: 50%;
+  background: inherit;
+}
+
+.sail__cloud--a {
+  top: 34px;
+  animation-delay: -10s;
+}
+.sail__cloud--b {
+  top: 82px;
+  width: 50px;
+  height: 12px;
+  opacity: 0.75;
+  animation-duration: 52s;
+  animation-delay: -34s;
+}
+
+/* sea */
+.sail__sea {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 58px;
+  background: linear-gradient(#1f7fd1, #0b4f8f);
+}
+
+.sail__wave {
+  position: absolute;
+  left: 0;
+  right: 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='24' viewBox='0 0 160 24'%3E%3Cpath d='M0 12Q20 0 40 12T80 12T120 12T160 12V24H0Z' fill='%231f7fd1'/%3E%3C/svg%3E");
+  background-repeat: repeat-x;
+  background-size: 160px 24px;
+}
+
+.sail__wave--back {
+  bottom: 50px;
+  height: 24px;
+  opacity: 0.55;
+  animation: sail-wave-back 11s linear infinite;
+}
+
+.sail__wave--front {
+  bottom: 30px;
+  height: 24px;
+  z-index: 2;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='24' viewBox='0 0 160 24'%3E%3Cpath d='M0 12Q20 0 40 12T80 12T120 12T160 12V24H0Z' fill='%231567b8'/%3E%3C/svg%3E");
+  animation: sail-wave-front 6s linear infinite;
+}
+
+.sail__wave--front::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 23px;
+  height: 40px;
+  background: #1567b8;
+}
+
+/* ship */
+.sail__ship {
+  position: absolute;
+  bottom: calc(56px - var(--ship-w) * 0.0615);
+  left: 0;
+  right: 0;
+  width: var(--ship-w);
+  margin-inline: auto;
+  z-index: 1;
+  transform-origin: 50% 85%;
+  animation: sail-rock 4.5s ease-in-out infinite;
+}
+
+.sail__svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+
+.sail__smoke {
+  transform-box: fill-box;
+  transform-origin: center;
+  opacity: 0;
+  animation: sail-smoke 3.2s ease-out infinite;
+}
+
+.sail__smoke--late {
+  animation-delay: 1.6s;
+}
+
+@keyframes sail-wave-back {
+  to {
+    background-position: -160px 0;
+  }
+}
+
+@keyframes sail-wave-front {
+  to {
+    background-position: 160px 0;
+  }
+}
+
+@keyframes sail-cloud {
+  from {
+    left: 100%;
+  }
+  to {
+    left: -90px;
+  }
+}
+
+@keyframes sail-rock {
+  0%,
+  100% {
+    transform: translateY(0) rotate(-0.8deg);
+  }
+  50% {
+    transform: translateY(-3px) rotate(0.8deg);
+  }
+}
+
+@keyframes sail-smoke {
+  0% {
+    opacity: 0;
+    transform: translate(0, 0) scale(0.6);
+  }
+  20% {
+    opacity: 0.85;
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-22px, -20px) scale(1.8);
+  }
+}
+
+/* ============ Assistance ============ */
+.assist {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 18px 24px;
+  border-radius: var(--cw-radius);
+  background: linear-gradient(90deg, var(--cw-navy), #124c82);
+  color: #fff;
+}
+
+.assist__icon {
+  flex: none;
+  width: 56px;
+  height: 56px;
+  padding: 10px;
+  box-sizing: border-box;
+  border-radius: 50%;
+  background: #fff;
+  object-fit: contain;
+}
+
+.assist__text {
+  flex: 1 1 0;
+  min-width: 0;
+  margin: 0;
+  font-size: 15px;
+  line-height: 22px;
+}
+
+.assist__btn {
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 44px;
+  padding: 0 20px;
+  border-radius: 4px;
+  background: #fff;
+  color: var(--cw-navy);
+  font-size: 15px;
+  line-height: 20px;
+  font-weight: 700;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: background-color 0.15s ease;
+}
+
+.assist__btn:hover {
+  background: #e8f1fb;
+  color: var(--cw-navy);
+}
+
+.assist__btn:focus-visible {
+  outline: 3px solid rgba(255, 255, 255, 0.6);
+  outline-offset: 2px;
+}
+
+/* ============ Responsive ============ */
+@media (max-width: 1023.98px) {
+  .benefits {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .benefit {
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 14px;
+  }
+
+  .benefit__icon {
+    flex: none;
+  }
+}
+
+@media (max-width: 599.98px) {
+  .cruise-wait {
+    padding: 16px 12px 24px;
+    gap: 16px;
+  }
+
+  .benefits {
+    grid-template-columns: 1fr;
+    display: none;
+  }
+  .cruise-wait__loader {
+    margin-top: 20px;
+  }
+  .benefit {
+    padding: 16px;
+  }
+
+  .sail {
+    --ship-w: 230px;
+    height: 200px;
+  }
+
+  .sail__sun {
+    top: 20px;
+    width: 36px;
+    height: 36px;
+  }
+
+  .cruise-wait__port {
+    font-size: 20px;
+    line-height: 28px;
+  }
+
+  .assist {
+    flex-wrap: wrap;
+    padding: 16px;
+  }
+
+  .assist__btn {
+    flex: 1 1 100%;
+  }
+}
+
+/* ============ Reduced motion ============ */
+@media (prefers-reduced-motion: reduce) {
+  .sail__cloud,
+  .sail__wave,
+  .sail__ship,
+  .sail__smoke {
+    animation: none;
+  }
+
+  .sail__cloud--a {
+    left: 18%;
+  }
+  .sail__cloud--b {
+    left: 58%;
+  }
+}
+
+// new cruise loader css :end
+.stripe-loader {
+  --sl-orange: #f14c21;
+  --sl-peach: #ffbd9f;
+  --sl-track: #ffd8d8;
+  --sl-cap-color: #172337;
+  --sl-cap: 4px;      /* dark strip on top; set 0 to remove */
+  --sl-height: 6px;
+  --sl-period: 40px;  /* width of one orange + peach stripe pair */
+
+  position: relative;
+  box-sizing: content-box;
+  width: 100%;
+  height: var(--sl-height);
+  overflow: hidden;
+  background: var(--sl-track);
+}
+
+.stripe-loader__fill {
+  width: 0;
+  height: 100%;
+  background-color: var(--sl-orange);
+  background-image: linear-gradient(
+    135deg,
+    var(--sl-orange) 25%,
+    var(--sl-peach) 25%,
+    var(--sl-peach) 50%,
+    var(--sl-orange) 50%,
+    var(--sl-orange) 75%,
+    var(--sl-peach) 75%
+  );
+  background-size: var(--sl-period) var(--sl-period);
+  animation: stripe-loader-move 0.8s linear infinite;
+}
+
+/* self-running fill; remove this class and set width yourself for real progress */
+.stripe-loader--auto .stripe-loader__fill {
+  animation:
+    stripe-loader-move 0.8s linear infinite,
+    stripe-loader-grow 2.4s cubic-bezier(0.22, 0.61, 0.36, 1) infinite;
+}
+
+/* pinned to top of the page */
+.stripe-loader--top {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1080;
+}
+
+@keyframes stripe-loader-move {
+  to { background-position: var(--sl-period) 0; }
+}
+
+@keyframes stripe-loader-grow {
+  0%   { width: 0; }
+  85%  { width: 92%; }
+  100% { width: 100%; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .stripe-loader__fill,
+  .stripe-loader--auto .stripe-loader__fill {
+    animation: none;
+  }
+  .stripe-loader--auto .stripe-loader__fill {
+    width: 60%;
+  }
+}

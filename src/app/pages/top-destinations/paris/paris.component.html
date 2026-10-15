@@ -1,0 +1,509 @@
+<!-- == Main Banner Part Start == -->
+<app-top-destinations-head></app-top-destinations-head>
+<!-- == Main Banner Part End == -->
+<!-- == Flight Search Start == -->
+<!-- <div class="container container-xxl py-3"><app-flights-tab></app-flights-tab></div> -->
+<!-- == Flight Search End == -->
+<!-- == Main Body Start == -->
+        <!--=========== Banner Section Start  ==============-->
+ 
+        <!--=========== Banner Section end  ==============-->
+
+        <section class="details-contentntsec">
+            <div class="container container-xxl">
+                <div class="row">
+                    <div class="col-12 d-flex justify-content-between align-items-center flex-wrap">
+                        <h5 class="customhead">Paris</h5>
+                        <div class="custom-topbar">
+                            Call Us Toll-Free to Get the Best Deal! <a href="tel:{{getData?.phoneNumber}}">{{getData?.phoneNumber}}</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Tabs Navigation -->
+                <ul class="nav custom-nav-tabs mt-3" id="customTab" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link active" id="overview-tab" data-bs-toggle="tab"
+                            data-bs-target="#overview" type="button" role="tab">Overview</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="things-tab" data-bs-toggle="tab" data-bs-target="#things"
+                            type="button" role="tab">Things to Do</button>
+                    </li>
+                    <!-- <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="hotels-tab" data-bs-toggle="tab" data-bs-target="#hotels"
+                            type="button" role="tab">Best Hotels</button>
+                    </li> -->
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="visit-tab" data-bs-toggle="tab" data-bs-target="#visit"
+                            type="button" role="tab">When to visit</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="map-tab" data-bs-toggle="tab" data-bs-target="#map" type="button"
+                            role="tab">Map</button>
+                    </li>
+                    <!-- <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="photos-tab" data-bs-toggle="tab" data-bs-target="#photos"
+                            type="button" role="tab">Photos</button>
+                    </li> -->
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="support-tab" data-bs-toggle="tab" data-bs-target="#support"
+                            type="button" role="tab">Get Support</button>
+                    </li>
+                </ul>
+            </div>
+        </section>
+        <section class="content-boxsection">
+            <div class="container container-xxl">
+                <!-- Tabs Content -->
+                <div class="tab-content custom-tab-content" id="customTabContent">
+                    <div class="tab-pane fade show active" id="overview" role="tabpanel">
+                        <div class="custom-tab-title">The Timeless Heart of France</div>
+                        <p class="custom-tab-paragraph">
+                            The city is a stunning blend of history and modern flair located along the banks of the Seine River graced by iconic silhouettes like the Eiffel Tower, Notre-Dame and the Sacré-Cœur. Each neighborhood has its own charm from the bohemian of Montmartre to the Saint-Germain-des-Prés with quiet moments in a riverside café and the grandeur of opera at Palais Garnier.
+                        </p>
+                        <p class="custom-tab-paragraph">
+                            The way of life here is slow and you can start your day with a flaky croissant in a corner bakery, wander through the halls of the Louvre, enjoy an afternoon walk in the Tuileries Garden and end the night with wine under the twinkling lights of the Eiffel Tower. The city delivers a full experience with grace and passion whether it’s art, rich history or exclusive food. Every street feels like a postcard and every moment like a memory as the city awaits with open arms and a touch of elegance for any season.
+                        </p>
+                        
+                        <div class="row mt-4">
+                            <div class="col-lg-8 col-md-6 col-12">
+
+                                <div class="custom-tab-title">Best Time To Visit Paris, France</div>
+                                <div class="accordion season-accordion" id="seasonAccordion">
+
+                                    <!-- Item 1 -->
+                                    <div class="accordion-item">
+                                        <h2 class="accordion-header" id="headingOne">
+                                            <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                                data-bs-target="#collapseOne" aria-expanded="true">
+                                                <span class="season-label label-green">Apr to Jun</span>
+                                                <span class="season-subtext">Is Peak Season</span>
+                                            </button>
+                                        </h2>
+                                        <div id="collapseOne" class="accordion-collapse collapse show"
+                                            data-bs-parent="#seasonAccordion">
+                                            <div class="accordion-body">
+                                                Springtime in Paris is iconic. Blooming gardens, café culture, and clear skies make it ideal for sightseeing, river cruises, and romantic strolls through Montmartre or along the Seine.
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Item 2 -->
+                                    <div class="accordion-item">
+                                        <h2 class="accordion-header" id="headingTwo">
+                                            <button class="accordion-button collapsed" type="button"
+                                                data-bs-toggle="collapse" data-bs-target="#collapseTwo">
+                                                <span class="season-label label-blue">Jul to Sep </span>
+                                                <span class="season-subtext">Is Moderate Season</span>
+                                            </button>
+                                        </h2>
+                                        <div id="collapseTwo" class="accordion-collapse collapse"
+                                            data-bs-parent="#seasonAccordion">
+                                            <div class="accordion-body">
+                                                While summer can get hot, Paris remains vibrant with open-air cinema events, late-night museum hours, and fewer locals due to vacation season — a mixed blessing for travelers. 
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Item 3 -->
+                                    <div class="accordion-item">
+                                        <h2 class="accordion-header" id="headingThree">
+                                            <button class="accordion-button collapsed" type="button"
+                                                data-bs-toggle="collapse" data-bs-target="#collapseThree">
+                                                <span class="season-label label-orange">Oct to Mar</span>
+                                                <span class="season-subtext">Is Off Season</span>
+                                            </button>
+                                        </h2>
+                                        <div id="collapseThree" class="accordion-collapse collapse"
+                                            data-bs-parent="#seasonAccordion">
+                                            <div class="accordion-body">
+                                                Colder months bring fewer crowds and more affordable stays. Museums, art galleries, and Christmas lights make winter visits cozy, especially for culture lovers. 
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-6 col-12">
+                                <div class="weather-table-wrapper">
+
+                                    <div class="weather-table bg-white">
+                                        <table>
+                                            <thead>
+                                                <tr>
+                                                    <th>Month</th>
+                                                    <th>Temp (Max/Min)</th>
+                                                    <th>Rain mm</th>
+                                                    <th>Weather Opinion</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td><a href="#" class="month-link">Jan</a></td>
+                                                    <td class="temp-col">26º/15º</td>
+                                                    <td class="rain-col">10</td>
+                                                    <td class="opinion-col"><i
+                                                            class="fa-regular fa-face-grin-hearts"></i> Peak</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><a href="#" class="month-link">Feb</a></td>
+                                                    <td class="temp-col">26º/15º</td>
+                                                    <td class="rain-col">10</td>
+                                                    <td class="opinion-col"><i
+                                                            class="fa-regular fa-face-smile-beam"></i> Moderate</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><a href="#" class="month-link">Mar</a></td>
+                                                    <td class="temp-col">26º/15º</td>
+                                                    <td class="rain-col">10</td>
+                                                    <td class="opinion-col"><i class="fa-regular fa-face-sad-cry"></i>
+                                                        Off</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><a href="#" class="month-link">Apr</a></td>
+                                                    <td class="temp-col">26º/15º</td>
+                                                    <td class="rain-col">10</td>
+                                                    <td class="opinion-col"><i
+                                                            class="fa-regular fa-face-grin-hearts"></i> Moderate</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><a href="#" class="month-link">May</a></td>
+                                                    <td class="temp-col">26º/15º</td>
+                                                    <td class="rain-col">10</td>
+                                                    <td class="opinion-col"><i
+                                                            class="fa-regular fa-face-grin-hearts"></i> Moderate</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><a href="#" class="month-link">Jun</a></td>
+                                                    <td class="temp-col">26º/15º</td>
+                                                    <td class="rain-col">10</td>
+                                                    <td class="opinion-col"><i
+                                                            class="fa-regular fa-face-grin-hearts"></i> Moderate</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><a href="#" class="month-link">Jul</a></td>
+                                                    <td class="temp-col">26º/15º</td>
+                                                    <td class="rain-col">10</td>
+                                                    <td class="opinion-col"><i
+                                                            class="fa-regular fa-face-grin-hearts"></i> Moderate</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><a href="#" class="month-link">Aug</a></td>
+                                                    <td class="temp-col">26º/15º</td>
+                                                    <td class="rain-col">10</td>
+                                                    <td class="opinion-col"><i
+                                                            class="fa-regular fa-face-grin-hearts"></i> Moderate</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><a href="#" class="month-link">Sep</a></td>
+                                                    <td class="temp-col">26º/15º</td>
+                                                    <td class="rain-col">10</td>
+                                                    <td class="opinion-col"><i
+                                                            class="fa-regular fa-face-grin-hearts"></i> Moderate</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><a href="#" class="month-link">Oct</a></td>
+                                                    <td class="temp-col">26º/15º</td>
+                                                    <td class="rain-col">10</td>
+                                                    <td class="opinion-col"><i
+                                                            class="fa-regular fa-face-grin-hearts"></i> Moderate</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><a href="#" class="month-link">Nov</a></td>
+                                                    <td class="temp-col">26º/15º</td>
+                                                    <td class="rain-col">10</td>
+                                                    <td class="opinion-col"><i
+                                                            class="fa-regular fa-face-grin-hearts"></i> Moderate</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><a href="#" class="month-link">Dec</a></td>
+                                                    <td class="temp-col">26º/15º</td>
+                                                    <td class="rain-col">10</td>
+                                                    <td class="opinion-col"><i
+                                                            class="fa-regular fa-face-grin-hearts"></i> Moderate</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Placeholder tabs for other sections -->
+                    <div class="tab-pane fade" id="things" role="tabpanel">
+                        <div class="desilistcard">
+                            <div class="destination-card">
+                                <div class="destination-image">
+                                    <img src="assets/images/tab_photos/paris/things_to_do/eiffel-tower.webp" alt="eiffel-tower">
+                                </div>
+                                <div class="destination-content">
+                                    <h3>Eiffel Tower</h3>
+                                    <p>
+                                        No visit to this city is complete without witnessing its most iconic structure with marvelous views from the top whether you take the elevator or climb the stairs. Stay until evening when the tower lights up in a glittering spectacle every hour.
+                                    </p>
+                                    <div class="last-updated">Last Update: 20/07/2025</div>
+                                </div>
+                            </div>
+                            <div class="destination-card">
+                                <div class="destination-image">
+                                    <img src="assets/images/tab_photos/paris/things_to_do/louvre-museum.webp" alt="louvre-museum">
+                                </div>
+                                <div class="destination-content">
+                                    <h3>Louvre Museum</h3>
+                                    <p>
+                                        It is a journey through art and home to various paintings including the Mona Lisa and the Venus de Mil. Its glass pyramid entrance has become a modern icon and the museum itself is worth hours of exploration.
+                                    </p>
+                                    <div class="last-updated">Last Update: 20/07/2025</div>
+                                </div>
+                            </div>
+                            <div class="destination-card">
+                                <div class="destination-image">
+                                    <img src="assets/images/tab_photos/paris/things_to_do/montmartre.webp" alt="montmartre">
+                                </div>
+                                <div class="destination-content">
+                                    <h3>Montmartre</h3>
+                                    <p>
+                                        This hilltop neighborhood offers cobbled streets, street art and panoramic views of the city. Visit the stunning Sacré-Cœur Basilica, watch artists paint in Place du Tertre and enjoy the bohemian atmosphere that once inspired legends like Picasso and Toulouse-Lautrec.
+                                    </p>
+                                    <div class="last-updated">Last Update: 20/07/2025</div>
+                                </div>
+                            </div>
+                            <div class="destination-card">
+                                <div class="destination-image">
+                                    <img src="assets/images/tab_photos/paris/things_to_do/seine-river.webp" alt="seine-river">
+                                </div>
+                                <div class="destination-content">
+                                    <h3>Seine River Cruise</h3>
+                                    <p>
+                                        See the city from a different angle with a leisurely cruise along the river and glide under historic bridges, past grand monuments and enjoy commentary that brings the city’s past to life with magical experience at night.
+                                    </p>
+                                    <div class="last-updated">Last Update: 20/07/2025</div>
+                                </div>
+                            </div>
+                            <div class="destination-card">
+                                <div class="destination-image">
+                                    <img src="assets/images/tab_photos/paris/things_to_do/versailles.webp" alt="versailles">
+                                </div>
+                                <div class="destination-content">
+                                    <h3>Palace of Versailles</h3>
+                                    <p>
+                                        This former royal residence is a symbol of absolute monarchy at its most lavish and it is just a short trip from the city. Wander through the Hall of Mirrors, walk through the gardens and imagine life in the grandeur of the French court.
+                                    </p>
+                                    <div class="last-updated">Last Update: 20/07/2025</div>
+                                </div>
+                            </div>
+                            <div class="destination-card">
+                                <div class="destination-image">
+                                    <img src="assets/images/tab_photos/paris/things_to_do/latin-quarter.webp" alt="latin-quarter">
+                                </div>
+                                <div class="destination-content">
+                                    <h3>Latin Quarter</h3>
+                                    <p>
+                                        This historic neighborhood near the Sorbonne University is perfect for discovering hidden gems with full of bookstores, jazz clubs and old-world charm. Enjoy a crêpe on Rue Mouffetard or browse ancient texts at Shakespeare and Company.
+                                    </p>
+                                    <div class="last-updated">Last Update: 20/07/2025</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- <div class="tab-pane fade" id="hotels" role="tabpanel">Coming soon...</div> -->
+                    <div class="tab-pane fade" id="visit" role="tabpanel">
+
+                        <div class="row">
+                            <div class="col-lg-8 col-md-6 col-12">
+
+                                <div class="custom-tab-title">Best Time To Visit Paris, France </div>
+                                <div class="accordion season-accordion" id="seasonAccordion01">
+
+                                    <!-- Item 1 -->
+                                    <div class="accordion-item">
+                                        <h2 class="accordion-header" id="headingOne">
+                                            <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                                data-bs-target="#collapseOne" aria-expanded="true">
+                                                <span class="season-label label-green">Apr to Jun</span>
+                                                <span class="season-subtext">Is Peak Season</span>
+                                            </button>
+                                        </h2>
+                                        <div id="collapseOne" class="accordion-collapse collapse show"
+                                            data-bs-parent="#seasonAccordion01">
+                                            <div class="accordion-body">
+                                                Springtime in Paris is iconic. Blooming gardens, café culture, and clear skies make it ideal for sightseeing, river cruises, and romantic strolls through Montmartre or along the Seine.
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Item 2 -->
+                                    <div class="accordion-item">
+                                        <h2 class="accordion-header" id="headingTwo">
+                                            <button class="accordion-button collapsed" type="button"
+                                                data-bs-toggle="collapse" data-bs-target="#collapseTwo">
+                                                <span class="season-label label-blue">Jul to Sep </span>
+                                                <span class="season-subtext">Is Moderate Season</span>
+                                            </button>
+                                        </h2>
+                                        <div id="collapseTwo" class="accordion-collapse collapse"
+                                            data-bs-parent="#seasonAccordion01">
+                                            <div class="accordion-body">
+                                                While summer can get hot, Paris remains vibrant with open-air cinema events, late-night museum hours, and fewer locals due to vacation season — a mixed blessing for travelers. 
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Item 3 -->
+                                    <div class="accordion-item">
+                                        <h2 class="accordion-header" id="headingThree">
+                                            <button class="accordion-button collapsed" type="button"
+                                                data-bs-toggle="collapse" data-bs-target="#collapseThree">
+                                                <span class="season-label label-orange">Oct to Mar</span>
+                                                <span class="season-subtext">Is Off Season</span>
+                                            </button>
+                                        </h2>
+                                        <div id="collapseThree" class="accordion-collapse collapse"
+                                            data-bs-parent="#seasonAccordion01">
+                                            <div class="accordion-body">
+                                                Colder months bring fewer crowds and more affordable stays. Museums, art galleries, and Christmas lights make winter visits cozy, especially for culture lovers. 
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-6 col-12">
+                                <div class="weather-table-wrapper">
+
+                                    <div class="weather-table bg-white">
+                                        <table>
+                                            <thead>
+                                                <tr>
+                                                    <th>Month</th>
+                                                    <th>Temp (Max/Min)</th>
+                                                    <th>Rain mm</th>
+                                                    <th>Weather Opinion</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td><a href="#" class="month-link">Jan</a></td>
+                                                    <td class="temp-col">26º/15º</td>
+                                                    <td class="rain-col">10</td>
+                                                    <td class="opinion-col"><i
+                                                            class="fa-regular fa-face-grin-hearts"></i> Peak</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><a href="#" class="month-link">Feb</a></td>
+                                                    <td class="temp-col">26º/15º</td>
+                                                    <td class="rain-col">10</td>
+                                                    <td class="opinion-col"><i
+                                                            class="fa-regular fa-face-smile-beam"></i> Moderate</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><a href="#" class="month-link">Mar</a></td>
+                                                    <td class="temp-col">26º/15º</td>
+                                                    <td class="rain-col">10</td>
+                                                    <td class="opinion-col"><i class="fa-regular fa-face-sad-cry"></i>
+                                                        Off</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><a href="#" class="month-link">Apr</a></td>
+                                                    <td class="temp-col">26º/15º</td>
+                                                    <td class="rain-col">10</td>
+                                                    <td class="opinion-col"><i
+                                                            class="fa-regular fa-face-grin-hearts"></i> Moderate</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><a href="#" class="month-link">May</a></td>
+                                                    <td class="temp-col">26º/15º</td>
+                                                    <td class="rain-col">10</td>
+                                                    <td class="opinion-col"><i
+                                                            class="fa-regular fa-face-grin-hearts"></i> Moderate</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><a href="#" class="month-link">Jun</a></td>
+                                                    <td class="temp-col">26º/15º</td>
+                                                    <td class="rain-col">10</td>
+                                                    <td class="opinion-col"><i
+                                                            class="fa-regular fa-face-grin-hearts"></i> Moderate</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><a href="#" class="month-link">Jul</a></td>
+                                                    <td class="temp-col">26º/15º</td>
+                                                    <td class="rain-col">10</td>
+                                                    <td class="opinion-col"><i
+                                                            class="fa-regular fa-face-grin-hearts"></i> Moderate</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><a href="#" class="month-link">Aug</a></td>
+                                                    <td class="temp-col">26º/15º</td>
+                                                    <td class="rain-col">10</td>
+                                                    <td class="opinion-col"><i
+                                                            class="fa-regular fa-face-grin-hearts"></i> Moderate</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><a href="#" class="month-link">Sep</a></td>
+                                                    <td class="temp-col">26º/15º</td>
+                                                    <td class="rain-col">10</td>
+                                                    <td class="opinion-col"><i
+                                                            class="fa-regular fa-face-grin-hearts"></i> Moderate</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><a href="#" class="month-link">Oct</a></td>
+                                                    <td class="temp-col">26º/15º</td>
+                                                    <td class="rain-col">10</td>
+                                                    <td class="opinion-col"><i
+                                                            class="fa-regular fa-face-grin-hearts"></i> Moderate</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><a href="#" class="month-link">Nov</a></td>
+                                                    <td class="temp-col">26º/15º</td>
+                                                    <td class="rain-col">10</td>
+                                                    <td class="opinion-col"><i
+                                                            class="fa-regular fa-face-grin-hearts"></i> Moderate</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><a href="#" class="month-link">Dec</a></td>
+                                                    <td class="temp-col">26º/15º</td>
+                                                    <td class="rain-col">10</td>
+                                                    <td class="opinion-col"><i
+                                                            class="fa-regular fa-face-grin-hearts"></i> Moderate</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="map" role="tabpanel">
+                        <div class="mapsec">
+                                       <agm-map [latitude]="this.lat" [longitude]="this.lng" style="width:100%; height:450px;"
+                    frameborder="0" scrolling="no" id="gmap_canvas" marginheight="0" marginwidth="0">
+                    <agm-marker [latitude]="this.lat" [longitude]="this.lng"></agm-marker>
+                  </agm-map>
+                            <div class="locationname">
+                                <i class="fa-solid fa-location-dot"></i>New York City, USA
+                            </div>
+                        </div>
+                    </div>
+                    <!-- <div class="tab-pane fade" id="photos" role="tabpanel">Coming soon...</div> -->
+                    <div class="tab-pane fade" id="support" role="tabpanel">
+                        <div class="booking-cta-banner">
+                            <div class="ctatex">
+                                <img src="assets/images/global-vacation-hotsport/ctatex.png" alt="">
+                            </div>
+                            <div class="booking-cta-text">
+                                <h2>MAKE EASY BOOKINGS HAPPEN NOW</h2>
+                                <p>Your travel experts are here to make each trip of yours more memorable and exciting
+                                </p>
+                                <a href="tel:{{getData?.phoneNumber}}" class="booking-cta-button">
+                                    <i class="fas fa-phone-volume"></i>{{getData?.phoneNumber}}
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+<!-- == Main Body End == -->
+<!-- == Destination List Part Start == -->
+<div class="container container-xxl"><app-top-destinations-list></app-top-destinations-list></div>
+<!-- == Destination List Part End == -->

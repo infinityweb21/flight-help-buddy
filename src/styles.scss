@@ -1,0 +1,2522 @@
+@import "common.css";
+
+/* banner-section css start */
+.banner-section {
+  position: relative;
+  background: rgba(var(--main-color), 0.1);
+  min-height: 40vh;
+  padding: 40px 0px;
+  padding-top: 30px;
+  overflow: visible;
+  display: block;
+  align-content: start;
+  /* z-index: 1; */
+}
+
+.stn {
+  display: inline-flex;
+  gap: 6px;
+}
+.stn .nav-item {
+  display: flex;
+}
+.stn .nav-link {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: rgba(var(--black-color), 1);
+  font-size: 13px;
+  font-weight: 600;
+  padding: 9px 16px;
+  border: 1px solid transparent;
+  border-radius: 6px;
+  background: transparent;
+}
+.stn .nav-link svg {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+}
+.stn .nav-link:hover {
+  background: rgba(var(--main-color), 0.1);
+  border-color: rgba(var(--white-color), 0.1);
+}
+.stn .nav-link.active {
+  color: rgba(var(--main-color), 1);
+  border-color: rgba(var(--main-color), 1);
+  background: transparent;
+}
+.stn .nav-link:hover:not(.active) {
+  color: rgba(var(--main-color), 1);
+}
+
+.tabinside-content-box {
+  padding: 40px 0px;
+}
+.tabinside-content-box .common-box {
+  padding-bottom: 30px;
+}
+
+/* ###for-travel-pros-section css start */
+
+/*=========================
+ Navigation
+==========================*/
+.flex-end-sec {
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  gap: 10px;
+}
+.common-nav-arrow-box {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  background: #f1f3f5;
+  padding: 6px;
+  width: max-content;
+  border-radius: 10px;
+}
+
+.common-nav-arrow-box button {
+  width: 45px;
+  height: 45px;
+  border: none;
+  border-radius: 6px;
+  border: 1px solid rgba(var(--main-color), 0.15);
+  background: rgba(var(--white-color), 1);
+  box-shadow: 0 10px 25px rgba(0, 8, 83, 0.08);
+  cursor: pointer;
+  transition: 0.35s;
+  color: #111827;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.common-nav-arrow-box button i {
+  line-height: normal;
+}
+.common-nav-arrow-box button:hover {
+  background: rgba(var(--main-color), 1);
+  color: rgba(var(--white-color), 1);
+}
+
+/*=========================
+ Card
+==========================*/
+/* Allow hover shadow to be visible */
+.tp-ai-card-slider .owl-stage-outer {
+  overflow: visible !important;
+}
+
+.tp-ai-card-slider .owl-stage {
+  padding: 20px 0 !important;
+}
+
+/* Give each item some horizontal padding */
+
+.tp-ai-card {
+  background: rgba(var(--white-color), 1);
+  border-radius: 28px;
+  padding: 30px;
+  overflow: hidden;
+  min-height: 380px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border: 1px solid #ededed;
+  transition: 0.35s;
+}
+
+.tp-ai-card:hover {
+  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.08);
+}
+
+.tp-ai-card-content h3 {
+  font-size: 20px;
+  font-weight: 800;
+  margin-bottom: 10px;
+  color: rgba(var(--black-color), 1);
+}
+
+.tp-ai-card-content p {
+  margin: 0;
+  color: #555;
+  font-size: 12px;
+}
+
+.tp-ai-card-image {
+  text-align: center;
+  margin-top: 35px;
+}
+
+.tp-ai-card-image img {
+  max-width: 100%;
+  height: 220px;
+  object-fit: contain;
+  transition: 0.4s;
+}
+
+.tp-ai-card:hover img {
+  transform: scale(1.05);
+}
+
+/*=========================
+ Owl
+==========================*/
+
+.tp-ai-card-slider .owl-stage {
+  display: flex;
+}
+
+.tp-ai-card-slider .owl-item {
+  display: flex;
+}
+
+.tp-ai-card-slider .tp-ai-card {
+  width: 100%;
+}
+
+/*=========================
+ Responsive
+==========================*/
+
+@media (max-width: 991px) {
+  .tp-ai-card {
+    min-height: 340px;
+    padding: 24px;
+  }
+
+  .tp-ai-card-content h3 {
+    font-size: 18px;
+    margin-bottom: 0;
+  }
+}
+
+@media (max-width: 576px) {
+  .tp-ai-card {
+    min-height: 320px;
+  }
+
+  .tp-ai-card-image img {
+    height: 170px;
+  }
+
+  .tp-ai-card-content h3 {
+    font-size: 1.35rem;
+  }
+}
+
+/*=========================
+text-section (trust strip)
+==========================*/
+.text-section {
+  background: rgba(var(--main-color), 0.05);
+}
+
+.main-box-card {
+  margin-top: 40px;
+  display: grid;
+  grid-template-columns: 210px minmax(0, 1fr);
+  align-items: center;
+  gap: 24px;
+  padding: 22px 24px;
+  border: 1px solid rgba(var(--main-color), 0.12);
+  border-radius: 16px;
+  background: rgba(var(--white-color), 1);
+  box-shadow: 0 4px 14px rgba(var(--main-color), 0.06);
+}
+
+.tp-trust-title {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 800;
+  line-height: 1.3;
+  color: rgba(var(--main-color), 1);
+}
+.tp-trust-title span {
+  color: rgba(var(--second-color), 1);
+}
+
+.tp-trust-box {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.tp-trust-item {
+  min-width: 0;
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 4px 18px;
+  border-left: 1px solid rgba(var(--main-color), 0.1);
+}
+
+.tp-trust-icon {
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 17px;
+  border-radius: 12px;
+  background: rgba(var(--main-color), 0.08);
+  color: rgba(var(--main-color), 1);
+}
+
+.tp-trust-info {
+  min-width: 0;
+}
+.tp-trust-info h3 {
+  margin: 0 0 3px;
+  font-size: 15px;
+  font-weight: 800;
+  line-height: 1.3;
+  color: rgba(var(--black-color), 1);
+}
+.tp-trust-info p {
+  margin: 0;
+  font-size: 12.5px;
+  line-height: 1.5;
+  color: rgba(var(--black-color), 0.6);
+}
+
+/* title moves on top */
+@media (max-width: 1199px) {
+  .main-box-card {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  .tp-trust-item:first-child {
+    padding-left: 0;
+    border-left: 0;
+  }
+}
+
+/* 2 x 2 */
+@media (max-width: 991px) {
+  .tp-trust-box {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    row-gap: 18px;
+  }
+  .tp-trust-item:nth-child(odd) {
+    padding-left: 0;
+    border-left: 0;
+  }
+}
+
+/* compact 2 x 2, icon above text */
+@media (max-width: 575px) {
+  .main-box-card {
+    padding: 16px;
+    gap: 14px;
+  }
+  .tp-trust-title {
+    font-size: 17px;
+  }
+  .tp-trust-item {
+    flex-direction: column;
+    gap: 8px;
+    padding: 0 12px;
+  }
+  .tp-trust-item:nth-child(even) {
+    padding-right: 0;
+  }
+  .tp-trust-icon {
+    width: 36px;
+    height: 36px;
+    font-size: 15px;
+    border-radius: 10px;
+  }
+  .tp-trust-info h3 {
+    font-size: 14px;
+  }
+  .tp-trust-info p {
+    font-size: 12px;
+  }
+}
+
+/*=========================
+Explore by destination (stay cards)
+==========================*/
+
+/* ======================= GRID ======================= */
+.stay-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 20px;
+}
+
+/* ======================= CARD ======================= */
+.stay-card {
+  display: block;
+  min-width: 0;
+  padding: 8px;
+  color: inherit;
+  text-decoration: none;
+  border-radius: 18px;
+  background: rgba(var(--white-color), 1);
+  border: 1px solid rgba(var(--main-color), 0.08);
+  box-shadow: 0 4px 12px rgba(var(--main-color), 0.06);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.stay-card:hover {
+  color: inherit;
+  transform: translateY(-3px);
+  box-shadow: 0 14px 28px rgba(var(--main-color), 0.14);
+}
+.stay-card:focus-visible {
+  outline: 2px solid rgba(var(--second-color), 1);
+  outline-offset: 3px;
+}
+
+/* inset photo */
+.stay-card__img {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  border-radius: 12px;
+  background: rgba(var(--main-color), 0.06);
+}
+.stay-card__img img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s ease;
+}
+.stay-card:hover .stay-card__img img {
+  transform: scale(1.06);
+}
+
+/* property count chip */
+.stay-card__count {
+  position: absolute;
+  left: 8px;
+  bottom: 8px;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 4px 9px;
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 1.2;
+  color: #fff;
+  border-radius: 999px;
+  background: rgba(0, 0, 0, 0.45);
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+}
+.stay-card__count i {
+  font-size: 10px;
+}
+
+/* name + arrow */
+.stay-card__body {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 10px 6px 4px;
+}
+.stay-card__text {
+  min-width: 0;
+}
+.stay-card__text h3 {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 800;
+  line-height: 1.3;
+  color: rgba(var(--main-color), 1);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.stay-card__text p {
+  margin: 0;
+  font-size: 12px;
+  font-weight: 500;
+  color: rgba(var(--black-color), 0.55);
+}
+
+.stay-card__arrow {
+  flex-shrink: 0;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  color: rgba(var(--second-color), 1);
+  background: rgba(var(--second-color), 0.1);
+  transition: background 0.25s ease, color 0.25s ease;
+}
+.stay-card__arrow svg {
+  width: 18px;
+  height: 18px;
+  transition: transform 0.25s ease;
+}
+.stay-card:hover .stay-card__arrow {
+  background: rgba(var(--second-color), 1);
+  color: #fff;
+}
+.stay-card:hover .stay-card__arrow svg {
+  transform: translateX(2px);
+}
+
+/* ======================= TABLET ======================= */
+@media (max-width: 991px) {
+  .stay-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+  }
+  .stay-card__img {
+    aspect-ratio: 16 / 10;
+  }
+}
+
+/* ======================= MOBILE: swipe row ======================= */
+@media (max-width: 767px) {
+  .stay-grid {
+    display: flex;
+    gap: 12px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    padding: 4px 2px 10px;
+  }
+  .stay-grid::-webkit-scrollbar {
+    display: none;
+  }
+  .stay-card {
+    flex: 0 0 220px;
+    scroll-snap-align: start;
+  }
+  .stay-card__img {
+    aspect-ratio: 4 / 3;
+  }
+  .stay-card__text h3 {
+    font-size: 14px;
+  }
+}
+
+/* ======================= REDUCED MOTION ======================= */
+@media (prefers-reduced-motion: reduce) {
+  .stay-card,
+  .stay-card__img img,
+  .stay-card__arrow,
+  .stay-card__arrow svg {
+    transition: none;
+  }
+  .stay-card:hover,
+  .stay-card:hover .stay-card__img img,
+  .stay-card:hover .stay-card__arrow svg {
+    transform: none;
+  }
+}
+
+/* <<<<<< ************* LIST FLIGHT SECTION CSS START **************** >>>>>> */
+.viewallbtn-box {
+  margin-top: 20px;
+  text-align: center;
+}
+
+/* ======================= WRAPPER LINK ======================= */
+.flight-card-link {
+  --fc-img-h: 150px;   /* image height */
+  --fc-route-h: 66px;  /* route strip height (ticket notch sits below it) */
+  --fc-radius: 18px;
+
+  display: block;
+  width: 100%;
+  color: inherit;
+  text-decoration: none;
+  /* drop-shadow follows the notched ticket shape (box-shadow would be clipped by the mask) */
+  filter: drop-shadow(0 4px 10px rgba(var(--main-color), 0.08));
+  transition: filter 0.3s ease;
+}
+.flight-card-link:hover {
+  color: inherit;
+  filter: drop-shadow(0 12px 22px rgba(var(--main-color), 0.16));
+}
+.flight-card-link:focus-visible {
+  outline: none;
+}
+.flight-card-link:focus-visible .flight-card-box {
+  box-shadow: inset 0 0 0 2px rgba(var(--second-color), 1);
+}
+
+/* ======================= CARD (ticket shape) ======================= */
+.flight-card-box {
+  --fc-cut: calc(var(--fc-img-h) + var(--fc-route-h));
+
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  background: rgba(var(--white-color), 1);
+  border-radius: var(--fc-radius);
+  transition: transform 0.3s ease;
+
+  /* two half-circle notches on the sides, like a boarding pass */
+  -webkit-mask:
+    radial-gradient(circle at 0 var(--fc-cut), transparent 9px, #000 9.5px) left / 51% 100% no-repeat,
+    radial-gradient(circle at 100% var(--fc-cut), transparent 9px, #000 9.5px) right / 51% 100% no-repeat;
+  mask:
+    radial-gradient(circle at 0 var(--fc-cut), transparent 9px, #000 9.5px) left / 51% 100% no-repeat,
+    radial-gradient(circle at 100% var(--fc-cut), transparent 9px, #000 9.5px) right / 51% 100% no-repeat;
+}
+.flight-card-link:hover .flight-card-box {
+  transform: translateY(-3px);
+}
+
+/* ======================= IMAGE ======================= */
+.flight-card-img {
+  position: relative;
+  height: var(--fc-img-h);
+  overflow: hidden;
+  background: rgba(var(--main-color), 0.08);
+}
+.flight-card-img::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0) 45%);
+  pointer-events: none;
+}
+.flight-card-plane {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+.flight-card-link:hover .flight-card-plane {
+  transform: scale(1.05);
+}
+
+.flight-card-tag,
+.flight-card-rating {
+  position: absolute;
+  z-index: 1;
+  top: 10px;
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 1.2;
+  padding: 4px 9px;
+  border-radius: 999px;
+}
+.flight-card-tag {
+  left: 10px;
+  background: rgba(var(--second-color), 1);
+  color: rgba(var(--white-color), 1);
+}
+.flight-card-rating {
+  right: 10px;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: rgba(255, 255, 255, 0.92);
+  -webkit-backdrop-filter: blur(4px);
+  backdrop-filter: blur(4px);
+  color: rgba(var(--black-color), 1);
+}
+.flight-card-rating i {
+  font-size: 10px;
+  color: #f5a623;
+}
+
+/* ======================= ROUTE STRIP ======================= */
+.flight-card-route {
+  height: var(--fc-route-h);
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  align-items: center;
+  gap: 10px;
+  padding: 0 16px;
+}
+.flight-card-point {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+.flight-card-point--end {
+  text-align: right;
+}
+.flight-card-point small {
+  font-size: 11px;
+  font-weight: 500;
+  line-height: 1;
+  color: rgba(var(--black-color), 0.5);
+}
+.flight-card-point strong {
+  font-size: 15px;
+  font-weight: 800;
+  line-height: 1.25;
+  color: rgba(var(--main-color), 1);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.flight-card-path {
+  width: 92px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+.flight-card-track {
+  position: relative;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.flight-card-track::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  border-top: 1.5px dashed rgba(var(--main-color), 0.3);
+}
+.flight-card-track i {
+  position: relative;
+  width: 26px;
+  height: 26px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  border-radius: 50%;
+  color: rgba(var(--second-color), 1);
+  background: rgba(var(--white-color), 1);
+  border: 1.5px solid rgba(var(--second-color), 0.35);
+  transition: transform 0.45s ease;
+}
+.flight-card-link:hover .flight-card-track i {
+  transform: translateX(16px);
+}
+.flight-card-stop {
+  font-size: 10.5px;
+  font-weight: 600;
+  white-space: nowrap;
+  color: rgba(var(--black-color), 0.55);
+}
+
+/* ======================= BODY ======================= */
+.flight-card-body {
+  position: relative;
+  padding: 14px 16px 16px;
+}
+/* perforation line between the notches */
+.flight-card-body::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 16px;
+  right: 16px;
+  border-top: 1.5px dashed rgba(var(--main-color), 0.15);
+}
+
+.flight-card-title {
+  margin: 0 0 12px;
+  min-height: calc(14px * 1.35 * 2);
+  font-size: 14px;
+  font-weight: 800;
+  line-height: 1.35;
+  color: rgba(var(--black-color), 1);
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.flight-card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+.flight-card-airline {
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  font-weight: 600;
+  color: rgba(var(--black-color), 0.7);
+}
+.flight-card-airline span {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.flight-card-logo {
+  width: 34px !important; /* overrides owl's img width:100% */
+  height: 34px;
+  flex-shrink: 0;
+  padding: 4px;
+  object-fit: contain;
+  border-radius: 8px;
+  background: rgba(var(--main-color), 0.05);
+}
+
+.flight-card-cta {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 12px;
+  font-size: 12px;
+  font-weight: 700;
+  border-radius: 999px;
+  color: rgba(var(--second-color), 1);
+  background: rgba(var(--second-color), 0.1);
+  transition: background 0.25s ease, color 0.25s ease;
+}
+.flight-card-cta i {
+  font-size: 11px;
+}
+.flight-card-link:hover .flight-card-cta {
+  background: rgba(var(--second-color), 1);
+  color: rgba(var(--white-color), 1);
+}
+
+/* ======================= SLIDER ======================= */
+.flight-slider {
+  width: 100%;
+  margin: 0 auto;
+}
+/* room for the hover lift + shadow inside owl's clipped stage */
+.flight-slider .owl-stage-outer {
+  padding: 6px 0 18px;
+}
+
+.flight-slider .owl-nav button {
+  position: absolute;
+  top: 40%;
+  width: 34px;
+  height: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 !important;
+  line-height: normal !important;
+  border-radius: 50%;
+  background: rgba(var(--white-color), 1) !important;
+  box-shadow: 0 4px 14px rgba(var(--main-color), 0.18);
+  transition: background 0.25s ease;
+}
+.flight-slider .owl-nav button span {
+  display: block;
+  margin-top: -3px;
+  font-size: 24px !important;
+  line-height: normal;
+  color: rgba(var(--second-color), 1);
+}
+.flight-slider .owl-nav button:hover {
+  background: rgba(var(--second-color), 1) !important;
+}
+.flight-slider .owl-nav button:hover span {
+  color: rgba(var(--white-color), 1);
+}
+.flight-slider .owl-nav .owl-prev {
+  left: -14px;
+}
+.flight-slider .owl-nav .owl-next {
+  right: -14px;
+}
+
+/* ======================= RESPONSIVE ======================= */
+@media (max-width: 575px) {
+  .flight-card-link {
+    --fc-img-h: 130px;
+    --fc-route-h: 60px;
+    --fc-radius: 16px;
+  }
+  .flight-card-route {
+    padding: 0 14px;
+    gap: 8px;
+  }
+  .flight-card-point strong {
+    font-size: 14px;
+  }
+  .flight-card-path {
+    width: 72px;
+  }
+  .flight-card-body {
+    padding: 12px 14px 14px;
+  }
+  .flight-card-title {
+    font-size: 13px;
+    min-height: calc(13px * 1.35 * 2);
+  }
+  .flight-card-cta {
+    padding: 6px 10px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .flight-card-link,
+  .flight-card-box,
+  .flight-card-plane,
+  .flight-card-track i,
+  .flight-card-cta {
+    transition: none;
+  }
+  .flight-card-link:hover .flight-card-box,
+  .flight-card-link:hover .flight-card-plane,
+  .flight-card-link:hover .flight-card-track i {
+    transform: none;
+  }
+}
+/* <<<<<< ************* LIST FLIGHT SECTION CSS END **************** >>>>>> */
+/* <<<<<< ************* CAR RENTAL CARD CSS START **************** >>>>>> */
+
+/* ======================= WRAPPER LINK ======================= */
+.car-card-link {
+  --cc-img-h: 160px;
+  --cc-radius: 18px;
+
+  display: block;
+  width: 100%;
+  height: 100%;
+  color: inherit;
+  text-decoration: none;
+}
+.car-card-link:hover {
+  color: inherit;
+}
+.car-card-link:focus-visible {
+  outline: none;
+}
+.car-card-link:focus-visible .car-card-box {
+  outline: 2px solid rgba(var(--second-color), 1);
+  outline-offset: 2px;
+}
+
+/* ======================= CARD ======================= */
+.car-card-box {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background: rgba(var(--white-color), 1);
+  border: 1px solid rgba(var(--main-color), 0.08);
+  border-radius: var(--cc-radius);
+  box-shadow: 0 4px 12px rgba(var(--main-color), 0.07);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.car-card-link:hover .car-card-box {
+  transform: translateY(-3px);
+  box-shadow: 0 14px 28px rgba(var(--main-color), 0.14);
+}
+
+/* ======================= IMAGE ======================= */
+.car-card-img {
+  position: relative;
+  flex-shrink: 0;
+  height: var(--cc-img-h);
+  overflow: hidden;
+  background: rgba(var(--main-color), 0.06);
+}
+.car-card-img::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0) 45%);
+  pointer-events: none;
+}
+.car-card-photo {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+.car-card-link:hover .car-card-photo {
+  transform: scale(1.05);
+}
+
+.car-card-tag,
+.car-card-rating {
+  position: absolute;
+  z-index: 1;
+  top: 10px;
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 1.2;
+  padding: 4px 9px;
+  border-radius: 999px;
+}
+.car-card-tag {
+  left: 10px;
+  background: rgba(var(--second-color), 1);
+  color: rgba(var(--white-color), 1);
+}
+.car-card-rating {
+  right: 10px;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: rgba(255, 255, 255, 0.92);
+  -webkit-backdrop-filter: blur(4px);
+  backdrop-filter: blur(4px);
+  color: rgba(var(--black-color), 1);
+}
+.car-card-rating i {
+  font-size: 10px;
+  color: #f5a623;
+}
+
+/* rental company logo chip on the photo */
+.car-card-logo {
+  position: absolute;
+  z-index: 1;
+  right: 10px;
+  bottom: 10px;
+  display: flex;
+  align-items: center;
+  height: 30px;
+  padding: 4px 8px;
+  border-radius: 8px;
+  background: rgba(var(--white-color), 1);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+}
+.car-card-logo img {
+  width: auto !important; /* overrides owl's img width:100% */
+  max-width: 72px;
+  height: 20px;
+  object-fit: contain;
+}
+
+/* ======================= BODY ======================= */
+.car-card-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 14px 16px 16px;
+}
+
+.car-card-title {
+  margin: 0 0 4px;
+  font-size: 15px;
+  font-weight: 800;
+  line-height: 1.3;
+  color: rgba(var(--black-color), 1);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.car-card-location {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  min-width: 0;
+  font-size: 12px;
+  font-weight: 500;
+  color: rgba(var(--black-color), 0.55);
+}
+.car-card-location i {
+  flex-shrink: 0;
+  font-size: 11px;
+  color: rgba(var(--second-color), 1);
+}
+.car-card-location span {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* ---------- Specs strip ---------- */
+.car-card-specs {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  margin: 12px 0;
+  padding: 8px 0;
+  list-style: none;
+  border-radius: 12px;
+  background: rgba(var(--main-color), 0.04);
+}
+.car-card-specs li {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  padding: 0 4px;
+  text-align: center;
+}
+.car-card-specs li + li {
+  border-left: 1px solid rgba(var(--main-color), 0.1);
+}
+.car-card-specs i {
+  margin-bottom: 2px;
+  font-size: 13px;
+  color: rgba(var(--main-color), 1);
+}
+.car-card-specs strong {
+  max-width: 100%;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1.2;
+  color: rgba(var(--black-color), 1);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.car-card-specs small {
+  font-size: 10px;
+  font-weight: 500;
+  line-height: 1.2;
+  color: rgba(var(--black-color), 0.5);
+}
+
+/* ---------- Features ---------- */
+.car-card-features {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.car-card-feature {
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  border-radius: 8px;
+  color: rgba(var(--main-color), 1);
+  border: 1px solid rgba(var(--main-color), 0.12);
+}
+.car-card-more {
+  height: 28px;
+  display: inline-flex;
+  align-items: center;
+  padding: 0 9px;
+  font-size: 11px;
+  font-weight: 700;
+  border-radius: 8px;
+  color: rgba(var(--second-color), 1);
+  background: rgba(var(--second-color), 0.1);
+}
+
+/* ---------- Price + CTA ---------- */
+.car-card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-top: auto;
+  padding-top: 12px;
+}
+.car-card-body .car-card-features + .car-card-footer {
+  margin-top: 12px;
+  border-top: 1px solid rgba(var(--main-color), 0.08);
+}
+.car-card-price {
+  min-width: 0;
+  display: flex;
+  align-items: baseline;
+  gap: 4px;
+}
+.car-card-price strong {
+  font-size: 19px;
+  font-weight: 800;
+  line-height: 1;
+  color: rgba(var(--main-color), 1);
+}
+.car-card-price small {
+  font-size: 11px;
+  font-weight: 500;
+  color: rgba(var(--black-color), 0.55);
+  white-space: nowrap;
+}
+
+.car-card-cta {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 12px;
+  font-size: 12px;
+  font-weight: 700;
+  border-radius: 999px;
+  color: rgba(var(--second-color), 1);
+  background: rgba(var(--second-color), 0.1);
+  transition: background 0.25s ease, color 0.25s ease;
+}
+.car-card-cta i {
+  font-size: 11px;
+}
+.car-card-link:hover .car-card-cta {
+  background: rgba(var(--second-color), 1);
+  color: rgba(var(--white-color), 1);
+}
+
+/* ======================= RESPONSIVE ======================= */
+@media (max-width: 575px) {
+  .car-card-link {
+    --cc-img-h: 140px;
+    --cc-radius: 16px;
+  }
+  .car-card-body {
+    padding: 12px 14px 14px;
+  }
+  .car-card-title {
+    font-size: 14px;
+  }
+  .car-card-specs strong {
+    font-size: 11px;
+  }
+  .car-card-price strong {
+    font-size: 17px;
+  }
+  .car-card-cta {
+    padding: 6px 10px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .car-card-box,
+  .car-card-photo,
+  .car-card-cta {
+    transition: none;
+  }
+  .car-card-link:hover .car-card-box,
+  .car-card-link:hover .car-card-photo {
+    transform: none;
+  }
+}
+/* <<<<<< ************* CAR RENTAL CARD CSS END **************** >>>>>> */
+/* #feature section css */
+.feature-section {
+  background-color: rgb(255 248 243);
+}
+
+/* ======================= STEPS ======================= */
+.tp-feature-strip {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 20px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  counter-reset: tp-step;
+}
+
+.tp-feature-item {
+  position: relative;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 16px 18px;
+  border-radius: 16px;
+  background: rgba(var(--white-color), 1);
+  border: 1px solid rgba(var(--main-color), 0.08);
+  box-shadow: 0 4px 12px rgba(var(--main-color), 0.05);
+  counter-increment: tp-step;
+}
+
+/* step number: 01, 02, 03 */
+.tp-feature-item::before {
+  content: counter(tp-step, decimal-leading-zero);
+  position: absolute;
+  top: 10px;
+  right: 14px;
+  font-size: 12px;
+  font-weight: 800;
+  line-height: 1;
+  color: rgba(var(--second-color), 0.45);
+}
+
+/* dashed connector between steps */
+.tp-feature-item:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: -20px;
+  width: 20px;
+  border-top: 1.5px dashed rgba(var(--second-color), 0.4);
+}
+
+.tp-feature-icon {
+  flex-shrink: 0;
+  width: 52px;
+  height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: rgba(var(--second-color), 0.08);
+}
+.tp-feature-icon img {
+  display: block;
+  width: 30px;
+  height: 30px;
+  object-fit: contain;
+}
+
+.tp-feature-content {
+  min-width: 0;
+  padding-right: 18px; /* keeps text clear of the step number */
+}
+.tp-feature-content h3 {
+  margin: 0 0 3px;
+  font-size: 15px;
+  font-weight: 800;
+  line-height: 1.3;
+  color: rgba(var(--main-color), 1);
+}
+.tp-feature-content p {
+  margin: 0;
+  font-size: 12.5px;
+  line-height: 1.5;
+  color: rgba(var(--black-color), 0.6);
+}
+
+/* ======================= TABLET: icon on top ======================= */
+@media (max-width: 991px) {
+  .tp-feature-strip {
+    gap: 14px;
+  }
+  .tp-feature-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 16px;
+  }
+  .tp-feature-item:not(:last-child)::after {
+    top: 39px; /* lines up with the icon centre */
+    right: -14px;
+    width: 14px;
+  }
+  .tp-feature-icon {
+    width: 46px;
+    height: 46px;
+  }
+  .tp-feature-icon img {
+    width: 26px;
+    height: 26px;
+  }
+  .tp-feature-content {
+    padding-right: 0;
+  }
+}
+
+/* ======================= MOBILE: vertical list ======================= */
+@media (max-width: 767px) {
+  .tp-feature-strip {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+  .tp-feature-item {
+    flex-direction: row;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 14px;
+  }
+  /* connector turns vertical, running from icon to icon */
+  .tp-feature-item:not(:last-child)::after {
+    top: auto;
+    bottom: -13px;
+    left: 37px;
+    right: auto;
+    width: 0;
+    height: 12px;
+    border-top: 0;
+    border-left: 1.5px dashed rgba(var(--second-color), 0.4);
+  }
+  .tp-feature-content {
+    padding-right: 22px;
+  }
+  .tp-feature-content h3 {
+    font-size: 14px;
+  }
+  .tp-feature-content p {
+    font-size: 12px;
+  }
+}
+/* ======================= POPULAR ROUTES ======================= */
+.tp-route-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.tp-route-card {
+  min-width: 0;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  align-items: center;
+  gap: 10px;
+  padding: 12px 14px;
+  color: inherit;
+  text-decoration: none;
+  border-radius: 14px;
+  background: rgba(var(--white-color), 1);
+  border: 1px solid rgba(var(--main-color), 0.1);
+  box-shadow: 0 2px 8px rgba(var(--main-color), 0.04);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+.tp-route-card:hover {
+  color: inherit;
+  transform: translateY(-2px);
+  border-color: rgba(var(--second-color), 0.45);
+  box-shadow: 0 10px 22px rgba(var(--main-color), 0.1);
+}
+.tp-route-card:focus-visible {
+  outline: 2px solid rgba(var(--second-color), 1);
+  outline-offset: 3px;
+}
+
+/* ---------- From / To ---------- */
+.tp-route-city {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+.tp-route-city:last-child {
+  align-items: flex-end;
+  text-align: right;
+}
+
+.tp-route-label {
+  font-size: 11px;
+  font-weight: 500;
+  line-height: 1;
+  color: rgba(var(--black-color), 0.5);
+}
+
+.tp-route-city h5 {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 800;
+  line-height: 1.3;
+  color: rgba(var(--black-color), 1);
+  overflow-wrap: anywhere;
+  /* long names like "London, United Kingdom" wrap to max 2 lines */
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* ---------- Flight path ---------- */
+.tp-route-flight {
+  width: 84px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.tp-route-line {
+  flex: 1;
+  height: 0;
+  background: none;
+  border-top: 1.5px dashed rgba(var(--main-color), 0.3);
+}
+
+.tp-route-flight i {
+  flex-shrink: 0;
+  width: 26px;
+  height: 26px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  border-radius: 50%;
+  color: rgba(var(--second-color), 1);
+  background: rgba(var(--white-color), 1);
+  border: 1.5px solid rgba(var(--second-color), 0.35);
+  transform: none;
+  transition: background 0.25s ease, color 0.25s ease, border-color 0.25s ease;
+}
+.tp-route-card:hover .tp-route-flight i {
+  color: rgba(var(--white-color), 1);
+  background: rgba(var(--second-color), 1);
+  border-color: rgba(var(--second-color), 1);
+}
+
+/* ======================= TABLET ======================= */
+@media (max-width: 991px) {
+  .tp-route-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+  }
+}
+
+/* ======================= MOBILE: swipe row ======================= */
+@media (max-width: 575px) {
+  .tp-route-grid {
+    display: flex;
+    gap: 12px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    padding: 4px 2px 10px;
+  }
+  .tp-route-grid::-webkit-scrollbar {
+    display: none;
+  }
+  .tp-route-card {
+    flex: 0 0 270px;
+    scroll-snap-align: start;
+  }
+  .tp-route-flight {
+    width: 64px;
+  }
+  .tp-route-city h5 {
+    font-size: 13px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tp-route-card,
+  .tp-route-flight i {
+    transition: none;
+  }
+  .tp-route-card:hover {
+    transform: none;
+  }
+}
+
+/* cruise section css home */
+
+/* =========================================================
+   POPULAR CRUISE DESTINATIONS
+========================================================= */
+
+.cruise-destinations-section {
+  background: rgba(var(--white-color), 1);
+}
+
+/* ======================= GRID ======================= */
+.cruise-destinations__grid {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 16px;
+}
+
+/* ======================= CARD ======================= */
+.cruise-port-card {
+  position: relative;
+  isolation: isolate;
+  display: block;
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  border-radius: 16px;
+  color: #fff;
+  text-decoration: none;
+  background: rgba(var(--main-color), 0.1);
+  box-shadow: 0 4px 12px rgba(var(--main-color), 0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.cruise-port-card:hover {
+  color: #fff;
+  transform: translateY(-3px);
+  box-shadow: 0 14px 28px rgba(var(--main-color), 0.18);
+}
+.cruise-port-card:focus-visible {
+  outline: 2px solid rgba(var(--second-color), 1);
+  outline-offset: 3px;
+}
+
+/* photo */
+.cruise-port-card__img {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s ease;
+}
+.cruise-port-card:hover .cruise-port-card__img {
+  transform: scale(1.06);
+}
+
+/* shade: light at top for the chip, brand-tinted at bottom for the name */
+.cruise-port-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0.25) 0%,
+    rgba(0, 0, 0, 0) 28%,
+    rgba(0, 0, 0, 0) 45%,
+    rgba(var(--black-color), 0.88) 100%
+  );
+  pointer-events: none;
+}
+
+/* region chip */
+.cruise-port-card__chip {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  max-width: calc(100% - 20px);
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 4px 9px;
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 1.2;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: #fff;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.18);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+}
+.cruise-port-card__chip i {
+  flex-shrink: 0;
+  font-size: 10px;
+}
+
+/* city + call button */
+.cruise-port-card__info {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 12px;
+}
+.cruise-port-card__info h3 {
+  min-width: 0;
+  margin: 0;
+  font-size: 16px;
+  font-weight: 800;
+  line-height: 1.2;
+  color: #fff;
+  overflow-wrap: anywhere;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+.cruise-port-card__cta {
+  flex-shrink: 0;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  border-radius: 50%;
+  color: rgba(var(--second-color), 1);
+  background: rgba(255, 255, 255, 0.95);
+  transition: background 0.25s ease, color 0.25s ease;
+}
+.cruise-port-card:hover .cruise-port-card__cta {
+  background: rgba(var(--second-color), 1);
+  color: #fff;
+}
+
+/* ======================= TABLET ======================= */
+@media (max-width: 1199px) {
+  .cruise-destinations__grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+  .cruise-port-card {
+    aspect-ratio: 16 / 11;
+  }
+}
+
+/* ======================= MOBILE ======================= */
+@media (max-width: 767px) {
+  .cruise-destinations-section {
+    padding: 35px 0;
+  }
+
+  .cruise-destinations__header {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 15px;
+    margin-bottom: 20px;
+  }
+  .cruise-destinations__title {
+    font-size: 23px;
+  }
+  .cruise-destinations__subtitle {
+    font-size: 13px;
+  }
+  .cruise-destinations__view-all {
+    padding: 8px 14px;
+  }
+
+  /* horizontal swipe row */
+  .cruise-destinations__grid {
+    display: flex;
+    gap: 12px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    padding: 4px 2px 10px;
+  }
+  .cruise-destinations__grid::-webkit-scrollbar {
+    display: none;
+  }
+  .cruise-port-card {
+    flex: 0 0 160px;
+    aspect-ratio: 4 / 5;
+    scroll-snap-align: start;
+  }
+  .cruise-port-card__info h3 {
+    font-size: 14px;
+  }
+}
+
+/* ======================= REDUCED MOTION ======================= */
+@media (prefers-reduced-motion: reduce) {
+  .cruise-port-card,
+  .cruise-port-card__img,
+  .cruise-port-card__cta {
+    transition: none;
+  }
+  .cruise-port-card:hover,
+  .cruise-port-card:hover .cruise-port-card__img {
+    transform: none;
+  }
+}
+
+/* =========================================================
+   SMALL MOBILE
+========================================================= */
+
+@media (max-width: 420px) {
+  .cruise-destinations__grid {
+    gap: 15px 10px;
+  }
+
+  .cruise-destination-card__image {
+    height: 125px;
+  }
+
+  .cruise-destination-card__content h3 {
+    font-size: 12px;
+  }
+
+  .cruise-destination-card__content span {
+    font-size: 10px;
+  }
+}
+
+@media (max-width: 992px) {
+  .tp-ai-card {
+    min-height: 300px;
+  }
+  .tp-ai-card-image img {
+    height: 160px;
+  }
+  .dest-img-box {
+    height: 160px;
+  }
+}
+@media (max-width: 768px) {
+  .tabinside-content-box {
+    padding: 20px 0;
+  }
+  .banner-section {
+    padding-top: 10px;
+  }
+  .nav.stn {
+    display: inline-flex;
+    gap: 6px;
+    width: 100%;
+    flex-wrap: nowrap;
+    overflow: auto;
+    scrollbar-width: none;
+  }
+  .stn .nav-link {
+    white-space: nowrap;
+  }
+  .dest-card-unique {
+    margin: 0;
+  }
+}
+@media (max-width: 575px) {
+  .common-nav-arrow-box button {
+    width: 35px;
+    height: 35px;
+    font-size: 14px;
+  }
+  .main-box-card {
+    margin-top: 20px;
+  }
+  .tp-footer-bottom .row {
+    gap: 10px 0px;
+  }
+  .tp-footer-bottom .col-lg-6.text-lg-end.text-center {
+    margin: 0;
+  }
+}
+
+/* Large desktop */
+@media (max-width: 1199px) {
+  .dest-grid-unique {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 20px;
+  }
+
+  .dest-img-box {
+    height: 220px;
+  }
+}
+.dest-grid-unique {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 24px;
+  width: 100%;
+}
+/* Tablet */
+@media (max-width: 991px) {
+  .dest-grid-unique {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px;
+  }
+}
+
+/* Mobile */
+@media (max-width: 575px) {
+  .dest-card-unique {
+    width: 100%;
+    flex: 1;
+    white-space: nowrap;
+    min-width: 230px;
+  }
+  .banner-section {
+    padding-bottom: 10px;
+  }
+  .tabinside-content-box .common-box {
+    padding-bottom: 10px;
+  }
+}
+
+/* Very small mobile */
+@media (max-width: 380px) {
+  .dest-grid-unique {
+    gap: 10px;
+  }
+}
+@media (max-width: 475px) {
+  .tp-ai-card-content h3,
+  .tp-feature-content h4 {
+    font-size: 16px;
+    margin-bottom: 6px;
+  }
+  .tp-feature-content p {
+    font-size: 12px;
+  }
+  .tp-ai-card {
+    min-height: 270px;
+    padding: 15px;
+  }
+  .tp-ai-card-image {
+    margin-top: 14px;
+  }
+  .tp-ai-card-slider .owl-stage {
+    padding: 10px 0px;
+  }
+  .tp-ai-card-image img {
+    height: 130px;
+  }
+}
+@media (max-width: 767px) {
+  .tab-section-box .flex-end-sec {
+    justify-content: space-between;
+  }
+}
+
+/* <<<<<< ************* Car SECTION CSS START **************** >>>>>> */
+/* <<<<<< ************* Car SECTION CSS START **************** >>>>>> */
+
+/* ======================= GRID (the only .dest-grid-unique rules you need) ======================= */
+.dest-grid-unique {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 20px;
+  width: 100%;
+}
+
+/* ======================= CARD ======================= */
+.cruise-listing-wrapper {
+  display: block;
+  min-width: 0;
+  padding: 8px;
+  color: inherit;
+  text-decoration: none;
+  border-radius: 18px;
+  background: rgba(var(--white-color), 1);
+  border: 1px solid rgba(var(--main-color), 0.08);
+  box-shadow: 0 4px 12px rgba(var(--main-color), 0.06);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+.cruise-listing-wrapper:hover {
+  color: inherit;
+  transform: translateY(-3px);
+  border-color: rgba(var(--second-color), 0.35);
+  box-shadow: 0 14px 28px rgba(var(--main-color), 0.14);
+}
+.cruise-listing-wrapper:focus-visible {
+  outline: 2px solid rgba(var(--second-color), 1);
+  outline-offset: 3px;
+}
+
+.cruise-header-section {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 0;
+  margin: 0;
+}
+
+/* inset photo */
+.cruise-logo-container {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  margin: 0;
+  overflow: hidden;
+  border-radius: 12px;
+  background: rgba(var(--main-color), 0.06);
+}
+.cruise-logo-container img {
+  display: block;
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover;
+  transition: transform 0.6s ease;
+}
+.cruise-listing-wrapper:hover .cruise-logo-container img {
+  transform: scale(1.06);
+}
+
+/* name left, rating right */
+.cruise-details-section {
+  width: 100%;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 10px 6px 4px;
+}
+
+.cruise-name-title {
+  min-width: 0;
+  margin: 0;
+  font-size: 15px;
+  font-weight: 800;
+  line-height: 1.3;
+  text-align: left;
+  color: rgba(var(--main-color), 1);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.cruise-rating-container {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin: 0;
+}
+
+.rating-star-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  padding: 3px 7px;
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 1.2;
+  border-radius: 999px;
+  color: rgba(var(--black-color), 1);
+  background: rgba(245, 166, 35, 0.14);
+}
+.rating-star-badge::before {
+  content: "★";
+  font-size: 11px;
+  color: #f5a623;
+}
+
+.review-count-text {
+  font-size: 11px;
+  font-weight: 500;
+  white-space: nowrap;
+  color: rgba(var(--black-color), 0.5);
+}
+
+/* ---------- kept from before (used on other listing cards) ---------- */
+.cruise-meta-info {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 12px;
+}
+.property-type-label {
+  font-size: 14px;
+  color: #374151;
+  font-weight: 500;
+}
+.location-separator-dot {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: rgba(var(--main-color), 1);
+}
+.country-location-text {
+  font-size: 14px;
+  color: #6b7280;
+  font-weight: 400;
+}
+.availability-status-badge {
+  background: rgba(var(--second-color), 0.1);
+  color: rgba(var(--second-color), 1);
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 600;
+  margin-left: auto;
+}
+
+/* ======================= TABLET ======================= */
+@media (max-width: 991px) {
+  .dest-grid-unique {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+  }
+}
+
+/* ======================= MOBILE: swipe row ======================= */
+@media (max-width: 767px) {
+  .dest-grid-unique {
+    display: flex;
+    gap: 12px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    padding: 4px 2px 10px;
+  }
+  .dest-grid-unique::-webkit-scrollbar {
+    display: none;
+  }
+  .cruise-listing-wrapper {
+    flex: 0 0 220px;
+    scroll-snap-align: start;
+  }
+  .cruise-name-title {
+    font-size: 14px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cruise-listing-wrapper,
+  .cruise-logo-container img {
+    transition: none;
+  }
+  .cruise-listing-wrapper:hover,
+  .cruise-listing-wrapper:hover .cruise-logo-container img {
+    transform: none;
+  }
+}
+/* <<<<<< ************* Car SECTION CSS END **************** >>>>>> */
+
+
+
+////autocomplete airports start
+::ng-deep .airport-autocomplete-panel {
+  background: #fff;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  border-radius: 6px;
+  padding: 0;
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+::ng-deep .airport-autocomplete-panel .p-autocomplete-item {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: 12px 16px;
+  border-bottom: 1px solid #f0f0f0;
+  gap: 12px;
+  color: #333;
+  font-size: 0.95rem;
+
+  &:hover {
+    background-color: #f3f7ff;
+  }
+}
+.fsr-field .p-autocomplete-list {
+  width: 100% !important;
+  font-size: 12px;
+}
+
+.airport-item {
+  display: flex;
+  width: 100%;
+  align-items: flex-start;
+}
+
+.airport-icon {
+  color: #000000;
+  font-size: 1.2rem;
+  margin-right: 10px;
+  flex-shrink: 0;
+  margin-top: 3px;
+}
+
+.airport-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  flex-grow: 1;
+  max-width: 75%;
+  overflow: hidden;
+}
+
+.city-country {
+  font-weight: 600;
+  color: #1e293b;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 1.2;
+}
+
+.airport-name {
+  // font-size: 0.85rem;
+  color: #6b7280;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 1.2;
+}
+
+.airport-code {
+    background-color: #ff1500;
+    color: #fff;
+    font-weight: 600;
+    padding: 6px;
+    border-radius: 100px;
+    font-size: 10px;
+    flex-shrink: 0;
+    text-align: center;
+    min-width: 50px;
+    align-self: center;
+}
+/////end here airport
+.p-slider.p-slider-horizontal {
+  height: 6px !important;
+}
+
+.p-slider {
+  background: #fbf4ed !important;
+  border-radius: 4px !important;
+}
+
+.p-slider-handle {
+  box-shadow: 0px 0px 4px 0px #00000021 !important;
+}
+
+
+
+
+/* ================================
+   COMMON TEXT BOX
+================================ */
+
+.common-content-box {
+  width: 100%;
+  margin-top: 20px;
+}
+
+.common-content-box h2,
+.common-content-box h3,
+.common-content-box h4,
+.common-content-box h5,
+.common-content-box h6 {
+  margin: 0 0 10px;
+  line-height: 1.3;
+  font-weight: 800;
+  color: rgba(var(--main-color), 1);
+}
+
+.common-content-box h2 {
+  font-size: 25px;
+}
+
+.common-content-box h3 {
+  font-size: 23px;
+}
+
+.common-content-box h4 {
+  font-size: 21px;
+}
+
+.common-content-box h5 {
+  font-size: 18px;
+}
+
+.common-content-box h6 {
+  font-size: 16px;
+}
+
+.common-content-box p {
+  margin: 0 0 16px;
+  font-size: 14px;
+  line-height: 1.7;
+  color: #4b5563;
+}
+
+.common-content-box ul,
+.common-content-box ol {
+  margin: 0 0 16px;
+  list-style:disc;
+  padding-left: 25px;
+}
+
+.common-content-box ul li,
+.common-content-box ol li {
+  margin-bottom: 8px;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.common-content-box a {
+  color: rgba(var(--second-color), 1) !important;
+  text-decoration: underline !important;
+  transition: all 0.3s ease !important;
+  font-weight: 700;
+}
+
+.common-content-box a:hover {
+  text-decoration: none !important;
+}
+
+.common-content-box strong,
+.common-content-box b {
+  font-weight: 700;
+}
+
+.common-content-box img {
+  max-width: 100%;
+  height: auto;
+}
+
+
+/* ================================
+   TABLET
+================================ */
+
+@media (max-width: 991px) {
+
+  .common-content-box h2 {
+    font-size: 24px;
+  }
+
+  .common-content-box h3 {
+    font-size: 22px;
+  }
+
+  .common-content-box h4 {
+    font-size: 18px;
+  }
+
+  .common-content-box h5 {
+    font-size: 15px;
+  }
+
+  .common-content-box h6 {
+    font-size: 14px;
+  }
+
+  .common-content-box p,
+  .common-content-box ul li,
+  .common-content-box ol li {
+    font-size: 13px;
+  }
+
+  .common-content-box ul,
+  .common-content-box ol {
+    padding-left: 24px;
+  }
+}
+
+
+/* ================================
+   MOBILE
+================================ */
+
+@media (max-width: 575px) {
+
+  .common-content-box h2 {
+    font-size: 18px;
+    margin-bottom: 10px;
+  }
+
+  .common-content-box h3 {
+    font-size: 18px;
+    margin-bottom: 10px;
+  }
+
+  .common-content-box h4 {
+    font-size: 16px;
+    margin-bottom: 8px;
+  }
+
+  .common-content-box h5 {
+    font-size: 15px;
+    margin-bottom: 8px;
+  }
+
+  .common-content-box h6 {
+    font-size: 14px;
+    margin-bottom: 8px;
+  }
+
+  .common-content-box p {
+    font-size: 13px;
+    line-height: 1.6;
+    margin-bottom: 12px;
+  }
+
+  .common-content-box ul,
+  .common-content-box ol {
+    padding-left: 20px;
+    margin-bottom: 12px;
+  }
+
+  .common-content-box ul li,
+  .common-content-box ol li {
+    font-size: 12px;
+    line-height: 1.55;
+    margin-bottom: 6px;
+  }
+
+  .common-content-box a {
+    word-break: break-word;
+  }
+}
+.cursor-pointer {
+    cursor: pointer;
+}
+
+
+
+.flatpickr-calendar {
+  font-size: 12px !important;
+  border-radius: 8px !important;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.12) !important;
+  border: 1px solid #e5e7eb !important;
+  overflow: hidden;
+}
+
+/* Header */
+.flatpickr-calendar .flatpickr-months {
+  height: 40px !important;
+  padding: 0 6px;
+  align-items: center;
+}
+
+.flatpickr-calendar .flatpickr-month {
+  height: 40px !important;
+}
+
+.flatpickr-calendar .flatpickr-current-month {
+  font-size: 12px !important;
+  font-weight: 600;
+  padding-top: 10px !important;
+  height: 40px;
+}
+
+/* Month dropdown */
+.flatpickr-calendar .flatpickr-monthDropdown-months {
+  font-size: 12px !important;
+  font-weight: 600;
+  border: 0 !important;
+  outline: 0 !important;
+  background: transparent !important;
+  cursor: pointer;
+}
+
+/* Year */
+.flatpickr-calendar .cur-year {
+  font-size: 12px !important;
+  font-weight: 600;
+  width: 48px !important;
+  padding: 0 !important;
+}
+
+/* Previous / Next buttons */
+.flatpickr-calendar .flatpickr-prev-month,
+.flatpickr-calendar .flatpickr-next-month {
+  width: 30px !important;
+  height: 30px !important;
+  top: 5px !important;
+  padding: 7px !important;
+  border-radius: 5px;
+  transition: background 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.flatpickr-calendar .flatpickr-prev-month:hover,
+.flatpickr-calendar .flatpickr-next-month:hover {
+  background: #f3f4f6;
+}
+
+.flatpickr-calendar .flatpickr-prev-month svg,
+.flatpickr-calendar .flatpickr-next-month svg {
+  width: 12px !important;
+  height: 12px !important;
+}
+
+/* Weekdays */
+.flatpickr-calendar .flatpickr-weekdays {
+  height: 28px !important;
+  background: #f8fafc;
+}
+
+.flatpickr-calendar .flatpickr-weekday {
+  font-size: 11px !important;
+  font-weight: 600;
+  color: #6b7280;
+}
+
+/* Calendar container */
+.flatpickr-calendar .flatpickr-days {
+  width: 100% !important;
+}
+
+.flatpickr-calendar .dayContainer {
+  width: 100% !important;
+  min-width: 100% !important;
+  max-width: 100% !important;
+  padding: 5px !important;
+}
+
+/* Date */
+.flatpickr-calendar .flatpickr-day {
+  max-width: 35px !important;
+  height: 30px !important;
+  line-height: 30px !important;
+  font-size: 12px !important;
+  border-radius: 5px !important;
+  margin: 1px !important;
+  color: #374151;
+}
+
+/* Hover */
+.flatpickr-calendar .flatpickr-day:hover {
+  background: #f1f5f9;
+  border-color: #f1f5f9;
+}
+
+/* Today */
+.flatpickr-calendar .flatpickr-day.today {
+  border-color: rgba(var(--main-color), 1) !important;
+  font-weight: 600;
+}
+
+/* Selected date */
+.flatpickr-calendar .flatpickr-day.selected,
+.flatpickr-calendar .flatpickr-day.selected:hover {
+  background: rgba(var(--main-color), 1) !important;
+  border-color: rgba(var(--main-color), 1) !important;
+  color: #fff !important;
+}
+
+/* Previous / next month dates */
+.flatpickr-calendar .flatpickr-day.prevMonthDay,
+.flatpickr-calendar .flatpickr-day.nextMonthDay {
+  color: #c4c9d1 !important;
+}
+
+/* Time section */
+.flatpickr-calendar .flatpickr-time {
+  height: 42px !important;
+  border-top: 1px solid #e5e7eb !important;
+  font-size: 12px !important;
+  padding: 5px 0;
+}
+
+/* Hour & minute */
+.flatpickr-calendar .flatpickr-time .numInput {
+  font-size: 12px !important;
+  font-weight: 500;
+  height: 30px !important;
+  border-radius: 4px;
+}
+
+.flatpickr-calendar .flatpickr-time .numInput:focus {
+  border-color: rgba(var(--main-color), 1) !important;
+  box-shadow: none !important;
+}
+
+.flatpickr-calendar .flatpickr-time-separator {
+  font-size: 12px !important;
+  font-weight: 600;
+}
+
+/* Time arrows */
+.flatpickr-calendar .flatpickr-time .arrowUp,
+.flatpickr-calendar .flatpickr-time .arrowDown {
+  width: 12px !important;
+}
+
+/* Remove excessive spacing */
+.flatpickr-calendar .numInputWrapper {
+  font-size: 12px !important;
+}
+
+/* Mobile */
+@media (max-width: 576px) {
+  .flatpickr-calendar {
+    width: 270px !important;
+  }
+
+  .flatpickr-calendar .flatpickr-day {
+    max-width: 33px !important;
+    height: 29px !important;
+    line-height: 29px !important;
+    font-size: 12px !important;
+  }
+}
+
+
+.c-show-more-btn {
+  border: none;
+    background: none;
+    color: rgba(var(--second-color), 1);
+    font-size: 12px;
+    display: flex;
+    font-weight: 700;
+    align-items: center;
+    gap: 4px;
+}
+.modal-backdrop-hide .offcanvas-backdrop{
+  display: none !important;
+}
+// .modal-backdrop-hide .offcanvas.show{
+//   visibility: hidden !important;
+// }

@@ -1,0 +1,239 @@
+ .hotel-loader-section {
+     padding-top: 80px;
+ }
+
+ .loader-container {
+     width: 100%;
+     height: 10px;
+     background-color: #656565;
+     overflow: hidden;
+     position: relative;
+ }
+
+ .loader-bar {
+     width: 46%;
+     height: 100%;
+     background: linear-gradient(to right, #FBB040, #F9962D, #F7821F);
+     animation: moveBar 6s linear infinite;
+     border-radius: 5px;
+ }
+
+ @keyframes moveBar {
+     0% {
+         transform: translateX(-100%);
+     }
+
+     100% {
+         transform: translateX(200%);
+     }
+ }
+
+ .infoboxhotel img {
+     width: 45px;
+     height: 45px;
+     object-fit: contain;
+ }
+
+ .infoboxhotel {
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     gap: 10px;
+ }
+
+ .infoboxsubhotel h3 {
+     font-size: 11px;
+     color: #000000;
+     font-weight: 600;
+     margin-bottom: 0.2rem;
+ }
+
+ .infoboxsubhotel p {
+     color: #767676;
+     font-size: 8px;
+     margin-bottom: 0;
+     line-height: normal;
+ }
+
+ .infolisthotel {
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     gap: 10px;
+     margin-top: 2rem;
+ }
+
+ .infolisthotel li {
+     box-shadow: 0px 3px 11px 0px rgba(0, 0, 0, 10%);
+     padding: 15px 30px;
+     border-radius: 6px;
+     max-width: 265px;
+ }
+
+ .hotelmidimg {
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     flex-direction: column;
+     margin-top: 2rem;
+ }
+
+ .hotelmidimg img {
+     width: 325px;
+     height: 325px;
+     object-fit: contain;
+     margin: 0 auto;
+ }
+
+ .hotelmidimg h4 {
+     color: #000;
+     font-size: 20px;
+     font-weight: bold;
+ }
+
+ .hotelbookingdate {
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     text-align: left;
+     gap: 25px;
+     margin-top: 1rem;
+ }
+
+ .bookdate h3 {
+     font-size: 15px;
+     color: #747474;
+     margin-bottom: 0rem;
+ }
+
+ .bookdate {
+     display: flex;
+     align-items: start;
+     flex-direction: column;
+     gap: 3px;
+ }
+
+ .bookdate span {
+     font-size: 11px;
+     color: #000;
+     font-weight: bold;
+ }
+
+ .hotelbookingdate img {
+     width: 132px;
+     height: 30px;
+     object-fit: contain;
+ }
+
+ .textpara {
+     text-align: center;
+     width: 350px;
+     font-size: 13px;
+     color: #000;
+     margin: 0 auto;
+     margin-top: 2rem;
+ }
+
+ .infolisthotel li.calllist {
+     max-width: 407px;
+     padding: 20px;
+ }
+
+ .callbtnhotel,
+ .callbtnhotel:hover,
+ .callbtnhotel:focus {
+     background-color: #01032b;
+     color: #fff;
+     font-size: 13px;
+     font-weight: 600;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     padding: 6px 20px;
+     width: max-content;
+     gap: 8px;
+     border-radius: 5px;
+ }
+
+ .calllist .infoboxsubhotel p {
+     font-size: 13px;
+     font-weight: 400;
+     color: #4B4B4B;
+     margin-bottom: 0.5rem;
+ }
+
+ @media(max-width:991px) {
+     .infolisthotel {
+         flex-wrap: wrap;
+         margin-top: 1rem;
+     }
+
+     .hotelmidimg {
+         margin-top: 0;
+     }
+
+     .hotelmidimg img {
+         width: 220px;
+         height: 220px;
+     }
+ }
+
+ @media(max-width:767px) {
+     .infolisthotel li {
+         padding: 15px 20px;
+         max-width: 237px;
+     }
+
+     .infoboxhotel img {
+         width: 35px;
+         height: 35px;
+     }
+
+     .infolisthotel li.calllist {
+         max-width: 370px;
+         padding: 20px;
+     }
+
+     .infolisthotel li.calllist .infoboxhotel img {
+         width: 45px;
+         height: 45px;
+     }
+ }
+
+ @media(max-width:580px) {
+     .hotel-loader-section {
+         padding-top: 60px;
+     }
+
+     .loader-container {
+         width: 100%;
+         height: 5px;
+     }
+
+     .textpara {
+         margin-top: 0.4rem;
+     }
+
+     .bookdate h3,
+     .calllist .infoboxsubhotel p,
+     .textpara {
+         font-size: 10px;
+     }
+
+     .hotelmidimg img {
+         width: 160px;
+         height: 160px;
+     }
+
+     .hotelbookingdate img {
+         width: 102px;
+     }
+
+     .textpara {
+         width: auto;
+     }
+
+     .hotelmidimg h4 {
+         font-size: 15px;
+     }
+ }

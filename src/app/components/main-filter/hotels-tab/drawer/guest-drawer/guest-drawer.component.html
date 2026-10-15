@@ -1,0 +1,158 @@
+<div class="hotel-guest-drawer-content-wrap" [class.android]="isAndroid">
+    <div class="hotel-guest-dropdown__header">
+        <h3 class="hotel-guest-dropdown__header--title">Travelers</h3>
+        <div class="hotel-guest-dropdown__header--guest-select-content-wrap">
+ <span 
+  class="hotel-guest-dropdown__header--guest-label"
+  *ngIf="guestSummary.adults > 0">
+  {{ guestSummary.adults }} Adult{{ guestSummary.adults > 1 ? 's' : '' }}
+</span>
+
+<span 
+  class="hotel-guest-dropdown__header--guest-label-devider"
+  *ngIf="guestSummary.adults > 0 && guestSummary.children > 0">
+</span>
+
+<span 
+  class="hotel-guest-dropdown__header--guest-label"
+  *ngIf="guestSummary.children > 0">
+  {{ guestSummary.children }} Child{{ guestSummary.children > 1 ? 'ren' : '' }}
+</span>
+
+<span 
+  class="hotel-guest-dropdown__header--guest-label-devider"
+  *ngIf="(guestSummary.adults > 0 || guestSummary.children > 0) && guestSummary.rooms > 0">
+</span>
+
+<span 
+  class="hotel-guest-dropdown__header--guest-label"
+  *ngIf="guestSummary.rooms > 0">
+  {{ guestSummary.rooms }} Room{{ guestSummary.rooms > 1 ? 's' : '' }}
+</span>
+        </div>
+    </div>
+    <div class="hotel-guest-dropdown__content" [class.android]="isAndroid">
+        <div class="hotel-guest-dropdown__items-list">
+            <hr class="hotel-guest-dropdown__item-devider">
+            
+            <div class="hotel-guest-dropdown__item">
+                <div class="hotel-guest-dropdown__item--content-wrap">
+                    <span class="hotel-guest-dropdown__item--label">Adults</span>
+                    <div class="hotel-guest-dropdown__item--btns-count-wrap">
+                        <button class="hotel-guest-dropdown__item--btn" type="button" (click)="changeAdults(-1)"> 
+                            <svg xmlns="http://www.w3.org/2000/svg" width="11" height="2" viewBox="0 0 11 2"
+                                fill="none">
+                                <path d="M0 1.5V0H10.5V1.5H0Z" fill="currentColor" />
+                            </svg>
+                        </button>
+                        <span class="hotel-guest-dropdown__item--count">
+                            {{ adultsCount }}
+                        </span>
+                        <button class="hotel-guest-dropdown__item--btn" type="button" (click)="changeAdults(1)">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 11 11"
+                                fill="none">
+                                <path d="M4.5 6H0V4.5H4.5V0H6V4.5H10.5V6H6V10.5H4.5V6Z" fill="currentColor" />
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <hr class="hotel-guest-dropdown__item-devider">
+            <div class="hotel-guest-dropdown__item hotel-guest-dropdown__item--children">
+                <div class="hotel-guest-dropdown__item--content-wrap">
+                    <span class="hotel-guest-dropdown__item--label">Children</span>
+                    <div class="hotel-guest-dropdown__item--btns-count-wrap">
+                        <button class="hotel-guest-dropdown__item--btn" type="button" (click)="changeChildren(-1)">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="11" height="2" viewBox="0 0 11 2"
+                                fill="none">
+                                <path d="M0 1.5V0H10.5V1.5H0Z" fill="currentColor" />
+                            </svg>
+                        </button>
+                        <span class="hotel-guest-dropdown__item--count">
+                            {{ childrenCount }}
+                        </span>
+                        <button class="hotel-guest-dropdown__item--btn hotel-guest-dropdown__item--btn__active"
+                            type="button" (click)="changeChildren(1)">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 11 11"
+                                fill="none">
+                                <path d="M4.5 6H0V4.5H4.5V0H6V4.5H10.5V6H6V10.5H4.5V6Z" fill="currentColor" />
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+                <div class="hotel-guest-dropdown__children-select-age-content" *ngIf="childAgesArray.controls.length">
+                    <div class="hotel-guest-dropdown__children-select-age-content--desc">
+                        <h3 class="hotel-guest-dropdown__children-select-age-content--desc__title">Age of children at
+                            check-out (required)</h3>
+                        <p class="hotel-guest-dropdown__children-select-age-content--desc__subtitle">Correct ages help
+                            us show the best options and prices for your family.</p>
+                    </div>
+                    <div *ngFor="let ageCtrl of childAgesArray.controls; let j = index">
+                    <div class="hotel-guest-dropdown__children-select-age-content--select-dropdown">
+                        <div class="c-custom-dropdown" [class.c-custom-dropdown--open]="activeDropdown?.j === j"
+                 (click)="toggleDropdownChildAge(0,j)">
+                             
+                            <div class="c-custom-dropdown__input">
+                                <span class="c-custom-dropdown__text"
+                                    [class.c-custom-dropdown__text--placeholder]="selectedAge === null">
+                             {{ ageCtrl.value }} years old
+                                </span>
+
+                                <span class="c-custom-dropdown__icon">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="8" viewBox="0 0 14 8"
+                                        fill="none">
+                                        <path
+                                            d="M0.292818 0.292818C0.480348 0.105327 0.734669 0 0.999849 0C1.26503 0 1.51935 0.105327 1.70688 0.292818L6.65688 5.24282L11.6069 0.292818C11.7964 0.116388 12.047 0.0203478 12.3059 0.0249052C12.5647 0.0294626 12.8118 0.134262 12.995 0.317253C13.1782 0.500244 13.2832 0.747158 13.2881 1.00604C13.2929 1.26493 13.1972 1.5156 13.0209 1.70532L7.36469 7.36313C7.17716 7.55062 6.92284 7.65595 6.65766 7.65595C6.39248 7.65595 6.13816 7.55062 5.95063 7.36313L0.292818 1.70688C0.105327 1.51935 0 1.26503 0 0.999849C0 0.734669 0.105327 0.480348 0.292818 0.292818Z"
+                                            fill="currentColor" />
+                                    </svg>
+                                </span>
+                            </div>
+
+                            <div class="c-custom-dropdown__panel" *ngIf="activeDropdown?.j === j" [class.android]="isAndroid">
+                                <div class="c-custom-dropdown__item" [class.active]="age === ageCtrl.value"
+                         *ngFor="let age of ages"
+                     (click)="setChildAge(j, age)">
+                      {{ age }} years old
+                    </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    </div>
+                </div>
+            </div>
+            <hr class="hotel-guest-dropdown__item-devider">
+        
+            <div class="hotel-guest-dropdown__item">
+                <div class="hotel-guest-dropdown__item--content-wrap">
+                    <span class="hotel-guest-dropdown__item--label">Rooms</span>
+                    <div class="hotel-guest-dropdown__item--btns-count-wrap">
+                        <button class="hotel-guest-dropdown__item--btn" type="button" (click)="changeRooms(-1)" [disabled]="rooms.length === 1">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="11" height="2" viewBox="0 0 11 2"
+                                fill="none">
+                                <path d="M0 1.5V0H10.5V1.5H0Z" fill="currentColor" />
+                            </svg>
+                        </button>
+                        <span class="hotel-guest-dropdown__item--count">
+                           {{ rooms.length }}
+                        </span>
+                        <button class="hotel-guest-dropdown__item--btn" type="button" (click)="changeRooms(1)" [disabled]="rooms.length === 9">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 11 11"
+                                fill="none">
+                                <path d="M4.5 6H0V4.5H4.5V0H6V4.5H10.5V6H6V10.5H4.5V6Z" fill="currentColor" />
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <hr class="hotel-guest-dropdown__item-devider">
+        </div>
+        <div class="guest-error" *ngIf="guestError">
+  {{ guestError }}
+</div>
+        <div class="hotel-guest-apply-btn-wrap">
+            <button class="hotel-guest-apply-btn" type="button" (click)="apply()" >Apply</button>
+            <!-- disabled -->
+        </div>
+    </div>
+</div>

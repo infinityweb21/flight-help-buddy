@@ -1,0 +1,145 @@
+.inf-hero-section {
+  background-repeat: no-repeat;
+  color: #fff;
+  padding: 100px 0px 50px;
+  position: relative;
+  width: 100%;
+  height: auto;
+  background-size: cover;
+}
+.inf-hero-section::before {
+  content: "";
+  width: 100%;
+  height: 100%;
+  background-color: rgb(0, 0, 0, 0.2);
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.inf-hero-content {
+  margin-bottom: 20px;
+  position: relative;
+}
+
+.inf-hero-content h1 {
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 5px;
+}
+
+.inf-hero-content p {
+  font-size: 18px;
+  line-height: 1.6;
+  color: #f0f0f0;
+}
+
+.inf-call-widget {
+  background-color: #ffffffd9;
+  color: #333;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+  position: relative;
+  backdrop-filter: blur(20px);
+}
+
+.inf-call-widget h2 {
+  text-align: center;
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 14px;
+  line-height: 100%;
+}
+
+.inf-call-widget h2 span {
+  color: #f7801e;
+}
+
+.form-row {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-row .form-control {
+  padding: 10px 16px;
+  font-size: 13px;
+  border: 1px solid #ccc;
+  // border-radius: 10px;
+  transition: border-color 0.3s ease;
+}
+
+.form-row .form-control:focus {
+  border-color: #007bff;
+  outline: none;
+  box-shadow: none;
+}
+
+.banner-form-submit-btn {
+  background-color: #01032b;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-top: 13px;
+  padding: 9px;
+  border-radius: 5px;
+}
+
+.form-row button:hover {
+  background-color: #1a1d4a;
+}
+
+.inf-error-text {
+  font-size: 14px;
+  color: #d9534f;
+}
+
+/* Responsive adjustments */
+// @media (max-width: 768px) {
+//   .inf-hero-content h1 {
+//     font-size: 32px;
+//   }
+
+//   .inf-hero-section {
+//     padding: 60px 0;
+//   }
+
+//   .inf-call-widget {
+//     padding: 30px 20px;
+//   }
+// }
+
+@media (min-width: 992px) {
+  .inf-hero-content h1 {
+    font-size: 42px;
+  }
+  .form-row .form-control {
+    padding: 10px 16px;
+    font-size: 14px;
+  }
+  .banner-form-submit-btn {
+    padding: 10px;
+    border-radius: 5px;
+    margin-top: 18px;
+  }
+}
+//   === ==
+::ng-deep .iti--allow-dropdown input.iti__tel-input, .iti--allow-dropdown input.iti__tel-input[type=text], .iti--allow-dropdown input.iti__tel-input[type=tel], .iti--show-selected-dial-code input.iti__tel-input, .iti--show-selected-dial-code input.iti__tel-input[type=text], .iti--show-selected-dial-code input.iti__tel-input[type=tel] {
+    padding-right: 6px;
+    padding-left: 52px;
+    margin-left: 0px;
+    height: 44px;
+    
+    border: 1px solid #ccc;
+}
+::ng-deep .iti {
+  width: 100%;
+  .iti__country-list {
+    border-radius: 4px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    max-height: 200px;
+    overflow-y: auto;
+  }
+}

@@ -1,0 +1,300 @@
+<div
+  [formGroup]="formGroup"
+  class="fsr-dropdown fsr-datepicker fsr-show d-none"
+  id="fsrDatesDropdown"
+>
+
+  <div class="fsr-dp-months">
+
+    <!-- TWO MONTHS -->
+    <div
+      class="fsr-dp-month"
+      *ngFor="let m of months; let i = index"
+    >
+
+      <!-- HEADER -->
+      <div class="fsr-dp-head">
+
+        <!-- Previous -->
+        <button
+          type="button"
+          class="fsr-dp-nav"
+          [disabled]="
+            i === 0 &&
+            m.month === today.getMonth() &&
+            m.year === today.getFullYear()
+          "
+          (click)="i === 0 && goToPreviousMonth()"
+        >
+          <i class="fa-solid fa-chevron-left"></i>
+        </button>
+
+        <!-- Month title -->
+        <div class="fsr-dp-title">
+          {{ getMonthName(m.month, m.year) }}
+        </div>
+
+        <!-- Next -->
+        <button
+          type="button"
+          class="fsr-dp-nav"
+          [disabled]="
+            i === months.length - 1 &&
+            m.month === maxMonth &&
+            m.year === maxYear
+          "
+          (click)="
+            i === months.length - 1 && goToNextMonth()
+          "
+        >
+          <i class="fa-solid fa-chevron-right"></i>
+        </button>
+
+      </div>
+
+
+      <!-- CALENDAR -->
+      <div class="fsr-dp-grid">
+
+        <!-- Week days -->
+        <div
+          class="fsr-dp-dow"
+          *ngFor="let d of ['M','T','W','T','F','S','S']"
+        >
+          {{ d }}
+        </div>
+
+
+        <!-- Empty days -->
+        <div
+          class="fsr-dp-day fsr-dp-empty"
+          *ngFor="let empty of m.emptyDays"
+        ></div>
+
+
+        <!-- Dates -->
+        <div
+          class="fsr-dp-day"
+
+          *ngFor="let d of m.days"
+
+          [class.selected]="isSelected(d)"
+
+          [class.start-range]="isStartOfRange(d)"
+
+          [class.end-range]="
+            isEndOfRange(d) ||
+            isHoverEndRange(d)
+          "
+
+          [class.past]="isPastDate(d)"
+
+          [class.today]="
+            d.toDateString() === today.toDateString()
+          "
+
+          [class.single-mode]="
+            mode === 'single' ||
+            mode === 'multiple'
+          "
+
+          [class.disabled]="
+            mode === 'multiple' &&
+            isPastDate(d)
+          "
+
+          [class.not-allowed]="
+            mode === 'multiple' &&
+            isPastDate(d)
+          "
+
+          (mouseenter)="onDayHover(d)"
+          (mouseleave)="onDayLeave()"
+
+          (click)="
+            !isPastDate(d) &&
+            handleDateClick(d, $event)
+          "
+        >
+          {{ d.getDate() }}
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- FOOTER -->
+  <div class="fsr-dp-footer">
+
+    <div class="fsr-dp-hint">
+
+    
+        Select Dates
+    
+
+    </div>
+
+
+    <button
+      type="button"
+      class="fsr-dp-done"
+      [disabled]="
+        mode === 'range' &&
+        (!selectedStartDate || !selectedEndDate)
+      "
+      (click)="applyDates($event)"
+    >
+      Done
+    </button>
+
+  </div>
+
+</div>
+
+
+
+
+
+
+
+<div [formGroup]="formGroup" class="date-drawer">
+
+  <!-- ------------------------ -->
+  <!--  DESKTOP VIEW            -->
+  <!-- ------------------------ -->
+  @if (!isMobile) {
+  <div class="desktop-date-container">
+
+    <!-- Header with Navigation Arrows -->
+    <div class="desktop-header">
+      @if (!(months[0].month === today.getMonth() && months[0].year === today.getFullYear())) {
+      <button class="nav-btn prev" (click)="goToPreviousMonth()">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+          <path fill="currentColor"
+            d="M11.03 8.53a.75.75 0 1 0-1.06-1.06l-4 4a.75.75 0 0 0 0 1.06l4 4a.75.75 0 1 0 1.06-1.06l-2.72-2.72H18a.75.75 0 0 0 0-1.5H8.31z" />
+        </svg>
+      </button>
+      }
+
+      <!-- <div class="header-title">
+        {{ getMonthName(months[0].month, months[0].year) }}
+        @if(months[0].year === today.getFullYear()){
+          {{ months[0].year }}
+        }
+        
+        &nbsp;&nbsp;&nbsp;&nbsp;
+        {{ getMonthName(months[1].month, months[1].year) }}
+         @if(months[1].year === today.getFullYear()){
+         {{ months[1].year }}
+        }
+        
+      </div> -->
+
+      @if (!(months[1].month === maxMonth && months[1].year === maxYear)) {
+      <button class="nav-btn next" (click)="goToNextMonth()">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+          <path fill="currentColor"
+            d="M13.47 8.53a.75.75 0 0 1 1.06-1.06l4 4a.75.75 0 0 1 0 1.06l-4 4a.75.75 0 1 1-1.06-1.06l2.72-2.72H6.5a.75.75 0 0 1 0-1.5h9.69z" />
+        </svg>
+      </button>
+      }
+    </div>
+
+    <div class="desktop-calendar-wrapper">
+      <div class="desktop-months-grid">
+        <div class="month" *ngFor="let m of months; let i = index">
+
+          <!-- Title -->
+          <div class="month-title">
+            {{ getMonthName(m.month, m.year) }}
+            @if(months[1].year === today.getFullYear()){
+            {{ months[1].year }}
+            } 
+          </div>
+
+          <!-- Weekdays -->
+          <div class="days-header">
+            <span *ngFor="let d of ['Mo','Tu','We','Th','Fr','Sa','Su']">
+              {{ d }}
+            </span>
+          </div>
+
+          <!-- Dates -->
+          <div class="days-grid">
+            <div class="day-placeholder" *ngFor="let i of m.emptyDays"></div>
+
+            <div class="day" *ngFor="let d of m.days" [class.selected]="isSelected(d)"
+              [class.start-range]="isStartOfRange(d)" [class.end-range]="isEndOfRange(d) || isHoverEndRange(d)"
+              [class.past]="isPastDate(d)" [class.today]="d.toDateString() === today.toDateString()"
+              (mouseenter)="onDayHover(d)" (mouseleave)="onDayLeave()"
+              (click)="!isPastDate(d) && handleDateClick(d, $event)"
+              [class.single-mode]="mode === 'single'||mode === 'multiple'"
+              [class.disabled]="mode === 'multiple' && isPastDate(d)"
+              [class.not-allowed]="mode === 'multiple' && isPastDate(d)">
+              {{ d.getDate() }}
+            </div>
+
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  }
+
+
+  <!-- ------------------------ -->
+  <!--  MOBILE VIEW (NO CHANGE) -->
+  <!-- ------------------------ -->
+
+  @if (isMobile) {
+
+
+  
+
+  <div class="datepickr-title">Select Date</div>
+
+  
+
+  <ng-content *ngTemplateOutlet="titleTemplate"></ng-content>
+  <div #calendarWrapper class="calendar-wrapper" [class.android]="isAndroid">
+
+    <div class="months-grid">
+      <div class="month" *ngFor="let m of months" [attr.data-month]="m.month" [attr.data-year]="m.year"
+        [class.selected-month]="
+    selectedStartDate &&
+    m.month === selectedStartDate.getMonth() &&
+    m.year === selectedStartDate.getFullYear()
+  ">
+        <div class="month-title">{{ getMonthName(m.month, m.year) }}</div>
+
+        <div class="days-grid">
+          <div class="day-placeholder" *ngFor="let i of getEmptyDays(m.month, m.year)"></div>
+
+          <div class="day" *ngFor="let d of getDaysInMonth(m.month, m.year)" [class.selected]="isSelected(d)"
+            [class.start-range]="isStartOfRange(d)" [class.end-range]="isEndOfRange(d)" [class.past]="isPastDate(d)"
+            [class.today]="d.toDateString() === today.toDateString()"
+            (click)="!isPastDate(d) && handleDateClick(d, $event)"
+            [class.single-mode]="mode === 'single'||mode === 'multiple'"
+            [class.disabled]="mode === 'multiple' && isPastDate(d)"
+            [class.not-allowed]="mode === 'multiple' && isPastDate(d)">
+            {{ d.getDate() }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="date-pickr-btn-wrap" [class.android]="isAndroid">
+    <button type="button" class="btn-date-pickr" [class.active]="selectedStartDate" (click)="applyDates($event)"
+      (touchstart)="applyDates($event)">
+      Apply
+    </button>
+  </div>
+  }
+</div>

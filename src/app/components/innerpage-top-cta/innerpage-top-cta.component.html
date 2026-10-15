@@ -1,0 +1,82 @@
+<section class="booking-panel">
+    <!-- background photo (decorative) -->
+    <img class="booking-panel__bg" src="assets/images/flight/topbanner.jpg" alt="" aria-hidden="true" loading="lazy" />
+    <div class="container-xxl">
+
+        <div class="booking-panel__card">
+
+
+
+            <div class="booking-panel__inner">
+
+                <!-- LEFT: message -->
+                <div class="booking-panel__content">
+
+                    <span class="booking-panel__eyebrow">
+                        <i class="fa-solid fa-plane-departure"></i>
+                        Make your booking easier with us
+                    </span>
+
+                    <h2 class="booking-panel__headline">
+                        Unlock special flight deals to start your next <span>adventure</span>
+                    </h2>
+
+                    <ul class="booking-panel__benefits">
+                        <li>
+                            <i class="fa-solid fa-headset"></i>
+                            Expert travel guidance
+                        </li>
+                        <li>
+                            <i class="fa-regular fa-clock"></i>
+                            Round-the-clock assistance
+                        </li>
+                    </ul>
+
+                </div>
+
+                <!-- RIGHT: boarding-pass call card -->
+                <div class="booking-panel__pass-wrap">
+                    <div class="booking-panel__pass">
+
+                        <div class="booking-panel__pass-top">
+
+                            <div class="booking-panel__pass-head">
+                                <span class="booking-panel__pass-icon">
+                                    <i class="fa-solid fa-headset"></i>
+                                </span>
+                                <span class="booking-panel__pass-label">24 hour booking hotline</span>
+                                <span class="booking-panel__status">
+                                    <span class="booking-panel__status-dot"></span>
+                                    Now boarding
+                                </span>
+                            </div>
+
+                            <a href="tel:{{ phoneNumber }}" class="booking-panel__pass-number">
+                                {{ phoneNumber }}
+                            </a>
+
+                        </div>
+
+                        <div class="booking-panel__pass-stub">
+
+                            <a href="tel:{{ phoneNumber }}" class="booking-panel__btn booking-panel__btn--primary">
+                                <i class="fa-solid fa-phone"></i>
+                                Call now
+                            </a>
+
+                            <a href="tel:{{ phoneNumber }}" class="booking-panel__btn booking-panel__btn--ghost">
+                                <i class="fa-solid fa-rotate"></i>
+                                Booking changes &amp; cancellation
+                            </a>
+
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+</section>

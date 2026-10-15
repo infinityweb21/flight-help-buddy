@@ -1,0 +1,154 @@
+<section class="contact-page">
+  <div class="container">
+
+    <!-- ===== Page Heading ===== -->
+    <div class="contact-page__header">
+      <h1 class="contact-page__title">Contact Us</h1>
+      <span class="contact-page__eyebrow">Get in Touch</span>
+      <p class="contact-page__subtitle">Reach out for cold room solutions, inquiries, or support.</p>
+    </div>
+
+    <!-- ===== Info Cards ===== -->
+    <div class="row contact-page__info-row">
+      <div class="col-lg-4 col-md-6 col-sm-6">
+        <div class="contact-info-card">
+          <span class="contact-info-card__icon">
+            <i class="fa fa-phone-alt"></i>
+          </span>
+          <div class="contact-info-card__content">
+            <span class="contact-info-card__label">Mobile</span>
+            <a href="tel:{{ getData?.phoneNumber }}" class="contact-info-card__value">{{ getData?.phoneNumber }}</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-4 col-md-6 col-sm-6">
+        <div class="contact-info-card">
+          <span class="contact-info-card__icon">
+            <i class="fa fa-envelope"></i>
+          </span>
+          <div class="contact-info-card__content">
+            <span class="contact-info-card__label">Email</span>
+            <a href="mailto:{{ getData?.email }}" class="contact-info-card__value">{{ getData?.email }}</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-4 col-md-6 col-sm-6">
+        <div class="contact-info-card">
+          <span class="contact-info-card__icon">
+            <i class="fa fa-map-marker-alt"></i>
+          </span>
+          <div class="contact-info-card__content">
+            <span class="contact-info-card__label">Address</span>
+            <span class="contact-info-card__value">{{ getData?.address }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== Form + Map Panel ===== -->
+    <div class="contact-page__panel">
+      <div class="contact-page__panel-heading">
+        <span class="contact-page__panel-icon"><i class="fa fa-comment-dots"></i></span>
+        <h4>Need Help? Message Us</h4>
+      </div>
+
+      <div class="row">
+
+        <!-- FORM — col-md-6 : existing dev code kept as-is, only labels + css classes added -->
+        <div class="col-md-6">
+          <form [formGroup]="contactForm" (ngSubmit)="submitContactForm()"
+            class="contact-form-validated contact-two__form">
+            <div class="row">
+              <div class="col-xl-6 col-lg-6">
+                <div class="contact-two__input-box">
+                  <label class="contact-two__label">Your Name <span class="req">*</span></label>
+                  <input placeholder="Enter your name" type="text" formControlName="name"
+                    [class.is-invalid]="isInvalid('name')" />
+                  <div *ngIf="isInvalid('name')" class="text-danger">Name is required.</div>
+                </div>
+              </div>
+
+              <div class="col-xl-6 col-lg-6">
+                <div class="contact-two__input-box">
+                  <label class="contact-two__label">Email Address <span class="req">*</span></label>
+                  <input placeholder="your@email.com" type="email" formControlName="email"
+                    [class.is-invalid]="isInvalid('email')" />
+                  <div *ngIf="isInvalid('email')" class="text-danger">Valid email is required.</div>
+                </div>
+              </div>
+
+              <div class="col-xl-6 col-lg-6">
+                <div class="contact-two__input-box">
+                  <label class="contact-two__label">Phone Number <span class="req">*</span></label>
+
+                  <div class="wrapper">
+                    <ngx-intl-tel-input [cssClass]="'form-control'" [preferredCountries]="preferredCountries"
+                      [enableAutoCountrySelect]="true" [enablePlaceholder]="true" [searchCountryFlag]="true"
+                      [searchCountryField]="[
+      SearchCountryField.Iso2,
+      SearchCountryField.Name
+    ]" [selectFirstCountry]="false" [selectedCountryISO]="CountryISO.UnitedStates" [maxLength]="15"
+                      [phoneValidation]="true" [separateDialCode]="separateDialCode"
+                      [numberFormat]="PhoneNumberFormat.National" name="phone" formControlName="phone"
+                      [class.is-invalid]="isInvalid('phone')">
+                    </ngx-intl-tel-input>
+                  </div>
+
+                  <div *ngIf="isInvalid('phone')" class="text-danger">
+                    <span *ngIf="contactForm.get('phone')?.errors?.['required']">
+                      Phone number is required.
+                    </span>
+                    <span
+                      *ngIf="contactForm.get('phone')?.errors?.['invalidPhoneLength'] && !contactForm.get('phone')?.errors?.['required']">
+                      Please enter a valid phone number (6–15 digits).
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-xl-6 col-lg-6">
+                <div class="contact-two__input-box">
+                  <label class="contact-two__label">Subject <span class="req">*</span></label>
+                  <input placeholder="Enter subject" type="text" formControlName="subject"
+                    [class.is-invalid]="isInvalid('subject')" />
+                  <div *ngIf="isInvalid('subject')" class="text-danger">Subject is required.</div>
+                </div>
+              </div>
+
+              <div class="col-xl-12">
+                <div class="contact-two__input-box text-message-box">
+                  <label class="contact-two__label">Message <span class="req">*</span></label>
+                  <textarea placeholder="Kindly contact me regarding..." formControlName="message"
+                    [class.is-invalid]="isInvalid('message')"></textarea>
+                  <div *ngIf="isInvalid('message')" class="text-danger">Message is required.</div>
+                </div>
+              </div>
+
+              <div class="col-xl-12">
+                <div class="contact-two__btn-box">
+                  <button type="submit" class="thm-btn contact-two__btn">Send Message<span></span></button>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+
+        <!-- MAP — col-md-6 : left empty, to be filled separately -->
+        <div class="col-md-6">
+          <div class="contact-page__map-placeholder">
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3311.698875803829!2d-117.8511976!3d33.6931471!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80dcdfd69f11d37f%3A0x9b44b443882b2a8d!2s17875%20Von%20Karman%20Ave%2C%20Irvine%2C%20CA%2092614%2C%20USA!5e0!3m2!1sen!2sin!4v1692876028123!5m2!1sen!2sin"
+              class="google-map__one"></iframe>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<app-quick-contact></app-quick-contact>

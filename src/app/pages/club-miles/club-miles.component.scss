@@ -1,0 +1,783 @@
+.cta-add-btn {
+    background: #FF6A19;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    color: #ffffff;
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: auto;
+    width: max-content;
+    border-radius: 8px;
+    padding: 20px 20px;
+    margin-top: 25px;
+}
+
+p.banner-para {
+    font-size: 18px;
+    color: #5D5D5D;
+    line-height: 30px;
+    font-weight: 500;
+}
+
+.right-img-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.loyalty-steps-section {
+    margin: auto;
+    text-align: start;
+}
+
+.loyalty-steps-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    position: relative;
+    gap: 2rem;
+}
+
+.loyalty-step {
+    flex: 1 1 30%;
+    min-width: 250px;
+}
+
+.loyalty-step img {
+    width: 80px;
+    margin-bottom: 1rem;
+}
+
+.loyalty-step h3 {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+    color: #000000;
+}
+
+.loyalty-step p {
+    font-size: 15px;
+    font-weight: 400;
+    max-width: 250px;
+    color: #525252;
+    line-height: 1.4;
+}
+
+/* Optional dashed line between steps */
+.dashed-line {
+    position: absolute;
+    top: 40px;
+    left: 10%;
+    right: 10%;
+    height: 60px;
+    background-image: url('data:image/svg+xml;utf8,<svg width="100%" height="60" xmlns="http://www.w3.org/2000/svg"><path d="M0,30 Q25,0 50,30 T100,30 T150,30 T200,30 T250,30 T300,30 T350,30 T400,30" stroke="%23999" stroke-dasharray="5,5" fill="transparent" stroke-width="2"/></svg>');
+    background-repeat: no-repeat;
+    background-size: cover;
+    z-index: 0;
+}
+
+@media (max-width: 768px) {
+    .loyalty-steps-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .dashed-line {
+        display: none;
+    }
+}
+
+.topsubhead {
+    color: #F88623;
+    font-weight: bold;
+    font-size: 18px;
+    text-transform: capitalize;
+}
+
+.mainhowtitle {
+    color: #303030;
+    font-weight: bold;
+    font-size: 45px;
+    text-transform: capitalize;
+    margin-bottom: 2rem;
+}
+
+.mainhowtitle span {
+    color: #F88623;
+}
+
+.mainhowtitle img {
+    width: 40px;
+    height: 40px;
+}
+
+.how-para {
+    color: #525252;
+    font-weight: 500;
+    font-size: 18px;
+    text-transform: capitalize;
+}
+
+.loyalty-step {
+    position: relative;
+}
+
+.howit-work {
+    padding: 70px 0px;
+    background-color: #fff;
+    position: relative;
+    overflow: hidden;
+}
+
+.text1box {
+    position: absolute;
+    left: 30%;
+    top: -10%;
+}
+
+.text1box img,
+.text2box img {
+    width: 100%;
+}
+
+.text2box {
+    position: absolute;
+    left: 30%;
+    top: 1%;
+}
+
+.bantex1 {
+    position: absolute;
+    left: -34px;
+    top: 101px;
+    width: 175px;
+    height: auto;
+}
+
+.bantex2 {
+    position: absolute;
+    right: 10px;
+    bottom: -78px;
+    width: 200px;
+}
+
+
+.fare-alert-box {
+    display: flex;
+    align-items: center;
+    background: #fff;
+    border-radius: 12px;
+    padding: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    max-width: max-content;
+    width: 100%;
+    gap: 1rem;
+}
+
+.fare-alert-icon {
+    background: #e8f1fd;
+    padding: 0.8rem;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #2771e0;
+    font-size: 1.3rem;
+}
+
+.fare-alert-text h4 {
+    margin: 0;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #333;
+}
+
+.fare-alert-text p {
+    margin: 0.3rem 0 0;
+    color: #777;
+    font-size: 0.9rem;
+}
+
+@media (max-width: 500px) {
+    .fare-alert-box {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .fare-alert-icon {
+        margin-bottom: 0.5rem;
+    }
+}
+
+.rewarssec {
+    position: relative;
+    padding: 100px 0px;
+}
+
+.rewardsback {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: -130px;
+}
+
+.rewarssec .container {
+    position: relative;
+    z-index: 9;
+}
+
+.listearn {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    /* two rows of equal height */
+    gap: 1rem;
+}
+
+.rebox {
+    max-width: 690px;
+    margin: 0 auto;
+    margin-bottom: 2.6rem;
+}
+
+.rebox-title {
+    text-align: center;
+    color: #fff;
+    font-size: 40px;
+    font-weight: bold;
+}
+
+.rebox-title span {
+    color: #F88623;
+}
+
+.refercta {
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    margin-top: 5rem;
+    padding: 30px 40px;
+    display: block;
+    align-content: center;
+    border-radius: 10px;
+}
+
+.textctabox {
+    max-width: 690px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 6;
+}
+
+.textctabox h2 {
+    font-size: 40px;
+    font-weight: bold;
+    color: #1F1715;
+    text-transform: capitalize;
+}
+
+.textctabox ul li {
+    font-size: 13px;
+    color: #fff;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    gap: 7px;
+    line-height: normal;
+    margin-bottom: 6px;
+}
+
+.referbtn {
+    background-color: #fff;
+    color: #000;
+    border: 1px solid transparent;
+    padding: 10px 16px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    text-transform: capitalize;
+}
+
+.referbtn:hover,
+.referbtn:focus {
+    background-color: transparent;
+    color: #000;
+    border: 1px solid #fff;
+}
+
+
+
+
+.clubmiles-benefits h2 {
+    font-size: 2rem;
+    margin-bottom: 0.25rem;
+    color: #001832;
+    font-weight: bold;
+}
+
+.clubmiles-benefits h2 span {
+    color: #F88623;
+    /* orange highlight */
+}
+
+.clubmiles-benefits p.subtitle {
+    color: #5D5D5D;
+    margin-bottom: 2rem;
+}
+
+.benefits-grid {
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    gap: 2rem 1.5rem;
+}
+
+.benefit-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 1.4rem;
+}
+
+.benefit-item img {
+    width: 50px;
+    height: 50px;
+    flex-shrink: 0;
+}
+
+.benefit-text h4 {
+    margin: 0;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #000000;
+}
+
+.benefit-text p {
+    margin: 0.4rem 0 0;
+    font-size: 0.9rem;
+    color: #000000;
+}
+
+@media (max-width: 768px) {
+    .benefits-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.partners-section {
+    text-align: center;
+    padding: 2rem 1rem;
+}
+
+.partners-section h2 {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #0d1b2a;
+    margin-bottom: 2rem;
+}
+
+.partners-section h2 span {
+    color: #f7941d;
+}
+
+.partner-slider .partner-logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    transition: all 0.3s ease;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.partner-logo img {
+    max-height: 50px;
+    filter: grayscale(100%);
+    transition: all 0.3s ease;
+}
+
+/* Hover effect with backdrop filter */
+.partner-logo:hover {
+    background: rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(4px) brightness(1.2);
+    -webkit-backdrop-filter: blur(4px) brightness(1.2);
+}
+
+.partner-logo:hover img {
+    filter: grayscale(0%);
+}
+
+/*========== planing  ==================*/
+.planing-box {
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    border-radius: 15px;
+    overflow: hidden;
+}
+
+/*========== planing  ==================*/
+
+
+.custom-faq-item {
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    margin-bottom: 15px;
+    overflow: hidden;
+}
+
+.custom-faq-header {
+    background-color: #f0f6ff;
+    font-weight: 600;
+    font-size: 16px;
+    color: #001832;
+    padding: 18px 20px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.accordion-button:not(.collapsed) {
+    background-color: #ffffff;
+    color: #000;
+    box-shadow: none;
+}
+
+.accordion-button:focus {
+    box-shadow: none;
+}
+
+.custom-faq-body {
+    background: #fff;
+    color: #333;
+    padding: 20px;
+    border-top: 1px solid #eee;
+    font-size: 15px;
+}
+
+.faq-icon {
+    font-size: 40px;
+    color: #1877f2;
+}
+
+.accordion-button:not(.collapsed) .faq-icon {
+    color: #ff7f00;
+}
+
+
+.custom-faq-body ul {
+    margin-top: 10px;
+    padding-left: 20px;
+}
+
+.custom-faq-body li {
+    margin-bottom: 8px;
+}
+
+.custom-signup-section {
+    background: #fff;
+    position: relative;
+    overflow: hidden;
+}
+
+.signup-heading {
+    font-weight: 700;
+    font-size: 28px;
+    color: #001133;
+}
+
+.signup-heading .highlight {
+    color: #ff7f00;
+}
+
+.custom-signup-form {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.custom-signup-input {
+    border-radius: 8px;
+    height: 50px;
+    max-width: 400px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.custom-signup-btn {
+    background: linear-gradient(90deg, #ff7f00, #ff9900);
+    color: #fff;
+    font-weight: 600;
+    border-radius: 8px;
+    height: 50px;
+    min-width: 120px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    transition: 0.3s;
+}
+
+.custom-signup-btn:hover {
+    background: linear-gradient(90deg, #e66f00, #ff8800);
+}
+
+.custom-signup-illustration img {
+    object-fit: cover;
+    min-height: 150px;
+}
+
+.faqsec {
+    padding: 60px 0px;
+}
+
+
+.custom-reward-banner {
+    background: linear-gradient(135deg, #0072ef 0%, #003e9f 100%);
+    border-radius: 12px;
+    color: #fff;
+    padding: 40px 0px;
+    position: relative;
+    background-repeat: no-repeat;
+    background-position: bottom;
+    background-size: cover;
+}
+
+.custom-reward-phone {
+    max-height: 458px;
+    /* transform: rotate(-10deg); */
+    position: absolute;
+    top: -32%;
+    left: 1%;
+}
+
+.highlight-text {
+    color: #ff8c2b;
+}
+
+.custom-benefits-list {
+    list-style: none;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+/* .custom-benefits-list li::before {
+    content: '✔️ ';
+    color: #00ffcc;
+} */
+.custom-benefits-list li i {
+    margin-right: 4px;
+}
+
+.custom-qr-code {
+    max-width: 100px;
+    width: 100%;
+    border-radius: 8px;
+}
+
+.custom-cta-btn {
+    background: #ff8c2b;
+    color: #fff;
+    font-weight: 600;
+    border-radius: 8px;
+    padding: 10px 20px;
+    border: none;
+    transition: background 0.3s ease;
+}
+
+.custom-cta-btn:hover {
+    background: #e66f00;
+}
+
+.reward-bannersec {
+    padding: 100px 0px;
+}
+
+@media (max-width:1366px) {
+    .loyalty-step {
+        min-width: 208px;
+    }
+
+    .mainhowtitle,
+    .textctabox h2,
+    .rebox-title {
+        font-size: 30px;
+    }
+
+    .refercta {
+        margin-top: 3rem;
+    }
+
+    .rewardsback {
+        top: -70px;
+    }
+
+    .fare-alert-text p {
+        font-size: 0.8rem;
+        line-height: normal;
+    }
+    .textctabox ul {
+    padding-left: 1rem;
+}
+}
+
+@media (max-width:1024px) {
+
+    .text1box,
+    .text2box,
+    .bantex1 {
+        display: none;
+    }
+
+    .loyalty-steps-container {
+        gap: 0;
+    }
+
+    .custom-reward-phone {
+        max-height: 358px;
+        position: absolute;
+        top: 0%;
+        left: 1%;
+    }
+}
+
+@media (max-width:992px) {
+    .banner-content-wrap .banner-txt h1 {
+        font-size: 30px;
+    }
+
+    .banner-content-wrap .banner-txt p {
+        margin-top: 14px;
+        font-size: 16px;
+        line-height: normal;
+    }
+
+    .howit-work {
+        padding: 40px 0px;
+    }
+
+    .loyalty-steps-container {
+        flex-direction: row;
+        align-items: center;
+    }
+
+    .mainhowtitle {
+        margin-bottom: 1rem;
+    }
+
+    .custom-reward-phone {
+        max-height: 254px;
+        position: relative;
+        top: unset;
+        left: unset;
+    }
+}
+
+@media (max-width:767px) {
+    .banner-content-wrap .banner-txt h1 {
+        font-size: 16px;
+    }
+
+    .banner-content-wrap .banner-txt p {
+        margin-top: 8px;
+        margin-bottom: 6px;
+        font-size: 13px;
+        line-height: normal;
+    }
+
+    .mainhowtitle {
+        margin-bottom: 1rem;
+    }
+
+    .loyalty-step img {
+        width: 40px;
+        margin-bottom: 1rem;
+    }
+
+    .rewardsback {
+        display: none;
+    }
+
+
+    .textctabox ul li {
+        font-size: 13px;
+        line-height: normal;
+    }
+
+    section.Whyussec {
+        padding: 30px 0px;
+    }
+
+    .clubmiles-benefits h2,
+    .partners-section h2,
+    .signup-heading {
+        font-size: 18px;
+    }
+
+    .fare-alert-text h4 {
+        font-size: 14px;
+    }
+
+    .custom-signup-btn {
+        color: #fff !important;
+        font-weight: 600;
+        min-width: 70px;
+        font-size: 10px;
+    }
+
+    .custom-signup-illustration img {
+        object-fit: cover;
+        min-height: 53px;
+    }
+
+    .custom-faq-header {
+        font-size: 12px;
+    }
+
+    .custom-faq-body {
+        font-size: 12px;
+    }
+
+    .faq-icon {
+        font-size: 20px;
+    }
+
+    .whyimgbox {
+        margin-top: 2rem;
+    }
+
+    .fare-alert-text p {
+        font-size: 12px;
+    }
+
+    .rewarssec {
+        position: relative;
+        background: #9ec5ee;
+        padding: 30px 0px;
+    }
+
+    .mainhowtitle img {
+        width: 20px;
+        height: 20px;
+    }
+
+    .how-para {
+        font-size: 13px;
+    }
+
+    .cta-add-btn {
+        margin-top: 20px;
+        margin-bottom: 20px;
+        padding: 8px 15px;
+        font-size: 13px;
+    }
+
+    .mainhowtitle,
+    .textctabox h2,
+    .rebox-title {
+        font-size: 16px;
+    }
+
+}
+::ng-deep .owl-carousel .owl-item img{
+    width:3rem!important
+}

@@ -1,0 +1,307 @@
+<!--=========== Banner Section Start  ==============-->
+<app-main-filter />
+<!--=========== Banner Section End  ==============-->
+
+
+<section class="common-section tab-section-box">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 col-md-6 col-12">
+                <div class="common-heading-box">
+                    <h2 class="common-heading-title">Grab the Best Deals For Your Business Class Tickets
+                    </h2>
+                    <p>Book your business class tickets now and enjoy the premium comfort at the best fares.</p>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-6 col-12">
+                <div class="flex-end-sec">
+                    <div class="common-nav-arrow-box">
+                        <button type="button" class="domestic-tabflight-prev" (click)="domesticRoutePrevious()"
+                            aria-label="Previous">
+                            <i class="fa-solid fa-chevron-left"></i>
+                        </button>
+
+                        <button type="button" class="domestic-tabflight-next" (click)="domesticRouteNext()"
+                            aria-label="Next">
+                            <i class="fa-solid fa-chevron-right"></i>
+                        </button>
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-12">
+                <div class="destcard-slider owl-carousel">
+
+                    <a href="tel:{{ getData?.phoneNumber }}" class="destcard-item">
+
+                        <div class="destcard-media">
+                            <img src="assets/images/business-class/city1.webp" alt="Tokyo">
+                        </div>
+                        <div class="destcard-body">
+                            <span class="destcard-name">Tokyo</span>
+                            <span class="destcard-price">$1,520</span>
+                        </div>
+                    </a>
+                    <a href="tel:{{ getData?.phoneNumber }}" class="destcard-item">
+
+                        <div class="destcard-media">
+                            <img src="assets/images/business-class/city2.webp" alt="London">
+                        </div>
+                        <div class="destcard-body">
+                            <span class="destcard-name">London</span>
+                            <span class="destcard-price">$1,520</span>
+                        </div>
+                    </a>
+
+                    <a href="tel:{{ getData?.phoneNumber }}" class="destcard-item">
+
+                        <div class="destcard-media">
+                            <img src="assets/images/business-class/city3.webp" alt="Dubai">
+                        </div>
+                        <div class="destcard-body">
+                            <span class="destcard-name">Dubai</span>
+                            <span class="destcard-price">$1,520</span>
+                        </div>
+                    </a>
+                    <a href="tel:{{ getData?.phoneNumber }}" class="destcard-item">
+
+                        <div class="destcard-media">
+                            <img src="assets/images/business-class/city4.webp" alt="Miami">
+                        </div>
+                        <div class="destcard-body">
+                            <span class="destcard-name">Miami</span>
+                            <span class="destcard-price">$1,520</span>
+                        </div>
+                    </a>
+                    <a href="tel:{{ getData?.phoneNumber }}" class="destcard-item">
+
+                        <div class="destcard-media">
+                            <img src="assets/images/business-class/city5.webp" alt="Paris">
+                        </div>
+                        <div class="destcard-body">
+                            <span class="destcard-name">Paris</span>
+                            <span class="destcard-price">$1,520</span>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="div-text mt-2"><strong>*Note:</strong> All the fares shown here are in USD. The prices
+                    displayed can change based on availability at the time of your booking.</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="common-section text-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-12">
+                <div class="main-box-card m-0">
+                    <h2 class="tp-trust-title">
+                        Fly to Your Favorite Destination With Confidence
+                    </h2>
+                    <div class="tp-trust-box">
+
+                        <div class="tp-trust-item">
+                            <div class="tp-trust-icon">
+                                <i class="fa-solid fa-file-circle-check"></i>
+                            </div>
+
+                            <div class="tp-trust-info">
+                                <h5>Fly More For Less</h5>
+                                <p>Find business class tickets at the best prices for your next trip.</p>
+                            </div>
+                        </div>
+
+                        <div class="tp-trust-item">
+                            <div class="tp-trust-icon">
+                                <i class="fa-solid fa-headset"></i>
+                            </div>
+
+                            <div class="tp-trust-info">
+                                <h5>Get Reliable Support</h5>
+                                <p>Call us whenever you need, always ready to help.</p>
+                            </div>
+                        </div>
+
+                        <div class="tp-trust-item">
+                            <div class="tp-trust-icon">
+                                <i class="fa-solid fa-medal"></i>
+                            </div>
+
+                            <div class="tp-trust-info">
+                                <h5>Save More on Flights</h5>
+                                <p>Explore the exciting offers and unlock the rewards for every trip.</p>
+                            </div>
+                        </div>
+
+                        <div class="tp-trust-item">
+                            <div class="tp-trust-icon">
+                                <i class="fa-solid fa-suitcase-rolling"></i>
+                            </div>
+
+                            <div class="tp-trust-info">
+                                <h5>Smooth Booking Experience</h5>
+                                <p>Manage and track your bookings easily from one place.</p>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="common-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-7 col-md-10 col-12">
+                <div class="common-heading-box">
+                    <h2 class="common-heading-title">Book Your Tickets With {{companyname}}?
+                    </h2>
+                    <p>Complete your reservation with us by following these easy and simple steps.</p>
+                </div>
+            </div>
+            <div class="col-12">
+
+                <div class="hwsteps-grid">
+
+                    <div class="hwsteps-item">
+                        <div class="hwsteps-top">
+                            <span class="hwsteps-num">1</span>
+                            <h3 class="hwsteps-title">Let Us Know About Your Plans</h3>
+                        </div>
+                        <p class="hwsteps-desc">Enter your travel details and submit your booking request through our
+                            website.</p>
+                    </div>
+
+                    <div class="hwsteps-item">
+                        <div class="hwsteps-top">
+                            <span class="hwsteps-num">2</span>
+                            <h3 class="hwsteps-title">Compare Your Flight Options</h3>
+                        </div>
+                        <p class="hwsteps-desc">Before confirming your booking, review the fares of multiple flights and
+                            choose the one that suits your plan.</p>
+                    </div>
+
+                    <div class="hwsteps-item">
+                        <div class="hwsteps-top">
+                            <span class="hwsteps-num">3</span>
+                            <h3 class="hwsteps-title">Connect With Our Customer Support</h3>
+                        </div>
+                        <p class="hwsteps-desc">If you're stuck with your bookings, don’t hesitate to call us. We’re
+                            always there to help you.</p>
+                    </div>
+
+                    <div class="hwsteps-item">
+                        <div class="hwsteps-top">
+                            <span class="hwsteps-num">4</span>
+                            <h3 class="hwsteps-title">Ready For Your Journey</h3>
+                        </div>
+                        <p class="hwsteps-desc">Complete your booking and get ready to enjoy your journey comfortably.
+                        </p>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section class="common-section text-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-7 col-md-10 col-12">
+                <div class="common-heading-box">
+                    <h2 class="common-heading-title">Frequently Asked Questions
+                    </h2>
+                    <p>Get quick answers to your queries</p>
+                </div>
+            </div>
+            <!-- Column 1 -->
+            <div class="col-lg-6">
+                <div class="cst-acc-col-title">General Information</div>
+                <div class="accordion" id="cstAccLeft">
+
+                    <div class="cst-acc__item">
+                        <h2 class="cst-acc__header" id="lHead1">
+                            <button class="cst-acc__btn" type="button" data-bs-toggle="collapse" data-bs-target="#lCol1"
+                                aria-expanded="true" aria-controls="lCol1">
+                                <span class="cst-acc__title">What benefits do I get with a Business Class ticket?</span>
+                                <i class="fa-solid fa-chevron-down cst-acc__chevron"></i>
+                            </button>
+                        </h2>
+                        <div id="lCol1" class="collapse show" aria-labelledby="lHead1" data-bs-parent="#cstAccLeft">
+                            <div class="cst-acc__body">
+                                Benefits vary by airline and fare, but may include priority check-in and boarding,
+                                additional baggage allowance, lounge access, spacious seating, premium meals, and
+                                greater flexibility.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="cst-acc__item">
+                        <h2 class="cst-acc__header" id="lHead2">
+                            <button class="cst-acc__btn collapsed" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#lCol2" aria-expanded="false" aria-controls="lCol2">
+                                <span class="cst-acc__title">Can I find affordable Business Class tickets?</span>
+                                <i class="fa-solid fa-chevron-down cst-acc__chevron"></i>
+                            </button>
+                        </h2>
+                        <div id="lCol2" class="collapse" aria-labelledby="lHead2" data-bs-parent="#cstAccLeft">
+                            <div class="cst-acc__body">
+                                Yes. Business Class fares can vary based on the airline, route, travel dates,
+                                availability, and booking time. Comparing different options can help you find a fare
+                                that fits your budget.
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Column 2 -->
+            <div class="col-lg-6">
+                <div class="cst-acc-col-title">Cancellation &amp; Support</div>
+                <div class="accordion" id="cstAccRight">
+
+                    <div class="cst-acc__item">
+                        <h2 class="cst-acc__header" id="rHead1">
+                            <button class="cst-acc__btn" type="button" data-bs-toggle="collapse" data-bs-target="#rCol1"
+                                aria-expanded="true" aria-controls="rCol1">
+                                <span class="cst-acc__title">Can I upgrade from Economy to Business Class?</span>
+                                <i class="fa-solid fa-chevron-down cst-acc__chevron"></i>
+                            </button>
+                        </h2>
+                        <div id="rCol1" class="collapse show" aria-labelledby="rHead1" data-bs-parent="#cstAccRight">
+                            <div class="cst-acc__body">
+                                Depending on the airline and your ticket type, you may be able to upgrade to Business
+                                Class using cash, miles, points, or an eligible upgrade offer. Availability and rules
+                                vary.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="cst-acc__item">
+                        <h2 class="cst-acc__header" id="rHead2">
+                            <button class="cst-acc__btn collapsed" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#rCol2" aria-expanded="false" aria-controls="rCol2">
+                                <span class="cst-acc__title">Can I change or cancel my Business Class ticket?</span>
+                                <i class="fa-solid fa-chevron-down cst-acc__chevron"></i>
+                            </button>
+                        </h2>
+                        <div id="rCol2" class="collapse" aria-labelledby="rHead2" data-bs-parent="#cstAccRight">
+                            <div class="cst-acc__body">
+                                After completing your booking, your confirmation and ticket details are generally sent
+                                to the email
+                                address provided during the booking process.
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

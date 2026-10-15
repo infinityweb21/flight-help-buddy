@@ -1,0 +1,334 @@
+<!--=========== Popular Section Start  ==============-->
+<section class="popular popular-sec">
+  <div class="container container-xxl">
+    <div class="row align-items-center">
+      <div class="col-lg-4">
+        <div class="popular-package-left-content-wrap">
+          <div class="popular-left-text">
+            <h2>Best Travel Picks for You</h2>
+            <p>
+              Let us guide you to your next adventure with destinations and
+              deals designed just for you
+            </p>
+            <a
+              href="tel:{{ getData?.flightContactNumber }}"
+              class="btn-save-all"
+              >View All</a
+            >
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-8">
+        <div class="common-slider-container">
+          <p-carousel
+            [value]="popularTrips"
+            [numVisible]="3"
+            [numScroll]="1"
+            [circular]="true"
+            [showIndicators]="false"
+            [showNavigators]="true"
+            [responsiveOptions]="popularResponsiveOptions"
+          >
+            <ng-template pTemplate="item" let-trip>
+              <div class="popular-package-card m-2">
+                <a
+                  href="tel:{{ getData?.flightContactNumber }}"
+                  class="popular-package-card-img-box"
+                >
+                  <img
+                    [src]="trip.image"
+                    alt="Popular Card"
+                    class="w-full rounded-border"
+                  />
+                  <div class="card-img-box-badge">
+                    <span class="card-img-box-badge-text"
+                      >{{ trip.days }} Days</span
+                    >
+                  </div>
+                </a>
+
+                <div class="popular-package-card-info">
+                  <div class="popular-package-card-info-top-rating">
+                    <h4 class="popular-package-card-info-title">
+                      {{ trip.description }}
+                    </h4>
+                    <div class="popular-package-card-rating-box">
+                      <span
+                        class="popular-package-card-rating-icon"
+                        [innerHTML]="icon.ratingIcon"
+                      ></span>
+                      <span class="popular-package-card-rating-text">{{
+                        trip.rating
+                      }}</span>
+                    </div>
+                  </div>
+
+                  <div class="popular-package-card-price-btn-box">
+                    <a
+                      href="tel:{{ getData?.flightContactNumber }}"
+                      class="package-card-btn package-card-btn-new"
+                    >
+                      Explore Now
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </ng-template>
+          </p-carousel>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!--=========== Popular Section End  ==============-->
+<!--=========== Travel Section Start  ==============-->
+<section class="travel-best cmn-gap pb-0">
+  <div class="container container-xxl">
+    <div class="cmn-heading">
+      <div class="heading-cmn-flex">
+        <h2 class="new-title-content">Top Reasons to Book with Us</h2>
+      </div>
+    </div>
+    <div class="common-slider-container">
+      <p-carousel
+        [value]="travelFeatures"
+        [numVisible]="4"
+        [numScroll]="1"
+        [circular]="true"
+        [showIndicators]="false"
+        [showNavigators]="true"
+        [responsiveOptions]="topReasonResponsiveOptions"
+      >
+        <ng-template pTemplate="item" let-feature>
+          <div class="travel-feature-card m-2">
+            <div class="travel-feature-card-wrap">
+              <div
+                class="travel-feature-card-icon-box travel-feature-card-orange-icon"
+              >
+                <img [src]="feature.icon" alt=" feature " class="feico" />
+              </div>
+              <div class="travel-feature-card-content-box">
+                <h4 class="travel-feature-card-title">{{ feature.title }}</h4>
+                <p class="travel-feature-card-desc">
+                  {{ feature.description }}
+                </p>
+              </div>
+            </div>
+          </div>
+        </ng-template>
+      </p-carousel>
+    </div>
+  </div>
+</section>
+<!--=========== Travel Section End  ==============-->
+<!--=========== Planing Section Start  ==============-->
+<section class="planing cmn-gap">
+  <div class="container container-xxl">
+    <div
+      class="planing-box"
+      style="background-image: url('assets/images/planing-img-background.png')"
+    >
+      <div class="row">
+        <div class="col-12">
+          <div class="row align-items-xl-center">
+            <div class="col-7 col-lg-4">
+              <div class="planning-image-box-content">
+                <h5 class="planning-title">
+                  Make your next Holiday Season special with Us!
+                </h5>
+                <p class="planning-desc">
+                  Solo Trip or a Romantic Tour? Bring your plans to us and let
+                  us offer you an experience like no other!
+                </p>
+                <a
+                  href="tel:{{ getData?.flightContactNumber }}"
+                  class="btn-see-all"
+                  >Call Now</a
+                >
+              </div>
+            </div>
+            <div class="col-5 col-lg-8">
+              <div class="planning-image-box">
+                <img
+                  src="assets/images/home/collage.webp"
+                  alt="Planning Image"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!--=========== Planing Section End  ==============-->
+<!-- === Testimonial Section Start ==== -->
+ <section class="common-sec-pb-space">
+   <div class="testimonial-section testimOnialSection">
+     <div class="container container-xxl container-responsive">
+       <div class="testimonial-content-wrap traveler-box position-relative">
+         <div class="row">
+           <div class="col-12 col-lg-12 col-xl-6">
+             <div class="testimonial-left-content-box">
+               <div class="testimonial-content-left-title">
+                 <h5>Voices from Our Happy Travelers</h5>
+               </div>
+             </div>
+           </div>
+           <div class="col-12">
+             <div class="row">
+               <div class="col-12 col-xl-6 order order-xl-0">
+                 <div class="testimonial-left-content-box">
+                   <div
+                     class="testimonial-rating-content d-flex align-items-start"
+                   >
+                     <div
+                       class="rating-content-wrap d-flex flex-column order-2 order-lg-0"
+                     >
+                       <div class="rating">4.9+</div>
+                       <p class="rating-text">
+                         900+ Reviews. Certified for travel excellence
+                       </p>
+                     </div>
+                     <div class="customer-content-wrap">
+                       <div class="customer-number-text">20M</div>
+                       <p class="customer-desc-text">Happy Travelers</p>
+                     </div>
+                   </div>
+                   <div class="rating-org-logo-wrap">
+                     <div class="trustpilot-logo">
+                       <img
+                         src="assets/images/trustpilot-image.png"
+                         alt="Trustpilot Logo"
+                       />
+                     </div>
+                     <div class="bbb-logo">
+                       <img src="assets/images/bbb-image.png" alt="BBB Logo" />
+                     </div>
+                   </div>
+                 </div>
+               </div>
+               <div class="col-12 col-xl-6">
+                 <div class="testimonial-right-content-box">
+                   <swiper-container
+                     #testimonialsRef
+                     effect="cards"
+                     grab-cursor="true"
+                     loop="false"
+                     shadow="false"
+                     slide-hadows="false"
+                     autoplay="true"
+                     autoplay-delay="2000"
+                     autoplay-disable-on-interaction="false"
+                   >
+                     <swiper-slide
+                       *ngFor="let testimonial of testimonials"
+                       style="width: min-content"
+                     >
+                       <div class="testimonial-slider-wrap">
+                         <div class="swiper testimonialSlider">
+                           <div class="swiper-wrapper">
+                             <div class="swiper-slide">
+                               <div class="testimonial-card-content-wrap">
+                                 <div
+                                   class="testimonial-card-header-content d-flex align-items-center justify-content-between"
+                                 >
+                                   <h6 class="testimonial-card-title">
+                                     {{ testimonial.title }}
+                                   </h6>
+                                   <span
+                                     class="testimonial-card-quote-icon"
+                                     [innerHTML]="icon.quoteIcon"
+                                   >
+                                   </span>
+                                 </div>
+                                 <div class="testimonial-card-body">
+                                   <p class="testimonial-desc">
+                                     "{{ testimonial.description }}"
+                                   </p>
+                                 </div>
+                                 <div
+                                   class="testimonial-card-footer-content d-flex align-items-center justify-content-start"
+                                 >
+                                   <div
+                                     class="testimonial-card-footer-avatar-box c-avatar"
+                                   >
+                                     <img
+                                       [src]="testimonial.clientAvatar"
+                                       [alt]="
+                                         testimonial.clientName +
+                                         ' - Testimonial Client'
+                                       "
+                                     />
+                                   </div>
+                                   <div
+                                     class="testimonial-card-footer-client-details d-flex flex-wrap flex-column"
+                                   >
+                                     <span
+                                       class="testimonial-card-footer-client-name"
+                                       >{{ testimonial.clientName }}</span
+                                     >
+                                     <!-- <span class="testimonial-card-footer-client-designation">{{
+                                       testimonial.clientDesignation
+                                       }}</span> -->
+                                   </div>
+                                 </div>
+                               </div>
+                             </div>
+                           </div>
+                         </div>
+                       </div>
+                     </swiper-slide>
+                   </swiper-container>
+                 </div>
+               </div>
+             </div>
+           </div>
+         </div>
+       </div>
+     </div>
+   </div>
+ </section>
+<!-- === Testimonial Section End ==== -->
+<!--=========== Blog Section Start  ==============-->
+<section class="travel-blog-sec blog-section cmn-gap pb-0">
+  <div class="container container-xxl">
+    <div class="cmn-heading">
+      <div class="heading-cmn-flex">
+        <h2>Travel Articles</h2>
+        <a href="javascript:void(0);">See all</a>
+      </div>
+    </div>
+    <div class="travel-card-list-wrap">
+      <swiper-container #travelArticlesRef>
+        <swiper-slide *ngFor="let article of travelArticles">
+          <div class="swiper">
+            <div class="swiper-wrapper">
+              <div class="swiper-slide">
+                <div class="travel-articles-card">
+                  <div class="travel-articles-card-image">
+                    <img [src]="article.image" alt="Travel Image" />
+                    <div class="travel-articles-card-badge">
+                      {{ article.badge }}
+                    </div>
+                  </div>
+                  <div class="travel-articles-card-body">
+                    <div class="travel-articles-card-meta">
+                      <span>{{ article.date }}</span>
+                      <span class="travel-articles-card-divider"></span>
+                      <span>By {{ article.author }}</span>
+                    </div>
+                    <div class="travel-articles-card-title">
+                      {{ article.title }}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </swiper-slide>
+      </swiper-container>
+    </div>
+  </div>
+</section>
+<!--=========== Blog Section End  ==============-->

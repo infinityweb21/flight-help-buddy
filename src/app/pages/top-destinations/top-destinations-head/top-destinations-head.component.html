@@ -1,0 +1,48 @@
+<!-- <section class="inf-hero-section"  [ngStyle]="{'background-image': 'url(' + backgroundImageUrl + ')'}">
+  <div class="container">
+    <div class="row justify-content-end align-items-center">
+      <div class="col-lg-6 col-md-7">
+        <div class="inf-hero-content">
+          <h1>{{headerText}}</h1>
+          <p>{{subHeaderText}}</p>
+        </div>
+
+        <div class="inf-call-widget">
+          <h2>Purchase Best <span>Deals</span></h2>
+          <form name="inf-call-form" action="#" method="post" novalidate [formGroup]="contactForm" >
+            <div class="form-row">
+                <div class="row g-2 g-lg-3">
+                    <div class="col-md-6">
+                        <input type="text" name="sub_name" placeholder="Your Name" class="form-control" required formControlName="name"  [class.is-invalid]="isInvalid('name')"/>
+                         <div *ngIf="isInvalid('name')" class="text-danger">Name is required.</div>
+                    </div>
+                    <div class="col-md-6">
+
+                            <div class="wrapper">
+                                            <ngx-intl-tel-input [cssClass]="'form-control'"
+                                                [preferredCountries]="preferredCountries"
+                                                [enableAutoCountrySelect]="true" [enablePlaceholder]="true"
+                                                [searchCountryFlag]="true" [searchCountryField]="[
+          SearchCountryField.Iso2,
+          SearchCountryField.Name
+        ]" [selectFirstCountry]="false" [selectedCountryISO]="CountryISO.India" [maxLength]="15"
+                                                [phoneValidation]="true" [separateDialCode]="separateDialCode"
+                                                [numberFormat]="PhoneNumberFormat.National" name="phone"
+                                                formControlName="phone" [class.is-invalid]="isInvalid('phone')">
+                                            </ngx-intl-tel-input>
+                                        </div>
+                         <div *ngIf="isInvalid('phone')" class="text-danger">Phone number is required.</div>
+  <div *ngIf="contactForm.get('phone')?.errors?.['invalidPhoneLength']" class="text-danger">
+      Please enter a valid phone number (6–15 digits).
+    </div>
+                    </div>
+                </div>
+              <button type="submit" class="banner-form-submit-btn" (click)="submitContactForm()">Get a Call</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section> -->
+<app-main-filter></app-main-filter>

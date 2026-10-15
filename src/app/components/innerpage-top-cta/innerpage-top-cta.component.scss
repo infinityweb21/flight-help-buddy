@@ -1,0 +1,470 @@
+/* =========================================
+   Booking Panel — photo banner + boarding pass
+========================================= */
+
+.booking-panel {
+  padding: 24px 0;
+  position: relative;
+}
+
+/* ---------- Banner card ---------- */
+.booking-panel__card {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  border-radius: 24px;
+  background: rgb(var(--black-color), 0.3);
+  box-shadow: 0 16px 40px rgba(var(--main-color), 0.18);
+}
+
+.booking-panel__bg {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 32% 35%;
+}
+
+/* light brand tint: the photo stays visible behind the glass panels */
+.booking-panel__card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  //   background:
+  //     radial-gradient(480px circle at 0% 0%, rgba(var(--second-color), 0.25), transparent 60%),
+  //     linear-gradient(
+  //       90deg,
+  //       rgba(var(--main-color), 0.55) 0%,
+  //       rgba(var(--main-color), 0.25) 55%,
+  //       rgba(var(--main-color), 0.1) 100%
+  //     );
+}
+
+/* dashed flight path, top centre */
+
+.booking-panel__inner {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 340px;
+  align-items: center;
+  gap: 28px;
+  min-height: 320px;
+  padding: 28px;
+}
+
+/* ---------- Left content ---------- */
+.booking-panel__content {
+  position: relative;
+  min-width: 0;
+  padding: 40px 20px;
+  border-radius: 20px;
+  background: rgb(var(--white-color), 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.3),
+    0 20px 40px rgba(0, 0, 0, 0.18);
+  -webkit-backdrop-filter: blur(18px) saturate(150%);
+  backdrop-filter: blur(18px) saturate(150%);
+}
+
+.booking-panel__eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 14px;
+  padding: 6px 12px;
+  font-size: 12.5px;
+  font-weight: 600;
+  line-height: 1.3;
+  border-radius: 999px;
+  color: #000000;
+  background: rgba(255, 217, 217, 0.788);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+}
+.booking-panel__eyebrow i {
+  font-size: 12px;
+  color: rgb(var(--second-color));
+}
+
+.booking-panel__headline {
+  max-width: 540px;
+  margin: 0 0 20px;
+  font-size: 34px;
+  font-weight: 800;
+  line-height: 1.12;
+  letter-spacing: -0.02em;
+  color: rgb(var(--black-color), 1);
+}
+.booking-panel__headline span {
+  color: #0020ff;
+}
+
+.booking-panel__benefits {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.booking-panel__benefits li {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 13px;
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.3;
+  border-radius: 999px;
+  color: rgb(0, 0, 0);
+  background: rgba(255, 228, 228, 0.993);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+}
+.booking-panel__benefits i {
+  font-size: 12px;
+  color: rgb(var(--second-color));
+}
+
+/* ---------- Boarding pass ---------- */
+.booking-panel__pass-wrap {
+  min-width: 0;
+  /* no filter here: it would stop the glass pass from blurring the photo */
+}
+
+.booking-panel__pass {
+  --stub: 128px; /* height of the bottom stub; notches sit on its top edge */
+
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.72);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  -webkit-backdrop-filter: blur(20px) saturate(160%);
+  backdrop-filter: blur(20px) saturate(160%);
+
+  -webkit-mask:
+    radial-gradient(
+        circle at 0 calc(100% - var(--stub)),
+        transparent 10px,
+        #000 10.5px
+      )
+      left / 51% 100% no-repeat,
+    radial-gradient(
+        circle at 100% calc(100% - var(--stub)),
+        transparent 10px,
+        #000 10.5px
+      )
+      right / 51% 100% no-repeat;
+  mask:
+    radial-gradient(
+        circle at 0 calc(100% - var(--stub)),
+        transparent 10px,
+        #000 10.5px
+      )
+      left / 51% 100% no-repeat,
+    radial-gradient(
+        circle at 100% calc(100% - var(--stub)),
+        transparent 10px,
+        #000 10.5px
+      )
+      right / 51% 100% no-repeat;
+}
+
+.booking-panel__pass-top {
+  padding: 18px 20px 16px;
+}
+
+.booking-panel__pass-head {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  grid-template-areas:
+    "icon label"
+    "icon status";
+  align-items: center;
+  column-gap: 12px;
+  row-gap: 3px;
+  margin-bottom: 12px;
+}
+
+.booking-panel__pass-icon {
+  grid-area: icon;
+  width: 42px;
+  height: 42px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  border-radius: 50%;
+  color: #fff;
+  background: rgb(var(--second-color));
+  box-shadow: 0 0 0 4px rgba(var(--second-color), 0.15);
+}
+
+.booking-panel__pass-label {
+  grid-area: label;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.2;
+  color: rgba(var(--black-color), 0.55);
+}
+
+.booking-panel__status {
+  grid-area: status;
+  justify-self: start;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 11.5px;
+  font-weight: 700;
+  line-height: 1.2;
+  color: #1a8f4c;
+}
+.booking-panel__status-dot {
+  position: relative;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #1a8f4c;
+}
+.booking-panel__status-dot::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: #1a8f4c;
+  animation: booking-panel-pulse 1.8s ease-out infinite;
+}
+@keyframes booking-panel-pulse {
+  0% {
+    transform: scale(1);
+    opacity: 0.6;
+  }
+  100% {
+    transform: scale(2.8);
+    opacity: 0;
+  }
+}
+
+.booking-panel__pass-number {
+  display: block;
+  font-size: 26px;
+  font-weight: 800;
+  line-height: 1.2;
+  letter-spacing: 0.01em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-decoration: none;
+  color: rgb(var(--main-color));
+  transition: color 0.2s ease;
+}
+.booking-panel__pass-number:hover {
+  color: rgb(var(--second-color));
+}
+
+/* stub with perforation line */
+.booking-panel__pass-stub {
+  position: relative;
+  box-sizing: border-box;
+  height: var(--stub);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 8px;
+  padding: 16px 20px;
+  background: rgba(255, 255, 255, 0.35);
+}
+.booking-panel__pass-stub::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 18px;
+  right: 18px;
+  border-top: 1.5px dashed rgba(var(--main-color), 0.18);
+}
+
+.booking-panel__btn {
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  padding: 0 14px;
+  font-size: 13.5px;
+  font-weight: 700;
+  white-space: nowrap;
+  text-decoration: none;
+  border-radius: 12px;
+  transition:
+    background 0.25s ease,
+    color 0.25s ease,
+    box-shadow 0.25s ease,
+    transform 0.25s ease;
+}
+.booking-panel__btn i {
+  font-size: 13px;
+  transition: transform 0.25s ease;
+}
+
+.booking-panel__btn--primary {
+  color: #fff;
+  background: rgb(var(--second-color));
+  box-shadow: 0 8px 18px rgba(var(--second-color), 0.3);
+}
+.booking-panel__btn--primary:hover {
+  color: #fff;
+  transform: translateY(-1px);
+  box-shadow: 0 12px 24px rgba(var(--second-color), 0.4);
+}
+.booking-panel__btn--primary:hover i {
+  transform: rotate(-12deg);
+}
+
+.booking-panel__btn--ghost {
+  color: rgb(var(--main-color));
+  background: rgba(var(--main-color), 0.06);
+}
+.booking-panel__btn--ghost:hover {
+  color: #fff;
+  background: rgb(var(--main-color));
+}
+.booking-panel__btn--ghost:hover i {
+  transform: rotate(90deg);
+}
+
+.booking-panel a:focus-visible {
+  outline: 2px solid rgb(var(--second-color));
+  outline-offset: 3px;
+}
+
+/* browsers without blur support: keep text readable */
+@supports not (
+  (backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))
+) {
+  .booking-panel__content {
+    background: rgba(var(--main-color), 0.88);
+  }
+  .booking-panel__pass {
+    background: #fff;
+  }
+}
+
+/* =========================================
+   Large tablet
+========================================= */
+@media (max-width: 1199.98px) {
+  .booking-panel__inner {
+    grid-template-columns: minmax(0, 1fr) 320px;
+    gap: 20px;
+    padding: 20px;
+  }
+  .booking-panel__content {
+    padding: 24px;
+  }
+  .booking-panel__headline {
+    font-size: 29px;
+  }
+  .booking-panel__pass-number {
+    font-size: 23px;
+  }
+}
+
+/* =========================================
+   Tablet: stacked, pass full width
+========================================= */
+@media (max-width: 991.98px) {
+  .booking-panel__card::before {
+    background: #ffffff40;
+  }
+  .booking-panel__card::after {
+    left: auto;
+    right: -20px;
+  }
+  .booking-panel__inner {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 16px;
+    min-height: 0;
+    padding: 20px;
+  }
+  .booking-panel__headline {
+    max-width: 600px;
+  }
+  .booking-panel__pass-wrap {
+    width: 100%;
+    max-width: 480px;
+  }
+}
+
+/* =========================================
+   Mobile
+========================================= */
+@media (max-width: 575.98px) {
+  .booking-panel {
+    padding: 16px 0;
+  }
+  .booking-panel__card {
+    border-radius: 18px;
+  }
+  .booking-panel__card::after {
+    display: none;
+  }
+  .booking-panel__inner {
+    gap: 12px;
+    padding: 12px;
+  }
+  .booking-panel__content {
+    padding: 20px 16px;
+    border-radius: 16px;
+  }
+  .booking-panel__pass {
+    border-radius: 16px;
+  }
+  .booking-panel__eyebrow {
+    margin-bottom: 12px;
+    font-size: 11.5px;
+  }
+  .booking-panel__headline {
+    margin-bottom: 16px;
+    font-size: 23px;
+    line-height: 1.18;
+  }
+  .booking-panel__benefits li {
+    padding: 6px 11px;
+    font-size: 12px;
+  }
+  .booking-panel__pass-wrap {
+    max-width: none;
+  }
+  .booking-panel__pass-top {
+    padding: 16px 16px 14px;
+  }
+  .booking-panel__pass-number {
+    font-size: 22px;
+  }
+  .booking-panel__pass-stub {
+    padding: 16px;
+  }
+  .booking-panel__btn {
+    font-size: 13px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .booking-panel__btn,
+  .booking-panel__btn i,
+  .booking-panel__pass-number {
+    transition: none;
+  }
+  .booking-panel__btn:hover,
+  .booking-panel__btn:hover i {
+    transform: none;
+  }
+  .booking-panel__status-dot::after {
+    animation: none;
+  }
+}

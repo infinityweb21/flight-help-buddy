@@ -1,0 +1,837 @@
+@if ((spinnerService.isLoading$ | async)?.loading) {
+  <section class="common-section hotel-loader-section">
+<div class="stripe-loader stripe-loader--auto" role="progressbar" aria-label="Loading" aria-busy="true">
+  <div class="stripe-loader__fill"></div>
+</div>
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          @switch (spinnerService.loaderType) {
+            @case ("flight") {
+              <div class="innermainbox">
+                <div class="topinfobox">
+                  <ul class="infolistflight">
+                    <li>
+                      <div class="infoboxflight">
+                        <img src="assets/images/spinner/Worldwide.png" alt="" />
+                        <div class="infoboxsubflight">
+                          <h3>Worldwide Coverage</h3>
+                          <p>
+                            Our incredible network allows you to find and
+                            reserve spots everywhere around the world!
+                          </p>
+                        </div>
+                      </div>
+                    </li>
+                    <li>
+                      <div class="infoboxflight">
+                        <img
+                          src="assets/images/spinner/Ultimate.png"
+                          alt="Ultimate"
+                        />
+                        <div class="infoboxsubflight">
+                          <h3>Ultimate Flexibility</h3>
+                          <p>
+                            Got a change of plans? We are here! Modify and make
+                            your plan perfect!
+                          </p>
+                        </div>
+                      </div>
+                    </li>
+                    <li>
+                      <div class="infoboxflight">
+                        <img
+                          src="assets/images/spinner/Best-Support.png"
+                          alt="Best-Support"
+                        />
+                        <div class="infoboxsubflight">
+                          <h3>Best Support 24/7</h3>
+                          <p>
+                            Our assistance is to your benefit! Reach out to us
+                            any time you want!
+                          </p>
+                        </div>
+                      </div>
+                    </li>
+                    <li>
+                      <div class="infoboxflight">
+                        <img
+                          src="assets/images/spinner/Guided.png"
+                          alt="Guided"
+                        />
+                        <div class="infoboxsubflight">
+                          <h3>Secure Payments</h3>
+                          <p>
+                            Your transactions are always secure, reserve your
+                            travel plans with our secure gateway!
+                          </p>
+                        </div>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+                <!-- <div class="flightmidimg">
+                                <img src="assets/images/hotelloaderimg.png" alt="">
+                                <h4>Kolkata</h4>
+                            </div> -->
+                <div class="circle-wrapper">
+                  <div class="plane-path">
+                    <img
+                      src="assets/images/spinner/plane.png"
+                      class="plane"
+                      alt="rotating-plane"
+                    />
+                  </div>
+                  <img
+                    src="assets/images/spinner/plane.png"
+                    class="center-plane"
+                    alt="center-plane"
+                  />
+                  <div class="orange-dot"></div>
+                  <div class="orange-dot-right"></div>
+                </div>
+                @if (flightLoading) {
+                  <div class="flight-route-content-box">
+                    <div class="flight-departure">
+                      <h4 class="flight-departure-title m-0">
+                        {{ diparture }}
+                      </h4>
+                    </div>
+                    <div class="flight-route">
+                      <span class="flight-route-path"></span>
+                      <span class="route-both-icon">
+                        <svg
+                          width="20"
+                          height="20"
+                          viewBox="0 0 20 20"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="M14.2462 9L18.6616 5M18.6616 5L14.2462 1M18.6616 5L1.00007 5M5.41546 11L1.00007 15M1.00007 15L5.41546 19M1.00007 15L18.6616 15"
+                            stroke="black"
+                            stroke-width="2"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                          />
+                        </svg>
+                      </span>
+                    </div>
+                    <div class="flight-arriaval">
+                      <h4 class="flight-arrival-title m-0">{{ arrival }}</h4>
+                    </div>
+                  </div>
+
+                  <p class="textpara">
+                    Searching incredible offers on flights for you!
+                  </p>
+                }
+                <ul class="infolistflight info-box-sub-flight-list mb-4">
+                  <li class="calllist">
+                    <div class="infoboxflight">
+                      <img src="assets/images/spinner/call.png" alt="Call" />
+                      <div class="infoboxsubflight">
+                        <p>
+                          If you have any questions regarding your bookings, we
+                          are here for you! Ring us today!
+                        </p>
+                        <a href="" class="callbtnhotel"
+                          ><svg
+                            width="19"
+                            height="20"
+                            viewBox="0 0 19 20"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path
+                              d="M12.6294 14.1461C12.4399 13.9466 12.1773 13.8369 11.8885 13.8369C11.5844 13.8369 11.2914 13.9624 11.0844 14.1815L9.77499 15.5681L9.42112 15.3603C8.64275 14.9033 7.57605 14.2767 6.45002 13.0828C5.3194 11.8873 4.72704 10.7555 4.29394 9.92807L4.10053 9.56391L5.41219 8.17545C5.84605 7.71454 5.86118 6.98107 5.44494 6.53978L3.02151 3.97456C2.83317 3.77512 2.57026 3.66504 2.28194 3.66504C1.97817 3.66504 1.68531 3.79108 1.47763 4.01049L0.882509 4.64413L0.827332 4.74151C0.605649 5.04234 0.424282 5.38035 0.288798 5.74881C0.162717 6.09975 0.084355 6.43331 0.0478763 6.76795C-0.264435 9.51722 0.932823 12.0411 4.1817 15.4798C8.03207 19.5554 11.2497 19.8725 12.1443 19.8725C12.2978 19.8725 12.3903 19.8636 12.4159 19.8608C12.7466 19.8182 13.0627 19.734 13.3816 19.6035C13.7259 19.4616 14.0446 19.271 14.3283 19.0363L14.4633 18.9232L15.0205 18.3447C15.4537 17.8858 15.4676 17.1533 15.0516 16.7125L12.6294 14.1461Z"
+                              fill="white"
+                            />
+                            <path
+                              d="M10.0652 9.40153C9.53789 8.84358 8.87555 8.44211 8.15175 8.2417L7.8188 8.14844L7.72336 8.49647C7.68753 8.62548 7.64532 8.74763 7.59744 8.85737L7.41699 9.26433L7.83042 9.37738C8.37738 9.52373 8.87582 9.82193 9.27157 10.2418C9.64981 10.6413 9.9263 11.1426 10.071 11.6902L10.1408 11.954L10.6613 11.9853C10.7139 11.9918 10.7664 11.998 10.8168 12.0028L11.3061 12.0516L11.1925 11.5452C11.0102 10.7305 10.6208 9.98934 10.0652 9.40153Z"
+                              fill="white"
+                            />
+                            <path
+                              d="M11.7648 7.60002C10.7857 6.56337 9.53454 5.88694 8.14824 5.64436L7.66602 5.55859L7.74178 6.06894C7.76405 6.22027 7.78367 6.37091 7.80004 6.5231L7.83085 6.7916L8.08609 6.84504C9.19104 7.06113 10.1886 7.61341 10.9707 8.44089C11.8686 9.39183 12.4174 10.6049 12.5563 11.951L12.5858 12.2359L12.9937 12.298C13.0593 12.3035 13.1258 12.3028 13.2196 12.3035L13.7109 12.3214L13.672 11.8967C13.5191 10.2446 12.859 8.75922 11.7648 7.60002Z"
+                              fill="white"
+                            />
+                            <path
+                              d="M13.6131 5.64391C12.0067 3.94364 9.86709 2.93085 7.58817 2.79291L7.14551 2.76367L7.21933 3.22521C7.24187 3.37551 7.26948 3.52924 7.29867 3.68938L7.35255 3.96939L7.62011 3.98689C9.58666 4.12947 11.433 5.01639 12.8197 6.48403C14.1839 7.92849 15.0176 9.86099 15.1669 11.923L15.1925 12.2899L15.5388 12.2682C15.6209 12.2638 15.7017 12.2562 15.8198 12.2452L16.3153 12.204L16.288 11.8323C16.1187 9.48842 15.1688 7.29068 13.6131 5.64391Z"
+                              fill="white"
+                            />
+                            <path
+                              d="M18.8989 11.5696C18.6724 8.59419 17.4519 5.79428 15.4616 3.68689C13.338 1.43852 10.5112 0.134909 7.50391 0.0151615L7.16301 0L7.13707 0.36279C7.13107 0.464115 7.12702 0.564295 7.12345 0.664934L7.10254 1.19164L7.45608 1.20503C10.1831 1.3119 12.7442 2.49216 14.6673 4.52809C16.4687 6.43519 17.574 8.97094 17.7804 11.6671L17.8092 12.0457L18.1691 12.0086C18.2911 11.9949 18.4148 11.9849 18.5394 11.9746L18.9275 11.943L18.8989 11.5696Z"
+                              fill="white"
+                            />
+                          </svg>
+                          {{ getData?.flightContactNumber }}
+                        </a>
+                      </div>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            }
+            @case ("hotel") {
+              <div class="innermainbox">
+                <div class="topinfobox">
+                  <ul class="infolisthotel">
+                    <li>
+                      <div class="infoboxhotel">
+                        <img src="assets/images/spinner/Worldwide.png" alt="" />
+                        <div class="infoboxsubhotel">
+                          <h3>Worldwide Coverage</h3>
+                          <p>
+                            Our incredible network allows you to find and
+                            reserve spots everywhere around the world!
+                          </p>
+                        </div>
+                      </div>
+                    </li>
+                    <li>
+                      <div class="infoboxhotel">
+                        <img
+                          src="assets/images/spinner/Ultimate.png"
+                          alt="Ultimate"
+                        />
+                        <div class="infoboxsubhotel">
+                          <h3>Ultimate Flexibility</h3>
+                          <p>
+                            Got a change of plans? We are here! Modify and make
+                            your plan perfect!
+                          </p>
+                        </div>
+                      </div>
+                    </li>
+                    <li>
+                      <div class="infoboxhotel">
+                        <img
+                          src="assets/images/spinner/Best-Support.png"
+                          alt="Best-Support"
+                        />
+                        <div class="infoboxsubhotel">
+                          <h3>Best Support 24/7</h3>
+                          <p>
+                            Our assistance is to your benefit! Reach out to us
+                            any time you want!
+                          </p>
+                        </div>
+                      </div>
+                    </li>
+                    <li>
+                      <div class="infoboxhotel">
+                        <img
+                          src="assets/images/spinner/Guided.png"
+                          alt="Guided"
+                        />
+                        <div class="infoboxsubhotel">
+                          <h3>Guided Tours</h3>
+                          <p>
+                            Your transactions are always secure, reserve your
+                            travel plans with our secure gateway!
+                          </p>
+                        </div>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+                <div class="hotelmidimg">
+                  <img src="assets/images/spinner/hotelloaderimg.png" alt="" />
+                  <!-- <h4>Kolkata</h4> -->
+                </div>
+                @if (hotelLoading) {
+                  <div class="hotelbookingdate">
+                    <div class="bookdate">
+                      <h3>
+                        {{
+                          (spinnerService.isLoading$ | async)?.data
+                            ?.arrivalDateTime | date: "MMM dd,YYYY"
+                        }}
+                      </h3>
+                      <span>Check In</span>
+                    </div>
+
+                    <img src="assets/images/spinner/hoteldate.png" alt="" />
+
+                    <div class="bookdate">
+                      <h3>
+                        {{
+                          (spinnerService.isLoading$ | async)?.data
+                            ?.departureDateTime | date: "MMM dd,YYYY"
+                        }}
+                      </h3>
+                      <span>Check Out</span>
+                    </div>
+                  </div>
+                  <p class="textpara">
+                    Searching incredible offers on hotels for you! 
+                  </p>
+                }
+                <ul class="infolisthotel mb-4">
+                  <li class="calllist">
+                    <div class="infoboxhotel">
+                      <img src="assets/images/spinner/call.png" alt="Call" />
+                      <div class="infoboxsubhotel">
+                        <p>
+                          If you have any questions regarding your bookings, we
+                          are here for you! Ring us today!  
+                        </p>
+                        <a href="" class="callbtnhotel"
+                          ><svg
+                            width="19"
+                            height="20"
+                            viewBox="0 0 19 20"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path
+                              d="M12.6294 14.1461C12.4399 13.9466 12.1773 13.8369 11.8885 13.8369C11.5844 13.8369 11.2914 13.9624 11.0844 14.1815L9.77499 15.5681L9.42112 15.3603C8.64275 14.9033 7.57605 14.2767 6.45002 13.0828C5.3194 11.8873 4.72704 10.7555 4.29394 9.92807L4.10053 9.56391L5.41219 8.17545C5.84605 7.71454 5.86118 6.98107 5.44494 6.53978L3.02151 3.97456C2.83317 3.77512 2.57026 3.66504 2.28194 3.66504C1.97817 3.66504 1.68531 3.79108 1.47763 4.01049L0.882509 4.64413L0.827332 4.74151C0.605649 5.04234 0.424282 5.38035 0.288798 5.74881C0.162717 6.09975 0.084355 6.43331 0.0478763 6.76795C-0.264435 9.51722 0.932823 12.0411 4.1817 15.4798C8.03207 19.5554 11.2497 19.8725 12.1443 19.8725C12.2978 19.8725 12.3903 19.8636 12.4159 19.8608C12.7466 19.8182 13.0627 19.734 13.3816 19.6035C13.7259 19.4616 14.0446 19.271 14.3283 19.0363L14.4633 18.9232L15.0205 18.3447C15.4537 17.8858 15.4676 17.1533 15.0516 16.7125L12.6294 14.1461Z"
+                              fill="white"
+                            />
+                            <path
+                              d="M10.0652 9.40153C9.53789 8.84358 8.87555 8.44211 8.15175 8.2417L7.8188 8.14844L7.72336 8.49647C7.68753 8.62548 7.64532 8.74763 7.59744 8.85737L7.41699 9.26433L7.83042 9.37738C8.37738 9.52373 8.87582 9.82193 9.27157 10.2418C9.64981 10.6413 9.9263 11.1426 10.071 11.6902L10.1408 11.954L10.6613 11.9853C10.7139 11.9918 10.7664 11.998 10.8168 12.0028L11.3061 12.0516L11.1925 11.5452C11.0102 10.7305 10.6208 9.98934 10.0652 9.40153Z"
+                              fill="white"
+                            />
+                            <path
+                              d="M11.7648 7.60002C10.7857 6.56337 9.53454 5.88694 8.14824 5.64436L7.66602 5.55859L7.74178 6.06894C7.76405 6.22027 7.78367 6.37091 7.80004 6.5231L7.83085 6.7916L8.08609 6.84504C9.19104 7.06113 10.1886 7.61341 10.9707 8.44089C11.8686 9.39183 12.4174 10.6049 12.5563 11.951L12.5858 12.2359L12.9937 12.298C13.0593 12.3035 13.1258 12.3028 13.2196 12.3035L13.7109 12.3214L13.672 11.8967C13.5191 10.2446 12.859 8.75922 11.7648 7.60002Z"
+                              fill="white"
+                            />
+                            <path
+                              d="M13.6131 5.64391C12.0067 3.94364 9.86709 2.93085 7.58817 2.79291L7.14551 2.76367L7.21933 3.22521C7.24187 3.37551 7.26948 3.52924 7.29867 3.68938L7.35255 3.96939L7.62011 3.98689C9.58666 4.12947 11.433 5.01639 12.8197 6.48403C14.1839 7.92849 15.0176 9.86099 15.1669 11.923L15.1925 12.2899L15.5388 12.2682C15.6209 12.2638 15.7017 12.2562 15.8198 12.2452L16.3153 12.204L16.288 11.8323C16.1187 9.48842 15.1688 7.29068 13.6131 5.64391Z"
+                              fill="white"
+                            />
+                            <path
+                              d="M18.8989 11.5696C18.6724 8.59419 17.4519 5.79428 15.4616 3.68689C13.338 1.43852 10.5112 0.134909 7.50391 0.0151615L7.16301 0L7.13707 0.36279C7.13107 0.464115 7.12702 0.564295 7.12345 0.664934L7.10254 1.19164L7.45608 1.20503C10.1831 1.3119 12.7442 2.49216 14.6673 4.52809C16.4687 6.43519 17.574 8.97094 17.7804 11.6671L17.8092 12.0457L18.1691 12.0086C18.2911 11.9949 18.4148 11.9849 18.5394 11.9746L18.9275 11.943L18.8989 11.5696Z"
+                              fill="white"
+                            />
+                          </svg>
+                          {{ getData?.hotelContactNumber }}
+                        </a>
+                      </div>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            }
+            @case ("cruise") {
+              <section class="cruise-wait">
+                <!-- Benefits -->
+                <ul class="benefits">
+                  <li class="benefit">
+                    <img
+                      class="benefit__icon"
+                      src="assets/images/spinner/Worldwide.png"
+                      alt=""
+                      width="44"
+                      height="44"
+                    />
+                    <div class="benefit__body">
+                      <h3 class="benefit__title">Go Anywhere</h3>
+                      <p class="benefit__text">
+                        Our extensive network helps you find and make bookings around the world.
+                      </p>
+                    </div>
+                  </li>
+                  <li class="benefit">
+                    <img
+                      class="benefit__icon"
+                      src="assets/images/spinner/Ultimate.png"
+                      alt=""
+                      width="44"
+                      height="44"
+                    />
+                    <div class="benefit__body">
+                      <h3 class="benefit__title">More Flexibility</h3>
+                      <p class="benefit__text">
+                       Changed your plan? We’re here to modify and make your plans really happen.
+                      </p>
+                    </div>
+                  </li>
+                  <li class="benefit">
+                    <img
+                      class="benefit__icon"
+                      src="assets/images/spinner/Best-Support.png"
+                      alt=""
+                      width="44"
+                      height="44"
+                    />
+                    <div class="benefit__body">
+                      <h3 class="benefit__title">Best Support</h3>
+                      <p class="benefit__text">
+                        Call us during the middle of the day or late at night! We’re always here to help you.
+                      </p>
+                    </div>
+                  </li>
+                  <li class="benefit">
+                    <img
+                      class="benefit__icon"
+                      src="assets/images/spinner/Guided.png"
+                      alt=""
+                      width="44"
+                      height="44"
+                    />
+                    <div class="benefit__body">
+                      <h3 class="benefit__title">Safe Payment</h3>
+                      <p class="benefit__text">
+                       Your transactions are secure with us, as we make sure to use encrypted payment gateways.
+                      </p>
+                    </div>
+                  </li>
+                </ul>
+
+                <!-- Ship loader -->
+                <div class="cruise-wait__loader">
+                  <div class="sail" aria-hidden="true">
+                    <span class="sail__sun"></span>
+                    <span class="sail__cloud sail__cloud--a"></span>
+                    <span class="sail__cloud sail__cloud--b"></span>
+                    <div class="sail__sea"></div>
+                    <div class="sail__wave sail__wave--back"></div>
+
+                    <div class="sail__ship">
+                      <svg
+                        class="sail__svg"
+                        viewBox="0 0 260 110"
+                        xmlns="http://www.w3.org/2000/svg"
+                        focusable="false"
+                      >
+                        <!-- hull -->
+                        <path
+                          fill="#fff"
+                          stroke="#c3d2e2"
+                          stroke-width=".8"
+                          d="M10 70H250L238 90C236 93 233 94 230 94H30C24 94 20 92 18 88Z"
+                        />
+                        <path
+                          fill="#0b2e4f"
+                          d="M15.3 82H242.8L238 90C236 93 233 94 230 94H30C24 94 20 92 18 88Z"
+                        />
+                        <path
+                          fill="#ff6a3d"
+                          d="M15.3 79.5H243.2L242.8 82H15.3Z"
+                        />
+                        <path
+                          stroke="#9fb6cc"
+                          stroke-width="4"
+                          stroke-linecap="round"
+                          stroke-dasharray="0.1 12"
+                          d="M30 74.5H228"
+                        />
+
+                        <!-- decks -->
+                        <g fill="#fff" stroke="#c3d2e2" stroke-width=".8">
+                          <rect x="28" y="56" width="196" height="14" rx="3" />
+                          <rect x="48" y="44" width="150" height="12" rx="3" />
+                          <rect x="74" y="33" width="98" height="11" rx="3" />
+                          <rect x="150" y="24" width="26" height="9" rx="2" />
+                        </g>
+                        <g
+                          stroke="#2f7fd0"
+                          stroke-width="4"
+                          stroke-dasharray="8 4"
+                        >
+                          <path d="M36 63H216" />
+                          <path d="M56 50H190" />
+                          <path d="M82 38.5H164" />
+                          <path d="M154 28.5H172" />
+                        </g>
+
+                        <!-- funnel -->
+                        <path fill="#0b2e4f" d="M98 33L101 12H123L126 33Z" />
+                        <path
+                          fill="#ff6a3d"
+                          d="M100.2 18H123.8L124.6 23H99.4Z"
+                        />
+
+                        <!-- smoke -->
+                        <circle
+                          class="sail__smoke"
+                          cx="106"
+                          cy="8"
+                          r="4"
+                          fill="#fff"
+                        />
+                        <circle
+                          class="sail__smoke sail__smoke--late"
+                          cx="106"
+                          cy="8"
+                          r="4"
+                          fill="#fff"
+                        />
+
+                        <!-- mast + flag -->
+                        <path
+                          stroke="#0b2e4f"
+                          stroke-width="1.5"
+                          d="M163 24V9"
+                        />
+                        <path fill="#ff6a3d" d="M163 9L175 12.5L163 16Z" />
+                      </svg>
+                    </div>
+
+                    <div class="sail__wave sail__wave--front"></div>
+                  </div>
+
+                  <p class="cruise-wait__status" role="status">
+                    Book the cruise that fits your plan
+                  </p>
+                  <h4 class="cruise-wait__port" *ngIf="portName">
+                    {{ portName }} .... you’ll get it all
+
+                  </h4>
+                </div>
+
+                <!-- Assistance -->
+                <div class="assist">
+                  <img
+                    class="assist__icon"
+                    src="assets/images/spinner/call.png"
+                    alt=""
+                    width="56"
+                    height="56"
+                  />
+                  <p class="assist__text">
+                  If you have any questions when booking your Cruise, feel free to ring us!
+                  </p>
+                  <a
+                    class="assist__btn"
+                    [href]="'tel:' + getData?.hotelContactNumber"
+                  >
+                    <svg
+                      width="20"
+                      height="20"
+                      viewBox="0 0 24 24"
+                      fill="currentColor"
+                      aria-hidden="true"
+                      focusable="false"
+                    >
+                      <path
+                        d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"
+                      />
+                    </svg>
+                    <span>{{ getData?.hotelContactNumber }}</span>
+                  </a>
+                </div>
+              </section>
+            }
+            @case ("package") {
+              <div class="innermainbox">
+                <div class="topinfobox">
+                  <ul class="infolisthotel">
+                    <li>
+                      <div class="infoboxhotel">
+                        <img src="assets/images/spinner/Worldwide.png" alt="" />
+                        <div class="infoboxsubhotel">
+                          <h3>Worldwide Coverage</h3>
+                          <p>
+                            Our incredible network allows you to find and
+                            reserve spots everywhere around the world!
+                          </p>
+                        </div>
+                      </div>
+                    </li>
+                    <li>
+                      <div class="infoboxhotel">
+                        <img
+                          src="assets/images/spinner/Ultimate.png"
+                          alt="Ultimate"
+                        />
+                        <div class="infoboxsubhotel">
+                          <h3>Ultimate Flexibility</h3>
+                          <p>
+                            Got a change of plans? We are here! Modify and make
+                            your plan perfect!
+                          </p>
+                        </div>
+                      </div>
+                    </li>
+                    <li>
+                      <div class="infoboxhotel">
+                        <img
+                          src="assets/images/spinner/Best-Support.png"
+                          alt="Best-Support"
+                        />
+                        <div class="infoboxsubhotel">
+                          <h3>Best Support 24/7</h3>
+                          <p>
+                            Our assistance is to your benefit! Reach out to us
+                            any time you want!
+                          </p>
+                        </div>
+                      </div>
+                    </li>
+                    <li>
+                      <div class="infoboxhotel">
+                        <img
+                          src="assets/images/spinner/Guided.png"
+                          alt="Guided"
+                        />
+                        <div class="infoboxsubhotel">
+                          <h3>Guided Tours</h3>
+                          <p>
+                            Your transactions are always secure, reserve your
+                            travel plans with our secure gateway!
+                          </p>
+                        </div>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+                <div class="hotelmidimg">
+                  <img src="assets/package.gif" alt="" />
+                </div>
+
+                <ul class="infolisthotel mb-4">
+                  <li class="calllist">
+                    <div class="infoboxhotel">
+                      <img src="assets/images/spinner/call.png" alt="Call" />
+                      <div class="infoboxsubhotel">
+                        <p>
+                          If you have any questions regarding your bookings, we
+                          are here for you! Ring us today!  
+                        </p>
+                        <a href="" class="callbtnhotel"
+                          ><svg
+                            width="19"
+                            height="20"
+                            viewBox="0 0 19 20"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path
+                              d="M12.6294 14.1461C12.4399 13.9466 12.1773 13.8369 11.8885 13.8369C11.5844 13.8369 11.2914 13.9624 11.0844 14.1815L9.77499 15.5681L9.42112 15.3603C8.64275 14.9033 7.57605 14.2767 6.45002 13.0828C5.3194 11.8873 4.72704 10.7555 4.29394 9.92807L4.10053 9.56391L5.41219 8.17545C5.84605 7.71454 5.86118 6.98107 5.44494 6.53978L3.02151 3.97456C2.83317 3.77512 2.57026 3.66504 2.28194 3.66504C1.97817 3.66504 1.68531 3.79108 1.47763 4.01049L0.882509 4.64413L0.827332 4.74151C0.605649 5.04234 0.424282 5.38035 0.288798 5.74881C0.162717 6.09975 0.084355 6.43331 0.0478763 6.76795C-0.264435 9.51722 0.932823 12.0411 4.1817 15.4798C8.03207 19.5554 11.2497 19.8725 12.1443 19.8725C12.2978 19.8725 12.3903 19.8636 12.4159 19.8608C12.7466 19.8182 13.0627 19.734 13.3816 19.6035C13.7259 19.4616 14.0446 19.271 14.3283 19.0363L14.4633 18.9232L15.0205 18.3447C15.4537 17.8858 15.4676 17.1533 15.0516 16.7125L12.6294 14.1461Z"
+                              fill="white"
+                            />
+                            <path
+                              d="M10.0652 9.40153C9.53789 8.84358 8.87555 8.44211 8.15175 8.2417L7.8188 8.14844L7.72336 8.49647C7.68753 8.62548 7.64532 8.74763 7.59744 8.85737L7.41699 9.26433L7.83042 9.37738C8.37738 9.52373 8.87582 9.82193 9.27157 10.2418C9.64981 10.6413 9.9263 11.1426 10.071 11.6902L10.1408 11.954L10.6613 11.9853C10.7139 11.9918 10.7664 11.998 10.8168 12.0028L11.3061 12.0516L11.1925 11.5452C11.0102 10.7305 10.6208 9.98934 10.0652 9.40153Z"
+                              fill="white"
+                            />
+                            <path
+                              d="M11.7648 7.60002C10.7857 6.56337 9.53454 5.88694 8.14824 5.64436L7.66602 5.55859L7.74178 6.06894C7.76405 6.22027 7.78367 6.37091 7.80004 6.5231L7.83085 6.7916L8.08609 6.84504C9.19104 7.06113 10.1886 7.61341 10.9707 8.44089C11.8686 9.39183 12.4174 10.6049 12.5563 11.951L12.5858 12.2359L12.9937 12.298C13.0593 12.3035 13.1258 12.3028 13.2196 12.3035L13.7109 12.3214L13.672 11.8967C13.5191 10.2446 12.859 8.75922 11.7648 7.60002Z"
+                              fill="white"
+                            />
+                            <path
+                              d="M13.6131 5.64391C12.0067 3.94364 9.86709 2.93085 7.58817 2.79291L7.14551 2.76367L7.21933 3.22521C7.24187 3.37551 7.26948 3.52924 7.29867 3.68938L7.35255 3.96939L7.62011 3.98689C9.58666 4.12947 11.433 5.01639 12.8197 6.48403C14.1839 7.92849 15.0176 9.86099 15.1669 11.923L15.1925 12.2899L15.5388 12.2682C15.6209 12.2638 15.7017 12.2562 15.8198 12.2452L16.3153 12.204L16.288 11.8323C16.1187 9.48842 15.1688 7.29068 13.6131 5.64391Z"
+                              fill="white"
+                            />
+                            <path
+                              d="M18.8989 11.5696C18.6724 8.59419 17.4519 5.79428 15.4616 3.68689C13.338 1.43852 10.5112 0.134909 7.50391 0.0151615L7.16301 0L7.13707 0.36279C7.13107 0.464115 7.12702 0.564295 7.12345 0.664934L7.10254 1.19164L7.45608 1.20503C10.1831 1.3119 12.7442 2.49216 14.6673 4.52809C16.4687 6.43519 17.574 8.97094 17.7804 11.6671L17.8092 12.0457L18.1691 12.0086C18.2911 11.9949 18.4148 11.9849 18.5394 11.9746L18.9275 11.943L18.8989 11.5696Z"
+                              fill="white"
+                            />
+                          </svg>
+                          {{ getData?.phoneNumber }}
+                        </a>
+                      </div>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            }
+            @case ("car") {
+              <section class="search-wait">
+                <!-- Perks -->
+                <ul class="search-wait__perks">
+                  <li class="perk">
+                    <img
+                      class="perk__icon"
+                      src="assets/images/spinner/Worldwide.png"
+                      alt=""
+                      width="48"
+                      height="48"
+                    />
+                    <div class="perk__body">
+                      <h3 class="perk__title">Go Anywhere</h3>
+                      <p class="perk__text">
+                       Our extensive network helps you find and make bookings around the world.
+                      </p>
+                    </div>
+                  </li>
+                  <li class="perk">
+                    <img
+                      class="perk__icon"
+                      src="assets/images/spinner/Ultimate.png"
+                      alt=""
+                      width="48"
+                      height="48"
+                    />
+                    <div class="perk__body">
+                      <h3 class="perk__title">More Flexibility</h3>
+                      <p class="perk__text">
+                        Changed your plan? We’re here to modify and make your plans really happen.
+                      </p>
+                    </div>
+                  </li>
+                  <li class="perk">
+                    <img
+                      class="perk__icon"
+                      src="assets/images/spinner/Best-Support.png"
+                      alt=""
+                      width="48"
+                      height="48"
+                    />
+                    <div class="perk__body">
+                      <h3 class="perk__title">Best Support</h3>
+                      <p class="perk__text">
+                        Call us during the middle of the day or late at night! We’re always here to help you.
+                      </p>
+                    </div>
+                  </li>
+                  <li class="perk">
+                    <img
+                      class="perk__icon"
+                      src="assets/images/spinner/Guided.png"
+                      alt=""
+                      width="48"
+                      height="48"
+                    />
+                    <div class="perk__body">
+                      <h3 class="perk__title">Safe Payment</h3>
+                      <p class="perk__text">
+                        Your transactions are secure with us, as we make sure to use encrypted payment gateways.
+                      </p>
+                    </div>
+                  </li>
+                </ul>
+
+                <!-- Car loader -->
+                <div class="search-wait__loader">
+                  <div class="ride" aria-hidden="true">
+                    <span class="ride__cloud ride__cloud--a"></span>
+                    <span class="ride__cloud ride__cloud--b"></span>
+                    <div class="ride__skyline"></div>
+
+                    <div class="ride__car">
+                      <svg
+                        class="ride__svg"
+                        viewBox="0 0 200 80"
+                        xmlns="http://www.w3.org/2000/svg"
+                        focusable="false"
+                      >
+                        <defs>
+                          <linearGradient
+                            id="rideBody"
+                            x1="0"
+                            y1="0"
+                            x2="0"
+                            y2="1"
+                          >
+                            <stop offset="0" stop-color="#1a83f5" />
+                            <stop offset="1" stop-color="#0057b8" />
+                          </linearGradient>
+                        </defs>
+
+                        <!-- body -->
+                        <path
+                          fill="url(#rideBody)"
+                          d="M8 54C8 48 12 46 20 45L48 42C56 30 66 24 80 24H124C138 24 148 34 156 42L178 46C188 48 192 51 192 56V60C192 62 190 63 188 63H12C10 63 8 62 8 60Z"
+                        />
+                        <!-- windows -->
+                        <path
+                          fill="#d9ebff"
+                          d="M58 42C64 33 71 29 80 29H98V42Z"
+                        />
+                        <path
+                          fill="#d9ebff"
+                          d="M104 29H124C132 29 138 35 144 42H104Z"
+                        />
+                        <path
+                          stroke="#0a4fa8"
+                          stroke-width="1"
+                          d="M101 30V62"
+                        />
+                        <!-- lights -->
+                        <rect
+                          x="184"
+                          y="47"
+                          width="8"
+                          height="4"
+                          rx="2"
+                          fill="#ffe08a"
+                        />
+                        <rect
+                          x="8"
+                          y="47"
+                          width="6"
+                          height="4"
+                          rx="2"
+                          fill="#ff5a5f"
+                        />
+                        <!-- wheel arches -->
+                        <path fill="#0f1720" d="M35 63A15 15 0 0 1 65 63Z" />
+                        <path fill="#0f1720" d="M135 63A15 15 0 0 1 165 63Z" />
+                        <!-- wheels -->
+                        <g transform="translate(50 63)">
+                          <circle r="13" fill="#1b2430" />
+                          <g class="ride__spin">
+                            <circle r="7.5" fill="#dbe3ee" />
+                            <path
+                              stroke="#8a97a8"
+                              stroke-width="2"
+                              stroke-linecap="round"
+                              d="M0 0L0-6.5M0 0L6.18-2.01M0 0L3.82 5.26M0 0L-3.82 5.26M0 0L-6.18-2.01"
+                            />
+                            <circle r="2.2" fill="#8a97a8" />
+                          </g>
+                        </g>
+                        <g transform="translate(150 63)">
+                          <circle r="13" fill="#1b2430" />
+                          <g class="ride__spin">
+                            <circle r="7.5" fill="#dbe3ee" />
+                            <path
+                              stroke="#8a97a8"
+                              stroke-width="2"
+                              stroke-linecap="round"
+                              d="M0 0L0-6.5M0 0L6.18-2.01M0 0L3.82 5.26M0 0L-3.82 5.26M0 0L-6.18-2.01"
+                            />
+                            <circle r="2.2" fill="#8a97a8" />
+                          </g>
+                        </g>
+                      </svg>
+                    </div>
+
+                    <div class="ride__road"></div>
+                  </div>
+                  <p class="search-wait__status" role="status">
+                   Looking For The Best Car Rental For You......
+                  </p>
+                </div>
+
+                <!-- Help bar -->
+                <div class="help-bar">
+                  <img
+                    class="help-bar__icon"
+                    src="assets/images/spinner/call.png"
+                    alt=""
+                    width="48"
+                    height="48"
+                  />
+                  <p class="help-bar__text">
+                   If you have any questions when booking your car rental, feel free to ring us!
+                  </p>
+                  <a
+                    class="help-bar__btn"
+                    [href]="'tel:' + getData?.hotelContactNumber"
+                  >
+                    <svg
+                      width="20"
+                      height="20"
+                      viewBox="0 0 24 24"
+                      fill="currentColor"
+                      aria-hidden="true"
+                      focusable="false"
+                    >
+                      <path
+                        d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"
+                      />
+                    </svg>
+                    <span>{{ getData?.hotelContactNumber }}</span>
+                  </a>
+                </div>
+              </section>
+            }
+          }
+        </div>
+      </div>
+    </div>
+  </section>
+}

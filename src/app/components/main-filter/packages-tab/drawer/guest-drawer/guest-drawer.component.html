@@ -1,0 +1,261 @@
+<div [formGroup]="formGroup">
+
+  <div class="guest-selector" [class.android]="isAndroid">
+    <div class="guest-selector__wrap">
+      <!-- Guest Count Section -->
+      <div class="guest-selector__group">
+
+        <!-- == Title == -->
+
+        <div class="travelers-title-wrap">
+          <div class="travelers-title-content">
+            <div class="travelers-title">Travelers</div>
+            @if(formGroup.value.adults + formGroup.value.children +
+            formGroup.value.infants_seat + formGroup.value.infants >
+            1 || formGroup.value.cabin !== 'E'){
+            <button type="button" class="travelers-cancel-btn" (click)="resetPassengers()">
+              Reset
+            </button>
+            }@else {
+            <button type="button" class="travelers-cancel-btn" (click)="close()">
+              Cancel
+            </button>
+            }
+          </div>
+          <p class="guest-notes">You May Select Up to 9 Travelers</p>
+        </div>
+
+
+        <!-- Adults -->
+        <div class="guest-selector__item guest-selector__item--first">
+          <div class="guest-selector__label">
+            <span class="guest-selector__title">Adult</span> <span class="guest-selector__subtitle">Age 16+ yrs</span>
+          </div>
+          <div class="guest-selector__controls">
+            <button class="guest-selector__btn  "
+              [ngClass]="{ 'guest-selector__btn--minus guest-selector__btn-active': formGroup.get('adults')?.value >1 }"
+              type="button" aria-label="Decrease adults" (click)="decrement('adults')">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                <path fill="currentColor" d="M5 13v-2h14v2z" />
+              </svg>
+            </button>
+            <span class="guest-selector__count">{{ formGroup.get('adults')?.value }}</span>
+            <button class="guest-selector__btn guest-selector__btn--plus "
+              [ngClass]="{ 'guest-selector__btn-active': formGroup.get('adults')?.value !== 0 }" type="button"
+              aria-label="Increase adults" (click)="increment('adults')">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                <path fill="currentColor" d="M11 13H5v-2h6V5h2v6h6v2h-6v6h-2z" />
+              </svg>
+            </button>
+          </div>
+
+        </div>
+        @if(passengerErrors['adults']){
+        <span class="error-message">{{ passengerErrors['adults'] }}</span>
+        }
+
+        <!-- Children -->
+        <div class="guest-selector__item">
+          <div class="guest-selector__label">
+            <span class="guest-selector__title">Child</span> <span class="guest-selector__subtitle">Age 02 to 15
+              yrs</span>
+          </div>
+          <div class="guest-selector__controls">
+            <button class="guest-selector__btn "
+              [ngClass]="{ 'guest-selector__btn--minus guest-selector__btn-active': formGroup.get('children')?.value !== 0 }"
+              type="button" aria-label="Decrease children" (click)="decrement('children')">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                <path fill="currentColor" d="M5 13v-2h14v2z" />
+              </svg>
+            </button>
+            <span class="guest-selector__count">{{ formGroup.get('children')?.value }}</span>
+            <button class="guest-selector__btn guest-selector__btn--plus"
+              [ngClass]="{ 'guest-selector__btn-active': formGroup.get('children')?.value !== 0 }" type="button"
+              aria-label="Increase children" (click)="increment('children')">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                <path fill="currentColor" d="M11 13H5v-2h6V5h2v6h6v2h-6v6h-2z" />
+              </svg>
+            </button>
+          </div>
+
+        </div>
+
+        @if(passengerErrors['children']){
+        <span class="error-message">{{ passengerErrors['children'] }}</span>
+        }
+
+
+        <!-- Infant with Seat -->
+        <!-- <div class="guest-selector__item">
+          <div class="guest-selector__label">
+            <span class="guest-selector__title">Infant (Seat)</span>
+            <span class="guest-selector__subtitle">Under 02 yrs</span>
+          </div>
+          <div class="guest-selector__controls">
+            <button
+              class="guest-selector__btn "  [ngClass]="{ 'guest-selector__btn--minus guest-selector__btn-active': formGroup.get('infants_seat')?.value !== 0 }"
+              type="button"
+              aria-label="Decrease infants with seat" (click)="decrement('infants_seat')"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M5 13v-2h14v2z"/></svg>
+            </button>
+            <span class="guest-selector__count">{{ formGroup.get('infants_seat')?.value }}</span>
+            <button class="guest-selector__btn guest-selector__btn--plus"  [ngClass]="{ 'guest-selector__btn-active': formGroup.get('infants_seat')?.value !== 0 }" type="button" aria-label="Increase infants with seat"  (click)="increment('infants_seat')">
+             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M11 13H5v-2h6V5h2v6h6v2h-6v6h-2z"/></svg>
+            </button>
+          </div>
+   
+        </div>
+          @if(passengerErrors['infants_seat']){
+          <span class="error-message" >{{ passengerErrors['infants_seat'] }}</span>
+          } -->
+
+
+        <!-- Infant on Lap -->
+        <div class="guest-selector__item">
+          <div class="guest-selector__label">
+            <span class="guest-selector__title">Infants</span> <span class="guest-selector__subtitle">Under 02
+              yrs</span>
+          </div>
+          <div class="guest-selector__controls">
+            <button class="guest-selector__btn "
+              [ngClass]="{ 'guest-selector__btn--minus guest-selector__btn-active': formGroup.get('infants')?.value !== 0 }"
+              type="button" aria-label="Decrease lap infants" (click)="decrement('infants')">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                <path fill="currentColor" d="M5 13v-2h14v2z" />
+              </svg>
+            </button>
+            <span class="guest-selector__count">{{ formGroup.get('infants')?.value }}</span>
+            <button class="guest-selector__btn guest-selector__btn--plus"
+              [ngClass]="{ 'guest-selector__btn-active': formGroup.get('infants')?.value !== 0 }" type="button"
+              aria-label="Increase lap infants" (click)="increment('infants')">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                <path fill="currentColor" d="M11 13H5v-2h6V5h2v6h6v2h-6v6h-2z" />
+              </svg>
+            </button>
+          </div>
+
+        </div>
+        @if(passengerErrors['infants']){
+        <span class="error-message">{{ passengerErrors['infants'] }}</span>
+        }
+
+
+        @if(passengerErrors['infants_total']){
+        <span class="error-message">{{ passengerErrors['infants_total'] }}</span>
+        }
+        @if(passengerErrors['total']){
+        <span class="error-message">{{ passengerErrors['total'] }}</span>
+        }
+
+
+      <!-- Cabin Class Section -->
+      <div class="fsr-trav-row fsr-travelers-menu w-100 guest-selector__item">
+
+        <div>
+
+          <div class="guest-selector__title">
+            Flight class
+          </div>
+
+        </div>
+        <!-- ================================================= -->
+        <!-- CUSTOM CABIN DROPDOWN -->
+        <!-- ================================================= -->
+
+        <div class="fsr-cabin-select custom-cabin-dropdown" [class.fsr-cabin-open]="cabinDropdownOpen"
+          (click)="$event.stopPropagation()">
+
+          <!-- SELECTED -->
+          <div class="fsr-cabin-selected custom-cabin-selected" (click)="toggleCabinDropdown($event)">
+
+            <div class="fsr-cabin-option-text">
+              {{ selectedCabin.name }}
+            </div>
+
+            <i class="fa-solid fa-chevron-down" [class.rotate]="cabinDropdownOpen"></i>
+
+          </div>
+
+
+          <!-- OPTIONS -->
+          <div class="fsr-cabin-options custom-cabin-options" *ngIf="cabinDropdownOpen"
+            (click)="$event.stopPropagation()">
+
+            <div class="fsr-cabin-option custom-cabin-option" *ngFor="let cabin of cabinOptions" [class.selected]="
+            selectedCabin.value === cabin.value
+          " (click)="selectCabin(cabin, $event)">
+
+              <div class="fsr-cabin-option-text">
+                {{ cabin.name }}
+              </div>
+
+              <i *ngIf="
+              selectedCabin.value === cabin.value
+            " class="fa-solid fa-check"></i>
+
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+      
+<!-- Rooms -->
+<div class="guest-selector__item">
+  <div class="guest-selector__label">
+    <span class="guest-selector__title">Rooms</span>
+    <span class="guest-selector__subtitle">Minimum 1 adult per room</span>
+  </div>
+
+  <div class="guest-selector__controls">
+    <button
+      class="guest-selector__btn"
+      [ngClass]="{ 'guest-selector__btn--minus guest-selector__btn-active': formGroup.get('roomCount')?.value !== 0 }"
+      type="button"
+      aria-label="Decrease rooms"
+      [disabled]="formGroup.get('roomCount')?.value <= 1"
+      (click)="changeRooms(-1)">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+        viewBox="0 0 24 24">
+        <path fill="currentColor" d="M5 13v-2h14v2z" />
+      </svg>
+    </button>
+
+    <span class="guest-selector__count">{{ formGroup.get('roomCount')?.value }}</span>
+
+    <button
+      class="guest-selector__btn guest-selector__btn--plus"
+      [ngClass]="{
+        'guest-selector__btn-active': formGroup.get('roomCount')?.value !== 0
+      }"
+      type="button"
+      aria-label="Increase rooms"
+      [disabled]="formGroup.get('roomCount')?.value >= 9"
+      (click)="changeRooms(1)">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+        viewBox="0 0 24 24">
+        <path fill="currentColor"
+          d="M11 13H5v-2h6V5h2v6h6v2h-6v6h-2z" />
+      </svg>
+    </button>
+  </div>
+</div>
+
+@if (passengerErrors['rooms']) {
+  <span class="error-message">{{ passengerErrors['rooms'] }}</span>
+}
+
+      
+          <div class="fsr-trav-footer">
+
+
+                        <button type="button" class="fsr-trav-done" (click)="close()">
+                            Done
+                        </button>
+
+                    </div>
+      </div>
+    </div>
+  </div>
+</div>

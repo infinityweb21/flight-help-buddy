@@ -1,0 +1,26 @@
+<p-dialog [(visible)]="visible" position="center" styleClass="search-main-drawer hotel-drawer-content-wrap">
+  <ng-template #headless>
+    <div class="drawer-header popup-header hotel-drawer-popup-header" [class.android]="isAndroid">
+
+      <span class="hotel-drawer-popup-header-icon" (click)="onClose()">
+        <svg width="24" height="27" viewBox="0 0 24 27" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path
+            d="M12 1.03067C5.31429 1.03067 0 6.34496 0 13.0307C0 19.7164 5.31429 25.0307 12 25.0307C18.6857 25.0307 24 19.7164 24 13.0307C24 6.34496 18.6857 1.03067 12 1.03067ZM16.6286 19.0307L12 14.4021L7.37143 19.0307L6 17.6592L10.6286 13.0307L6 8.4021L7.37143 7.03067L12 11.6592L16.6286 7.03067L18 8.4021L13.3714 13.0307L18 17.6592L16.6286 19.0307Z"
+            fill="currentColor" />
+        </svg>
+      </span>
+      <!-- <p-button icon="pi pi-times" [rounded]="true" severity="contrast" size="small" (click)="onClose()" /> -->
+
+    </div>
+    <div class="drawer-body">
+      <ng-content></ng-content>
+      <!-- ===== ====== -->
+      <!-- <div class="gradient-rectangle-box"></div>
+      <div class="gradient-ellipse"></div>
+      <div class="gradient-rectangle"></div>
+      <div class="gradient-polygon-1"></div>
+      <div class="gradient-polygon-2"></div> -->
+      <!-- ===== ====== -->
+    </div>
+  </ng-template>
+</p-dialog>

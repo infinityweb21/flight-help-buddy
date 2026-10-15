@@ -1,0 +1,465 @@
+<app-main-filter />
+
+
+<section class="common-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 col-md-6 col-8">
+                <div class="common-heading-box">
+                    <h2 class="common-heading-title">
+                        Explore Flight & Hotel Packages
+                    </h2>
+                    <p>Showing deals for – 20 Sep · 24 Sep</p>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-6 col-4">
+                <div class="flex-end-sec">
+                    <div class="common-nav-arrow-box">
+                        <button type="button" class="flightandhotel-ai-prev"
+                            aria-label="Previous Flight and Hotel Package">
+
+                            <i class="fa-solid fa-arrow-left"></i>
+
+                        </button>
+
+
+                        <button type="button" class="flightandhotel-ai-next" aria-label="Next Flight and Hotel Package">
+
+                            <i class="fa-solid fa-arrow-right"></i>
+
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 mt-2">
+                <div class="flightandhotel-slider owl-carousel">
+
+                    <a href="tel:{{getData?.phoneNumber}}" class="pkgc" *ngFor="let pkg of packageList"
+                        (click)="selectPackage(pkg)">
+
+                        <!-- ============================= -->
+                        <!-- IMAGE -->
+                        <!-- ============================= -->
+
+                        <div class="pkgc__media">
+
+                            <img class="pkgc__img" [src]="pkg.image" [alt]="pkg.title" loading="lazy">
+
+                            <span class="pkgc__badge">
+
+                                <i class="fa-solid fa-plane-circle-check"></i>
+
+                                {{ pkg.badge }}
+
+                            </span>
+
+                            <!-- Wishlist -->
+
+                            <span class="pkgc__fav"><i class="fa-regular fa-heart"></i></span>
+
+                        </div>
+
+
+                        <!-- ============================= -->
+                        <!-- BODY -->
+                        <!-- ============================= -->
+
+                        <div class="pkgc__body">
+
+
+                            <!-- Location -->
+
+                            <div class="pkgc__location">
+
+                                <i class="fa-solid fa-location-dot"></i>
+
+                                {{ pkg.location }}
+
+                            </div>
+
+
+                            <!-- Title -->
+
+                            <h3 class="pkgc__title">
+
+                                {{ pkg.title }}
+
+                            </h3>
+
+
+                            <!-- ============================= -->
+                            <!-- RATING + REFUNDABLE -->
+                            <!-- ============================= -->
+
+                            <div class="pkgc__meta">
+
+
+                                <span class="pkgc__rating">
+
+                                    <span class="pkgc__rating-score">
+
+                                        {{ pkg.rating }}
+
+                                    </span>
+
+                                    <span class="pkgc__rating-label">
+
+                                        {{ pkg.ratingLabel }}
+
+                                    </span>
+
+                                </span>
+
+
+                                <!-- Refundable -->
+
+                                <span *ngIf="pkg.refundable" class="pkgc__refundable">
+
+                                    <i class="fa-solid fa-shield-heart"></i>
+
+                                    Refundable
+
+                                </span>
+
+
+                                <!-- Non Refundable -->
+
+                                <span *ngIf="!pkg.refundable" class="pkgc__refundable nonpkgc__refundable">
+
+                                    <i class="fa-solid fa-circle-xmark"></i>
+
+                                    Non Refundable
+
+                                </span>
+
+                            </div>
+
+
+                            <!-- ============================= -->
+                            <!-- ROUTE -->
+                            <!-- ============================= -->
+
+                            <div class="pkgc__route">
+
+                                <span class="pkgc__route-code">
+
+                                    {{ pkg.from }}
+
+                                </span>
+
+                                <i class="fa-solid fa-plane"></i>
+
+                                <span class="pkgc__route-code">
+
+                                    {{ pkg.to }}
+
+                                </span>
+
+                            </div>
+
+
+                            <!-- ============================= -->
+                            <!-- FOOTER -->
+                            <!-- ============================= -->
+
+                            <div class="pkgc__footer">
+
+                                <div class="pkgc__price">
+
+                                    <span class="pkgc__price-amount">
+
+                                        ${{ pkg.price }}
+
+                                    </span>
+
+                                    <span class="pkgc__price-unit">
+
+                                        {{ pkg.priceUnit }}
+
+                                    </span>
+
+                                    <div class="pkgc__price-note">
+
+                                        {{ pkg.priceNote }}
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </a>
+
+                </div>
+
+                <div class="div-text mt-3"><strong>*Note:</strong> The rates include all taxes &amp; fees, fuel
+                    surcharges, and other service fees. There are separate taxes and fees for hotels, rental cars, and
+                    other activities. Rates will be displayed at the time of booking. Make sure you check out the terms
+                    &amp; conditions and then confirm.</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="common-section text-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-12">
+                <div class="main-box-card">
+
+                    <h2 class="tp-trust-title">
+                        Start Your Journey With <span>Better Fares</span>
+                    </h2>
+
+                    <ul class="tp-trust-box">
+
+                        <li class="tp-trust-item">
+                            <span class="tp-trust-icon"><i class="fa-solid fa-file-circle-check"></i></span>
+                            <div class="tp-trust-info">
+                                <h3>Best Deals</h3>
+                                <p>Get fares that’ll make you happy</p>
+                            </div>
+                        </li>
+
+                        <li class="tp-trust-item">
+                            <span class="tp-trust-icon"><i class="fa-solid fa-headset"></i></span>
+                            <div class="tp-trust-info">
+                                <h3>Get Help, Anytime</h3>
+                                <p>Our experts are always there to assist you</p>
+                            </div>
+                        </li>
+
+                        <li class="tp-trust-item">
+                            <span class="tp-trust-icon"><i class="fa-solid fa-medal"></i></span>
+                            <div class="tp-trust-info">
+                                <h3>Get Your Rewards</h3>
+                                <p>Earn more points through bookings for your next trip</p>
+                            </div>
+                        </li>
+
+                        <li class="tp-trust-item">
+                            <span class="tp-trust-icon"><i class="fa-solid fa-suitcase-rolling"></i></span>
+                            <div class="tp-trust-info">
+                                <h3>Flexible Bookings</h3>
+                                <p>Make easy changes and cancellations when you need them</p>
+                            </div>
+                        </li>
+
+                    </ul>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section class="common-section detailstext-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-12">
+                <div class="common-heading-box">
+                    <h2 class="common-heading-title">
+                        How To Find Cheap Vacation Packages and Deals?
+                    </h2>
+                </div>
+                <div class="common-para">
+                    <p>When you book with us, you get instant deals that will make your travel more affordable. We offer
+                        the best flights, hotels, and rental car services, making your vacation a strong fit in your
+                        proposed budget. Top reasons why most people choose us:</p>
+
+                    <p><strong>Unbeatable Bundle Rates:</strong> Book your flights, stays, and other activities all
+                        together and get an extra discount.</p>
+
+                    <p><strong>Stress-Free Planning:</strong> Stop endless searching today - just handle everything to
+                        our team so that you can focus on relaxing and enjoying the journey.</p>
+
+                    <p><strong>Round-the-Clock Support:</strong> Our travel experts are always available to assist you
+                        with anything you need, from bookings to cancellations.</p>
+
+                    <p>Ready to explore the world? Contact our travel expert today to learn about our limited-time
+                        package deals and make your travel more affordable than ever.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="common-section feature-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="tp-feature-strip">
+
+                    <div class="tp-feature-item">
+
+                        <div class="tp-feature-icon">
+                            <img src="assets/images/search-icon.png" alt="Search">
+                        </div>
+
+                        <div class="tp-feature-content">
+                            <h4>Compare Deals</h4>
+                            <p>Compare flights, airline, and car rental prices all here.</p>
+                        </div>
+
+                    </div>
+
+                    <div class="tp-feature-item">
+
+                        <div class="tp-feature-icon">
+                            <img src="assets/images/fees-icon.png" alt="Fees">
+                        </div>
+
+                        <div class="tp-feature-content">
+                            <h4>Transparent Pricing</h4>
+                            <p>We offer clear pricing without any hidden charges to avoid last-minute surprises.</p>
+                        </div>
+
+                    </div>
+
+                    <div class="tp-feature-item">
+
+                        <div class="tp-feature-icon">
+                            <img src="assets/images/flexible-icon.png" alt="Flexible">
+                        </div>
+
+                        <div class="tp-feature-content">
+                            <h4>Total Flexibility</h4>
+                            <p>Change your travel dates by getting access to the flexible ticket option.</p>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="common-section ">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-7 col-md-10 col-12">
+                <div class="common-heading-box">
+                    <h2 class="common-heading-title">Frequently asked questions
+                    </h2>
+                    <p>Find cheap flights online for domestic.</p>
+                </div>
+            </div>
+            <!-- Column 1 -->
+            <div class="col-lg-6">
+                <div class="cst-acc-col-title">General Information</div>
+                <div class="accordion" id="cstAccLeft">
+
+                    <div class="cst-acc__item">
+                        <h2 class="cst-acc__header" id="lHead1">
+                            <button class="cst-acc__btn" type="button" data-bs-toggle="collapse" data-bs-target="#lCol1"
+                                aria-expanded="true" aria-controls="lCol1">
+                                <span class="cst-acc__title">What is included in the booking?</span>
+                                <i class="fa-solid fa-chevron-down cst-acc__chevron"></i>
+                            </button>
+                        </h2>
+                        <div id="lCol1" class="collapse show" aria-labelledby="lHead1" data-bs-parent="#cstAccLeft">
+                            <div class="cst-acc__body">
+                                Your booking includes flight tickets, applicable taxes, and standard baggage
+                                allowance as per airline policy. Optional add-ons like seat selection or meals
+                                can be purchased separately.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="cst-acc__item">
+                        <h2 class="cst-acc__header" id="lHead2">
+                            <button class="cst-acc__btn collapsed" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#lCol2" aria-expanded="false" aria-controls="lCol2">
+                                <span class="cst-acc__title">Can I modify my hotel dates?</span>
+                                <i class="fa-solid fa-chevron-down cst-acc__chevron"></i>
+                            </button>
+                        </h2>
+                        <div id="lCol2" class="collapse" aria-labelledby="lHead2" data-bs-parent="#cstAccLeft">
+                            <div class="cst-acc__body">
+                                Yes, date modifications are allowed up to 48 hours before check-in, subject to
+                                hotel availability and any applicable rate difference.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="cst-acc__item">
+                        <h2 class="cst-acc__header" id="lHead3">
+                            <button class="cst-acc__btn collapsed" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#lCol3" aria-expanded="false" aria-controls="lCol3">
+                                <span class="cst-acc__title">What payment methods are accepted?</span>
+                                <i class="fa-solid fa-chevron-down cst-acc__chevron"></i>
+                            </button>
+                        </h2>
+                        <div id="lCol3" class="collapse" aria-labelledby="lHead3" data-bs-parent="#cstAccLeft">
+                            <div class="cst-acc__body">
+                                We accept all major credit/debit cards, net banking, and popular digital
+                                wallets. EMI options are available on select bank cards.
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Column 2 -->
+            <div class="col-lg-6">
+                <div class="cst-acc-col-title">Cancellation &amp; Support</div>
+                <div class="accordion" id="cstAccRight">
+
+                    <div class="cst-acc__item">
+                        <h2 class="cst-acc__header" id="rHead1">
+                            <button class="cst-acc__btn" type="button" data-bs-toggle="collapse" data-bs-target="#rCol1"
+                                aria-expanded="true" aria-controls="rCol1">
+                                <span class="cst-acc__title">What is the cancellation policy?</span>
+                                <i class="fa-solid fa-chevron-down cst-acc__chevron"></i>
+                            </button>
+                        </h2>
+                        <div id="rCol1" class="collapse show" aria-labelledby="rHead1" data-bs-parent="#cstAccRight">
+                            <div class="cst-acc__body">
+                                Free cancellation is available up to 24 hours after booking. After this window,
+                                cancellation charges apply as per the fare rules shown at checkout.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="cst-acc__item">
+                        <h2 class="cst-acc__header" id="rHead2">
+                            <button class="cst-acc__btn collapsed" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#rCol2" aria-expanded="false" aria-controls="rCol2">
+                                <span class="cst-acc__title">How can I contact support?</span>
+                                <i class="fa-solid fa-chevron-down cst-acc__chevron"></i>
+                            </button>
+                        </h2>
+                        <div id="rCol2" class="collapse" aria-labelledby="rHead2" data-bs-parent="#cstAccRight">
+                            <div class="cst-acc__body">
+                                Our support team is available 24/7 via live chat, email, or phone. Priority
+                                support is offered to premium members.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="cst-acc__item">
+                        <h2 class="cst-acc__header" id="rHead3">
+                            <button class="cst-acc__btn collapsed" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#rCol3" aria-expanded="false" aria-controls="rCol3">
+                                <span class="cst-acc__title">Is travel insurance included?</span>
+                                <i class="fa-solid fa-chevron-down cst-acc__chevron"></i>
+                            </button>
+                        </h2>
+                        <div id="rCol3" class="collapse" aria-labelledby="rHead3" data-bs-parent="#cstAccRight">
+                            <div class="cst-acc__body">
+                                Travel insurance is not included by default but can be added during checkout for
+                                an additional fee, covering trip cancellations and medical emergencies.
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

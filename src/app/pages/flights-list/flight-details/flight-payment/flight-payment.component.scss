@@ -1,0 +1,254 @@
+@import url(../../../../common-scss/common-booking.css);
+@import url(../../flights-list.component.scss);
+
+::ng-deep .iti {
+  border: 1.5px solid #cbd5e1;
+  border-radius: 6px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: 0.3s ease;
+}
+
+// ::ng-deep .iti:hover {
+//   border-color: #1c1c1c !important;
+//   box-shadow: 0 3px 10px 0 rgba(28, 28, 28, 0.30) !important;
+//   background-color: #fff !important;
+// }
+
+::ng-deep .inteli-active .iti {
+  border-color: #1c1c1c !important;
+  box-shadow: 0 3px 10px 0 rgba(28, 28, 28, 0.3) !important;
+  background-color: #fff !important;
+}
+
+::ng-deep .iti__selected-flag {
+  padding: 0 8px;
+}
+
+::ng-deep .iti__arrow {
+  color: #374151;
+}
+::ng-deep .iti__tel-input {
+  display: none !important;
+}
+
+// ::ng-deep .iti {
+//   width: 76px !important; /* Same width as your design */
+// }
+// /* Completely hide flag icon when selected */
+// ::ng-deep .iti__selected-flag .iti__flag {
+//   display: none !important;
+// }
+
+/* Keep flag visible inside dropdown menu */
+::ng-deep .iti__country .iti__flag {
+  display: inline-block !important;
+}
+/* Completely hide flag icon when selected */
+::ng-deep .iti__selected-flag .iti__flag {
+  display: none !important;
+}
+/* Adjust dial code position since flag is hidden */
+::ng-deep .iti__selected-dial-code {
+  padding-left: 0 !important;
+  margin-left: 0 !important;
+  font-weight: 600;
+  color: #1c1c1c;
+}
+
+::ng-deep .iti--allow-dropdown .iti__flag-container:hover .iti__selected-flag {
+  background-color: transparent;
+}
+::ng-deep .selected-dial-code {
+  color: #1c1c1c;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 16px;
+  margin: 0px;
+}
+
+::ng-deep .iti .selected-dial-code {
+  margin-left: 7px;
+  width: 42px;
+}
+::ng-deep .iti__selected-flag {
+  padding: 0px;
+}
+
+::ng-deep .iti__arrow {
+  border: none;
+  position: relative;
+  width: 28px;
+  height: 48px;
+}
+.iti__tel-input:focus {
+  border-color: #000000 !important;
+}
+::ng-deep .iti {
+  width: 100% !important; /* New line to ensure it fills the parent group */
+  border: 1px solid #514137; /* Use the same border as other inputs */
+  border-radius: 4px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  .iti__country-list {
+    border-radius: 4px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    max-height: 200px;
+    overflow-y: auto;
+  }
+}
+::ng-deep .iti__arrow::after {
+  content: "";
+
+  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M1.63605 5.29295C1.82358 5.10548 2.07788 5.00017 2.34305 5.00017C2.60821 5.00017 2.86252 5.10548 3.05005 5.29295L8.00005 10.243L12.95 5.29295C13.1387 5.11079 13.3913 5.01 13.6535 5.01228C13.9156 5.01456 14.1665 5.11973 14.3519 5.30513C14.5373 5.49054 14.6424 5.74135 14.6447 6.00355C14.647 6.26575 14.5462 6.51835 14.364 6.70695L8.70705 12.364C8.51952 12.5514 8.26521 12.6567 8.00005 12.6567C7.73488 12.6567 7.48058 12.5514 7.29305 12.364L1.63605 6.70695C1.44858 6.51942 1.34326 6.26512 1.34326 5.99995C1.34326 5.73479 1.44858 5.48048 1.63605 5.29295Z" fill="%23374151"/></svg>');
+  background-size: 16px;
+  width: 16px;
+  height: 16px;
+  background-repeat: no-repeat;
+  background-position: right center;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 16px;
+}
+::ng-deep .iti__dropdown-content {
+  border-radius: 4px !important;
+  border: 1px solid #1c1c1c !important;
+  background-color: #fff !important;
+  width: 242px !important;
+  margin-top: 11px !important;
+}
+::ng-deep .iti ~ .iti__dropdown-content:focus {
+  border-color: #1c1c1c !important;
+  box-shadow: 0 3px 10px 0 rgba(28, 28, 28, 0.3) !important;
+  background-color: #fff !important;
+}
+::ng-deep .iti__country-list {
+  border-radius: 0px !important;
+}
+::ng-deep li.iti__country:hover {
+  background-color: #fff0e8 !important;
+}
+::ng-deep .iti__country-name {
+  color: #1c1c1c;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 16px;
+  letter-spacing: 0.44px;
+}
+::ng-deep .iti__dial-code {
+  color: #1c1c1c;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 16px;
+  letter-spacing: 0.44px;
+}
+
+::ng-deep {
+  @media (min-width: 375px) {
+    .iti__dropdown-content {
+      width: 310px !important;
+    }
+  }
+}
+
+::ng-deep .iti__divider {
+  display: none;
+}
+
+/* Scrollbar styles */
+::ng-deep .iti__country-list::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::ng-deep .iti__country-list::-webkit-scrollbar-track {
+  background: #e9ebf8;
+  border-radius: 6px;
+}
+
+::ng-deep .iti__country-list::-webkit-scrollbar-thumb {
+  background-color: #1c1c1c;
+  border-radius: 6px;
+  border: 2px solid #e9ebf8;
+}
+
+::ng-deep .iti__country-list::-webkit-scrollbar-thumb:hover {
+  background-color: #a0a0a0;
+}
+
+::ng-deep .iti__country-list::-webkit-scrollbar-corner {
+  background: #e9ebf8;
+}
+::ng-deep .p-dropdown {
+  width: 100% !important;
+  border: 1px solid #374151 !important;
+  border-radius: 4px !important;
+  height: 48px !important;
+  display: flex;
+  align-items: center;
+  background: #fff !important;
+  font-size: 15px;
+  font-weight: 500;
+  color: #1c1c1c;
+  padding: 0px 7px !important;
+}
+
+::ng-deep .p-dropdown-label {
+  padding: 0 !important;
+  line-height: 48px;
+}
+
+::ng-deep .p-dropdown-trigger {
+  display: none !important; /* Hide PrimeNG arrow */
+}
+
+.c-select__icon {
+  position: absolute;
+  right: 10px;
+  // top: 50%;
+  // transform: translateY(-50%);
+  top: 24px;
+  color: #374151;
+  pointer-events: none;
+}
+::ng-deep .p-select-list-container {
+  overflow-y: auto;
+  // width: 311px;
+  // height: 243px;
+  opacity: 1;
+  top: 654px;
+  left: 32px;
+  border-width: 1px;
+}
+
+.fd-offcanvas-body {
+  padding: 0px !important;
+}
+
+.fd-section {
+  padding: 10px !important;
+  border-radius: 0px !important;
+  margin-bottom: 0px !important;
+}
+@media (max-width: 580px) {
+  .fd-offcanvas-body {
+    padding-bottom: 100px !important;
+  }
+
+  .fd-offcanvas-body .fd-segment {
+    padding: 10px !important;
+  }
+  ::ng-deep .iti , ::ng-deep .p-dropdown {
+    height: 40px !important;
+  }
+  .ct-card .row {
+    gap: 0px 0px !important;
+}
+}

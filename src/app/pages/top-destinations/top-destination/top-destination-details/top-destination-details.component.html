@@ -1,0 +1,635 @@
+<!--=========== Banner Section Start  ==============-->
+<section
+  class="inf-hero-section"
+  [ngStyle]="{ 'background-image': 'url(' + backgroundImageUrl + ')' }"
+>
+  <img
+    *ngIf="backgroundImageUrl"
+    [src]="backgroundImageUrl"
+    [alt]="mainData?.Name"
+    class="d-none"
+  />
+  <div class="container">
+    <div class="row justify-content-end align-items-center">
+      <div class="col-lg-6 col-md-7">
+        <div class="inf-hero-content">
+          <h1>{{ headerText }}</h1>
+          <p>{{ subHeaderText }}</p>
+        </div>
+
+        <div class="inf-call-widget">
+          <h2>Purchase Best <span>Deals</span></h2>
+          <form
+            name="inf-call-form"
+            action="#"
+            method="post"
+            novalidate
+            [formGroup]="contactForm"
+          >
+            <div class="form-row">
+              <div class="row g-2 g-lg-3">
+                <div class="col-md-6">
+                  <input
+                    type="text"
+                    name="sub_name"
+                    placeholder="Your Name"
+                    class="form-control"
+                    required
+                    formControlName="name"
+                    [class.is-invalid]="isInvalid('name')"
+                  />
+                  <div *ngIf="isInvalid('name')" class="text-danger">
+                    Name is required.
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="wrapper top-routes-tell">
+                    <ngx-intl-tel-input
+                      [cssClass]="'form-control'"
+                      [preferredCountries]="preferredCountries"
+                      [enableAutoCountrySelect]="true"
+                      [enablePlaceholder]="true"
+                      [searchCountryFlag]="true"
+                      [searchCountryField]="[
+                        SearchCountryField.Iso2,
+                        SearchCountryField.Name
+                      ]"
+                      [selectFirstCountry]="false"
+                      [selectedCountryISO]="CountryISO.UnitedStates"
+                      [maxLength]="15"
+                      [phoneValidation]="true"
+                      [separateDialCode]="separateDialCode"
+                      [numberFormat]="PhoneNumberFormat.National"
+                      name="phone"
+                      formControlName="phone"
+                      [class.is-invalid]="isInvalid('phone')"
+                    >
+                    </ngx-intl-tel-input>
+                  </div>
+                  <div *ngIf="isInvalid('phone')" class="text-danger">
+                    Phone number is required.
+                  </div>
+                  <div
+                    *ngIf="contactForm.get('phone')?.errors?.['invalidPhoneLength']"
+                    class="text-danger"
+                  >
+                    Please enter a valid phone number (6–15 digits).
+                  </div>
+                </div>
+              </div>
+              <button
+                type="submit"
+                class="banner-form-submit-btn"
+                (click)="submitContactForm()"
+              >
+                Get a Call
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<div
+  class="container container-xxl py-3 mt-4 newfiltersec"
+  style="background-color: #bfbfbf1f"
+>
+  <app-flights-tab></app-flights-tab>
+</div>
+
+<section class="travel-best cmn-gap pb-0 pt-5">
+  <div class="container container-xxl">
+    <div
+      class="common-slider-container d-flex align-items-center justify-content-between"
+    >
+      @for (feature of travelFeatures; track $index) {
+      <div class="w-100">
+        <div class="travel-feature-card">
+          <div class="travel-feature-card-wrap">
+            <div
+              class="travel-feature-card-icon-box travel-feature-card-orange-icon"
+            >
+              <img [src]="feature.icon" alt="" class="feico" />
+            </div>
+            <div class="travel-feature-card-content-box">
+              <h4 class="travel-feature-card-title">{{ feature.title }}</h4>
+              <p class="travel-feature-card-desc">{{ feature.description }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      }
+    </div>
+  </div>
+</section>
+
+<!--=========== Contact ==============-->
+<section class="details-contentntsec">
+  <div class="container container-xxl">
+    <div class="row">
+      <div
+        class="col-12 d-flex justify-content-between align-items-center flex-wrap"
+      >
+        <h5 class="customhead">{{ mainData.Name }}</h5>
+        <div class="custom-topbar">
+          Call Us Toll-Free to Get the Best Deal!
+          <a href="tel:{{ getData?.phoneNumber }}">{{
+            getData?.phoneNumber
+          }}</a>
+        </div>
+      </div>
+    </div>
+    <!-- Tabs Navigation -->
+    <ul class="nav custom-nav-tabs mt-3" id="customTab" role="tablist">
+      <li class="nav-item" role="presentation">
+        <button
+          class="nav-link active"
+          id="overview-tab"
+          data-bs-toggle="tab"
+          data-bs-target="#overview"
+          type="button"
+          role="tab"
+        >
+          Overview
+        </button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button
+          class="nav-link"
+          id="things-tab"
+          data-bs-toggle="tab"
+          data-bs-target="#things"
+          type="button"
+          role="tab"
+        >
+          Things to Do
+        </button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button
+          class="nav-link"
+          id="hotels-tab"
+          data-bs-toggle="tab"
+          data-bs-target="#hotels"
+          type="button"
+          role="tab"
+        >
+          Best Hotels
+        </button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button
+          class="nav-link"
+          id="visit-tab"
+          data-bs-toggle="tab"
+          data-bs-target="#visit"
+          type="button"
+          role="tab"
+        >
+          When to visit
+        </button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button
+          class="nav-link"
+          id="map-tab"
+          data-bs-toggle="tab"
+          data-bs-target="#map"
+          type="button"
+          role="tab"
+        >
+          Map
+        </button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button
+          class="nav-link"
+          id="photos-tab"
+          data-bs-toggle="tab"
+          data-bs-target="#photos"
+          type="button"
+          role="tab"
+        >
+          Photos
+        </button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button
+          class="nav-link"
+          id="support-tab"
+          data-bs-toggle="tab"
+          data-bs-target="#support"
+          type="button"
+          role="tab"
+        >
+          Get Support
+        </button>
+      </li>
+    </ul>
+  </div>
+</section>
+<section class="content-boxsection">
+  <div class="container container-xxl">
+    <!-- Tabs Content -->
+    <div class="tab-content custom-tab-content" id="customTabContent">
+      <div class="tab-pane fade show active" id="overview" role="tabpanel">
+        <span class="page-content m-0" [innerHTML]="trustedContentHtml"></span>
+        <div class="row mt-4">
+          <div class="col-lg-8 col-md-6 col-12">
+            @if (destinationSeasonDetails && destinationSeasonDetails.length >
+            0) {
+            <div class="custom-tab-title">
+              Best Time To Visit {{ mainData.Name | titlecase }},
+              {{ mainData.country_name | titlecase }}
+            </div>
+            }
+            <div class="accordion season-accordion" id="seasonAccordion">
+              <div
+                class="accordion-item"
+                *ngFor="let season of destinationSeasonDetails; let i = index"
+              >
+                <h2 class="accordion-header" [id]="'heading' + i">
+                  <button
+                    class="accordion-button"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    [attr.data-bs-target]="'#collapse' + i"
+                    [class.collapsed]="i !== 0"
+                    [attr.aria-expanded]="i === 0"
+                  >
+                    <span
+                      class="season-label"
+                      [ngClass]="{
+                        'label-green': season.season_type === 'Peak Season',
+                        'label-blue': season.season_type === 'Moderate Season',
+                        'label-orange': season.season_type === 'Off-season'
+                      }"
+                      >{{
+                        getMonthRange(season.from_month, season.to_month)
+                      }}</span
+                    >
+                    <span class="season-subtext"
+                      >Is {{ season.season_type }}</span
+                    >
+                  </button>
+                </h2>
+                <div
+                  [id]="'collapse' + i"
+                  class="accordion-collapse collapse"
+                  [class.show]="i === 0"
+                  data-bs-parent="#seasonAccordion"
+                >
+                  <div
+                    class="accordion-body"
+                    [innerHTML]="
+                      sanitizer.bypassSecurityTrustHtml(
+                        removeInlineStyles(season.season_desc)
+                      )
+                    "
+                  ></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          @if (destinationWeatherInfo && destinationWeatherInfo.length > 0) {
+          <div class="col-lg-4 col-md-6 col-12">
+            <div class="weather-table-wrapper">
+              <div class="weather-table bg-white">
+                <div class="d-flex justify-content-end mt-2 me-2 gap-1">
+                  <span class="temp-unit">ºC</span>
+                  <p-toggleswitch
+                    (onChange)="toggleTemperatureUnit()"
+                  ></p-toggleswitch>
+                  <span class="temp-unit">ºF</span>
+                </div>
+                <table>
+                  <thead>
+                    <tr>
+                      <th>Month</th>
+                      <th>Temp (Max/Min)</th>
+                      <th>Rain mm</th>
+                      <th>Weather Opinion</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let weather of destinationWeatherInfo">
+                      <td>
+                        <span class="month-link">{{
+                          getMonthName(weather.month)
+                        }}</span>
+                      </td>
+                      <td class="temp-col">
+                        {{
+                          isCelsius
+                            ? convertToCelsius(weather.highest_temp_c) +
+                              "º/" +
+                              convertToCelsius(weather.lowest_temp_c) +
+                              "º"
+                            : convertToFahrenheit(weather.highest_temp_f) +
+                              "º/" +
+                              convertToFahrenheit(weather.lowest_temp_f) +
+                              "º"
+                        }}
+                      </td>
+                      <td class="rain-col">N/A</td>
+                      <td class="opinion-col">
+                        <i [ngClass]="getWeatherOpinionIcon(weather.month)"></i>
+                        {{ getSeasonTypeForMonth(weather.month) }}
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+          }
+        </div>
+      </div>
+      <!-- Placeholder tabs for other sections -->
+      <div class="tab-pane fade" id="things" role="tabpanel">
+        <span
+          class="page-content m-0"
+          [innerHTML]="trustedThingsToDoHtml"
+        ></span>
+        <div class="desilistcard">
+          <div
+            class="destination-card"
+            *ngFor="let thing of destinationThingsToDoInfo"
+          >
+            <div class="destination-image">
+              <img
+                [src]="
+                  'https://control.theinfinitytravel.com/assets/images/top-destinations/destination/things-to-do/' +
+                  thing.imagename
+                "
+                [alt]="thing.title"
+              />
+            </div>
+            <div class="destination-content">
+              <h3>{{ thing.title }}</h3>
+              <p
+                [innerHTML]="
+                  sanitizer.bypassSecurityTrustHtml(thing.description)
+                "
+              ></p>
+              <div class="last-updated">
+                Last Update:
+                {{ getFormattedDate(thing.modified_date || thing.create_date) }}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="tab-pane fade" id="hotels" role="tabpanel">
+        <div class="faq-wrapper">
+          <div class="accordion" id="faqAccordion">
+            <div
+              class="accordion-item"
+              *ngFor="let category of hotelCategories; let i = index"
+            >
+              <h2 class="accordion-header" [attr.id]="'faqHeading' + i">
+                <button
+                  class="accordion-button collapsed"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  [attr.data-bs-target]="'#faqCollapse' + i"
+                  aria-expanded="false"
+                  [attr.aria-controls]="'faqCollapse' + i"
+                  data-bs-parent="#faqAccordion"
+                >
+                  {{ category }} STAR HOTELS
+                </button>
+              </h2>
+              <div
+                class="accordion-collapse collapse"
+                [attr.id]="'faqCollapse' + i"
+                [attr.aria-labelledby]="'faqHeading' + i"
+                data-bs-parent="#faqAccordion"
+              >
+                <div class="accordion-body">
+                  <p-progress-spinner
+                    strokeWidth="6"
+                    fill="transparent"
+                    animationDuration=".5s"
+                    [style]="{ width: '40px', height: '40px' }"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="tab-pane fade" id="visit" role="tabpanel">
+        <div class="row">
+          <div class="col-lg-8 col-md-6 col-12">
+            <span
+              class="page-content m-0"
+              [innerHTML]="trustedWhenToVisitHtml"
+            ></span>
+            <div class="accordion season-accordion" id="seasonAccordion01">
+              <div
+                class="accordion-item"
+                *ngFor="let season of destinationSeasonDetails; let i = index"
+              >
+                <h2 class="accordion-header" [id]="'heading' + i">
+                  <button
+                    class="accordion-button"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    [attr.data-bs-target]="'#collapse' + i"
+                    [class.collapsed]="i !== 0"
+                    [attr.aria-expanded]="i === 0"
+                  >
+                    <span
+                      class="season-label"
+                      [ngClass]="{
+                        'label-green': season.season_type === 'Peak Season',
+                        'label-blue': season.season_type === 'Moderate Season',
+                        'label-orange': season.season_type === 'Off-season'
+                      }"
+                      >{{
+                        getMonthRange(season.from_month, season.to_month)
+                      }}</span
+                    >
+                    <span class="season-subtext"
+                      >Is {{ season.season_type }}</span
+                    >
+                  </button>
+                </h2>
+                <div
+                  [id]="'collapse' + i"
+                  class="accordion-collapse collapse"
+                  [class.show]="i === 0"
+                  data-bs-parent="#seasonAccordion01"
+                >
+                  <div
+                    class="accordion-body"
+                    [innerHTML]="
+                      sanitizer.bypassSecurityTrustHtml(
+                        removeInlineStyles(season.season_desc)
+                      )
+                    "
+                  ></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          @if (destinationWeatherInfo && destinationWeatherInfo.length > 0) {
+          <div class="col-lg-4 col-md-6 col-12">
+            <div class="weather-table-wrapper">
+              <div class="weather-table bg-white">
+                <div class="d-flex justify-content-end mt-2 me-2 gap-1">
+                  <span class="temp-unit">ºC</span>
+                  <p-toggleswitch
+                    (onChange)="toggleTemperatureUnit()"
+                  ></p-toggleswitch>
+                  <span class="temp-unit">ºF</span>
+                </div>
+                <table>
+                  <thead>
+                    <tr>
+                      <th>Month</th>
+                      <th>Temp (Max/Min)</th>
+                      <th>Rain mm</th>
+                      <th>Weather Opinion</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let weather of destinationWeatherInfo">
+                      <td>
+                        <span class="month-link">{{
+                          getMonthName(weather.month)
+                        }}</span>
+                      </td>
+                      <td class="temp-col">
+                        {{
+                          isCelsius
+                            ? convertToCelsius(weather.highest_temp_c) +
+                              "º/" +
+                              convertToCelsius(weather.lowest_temp_c) +
+                              "º"
+                            : convertToFahrenheit(weather.highest_temp_f) +
+                              "º/" +
+                              convertToFahrenheit(weather.lowest_temp_f) +
+                              "º"
+                        }}
+                      </td>
+                      <td class="rain-col">N/A</td>
+                      <td class="opinion-col">
+                        <i [ngClass]="getWeatherOpinionIcon(weather.month)"></i>
+                        {{ getSeasonTypeForMonth(weather.month) }}
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+          }
+        </div>
+      </div>
+      <div class="tab-pane fade" id="map" role="tabpanel">
+        <div class="mapsec">
+          <agm-map
+            [latitude]="this.lat"
+            [longitude]="this.lng"
+            style="width: 100%; height: 450px"
+            frameborder="0"
+            scrolling="no"
+            id="gmap_canvas"
+            marginheight="0"
+            marginwidth="0"
+          >
+            <agm-marker
+              [latitude]="this.lat"
+              [longitude]="this.lng"
+            ></agm-marker>
+          </agm-map>
+          <div class="locationname">
+            <i class="fa-solid fa-location-dot"></i>New York City, USA
+          </div>
+        </div>
+      </div>
+      <div class="tab-pane fade" id="photos" role="tabpanel">
+        <div class="gallery-container">
+          <div class="thumbnail-grid">
+            <div *ngFor="let image of images">
+              <p-image
+                [src]="image.itemImageSrc"
+                [alt]="image.alt"
+                width="300"
+                [preview]="true"
+              ></p-image>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="tab-pane fade" id="support" role="tabpanel">
+        <div class="booking-cta-banner">
+          <div class="ctatex">
+            <img
+              src="assets/images/global-vacation-hotsport/ctatex.png"
+              alt=""
+            />
+          </div>
+          <div class="booking-cta-text">
+            <h2>MAKE EASY BOOKINGS HAPPEN NOW</h2>
+            <p>
+              Your travel experts are here to make each trip of yours more
+              memorable and exciting
+            </p>
+            <a href="tel:{{ getData?.phoneNumber }}" class="booking-cta-button">
+              <i class="fas fa-phone-volume"></i>{{ getData?.phoneNumber }}
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cmn-gap">
+  <div class="container container-xxl">
+    <div class="page-content m-0">
+      <div class="top-destination-wrapper pt-0" *ngIf="flightData?.length">
+        <h2 class="title">
+          <strong>Top</strong>
+          <span class="highlight"> Destinations</span>
+        </h2>
+        <div class="destination-table-wrap table-responsive c-scrollbar">
+          <table class="destination-table">
+            <tbody>
+              <tr *ngFor="let row of flightData">
+                <td
+                  *ngFor="let route of row"
+                  [class.current-destination-cell]="route?.slug === currentSlug"
+                >
+                  <ng-container
+                    *ngIf="route?.slug !== currentSlug; else disabledLink"
+                  >
+                    <a
+                      class="destination-link"
+                      [routerLink]="['/top-destinations', route?.slug]"
+                      (click)="onDestinationClick(route)"
+                    >
+                      {{ route.name | titlecase }}
+                    </a>
+                  </ng-container>
+                  <ng-template #disabledLink>
+                    <span class="current-destination">{{
+                      route.name | titlecase
+                    }}</span>
+                  </ng-template>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      
+      </div>
+    </div>
+  </div>
+</section>
+
+<!--=========== Contact ==============-->

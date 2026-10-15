@@ -1,0 +1,493 @@
+<!--=========== Banner Section Start  ==============-->
+<section class="inf-hero-section" [ngStyle]="{'background-image': 'url(' + backgroundImageUrl + ')'}">
+  <div class="container">
+    <div class="row justify-content-end align-items-center">
+      <div class="col-xl-6 col-lg-8 col-md-9">
+        <div class="inf-hero-content">
+          <h1 [innerHTML]="headerText"></h1>
+          <p>{{subHeaderText}}</p>
+        </div>
+
+        <div class="inf-call-widget">
+          <h2>Purchase Best <span>Deals</span></h2>
+          <form name="inf-call-form" action="#" method="post" novalidate [formGroup]="contactForm">
+            <div class="form-row">
+              <div class="row g-2 g-lg-3">
+                <div class="col-md-6">
+                  <input type="text" name="sub_name" placeholder="Your Name" class="form-control" required
+                    formControlName="name" [class.is-invalid]="isInvalid('name')" />
+                  <div *ngIf="isInvalid('name')" class="text-danger">Name is required.</div>
+                </div>
+                <div class="col-md-6">
+                  <div class="wrapper">
+                    <ngx-intl-tel-input [cssClass]="'form-control'" [preferredCountries]="preferredCountries"
+                      [enableAutoCountrySelect]="true" [enablePlaceholder]="true" [searchCountryFlag]="true"
+                      [searchCountryField]="[
+          SearchCountryField.Iso2,
+          SearchCountryField.Name
+        ]" [selectFirstCountry]="false" [selectedCountryISO]="CountryISO.UnitedStates" [maxLength]="15"
+                      [phoneValidation]="true" [separateDialCode]="separateDialCode"
+                      [numberFormat]="PhoneNumberFormat.National" name="phone" formControlName="phone"
+                      [class.is-invalid]="isInvalid('phone')">
+                    </ngx-intl-tel-input>
+                  </div>
+                  <div *ngIf="isInvalid('phone')" class="text-danger">Phone number is required.</div>
+                  <div *ngIf="contactForm.get('phone')?.errors?.['invalidPhoneLength']" class="text-danger">
+                    Please enter a valid phone number (6–15 digits).
+                  </div>
+                </div>
+              </div>
+              <button type="submit" class="banner-form-submit-btn" (click)="submitContactForm()">Get a Call</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<div class="container container-xxl py-3" style="background-color: #bfbfbf1f;"><app-cruises-tab></app-cruises-tab></div>
+
+<section class="travel-best cmn-gap pb-0 d-none">
+  <div class="container container-xxl">
+    <div class="common-slider-container d-flex align-items-center justify-content-between">
+      <!-- @for (feature of travelFeatures; track $index) {
+      <div class="">
+        <div class="travel-feature-card">
+          <div class="travel-feature-card-wrap flex-column">
+            <div
+              class="travel-feature-card-icon-box travel-feature-card-orange-icon"
+            >
+              <i [class]="feature.icon" alt="" class="feico" ></i>
+            </div>
+            <div class="travel-feature-card-content-box">
+              <h4 class="travel-feature-card-title">{{ feature.title }}</h4>
+              <p class="travel-feature-card-desc">{{ feature.description }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      } -->
+    </div>
+  </div>
+</section>
+
+<!--=========== Contact ==============-->
+<section class="policy-content">
+  @if (flightData) {
+  <div class="container container-xxl">
+    <div class="page-content">
+
+      <span [innerHTML]="trustedHtml"></span>
+
+      <section>
+        <div class="container container-xxl">
+          <div class="callbg mt-4 mb-5">
+            <div class="row align-items-center">
+              <div class="col-lg-6 col-xs-12">
+                <div class="lt-text-bestdeal">
+                  <p class="callerhead">You Dream it, We’ll Guide it! Call to Speak with Our Travel Partner:</p>
+                </div>
+              </div>
+              <div class="col-lg-6 col-xs-12">
+                <div class="phone">
+                  <h2 class="text-white"><b><i class="fa fa-volume-control-phone"></i> <a class="text-white"
+                        href="tel:{{getData?.phoneNumber}}">{{getData?.phoneNumber}}</a></b></h2>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- Top Destinations -->
+      <div class="container container-xxl">
+
+        <div class="top-destination-wrapper" *ngIf="flightData?.length">
+          <h2 class="title">
+            <strong>Top</strong>
+            <span class="highlight"> Cruise</span>
+          </h2>
+
+          <div class="destination-card-grid">
+            <div *ngFor="let row of flightData" class="row mb-4">
+              <div *ngFor="let route of row" class="col-md-6 col-lg-4 mb-3" (click)="onDestinationClick(route)">
+                <div class="card cruise-card h-100">
+                  <div class="position-relative">
+                    <img [src]="route.image || 'assets/images/default-cruise.jpg'" class="card-img-top"
+                      alt="{{ route.name }}" />
+                    <img *ngIf="route.logo" [src]="route.logo" class="cruise-logo" alt="{{ route.name }} Logo" />
+                  </div>
+                  <div class="card-body">
+                    <h5 class="card-title">{{ route.name }}</h5>
+                    <p class="card-text">
+                      {{ route.description || 'Explore beautiful cruise routes worldwide.' }}
+                    </p>
+                    <button class="btn btn-primary">
+                      View Cruise
+                      <i class="bi bi-arrow-right"></i>
+                    </button>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
+
+
+
+      <!-- FAQs -->
+      <div class="faq-wrapper">
+        <h2 class="title">
+          <strong>Frequently<span class="highlight"> Asked </span>Questions</strong>
+        </h2>
+        <div class="accordion" id="faqAccordion">
+          @for (faq of parsedFaq; track $index ;let i = $index) {
+          <div class="accordion-item">
+            <h2 class="accordion-header" [attr.id]="'faqHeading' + i">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                [attr.data-bs-target]="'#faqCollapse' + i" aria-expanded="false"
+                [attr.aria-controls]="'faqCollapse' + i">
+                {{ faq.question }}
+              </button>
+            </h2>
+            <div class="accordion-collapse collapse" [attr.id]="'faqCollapse' + i"
+              [attr.aria-labelledby]="'faqHeading' + i" data-bs-parent="#faqAccordion">
+              <div class="accordion-body">
+                {{ faq.answers }}
+              </div>
+            </div>
+          </div>
+          }
+        </div>
+      </div>
+    </div>
+  </div>
+  }
+
+
+  <!-- <div class="container container-xxl">
+    <div class="page-content">
+      <h1>Find Cheap Flights from New York to Los Angeles</h1>
+
+      <p>
+        Swap those subway rides with palm drives with our cheap New York to Los
+        Angeles flights. Welcome to the City of Angels, where the film industry
+        thrives, and you get to be a part of that culture for a few days.
+        Infinity Travels makes your dreams come true by offering the best
+        flights at competitive rates so you can enjoy the West Coast sun or seal
+        a deal in Beverly Hills.
+      </p>
+      <p>
+        With us, you’ll be introduced to some unbeatable deals you won’t find
+        elsewhere. Plus, our 24/7 support, flexible ticket options, and
+        one-on-one service will make the entire NYC to LAX flight booking
+        stress-free. Booking at the last minute or months early? It doesn’t
+        matter, as booking with us is simple and cost-efficient.
+      </p>
+
+      <h4>Airlines Flying from New York to Los Angeles</h4>
+      <p>
+        If you are after flexibility and total comfort on your New York (NYC) to
+        Los Angeles (LAX) flight, then you’ll find many top US airlines offering
+        nonstop as well as connecting flights between the two cities. It gives
+        options to all kinds of travelers to book flights according to their
+        budget and needs. So no matter whether you’re a business traveler or
+        vacationer, you can find
+        <a href="">business class flight tickets</a> and other fare classes,
+        plus in-flight amenities, and frequent departures.
+      </p>
+
+      <h5>
+        Top US Airlines Running Regular Flights from NYC to the L.A. Route:
+      </h5>
+      <ul>
+        <li>American Airlines</li>
+        <li>JetBlue</li>
+        <li>United Airlines</li>
+        <li>Delta Air Lines</li>
+        <li>Alaska Airlines</li>
+        <li>Southwest Airlines (via connections)</li>
+      </ul>
+
+      <h4>Flight Duration & Distance</h4>
+      <p>
+        Wondering how long it will take on your New York to Los Angeles flight
+        won’t help. You must be aware of the time taken on the flight so you can
+        plan your day and itinerary better. Do you agree? It’ll take you 6 hours
+        to get to L.A., but it could be longer due to factors like boarding and
+        taxiing. Since it’s a domestic flight, you won’t have to bear the pain
+        of customers and board your flight a bit quicker.
+      </p>
+
+      <h5>Key Flight Info from NYC to L.A:</h5>
+      <ul>
+        <li>Average flight duration: 6 hours nonstop</li>
+        <li>New York to Los Angeles distance: ~2,475 miles</li>
+        <li>Nonstop and connecting flights are both available</li>
+        <li>Take off from either JFK, EWR, or LGA to arrive at LAX</li>
+      </ul>
+
+      <h4>Best Time to Book a New York to Los Angeles Flight</h4>
+      <p>
+        The earlier you get your hands on a New York to Los Angeles flight
+        ticket, the better it’ll be if you’re someone who wants to save big on
+        their flights. Even though last-minute flight deals are present, they’re
+        not guaranteed, and you might get stuck with higher prices. We don’t
+        wish that for anyone, and therefore, recommend that you book an ideal
+        duration.
+      </p>
+
+      <h5>Timings to Book your L.A. Flight for Better Pricing:</h5>
+      <ul>
+        <li>
+          You can find the best airfares for an L.A. flight some 1 to 3 months
+          before
+        </li>
+        <li>Book in January or February for the cheapest fares</li>
+        <li>Peak summer and holiday seasons are not great for saving</li>
+        <li>
+          Fare alerts and price tracking tools are really handy to track fare
+          drops
+        </li>
+      </ul>
+
+      <h4>How to book flights from New York to Los Angeles?</h4>
+      <p>
+        Don’t worry, unlike most flight booking platforms, Infinity Travels
+        treats you with a quick, secure, and stress-free booking process. You
+        can tell us if you want budget deals or luxury
+        <a href="">first class flight tickets</a> , according to your travel
+        needs, and we’ll help you find the right New York to Los Angeles flight
+        - fast. If you need quick assistance, just give Infinity Travels a call
+        at <a href="" type="tell">+1 (800) 645-3851 </a> - we’re here to help
+        24/7.
+      </p>
+
+      <h5>Simple Steps to Grab Your Coast-to-Coast Ticket:</h5>
+      <ul>
+        <li>Go to Infinity Travels’ flight search bar</li>
+        <li>
+          Enter your trip details like departure and arrival airports, dates,
+          and number of travelers
+        </li>
+        <li>Instantly get a look at the top deals from various airlines</li>
+        <li>You can filter by airline, price, duration, and class</li>
+        <li>
+          Click on View Deal and add baggage, insurance, hotels, and car rentals
+          in one go
+        </li>
+        <li>
+          Enter your passenger details and give your email to receive the
+          booking
+        </li>
+        <li>
+          Once done, pay for the flight at checkout, completely safe and secure
+        </li>
+        <li>Get instant confirmation via the email provided</li>
+      </ul>
+
+      <h4>Tips to Find Cheap Flights from New York to Los Angeles</h4>
+      <p>
+        You need some sort of a strategy if you want to save money on your NYC
+        to Los Angeles flights. Thankfully, we have just the tips for you,
+        whether you’re flying solo or booking a <a href="">group flight"></a>.
+        Note these tips down so next time you’re about to book a flight, they’ll
+        be readily available.
+      </p>
+
+      <h5>Smart Ways to Find Cheap NYC–L.A. Flights:</h5>
+      <ul>
+        <li>Try flying midweek for cheaper flight prices</li>
+        <li>
+          Secure your flight early or get a red-eye flight at the last minute
+        </li>
+        <li>
+          Analyze different airports to select the one with the cheapest fares
+        </li>
+        <li>Bundle your flight with accommodation and car rentals</li>
+        <li>Sign up for fare alerts on our platform and catch fare drops</li>
+        <li>Use your rewards or airline credit card points</li>
+        <li>Clear cookies or use incognito when searching for flights</li>
+        <li>
+          Airlines offer last-minute first-class upgrades, so look out for them
+        </li>
+      </ul>
+      <h4>Major Airports in New York & Los Angeles</h4>
+      <p>
+        As there are multiple departure and arrival points in both cities, you
+        can choose whatever works for you. But when you’re booking
+        <strong>New York to Los Angeles flights</strong>, airport, airline, and
+        location must be kept in mind as they significantly affect the cost. NYC
+        to LAX is a domestic route, but the airports also serve many
+        international flights — perfect if you’re planning a vacation soon.
+      </p>
+
+      <h5>NYC Airports:</h5>
+      <ul>
+        <li>John F. Kennedy International (JFK)</li>
+        <li>Newark Liberty International (EWR)</li>
+        <li>LaGuardia Airport (LGA)</li>
+      </ul>
+
+      <h5>Los Angeles Airports:</h5>
+      <ul>
+        <li>Los Angeles International Airport (LAX)</li>
+        <li>Hollywood Burbank Airport (BUR)</li>
+        <li>Long Beach Airport (LGB)</li>
+      </ul>
+
+      <h4>
+        Why Book Your New York to Los Angeles Flight With Infinity Travels?
+      </h4>
+      <p>
+        We make it super easy to book the best fare for your NY to Los Angeles
+        flight — minus all the stress and overpaying. With a dedicated team
+        working around the clock, <strong>Infinity Travels</strong> is all about
+        smoother, more affordable experiences. That’s why our customers keep
+        coming back!
+      </p>
+
+      <h5>Here’s why booking with us makes a difference:</h5>
+      <ul>
+        <li>
+          <strong>24/7 Support:</strong> Call us anytime for help with bookings
+          or changes.
+        </li>
+        <li>
+          <strong>Exclusive Deals:</strong> Grab NYC to LAX offers available
+          only through Infinity Travels.
+        </li>
+        <li>
+          <strong>Price Guarantee:</strong> Found a lower price? We’ll match it
+          — no hidden fees.
+        </li>
+        <li>
+          <strong>Custom Add-ons:</strong> Easily include hotels, baggage,
+          insurance, or cars in your itinerary.
+        </li>
+        <li>
+          <strong>Fare Alerts:</strong> Be the first to know about fare drops
+          and save instantly.
+        </li>
+        <li>
+          <strong>Flexible Changes:</strong> Adjust your flight plans with ease,
+          thanks to our flexible policies.
+        </li>
+        <li>
+          <strong>Secure Booking:</strong> Safe, encrypted payments and reliable
+          transactions from start to finish.
+        </li>
+      </ul>
+
+      <div class="top-destination-wrapper">
+        <h2 class="title">
+          <strong>Top</strong> <span class="highlight"> Destinations</span>
+        </h2>
+
+        <table class="destination-table">
+          <tbody>
+            @for (row of destinationRows; track $index) {
+            <tr>
+              @for (destination of row; track $index) {
+              <td>
+                {{ destination }}
+              </td>
+              }
+            </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+
+
+      <div class="faq-wrapper">
+        <h2 class="title">
+          <strong>Frequently  <span class="highlight">Asked</span> Questions</strong>
+        </h2>
+        <div class="accordion ltc-accordion" id="ltcAccordion">
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="services">
+              <button
+                class="accordion-button collapsed"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#servicesOne"
+                aria-expanded="false"
+                aria-controls="servicesOne"
+              >
+                What services do you offer?
+              </button>
+            </h2>
+            <div
+              id="servicesOne"
+              class="accordion-collapse collapse"
+              aria-labelledby="faqOne"
+              data-bs-parent="#ltcAccordion"
+            >
+              <div class="accordion-body">
+                We offer complete UI/UX design, web development, and product
+                design system implementation for startups and enterprise
+                clients.
+              </div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="faqTwo">
+              <button
+                class="accordion-button collapsed"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#servicesTwo"
+                aria-expanded="false"
+                aria-controls="servicesTwo"
+              >
+                Do you provide support after delivery?
+              </button>
+            </h2>
+            <div
+              id="servicesTwo"
+              class="accordion-collapse collapse"
+              aria-labelledby="faqTwo"
+              data-bs-parent="#ltcAccordion"
+            >
+              <div class="accordion-body">
+                Yes, we offer ongoing support and maintenance services to ensure
+                your product remains up-to-date and fully functional.
+              </div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="faqThree">
+              <button
+                class="accordion-button collapsed"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#servicesThree"
+                aria-expanded="false"
+                aria-controls="servicesThree"
+              >
+                What is your pricing model?
+              </button>
+            </h2>
+            <div
+              id="servicesThree"
+              class="accordion-collapse collapse"
+              aria-labelledby="faqThree"
+              data-bs-parent="#ltcAccordion"
+            >
+              <div class="accordion-body">
+                We offer project-based, hourly, and retainer pricing options
+                based on your project needs and scope.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div> -->
+</section>
+<!--=========== Contact ==============-->

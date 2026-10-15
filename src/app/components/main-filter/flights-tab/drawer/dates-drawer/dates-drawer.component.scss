@@ -1,0 +1,517 @@
+/* ================= Calendar wrapper (scrollable) ================= */
+.calendar-wrapper {
+  // max-height: calc(100vh - 331px);
+  max-height: calc(100vh - 303px);
+  overflow-y: auto;
+  padding: 0px 12px 16px;
+  -webkit-overflow-scrolling: touch;
+  position: relative;
+  z-index: 10;
+  -webkit-overflow-scrolling: touch;
+  touch-action: manipulation;
+}
+
+/* iOS */
+@supports (-webkit-touch-callout: none) {
+  .calendar-wrapper {
+    max-height: calc(100vh - 331px);
+  }
+}
+
+/* Android */
+.calendar-wrapper.android {
+  max-height: calc(100vh - 316px);
+}
+
+
+/* Scrollbar styles */
+.calendar-wrapper::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+.calendar-wrapper::-webkit-scrollbar-track {
+  background: #e9ebf8;
+  border-radius: 6px;
+}
+
+.calendar-wrapper::-webkit-scrollbar-thumb {
+  background-color: rgba(var(--main-color), 1);
+  border-radius: 6px;
+  border: 2px solid #e9ebf8;
+}
+
+.calendar-wrapper::-webkit-scrollbar-thumb:hover {
+  background-color: #a0a0a0;
+}
+
+.calendar-wrapper::-webkit-scrollbar-corner {
+  background: #e9ebf8;
+}
+
+/* ================= Grid of months ================= */
+.months-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* Individual month box */
+.month {
+  width: 100%;
+  border: 1px solid #0a0a0a;
+  border-radius: 5px;
+  padding: 15px;
+}
+
+.month-title {
+  text-align: left;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 28px;
+  letter-spacing: 0.35px;
+  color: rgba(var(--main-color), 1);
+  margin-bottom: 33px;
+}
+
+.days-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 8px 0px;
+  overflow: hidden;
+}
+.day,
+.day-placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 35px;
+  height: 35px;
+  font-size: 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  color: rgba(var(--main-color), 1);
+  font-weight: 500;
+  line-height: 100%;
+  transition: all 0.2s ease;
+  user-select: none;
+  pointer-events: auto;
+}
+
+.day-placeholder {
+  visibility: hidden;
+}
+
+/* ================= Day styles ================= */
+
+/* Today's date */
+.day.today {
+  background-color: #faf2ee !important;
+  color: #000;
+  border: 1px solid rgba(var(--main-color), 1) !important;
+  border-radius: 4px !important;
+  margin: 0 3px;
+}
+
+/* Past dates */
+.day.past {
+  color: #b9b9b9;
+  background-color: transparent;
+  cursor: not-allowed;
+  pointer-events: none;
+  border: none;
+}
+
+/* Selected / hover */
+.day.selected {
+  background-color: #ffe7e5;
+  color: rgba(var(--main-color), 1);
+  font-weight: 500;
+}
+
+.day:hover:not(.past) {
+  background-color: rgba(var(--main-color), 1);
+  color: #fff;
+  box-shadow: none;
+}
+
+.day.selected:not(.start-range):not(.end-range):not(.past):not(.today) {
+  background-color: #ffe7e5;
+  border-radius: 0px;
+  color: rgba(var(--main-color), 1);
+  box-shadow: -2.5vw 0 0 #ffe7e5, 2.5vw 0 0 #ffe7e5;
+}
+.day.selected.single-mode:not(.start-range):not(.end-range):not(.past):not(
+    .today
+  ) {
+  background-color: rgba(var(--main-color), 1);
+  border-radius: 4px;
+  color: #fff;
+  box-shadow: none;
+}
+
+.day.start-range,
+.day.end-range {
+  background-color: rgba(var(--main-color), 1) !important;
+  color: #fff !important;
+  position: relative;
+}
+
+/* ================= Bottom fixed Apply button ================= */
+.date-pickr-btn-wrap {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 20;
+  // padding: 16px 16px 58px;
+  padding: 16px 16px 80px;
+  background: linear-gradient(
+    to bottom,
+    rgba(245, 235, 238, 0) 6%,
+    rgba(245, 235, 238, 0.74) 34%,
+    rgba(245, 235, 238, 0.74) 100%
+  );
+  -webkit-backdrop-filter: blur(25px);
+  backdrop-filter: blur(25px);
+  border-radius: 10px 10px 0 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+
+
+/* iOS */
+@supports (-webkit-touch-callout: none) {
+  .date-pickr-btn-wrap {
+    padding-bottom: calc(20px + 47px);
+  }
+}
+
+/* Android */
+.date-pickr-btn-wrap.android {
+  padding-bottom: calc(20px + 42px);
+}
+
+/* Apply button */
+.btn-date-pickr {
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 20px;
+  color: #6e6e6e;
+  width: 100%;
+  height: 48px;
+  border-radius: 4px;
+  background-color: #b9b9b9;
+  border: 1px solid #b9b9b9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  transition: background-color 0.4s ease, color 0.4s ease;
+  pointer-events: none;
+}
+.btn-date-pickr.active{
+  pointer-events: auto !important;
+}
+.day,
+.btn-date-pickr {
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+.btn-date-pickr.active {
+  background-color: rgba(var(--main-color), 1);
+  border-color: rgba(var(--main-color), 1);
+  color: #fff;
+  box-shadow: 0 2px 10px rgba(28, 28, 28, 0.25);
+}
+
+.btn-date-pickr.active:hover {
+  background-color: rgba(var(--main-color), 1);
+  border-color: rgba(var(--main-color), 1);
+  color: #ffffff;
+}
+.btn-date-pickr.active:focus {
+  background-color: #bf5013;
+  border-color: #bf5013;
+  color: #fff;
+}
+
+.btn-date-pickr:hover:not(.active) {
+  background-color: #d0d0d0;
+}
+
+/* Optional gradient overlay */
+.gradient-rectangle-box-date {
+  position: absolute;
+  width: 91%;
+  height: 343px;
+  top: 0.48px;
+  left: 26.89px;
+  background: linear-gradient(
+    to right,
+    rgba(124, 155, 90, 0.7) 100%,
+    rgba(247, 247, 246, 0) 0%
+  );
+  mix-blend-mode: color;
+  backdrop-filter: blur(150px);
+  -webkit-backdrop-filter: blur(150px);
+  z-index: -5;
+  display: block;
+}
+.datepickr-title {
+  font-weight: 600;
+  font-style: normal;
+  font-size: 20px;
+  line-height: 28px;
+  letter-spacing: 0.35px;
+  color: rgba(var(--main-color), 1);
+  // padding: 42px 16px 21px;
+  padding: 26px 11px 21px;
+}
+@media (min-width: 375px) {
+  .day.selected:not(.start-range):not(.end-range):not(.past):not(.today) {
+    box-shadow: -3.2vw 0 0 #ffe7e5, 3.2vw 0 0 #ffe7e5;
+  }
+  .calendar-wrapper {
+    padding: 0px 18px 16px;
+  }
+  .datepickr-title {
+    padding: 35px 17px 21px;
+  }
+}
+@media (min-width: 414px) {
+  .day.selected:not(.start-range):not(.end-range):not(.past):not(.today) {
+    box-shadow: -4.3vw 0 0 #ffe7e5, 4.3vw 0 0 #ffe7e5;
+  }
+}
+@media (min-width: 768px) {
+  .day.selected:not(.start-range):not(.end-range):not(.past):not(.today) {
+    box-shadow: none;
+  }
+}
+
+/* Add a style that only applies the hover effect to non-touch devices */
+@media (hover: hover) and (pointer: fine) {
+  .day:hover:not(.past) {
+    background-color: rgba(var(--main-color), 1);
+    color: #fff;
+    box-shadow: none;
+  }
+}
+/* ==========================================
+   DESKTOP CALENDAR – EXACT AS SCREENSHOT
+===========================================*/
+@media (min-width: 992px) {
+  .desktop-date-container {
+    // width: 720px;
+    // border: 1px solid #dcdcdc;
+    // border-radius: 8px;
+    // background: #fff;
+    // padding: 10px 0;
+  }
+
+  /* Header Navigation */
+  .desktop-header {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    // padding: 12px 25px;
+    // border-bottom: 1px solid #efefef;
+    font-size: 20px;
+    font-weight: 600;
+    position: absolute;
+    right: 16px;
+    // top: 24px;
+    top: 9px;
+    z-index: 1;
+  }
+
+  .nav-btn {
+    border: none;
+    background: none;
+    padding: 0px;
+    color: #000;
+    transition: 0.2s;
+  }
+
+  .nav-btn:hover {
+    color: rgba(var(--main-color), 1);
+  }
+
+  .header-title {
+    font-size: 20px;
+    font-weight: 600;
+    text-align: center;
+    flex: 1;
+  }
+
+  .desktop-calendar-wrapper {
+    // padding: 16px 4px;
+    padding: 0px;
+    max-height: 480px;
+    overflow-y: auto;
+  }
+
+  /* Two months side-by-side */
+  .desktop-months-grid {
+    display: flex;
+    // gap: 30px;
+  }
+
+  .month {
+    width: 50%;
+    position: relative;
+    border: none;
+    border-radius: 0px;
+    padding: 0px;
+  }
+
+  /* Vertical divider */
+  .month:first-child {
+    border-right: 1px solid #000;
+    // padding-right: 20px;
+  }
+  .month:nth-child(1) {
+    padding-right: 15px;
+  }
+  .month:nth-child(2) {
+    padding-left: 15px;
+  }
+
+  .month:last-child {
+    // padding-left: 20px;
+  }
+
+  .month-title {
+    margin-bottom: 5px;
+    color: #000;
+  }
+
+  /* Weekday header (Sun – Sat) */
+  .days-header {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    margin-bottom: 10px;
+  }
+  .days-header span {
+    color: #2e3543;
+    text-align: center;
+    font-family: Inter, sans-serif;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+  }
+  .days-header span:nth-child(6) {
+    color: rgba(var(--second-color), 1);;
+  }
+  .days-header span:nth-child(7) {
+    color: rgba(var(--second-color), 1);;
+  }
+  /* Days grid */
+  .days-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    // gap: 11px;
+    gap: 11px;
+  }
+  
+  .days-grid .day {
+    color: #000;
+    text-align: center;
+    font-family: Inter, sans-serif;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+  }
+  .day,
+  .day-placeholder {
+    width: 35px;
+    height: 35px;
+    border-radius: 6px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .day-placeholder {
+    visibility: hidden;
+  }
+
+  /* Past dates */
+  .day.past {
+    color: #ccc !important;
+    pointer-events: none;
+  }
+
+  /* Today circle border */
+  .day.today {
+    border: 1px solid rgba(var(--main-color), 1);
+    background: #fff7f2;
+    border-radius: 6px;
+  }
+
+  /* Range selected */
+  .day.selected:not(.start-range):not(.end-range) {
+    background: #ffe3d1;
+  }
+
+  .day.start-range,
+  .day.end-range {
+    background: rgba(var(--main-color), 1);
+    color: #fff;
+    border-radius: 6px;
+  }
+  .day.selected:not(.start-range):not(.end-range):not(.past):not(.today) {
+    box-shadow: -1vw 0 0 #ffe7e5, 1vw 0 0 #ffe7e5;
+  }
+  /* Hover effect */
+  .day:hover:not(.past) {
+    background: rgba(var(--main-color), 1) !important;
+    color: rgba(var(--white-color), 1);
+  }
+}
+
+/* --- IMPORTANT FIX FOR ANGULAR CLICK ---*/
+.day,
+.day * {
+  pointer-events: auto !important;
+}
+
+.day::before,
+.day::after {
+  pointer-events: none !important;
+}
+
+
+
+::ng-deep .weekdays-container{
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 8px 0px;
+    overflow: hidden;
+    padding: 0px 34px 10px;
+    align-items: center;
+    justify-content: center;
+}
+
+::ng-deep span.weekdays-day {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 35px;
+    height: 35px;
+}
+
+
+::ng-deep{
+  p-dialog .p-dialog-mask{
+    z-index: 99991 !important;
+  }
+}

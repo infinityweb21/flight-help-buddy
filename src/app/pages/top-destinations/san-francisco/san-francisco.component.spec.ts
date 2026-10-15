@@ -1,0 +1,23 @@
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+
+import { SanFranciscoComponent } from './san-francisco.component';
+
+describe('SanFranciscoComponent', () => {
+  let component: SanFranciscoComponent;
+  let fixture: ComponentFixture<SanFranciscoComponent>;
+
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
+      imports: [SanFranciscoComponent]
+    })
+    .compileComponents();
+
+    fixture = TestBed.createComponent(SanFranciscoComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+  });
+
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
+});

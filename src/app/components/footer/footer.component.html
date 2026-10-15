@@ -1,0 +1,146 @@
+<footer class="tp-footer-links common-section pb-0">
+    <div class="container">
+
+        <!-- CALL BAND -->
+        <div class="tp-footer-cta">
+            <div class="tp-footer-cta-text">
+                <span class="tp-footer-cta-icon"><i class="fa-solid fa-headset"></i></span>
+                <div>
+                    <h4>Need help with your booking?</h4>
+                    <p>Our travel experts are always there to find you the best fares.</p>
+                </div>
+            </div>
+            <a href="tel:{{ getData?.phoneNumber }}" class="tp-footer-cta-btn">
+                <i class="fa-solid fa-phone"></i>{{ getData?.phoneNumber }}
+            </a>
+        </div>
+
+        <div class="row">
+            <!-- Quick Links -->
+            <div class="col-lg col-md-4 col-6">
+                <div class="tp-footer-widget">
+                    <h5>Quick Links</h5>
+                    <ul>
+                        <li><a routerLink="/home">Home</a></li>
+                        <li><a routerLink="/flight">Flights</a></li>
+                        <li><a routerLink="/hotel">Hotels</a></li>
+                        <!-- <li><a routerLink="/cruise">Cruises</a></li> -->
+                        <!-- <li><a routerLink="/car">Cars</a></li> -->
+                        <li><a routerLink="/airlines">Airlines</a></li>
+                        <li><a routerLink="/packages">Packages</a></li>
+                        <!-- <li><a routerLink="/tickets">Ticket</a></li> -->
+                        <li><a routerLink="/faq">FAQs</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Company -->
+            <div class="col-lg col-md-4 col-6">
+                <div class="tp-footer-widget">
+                    <h5>Company</h5>
+                    <ul>
+                        <li><a routerLink="/about">About Us</a></li>
+                        <li><a routerLink="/contact">Contact Us</a></li>
+                        <li><a routerLink="/baggage">Baggage Fees</a></li>
+                        <li><a routerLink="/international-route">International Route</a></li>
+                        <li><a routerLink="/flights-destination">Flights Destination</a></li>
+                        <li><a routerLink="/airlines-routes">Airlines Routes</a></li>
+                        <li><a routerLink="/airlines-destination">Airlines Destination</a></li>
+                        <li><a routerLink="/travel-agency">Travel Agency</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Legal -->
+            <div class="col-lg col-md-4 col-6">
+                <div class="tp-footer-widget">
+                    <h5>Legal</h5>
+                    <ul>
+                        <li><a routerLink="/terms-and-conditions">Terms & Conditions</a></li>
+                        <li><a routerLink="/privacy-policy">Privacy Policy</a></li>
+                        <li><a routerLink="/cookie-policy">Cookie Policy</a></li>
+                        <li><a routerLink="/cancellation-policy">Cancellation Policy</a></li>
+                        <li><a routerLink="/our-service-fees">Our Service Fees</a></li>
+                        <li><a routerLink="/post-ticketing-fees">Post Ticketing Fees</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Member -->
+            <div class="col-lg col-md-4 col-12">
+                <div class="tp-footer-widget">
+                    <h5>Member</h5>
+                    <ul class="member-list">
+                        <li>
+                            <a href="assets/images/footer/certificate/infinity-iata-2025.pdf" target="_blank"
+                                rel="nofollow noopener">
+                                <img src="assets/images/footer/certificateimg/iata-logo.svg" alt="IATA Certification" />
+                            </a>
+                        </li>
+                        <li>
+                            <a href="assets/images/footer/certificate/asta.pdf" target="_blank" rel="nofollow noopener">
+                                <img src="assets/images/footer/certificateimg/american-society.png"
+                                    alt="American Society of Travel Advisors" />
+                            </a>
+                        </li>
+                        <li>
+                            <a href="assets/images/footer/certificate/cli.pdf" target="_blank" rel="nofollow noopener">
+                                <img src="assets/images/footer/certificateimg/cruise-lines-international.png"
+                                    alt="Cruise Lines International" />
+                            </a>
+                        </li>
+                        <li>
+                            <a href="assets/images/footer/certificate/pci.pdf" target="_blank" rel="nofollow noopener">
+                                <img src="assets/images/footer/certificateimg/pci-compliance.png"
+                                    alt="PCI Compliance" />
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- About -->
+            <div class="col-12">
+                <div class="text-box-a-footer">
+                    <p>
+                        {{ companyname.companyName }}, operated by Infinity Web Solutions
+                        LLC (EIN: 82-1608164), is a premier travel brand. We are an IATA
+                        certified company (Number: 05-7 1127 4) headquartered at 1876 Harvest
+                        Cir, Tustin, CA 92780-4589. We ensure that our flight services meet
+                        the highest standards as per IATA guidelines. Our additional
+                        services like hotels and cruises are sourced from leading
+                        suppliers in the industry, such as Mondee, TravelBoutiqueOnline,
+                        Trawex, Downtown, Hotelbeds and Skybird. By using our services, you
+                        agree to {{ companyname.companyName }}'s
+                        <a routerLink="/terms-and-conditions">Terms & Conditions</a> and
+                        <a routerLink="/privacy-policy">Privacy Policy</a>.
+                        Please note that all transactions are subject to
+                        <a routerLink="/our-service-fees">our service fees</a> and
+                        <a routerLink="/post-ticketing-fees">post ticketing fees</a>. For
+                        more details, check our
+                        <a routerLink="/cookie-policy">Cookie Policy</a>.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="tp-footer-bottom">
+        <div class="container">
+            <div class="row align-items-center gy-3">
+                <div class="col-lg-6 text-lg-start text-center">
+                    <p class="tp-copyright">
+                        © {{ currentYear }} {{ companyname.companyName }}. All Rights Reserved.
+                    </p>
+                </div>
+                <div class="col-lg-6 text-lg-end text-center">
+                    <ul class="tp-footer-bottom-menu">
+                        <li><a routerLink="/privacy-policy">Privacy Policy</a></li>
+                        <li><a routerLink="/terms-and-conditions">Terms & Conditions</a></li>
+                        <li><a routerLink="/cookie-policy">Cookie Policy</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>

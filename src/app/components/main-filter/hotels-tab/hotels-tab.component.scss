@@ -1,0 +1,215 @@
+@import url(../../../common-scss/search-engine.css);
+
+.c-hotel-destination-dropdown {
+  &__content {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+
+  &__title-wrap {
+    padding: 12px 12px 12px 6px;
+  }
+
+  &__title {
+    color: #b0b1be;
+    font-family: "Inter", sans-serif;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 16px;
+    margin-bottom: 0px;
+  }
+  &__items-wrap {
+    display: flex;
+    flex-direction: column;
+    list-style: none;
+    margin: 0px;
+    padding: 0px;
+  }
+
+  &__item {
+    padding: 11px 16px 17px;
+    border-bottom: 1px solid #f1f5f9;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    &:hover,
+    &:focus {
+      background-color: #ffd1b8;
+    }
+    &--label {
+      color: #b0b1be;
+      font-family: "Inter", sans-serif;
+      font-size: 14px;
+      font-style: normal;
+      font-weight: 500;
+      line-height: 18px;
+    }
+
+    &--content {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 12px;
+    }
+
+    &--icon-box {
+      width: 48px;
+      height: 48px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 8px;
+      background: rgba(242, 127, 13, 0.1);
+      color: #f27f0d;
+      aspect-ratio: 1/1;
+      svg {
+        display: flex;
+      }
+    }
+
+    &--destination {
+      display: flex;
+      flex-direction: column;
+      gap: 0px;
+      &__title {
+        color: #0f172a;
+        font-family: "Montserrat", sans-serif;
+        font-size: 15px;
+        font-style: normal;
+        font-weight: 600;
+        line-height: 22px;
+        margin-bottom: 0px;
+      }
+      &__sub-title {
+        color: #6e6e6e;
+        font-family: "Inter", sans-serif;
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 18px;
+        margin-bottom: 0px;
+      }
+    }
+  }
+}
+
+@media (min-width: 992px) {
+  .newcommon-form-content {
+    margin-top: 0px;
+  }
+  .hotel-form-label {
+    margin-bottom: 8px;
+  }
+  .serch-hotel-btn {
+    margin-top: 24px;
+  }
+  .hotel-guest-apply-btn {
+    margin-bottom: 23px;
+    box-shadow:
+      0 10px 15px -3px rgba(236, 127, 19, 0.2),
+      0 4px 6px -4px rgba(236, 127, 19, 0.2);
+    font-weight: 700;
+    line-height: 24px;
+    letter-spacing: normal;
+  }
+  .hotel-guest-dropdown {
+    &__item {
+      &--label {
+        color: #1c1c1c;
+        font-weight: 700;
+        font-family: "Montserrat", sans-serif;
+      }
+      &--count {
+        font-size: 16px;
+        line-height: 24px;
+      }
+      &--btn {
+        width: 32px;
+        height: 32px;
+      }
+      &--children {
+        gap: 24px;
+      }
+    }
+  }
+  .c-hotel-destination-dropdown {
+    &__title-wrap {
+      padding: 12px;
+      border-bottom: 1px solid #f1f5f9;
+    }
+    &__item {
+      padding: 11px 16px;
+      border-bottom: 1px solid #f1f5f9;
+      &:nth-last-child {
+        border-bottom: none;
+      }
+      &--destination {
+        gap: 3;
+        &__title {
+          font-size: 16px;
+          line-height: 16px;
+          font-weight: 700;
+        }
+      }
+    }
+  }
+  // .c-hotel-destination-dropdown__items-wrap {
+  //   overflow-y: auto;
+  //   max-height: 400px !important;
+  //   /* Firefox */
+  //   // scrollbar-width: thin;
+  //   // scrollbar-color: #d9d9d9 transparent;
+
+  //   /* Webkit (Chrome, Edge, Safari) */
+  //   &::-webkit-scrollbar {
+  //     width: 2px;
+  //   }
+
+  //   &::-webkit-scrollbar-track {
+  //     background: transparent;
+  //     margin: 8px 0;
+  //   }
+
+  //   &::-webkit-scrollbar-thumb {
+  //     background: #d9d9d9;
+  //     border-radius: 8px;
+  //     min-height: 150px;
+  //   }
+
+  //   &::-webkit-scrollbar-thumb:hover {
+  //     background: #bfbfbf;
+  //   }
+  // }
+}
+
+::ng-deep {
+  @media (min-width: 992px) {
+    .p-autocomplete-option {
+      &:last-child {
+        .c-hotel-destination-dropdown__item {
+          border-bottom: none;
+          border-bottom-left-radius: 12px;
+        }
+      }
+    }
+  }
+}
+
+
+.fsr-trav-scroll{
+  max-height: 200px !important;
+  overflow-y: auto !important;
+}
+
+
+::ng-deep
+  .hotel-destination-list
+  .p-autocomplete-option:not(.p-autocomplete-option-selected):not(
+    .p-disabled
+  ).p-focus,
+::ng-deep .hotel-destination-list .p-autocomplete-option {
+  background: #fff5ea00 !important;
+  padding: 0 !important;
+}

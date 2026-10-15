@@ -1,0 +1,545 @@
+/* ===== bksum = booking-summary (unique BEM prefix) ===== */
+
+.bksum {
+  margin: 0 auto;
+  background-color: #fffcf6;
+  border: 1px solid #ff9d00;
+  border-radius: 12px;
+  display: flex;
+  align-items: stretch;
+  padding: 14px 12px;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+/* ---- Hotel block ---- */
+
+.bksum__hotel {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  flex: 1 1 260px;
+  min-width: 240px;
+}
+
+.bksum__hotel-img {
+  position: relative;
+  width: 85px;
+  height: 85px;
+  border-radius: 8px;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.bksum__hotel-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.bksum__hotel-stars {
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  background-color: #14202e;
+  color: rgba(var(--white-color), 1);
+  font-size: 10px;
+  font-weight: 700;
+  padding: 1px 5px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.bksum__hotel-stars i {
+  font-size: 8px;
+  color: #ffcc33;
+}
+
+.bksum__hotel-info {
+  min-width: 0;
+}
+
+.bksum__hotel-name {
+  font-size: 15px;
+  font-weight: 700;
+  color: #14202e;
+  margin: 0 0 2px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.bksum__hotel-dates {
+  font-size: 12px;
+  color: #6b7684;
+  margin: 0 0 6px;
+}
+
+.bksum__hotel-actions {
+  font-size: 12.5px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.bksum__link {
+  color: #0d6efd;
+  text-decoration: none;
+  font-weight: 600;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  font-size: 12.5px;
+  font-family: inherit;
+  position: relative;
+}
+
+.bksum__link:hover,
+.bksum__link:focus-visible {
+  text-decoration: underline;
+  outline: none;
+}
+
+.bksum__actions-sep {
+  color: #d4d8de;
+}
+
+/* ---- Plus divider between hotel and flights ---- */
+
+.bksum__plus {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #b3b9c1;
+  font-size: 16px;
+  flex: 0 0 auto;
+  padding: 0 2px;
+}
+
+/* ---- Vertical rule dividers ---- */
+
+.bksum__rule {
+  width: 1px;
+  background-color: #e5e8ec;
+  flex: 0 0 auto;
+  align-self: stretch;
+}
+
+/* ---- Flights block ---- */
+
+.bksum__flights {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 8px;
+  flex: 2 1 220px;
+  min-width: 200px;
+}
+
+.bksum__flight-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  position: relative;
+}
+
+.bksum__flight-toggle {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  background: none;
+  border: none;
+  padding: 2px 4px;
+  margin: -2px -4px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 700;
+  color: #14202e;
+  width: 78px;
+  flex-shrink: 0;
+}
+
+.bksum__flight-toggle:hover,
+.bksum__flight-toggle:focus-visible {
+  background-color: #f2f4f7;
+  outline: none;
+}
+
+.bksum__flight-toggle i {
+  font-size: 11px;
+  color: #6b7684;
+  transition: transform 0.15s ease;
+}
+
+.bksum__flight-toggle[aria-expanded="true"] i {
+  transform: rotate(180deg);
+}
+
+.bksum__flight-times {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex: 1;
+  min-width: 0;
+}
+
+.bksum__flight-time {
+  text-align: center;
+  flex-shrink: 0;
+}
+
+.bksum__flight-time-value {
+  font-size: 14px;
+  font-weight: 700;
+  color: #14202e;
+  white-space: nowrap;
+}
+
+.bksum__flight-time-code {
+  font-size: 11.5px;
+  color: #6b7684;
+}
+
+.bksum__flight-duration {
+  flex: 1;
+  text-align: center;
+  min-width: 60px;
+}
+
+.bksum__flight-duration-line {
+  border-top: 1px solid #c7ccd2;
+  margin-bottom: 3px;
+}
+
+.bksum__flight-duration-text {
+  font-size: 11px;
+  color: #6b7684;
+  white-space: nowrap;
+}
+
+.bksum__flight-stop {
+  font-size: 11px;
+  color: #6b7684;
+  white-space: nowrap;
+}
+
+/* ---- Tooltip popovers (shared) ---- */
+
+.bksum__tip {
+  position: absolute;
+  top: calc(100% + 10px);
+  left: 0;
+  z-index: 40;
+  width: 280px;
+  max-width: 86vw;
+  background-color: rgba(var(--white-color), 1);
+  border: 1px solid #e5e8ec;
+  border-radius: 10px;
+  box-shadow: 0 14px 32px rgba(20, 30, 50, 0.18);
+  padding: 14px 16px;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(4px);
+  transition:
+    opacity 0.15s ease,
+    transform 0.15s ease,
+    visibility 0.15s;
+}
+
+.bksum__tip.is-open {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.bksum__tip::before {
+  content: "";
+  position: absolute;
+  top: -6px;
+  left: 22px;
+  width: 12px;
+  height: 12px;
+  background-color: rgba(var(--white-color), 1);
+  border-left: 1px solid #e5e8ec;
+  border-top: 1px solid #e5e8ec;
+  transform: rotate(45deg);
+}
+
+.bksum__tip-title {
+  font-size: 14.5px;
+  font-weight: 700;
+  color: #14202e;
+  margin: 0 0 8px;
+}
+
+.bksum__tip-row {
+  font-size: 12.5px;
+  color: #4a5563;
+  margin-bottom: 4px;
+}
+
+.bksum__tip-row strong {
+  color: #14202e;
+  font-weight: 700;
+}
+
+.bksum__tip-link {
+  color: #0d6efd;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 12.5px;
+}
+
+.bksum__tip-link:hover {
+  text-decoration: underline;
+}
+
+/* Hotel tooltip specifics */
+.bksum__tip--hotel .bksum__tip-sub {
+  font-size: 12.5px;
+  color: #6b7684;
+  margin-bottom: 10px;
+}
+
+/* Flight tooltip specifics */
+.bksum__tip--flight .bksum__tip-flightrow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 10px 0;
+}
+
+.bksum__tip-flighttime {
+  text-align: center;
+}
+
+.bksum__tip-flighttime-value {
+  font-size: 15px;
+  font-weight: 700;
+  color: #14202e;
+}
+
+.bksum__tip-flighttime-code {
+  font-size: 11px;
+  color: #6b7684;
+}
+
+.bksum__tip-flightline {
+  flex: 1;
+  text-align: center;
+}
+
+.bksum__tip-flightline-rule {
+  border-top: 1px solid #c7ccd2;
+  margin-bottom: 3px;
+}
+
+.bksum__tip-flightline-text {
+  font-size: 11px;
+  color: #6b7684;
+}
+
+.bksum__tip-airline {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12.5px;
+  color: #3c4753;
+  padding-top: 10px;
+  border-top: 1px solid #eef0f3;
+}
+
+.bksum__tip-airline-logo {
+  background-color: #fdfeff;
+  color: rgba(var(--white-color), 1);
+  font-size: 10px;
+  font-weight: 700;
+  padding: 3px 6px;
+  border-radius: 4px;
+}
+.bksum__tip-airline-logo img {
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+}
+/* ---- Price + CTA block ---- */
+
+.bksum__price {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex: 0 0 auto;
+  text-align: right;
+  padding-left: 4px;
+}
+
+.bksum__price-amount {
+  font-size: 18px;
+  font-weight: 800;
+  color: #14202e;
+  white-space: nowrap;
+}
+
+.bksum__price-amount sup {
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.bksum__price-per {
+  font-size: 12.5px;
+  font-weight: 500;
+  color: #6b7684;
+}
+
+.bksum__price-note {
+  font-size: 11.5px;
+  color: #8994a1;
+  margin-top: 2px;
+  white-space: nowrap;
+}
+
+.bksum__price-total {
+  font-size: 12px;
+  color: #4a5563;
+  margin-top: 4px;
+  white-space: nowrap;
+}
+
+.bksum__price-total strong {
+  color: #14202e;
+}
+
+.bksum__cta {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+}
+
+.bksum__btn {
+  background-color: #ff5722;
+  color: rgba(var(--white-color), 1);
+  border: none;
+  border-radius: 8px;
+  padding: 12px 22px;
+  font-size: 14.5px;
+  font-weight: 700;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  white-space: nowrap;
+  transition: background-color 0.15s ease;
+}
+
+.bksum__btn:hover,
+.bksum__btn:focus-visible {
+  background-color: #e64a19;
+  outline: none;
+}
+
+.bksum__btn i {
+  font-size: 12px;
+}
+
+/* ================= Responsive ================= */
+
+@media (max-width: 991px) {
+  .bksum__rule {
+    display: none;
+  }
+  .bksum__price {
+    align-items: flex-end;
+  }
+}
+
+@media (max-width: 767px) {
+  .bksum {
+    flex-direction: column;
+    padding: 14px;
+  }
+
+  .bksum__hotel {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    flex: 1 1 83px;
+    min-width: auto;
+    flex-wrap: wrap;
+  }
+  .bksum__flights {
+    flex: auto;
+    min-width: auto;
+  }
+  .bksum__plus {
+    display: none;
+  }
+
+  .bksum__flights {
+    order: 2;
+    width: 100%;
+  }
+
+  .bksum__flight-times {
+    gap: 8px;
+  }
+
+  .bksum__price {
+    order: 3;
+    /* flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    text-align: left; */
+    width: 100%;
+    padding-top: 10px;
+    border-top: 1px solid #eef0f3;
+  }
+  .df-wrapper {
+    padding: 0 4px;
+  }
+  .bksum__cta {
+    order: 4;
+    width: 100%;
+  }
+
+  .bksum__btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .bksum__link .bksum__tip {
+    width: 230px;
+    left: auto;
+    right: 0;
+  }
+  .bksum__link .bksum__tip::before {
+    left: auto;
+    right: 22px;
+  }
+  .bksum__hotel-name {
+    white-space: normal;
+  }
+}
+
+@media (max-width: 420px) {
+  .bksum__flight-toggle {
+    width: 64px;
+  }
+  .bksum__flight-time-value {
+    font-size: 13px;
+  }
+  .bksum__flight-duration-text,
+  .bksum__flight-stop {
+    font-size: 10px;
+  }
+}
+
+.common-deatils-section {
+  padding: 10px 0px;
+  overflow: visible;
+}

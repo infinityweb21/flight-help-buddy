@@ -1,0 +1,564 @@
+
+.crusise-not-found-section{
+  padding: 60px 0px;
+}
+/* ─── CARD ───────────────────────────────────────────────────── */
+
+.cruisenotfoundcard {
+  background: var(--clr-card-bg);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-card);
+  overflow: hidden;
+  width: 100%;
+  display: grid;
+  grid-template-rows: 1fr auto;
+  padding: 11px;
+}
+
+/* TOP SECTION: image left + form right */
+.card__top {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+/* ─── LEFT: IMAGE PANEL ──────────────────────────────────────── */
+.card__image-panel {
+  position: relative;
+  min-height: 300px;
+  background: var(--clr-card-bg);
+  overflow: visible;
+}
+
+/* Cruise ship image */
+.ship-img {
+  position: absolute;
+  bottom: 0;
+  left: 0%;
+  width: 110%;
+  height: auto;
+  object-fit: cover;
+  object-position: center top;
+}
+
+/* Floating badge (top-left of card) */
+.cruisetopbadge {
+  position: absolute;
+  top: 21px;
+  right: 36px;
+  background: var(--clr-badge-bg);
+  border-radius: 30px;
+  padding: 12px 15px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  box-shadow: 0 1px 4px 0px rgba(0, 0, 0, 0.25);
+  z-index: 2;
+}
+.badge__icon {
+  width: 34px;
+  height: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.badge__text strong {
+  display: block;
+  font-size: 14px;
+  font-weight: bold;
+  font-family: var(--font-display);
+  color: var(--clr-heading);
+  line-height: 1.2;
+  margin-bottom: 4px;
+}
+.badge__text span {
+  font-size: 12px;
+  color: var(--clr-body);
+  display: inline-block;
+  line-height: 1.3;
+  font-family: var(--font-body);
+}
+
+/* ─── RIGHT: FORM PANEL ──────────────────────────────────────── */
+.card__form-panel {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  position: relative;
+}
+
+/* Inventory pill */
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  background: var(--clr-pill-bg);
+  border: 1px solid var(--clr-primary);
+  border-radius: 50px;
+  padding: 5px 20px 5px 20px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--clr-primary);
+  width: fit-content;
+  font-family: var(--font-display);
+  animation: pulse-pill 2.5s ease-in-out infinite;
+}
+.pill i {
+  color: var(--clr-primary);
+  font-size: 14px;
+}
+@keyframes pulse-pill {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(249, 115, 22, 0.2);
+  }
+  50% {
+    box-shadow: 0 0 0 5px rgba(249, 115, 22, 0);
+  }
+}
+
+/* Heading */
+.form-heading {
+  font-family: var(--font-display);
+  font-size: 18px;
+  font-weight: 800;
+  color: var(--clr-heading);
+  line-height: 1.2;
+}
+.form-heading span {
+  border-bottom: 3px solid var(--clr-underline);
+  padding-bottom: 5px;
+}
+
+/* Subtext */
+.form-sub {
+  font-size: 12px;
+  color: var(--clr-body);
+  line-height: 16px;
+  margin-bottom: 0px;
+}
+
+/* ─── AVAILABILITY STRIP ─────────────────────────────────────── */
+.availability-strip {
+  background: #fff;
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid var(--clr-primary);
+}
+
+.availability-strip__track {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0;
+}
+
+/* Each cruise availability slot */
+.availability-slot {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex: 1;
+  justify-content: center;
+}
+
+/* Vertical divider between slots */
+.availability-slot + .availability-slot {
+  border-left: 1px solid var(--clr-primary);
+}
+
+/* Calendar icon box */
+.availability-slot__icon-box {
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--clr-primary);
+  font-size: 16px;
+  flex-shrink: 0;
+  position: relative;
+}
+
+/* Calendar top tabs */
+
+.availability-slot__meta {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.25;
+}
+
+.availability-slot__title {
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--clr-heading);
+  white-space: nowrap;
+  margin-bottom: 5px;
+  font-family: var(--font-body);
+}
+
+.availability-slot__label {
+  font-size: 10px;
+  font-weight: 600;
+  font-family: var(--font-body);
+  color: var(--clr-body);
+  white-space: nowrap;
+}
+/* Input fields */
+.input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.forminput-wrap {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid var(--clr-input-border);
+  border-radius: var(--radius-input) !important;
+  padding: 10px 16px 10px 12px;
+  transition:
+    border-color 0.2s,
+    box-shadow 0.2s;
+  background: #fff;
+}
+.forminput-wrap:focus-within {
+  border-color: var(--clr-input-focus);
+  box-shadow: 0 0 0 3px rgba(249, 115, 22, 0.12);
+}
+.forminput-wrap i {
+  color: var(--clr-placeholder);
+  font-size: 20px;
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.forminput-wrap input {
+  border: none;
+  outline: none;
+  font-family: var(--font-display);
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--clr-heading);
+  width: 100%;
+  background: transparent;
+}
+.forminput-wrap input::placeholder {
+  color: var(--clr-heading);
+}
+
+/* CTA buttons */
+.btn-row {
+  display: flex;
+  gap: 10px;
+}
+.btncommon {
+  flex: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border: none;
+  border-radius: var(--radius-btn);
+  font-family: var(--font-display);
+  font-size: 12px;
+  font-weight: bold;
+  cursor: pointer;
+  padding: 20px 30px;
+  transition:
+    transform 0.15s,
+    box-shadow 0.15s,
+    background 0.15s;
+}
+.btn--primary {
+  background: var(--clr-primary);
+  color: #fff;
+  box-shadow: var(--shadow-btn);
+}
+.btn--primary:hover {
+  background: #970747;
+  box-shadow: 0 6px 22px rgba(249, 115, 22, 0.4);
+}
+.btn--secondary {
+  background: var(--clr-secondary);
+  color: #fff;
+}
+.btn--secondary:hover {
+  background: var(--clr-secondary-hover);
+}
+
+/* ─── FOOTER BAR ─────────────────────────────────────────────── */
+.card__footer {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  background: #fff;
+  border-top: 1px solid var(--clr-footer-line);
+  border-radius: 0 0 var(--radius-card) var(--radius-card);
+}
+.footer-item {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 14px 10px;
+}
+.footer-item:after {
+  content: "";
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 2px;
+  height: 40%;
+  background: var(--clr-footer-icon);
+}
+.footer-item:last-child:after {
+  display: none;
+}
+.footer-item__icon {
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.footer-item__text strong {
+  display: block;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: normal;
+  color: var(--clr-heading);
+}
+.footer-item__text span {
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--clr-body);
+}
+
+/* ─── RESPONSIVE ─────────────────────────────────────────────── */
+@media (max-width: 1366px) {
+  .btncommon {
+    padding: 20px;
+  }
+}
+
+@media (max-width: 991px) {
+  .card__top {
+    grid-template-columns: 1fr;
+  }
+  .card__image-panel {
+    min-height: 240px;
+  }
+  .card__image-panel img.ship-img {
+    width: 100%;
+    position: relative;
+    top: 0;
+    left: 0;
+  }
+  .cruisetopbadge {
+    top: 12px;
+    right: 12px;
+  }
+  .card__form-panel {
+    padding: 22px 20px 20px;
+  }
+  .card__footer {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .footer-item:nth-child(2):after {
+    display: none;
+  }
+  .footer-item:nth-child(3) {
+    border-top: 1px solid var(--clr-footer-line);
+  }
+  .footer-item:nth-child(4) {
+    border-right: none;
+    border-top: 1px solid var(--clr-footer-line);
+  }
+  .crusise-not-found-section {
+    padding: 50px 0px;
+  }
+}
+@media (max-width: 575px) {
+  .card__form-panel {
+    padding: 15px 0px;
+  }
+  .btn-row {
+    flex-direction: column;
+  }
+  .form-heading {
+    font-size: 1rem;
+  }
+  .availability-slot {
+    flex: 0 0 calc(48%);
+    justify-content: flex-start;
+    padding: 6px 0;
+  }
+  .availability-strip__track {
+    align-items: start;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  .availability-slot + .availability-slot {
+    border-left: none;
+  }
+  .availability-slot:nth-child(1),
+  .availability-slot:nth-child(2) {
+    border-bottom: 1px solid var(--clr-primary);
+  }
+  .pill {
+    font-size: 12px;
+  }
+   .crusise-not-found-section {
+    padding: 30px 0px;
+  }
+}
+@media (max-width: 320px) {
+  .card__image-panel {
+    min-height: 270px;
+  }
+  .availability-slot {
+    flex: 0 0 calc(100%);
+  }
+  .card__form-panel {
+    gap: 10px;
+  }
+  .cruisetopbadge {
+    border-radius: 10px;
+  }
+  .card__image-panel img.ship-img {
+    height: 100%;
+  }
+  .footer-item{
+    justify-content: flex-start;
+  }
+  .footer-item:nth-child(2):after, .footer-item:nth-child(3):after, .footer-item:nth-child(1):after {
+    display: none;
+  }
+  .footer-item:nth-child(3), .footer-item:nth-child(2) {
+    border-top: 1px solid var(--clr-footer-line);
+  }
+  .footer-item:nth-child(4) {
+    border-top: 1px solid var(--clr-footer-line);
+  }    .card__footer {
+        grid-template-columns: repeat(1, 1fr);
+    }
+}
+/* Normal */
+.forminput-wrap {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid var(--clr-input-border);
+  border-radius: var(--radius-input);
+  padding: 10px 16px 10px 12px;
+  background: #fff;
+  transition: all .2s ease;
+}
+
+/* Invalid */
+.forminput-wrap.is-invalid {
+  border-color: #dc3545 !important;
+  box-shadow: 0 0 0 3px rgba(220, 53, 69, 0.12);
+}
+
+/* Icon */
+.forminput-wrap.is-invalid i {
+  color: #dc3545;
+}
+
+/* Input */
+.forminput-wrap.is-invalid input {
+  color: #dc3545;
+}
+
+/* Focus state */
+.forminput-wrap.is-invalid:focus-within {
+  border-color: #dc3545 !important;
+  box-shadow: 0 0 0 0.25rem rgba(220, 53, 69, 0.25);
+}
+
+/* Error text */
+.invalid-feedback {
+  display: block;
+  color: #dc3545;
+  font-size: 13px;
+  margin-top: 4px;
+  font-weight: 500;
+}
+
+
+.textarea-wrapper {
+    position: relative;
+    width: 100%;
+}
+
+.textarea-icon {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    color: #6c757d;
+    font-size: 12px;
+    z-index: 1;
+}
+
+.textarea-wrapper textarea {
+    width: 100%;
+    min-height: 50px;
+    max-height: 50px;
+    padding: 0;
+    padding-left: 33px;
+    border: 1px solid #dddddd00;
+    outline: none;
+    resize: vertical;
+    transition: all 0.3s ease;
+    background: #ffffff00;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--clr-heading);
+}
+
+.textarea-wrapper textarea:focus {
+    border-color: #0d6dfd00;
+    box-shadow: 0 0 0 4px rgba(13, 109, 253, 0);
+}
+
+.textarea-wrapper textarea::placeholder {
+    color: var(--clr-heading);
+}
+
+
+
+// NewCss
+.availability-slot__meta .availability-slot__title {
+	margin-bottom: 0;
+}
+@media (max-width: 767px) {
+  .availability-slot__title {
+  font-size: 11px;
+  }
+  .availability-slot {
+    flex: 0 0 100%;
+    justify-content: flex-start;
+    padding: 10px 0;
+  }
+  .availability-strip__track{
+	align-items: start;
+	gap: 0px;
+	flex-wrap: wrap;
+}
+    .availability-slot:nth-child(1),
+  .availability-slot:nth-child(2) {
+    border-bottom: 1px solid var(--clr-primary);
+  }
+    .availability-slot + .availability-slot {
+    border-left: none;
+  }
+}

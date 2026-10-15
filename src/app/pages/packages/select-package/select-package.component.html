@@ -1,0 +1,1460 @@
+<section class="common-new-section">
+  <div class="container-xxl container">
+    <div class="row justify-content-between mb-2">
+      <div class="col-lg-8 col-md-6 col-12">
+        <div class="textboxsec">
+          <div class="d-flex gap-2">
+            <p-button
+              icon="pi pi-arrow-left"
+              [rounded]="true"
+              severity="secondary"
+              [outlined]="true"
+              routerLink="/package-booking-details"
+            />
+
+            <h1 class="text-title">Your Whole Trip, One Easy Plan</h1>
+          </div>
+
+          <p class="text-para">Book flights, hotels, and cruises in minutes.</p>
+
+          <!-- Back Button -->
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-6 col-12">
+        <!-- <div class="checbtsec">
+          <a class="Explorebtn" (click)="gotoCheckout()">Go To Checkout</a>
+        </div> -->
+      </div>
+    </div>
+    @if (geFlightDetails.length > 0 || properties.length > 0 ||
+    cruiseDetailsList.length > 0) {
+    <div class="row">
+      <div class="col-12">
+        <ul class="nav nav-tabs custom-tabs" id="myTab" role="tablist">
+          @if(geFlightDetails.length>0){
+
+          <li class="nav-item" role="presentation">
+            <button
+              class="nav-link active"
+              id="flight-tab"
+              data-bs-toggle="tab"
+              data-bs-target="#flight"
+              type="button"
+              role="tab"
+            >
+              <i class="fa-solid fa-plane"></i> Flight
+            </button>
+          </li>
+          } @if(properties.length>0){
+          <li class="nav-item" role="presentation">
+            <button
+              class="nav-link"
+              id="hotel-tab"
+              data-bs-toggle="tab"
+              data-bs-target="#hotel"
+              type="button"
+              role="tab"
+            >
+              <i class="fa-solid fa-hotel"></i> Hotel
+            </button>
+          </li>
+          } @if(cruiseDetailsList.length>0){
+          <li class="nav-item" role="presentation">
+            <button
+              class="nav-link"
+              id="cruise-tab"
+              data-bs-toggle="tab"
+              data-bs-target="#cruise"
+              type="button"
+              role="tab"
+            >
+              <i class="fa-solid fa-ship"></i> Cruise
+            </button>
+          </li>
+          }
+        </ul>
+
+        <div class="tab-content border-0 listtabsec" id="myTabContent">
+          @if(geFlightDetails.length>0){
+          <div class="tab-pane fade show active" id="flight" role="tabpanel">
+            <!-- <div class="custom-radio-btn">
+                            <div>
+                                <input type="radio" id="roundTrip" name="trip" checked>
+                                <label for="roundTrip">Roundtrip</label>
+                            </div>
+                            <div>
+                                <input type="radio" id="oneWay" name="trip">
+                                <label for="oneWay">One Way</label>
+                            </div>
+                            <div>
+                                <input type="radio" id="multiCity" name="trip">
+                                <label for="multiCity">Multi-City</label>
+                            </div>
+                        </div> -->
+            @for (flightInfo of geFlightDetails; track $index) {
+            <div
+              class="flightandprice-box"
+              [ngClass]="{ choosecardactive: selectedFlight === flightInfo }"
+              (click)="selectFlight(flightInfo)"
+            >
+              <div class="flightandprice" style="position: relative">
+                <div class="row align-items-center">
+                  <div class="col-lg-9 col-md-9">
+                    <div
+                      class="flightandprice-row"
+                      *ngFor="let seg of flightInfo?.Citypairs; let i = index"
+                    >
+                      <div class="row align-items-center">
+                        <div class="col-md-2 text-center">
+                          <div class="mobflexsec">
+                            <div class="mobsecnewdesk">
+                              <img
+                                [src]="
+                                  imageUrl +
+                                  (seg?.FlightSegment)[0]?.FlightLogoName
+                                "
+                                alt="logo1"
+                                class="img-fluid newicoimg"
+                              />
+                              <h6 class="text-capitalize">
+                                {{
+                                  (seg?.FlightSegment)[0]?.MarketingAirlineName
+                                }}
+                              </h6>
+                            </div>
+                            <div class="mobhowonly mobnewshow">
+                              @for (f of flightInfo.Fares; track $index) {
+                              <h3>
+                                @if (f?.PaxType=='ADT'){ ${{
+                                  getTotalPrice(f?.CCMax) | number : "1.2-2"
+                                }}}
+                              </h3>
+                              }
+                              <div class="filterbtn">
+                                <a
+                                  href=""
+                                  type="button"
+                                  data-bs-toggle="offcanvas"
+                            
+                                  aria-controls="offcanvasRight"
+                                   data-bs-toggle="modal"
+                        data-bs-target="#customModal"
+                                >
+                                  <i class="fa-solid fa-angle-right"></i>
+                                </a>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-md-7">
+                          <div class="flight-ticket-card">
+                            <div class="flight-ticket-section">
+                              <div class="flight-ticket-time">
+                                {{
+                                  (seg?.FlightSegment)[0]?.DepartureDateTime
+                                    | date : "HH:mm"
+                                }}
+                              </div>
+                              <div class="flight-ticket-code">
+                                {{
+                                  (seg?.FlightSegment)[0]?.DepartureLocationCode
+                                }}
+                              </div>
+                              <div class="flight-ticket-label">Depart</div>
+                              <small>{{
+                                (seg?.FlightSegment)[0]?.OriginAirportName
+                              }}</small>
+                            </div>
+                            <div class="flight-ticket-middle">
+                              <img
+                                src="assets/images/flightstartstop.png"
+                                alt="plane route"
+                              />
+                              <div class="absecmiddle">
+                                {{ seg?.NoOfStops }} stop
+                              </div>
+                              <div class="flight-ticket-duration">
+                                {{ seg?.Duration }}
+                              </div>
+                            </div>
+                            <div class="flight-ticket-section">
+                              <div class="flight-ticket-time">
+                                {{
+                                  (seg?.FlightSegment)[
+                                    seg?.FlightSegment.length - 1
+                                  ]?.ArrivalDateTime | date : "HH:mm"
+                                }}
+                              </div>
+                              <div class="flight-ticket-code">
+                                {{
+                                  (seg?.FlightSegment)[
+                                    seg?.FlightSegment.length - 1
+                                  ]?.ArrivalLocationCode
+                                }}
+                              </div>
+                              <div class="flight-ticket-label">Arrive</div>
+                              <small>{{
+                                (seg?.FlightSegment)[
+                                  seg?.FlightSegment.length - 1
+                                ]?.DestinationAirportName
+                              }}</small>
+                            </div>
+                          </div>
+                        </div>
+                        <!-- <div class="col-md-3 text-center">
+                                                    <div class="mobbtnsecnew">
+                                                        <button type="button"
+                                                            class="btn btn-outline-primary w-100 departure-btn departure-btnnew">Select
+                                                            Departure</button>
+                                                    </div>
+                                                </div> -->
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Right Section -->
+                  <div
+                    class="col-lg-3 col-md-3 text-center mt-4 mt-lg-0 deskshowonlynew"
+                    style="padding-left: 0"
+                  >
+                    <div class="rightformbox">
+                      @for (f of flightInfo.Fares; track $index) {
+                      <h3>
+                        @if (f?.PaxType=='ADT'){ ${{
+                          getTotalPrice(f?.CCMax) | number : "1.2-2"
+                        }}}
+                      </h3>
+                      }
+                      <p class="small text-muted">
+                        Price per person <br />(incl. taxes & fees)
+                      </p>
+                      <!-- <button
+                        type="button"
+                        class="btn btn-primary mb-4 w-100 select-button"
+                        data-bs-toggle="modal"
+                        data-bs-target="#customModal"
+                      >
+                        Choose Now
+                      </button> -->
+                             <a href="tel:{{ getData?.phoneNumber }}">
+                        <button
+                          type="button"
+                          class="btn btn-primary mb-4 w-100 select-button"
+                        >
+                          Call Now
+                        </button>
+                      </a>
+
+                      <a
+                        class="abbtnhideshow"
+                        class="abbtnhideshow d-block"
+                        (click)="showFlightDetails(flightInfo.ItineraryId)"
+                        >{{
+                          showDetailsMap[flightInfo.ItineraryId]
+                            ? "Hide"
+                            : "Flight Details"
+                        }}
+                        <span
+                          ><img
+                            src="assets/images/flight-details/blue-anchor.png"
+                            alt="blue-anchor" /></span
+                      ></a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              @if (showDetailsMap[flightInfo.ItineraryId]) {
+              <div class="flight-details" style="display: block">
+                <div>
+                  @if (flightInfo?.Citypairs?.length >= 1) {
+                  <div class="flight-details-rw">
+                    <h4>
+                      Depart
+                      {{
+                        ((flightInfo?.Citypairs)[0]?.FlightSegment)[0]
+                          ?.DepartureDateTime | date : "EEE, MMM dd"
+                      }}
+                    </h4>
+                    @for (flight of flightInfo?.Citypairs[0]?.FlightSegment;
+                    track $index) { @if (flight?.LayoverTime!='') {
+                    <div class="layover-wrapper">
+                      <div class="line"></div>
+                      <div class="layover-box">
+                        <span class="is--layovertxt">Layover:</span>
+                        <b>{{ flight?.LayoverTime }}</b>
+                      </div>
+                      <div class="line"></div>
+                    </div>
+                    }
+
+                    <div class="row align-items-start mb-3">
+                      <div
+                        class="col-md-3 col-4 flight-details-first-rw d-flex align-items-center"
+                      >
+                        <img
+                          [src]="imageUrl + flight?.FlightLogoName"
+                          alt="logo1"
+                          class="img-fluid imglogoflightsec"
+                        />
+                        <div class="mx-3">
+                          <h5 class="mb-0">
+                            {{ flight?.MarketingAirlineName }}
+                          </h5>
+                          <p class="mb-0">{{ flight?.AirEquipmentType }}</p>
+                          <p class="mb-0">{{ flight?.Duration }}</p>
+                        </div>
+                      </div>
+                      <div class="col-md-6 flight-details-second-rw">
+                        <div class="flight-ticket-card">
+                          <div class="flight-ticket-section">
+                            <div class="flight-ticket-time">
+                              {{
+                                flight?.DepartureDateTime | date : "EEE, MMM dd"
+                              }}
+                            </div>
+                            <div class="flight-ticket-code">
+                              {{ flight?.DepartureDateTime | date : "HH:mm" }}
+                            </div>
+                            <div class="flight-ticket-label">
+                              {{ flight?.DepartureDisplayName }},&nbsp;{{
+                                flight?.DepartureLocationCode
+                              }}
+                            </div>
+                          </div>
+                          <div class="flight-ticket-middle">
+                            <img
+                              src="assets/images/flightstartstop.png"
+                              alt="plane route"
+                            />
+                          </div>
+                          <div class="flight-ticket-section">
+                            <div class="flight-ticket-time">
+                              {{
+                                flight?.ArrivalDateTime | date : "EEE, MMM dd"
+                              }}
+                            </div>
+                            <div class="flight-ticket-code">
+                              {{ flight?.ArrivalDateTime | date : "HH:mm" }}
+                            </div>
+                            <div class="flight-ticket-label">
+                              {{ flight?.DisplayName }},&nbsp;{{
+                                flight?.ArrivalLocationCode
+                              }}
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-md-3">
+                        <div class="service">
+                          <p class="mb-1">
+                            <strong>Class Of Service:</strong>
+                            {{
+                              classMap[flight?.CabinClass] || flight?.CabinClass
+                            }}
+                            ({{ flight?.BookingClass }})
+                          </p>
+                          <!-- <p class="mb-1">
+                                <strong>Airbus:</strong> {{flight?.AirEquipmentType}}
+                              </p> -->
+                          <p class="mb-1"><strong>Meal:</strong> Meal</p>
+                          <p class="mb-1">
+                            <strong>Seat:</strong> Check-in required
+                          </p>
+                          <div
+                            class="hover-btn-card-wrapper"
+                            style="width: max-content"
+                          >
+                            <div
+                              class="icolist d-inline-flex align-items-center gap-2 position-relative cardToggleBtn"
+                            >
+                              <a>
+                                <svg
+                                  width="16"
+                                  height="16"
+                                  viewBox="0 0 16 16"
+                                  fill="none"
+                                  xmlns="http://www.w3.org/2000/svg"
+                                >
+                                  <g clip-path="url(#clip0_1156_1275)">
+                                    <path
+                                      d="M2 15.3334H0V8.00002C0 6.89736 0.897333 6.00002 2 6.00002V15.3334ZM14 6.00002V15.3334H16V8.00002C16 6.89736 15.1027 6.00002 14 6.00002ZM3.33333 5.33335C3.33333 2.76069 5.42667 0.666687 8 0.666687C10.5733 0.666687 12.6667 2.76069 12.6667 5.33335V15.3334H3.33333V5.33335ZM9.33333 9.33336H6.66667V10.6667H9.33333V9.33336ZM4.66667 6.00002H11.3333V5.33335C11.3333 3.49535 9.838 2.00002 8 2.00002C6.162 2.00002 4.66667 3.49535 4.66667 5.33335V6.00002Z"
+                                      fill="#ff6a19"
+                                    />
+                                  </g>
+                                  <defs>
+                                    <clipPath id="clip0_1156_1275">
+                                      <rect
+                                        width="16"
+                                        height="16"
+                                        fill="white"
+                                      />
+                                    </clipPath>
+                                  </defs>
+                                </svg>
+                              </a>
+                              <a>
+                                <svg
+                                  width="16"
+                                  height="16"
+                                  viewBox="0 0 16 16"
+                                  fill="none"
+                                  xmlns="http://www.w3.org/2000/svg"
+                                >
+                                  <g clip-path="url(#clip0_1156_1277)">
+                                    <path
+                                      d="M10.6667 16H5.33333C4.89428 15.9982 4.46802 15.852 4.12031 15.5839C3.77259 15.3159 3.52275 14.9408 3.40933 14.5167C3.60025 13.4379 4.16498 12.4608 5.00444 11.7568C5.8439 11.0529 6.90445 10.6671 8 10.6671C9.09555 10.6671 10.1561 11.0529 10.9956 11.7568C11.835 12.4608 12.3998 13.4379 12.5907 14.5167C12.4772 14.9408 12.2274 15.3159 11.8797 15.5839C11.532 15.852 11.1057 15.9982 10.6667 16ZM2 14V8.94933C1.40624 9.20847 0.900862 9.63502 0.545666 10.1768C0.19047 10.7186 0.00085225 11.3522 0 12L0 12.6667C0.0010395 13.4253 0.260836 14.1609 0.736472 14.7519C1.21211 15.343 1.87513 15.7541 2.616 15.9173C2.21603 15.358 2.00068 14.6877 2 14ZM14 8.94933V14C13.9993 14.6877 13.784 15.358 13.384 15.9173C14.1249 15.7541 14.7879 15.343 15.2635 14.7519C15.7392 14.1609 15.999 13.4253 16 12.6667V12C15.9991 11.3522 15.8095 10.7186 15.4543 10.1768C15.0991 9.63502 14.5938 9.20847 14 8.94933ZM12.6667 7.33333V11.5707C12.1058 10.8723 11.3953 10.3087 10.5877 9.92147C9.78 9.53422 8.89571 9.33319 8 9.33319C7.10429 9.33319 6.22001 9.53422 5.41233 9.92147C4.60466 10.3087 3.8942 10.8723 3.33333 11.5707V7.33333C3.3338 6.58193 3.51592 5.84178 3.86416 5.17595C4.2124 4.51012 4.71644 3.93834 5.33333 3.50933V2.66667C5.33333 1.95942 5.61428 1.28115 6.11438 0.781049C6.61448 0.280952 7.29276 0 8 0C8.70724 0 9.38552 0.280952 9.88562 0.781049C10.3857 1.28115 10.6667 1.95942 10.6667 2.66667V3.50933C11.2836 3.93834 11.7876 4.51012 12.1358 5.17595C12.4841 5.84178 12.6662 6.58193 12.6667 7.33333ZM6.66667 2.86667C7.53622 2.60444 8.46378 2.60444 9.33333 2.86667V2.66667C9.33333 2.31304 9.19286 1.97391 8.94281 1.72386C8.69276 1.47381 8.35362 1.33333 8 1.33333C7.64638 1.33333 7.30724 1.47381 7.05719 1.72386C6.80714 1.97391 6.66667 2.31304 6.66667 2.66667V2.86667ZM10 6.66667C10 6.48986 9.92976 6.32029 9.80474 6.19526C9.67971 6.07024 9.51014 6 9.33333 6H6.66667C6.48986 6 6.32029 6.07024 6.19526 6.19526C6.07024 6.32029 6 6.48986 6 6.66667C6 6.84348 6.07024 7.01305 6.19526 7.13807C6.32029 7.2631 6.48986 7.33333 6.66667 7.33333H9.33333C9.51014 7.33333 9.67971 7.2631 9.80474 7.13807C9.92976 7.01305 10 6.84348 10 6.66667Z"
+                                      fill="#ff6a19"
+                                    />
+                                  </g>
+                                  <defs>
+                                    <clipPath id="clip0_1156_1277">
+                                      <rect
+                                        width="16"
+                                        height="16"
+                                        fill="white"
+                                      />
+                                    </clipPath>
+                                  </defs>
+                                </svg>
+                              </a>
+                              <a>
+                                <svg
+                                  width="16"
+                                  height="16"
+                                  viewBox="0 0 16 16"
+                                  fill="none"
+                                  xmlns="http://www.w3.org/2000/svg"
+                                >
+                                  <g clip-path="url(#clip0_1156_1279)">
+                                    <path
+                                      d="M12.6667 2.66667H11.9327C11.6227 1.14733 10.276 0 8.66667 0H7.33333C5.724 0 4.37667 1.14733 4.06733 2.66667H3.33333C1.49533 2.66667 0 4.162 0 6V12.6667C0 14.5047 1.49533 16 3.33333 16H4V6C4 5.63133 4.29867 5.33333 4.66667 5.33333C5.03467 5.33333 5.33333 5.63133 5.33333 6V16H10.6667V6C10.6667 5.63133 10.9647 5.33333 11.3333 5.33333C11.702 5.33333 12 5.63133 12 6V16H12.6667C14.5047 16 16 14.5047 16 12.6667V6C16 4.162 14.5047 2.66667 12.6667 2.66667ZM5.448 2.66667C5.72333 1.89067 6.464 1.33333 7.33333 1.33333H8.66667C9.536 1.33333 10.2767 1.89067 10.552 2.66667H5.448Z"
+                                      fill="#ff6a19"
+                                    />
+                                  </g>
+                                  <defs>
+                                    <clipPath id="clip0_1156_1279">
+                                      <rect
+                                        width="16"
+                                        height="16"
+                                        fill="white"
+                                      />
+                                    </clipPath>
+                                  </defs>
+                                </svg>
+                              </a>
+                              <div class="hover-card">
+                                <div class="hover-card-row">
+                                  <div class="label">
+                                    <i class="fas fa-briefcase"></i> Personal
+                                    Item
+                                  </div>
+                                  <div class="value">Included</div>
+                                </div>
+                                <div class="hover-card-row">
+                                  <div class="label">
+                                    <i class="fas fa-suitcase-rolling"></i>
+                                    Carry-on Bag
+                                  </div>
+                                  <div class="value">Chargeable</div>
+                                </div>
+                                <div class="hover-card-row">
+                                  <div class="label">
+                                    <i class="fas fa-suitcase"></i> Checked Bag
+                                  </div>
+                                  <div class="value">Chargeable</div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    }
+
+                    <!-- <div class="row align-items-start mb-3">
+                          <div
+                            class="col-md-3 col-4 flight-details-first-rw d-flex align-items-center"
+                          >
+                            <img
+                              src="assets/images/flag-icons/flight-icon-1.png"
+                              alt="logo1"
+                              class="img-fluid imglogoflightsec"
+                            />
+                            <div class="mx-3">
+                              <h5 class="mb-0">Air India</h5>
+                              <p class="mb-0">Flight 2727 Aircraft 32N</p>
+                              <p class="mb-0">1 stop,&nbsp;2h 35m</p>
+                            </div>
+                          </div>
+                          <div class="col-md-6 flight-details-second-rw">
+                            <div class="flight-ticket-card">
+                              <div class="flight-ticket-section">
+                                <div class="flight-ticket-time">
+                                  Mon, May 26
+                                </div>
+                                <div class="flight-ticket-code">12:00PM</div>
+                                <div class="flight-ticket-label">
+                                  New Delhi IGI, DEL
+                                </div>
+                              </div>
+                              <div class="flight-ticket-middle">
+                                <img
+                                  src="assets/images/flightstartstop.png"
+                                  alt="plane route"
+                                />
+                              </div>
+                              <div class="flight-ticket-section">
+                                <div class="flight-ticket-time">
+                                  Tue, May 27
+                                </div>
+                                <div class="flight-ticket-code">02:40PM</div>
+                                <div class="flight-ticket-label">
+                                  Kolkata, CCU
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-md-3">
+                            <div class="service">
+                              <p class="mb-1">
+                                <strong>Class Of Service:</strong> Economy (H)
+                              </p>
+                              <p class="mb-1">
+                                <strong>Airbus:</strong> A350-900
+                              </p>
+                              <p class="mb-1"><strong>Meal:</strong> Meal</p>
+                              <p class="mb-1">
+                                <strong>Seat:</strong> Check-in required
+                              </p>
+                              <div
+                                class="hover-btn-card-wrapper"
+                                style="width: max-content"
+                              >
+                                <div
+                                  class="icolist d-inline-flex align-items-center gap-2 position-relative cardToggleBtn"
+                                >
+                                  <a >
+                                    <svg
+                                      width="16"
+                                      height="16"
+                                      viewBox="0 0 16 16"
+                                      fill="none"
+                                      xmlns="http://www.w3.org/2000/svg"
+                                    >
+                                      <g clip-path="url(#clip0_1156_1275)">
+                                        <path
+                                          d="M2 15.3334H0V8.00002C0 6.89736 0.897333 6.00002 2 6.00002V15.3334ZM14 6.00002V15.3334H16V8.00002C16 6.89736 15.1027 6.00002 14 6.00002ZM3.33333 5.33335C3.33333 2.76069 5.42667 0.666687 8 0.666687C10.5733 0.666687 12.6667 2.76069 12.6667 5.33335V15.3334H3.33333V5.33335ZM9.33333 9.33336H6.66667V10.6667H9.33333V9.33336ZM4.66667 6.00002H11.3333V5.33335C11.3333 3.49535 9.838 2.00002 8 2.00002C6.162 2.00002 4.66667 3.49535 4.66667 5.33335V6.00002Z"
+                                          fill="#ff6a19"
+                                        />
+                                      </g>
+                                      <defs>
+                                        <clipPath id="clip0_1156_1275">
+                                          <rect
+                                            width="16"
+                                            height="16"
+                                            fill="white"
+                                          />
+                                        </clipPath>
+                                      </defs>
+                                    </svg>
+                                  </a>
+                                  <a >
+                                    <svg
+                                      width="16"
+                                      height="16"
+                                      viewBox="0 0 16 16"
+                                      fill="none"
+                                      xmlns="http://www.w3.org/2000/svg"
+                                    >
+                                      <g clip-path="url(#clip0_1156_1277)">
+                                        <path
+                                          d="M10.6667 16H5.33333C4.89428 15.9982 4.46802 15.852 4.12031 15.5839C3.77259 15.3159 3.52275 14.9408 3.40933 14.5167C3.60025 13.4379 4.16498 12.4608 5.00444 11.7568C5.8439 11.0529 6.90445 10.6671 8 10.6671C9.09555 10.6671 10.1561 11.0529 10.9956 11.7568C11.835 12.4608 12.3998 13.4379 12.5907 14.5167C12.4772 14.9408 12.2274 15.3159 11.8797 15.5839C11.532 15.852 11.1057 15.9982 10.6667 16ZM2 14V8.94933C1.40624 9.20847 0.900862 9.63502 0.545666 10.1768C0.19047 10.7186 0.00085225 11.3522 0 12L0 12.6667C0.0010395 13.4253 0.260836 14.1609 0.736472 14.7519C1.21211 15.343 1.87513 15.7541 2.616 15.9173C2.21603 15.358 2.00068 14.6877 2 14ZM14 8.94933V14C13.9993 14.6877 13.784 15.358 13.384 15.9173C14.1249 15.7541 14.7879 15.343 15.2635 14.7519C15.7392 14.1609 15.999 13.4253 16 12.6667V12C15.9991 11.3522 15.8095 10.7186 15.4543 10.1768C15.0991 9.63502 14.5938 9.20847 14 8.94933ZM12.6667 7.33333V11.5707C12.1058 10.8723 11.3953 10.3087 10.5877 9.92147C9.78 9.53422 8.89571 9.33319 8 9.33319C7.10429 9.33319 6.22001 9.53422 5.41233 9.92147C4.60466 10.3087 3.8942 10.8723 3.33333 11.5707V7.33333C3.3338 6.58193 3.51592 5.84178 3.86416 5.17595C4.2124 4.51012 4.71644 3.93834 5.33333 3.50933V2.66667C5.33333 1.95942 5.61428 1.28115 6.11438 0.781049C6.61448 0.280952 7.29276 0 8 0C8.70724 0 9.38552 0.280952 9.88562 0.781049C10.3857 1.28115 10.6667 1.95942 10.6667 2.66667V3.50933C11.2836 3.93834 11.7876 4.51012 12.1358 5.17595C12.4841 5.84178 12.6662 6.58193 12.6667 7.33333ZM6.66667 2.86667C7.53622 2.60444 8.46378 2.60444 9.33333 2.86667V2.66667C9.33333 2.31304 9.19286 1.97391 8.94281 1.72386C8.69276 1.47381 8.35362 1.33333 8 1.33333C7.64638 1.33333 7.30724 1.47381 7.05719 1.72386C6.80714 1.97391 6.66667 2.31304 6.66667 2.66667V2.86667ZM10 6.66667C10 6.48986 9.92976 6.32029 9.80474 6.19526C9.67971 6.07024 9.51014 6 9.33333 6H6.66667C6.48986 6 6.32029 6.07024 6.19526 6.19526C6.07024 6.32029 6 6.48986 6 6.66667C6 6.84348 6.07024 7.01305 6.19526 7.13807C6.32029 7.2631 6.48986 7.33333 6.66667 7.33333H9.33333C9.51014 7.33333 9.67971 7.2631 9.80474 7.13807C9.92976 7.01305 10 6.84348 10 6.66667Z"
+                                          fill="#ff6a19"
+                                        />
+                                      </g>
+                                      <defs>
+                                        <clipPath id="clip0_1156_1277">
+                                          <rect
+                                            width="16"
+                                            height="16"
+                                            fill="white"
+                                          />
+                                        </clipPath>
+                                      </defs>
+                                    </svg>
+                                  </a>
+                                  <a >
+                                    <svg
+                                      width="16"
+                                      height="16"
+                                      viewBox="0 0 16 16"
+                                      fill="none"
+                                      xmlns="http://www.w3.org/2000/svg"
+                                    >
+                                      <g clip-path="url(#clip0_1156_1279)">
+                                        <path
+                                          d="M12.6667 2.66667H11.9327C11.6227 1.14733 10.276 0 8.66667 0H7.33333C5.724 0 4.37667 1.14733 4.06733 2.66667H3.33333C1.49533 2.66667 0 4.162 0 6V12.6667C0 14.5047 1.49533 16 3.33333 16H4V6C4 5.63133 4.29867 5.33333 4.66667 5.33333C5.03467 5.33333 5.33333 5.63133 5.33333 6V16H10.6667V6C10.6667 5.63133 10.9647 5.33333 11.3333 5.33333C11.702 5.33333 12 5.63133 12 6V16H12.6667C14.5047 16 16 14.5047 16 12.6667V6C16 4.162 14.5047 2.66667 12.6667 2.66667ZM5.448 2.66667C5.72333 1.89067 6.464 1.33333 7.33333 1.33333H8.66667C9.536 1.33333 10.2767 1.89067 10.552 2.66667H5.448Z"
+                                          fill="#ff6a19"
+                                        />
+                                      </g>
+                                      <defs>
+                                        <clipPath id="clip0_1156_1279">
+                                          <rect
+                                            width="16"
+                                            height="16"
+                                            fill="white"
+                                          />
+                                        </clipPath>
+                                      </defs>
+                                    </svg>
+                                  </a>
+                                  <div class="hover-card">
+                                    <div class="hover-card-row">
+                                      <div class="label">
+                                        <i class="fas fa-briefcase"></i>
+                                        Personal Item
+                                      </div>
+                                      <div class="value">Included</div>
+                                    </div>
+                                    <div class="hover-card-row">
+                                      <div class="label">
+                                        <i class="fas fa-suitcase-rolling"></i>
+                                        Carry-on Bag
+                                      </div>
+                                      <div class="value">Chargeable</div>
+                                    </div>
+                                    <div class="hover-card-row">
+                                      <div class="label">
+                                        <i class="fas fa-suitcase"></i>
+                                        Checked Bag
+                                      </div>
+                                      <div class="value">Chargeable</div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div> -->
+                  </div>
+                  } @if (flightInfo?.Citypairs?.length===2) {
+                  <hr />
+                  <div class="flight-details-rw">
+                    <h4>
+                      Return
+                      {{
+                        ((flightInfo?.Citypairs)[1]?.FlightSegment)[0]
+                          ?.DepartureDateTime | date : "EEE, MMM dd"
+                      }}
+                    </h4>
+                    @for (flight of flightInfo?.Citypairs[1]?.FlightSegment;
+                    track $index) { @if (flight?.LayoverTime!='') {
+                    <div class="layover-wrapper">
+                      <div class="line"></div>
+                      <div class="layover-box">
+                        <span class="is--layovertxt">Layover:</span>
+                        <b>{{ flight?.LayoverTime }}</b>
+                      </div>
+                      <div class="line"></div>
+                    </div>
+                    }
+
+                    <div class="row align-items-start mb-3">
+                      <div
+                        class="col-md-3 col-4 flight-details-first-rw d-flex align-items-center"
+                      >
+                        <img
+                          [src]="imageUrl + flight?.FlightLogoName"
+                          alt="logo1"
+                          class="img-fluid imglogoflightsec"
+                        />
+                        <div class="mx-3">
+                          <h5 class="mb-0">
+                            {{ flight?.MarketingAirlineName }}
+                          </h5>
+                          <p class="mb-0">{{ flight?.AirEquipmentType }}</p>
+                          <p class="mb-0">{{ flight?.Duration }}</p>
+                        </div>
+                      </div>
+                      <div class="col-md-6 flight-details-second-rw">
+                        <div class="flight-ticket-card">
+                          <div class="flight-ticket-section">
+                            <div class="flight-ticket-time">
+                              {{
+                                flight?.DepartureDateTime | date : "EEE, MMM dd"
+                              }}
+                            </div>
+                            <div class="flight-ticket-code">
+                              {{ flight?.DepartureDateTime | date : "HH:mm" }}
+                            </div>
+                            <div class="flight-ticket-label">
+                              {{ flight?.DepartureDisplayName }},&nbsp;{{
+                                flight?.DepartureLocationCode
+                              }}
+                            </div>
+                          </div>
+                          <div class="flight-ticket-middle">
+                            <img
+                              src="assets/images/flightstartstop.png"
+                              alt="plane route"
+                            />
+                          </div>
+                          <div class="flight-ticket-section">
+                            <div class="flight-ticket-time">
+                              {{
+                                flight?.ArrivalDateTime | date : "EEE, MMM dd"
+                              }}
+                            </div>
+                            <div class="flight-ticket-code">
+                              {{ flight?.ArrivalDateTime | date : "HH:mm" }}
+                            </div>
+                            <div class="flight-ticket-label">
+                              {{ flight?.DisplayName }},&nbsp;{{
+                                flight?.ArrivalLocationCode
+                              }}
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-md-3">
+                        <div class="service">
+                          <p class="mb-1">
+                            <strong>Class Of Service:</strong>
+                            {{
+                              classMap[flight?.CabinClass] || flight?.CabinClass
+                            }}
+                            ({{ flight?.BookingClass }})
+                          </p>
+                          <p class="mb-1"><strong>Airbus:</strong> A350-900</p>
+                          <p class="mb-1"><strong>Meal:</strong> Meal</p>
+                          <p class="mb-1">
+                            <strong>Seat:</strong> Check-in required
+                          </p>
+                          <div
+                            class="hover-btn-card-wrapper"
+                            style="width: max-content"
+                          >
+                            <div
+                              class="icolist d-inline-flex align-items-center gap-2 position-relative cardToggleBtn"
+                            >
+                              <a>
+                                <svg
+                                  width="16"
+                                  height="16"
+                                  viewBox="0 0 16 16"
+                                  fill="none"
+                                  xmlns="http://www.w3.org/2000/svg"
+                                >
+                                  <g clip-path="url(#clip0_1156_1275)">
+                                    <path
+                                      d="M2 15.3334H0V8.00002C0 6.89736 0.897333 6.00002 2 6.00002V15.3334ZM14 6.00002V15.3334H16V8.00002C16 6.89736 15.1027 6.00002 14 6.00002ZM3.33333 5.33335C3.33333 2.76069 5.42667 0.666687 8 0.666687C10.5733 0.666687 12.6667 2.76069 12.6667 5.33335V15.3334H3.33333V5.33335ZM9.33333 9.33336H6.66667V10.6667H9.33333V9.33336ZM4.66667 6.00002H11.3333V5.33335C11.3333 3.49535 9.838 2.00002 8 2.00002C6.162 2.00002 4.66667 3.49535 4.66667 5.33335V6.00002Z"
+                                      fill="#ff6a19"
+                                    />
+                                  </g>
+                                  <defs>
+                                    <clipPath id="clip0_1156_1275">
+                                      <rect
+                                        width="16"
+                                        height="16"
+                                        fill="white"
+                                      />
+                                    </clipPath>
+                                  </defs>
+                                </svg>
+                              </a>
+                              <a>
+                                <svg
+                                  width="16"
+                                  height="16"
+                                  viewBox="0 0 16 16"
+                                  fill="none"
+                                  xmlns="http://www.w3.org/2000/svg"
+                                >
+                                  <g clip-path="url(#clip0_1156_1277)">
+                                    <path
+                                      d="M10.6667 16H5.33333C4.89428 15.9982 4.46802 15.852 4.12031 15.5839C3.77259 15.3159 3.52275 14.9408 3.40933 14.5167C3.60025 13.4379 4.16498 12.4608 5.00444 11.7568C5.8439 11.0529 6.90445 10.6671 8 10.6671C9.09555 10.6671 10.1561 11.0529 10.9956 11.7568C11.835 12.4608 12.3998 13.4379 12.5907 14.5167C12.4772 14.9408 12.2274 15.3159 11.8797 15.5839C11.532 15.852 11.1057 15.9982 10.6667 16ZM2 14V8.94933C1.40624 9.20847 0.900862 9.63502 0.545666 10.1768C0.19047 10.7186 0.00085225 11.3522 0 12L0 12.6667C0.0010395 13.4253 0.260836 14.1609 0.736472 14.7519C1.21211 15.343 1.87513 15.7541 2.616 15.9173C2.21603 15.358 2.00068 14.6877 2 14ZM14 8.94933V14C13.9993 14.6877 13.784 15.358 13.384 15.9173C14.1249 15.7541 14.7879 15.343 15.2635 14.7519C15.7392 14.1609 15.999 13.4253 16 12.6667V12C15.9991 11.3522 15.8095 10.7186 15.4543 10.1768C15.0991 9.63502 14.5938 9.20847 14 8.94933ZM12.6667 7.33333V11.5707C12.1058 10.8723 11.3953 10.3087 10.5877 9.92147C9.78 9.53422 8.89571 9.33319 8 9.33319C7.10429 9.33319 6.22001 9.53422 5.41233 9.92147C4.60466 10.3087 3.8942 10.8723 3.33333 11.5707V7.33333C3.3338 6.58193 3.51592 5.84178 3.86416 5.17595C4.2124 4.51012 4.71644 3.93834 5.33333 3.50933V2.66667C5.33333 1.95942 5.61428 1.28115 6.11438 0.781049C6.61448 0.280952 7.29276 0 8 0C8.70724 0 9.38552 0.280952 9.88562 0.781049C10.3857 1.28115 10.6667 1.95942 10.6667 2.66667V3.50933C11.2836 3.93834 11.7876 4.51012 12.1358 5.17595C12.4841 5.84178 12.6662 6.58193 12.6667 7.33333ZM6.66667 2.86667C7.53622 2.60444 8.46378 2.60444 9.33333 2.86667V2.66667C9.33333 2.31304 9.19286 1.97391 8.94281 1.72386C8.69276 1.47381 8.35362 1.33333 8 1.33333C7.64638 1.33333 7.30724 1.47381 7.05719 1.72386C6.80714 1.97391 6.66667 2.31304 6.66667 2.66667V2.86667ZM10 6.66667C10 6.48986 9.92976 6.32029 9.80474 6.19526C9.67971 6.07024 9.51014 6 9.33333 6H6.66667C6.48986 6 6.32029 6.07024 6.19526 6.19526C6.07024 6.32029 6 6.48986 6 6.66667C6 6.84348 6.07024 7.01305 6.19526 7.13807C6.32029 7.2631 6.48986 7.33333 6.66667 7.33333H9.33333C9.51014 7.33333 9.67971 7.2631 9.80474 7.13807C9.92976 7.01305 10 6.84348 10 6.66667Z"
+                                      fill="#ff6a19"
+                                    />
+                                  </g>
+                                  <defs>
+                                    <clipPath id="clip0_1156_1277">
+                                      <rect
+                                        width="16"
+                                        height="16"
+                                        fill="white"
+                                      />
+                                    </clipPath>
+                                  </defs>
+                                </svg>
+                              </a>
+                              <a>
+                                <svg
+                                  width="16"
+                                  height="16"
+                                  viewBox="0 0 16 16"
+                                  fill="none"
+                                  xmlns="http://www.w3.org/2000/svg"
+                                >
+                                  <g clip-path="url(#clip0_1156_1279)">
+                                    <path
+                                      d="M12.6667 2.66667H11.9327C11.6227 1.14733 10.276 0 8.66667 0H7.33333C5.724 0 4.37667 1.14733 4.06733 2.66667H3.33333C1.49533 2.66667 0 4.162 0 6V12.6667C0 14.5047 1.49533 16 3.33333 16H4V6C4 5.63133 4.29867 5.33333 4.66667 5.33333C5.03467 5.33333 5.33333 5.63133 5.33333 6V16H10.6667V6C10.6667 5.63133 10.9647 5.33333 11.3333 5.33333C11.702 5.33333 12 5.63133 12 6V16H12.6667C14.5047 16 16 14.5047 16 12.6667V6C16 4.162 14.5047 2.66667 12.6667 2.66667ZM5.448 2.66667C5.72333 1.89067 6.464 1.33333 7.33333 1.33333H8.66667C9.536 1.33333 10.2767 1.89067 10.552 2.66667H5.448Z"
+                                      fill="#ff6a19"
+                                    />
+                                  </g>
+                                  <defs>
+                                    <clipPath id="clip0_1156_1279">
+                                      <rect
+                                        width="16"
+                                        height="16"
+                                        fill="white"
+                                      />
+                                    </clipPath>
+                                  </defs>
+                                </svg>
+                              </a>
+                              <div class="hover-card">
+                                <div class="hover-card-row">
+                                  <div class="label">
+                                    <i class="fas fa-briefcase"></i> Personal
+                                    Item
+                                  </div>
+                                  <div class="value">Included</div>
+                                </div>
+                                <div class="hover-card-row">
+                                  <div class="label">
+                                    <i class="fas fa-suitcase-rolling"></i>
+                                    Carry-on Bag
+                                  </div>
+                                  <div class="value">Chargeable</div>
+                                </div>
+                                <div class="hover-card-row">
+                                  <div class="label">
+                                    <i class="fas fa-suitcase"></i> Checked Bag
+                                  </div>
+                                  <div class="value">Chargeable</div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    }
+
+                    <!-- <div class="row align-items-start mb-3">
+                          <div
+                            class="col-md-3 col-4 flight-details-first-rw d-flex align-items-center"
+                          >
+                            <img
+                              src="assets/images/flag-icons/flight-icon-1.png"
+                              alt="logo1"
+                              class="img-fluid imglogoflightsec"
+                            />
+                            <div class="mx-3">
+                              <h5 class="mb-0">Air India</h5>
+                              <p class="mb-0">Flight 2727 Aircraft 32N</p>
+                              <p class="mb-0">1 stop,&nbsp;2h 35m</p>
+                            </div>
+                          </div>
+                          <div class="col-md-6 flight-details-second-rw">
+                            <div class="flight-ticket-card">
+                              <div class="flight-ticket-section">
+                                <div class="flight-ticket-time">
+                                  Mon, May 26
+                                </div>
+                                <div class="flight-ticket-code">12:00PM</div>
+                                <div class="flight-ticket-label">
+                                  New Delhi IGI, DEL
+                                </div>
+                              </div>
+                              <div class="flight-ticket-middle">
+                                <img
+                                  src="assets/images/flightstartstop.png"
+                                  alt="plane route"
+                                />
+                              </div>
+                              <div class="flight-ticket-section">
+                                <div class="flight-ticket-time">
+                                  Tue, May 27
+                                </div>
+                                <div class="flight-ticket-code">02:40PM</div>
+                                <div class="flight-ticket-label">
+                                  Kolkata, CCU
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-md-3">
+                            <div class="service">
+                              <p class="mb-1">
+                                <strong>Class Of Service:</strong> Economy (H)
+                              </p>
+                              <p class="mb-1">
+                                <strong>Airbus:</strong> A350-900
+                              </p>
+                              <p class="mb-1"><strong>Meal:</strong> Meal</p>
+                              <p class="mb-1">
+                                <strong>Seat:</strong> Check-in required
+                              </p>
+                              <div
+                                class="hover-btn-card-wrapper"
+                                style="width: max-content"
+                              >
+                                <div
+                                  class="icolist d-inline-flex align-items-center gap-2 position-relative cardToggleBtn"
+                                >
+                                  <a >
+                                    <svg
+                                      width="16"
+                                      height="16"
+                                      viewBox="0 0 16 16"
+                                      fill="none"
+                                      xmlns="http://www.w3.org/2000/svg"
+                                    >
+                                      <g clip-path="url(#clip0_1156_1275)">
+                                        <path
+                                          d="M2 15.3334H0V8.00002C0 6.89736 0.897333 6.00002 2 6.00002V15.3334ZM14 6.00002V15.3334H16V8.00002C16 6.89736 15.1027 6.00002 14 6.00002ZM3.33333 5.33335C3.33333 2.76069 5.42667 0.666687 8 0.666687C10.5733 0.666687 12.6667 2.76069 12.6667 5.33335V15.3334H3.33333V5.33335ZM9.33333 9.33336H6.66667V10.6667H9.33333V9.33336ZM4.66667 6.00002H11.3333V5.33335C11.3333 3.49535 9.838 2.00002 8 2.00002C6.162 2.00002 4.66667 3.49535 4.66667 5.33335V6.00002Z"
+                                          fill="#ff6a19"
+                                        />
+                                      </g>
+                                      <defs>
+                                        <clipPath id="clip0_1156_1275">
+                                          <rect
+                                            width="16"
+                                            height="16"
+                                            fill="white"
+                                          />
+                                        </clipPath>
+                                      </defs>
+                                    </svg>
+                                  </a>
+                                  <a >
+                                    <svg
+                                      width="16"
+                                      height="16"
+                                      viewBox="0 0 16 16"
+                                      fill="none"
+                                      xmlns="http://www.w3.org/2000/svg"
+                                    >
+                                      <g clip-path="url(#clip0_1156_1277)">
+                                        <path
+                                          d="M10.6667 16H5.33333C4.89428 15.9982 4.46802 15.852 4.12031 15.5839C3.77259 15.3159 3.52275 14.9408 3.40933 14.5167C3.60025 13.4379 4.16498 12.4608 5.00444 11.7568C5.8439 11.0529 6.90445 10.6671 8 10.6671C9.09555 10.6671 10.1561 11.0529 10.9956 11.7568C11.835 12.4608 12.3998 13.4379 12.5907 14.5167C12.4772 14.9408 12.2274 15.3159 11.8797 15.5839C11.532 15.852 11.1057 15.9982 10.6667 16ZM2 14V8.94933C1.40624 9.20847 0.900862 9.63502 0.545666 10.1768C0.19047 10.7186 0.00085225 11.3522 0 12L0 12.6667C0.0010395 13.4253 0.260836 14.1609 0.736472 14.7519C1.21211 15.343 1.87513 15.7541 2.616 15.9173C2.21603 15.358 2.00068 14.6877 2 14ZM14 8.94933V14C13.9993 14.6877 13.784 15.358 13.384 15.9173C14.1249 15.7541 14.7879 15.343 15.2635 14.7519C15.7392 14.1609 15.999 13.4253 16 12.6667V12C15.9991 11.3522 15.8095 10.7186 15.4543 10.1768C15.0991 9.63502 14.5938 9.20847 14 8.94933ZM12.6667 7.33333V11.5707C12.1058 10.8723 11.3953 10.3087 10.5877 9.92147C9.78 9.53422 8.89571 9.33319 8 9.33319C7.10429 9.33319 6.22001 9.53422 5.41233 9.92147C4.60466 10.3087 3.8942 10.8723 3.33333 11.5707V7.33333C3.3338 6.58193 3.51592 5.84178 3.86416 5.17595C4.2124 4.51012 4.71644 3.93834 5.33333 3.50933V2.66667C5.33333 1.95942 5.61428 1.28115 6.11438 0.781049C6.61448 0.280952 7.29276 0 8 0C8.70724 0 9.38552 0.280952 9.88562 0.781049C10.3857 1.28115 10.6667 1.95942 10.6667 2.66667V3.50933C11.2836 3.93834 11.7876 4.51012 12.1358 5.17595C12.4841 5.84178 12.6662 6.58193 12.6667 7.33333ZM6.66667 2.86667C7.53622 2.60444 8.46378 2.60444 9.33333 2.86667V2.66667C9.33333 2.31304 9.19286 1.97391 8.94281 1.72386C8.69276 1.47381 8.35362 1.33333 8 1.33333C7.64638 1.33333 7.30724 1.47381 7.05719 1.72386C6.80714 1.97391 6.66667 2.31304 6.66667 2.66667V2.86667ZM10 6.66667C10 6.48986 9.92976 6.32029 9.80474 6.19526C9.67971 6.07024 9.51014 6 9.33333 6H6.66667C6.48986 6 6.32029 6.07024 6.19526 6.19526C6.07024 6.32029 6 6.48986 6 6.66667C6 6.84348 6.07024 7.01305 6.19526 7.13807C6.32029 7.2631 6.48986 7.33333 6.66667 7.33333H9.33333C9.51014 7.33333 9.67971 7.2631 9.80474 7.13807C9.92976 7.01305 10 6.84348 10 6.66667Z"
+                                          fill="#ff6a19"
+                                        />
+                                      </g>
+                                      <defs>
+                                        <clipPath id="clip0_1156_1277">
+                                          <rect
+                                            width="16"
+                                            height="16"
+                                            fill="white"
+                                          />
+                                        </clipPath>
+                                      </defs>
+                                    </svg>
+                                  </a>
+                                  <a >
+                                    <svg
+                                      width="16"
+                                      height="16"
+                                      viewBox="0 0 16 16"
+                                      fill="none"
+                                      xmlns="http://www.w3.org/2000/svg"
+                                    >
+                                      <g clip-path="url(#clip0_1156_1279)">
+                                        <path
+                                          d="M12.6667 2.66667H11.9327C11.6227 1.14733 10.276 0 8.66667 0H7.33333C5.724 0 4.37667 1.14733 4.06733 2.66667H3.33333C1.49533 2.66667 0 4.162 0 6V12.6667C0 14.5047 1.49533 16 3.33333 16H4V6C4 5.63133 4.29867 5.33333 4.66667 5.33333C5.03467 5.33333 5.33333 5.63133 5.33333 6V16H10.6667V6C10.6667 5.63133 10.9647 5.33333 11.3333 5.33333C11.702 5.33333 12 5.63133 12 6V16H12.6667C14.5047 16 16 14.5047 16 12.6667V6C16 4.162 14.5047 2.66667 12.6667 2.66667ZM5.448 2.66667C5.72333 1.89067 6.464 1.33333 7.33333 1.33333H8.66667C9.536 1.33333 10.2767 1.89067 10.552 2.66667H5.448Z"
+                                          fill="#ff6a19"
+                                        />
+                                      </g>
+                                      <defs>
+                                        <clipPath id="clip0_1156_1279">
+                                          <rect
+                                            width="16"
+                                            height="16"
+                                            fill="white"
+                                          />
+                                        </clipPath>
+                                      </defs>
+                                    </svg>
+                                  </a>
+                                  <div class="hover-card">
+                                    <div class="hover-card-row">
+                                      <div class="label">
+                                        <i class="fas fa-briefcase"></i>
+                                        Personal Item
+                                      </div>
+                                      <div class="value">Included</div>
+                                    </div>
+                                    <div class="hover-card-row">
+                                      <div class="label">
+                                        <i class="fas fa-suitcase-rolling"></i>
+                                        Carry-on Bag
+                                      </div>
+                                      <div class="value">Chargeable</div>
+                                    </div>
+                                    <div class="hover-card-row">
+                                      <div class="label">
+                                        <i class="fas fa-suitcase"></i>
+                                        Checked Bag
+                                      </div>
+                                      <div class="value">Chargeable</div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div> -->
+                  </div>
+                  }
+                </div>
+              </div>
+              }
+            </div>
+            }
+          </div>
+          } @if(properties.length>0){
+          <div class="tab-pane fade" id="hotel" role="tabpanel">
+            @for (property of properties; track $index) {
+            <div
+              class="hotelCardBox"
+              [ngClass]="{ choosecardactive: selectedHotel === property }"
+              (click)="selectHotel(property)"
+            >
+              <!-- Image Section -->
+              <div class="hotelCardImg">
+                <img [src]="property.image" alt="Hotel" />
+              </div>
+
+              <!-- Content Section -->
+              <div class="hotelCardContent">
+                <div>
+                  <h3 class="hotelCardTitle">{{ property?.name }}</h3>
+                  <p class="hotelCardLocation">
+                    <svg
+                      width="17"
+                      height="18"
+                      viewBox="0 0 17 18"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M8.36164 8.03969C8.93891 8.03969 9.40688 7.57173 9.40688 6.99446C9.40688 6.41719 8.93891 5.94922 8.36164 5.94922C7.78438 5.94922 7.31641 6.41719 7.31641 6.99446C7.31641 7.57173 7.78438 8.03969 8.36164 8.03969Z"
+                        fill="#112211"
+                      />
+                      <path
+                        d="M8.36096 1.76953C5.47937 1.76953 3.13477 4.01189 3.13477 6.76708C3.13477 8.07918 3.73284 9.82407 4.91232 11.9534C5.85957 13.663 6.95544 15.209 7.52542 15.9782C7.62173 16.1097 7.74766 16.2166 7.893 16.2902C8.03834 16.3639 8.19899 16.4023 8.36194 16.4023C8.52488 16.4023 8.68554 16.3639 8.83087 16.2902C8.97621 16.2166 9.10214 16.1097 9.19845 15.9782C9.76745 15.209 10.8643 13.663 11.8115 11.9534C12.9891 9.82472 13.5871 8.07983 13.5871 6.76708C13.5871 4.01189 11.2425 1.76953 8.36096 1.76953ZM8.36096 9.0862C7.9475 9.0862 7.54333 8.96359 7.19955 8.73389C6.85577 8.50418 6.58783 8.1777 6.42961 7.79571C6.27138 7.41373 6.22999 6.9934 6.31065 6.58789C6.39131 6.18238 6.59041 5.80989 6.88277 5.51753C7.17512 5.22517 7.54761 5.02607 7.95312 4.94541C8.35864 4.86475 8.77896 4.90615 9.16095 5.06437C9.54293 5.2226 9.86942 5.49054 10.0991 5.83432C10.3288 6.17809 10.4514 6.58226 10.4514 6.99572C10.4508 7.54996 10.2304 8.08133 9.83848 8.47324C9.44657 8.86515 8.9152 9.08559 8.36096 9.0862Z"
+                        fill="#112211"
+                      />
+                    </svg>
+                    {{ property?.address?.line1 }}
+                  </p>
+                  <p class="hotelCardFeatures">
+                    <svg
+                      width="84"
+                      height="17"
+                      viewBox="0 0 84 17"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <g clip-path="url(#clip0_2250_5592)">
+                        <path
+                          d="M12.8709 15.9463C12.7609 15.9468 12.6536 15.9125 12.5642 15.8483L8.3633 12.8028L4.16243 15.8483C4.07268 15.9134 3.96455 15.9483 3.85368 15.9479C3.74281 15.9475 3.63494 15.9118 3.54567 15.8461C3.4564 15.7804 3.39034 15.6879 3.35706 15.5822C3.32378 15.4764 3.325 15.3628 3.36053 15.2578L4.99894 10.4049L0.752663 7.49297C0.660686 7.42996 0.591267 7.3392 0.554548 7.23393C0.51783 7.12866 0.515737 7.01441 0.548575 6.90787C0.581413 6.80133 0.647462 6.70808 0.73707 6.64175C0.826678 6.57542 0.935149 6.53948 1.04664 6.53919H6.28524L7.86616 1.67393C7.90022 1.56889 7.96667 1.47734 8.05598 1.41241C8.1453 1.34748 8.25288 1.3125 8.3633 1.3125C8.47372 1.3125 8.58131 1.34748 8.67062 1.41241C8.75994 1.47734 8.82639 1.56889 8.86044 1.67393L10.4414 6.54082H15.68C15.7916 6.54077 15.9003 6.57645 15.9902 6.64266C16.0801 6.70886 16.1464 6.8021 16.1794 6.90873C16.2125 7.01535 16.2105 7.12975 16.1738 7.23518C16.1371 7.34061 16.0677 7.43152 15.9756 7.4946L11.7277 10.4049L13.3651 15.2565C13.3916 15.335 13.3991 15.4188 13.3869 15.5008C13.3746 15.5828 13.3431 15.6607 13.2948 15.7281C13.2465 15.7955 13.1829 15.8504 13.1092 15.8884C13.0355 15.9263 12.9538 15.9462 12.8709 15.9463Z"
+                          fill="#ff6a19"
+                        />
+                      </g>
+                      <path
+                        d="M29.5955 15.9463C29.4855 15.9468 29.3782 15.9125 29.2888 15.8483L25.0879 12.8028L20.887 15.8483C20.7973 15.9134 20.6892 15.9483 20.5783 15.9479C20.4674 15.9475 20.3596 15.9118 20.2703 15.8461C20.181 15.7804 20.115 15.6879 20.0817 15.5822C20.0484 15.4764 20.0496 15.3628 20.0851 15.2578L21.7236 10.4049L17.4773 7.49297C17.3853 7.42996 17.3159 7.3392 17.2792 7.23393C17.2424 7.12866 17.2403 7.01441 17.2732 6.90787C17.306 6.80133 17.3721 6.70808 17.4617 6.64175C17.5513 6.57542 17.6598 6.53948 17.7712 6.53919H23.0098L24.5908 1.67393C24.6248 1.56889 24.6913 1.47734 24.7806 1.41241C24.8699 1.34748 24.9775 1.3125 25.0879 1.3125C25.1983 1.3125 25.3059 1.34748 25.3952 1.41241C25.4845 1.47734 25.551 1.56889 25.5851 1.67393L27.166 6.54082H32.4046C32.5162 6.54077 32.6249 6.57645 32.7148 6.64266C32.8047 6.70886 32.871 6.8021 32.904 6.90873C32.9371 7.01535 32.9351 7.12975 32.8984 7.23518C32.8618 7.34061 32.7923 7.43152 32.7002 7.4946L28.4523 10.4049L30.0897 15.2565C30.1162 15.335 30.1237 15.4188 30.1115 15.5008C30.0993 15.5828 30.0677 15.6607 30.0194 15.7281C29.9711 15.7955 29.9075 15.8504 29.8338 15.8884C29.7601 15.9263 29.6784 15.9462 29.5955 15.9463Z"
+                        fill="#ff6a19"
+                      />
+                      <g clip-path="url(#clip1_2250_5592)">
+                        <path
+                          d="M46.3182 15.9463C46.2082 15.9468 46.1008 15.9125 46.0114 15.8483L41.8106 12.8028L37.6097 15.8483C37.5199 15.9134 37.4118 15.9483 37.3009 15.9479C37.1901 15.9475 37.0822 15.9118 36.9929 15.8461C36.9037 15.7804 36.8376 15.6879 36.8043 15.5822C36.771 15.4764 36.7723 15.3628 36.8078 15.2578L38.4462 10.4049L34.1999 7.49297C34.108 7.42996 34.0385 7.3392 34.0018 7.23393C33.9651 7.12866 33.963 7.01441 33.9958 6.90787C34.0287 6.80133 34.0947 6.70808 34.1843 6.64175C34.2739 6.57542 34.3824 6.53948 34.4939 6.53919H39.7325L41.3134 1.67393C41.3475 1.56889 41.4139 1.47734 41.5032 1.41241C41.5926 1.34748 41.7001 1.3125 41.8106 1.3125C41.921 1.3125 42.0286 1.34748 42.1179 1.41241C42.2072 1.47734 42.2737 1.56889 42.3077 1.67393L43.8886 6.54082H49.1272C49.2389 6.54077 49.3476 6.57645 49.4374 6.64266C49.5273 6.70886 49.5936 6.8021 49.6267 6.90873C49.6597 7.01535 49.6578 7.12975 49.6211 7.23518C49.5844 7.34061 49.5149 7.43152 49.4228 7.4946L45.1749 10.4049L46.8124 15.2565C46.8389 15.335 46.8464 15.4188 46.8341 15.5008C46.8219 15.5828 46.7904 15.6607 46.7421 15.7281C46.6938 15.7955 46.6302 15.8504 46.5565 15.8884C46.4827 15.9263 46.4011 15.9462 46.3182 15.9463Z"
+                          fill="#ff6a19"
+                        />
+                      </g>
+                      <g clip-path="url(#clip2_2250_5592)">
+                        <path
+                          d="M63.0428 15.9463C62.9328 15.9468 62.8254 15.9125 62.7361 15.8483L58.5352 12.8028L54.3343 15.8483C54.2446 15.9134 54.1364 15.9483 54.0256 15.9479C53.9147 15.9475 53.8068 15.9118 53.7175 15.8461C53.6283 15.7804 53.5622 15.6879 53.5289 15.5822C53.4957 15.4764 53.4969 15.3628 53.5324 15.2578L55.1708 10.4049L50.9245 7.49297C50.8326 7.42996 50.7631 7.3392 50.7264 7.23393C50.6897 7.12866 50.6876 7.01441 50.7205 6.90787C50.7533 6.80133 50.8193 6.70808 50.9089 6.64175C50.9986 6.57542 51.107 6.53948 51.2185 6.53919H56.4571L58.038 1.67393C58.0721 1.56889 58.1385 1.47734 58.2279 1.41241C58.3172 1.34748 58.4248 1.3125 58.5352 1.3125C58.6456 1.3125 58.7532 1.34748 58.8425 1.41241C58.9318 1.47734 58.9983 1.56889 59.0323 1.67393L60.6132 6.54082H65.8518C65.9635 6.54077 66.0722 6.57645 66.1621 6.64266C66.2519 6.70886 66.3182 6.8021 66.3513 6.90873C66.3843 7.01535 66.3824 7.12975 66.3457 7.23518C66.309 7.34061 66.2395 7.43152 66.1474 7.4946L61.8995 10.4049L63.537 15.2565C63.5635 15.335 63.571 15.4188 63.5587 15.5008C63.5465 15.5828 63.515 15.6607 63.4667 15.7281C63.4184 15.7955 63.3548 15.8504 63.2811 15.8884C63.2074 15.9263 63.1257 15.9462 63.0428 15.9463Z"
+                          fill="#ff6a19"
+                        />
+                      </g>
+                      <g clip-path="url(#clip3_2250_5592)">
+                        <path
+                          d="M79.7654 15.9463C79.6554 15.9468 79.5481 15.9125 79.4587 15.8483L75.2578 12.8028L71.057 15.8483C70.9672 15.9134 70.8591 15.9483 70.7482 15.9479C70.6373 15.9475 70.5295 15.9118 70.4402 15.8461C70.3509 15.7804 70.2849 15.6879 70.2516 15.5822C70.2183 15.4764 70.2195 15.3628 70.2551 15.2578L71.8935 10.4049L67.6472 7.49297C67.5552 7.42996 67.4858 7.3392 67.4491 7.23393C67.4124 7.12866 67.4103 7.01441 67.4431 6.90787C67.4759 6.80133 67.542 6.70808 67.6316 6.64175C67.7212 6.57542 67.8297 6.53948 67.9412 6.53919H73.1798L74.7607 1.67393C74.7947 1.56889 74.8612 1.47734 74.9505 1.41241C75.0398 1.34748 75.1474 1.3125 75.2578 1.3125C75.3683 1.3125 75.4758 1.34748 75.5652 1.41241C75.6545 1.47734 75.7209 1.56889 75.755 1.67393L77.3359 6.54082H82.5745C82.6861 6.54077 82.7948 6.57645 82.8847 6.64266C82.9746 6.70886 83.0409 6.8021 83.0739 6.90873C83.107 7.01535 83.105 7.12975 83.0684 7.23518C83.0317 7.34061 82.9622 7.43152 82.8701 7.4946L78.6222 10.4049L80.2596 15.2565C80.2862 15.335 80.2936 15.4188 80.2814 15.5008C80.2692 15.5828 80.2376 15.6607 80.1893 15.7281C80.1411 15.7955 80.0774 15.8504 80.0037 15.8884C79.93 15.9263 79.8483 15.9462 79.7654 15.9463Z"
+                          fill="#ff6a19"
+                        />
+                      </g>
+                      <defs>
+                        <clipPath id="clip0_2250_5592">
+                          <rect
+                            width="16.7238"
+                            height="16.7238"
+                            fill="white"
+                            transform="translate(0 0.265625)"
+                          />
+                        </clipPath>
+                        <clipPath id="clip1_2250_5592">
+                          <rect
+                            width="16.7238"
+                            height="16.7238"
+                            fill="white"
+                            transform="translate(33.4473 0.265625)"
+                          />
+                        </clipPath>
+                        <clipPath id="clip2_2250_5592">
+                          <rect
+                            width="16.7238"
+                            height="16.7238"
+                            fill="white"
+                            transform="translate(50.1719 0.265625)"
+                          />
+                        </clipPath>
+                        <clipPath id="clip3_2250_5592">
+                          <rect
+                            width="16.7238"
+                            height="16.7238"
+                            fill="white"
+                            transform="translate(66.8945 0.265625)"
+                          />
+                        </clipPath>
+                      </defs>
+                    </svg>
+                    {{ property.rating }} Star Hotel &nbsp;&nbsp; | &nbsp;&nbsp;
+                    <svg
+                      width="17"
+                      height="17"
+                      viewBox="0 0 17 17"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M14.3593 2.35547H3.38426C3.24566 2.35547 3.11273 2.41053 3.01472 2.50854C2.91671 2.60655 2.86164 2.73948 2.86164 2.87809V9.14952C2.8626 9.98087 3.19327 10.7779 3.78112 11.3658C4.36898 11.9536 5.16601 12.2843 5.99736 12.2852H9.65569C10.487 12.2843 11.2841 11.9536 11.8719 11.3658C12.4598 10.7779 12.7905 9.98087 12.7914 9.14952V6.53642H13.3794C13.9163 6.53582 14.431 6.32226 14.8107 5.9426C15.1903 5.56294 15.4039 5.04819 15.4045 4.51127V3.40071C15.4045 3.12349 15.2944 2.85763 15.0984 2.66161C14.9023 2.46559 14.6365 2.35547 14.3593 2.35547V2.35547ZM14.3593 4.51127C14.3593 4.77116 14.256 5.0204 14.0723 5.20417C13.8885 5.38794 13.6392 5.49118 13.3794 5.49118H12.7914V3.40071H14.3593V4.51127ZM13.314 13.3305H2.33903C2.20042 13.3305 2.06749 13.3855 1.96948 13.4835C1.87147 13.5815 1.81641 13.7145 1.81641 13.8531C1.81641 13.9917 1.87147 14.1246 1.96948 14.2226C2.06749 14.3206 2.20042 14.3757 2.33903 14.3757H13.314C13.4526 14.3757 13.5856 14.3206 13.6836 14.2226C13.7816 14.1246 13.8366 13.9917 13.8366 13.8531C13.8366 13.7145 13.7816 13.5815 13.6836 13.4835C13.5856 13.3855 13.4526 13.3305 13.314 13.3305Z"
+                        fill="#112211"
+                      />
+                    </svg>
+                    <b>{{ property?.fare?.amenities?.length }}</b> Amenities
+                  </p>
+                  <div class="hotelCardRating">
+                    <span class="ratingBox">{{
+                      property?.review?.score || 0
+                    }}</span>
+                    <span
+                      ><strong>{{ property?.review?.description }}</strong>
+                      {{ property?.review?.count || 0 }} reviews</span
+                    >
+                  </div>
+                </div>
+
+                <div class="d-flex justify-content-between align-items-center">
+                  <div class="newdfsec">
+                    <div class="hotelCardPrice">
+                      <p>starting from</p>
+                      <h5>
+                        {{
+                          property?.fare?.base
+                            | currency
+                              : property?.fare?.currency
+                              : "symbol"
+                              : "1.0-0"
+                        }}/night
+                      </h5>
+                      <p>excl. tax</p>
+                    </div>
+                    <div class="hotelCardBtn">
+                     <!-- <button
+                        type="button"
+                        class="btn btn-primary mb-4 w-100 select-button"
+                        data-bs-toggle="modal"
+                        data-bs-target="#customModalhotel"
+                      >
+                        Choose Now
+                      </button> -->
+                             <a href="tel:{{ getData?.phoneNumber }}">
+                        <button
+                          type="button"
+                          class="btn btn-primary mb-4 w-100 select-button"
+                        >
+                          Call Now
+                        </button>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            }
+       
+          </div>
+          } @if(cruiseDetailsList.length>0){
+          <div class="tab-pane fade" id="cruise" role="tabpanel">
+            @for (cruise of cruiseDetailsList; track $index) {
+            <div
+              class="hotelCardBox cruisecardbox"
+              [ngClass]="{ choosecardactive: selectedCruise === cruise }"
+              (click)="selectCruise(cruise)"
+            >
+              <!-- Image Section -->
+              <div class="hotelCardImg cruisecardimg">
+                <img [src]="cruise.image" alt="Hotel" />
+              </div>
+
+              <!-- Content Section -->
+              <div class="hotelCardContent cruiseCardContent">
+                <div>
+                  <div class="cruise-card__title">
+                    <h2>{{ cruise.cruiseSailingName }}</h2>
+                    <p class="cruise-card__subtitle">
+                      {{ cruise.sailingPlanCode }}
+                    </p>
+                  </div>
+
+                  <div class="cruise-card__info">
+                    <span
+                      ><svg
+                        width="15"
+                        height="17"
+                        viewBox="0 0 15 17"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M8.8778 0.442639C9.37554 0.822067 9.66221 1.34874 9.78824 1.96166C9.79196 2.01221 9.79569 2.06276 9.79952 2.11484C9.80417 2.17381 9.80882 2.23279 9.81362 2.29355C9.8025 2.94776 9.54949 3.49556 9.1088 3.96717C8.85347 4.21177 8.5746 4.41937 8.22073 4.47493C8.22768 4.50516 8.23462 4.53539 8.24178 4.56653C8.27047 4.72788 8.28098 4.88828 8.28998 5.05165C8.29171 5.08087 8.29344 5.11008 8.29522 5.14018C8.30157 5.24842 8.30765 5.35667 8.31377 5.46492C8.32772 5.70736 8.34168 5.94981 8.35606 6.19961C8.95148 6.19961 9.54691 6.19961 10.1604 6.19961C10.1902 6.1397 10.2199 6.07979 10.2506 6.01806C10.4751 5.80243 10.6512 5.71177 10.9667 5.68617C11.2595 5.69462 11.5367 5.80335 11.7392 6.01806C11.9312 6.30893 12.0233 6.57736 11.9647 6.92579C11.8816 7.23012 11.7316 7.43533 11.4685 7.60658C11.1929 7.73923 10.8881 7.73965 10.6002 7.64346C10.4327 7.57296 10.3251 7.4723 10.2055 7.33426C10.0695 7.19743 9.91414 7.22728 9.73151 7.2247C9.69359 7.22382 9.65567 7.22294 9.6166 7.22203C9.49527 7.21932 9.37393 7.21721 9.25258 7.21512C9.17041 7.21339 9.08824 7.21162 9.00607 7.20981C8.80445 7.20537 8.60281 7.2017 8.40116 7.1981C8.40666 7.25486 8.41215 7.31161 8.41781 7.37008C8.48553 8.08509 8.53382 8.80085 8.57913 9.51759C8.58506 9.61058 8.59101 9.70356 8.59695 9.79655C8.61554 10.0872 8.634 10.3778 8.65236 10.6684C8.6712 10.9664 8.69025 11.2645 8.70941 11.5625C8.726 11.8207 8.74246 12.079 8.75883 12.3372C8.76854 12.4905 8.7783 12.6437 8.78817 12.797C8.79912 12.9674 8.80986 13.1378 8.82055 13.3083C8.82378 13.358 8.82702 13.4076 8.83035 13.4588C8.84914 13.7627 8.85604 14.0647 8.85225 14.3691C10.2885 13.8678 11.3629 13.0135 12.0528 11.6281C12.2443 11.2165 12.3525 10.7694 12.4609 10.3298C12.4142 10.3313 12.3674 10.3329 12.3192 10.3345C12.2575 10.3358 12.1957 10.3371 12.1339 10.3383C12.1031 10.3394 12.0724 10.3405 12.0407 10.3417C11.9046 10.3437 11.7977 10.3356 11.6722 10.281C11.5915 10.1778 11.5739 10.102 11.582 9.97108C11.63 9.76235 11.7493 9.58425 11.8576 9.40218C11.8968 9.33455 11.8968 9.33455 11.9367 9.26555C11.9922 9.16991 12.048 9.07445 12.104 8.97914C12.1903 8.83187 12.2755 8.68394 12.3603 8.53576C12.4154 8.43971 12.4706 8.34368 12.5258 8.24766C12.5513 8.20323 12.5768 8.1588 12.6031 8.11302C13.0018 7.42545 13.0018 7.42545 13.1375 7.28888C13.2813 7.26335 13.2813 7.26335 13.4533 7.28888C13.7221 7.54494 13.889 7.92939 14.0679 8.2505C14.1154 8.33538 14.163 8.42023 14.2106 8.50508C14.2425 8.56199 14.2744 8.61892 14.3063 8.67587C14.4063 8.85423 14.5087 9.03094 14.6131 9.2068C14.6509 9.27111 14.6509 9.27111 14.6894 9.33672C14.7361 9.41599 14.7833 9.49495 14.8311 9.57356C14.9545 9.78468 15.0323 9.94139 14.987 10.1936C14.9214 10.281 14.9214 10.281 14.8065 10.3298C14.6743 10.345 14.5447 10.3426 14.4118 10.3383C14.3761 10.3377 14.3403 10.337 14.3035 10.3364C14.2155 10.3348 14.1276 10.3324 14.0397 10.3298C14.0418 10.3804 14.0439 10.4311 14.046 10.4833C14.0915 12.1014 13.5387 13.5521 12.506 14.7776C12.4819 14.8075 12.4578 14.8374 12.4329 14.8682C12.2654 15.0733 12.0773 15.2437 11.8745 15.413C11.8406 15.442 11.8067 15.4711 11.7718 15.501C11.4787 15.7457 11.1681 15.9503 10.837 16.1392C10.7975 16.162 10.7975 16.162 10.7571 16.1853C9.19572 17.0715 7.31991 17.2007 5.61136 16.7374C3.91964 16.249 2.55003 15.17 1.67233 13.6275C1.20467 12.7726 0.946428 11.737 0.955481 10.7638C0.955684 10.7219 0.955888 10.68 0.956097 10.6369C0.956624 10.5345 0.957364 10.4321 0.9583 10.3298C0.905037 10.3313 0.851774 10.3329 0.796897 10.3345C0.726651 10.3358 0.656404 10.3371 0.586157 10.3383C0.551094 10.3394 0.516031 10.3405 0.479905 10.3417C0.328863 10.3437 0.216865 10.3405 0.076574 10.281C-0.0239123 10.147 -0.000893479 10.0403 0.0110261 9.8759C0.0659798 9.73958 0.0659798 9.73958 0.143179 9.60393C0.17141 9.55359 0.19964 9.50324 0.228726 9.45137C0.259512 9.39809 0.290319 9.34481 0.321145 9.29155C0.352357 9.23653 0.383516 9.18148 0.414622 9.1264C0.504778 8.96725 0.596142 8.80883 0.68765 8.65047C0.73241 8.57234 0.777167 8.49422 0.821918 8.41609C1.37039 7.46426 1.37039 7.46426 1.54471 7.28888C1.69695 7.26902 1.69695 7.26902 1.86047 7.28888C1.99107 7.43119 2.08764 7.58686 2.18274 7.75462C2.20925 7.80111 2.23577 7.84761 2.26308 7.89551C2.30521 7.97013 2.30521 7.97013 2.3482 8.04626C2.40819 8.15218 2.46822 8.25808 2.52828 8.36396C2.54366 8.39112 2.55903 8.41827 2.57488 8.44625C2.66958 8.61304 2.76597 8.77869 2.864 8.94352C2.91178 9.02385 2.95928 9.10434 3.00671 9.18487C3.06657 9.2863 3.12693 9.38742 3.18787 9.48819C3.45494 9.94395 3.45494 9.94395 3.39415 10.1936C3.22645 10.3527 3.06087 10.3445 2.83875 10.3383C2.78217 10.337 2.7256 10.3358 2.6673 10.3345C2.62433 10.333 2.58136 10.3314 2.53709 10.3298C2.88747 11.7089 3.52311 12.95 4.75585 13.7394C5.19532 14.001 5.65576 14.2221 6.14575 14.3691C6.14533 14.3373 6.1449 14.3054 6.14447 14.2725C6.14178 13.9081 6.15856 13.5472 6.1823 13.1837C6.18624 13.1215 6.19017 13.0592 6.19408 12.997C6.20464 12.8297 6.21542 12.6624 6.22624 12.4952C6.23759 12.3194 6.24876 12.1436 6.25995 11.9678C6.27876 11.6731 6.2977 11.3784 6.31672 11.0836C6.33869 10.7433 6.36043 10.403 6.38206 10.0627C6.40293 9.73425 6.42396 9.40584 6.44507 9.07744C6.45402 8.93807 6.46292 8.79869 6.47177 8.65932C6.4822 8.49532 6.49276 8.33133 6.50343 8.16734C6.50916 8.07873 6.51476 7.99011 6.52035 7.90149C6.52383 7.84844 6.5273 7.79539 6.53089 7.74073C6.53384 7.69483 6.53679 7.64893 6.53983 7.60164C6.55217 7.46552 6.57287 7.33261 6.59683 7.1981C6.35845 7.19673 6.1202 7.19745 5.88183 7.20004C5.80085 7.20064 5.71987 7.20068 5.63889 7.20013C5.18449 7.18003 5.18449 7.18003 4.76361 7.31395C4.68027 7.39555 4.68027 7.39555 4.62228 7.48461C4.52088 7.62499 4.36935 7.66309 4.2061 7.69735C3.90396 7.7407 3.65132 7.68166 3.39415 7.51581C3.17458 7.32085 3.05424 7.11823 3.022 6.82225C3.00803 6.53746 3.05196 6.30121 3.21371 6.06345C3.44771 5.82951 3.68908 5.71581 4.0172 5.68334C4.29408 5.69134 4.55037 5.80962 4.75021 6.00104C4.83761 6.10883 4.83761 6.10883 4.83761 6.19961C5.43304 6.19961 6.02847 6.19961 6.64194 6.19961C6.66979 5.69995 6.66979 5.69995 6.69726 5.20027C6.70083 5.13743 6.70442 5.0746 6.70802 5.01176C6.70974 4.97937 6.71145 4.94698 6.71322 4.91361C6.72202 4.76272 6.73279 4.61983 6.77727 4.47493C6.72051 4.45995 6.66376 4.44497 6.60529 4.42954C6.06733 4.24713 5.70106 3.84053 5.4353 3.35162C5.14378 2.72917 5.14311 2.12916 5.3338 1.47943C5.58292 0.864049 6.04136 0.417016 6.64 0.148869C7.39922 -0.126904 8.21502 -0.0141933 8.8778 0.442639ZM6.85339 1.81416C6.71188 2.03563 6.66434 2.21286 6.70802 2.47704C6.76683 2.70035 6.86697 2.85081 7.05073 2.9942C7.25945 3.11037 7.44355 3.1438 7.67943 3.11334C7.91669 3.03391 8.08721 2.92188 8.22073 2.70486C8.33023 2.47401 8.32594 2.26815 8.26584 2.02407C8.13994 1.78429 7.98354 1.61168 7.72454 1.52482C7.35277 1.48493 7.11999 1.53866 6.85339 1.81416Z"
+                          fill="black"
+                        />
+                      </svg>
+                      {{ cruise?.ports?.departurePortInfo?.PortID }} -
+                      {{ cruise?.ports?.departurePortInfo?.Name }}</span
+                    >
+                    <span
+                      ><svg
+                        width="16"
+                        height="15"
+                        viewBox="0 0 16 15"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M1.33984 11.875C1.33984 12.9375 2.15234 13.75 3.21484 13.75H11.9648C13.0273 13.75 13.8398 12.9375 13.8398 11.875V6.875H1.33984V11.875ZM11.9648 2.5H10.7148V1.875C10.7148 1.5 10.4648 1.25 10.0898 1.25C9.71484 1.25 9.46484 1.5 9.46484 1.875V2.5H5.71484V1.875C5.71484 1.5 5.46484 1.25 5.08984 1.25C4.71484 1.25 4.46484 1.5 4.46484 1.875V2.5H3.21484C2.15234 2.5 1.33984 3.3125 1.33984 4.375V5.625H13.8398V4.375C13.8398 3.3125 13.0273 2.5 11.9648 2.5Z"
+                          fill="black"
+                        />
+                      </svg>
+                      {{ cruise.departureDate | date : "dd MMM yyyy hh:mm a" }}
+                      -
+                      {{
+                        cruise?.returnDate | date : "dd MMM yyyy, hh:mm a"
+                      }}</span
+                    >
+                  </div>
+
+                  <!-- <div class="cruise-card__offers">
+                                        <h4>Rewards & Bonus Offers:</h4>
+                                        <ul>
+                                            <li>Cruises.com Rewards = Free Cash! Double points: Earn 20 points
+                                                per
+                                                $1 spent - 3 days left!</li>
+                                            <li>60% Off Second Guest</li>
+                                            <li>48-Hour Flash Sale: Up to $325 Instant Savings - Ends tomorrow!
+                                            </li>
+                                        </ul>
+                                    </div> -->
+                </div>
+
+                <div class="d-flex justify-content-between align-items-center">
+                  <div class="newdfsec">
+                    <div class="hotelCardPrice">
+                      <p>starting from</p>
+                      <h5>
+                        $
+                        {{
+                          cruise.priceWithMarkupPerNight | number : "1.2-2"
+                        }}/night
+                      </h5>
+                      <p>incl. tax</p>
+                    </div>
+                    <div class="hotelCardBtn">
+                      <a href="tel:{{ getData?.phoneNumber }}">
+                        <button
+                          type="button"
+                          class="btn btn-primary mb-4 w-100 select-button"
+                        >
+                          Call Now
+                        </button>
+                      </a>
+                         <!-- <button
+                        type="button"
+                        class="btn btn-primary mb-4 w-100 select-button"
+                        data-bs-toggle="modal"
+                        data-bs-target="#customModalcruise"
+                      >
+                        Choose Now
+                      </button> -->
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            }
+
+           
+          </div>
+          }
+        </div>
+      </div>
+    </div>
+    }@else {
+    <!-- == === -->
+    <div class="no-flight-found">
+      <div class="container container-xxl">
+        <div class="alert alert-warning">
+          <div>
+            <div class="alert-icon-box">
+              <svg viewBox="0 0 16 16" fill="none" class="icon-warning">
+                <path
+                  d="M16.31,13.41L16.28,13.36C16.27,13.33,16.26,13.31,16.24,13.29L8.85,0.48C8.73,0.27,8.5,0.12,8.23,0.12C7.95,0.12,7.7,0.29,7.59,0.54L0.26,13.24L0.26,13.25C0.17,13.37,0.1,13.52,0.1,13.69C0.1,14.08,0.42,14.39,0.81,14.39H15.66C16.05,14.39,16.37,14.08,16.37,13.69C16.37,13.59,16.35,13.49,16.31,13.41ZM8.24,13.06C7.68,13.06,7.22,12.62,7.22,12.06C7.22,11.49,7.68,11.04,8.24,11.04C8.79,11.04,9.25,11.49,9.25,12.06C9.25,12.62,8.79,13.06,8.24,13.06ZM9.25,4.17V9.72C9.25,9.95,9.06,10.13,8.84,10.13H7.64C7.41,10.13,7.22,9.95,7.22,9.72V4.17C7.22,3.95,7.39,3.78,7.6,3.76H8.83C9.06,3.76,9.24,3.93,9.25,4.16Z"
+                />
+              </svg>
+            </div>
+          </div>
+          <span class="alert-text">
+            We are unable to find flights,cruise or hotels that match your
+            search criteria. Please try a new search for different destinations
+            or different dates.
+          </span>
+        </div>
+      </div>
+    </div>
+    <!-- == === -->
+    }
+  </div>
+</section>
+
+<!-- === Modal Start == -->
+<!-- flight  Modal -->
+<div
+  class="modal fade custommodal"
+  id="customModal"
+  tabindex="-1"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content custommodal-content">
+      <!-- No header -->
+      <div class="modal-body custommodal-body text-center">
+        <!-- Close Button -->
+        <button
+          type="button"
+          class="btn-close position-absolute top-0 end-0 m-3"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+
+        <h2 class="custommodal-heading">
+          You have chosen your flight successfully ✈️
+        </h2>
+        <p class="custommodal-text">Please continue to the next step.</p>
+        <div class="d-flex justify-content-center gap-2 w-100">
+          <button
+            class="btn custom-btn-primary mt-3"
+            (click)="skipFlightChoice()"
+          >
+            <i class="fa-solid fa-angle-left"></i> Skip
+          </button>
+          <button
+            class="btn custom-btn-primary mt-3"
+            (click)="confirmFlightChoice(selectedFlight)"
+          >
+            Continue <i class="fa-solid fa-angle-right"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- hotel  Modal -->
+<div
+  class="modal fade custommodal"
+  id="customModalhotel"
+  tabindex="-1"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content custommodal-content">
+      <!-- No header -->
+      <div class="modal-body custommodal-body text-center">
+        <!-- Close Button -->
+        <button
+          type="button"
+          class="btn-close position-absolute top-0 end-0 m-3"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+
+        <h2 class="custommodal-heading">
+          You have chosen your hotel successfully 🏨
+        </h2>
+        <p class="custommodal-text">Please continue to the next step.</p>
+        <div class="d-flex justify-content-center gap-2 w-100">
+          <button
+            class="btn custom-btn-primary mt-3"
+            (click)="skipHotelChoice()"
+          >
+            <i class="fa-solid fa-angle-left"></i> Skip
+          </button>
+          <button
+            class="btn custom-btn-primary mt-3"
+            (click)="confirmHotelChoice(selectHotel)"
+          >
+            Continue <i class="fa-solid fa-angle-right"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- cruise  Modal -->
+<div
+  class="modal fade custommodal"
+  id="customModalcruise"
+  tabindex="-1"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content custommodal-content">
+      <!-- No header -->
+      <div class="modal-body custommodal-body text-center">
+        <!-- Close Button -->
+        <button
+          type="button"
+          class="btn-close position-absolute top-0 end-0 m-3"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+
+        <h2 class="custommodal-heading">
+          You have chosen your cruise successfully 🚢
+        </h2>
+        <p class="custommodal-text">Submit to proceed.</p>
+        <div class="d-flex justify-content-center gap-2 w-100">
+          <button
+            class="btn custom-btn-primary mt-3"
+            (click)="skipCruiseChoice()"
+          >
+            <i class="fa-solid fa-angle-left"></i> Skip
+          </button>
+          <button
+            class="btn custom-btn-primary mt-3"
+            (click)="confirmCruiseChoice(selectCruise)"
+          >
+            Continue <i class="fa-solid fa-angle-right"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- === Modal End == -->

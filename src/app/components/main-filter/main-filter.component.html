@@ -1,0 +1,166 @@
+<section class="banner-section common-section">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <ul class="nav stn" role="tablist">
+          <li class="nav-item" role="presentation" (click)="toggleTab('flight-tab')">
+            <button class="nav-link active" [class.active]="
+                      filterTab === 'flight-tab' || filterTab === 'home-tab'||filterTab === 'flights-tab'"
+              data-bs-toggle="tab" data-bs-target="#stn-flights" type="button" role="tab" aria-selected="true">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                class="icon icon-tabler icons-tabler-outline icon-tabler-plane-inflight">
+                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                <path d="M15 11.085h5a2 2 0 1 1 0 4h-15l-3 -6h3l2 2h3l-2 -7h3l4 7" />
+                <path d="M3 21h18" />
+              </svg>
+              Flights
+            </button>
+          </li>
+          <li class="nav-item" role="presentation" (click)="toggleTab('hotel-tab')">
+            <button class="nav-link" [class.active]="filterTab === 'hotel-tab'" data-bs-toggle="tab"
+              data-bs-target="#stn-stays" type="button" role="tab" aria-selected="false">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                class="icon icon-tabler icons-tabler-outline icon-tabler-building-skyscraper">
+                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                <path d="M3 21l18 0" />
+                <path d="M5 21v-14l8 -4v18" />
+                <path d="M19 21v-10l-6 -4" />
+                <path d="M9 9l0 .01" />
+                <path d="M9 12l0 .01" />
+                <path d="M9 15l0 .01" />
+                <path d="M9 18l0 .01" />
+              </svg>
+              Stays
+            </button>
+          </li>
+          <li class="nav-item" role="presentation" (click)="toggleTab('packages-tab')"><button class="nav-link"
+              [class.active]="filterTab === 'packages-tab'" data-bs-toggle="tab" data-bs-target="#stn-flight-hotel"
+              type="button" role="tab" aria-selected="false"><svg xmlns="http://www.w3.org/2000/svg" width="24"
+                height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round"
+                class="icon icon-tabler icons-tabler-outline icon-tabler-package">
+                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                <path d="M12 3l8 4.5l0 9l-8 4.5l-8 -4.5l0 -9l8 -4.5" />
+                <path d="M12 12l8 -4.5" />
+                <path d="M12 12l0 9" />
+                <path d="M12 12l-8 -4.5" />
+                <path d="M16 5.25l-8 4.5" />
+              </svg>
+              Flight + Hotel
+            </button>
+          </li>
+          <!-- <li class="nav-item" role="presentation" (click)="toggleTab('car-tab')">
+            <button class="nav-link" [class.active]="filterTab === 'car-tab'" data-bs-toggle="tab" data-bs-target="#stn-car" type="button" role="tab"
+              aria-selected="false">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                class="icon icon-tabler icons-tabler-outline icon-tabler-car">
+                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                <path d="M5 17a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+                <path d="M15 17a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+                <path d="M5 17h-2v-6l2 -5h9l4 5h1a2 2 0 0 1 2 2v4h-2m-4 0h-6m-6 -6h15m-6 0v-5" />
+              </svg>
+              Car rental
+            </button>
+          </li> -->
+          <!-- <li class="nav-item" (click)="toggleTab('cruise-tab')" role="presentation">
+            <button class="nav-link" [class.active]="filterTab === 'cruise-tab'" data-bs-toggle="tab" data-bs-target="#stn-cruise" type="button" role="tab"
+              aria-selected="false">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                class="icon icon-tabler icons-tabler-outline icon-tabler-ferry">
+                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                <path d="M2 18h15.293c1.02 0 1.972 -.503 2.536 -1.34l2.171 -3.66h-18.479l-1.521 5" />
+                <path d="M14 8l-1 -2" />
+                <path d="M6.107 12.675l1.384 -4.675h8l2.675 4.598" />
+              </svg>
+              Cruise
+            </button>
+          </li> -->
+        </ul>
+        <div class="tab-content">
+          @if(filterTab === 'flight-tab' ||filterTab === 'home-tab'||filterTab === 'flights-tab') {
+          <div class="tab-pane fade show active" id="stn-flights" role="tabpanel">
+            <div class="tabinside-content-box">
+              <div class="common-box">
+                <h2 class="common-box-title">
+                  Plan and Book Your Flight to the Next Destination
+                  <span>Compare and Find the Best Deals</span>
+                </h2>
+              </div>
+              <app-flights-tab />
+
+
+
+            </div>
+          </div>
+          }
+
+          @if(filterTab === 'hotel-tab' ){
+          <div class="tab-pane fade show active" id="stn-stays" role="tabpanel">
+            <div class="tabinside-content-box">
+              <div class="common-box">
+                <h2 class="common-box-title">
+                  Find Your Next Stays at the Best Price
+                  <span>Search for your home away from home</span>
+                </h2>
+              </div>
+
+              <app-hotels-tab />
+
+            </div>
+          </div>
+          }
+          @if(filterTab === 'packages-tab' ){
+          <div class="tab-pane fade show active" id="stn-flight-hotel" role="tabpanel">
+            <div class="tabinside-content-box">
+              <div class="common-box">
+                <h2 class="common-box-title">
+                  The Perfect Holiday Package & Vacation Deals Are Waiting For You
+                  <span>Choose and book your package today.</span>
+                </h2>
+              </div>
+
+              <app-packages-tab />
+
+              <div class="fsr-toast" id="fsrToast"></div>
+            </div>
+          </div>
+          }
+          @if(filterTab === 'car-tab' ){
+          <div class="tab-pane fade show active" id="stn-car" role="tabpanel">
+            <div class="tabinside-content-box">
+              <div class="common-box">
+                <h2 class="common-box-title">
+                  Start The Ignition & Hit The Road
+                  <span>Rent a car at prices that fit your budget.
+                  </span>
+                </h2>
+              </div>
+
+              <app-car-tab />
+
+            </div>
+          </div>
+          }
+          @if(filterTab === 'cruise-tab' ){
+          <div class="tab-pane fade show active" id="stn-cruise" role="tabpanel">
+            <div class="tabinside-content-box">
+              <div class="common-box">
+                <h2 class="common-box-title">
+                  Discover The Sea On Our Cruise <span>Book your cruise today and light up new adventures</span>
+                </h2>
+              </div>
+
+              <app-cruises-tab />
+
+            </div>
+          </div>
+          }
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,759 @@
+  .ltc-tabs {
+      display: flex;
+      flex-wrap: wrap;
+  }
+
+  .ltc-tab-buttons {
+      background: #f8f8f8;
+      display: flex;
+      flex-direction: column;
+      border-right: 1px solid #e2e8f000;
+  }
+
+  .ltc-tab-button {
+      padding: 10px;
+      cursor: pointer;
+      border: none;
+      background: none;
+      text-align: left;
+      font-weight: 500;
+      color: #000000;
+      border-bottom: 0px solid #e2e8f0;
+      transition: background 0.3s, color 0.3s;
+  }
+
+  .ltc-tab-button.active,
+  .ltc-tab-button:hover {
+      background: #e2e8f000;
+      color: #0062ff;
+  }
+
+  .ltc-tab-content {
+      padding: 30px;
+      flex: 1;
+  }
+
+  .ltc-tab-content h3 {
+      font-size: 24px;
+      font-weight: 600;
+      color: #1e293b;
+      margin-bottom: 16px;
+  }
+
+  .ltc-tab-content p {
+      font-size: 16px;
+      color: #475569;
+      line-height: 1.7;
+  }
+
+  .ltc-accordion .accordion-button {
+      background: #f8fafc;
+      color: #1e293b;
+      font-weight: 500;
+  }
+
+  .ltc-accordion .accordion-button:not(.collapsed) {
+      background: #e2e8f0;
+      color: #0f172a;
+  }
+
+  .ltc-accordion .accordion-body {
+      background: #f8fafc;
+      color: #475569;
+  }
+
+  .appCloseIcon {
+      width: 10px;
+      height: 10px;
+      position: absolute;
+      right: 24px;
+      top: 8px;
+  }
+
+  .appDownloadContainer {
+      border-radius: 8px;
+      background: #ffffff;
+      margin-bottom: 12px;
+      padding: 16px 16px 0;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+      height: max-content;
+  }
+
+  .app-container {
+      overflow: hidden;
+      position: relative;
+      width: 173px;
+      height: 160px;
+  }
+
+  .appDonwlDeskIcon {
+      width: 173px;
+      height: 165px;
+      position: absolute;
+
+  }
+
+  .appListheader {
+      font-size: 24px;
+      font-weight: 700;
+      line-height: 28px;
+      letter-spacing: 0em;
+      text-align: left;
+      color: #ff6a19;
+      margin-bottom: 16px;
+  }
+
+  .appListheader span {
+      color: #51555E;
+
+  }
+
+  .appDownloadListwraper {
+      padding-top: 8px;
+      padding-left: 16px;
+  }
+
+  .appDownloadUL {
+      display: flex;
+      flex-direction: row;
+      margin-bottom: 8px;
+      padding-right: 16px;
+
+  }
+
+  .appDownloadUL .ic-check-thin {
+      font-size: 12px;
+      position: relative;
+      top: 4px;
+      padding-right: 4px;
+      color: #51555E;
+  }
+
+
+  .appDownloadWraper {
+      margin-top: 20px;
+      margin-bottom: 16px;
+  }
+
+  .appDownloadLitExt {
+      font-family: Arial;
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 18px;
+      letter-spacing: 0em;
+      text-align: left;
+      color: #51555E;
+
+  }
+
+  .appDownloadStoreImge {
+      width: 122.22px;
+      height: 40px;
+      margin-right: 8px;
+  }
+
+  .appDawnloadPrWraper {
+      text-align: right;
+  }
+
+  .appDawnloadqrimg {
+      width: 120px;
+      height: 120px;
+      position: relative;
+      top: 10px;
+      right: 0px;
+
+  }
+
+  .appDawnloadPRtext {
+      font-family: Arial;
+      font-size: 14px;
+      font-weight: 500;
+      line-height: 18px;
+      letter-spacing: 0em;
+      color: #51555E;
+      padding-top: 14px;
+      white-space: nowrap;
+  }
+
+
+  .appDownloadMobileContainer {
+      border-radius: 8px;
+      background: #FFFFFF;
+      margin-bottom: 12px;
+      padding: 16px 14px 0px;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+
+  }
+
+  .appDownloadMobileContainer .appDownloadListwraper {
+      padding-left: 0px !important;
+      padding-top: 0px;
+      padding-right: 16px;
+  }
+
+  .appDownloadMobileContainer .appListheader {
+      line-height: 20px;
+      margin-bottom: 14px;
+  }
+
+  .appDownloadMobileIcon {
+      width: 130px;
+      height: 211px;
+      position: relative;
+      top: 5px;
+
+  }
+
+  .appDownlMobileBtn {
+      font-size: 16px;
+      font-weight: 700;
+      line-height: 18px;
+      letter-spacing: 0em;
+      text-align: center;
+      background: #FF4600;
+      color: #FFFFFF;
+      width: 160px;
+      height: 40px;
+      border-radius: 4px;
+      border: 1px solid #FF4600;
+      margin-top: 8px;
+  }
+
+  .appDownloadListwraper .ic-cancel {
+      position: absolute;
+      right: 22px;
+      top: 8px;
+      cursor: pointer;
+      font-size: 14px;
+  }
+
+  .addDesktopContainer .ic-cancel {
+      position: absolute;
+      right: 22px;
+      top: 7px;
+      cursor: pointer;
+      font-size: 14px;
+  }
+
+  @media (max-width: 1024px) {
+      .appDownloadListwraper {
+          padding-left: 36px !important;
+      }
+
+      .appDownloadUL {
+          padding-right: 13px !important;
+      }
+  }
+
+
+  @media (max-width: 768px) {
+      .appDownloadListwraper {
+          padding-left: 16px !important;
+      }
+
+      .appListheader {
+          font-size: 18px !important;
+      }
+
+      .appDawnloadPRtext {
+          font-size: 14px !important;
+      }
+
+      .appDownloadContainer {
+          padding: 8px 8px 0px !important;
+          height: 162px !important;
+      }
+
+      .appDonwlDeskIcon {
+          width: 130px !important;
+          top: -19px;
+      }
+
+      .appDownloadUL {
+          padding-right: 8px !important;
+      }
+
+      .appDownloadLitExt {
+          font-size: 12px !important;
+      }
+
+      .appDawnloadqrimg {
+          width: 113px !important;
+          height: 105px !important;
+          top: 20px;
+          right: 18px;
+      }
+
+      .appDownloadWraper {
+          margin-top: 24px !important;
+      }
+
+      .appDawnloadPRtext {
+          padding-top: 22px !important;
+          position: relative !important;
+          right: 44px !important;
+      }
+  }
+
+  .qrAnimation {
+      right: 8px;
+      width: 87px;
+      top: 25px;
+      transform: translateY(0);
+  }
+
+  @keyframes move {
+
+      0%,
+      100% {
+          transform: translateY(50)
+      }
+
+      50% {
+          transform: translateY(80px)
+      }
+  }
+
+
+
+  @media (min-width: 767px) {
+      .appMobileContain {
+          display: none !important;
+      }
+
+  }
+
+  @media (max-width: 767px) {
+      .addDesktopContainer {
+          display: none !important;
+      }
+
+      .appMobileContain {
+          display: block !important;
+      }
+
+  }
+
+  @media (max-width: 375px) {
+      .appDownloadMobileContainer .appDownloadLitExt {
+          font-size: 14px !important;
+      }
+
+
+
+      .appDownloadMobileIcon {
+          width: 99px !important;
+          height: 209px !important;
+          position: relative !important;
+          top: 32px !important;
+      }
+
+  }
+
+  .qrAnimation {
+      position: absolute;
+      top: 16px !important;
+      right: 8px;
+      animation: move 3s infinite;
+      background-color: #FF4600;
+      height: 4px;
+      transform: translateY(0);
+      width: 102px;
+      bottom: 0px !important;
+  }
+
+  @keyframes move {
+
+      0%,
+      100% {
+          transform: translateY(50)
+      }
+
+      50% {
+          transform: translateY(103px)
+      }
+  }
+
+  .qrAnimationContainer,
+  .addDesktopContainer {
+      position: relative;
+  }
+
+  .li-container {
+      display: flex;
+      align-items: center;
+  }
+
+  .nav-container__heading {
+      background-color: #f98d27;
+      border-top-left-radius: .25rem;
+      border-top-right-radius: .25rem;
+      color: #FFF;
+      font-size: 1.1rem;
+      font-weight: 700;
+      padding: .85rem .5rem .85rem 3.5rem;
+      position: relative;
+
+  }
+
+  .nav-container__heading-info {
+      font-size: .9rem;
+      font-weight: normal;
+      display: block;
+
+  }
+
+  .nav-container__heading .ic-home {
+      width: 2rem;
+      position: absolute;
+      left: .85rem;
+      top: 1.25rem;
+  }
+
+  .connect {
+      color: #fff;
+      background-color: #2f354a;
+      font-size: .8125rem;
+      padding: 3rem 0;
+      position: relative;
+  }
+.sidenav-warp {
+    overflow: hidden;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 0 0 0.25rem 0.25rem;
+}
+  .sidenavsec {
+      background-color: #fff;
+  }
+
+  .icosvg {
+      color: hsl(0, 0%, 0%);
+      font-size: 40px;
+  }
+
+  /* 07/06/2025 */
+  .sidenavsec-bottom {
+      background: #fff;
+  }
+
+.sidenavsec-bottom .accordion-item {
+    border: 0;
+    background: inherit;
+    margin-top: 2px;
+}
+
+  .sidenavsec-bottom .accordion-header:focus-visible {
+      outline: 0 !important;
+  }
+
+  .sidenavsec-bottom .accordion-button:focus {
+      outline: 0;
+      box-shadow: inherit;
+  }
+    .sidenavsec-bottom .accordion-button:hover {
+      background: #f48e32 !important;
+      color: #fff;
+  }
+    .sidenavsec-bottom .accordion-button {
+      border-radius: 0 !important;
+  }
+
+  .sidenavsec-bottom .accordion-button:not(.collapsed) {
+      background: #f48e32;
+      border-radius: 0 !important;
+      color: #fff;
+  }
+
+  .sidenavsec-bottom .accordion-button:not(.collapsed)::after {
+      filter: brightness(0.1) invert(1);
+  }
+
+  .sidenavsec-bottom .accordion-body {
+      background: #ffffff;
+      color: #475569;
+      padding: 0;
+  }
+
+  .sidenavsec-bottom .ltc-tab-buttons {
+      background: #ffffff;
+      padding: 0 11px;
+  }
+
+.sidenavsec-bottom .ltc-tab-button.active, .ltc-tab-button:hover {
+    color: #f08f3b;
+}
+
+  .sidenavsec-bottom .accordion-item button {
+      background: inherit;
+  }
+  .sidenavsec-bottom .accordion-button:not(.collapsed) {
+    background: #f48e32 !important;
+}
+
+  .ltc-tab-content {
+      padding: 0 15px;
+  }
+
+.ltc-tab-card .card-header  {
+    padding: 10px 20px;
+}
+
+.ltc-tab-card-body {
+    padding: 0 20px;
+}
+  .ltc-tab-card {
+      background-color: #fff;
+      border-radius: 6px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      margin: auto;
+      border: 1px solid #ddd;
+      overflow: hidden;
+  }
+
+.ltc-tab-card .card-header {
+    color: #333;
+    font-weight: 700;
+    font-size: 18px;
+    margin-bottom: 10px;
+    background: #f48e32;
+    color: #fff;
+}
+
+  .ltc-tab-card .breadcrumb {
+      color: #999;
+      font-size: 14px;
+      margin-bottom: 20px;
+  }
+
+  .ltc-tab-card .card-text {
+      font-size: 15px;
+      color: #444;
+      margin-bottom: 25px;
+  }
+
+  .ltc-tab-card .buttons {
+      display: flex;
+      gap: 15px;
+      margin-bottom: 30px;
+  }
+
+  .ltc-tab-card .btn {
+      padding: 12px 25px;
+      font-size: 15px;
+      border-radius: 4px;
+      font-weight: 600;
+      cursor: pointer;
+      border: none;
+      transition: 0.3s ease;
+  }
+
+.ltc-tab-card .btn-submit {
+    background-color: #f08f3b;
+    color: white;
+    border: 1px solid #f08f3b;
+}
+
+.ltc-tab-card .btn-submit:hover {
+    background-color: #ffffff;
+    color: #f08f3b;
+}
+
+  .ltc-tab-card .btn-call {
+      background-color: white;
+      color: #f08f3b;
+      border: 1px solid #f08f3b;
+  }
+
+  .ltc-tab-card .btn-call:hover {
+      background-color: #fff3f0;
+  }
+
+  .ltc-tab-card .feedback {
+      font-size: 14px;
+      font-weight: 600;
+      color: #333;
+      margin-bottom: 10px;
+  }
+
+  .ltc-tab-cardv .feedback-buttons {
+      display: flex;
+      gap: 10px;
+  }
+
+  .ltc-tab-card .feedback-btn {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 16px;
+      font-size: 14px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      cursor: pointer;
+      background-color: #f1f3f6;
+  }
+
+  .ltc-tab-card .feedback-btn:hover {
+      background-color: #e6e8ec;
+  }
+
+  .ltc-tab-card .feedback-btn i {
+      font-size: 16px;
+  }
+
+  .ltc-tab-card .accordion-button:focus {
+    box-shadow: inherit;
+}
+  
+  /*  */
+@media (max-width:991px) {
+
+.appDownloadListwraper {
+    padding-left: 35px !important;
+}
+    .destinations.cmn-gap {
+    padding-top: 31px;
+}
+  .appDownloadWraper {
+    margin-top: 0 !important;
+}
+.ltc-tab-card .btn {
+    padding: 12px 15px;
+    font-size: 14px;
+}
+.ltc-tab-content h3 {
+    font-size: 19px;
+}
+}
+  @media (max-width:767px) {
+    .ltc-tab-card-body {
+    padding: 0 10px;
+}
+    .ltc-tab-card .btn {
+    padding: 8px 12px;
+    font-size: 14px;
+}
+.ltc-tab-content h3 {
+    font-size: 19px;
+    margin-bottom: 4px;
+}
+.ltc-tab-content p {
+    font-size: 14px;
+}
+.ltc-accordion .accordion-button {
+    font-size: 14px;
+    line-height: normal;
+}
+.ltc-tab-content {
+    padding: 0;
+}
+  }
+
+  // 
+/* inner banner css */
+.innerbannersection {
+    min-height: 45vh;
+    position: relative;
+    overflow: hidden;
+    display: block;
+    align-content: center;
+}
+
+.innerbannerimgbox {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.innerbannerimg {
+    object-position: 9%;
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+
+.innerbanner-txt {
+    display: block;
+    align-content: center;
+    position: relative;
+    z-index: 2;
+}
+
+.innerbanner-txt h1 {
+    text-align: center;
+    font-size: 40px;
+    font-weight: 700;
+    color: #fff;
+    text-transform: capitalize;
+}
+
+.innerbannersection::after {
+    content: '';
+    width: 100%;
+    height: 100%;
+    background-color: #000;
+    position: absolute;
+    left: 0;
+    top: 0;
+    opacity: 0.7;
+}
+
+.subtitletext {
+    color: #FF6A19;
+}
+
+.breadcrumbssec {
+    margin-top: 1rem;
+}
+
+.breadcrumbssec .currentpagesec {
+    color: #fff;
+}
+
+.breadcrumbssec .breadcrumb-item.active {
+    color: #FF6A19;
+}
+
+.breadcrumbssec .breadcrumb-item+.breadcrumb-item::before {
+    color: rgb(255 255 255);
+}
+
+.section-shape {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 97px;
+    background-size: contain;
+    background-repeat: repeat-x;
+    z-index: 1;
+}
+.section-shape.section-shape1 {
+    transform: rotate(180deg);
+}
+@media(max-width:1024px) {
+    .innerbanner-txt h1 {
+        font-size: 30px;
+    }
+}
+@media(max-width:991px) {
+    .innerbanner-txt h1 {
+        font-size: 24px;
+    }
+}
+@media(max-width:767px) {
+    .innerbannersection {
+        min-height: 36vh;
+    }
+}
+@media(max-width:580px) {
+    .innerbanner-txt h1 {
+        font-size: 25px;
+    }
+    .innerbannersection {
+        min-height: 36vh;
+    }
+}

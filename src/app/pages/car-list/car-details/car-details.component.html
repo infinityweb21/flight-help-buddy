@@ -1,0 +1,782 @@
+<section class="fiter-sec-list-section common-section">
+  <div class="container">
+    <div class="row">
+      <div class="col-xl-9 col-lg-8 col-12">
+        <!-- Skeleton UI -->
+        <ng-container *ngIf="isLoading">
+          <div class="mainflexgroup">
+            <div class="mainflexgroupbleow">
+              <div class="imgmaincar-box">
+                <p-skeleton width="100%" height="100%" borderRadius="8px">
+                </p-skeleton>
+              </div>
+              <div class="w-100">
+                <div class="d-flex align-items-center mb-2 flex-wrap">
+                  <h4
+                    class="d-flex align-items-center flex-wrap fw-bold me-3 classcarmodalname"
+                  >
+                    <p-skeleton width="220px" height="24px"></p-skeleton>
+                  </h4>
+                </div>
+                <div class="d-flex align-items-center flex-wrap row-gap-2">
+                  <div class="girdboxlistsec">
+                    <div class="grid-item">
+                      <div class="grid-item-insidebox">
+                        <p-skeleton width="100px" height="18px"></p-skeleton>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div
+              class="d-flex align-items-center flex-wrap row-gap-2 justify-content-end"
+            >
+              <div>
+                <p class="fs-13 fw-medium mb-0" style="text-align: end">
+                  <p-skeleton width="70px" height="14px"></p-skeleton>
+                </p>
+                <h5 class="textprimary">
+                  <p-skeleton width="110px" height="22px"></p-skeleton>
+                </h5>
+              </div>
+            </div>
+          </div>
+          <div class="overview-sec-inner">
+            <ul class="nav nav-tabs rg-tabs pt-3" role="tablist">
+              <li class="nav-item">
+                <button class="nav-link active">
+                  <p-skeleton width="70px" height="18px"></p-skeleton>
+                </button>
+              </li>
+              <li class="nav-item">
+                <button class="nav-link">
+                  <p-skeleton width="80px" height="18px"></p-skeleton>
+                </button>
+              </li>
+              <li class="nav-item">
+                <button class="nav-link">
+                  <p-skeleton width="65px" height="18px"></p-skeleton>
+                </button>
+              </li>
+            </ul>
+            <div class="tab-content rg-tab-content">
+              <div class="rm-container">
+                <div class="content-sec-more">
+                  <div class="picdropmainbox">
+                    <div class="pickuobox">
+                      <p-skeleton
+                        width="100%"
+                        height="55px"
+                        borderRadius="8px"
+                      ></p-skeleton>
+                    </div>
+                    <div class="dropofbox">
+                      <p-skeleton
+                        width="100%"
+                        height="55px"
+                        borderRadius="8px"
+                      ></p-skeleton>
+                    </div>
+                  </div>
+                  <h5 class="content-subtitle-common">
+                    <p-skeleton width="140px" height="20px"></p-skeleton>
+                  </h5>
+                  <div class="girdboxlist">
+                    <div class="grid-item" *ngFor="let s of [1, 2, 3, 4, 5, 6]">
+                      <div class="grid-item-insidebox">
+                        <p-skeleton
+                          width="100%"
+                          height="35px"
+                          borderRadius="6px"
+                        ></p-skeleton>
+                      </div>
+                    </div>
+                  </div>
+                  <h5 class="content-subtitle-common">
+                    <p-skeleton width="160px" height="20px"></p-skeleton>
+                  </h5>
+                  <div class="common-para-inner">
+                    <p>
+                      <p-skeleton width="100%" height="16px"></p-skeleton>
+                    </p>
+                    <p>
+                      <p-skeleton width="100%" height="16px"></p-skeleton>
+                    </p>
+                    <p>
+                      <p-skeleton width="65%" height="16px"></p-skeleton>
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </ng-container>
+
+        <!-- API Error UI -->
+        <ng-container *ngIf="!isLoading && errorMessage">
+          <div class="car-details-error-page">
+            <div class="car-details-error-card">
+              <div class="error-icon">
+                <i class="bi bi-car-front-fill"></i>
+              </div>
+              <h2>Car Details Unavailable</h2>
+              <p class="error-message">{{ errorMessage }}</p>
+              <p class="error-description">
+                We couldn't load the car details you're looking for. Please
+                return to the search results and try again.
+              </p>
+              <button type="button" class="back-button" (click)="goback()">
+                <i class="bi bi-arrow-left"></i>
+                <span>Back to Search Results</span>
+              </button>
+            </div>
+          </div>
+        </ng-container>
+
+        <ng-container *ngIf="!isLoading && !errorMessage">
+          <!-- (HEAD) Image + Car Title & Price -->
+          <div class="mainflexgroup">
+            <div class="mainflexgroupbleow">
+              <div class="imgmaincar-box">
+                <img
+                  [src]="carDetails?.vehicle?.imageUrl"
+                  class="carimgsecmain"
+                  [alt]="carDetails?.vehicle?.name || 'Car image'"
+                />
+              </div>
+              <div>
+                <div class="d-flex align-items-center mb-2 flex-wrap">
+                  <h4
+                    class="d-flex align-items-center flex-wrap fw-bold me-3 classcarmodalname"
+                  >
+                    {{ carDetails?.vehicle?.name || "-" }}
+                  </h4>
+                  <div class="smallbadgesecreviewboxmain">
+                    <span class="smallbadgesecreviewbox"
+                      ><i class="fa-solid fa-star-half-stroke"></i>
+                      {{ carDetails?.vendorDeatis?.overallReview }} ({{
+                        carDetails?.vendorDeatis?.totalReview
+                      }}
+                      Reviews)</span
+                    >
+                  </div>
+                </div>
+                <div class="d-flex align-items-center flex-wrap row-gap-2">
+                  <div class="girdboxlistsec">
+                    <div class="grid-item">
+                      <div class="grid-item-insidebox">
+                        <i class="fa-solid fa-car-side"></i>Vehicle Model :
+                        <span class="info-text">
+                          {{ carDetails?.vehicle?.model || "-" }}
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div
+              class="d-flex align-items-center flex-wrap row-gap-2 justify-content-end"
+            >
+              <div>
+                <p class="fs-13 fw-medium mb-0" style="text-align: end">
+                  Starts From
+                </p>
+                <h5 class="textprimary">
+                  {{ carDetails?.currency || "USD" }}
+                  {{ truncateAmount(getPerDayPrice(getdetailsdata), 2) }} / day
+                </h5>
+                <p class="fs-13 fw-medium mb-0" style="text-align: end">
+                  Total Days
+                </p>
+                <h5 class="textprimary">
+                  {{ carDetails?.duartion || "-" }}
+                </h5>
+              </div>
+            </div>
+          </div>
+
+          <!-- Tabs -->
+          <div class="overview-sec-inner">
+            <div class="rg-tabs-wrapper">
+              <!-- Left Arrow -->
+              <button
+                type="button"
+                class="rg-tabs-arrow rg-tabs-arrow--left"
+                (click)="moveTab('left')"
+                [disabled]="selectedTabIndex === 0"
+                aria-label="Previous tab"
+              >
+                <i class="fa-solid fa-chevron-left"></i>
+              </button>
+
+              <!-- Tabs -->
+              <div class="rg-tabs-scroll">
+                <ul class="nav nav-tabs rg-tabs pt-3" role="tablist">
+                  <li class="nav-item" *ngFor="let tab of tabs; let i = index">
+                    <button
+                      type="button"
+                      class="nav-link"
+                      [class.active]="selectedTab === tab"
+                      (click)="selectTab(tab)"
+                    >
+                      {{ tab }}
+                    </button>
+                  </li>
+                </ul>
+              </div>
+
+              <!-- Right Arrow -->
+              <button
+                type="button"
+                class="rg-tabs-arrow rg-tabs-arrow--right"
+                (click)="moveTab('right')"
+                [disabled]="selectedTabIndex === tabs.length - 1"
+                aria-label="Next tab"
+              >
+                <i class="fa-solid fa-chevron-right"></i>
+              </button>
+            </div>
+
+            <div class="tab-content rg-tab-content">
+              <div
+                class="tab-pane fade show active"
+                *ngIf="selectedTab === 'Overview'"
+              >
+                <div class="rm-container">
+                  <div class="content-sec-more">
+                    <div class="picdropmainbox">
+                      <div class="pickuobox">
+                        <img src="assets/images/hotel/location.png" alt="" />
+                        <div class="infopick">
+                          <h3>
+                            <span>Pick-up:</span>
+                            {{ carDetails?.pickupLocation || "-" }}
+                          </h3>
+                          <a
+                            href="#pickupModal"
+                            data-bs-toggle="modal"
+                            data-bs-target="#pickupModal"
+                            >View pick-up instructions</a
+                          >
+                        </div>
+                      </div>
+                      <div class="dropofbox">
+                        <img src="assets/images/hotel/location.png" alt="" />
+                        <div class="infopick">
+                          <h3>
+                            <span>Drop-off:</span>
+                            {{ carDetails?.dropoffLocation || "-" }}
+                          </h3>
+                          <a
+                            href="#pickupModal"
+                            data-bs-toggle="modal"
+                            data-bs-target="#pickupModal"
+                            >View pick-up instructions</a
+                          >
+                        </div>
+                      </div>
+                    </div>
+
+                    <h5 class="content-subtitle-common">Specification</h5>
+                    <div class="girdboxlist">
+                      <div class="grid-item">
+                        <div class="grid-item-insidebox">
+                          <i class="fa-solid fa-users"></i> Passenger Quantity
+                          :<span class="info-text">
+                            {{
+                              carDetails?.vehicle?.passengerQuantity || "-"
+                            }}</span
+                          >
+                        </div>
+                      </div>
+                      <div class="grid-item">
+                        <div class="grid-item-insidebox">
+                          <i class="fa-solid fa-suitcase-rolling"></i>Baggage
+                          Quantity :
+                          <span class="info-text">
+                            {{ carDetails?.vehicle?.baggageQuantity || "-" }}
+                          </span>
+                        </div>
+                      </div>
+                      <div class="grid-item">
+                        <div class="grid-item-insidebox">
+                          <i class="fa-solid fa-car-side"></i>Vehicle Door :
+                          <span class="info-text">
+                            {{ carDetails?.vehicle?.doorCount || "-" }}
+                          </span>
+                        </div>
+                      </div>
+                      <div class="grid-item">
+                        <div class="grid-item-insidebox">
+                          <i class="fa-solid fa-gears"></i>Transmission Type :
+                          <span class="info-text">
+                            {{ carDetails?.vehicle?.transmission || "-" }}
+                          </span>
+                        </div>
+                      </div>
+                      <div class="grid-item">
+                        <div class="grid-item-insidebox">
+                          <i class="fa-solid fa-gas-pump"></i>Fuel Type :
+                          <span class="info-text">
+                            {{ carDetails?.vehicle?.fuelType || "Unspecified" }}
+                          </span>
+                        </div>
+                      </div>
+                      <div class="grid-item">
+                        <div class="grid-item-insidebox">
+                          <i class="fa-solid fa-snowflake"></i>Ac :
+                          <span class="info-text">
+                            {{ carDetails?.vehicle?.airConditioning || "-" }}
+                          </span>
+                        </div>
+                      </div>
+                      <div class="grid-item">
+                        <div class="grid-item-insidebox">
+                          <i class="fa-solid fa-calendar-days"></i>Pick-up Date
+                          :
+                          <span class="info-text">
+                            {{ carDetails?.pickupDate || "-" }}
+                          </span>
+                        </div>
+                      </div>
+                      <div class="grid-item">
+                        <div class="grid-item-insidebox">
+                          <i class="fa-solid fa-calendar-days"></i>Drop-off Date
+                          :
+                          <span class="info-text">
+                            {{ carDetails?.dropoffDate || "-" }}
+                          </span>
+                        </div>
+                      </div>
+                      <div
+                        class="grid-item"
+                        *ngIf="carDetails?.vehicle?.category"
+                      >
+                        <div class="grid-item-insidebox">
+                          <i class="fa-solid fa-layer-group"></i>Category :
+                          <span class="info-text">
+                            {{ carDetails?.vehicle?.category }}
+                          </span>
+                        </div>
+                      </div>
+                      <div class="grid-item" *ngIf="carDetails?.duartion">
+                        <div class="grid-item-insidebox">
+                          <i class="fa-solid fa-stopwatch"></i>Duartion :
+                          <span class="info-text">
+                            {{ carDetails?.duartion }}
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+
+                    <ng-container *ngIf="carDetails?.vehicle?.description">
+                      <h5 class="content-subtitle-common">
+                        Vehicle Description
+                      </h5>
+                      <div class="common-para-inner">
+                        <p>{{ carDetails?.vehicle?.description }}</p>
+                      </div>
+                    </ng-container>
+
+                    <h5 class="content-subtitle-common">Priced Coverages</h5>
+                    <ng-container
+                      *ngIf="carRate?.pricedCoverages?.length; else noCoverages"
+                    >
+                      <ul class="common-content-list">
+                        <li *ngFor="let cov of carRate?.pricedCoverages">
+                          {{ cov?.description || "-" }}
+                          <span class="info-text">
+                            ({{ cov?.currencyCode || carDetails?.currency }}
+                            {{ truncateAmount(cov?.amount) }})
+                          </span>
+                        </li>
+                      </ul>
+                    </ng-container>
+                    <ng-template #noCoverages>
+                      <div class="common-para-inner">
+                        <p>No priced coverages available for this rental.</p>
+                      </div>
+                    </ng-template>
+
+                    <h5 class="content-subtitle-common">Priced Equipments</h5>
+                    <ng-container
+                      *ngIf="
+                        carRate?.pricedEquipments?.length;
+                        else noEquipmentsList
+                      "
+                    >
+                      <ul class="common-content-list">
+                        <li *ngFor="let eq of carRate?.pricedEquipments">
+                          {{ eq?.description || "-" }}
+                          <span class="info-text">
+                            ({{ eq?.currencyCode || carDetails?.currency }}
+                            {{ truncateAmount(eq?.amount) }})
+                          </span>
+                        </li>
+                      </ul>
+                    </ng-container>
+                    <ng-template #noEquipmentsList>
+                      <div class="common-para-inner">
+                        <p>No optional equipment available for this rental.</p>
+                      </div>
+                    </ng-template>
+
+                    <h5 class="content-subtitle-common">Included in rate</h5>
+                    <ng-container
+                      *ngIf="includedCharges.length; else noIncluded"
+                    >
+                      <ul class="common-content-list">
+                        <li *ngFor="let inc of includedCharges">
+                          {{ inc?.description || "-" }}
+                        </li>
+                      </ul>
+                    </ng-container>
+                    <ng-template #noIncluded>
+                      <div class="common-para-inner">
+                        <p>No inclusions available for this rental.</p>
+                      </div>
+                    </ng-template>
+                  </div>
+                </div>
+              </div>
+
+              <ng-container *ngFor="let condition of conditionKeys">
+                <div
+                  class="tab-pane fade show active"
+                  *ngIf="selectedTab === condition"
+                >
+                  <div class="rm-container">
+                    <div class="content-sec-more">
+                      <h5 class="content-subtitle-common">
+                        {{ condition }}
+                      </h5>
+                      <ng-container
+                        *ngIf="
+                          getConditionLines(condition).length;
+                          else noConditionData
+                        "
+                      >
+                        <ul class="common-content-list">
+                          <li *ngFor="let line of getConditionLines(condition)">
+                            {{ line }}
+                          </li>
+                        </ul>
+                      </ng-container>
+                      <ng-template #noConditionData>
+                        <div class="common-para-inner">
+                          <p>No information available for {{ condition }}.</p>
+                        </div>
+                      </ng-template>
+                    </div>
+                  </div>
+                </div>
+              </ng-container>
+
+              <div
+                class="tab-pane fade show active"
+                *ngIf="selectedTab === 'Location'"
+              >
+                <div class="ex-area-section">
+                  <div class="ex-area-header">
+                    <h2 class="ex-area-title">Explore the Area</h2>
+                  </div>
+
+                  <div class="location-box">
+                    <div class="location-icon">
+                      <img src="assets/images/hotel/location.png" alt="" />
+                    </div>
+                    <div class="location-info">
+                      <p class="resort-address">
+                        Pick-up: {{ carDetails?.pickupLocation || "-" }}
+                      </p>
+                      <a href="#" class="map-link">View on map</a>
+                    </div>
+                  </div>
+
+                  <div class="location-box">
+                    <div class="location-icon">
+                      <img src="assets/images/hotel/location.png" alt="" />
+                    </div>
+                    <div class="location-info">
+                      <p class="resort-address">
+                        Drop-off: {{ carDetails?.dropoffLocation || "-" }}
+                      </p>
+                      <a href="#" class="map-link">View on map</a>
+                    </div>
+                  </div>
+
+                  <div class="ex-area-map-container">
+                    <iframe
+                      class="ex-area-map-frame"
+                      [src]="
+                        getMapUrl(
+                          carDetails?.pickupAddress ||
+                            carDetails?.pickupLocation
+                        )
+                      "
+                      allowfullscreen=""
+                      loading="lazy"
+                    >
+                    </iframe>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </ng-container>
+      </div>
+
+      <div class="col-xl-3 col-lg-4 col-12">
+        <ng-container *ngIf="isLoading">
+          <!-- Skeleton UI for Total Price Card (Right Side) -->
+          <div class="bdc-card">
+            <div class="bdc-vehicle">
+              <p-skeleton
+                width="75%"
+                height="24px"
+                styleClass="mb-2"
+              ></p-skeleton>
+              <p-skeleton
+                width="50%"
+                height="20px"
+                styleClass="mb-2"
+              ></p-skeleton>
+            </div>
+            <div class="bdc-total">
+              <div class="bdc-total__row">
+                <p-skeleton width="25%" height="20px"></p-skeleton>
+                <p-skeleton width="30%" height="22px"></p-skeleton>
+              </div>
+            </div>
+            <div class="bdc-book">
+              <p-skeleton
+                width="100%"
+                height="44px"
+                borderRadius="8px"
+              ></p-skeleton>
+            </div>
+          </div>
+        </ng-container>
+
+        <ng-container *ngIf="!isLoading && !errorMessage">
+          <div class="bdc-card">
+            <div class="bdc-vehicle">
+              <h3 class="bdc-vehicle__title">
+                {{ carDetails?.vehicle?.name || "-" }}
+              </h3>
+              <span class="smallbadgesecreviewbox"
+                ><i class="fa-solid fa-star-half-stroke"></i>
+                {{ carDetails?.vendorDeatis?.overallReview }} ({{
+                  carDetails?.vendorDeatis?.totalReview
+                }}
+                Reviews)</span
+              >
+            </div>
+
+            <div class="bdc-payments">
+              <h4 class="bdc-payments__title">Additional Payments</h4>
+              <div class="bdc-payments__list">
+                <ng-container
+                  *ngIf="
+                    carRate?.pricedEquipments?.length;
+                    else noEquipmentPayments
+                  "
+                >
+                  <div
+                    class="bdc-payment-item"
+                    *ngFor="let eq of carRate?.pricedEquipments"
+                  >
+                    <div class="bdc-payment-item__left">
+                      <input
+                        type="checkbox"
+                        class="bdc-payment-item__checkbox"
+                        [checked]="isEquipmentSelected(eq)"
+                        (change)="toggleEquipment(eq)"
+                      />
+                      <span class="bdc-payment-item__label">{{
+                        eq?.description || "-"
+                      }}</span>
+                    </div>
+                    <span class="bdc-payment-item__price">
+                      {{ eq?.currencyCode || carDetails?.currency }}
+                      {{ truncateAmount(eq?.amount) }}
+                    </span>
+                  </div>
+                </ng-container>
+                <ng-template #noEquipmentPayments>
+                  <div class="bdc-payment-item">
+                    <div class="bdc-payment-item__left">
+                      <span class="bdc-payment-item__label"
+                        >No additional payments available</span
+                      >
+                    </div>
+                    <span class="bdc-payment-item__price">-</span>
+                  </div>
+                </ng-template>
+              </div>
+            </div>
+
+            <div class="bdc-total">
+              <div class="bdc-total__row">
+                <span class="bdc-total__label">Grand Total</span>
+                <span class="bdc-total__amount">
+                  {{ carDetails?.currency || "USD" }}
+                  {{ truncateAmount(getGrandTotal(getdetailsdata)) }}
+                </span>
+              </div>
+            </div>
+
+            <div class="bdc-book">
+              <button class="bdc-book__btn" (click)="navigateToPayment()">
+                Book Now
+              </button>
+            </div>
+
+            <div class="bdc-benefits">
+              <h4 class="bdc-benefits__title">Why Book With Us</h4>
+              <div class="bdc-benefits__list">
+                <ng-container *ngIf="includedCharges.length; else noBenefits">
+                  <div
+                    class="bdc-benefit-item"
+                    *ngFor="let ch of includedCharges"
+                  >
+                    <div class="bdc-benefit-item__left">
+                      <div class="bdc-benefit-item__icon">
+                        <i class="fas fa-check"></i>
+                      </div>
+                      <span class="bdc-benefit-item__label">{{
+                        ch?.description || "-"
+                      }}</span>
+                    </div>
+                    <div class="bdc-benefit-item__status">
+                      <i class="fas fa-check-circle"></i>
+                      <span>Included</span>
+                    </div>
+                  </div>
+                </ng-container>
+                <ng-template #noBenefits>
+                  <div class="bdc-benefit-item">
+                    <div class="bdc-benefit-item__left">
+                      <span class="bdc-benefit-item__label"
+                        >No inclusions available</span
+                      >
+                    </div>
+                    <div class="bdc-benefit-item__status">
+                      <i class="fas fa-times-circle"></i>
+                      <span>Not Included</span>
+                    </div>
+                  </div>
+                </ng-template>
+              </div>
+            </div>
+
+            <div class="bdc-offers">
+              <h4 class="bdc-offers__title">OFFERS &amp; DISCOUNTS</h4>
+              <div class="bdc-offers__item">
+                <div class="bdc-offers__item-title">
+                  Online check-in available
+                </div>
+                <div class="bdc-offers__item-text">
+                  Congratulations! Online check-in available
+                </div>
+              </div>
+            </div>
+
+            <ng-container *ngIf="carDetails?.vendorDeatis">
+              <div class="bdc-provider">
+                <h4 class="bdc-provider__title">Provider Details</h4>
+                <div class="bdc-provider__content">
+                  <div class="bdc-provider__logo">
+                    <span class="bdc-provider__logo-text"
+                      ><img
+                        [src]="carDetails?.vendorDeatis?.vendorImage"
+                        alt="vendor"
+                    /></span>
+                  </div>
+                  <div class="bdc-provider__info">
+                    <div class="bdc-provider__name">
+                      {{ carDetails?.vendorDeatis?.vendorName }}
+                    </div>
+                    <div class="bdc-provider__reviews">
+                      Reviews: {{ carDetails?.vendorDeatis?.totalReview }} |
+                      Rating: {{ carDetails?.vendorDeatis?.overallReview }}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </ng-container>
+          </div>
+        </ng-container>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Modal For GMap -->
+<div
+  class="modal fade"
+  id="pickupModal"
+  tabindex="-1"
+  aria-labelledby="pickupModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog pui-modal-dialog modal-dialog-centered">
+    <div class="modal-content pui-modal-content">
+      <div class="modal-header pui-modal-header">
+        <h5 class="modal-title pui-modal-title" id="pickupModalLabel">
+          Pick-up Instructions
+        </h5>
+        <button
+          type="button"
+          class="pui-btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        >
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <div class="modal-body pui-modal-body">
+        <div class="pui-info-row">
+          <div class="pui-info-item">
+            <div class="pui-info-label">LOCATION:</div>
+            <div class="pui-info-value">
+              {{ carDetails?.pickupLocation || "-" }}
+            </div>
+          </div>
+          <div class="pui-info-item">
+            <div class="pui-info-label">ADDRESS:</div>
+            <div class="pui-info-value">
+              {{ carDetails?.pickupAddress || "-" }}
+            </div>
+          </div>
+          <div class="pui-info-item">
+            <div class="pui-info-label">TELEPHONE:</div>
+            <div class="pui-info-value">
+              {{ carDetails?.pickupTelephone || "-" }}
+            </div>
+          </div>
+        </div>
+
+        <div class="pui-map-wrapper">
+          <div class="pui-map-container">
+            <iframe
+              [src]="
+                getMapUrl(
+                  carDetails?.pickupAddress || carDetails?.pickupLocation
+                )
+              "
+              allowfullscreen=""
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+            >
+            </iframe>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

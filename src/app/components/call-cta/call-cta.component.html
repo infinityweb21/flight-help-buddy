@@ -1,0 +1,24 @@
+  <!-- ======== =========== -->
+<div class="call-cta" [class.call-cta--visible]="isVisible">
+  <div class="call-cta__banner">
+    <a [href]="'tel:' + getRouteContactNumber()" class="call-cta__link">
+      <span class="call-cta__avatar">
+        <img src="assets/images/person.png" alt="Support Agent">
+      </span>
+      <div class="call-cta__content">
+        <b class="call-cta__number"> {{ getRouteContactNumber() }}</b>
+        <span class="call-cta__subtext">The Fastest Way to Your Best Deals.</span>
+      </div>
+      <span class="call-cta__btn">
+        <span class="call-cta__ring"></span>
+        <span class="call-cta__ring call-cta__ring--delay"></span>
+        <svg class="call-cta__icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+          <path d="M0 0h24v24H0z" fill="none" />
+          <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            d="M13 2a9 9 0 0 1 9 9m-9-5a5 5 0 0 1 5 5m-4.168 5.568a1 1 0 0 0 1.213-.303l.355-.465A2 2 0 0 1 17 15h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2A18 18 0 0 1 2 4a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v3a2 2 0 0 1-.8 1.6l-.468.351a1 1 0 0 0-.292 1.233a14 14 0 0 0 6.392 6.384" />
+        </svg>
+      </span>
+    </a>
+  </div>
+</div>
+  <!-- ======== =========== -->

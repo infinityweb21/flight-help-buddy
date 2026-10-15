@@ -1,0 +1,1070 @@
+<app-main-filter></app-main-filter>
+<!-- === === -->
+<section class="flight-class-content-wrap">
+  <div class="container container-xxl">
+    <div class="flight-class-header d-flex align-items-center justify-content-between">
+      <h1 class="flight-class-title">Cheap Flights to US</h1>
+      <a href="" class="flight-class-contact-cta">Call Us Toll-Free to Get the Best Deal!</a>
+    </div>
+    <div class="flight-class-tab-content-wrap">
+      <div class="flight-class-tabs">
+        <ul class="nav nav-tabs" id="customTab" role="tablist">
+          <li class="nav-item" role="presentation">
+            <button class="nav-link active" id="asia-tab" data-bs-toggle="tab" data-bs-target="#asia" type="button"
+              role="tab" aria-selected="true">
+              Asia
+            </button>
+          </li>
+          <li class="nav-item" role="presentation">
+            <button class="nav-link" id="europe-tab" data-bs-toggle="tab" data-bs-target="#europe" type="button"
+              role="tab" aria-selected="false" tabindex="-1">
+              Europe
+            </button>
+          </li>
+          <!-- <li class="nav-item" role="presentation">
+            <button class="nav-link" id="africa-tab" data-bs-toggle="tab" data-bs-target="#africa" type="button"
+              role="tab" aria-selected="false" tabindex="-1">
+              Africa
+            </button>
+          </li> -->
+          <li class="nav-item" role="presentation">
+            <button class="nav-link" id="middleeast-tab" data-bs-toggle="tab" data-bs-target="#middleeast" type="button"
+              role="tab" aria-selected="false" tabindex="-1">
+              Middle East
+            </button>
+          </li>
+          <!-- <li class="nav-item" role="presentation">
+            <button class="nav-link" id="latin-tab" data-bs-toggle="tab" data-bs-target="#latin" type="button"
+              role="tab" aria-selected="false" tabindex="-1">
+              Latin America
+            </button>
+          </li> -->
+          <li class="nav-item" role="presentation">
+            <button class="nav-link" id="india-tab" data-bs-toggle="tab" data-bs-target="#india" type="button"
+              role="tab" aria-selected="false" tabindex="-1">
+              India &amp; ISC
+            </button>
+          </li>
+          <!-- <li class="nav-item" role="presentation">
+            <button class="nav-link" id="oceania-tab" data-bs-toggle="tab" data-bs-target="#oceania" type="button"
+              role="tab" aria-selected="false" tabindex="-1">
+              Oceania
+            </button>
+          </li>
+          <li class="nav-item" role="presentation">
+            <button class="nav-link" id="na-tab" data-bs-toggle="tab" data-bs-target="#na" type="button" role="tab"
+              aria-selected="false" tabindex="-1">
+              North America
+            </button>
+          </li> -->
+        </ul>
+        <div class="tab-content">
+          <div class="tab-pane fade show active" id="asia" role="tabpanel" aria-labelledby="asia-tab">
+           
+
+            <div class="listcarsec">
+               @for(destination of flightDestinations.asia;track
+              destination.displayName){
+
+              <div class="flightcard-mainbox">
+                <a
+                  href="javascript:void(0);"
+                  class="flightcardlink"
+                  (click)="onDestinationClick(destination)"
+                >
+                  <img
+                    [src]='destination?.departImage'
+                    alt="departImage"
+                  />
+                  <p>{{ destination.displayName }}</p>
+                  <img
+                    [src]="destination?.arrivalImage"
+                    alt="arrivalImage"
+                  />
+                </a>
+              </div>
+            }
+              <!-- <div class="flightcard-mainbox ">
+                <a href="#" class="flightcardlink">
+                  <img src="assets/images/international-flights-to-us/asia/san-francisco.webp" alt="">
+                  <p>San Francisco (SFO) – Taipei (TPE)</p>
+                  <img src="assets/images/international-flights-to-us/asia/taipei.webp" alt="">
+                </a>
+              </div>
+              <div class="flightcard-mainbox">
+                <a href="#" class="flightcardlink">
+                  <img src="assets/images/international-flights-to-us/asia/los-angeles.webp" alt="">
+                  <p>Los Angeles (LAX) – Seoul Incheon (ICN)</p>
+                  <img src="assets/images/international-flights-to-us/asia/seoul-incheon.webp" alt="">
+                </a>
+              </div>
+              <div class="flightcard-mainbox">
+                <a href="#" class="flightcardlink">
+                  <img src="assets/images/international-flights-to-us/asia/los-angeles.webp" alt="">
+                  <p>Los Angeles (LAX) – Tokyo Narita (NRT)</p>
+                  <img src="assets/images/international-flights-to-us/asia/tokyo-narita.webp" alt="">
+                </a>
+              </div>
+              <div class="flightcard-mainbox">
+                <a href="#" class="flightcardlink">
+                  <img src="assets/images/international-flights-to-us/asia/los-angeles.webp" alt="">
+                  <p>Los Angeles (LAX) – Taipei (TPE)</p>
+                  <img src="assets/images/international-flights-to-us/asia/taipei.webp" alt="">
+                </a>
+              </div>
+              <div class="flightcard-mainbox">
+                <a href="#" class="flightcardlink">
+                  <img src="assets/images/international-flights-to-us/asia/los-angeles2.webp" alt="">
+                  <p>Los Angeles (LAX) – Tokyo Haneda (HND)</p>
+                  <img src="assets/images/international-flights-to-us/asia/tokyo-haneda2.webp" alt="">
+                </a>
+              </div>
+              <div class="flightcard-mainbox">
+                <a href="#" class="flightcardlink">
+                  <img src="assets/images/international-flights-to-us/asia/new-york.webp" alt="">
+                  <p>New York JFK – Tokyo Haneda (HND)</p>
+                  <img src="assets/images/international-flights-to-us/asia/tokyo-haneda3.webp" alt="">
+                </a>
+              </div>
+              <div class="flightcard-mainbox">
+                <a href="#" class="flightcardlink">
+                  <img src="assets/images/international-flights-to-us/asia/honolulu.webp" alt="">
+                  <p>Honolulu (HNL) – Tokyo Haneda (HND)</p>
+                  <img src="assets/images/international-flights-to-us/asia/tokyo-haneda.webp" alt="">
+                </a>
+              </div>
+              <div class="flightcard-mainbox">
+                <a href="#" class="flightcardlink">
+                  <img src="assets/images/international-flights-to-us/asia/tokyo-narita2.webp" alt="">
+                  <p>Tokyo Narita (NRT) – Honolulu (HNL)</p>
+                  <img src="assets/images/international-flights-to-us/asia/honolulu2.webp" alt="">
+                </a>
+              </div> -->
+            </div>
+            
+
+          </div>
+          <div class="tab-pane fade" id="europe" role="tabpanel" aria-labelledby="europe-tab">
+          <div class="listcarsec">
+             @for(destination of flightDestinations.europe;track
+              destination.displayName){
+
+              <div class="flightcard-mainbox">
+                <a
+                  href="javascript:void(0);"
+                  class="flightcardlink"
+                  (click)="onDestinationClick(destination)"
+                >
+                  <img
+                    [src]='destination?.departImage'
+                    alt="departImage"
+                  />
+                  <p>{{ destination.displayName }}</p>
+                  <img
+                    [src]="destination?.arrivalImage"
+                    alt="arrivalImage"
+                  />
+                </a>
+              </div>
+            }
+            </div>
+
+            <!-- <div class="listcarsec"> -->
+              <!-- <div class="flightcard-mainbox">
+                <a href="#" class="flightcardlink">
+                  <img src="assets/images/international-flights-to-us/europe/london-heathrow.webp" alt="">
+                  <p>London Heathrow (LHR) – New York JFK (JFK)</p>
+                  <img src="assets/images/international-flights-to-us/europe/new-york.webp" alt="">
+                </a>
+              </div> -->
+              <!-- <div class="flightcard-mainbox">
+                <a href="#" class="flightcardlink">
+                  <img src="assets/images/international-flights-to-us/europe/paris-charles-de-gaulle.webp" alt="">
+                  <p>Paris Charles de Gaulle (CDG) – New York JFK (JFK)</p>
+                  <img src="assets/images/international-flights-to-us/europe/new-york1.webp" alt="">
+                </a>
+              </div> -->
+              <!-- <div class="flightcard-mainbox">
+                <a href="#" class="flightcardlink">
+                  <img src="assets/images/international-flights-to-us/europe/london-heathrow1.webp" alt="">
+                  <p>London Heathrow (LHR) – Los Angeles (LAX)</p>
+                  <img src="assets/images/international-flights-to-us/europe/los-angles.webp" alt="">
+                </a>
+              </div> -->
+              <!-- <div class="flightcard-mainbox">
+                <a href="#" class="flightcardlink">
+                  <img src="assets/images/international-flights-to-us/europe/rome-fiumicino.webp" alt="">
+                  <p>Rome Fiumicino (FCO) – New York JFK (JFK)</p>
+                  <img src="assets/images/international-flights-to-us/europe/new-york1.webp" alt="">
+                </a>
+              </div> -->
+              <!-- <div class="flightcard-mainbox">
+                <a href="#" class="flightcardlink">
+                  <img src="assets/images/international-flights-to-us/europe/frankfurt.webp" alt="">
+                  <p>Frankfurt (FRA) – New York (JFK/EWR)</p>
+                  <img src="assets/images/international-flights-to-us/europe/new-york1.webp" alt="">
+                </a>
+              </div> -->
+              <!-- <div class="flightcard-mainbox">
+                <a href="#" class="flightcardlink">
+                  <img src="assets/images/international-flights-to-us/europe/london.webp" alt="">
+                  <p>London Heathrow (LHR) – Miami (MIA)</p>
+                  <img src="assets/images/international-flights-to-us/europe/miami.webp" alt="">
+                </a>
+              </div> -->
+              <!-- <div class="flightcard-mainbox">
+                <a href="#" class="flightcardlink">
+                  <img src="assets/images/international-flights-to-us/europe/boston.webp" alt="">
+                  <p>Boston (BOS) – London Heathrow (LHR)</p>
+                  <img src="assets/images/international-flights-to-us/europe/london-heathrow1.webp" alt="">
+                </a>
+              </div> -->
+              <!-- <div class="flightcard-mainbox">
+                <a href="#" class="flightcardlink">
+                  <img src="assets/images/international-flights-to-us/europe/london-heathrow1.webp" alt="">
+                  <p>London Heathrow (LHR) – Chicago O’Hare (ORD)</p>
+                  <img src="assets/images/international-flights-to-us/europe/Chicago-o-hare.webp" alt="">
+                </a>
+              </div> -->
+              <!-- <div class="flightcard-mainbox">
+                <a href="#" class="flightcardlink">
+                  <img src="assets/images/international-flights-to-us/europe/london-heathrow1.webp" alt="">
+                  <p>London Heathrow (LHR) – San Francisco (SFO)</p>
+                  <img src="assets/images/international-flights-to-us/europe/san-francisco.webp" alt="">
+                </a>
+              </div> -->
+              <!-- <div class="flightcard-mainbox">
+                <a href="#" class="flightcardlink">
+                  <img src="assets/images/international-flights-to-us/europe/amsterdam-schiphol.webp" alt="">
+                  <p>Amsterdam Schiphol (AMS) – New York JFK (JFK)</p>
+                  <img src="assets/images/international-flights-to-us/europe/new-york1.webp" alt="">
+                </a>
+              </div> -->
+            <!-- </div> -->
+
+          </div>
+          <!-- <div class="tab-pane fade" id="africa" role="tabpanel" aria-labelledby="africa-tab">
+          
+
+            <div class="listcarsec">
+               @for(destination of flightDestinations.africa;track
+              destination.displayName){
+
+              <div class="flightcard-mainbox">
+                <a
+                  href="javascript:void(0);"
+                  class="flightcardlink"
+                  (click)="onDestinationClick(destination)"
+                >
+                  <img
+                    [src]='destination?.departImage'
+                    alt="departImage"
+                  />
+                  <p>{{ destination.displayName }}</p>
+                  <img
+                    [src]="destination?.arrivalImage"
+                    alt="arrivalImage"
+                  />
+                </a>
+              </div>
+            } -->
+              <!-- <div class="flightcard-mainbox">
+                <a href="#" class="flightcardlink">
+                  <img src="assets/images/international-flights-to-us/europe.webp" alt="">
+                  <p>San Francisco (SFO) – Taipei (TPE)</p>
+                  <img src="assets/images/international-flights-to-us/europe.webp" alt="">
+                </a>
+              </div> -->
+              <!-- <div class="flightcard-mainbox">
+                <a href="#" class="flightcardlink">
+                  <img src="assets/images/international-flights-to-us/europe.webp" alt="">
+                  <p>Los Angeles (LAX) – Seoul Incheon (ICN)</p>
+                  <img src="assets/images/international-flights-to-us/europe.webp" alt="">
+                </a>
+              </div> -->
+              <!-- <div class="flightcard-mainbox">
+                <a href="#" class="flightcardlink">
+                  <img src="assets/images/international-flights-to-us/europe.webp" alt="">
+                  <p>Los Angeles (LAX) – Tokyo Narita (NRT)</p>
+                  <img src="assets/images/international-flights-to-us/europe.webp" alt="">
+                </a>
+              </div> -->
+              <!-- <div class="flightcard-mainbox">
+                <a href="#" class="flightcardlink">
+                  <img src="assets/images/international-flights-to-us/europe.webp" alt="">
+                  <p>Los Angeles (LAX) – Taipei (TPE)</p>
+                  <img src="assets/images/international-flights-to-us/europe.webp" alt="">
+                </a>
+              </div> -->
+              <!-- <div class="flightcard-mainbox">
+                <a href="#" class="flightcardlink">
+                  <img src="assets/images/international-flights-to-us/europe.webp" alt="">
+                  <p>Los Angeles (LAX) – Tokyo Haneda (HND)</p>
+                  <img src="assets/images/international-flights-to-us/europe.webp" alt="">
+                </a>
+              </div> -->
+              <!-- <div class="flightcard-mainbox">
+                <a href="#" class="flightcardlink">
+                  <img src="assets/images/international-flights-to-us/europe.webp" alt="">
+                  <p>New York JFK – Tokyo Haneda (HND)</p>
+                  <img src="assets/images/international-flights-to-us/europe.webp" alt="">
+                </a>
+              </div> -->
+              <!-- <div class="flightcard-mainbox">
+                <a href="#" class="flightcardlink">
+                  <img src="assets/images/international-flights-to-us/europe.webp" alt="">
+                  <p>Honolulu (HNL) – Tokyo Haneda (HND)</p>
+                  <img src="assets/images/international-flights-to-us/europe.webp" alt="">
+                </a>
+              </div> -->
+              <!-- <div class="flightcard-mainbox">
+                <a href="#" class="flightcardlink">
+                  <img src="assets/images/international-flights-to-us/europe.webp" alt="">
+                  <p>Tokyo Narita (NRT) – Honolulu (HNL)</p>
+                  <img src="assets/images/international-flights-to-us/europe.webp" alt="">
+                </a>
+              </div> -->
+            <!-- </div>
+          </div> -->
+          <div class="tab-pane fade" id="middleeast" role="tabpanel" aria-labelledby="middleeast-tab">
+          
+
+            <div class="listcarsec">
+               @for(destination of flightDestinations.middleeast;track
+              destination.displayName){
+
+              <div class="flightcard-mainbox">
+                <a
+                  href="javascript:void(0);"
+                  class="flightcardlink"
+                  (click)="onDestinationClick(destination)"
+                >
+                  <img
+                    [src]='destination?.departImage'
+                    alt="departImage"
+                  />
+                  <p>{{ destination.displayName }}</p>
+                  <img
+                    [src]="destination?.arrivalImage"
+                    alt="arrivalImage"
+                  />
+                </a>
+              </div>
+            }
+              <!-- <div class="flightcard-mainbox">
+                <a href="#" class="flightcardlink">
+                  <img src="assets/images/international-flights-to-us/middleeast/Dubai.webp" alt="">
+                  <p>Dubai (DXB) — New York (JFK)</p>
+                  <img src="assets/images/international-flights-to-us/middleeast/New-York1.webp" alt="">
+                </a>
+              </div> -->
+              <!-- <div class="flightcard-mainbox">
+                <a href="#" class="flightcardlink">
+                  <img src="assets/images/international-flights-to-us/middleeast/Dubai2.webp" alt="">
+                  <p>Dubai (DXB) — Los Angeles (LAX)</p>
+                  <img src="assets/images/international-flights-to-us/middleeast/LosAngeles.webp" alt="">
+                </a>
+              </div> -->
+              <!-- <div class="flightcard-mainbox">
+                <a href="#" class="flightcardlink">
+                  <img src="assets/images/international-flights-to-us/middleeast/Dubai3.webp" alt="">
+                  <p>Dubai (DXB) — San Francisco (SFO)</p>
+                  <img src="assets/images/international-flights-to-us/middleeast/SanFrancisco-(SFO).webp" alt="">
+                </a>
+              </div> -->
+              <!-- <div class="flightcard-mainbox">
+                <a href="#" class="flightcardlink">
+                  <img src="assets/images/international-flights-to-us/middleeast/Doha.webp" alt="">
+                  <p>Doha (DOH) — New York (JFK)</p>
+                  <img src="assets/images/international-flights-to-us/middleeast/New-York.webp" alt="">
+                </a>
+              </div> -->
+              <!-- <div class="flightcard-mainbox">
+                <a href="#" class="flightcardlink">
+                  <img src="assets/images/international-flights-to-us/middleeast/TelAviv.webp" alt="">
+                  <p>Tel Aviv (TLV) — New York (JFK)</p>
+                  <img src="assets/images/international-flights-to-us/middleeast/NewYork4.webp" alt="">
+                </a>
+              </div> -->
+              <!-- <div class="flightcard-mainbox">
+                <a href="#" class="flightcardlink">
+                  <img src="assets/images/international-flights-to-us/middleeast/AbuDhabi.webp" alt="">
+                  <p>Abu Dhabi (AUH) — New York (JFK)</p>
+                  <img src="assets/images/international-flights-to-us/middleeast/NewYork(JFK).webp" alt="">
+                </a>
+              </div> -->
+              <!-- <div class="flightcard-mainbox">
+                <a href="#" class="flightcardlink">
+                  <img src="assets/images/international-flights-to-us/middleeast/Dubai5.webp" alt="">
+                  <p>Dubai (DXB) — Miami (MIA)</p>
+                  <img src="assets/images/international-flights-to-us/middleeast/Miami.webp" alt="">
+                </a>
+              </div> -->
+              <!-- <div class="flightcard-mainbox">
+                <a href="#" class="flightcardlink">
+                  <img src="assets/images/international-flights-to-us/middleeast/Dubai6.webp" alt="">
+                  <p>Dubai (DXB) — Boston (BOS)</p>
+                  <img src="assets/images/international-flights-to-us/middleeast/Boston.webp" alt="">
+                </a>
+              </div> -->
+              <!-- <div class="flightcard-mainbox">
+                <a href="#" class="flightcardlink">
+                  <img src="assets/images/international-flights-to-us/middleeast/Dubai7.webp" alt="">
+                  <p>Dubai (DXB) — Seattle (SEA)</p>
+                  <img src="assets/images/international-flights-to-us/middleeast/Seattle.webp" alt="">
+                </a>
+              </div> -->
+              <!-- <div class="flightcard-mainbox">
+                <a href="#" class="flightcardlink">
+                  <img src="assets/images/international-flights-to-us/middleeast/Doha2.webp" alt="">
+                  <p>Doha (DOH) — Los Angeles (LAX)</p>
+                  <img src="assets/images/international-flights-to-us/middleeast/LosAngeles2.webp" alt="">
+                </a>
+              </div> -->
+            </div>
+          </div>
+          <div class="tab-pane fade" id="latin" role="tabpanel" aria-labelledby="latin-tab">
+            <div class="flight-class-tabs-content d-none">
+              <div class="flight-class-tab-card">
+                <div class="flight-class-tab-card-left">
+                  <div class="flight-class-tab-card-left-image-box">
+                    <img src="assets/images/international-flights-from-us/africa.webp" alt="Overseas Flight"
+                      class="d-none d-lg-flex" />
+                    <img src="assets/images/international-flights-from-us/africa.webp" alt="Overseas Flight"
+                      class="d-lg-none" />
+                    <div class="flight-class-tab-card-left-image-price-badge">
+                      <span class="flight-class-tab-card-left-price-badge-label">From</span>
+                      <span class="flight-class-tab-card-left-price">$212.50*</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="flight-class-tab-card-right">
+                  <h3 class="flight-class-tab-card-right-title">
+                    Journey to the Latin America, starting at just
+                    <span class="flight-class-tab-card-right-title-price">$212.50*!</span>
+                  </h3>
+                  <div class="flight-class-tab-card-right-content">
+                    <div class="flight-class-tab-card-right-content-wrap">
+                      @for(destination of flightDestinations.latin;track
+                      destination.code){
+                      <div class="flight-class-tab-inner-card cursor-pointer" (click)="onDestinationClick(destination)">
+                        <h6 class="flight-class-tab-inner-card-title">
+                          {{ destination.city }}
+                        </h6>
+                        <div class="flight-class-tab-inner-card-price-content">
+                          <span class="flight-class-tab-inner-card-price">
+                            {{ destination.price | appCurrency }}</span>
+                          <a href="javascript:void(0);" class="flight-class-tab-inner-card-price-icon">
+                            <svg width="33" height="33" viewBox="0 0 33 33" fill="none"
+                              xmlns="http://www.w3.org/2000/svg">
+                              <g clip-path="url(#clip0_362_5802)">
+                                <path
+                                  d="M11.7012 9.52267C15.3262 7.10214 20.2141 8.07597 22.6346 11.701C25.0552 15.326 24.0814 20.2139 20.4563 22.6344C16.8313 25.0549 11.9435 24.0811 9.52292 20.4561C7.10239 16.8311 8.07621 11.9432 11.7012 9.52267ZM19.9413 21.8631C23.1421 19.7258 24.0006 15.4168 21.8634 12.216C19.7261 9.01518 15.417 8.15667 12.2162 10.294C9.01542 12.4312 8.15692 16.7403 10.2942 19.9411C12.4315 23.1419 16.7405 24.0004 19.9413 21.8631Z"
+                                  fill=""></path>
+                                <path fill-rule="evenodd" clip-rule="evenodd"
+                                  d="M19.2904 18.272C19.2364 18.2711 19.1831 18.2595 19.1335 18.238C19.084 18.2165 19.0392 18.1854 19.0016 18.1466C18.9641 18.1077 18.9347 18.0618 18.9149 18.0115C18.8951 17.9613 18.8855 17.9076 18.8865 17.8536L18.9516 14.1993L13.7554 19.2151C13.6771 19.2908 13.5719 19.3322 13.463 19.3303C13.3541 19.3283 13.2504 19.2832 13.1748 19.2049C13.0991 19.1265 13.0577 19.0213 13.0596 18.9124C13.0615 18.8035 13.1066 18.6998 13.185 18.6242L18.3812 13.6083L14.7269 13.5444C14.6179 13.5425 14.5141 13.4973 14.4383 13.4188C14.3626 13.3404 14.3211 13.235 14.323 13.126C14.325 13.017 14.3701 12.9131 14.4486 12.8374C14.5271 12.7617 14.6324 12.7202 14.7414 12.7221L19.387 12.8042C19.441 12.8051 19.4943 12.8166 19.5438 12.8381C19.5934 12.8596 19.6382 12.8907 19.6757 12.9296C19.7132 12.9684 19.7427 13.0143 19.7624 13.0646C19.7822 13.1149 19.7918 13.1685 19.7908 13.2226L19.7088 17.8681C19.7079 17.9221 19.6964 17.9754 19.6748 18.0249C19.6533 18.0745 19.6222 18.1193 19.5834 18.1568C19.5445 18.1943 19.4986 18.2238 19.4484 18.2436C19.3981 18.2633 19.3444 18.273 19.2904 18.272Z"
+                                  fill=""></path>
+                              </g>
+                              <defs>
+                                <clipPath id="clip0_362_5802">
+                                  <rect width="23.1854" height="23.1854" fill="white"
+                                    transform="translate(32.1572 19.2817) rotate(146.268)"></rect>
+                                </clipPath>
+                              </defs>
+                            </svg>
+                          </a>
+                        </div>
+                      </div>
+                      }
+                    </div>
+
+                    <div class="flight-class-tab-card-right-footer d-flex align-items-center justify-content-between">
+                      <a href="javascript:void(0);" class="country-deals-details-link">
+                        View all Asia Deals
+                      </a>
+                      <a href="javascript:void(0);" class="country-deals-details-btn">
+                        Need Another Destination?
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="listcarsec">
+              <div class="flightcard-mainbox">
+                <a href="#" class="flightcardlink">
+                  <img src="assets/images/international-flights-to-us/europe.webp" alt="europe">
+                  <p>San Francisco (SFO) – Taipei (TPE)</p>
+                  <img src="assets/images/international-flights-to-us/europe.webp" alt="europe">
+                </a>
+              </div>
+              <div class="flightcard-mainbox">
+                <a href="#" class="flightcardlink">
+                  <img src="assets/images/international-flights-to-us/europe.webp" alt="europe">
+                  <p>Los Angeles (LAX) – Seoul Incheon (ICN)</p>
+                  <img src="assets/images/international-flights-to-us/europe.webp" alt="europe">
+                </a>
+              </div>
+              <div class="flightcard-mainbox">
+                <a href="#" class="flightcardlink">
+                  <img src="assets/images/international-flights-to-us/europe.webp" alt="europe">
+                  <p>Los Angeles (LAX) – Tokyo Narita (NRT)</p>
+                  <img src="assets/images/international-flights-to-us/europe.webp" alt="europe">
+                </a>
+              </div>
+              <div class="flightcard-mainbox">
+                <a href="#" class="flightcardlink">
+                  <img src="assets/images/international-flights-to-us/europe.webp" alt="europe">
+                  <p>Los Angeles (LAX) – Taipei (TPE)</p>
+                  <img src="assets/images/international-flights-to-us/europe.webp" alt="europe">
+                </a>
+              </div>
+              <div class="flightcard-mainbox">
+                <a href="#" class="flightcardlink">
+                  <img src="assets/images/international-flights-to-us/europe.webp" alt="europe">
+                  <p>Los Angeles (LAX) – Tokyo Haneda (HND)</p>
+                  <img src="assets/images/international-flights-to-us/europe.webp" alt="europe">
+                </a>
+              </div>
+              <div class="flightcard-mainbox">
+                <a href="#" class="flightcardlink">
+                  <img src="assets/images/international-flights-to-us/europe.webp" alt="europe">
+                  <p>New York JFK – Tokyo Haneda (HND)</p>
+                  <img src="assets/images/international-flights-to-us/europe.webp" alt="europe">
+                </a>
+              </div>
+              <div class="flightcard-mainbox">
+                <a href="#" class="flightcardlink">
+                  <img src="assets/images/international-flights-to-us/europe.webp" alt="europe">
+                  <p>Honolulu (HNL) – Tokyo Haneda (HND)</p>
+                  <img src="assets/images/international-flights-to-us/europe.webp" alt="europe">
+                </a>
+              </div>
+              <div class="flightcard-mainbox">
+                <a href="#" class="flightcardlink">
+                  <img src="assets/images/international-flights-to-us/europe.webp" alt="europe">
+                  <p>Tokyo Narita (NRT) – Honolulu (HNL)</p>
+                  <img src="assets/images/international-flights-to-us/europe.webp" alt="europe">
+                </a>
+              </div>
+            </div>
+          </div>
+          <div class="tab-pane fade" id="india" role="tabpanel" aria-labelledby="india-tab">
+            
+
+            <div class="listcarsec">
+               @for(destination of flightDestinations.india;track
+              destination.displayName){
+
+              <div class="flightcard-mainbox">
+                <a
+                  href="javascript:void(0);"
+                  class="flightcardlink"
+                  (click)="onDestinationClick(destination)"
+                >
+                  <img
+                    [src]='destination?.departImage'
+                    alt="departImage"
+                  />
+                  <p>{{ destination.displayName }}</p>
+                  <img
+                    [src]="destination?.arrivalImage"
+                    alt="arrivalImage"
+                  />
+                </a>
+              </div>
+            }
+              <!-- <div class="flightcard-mainbox">
+                <a href="#" class="flightcardlink">
+                  <img src="assets/images/international-flights-to-us/india/New-Delhi.webp" alt="">
+                  <p>New Delhi (DEL) — New York (JFK/EWR)</p>
+                  <img src="assets/images/international-flights-to-us/india/New-York.webp" alt="">
+                </a>
+              </div> -->
+              <!-- <div class="flightcard-mainbox">
+                <a href="#" class="flightcardlink">
+                  <img src="assets/images/international-flights-to-us/india/Mumbai.webp" alt="">
+                  <p>Mumbai (BOM) — New York (EWR/JFK)</p>
+                  <img src="assets/images/international-flights-to-us/india/New-York1.webp" alt="">
+                </a>
+              </div> -->
+              <!-- <div class="flightcard-mainbox">
+                <a href="#" class="flightcardlink">
+                  <img src="assets/images/international-flights-to-us/india/SanFrancisco.webp" alt="">
+                  <p>San Francisco (SFO) — New Delhi (DEL)</p>
+                  <img src="assets/images/international-flights-to-us/india/NewDelhi1.webp" alt="">
+                </a>
+              </div> -->
+              <!-- <div class="flightcard-mainbox">
+                <a href="#" class="flightcardlink">
+                  <img src="assets/images/international-flights-to-us/india/SanFrancisco1.webp" alt="">
+                  <p>San Francisco (SFO) — Mumbai (BOM)</p>
+                  <img src="assets/images/international-flights-to-us/india/Mumbai1.webp" alt="">
+                </a>
+              </div> -->
+              <!-- <div class="flightcard-mainbox">
+                <a href="#" class="flightcardlink">
+                  <img src="assets/images/international-flights-to-us/india/Bengaluru.webp" alt="">
+                  <p>Bengaluru (BLR) — San Francisco (SFO)</p>
+                  <img src="assets/images/international-flights-to-us/india/SanFrancisco3.webp" alt="">
+                </a>
+              </div> -->
+              <!-- <div class="flightcard-mainbox">
+                <a href="#" class="flightcardlink">
+                  <img src="assets/images/international-flights-to-us/india/Newark.webp" alt="">
+                  <p>Newark (EWR) — Mumbai (BOM)</p>
+                  <img src="assets/images/international-flights-to-us/india/Mumbai3.webp" alt="">
+                </a>
+              </div> -->
+              <!-- <div class="flightcard-mainbox">
+                <a href="#" class="flightcardlink">
+                  <img src="assets/images/international-flights-to-us/india/Chicago.webp" alt="">
+                  <p>Chicago (ORD) — New Delhi (DEL)</p>
+                  <img src="assets/images/international-flights-to-us/india/NewDelhi5.webp" alt="">
+                </a>
+              </div> -->
+              <!-- <div class="flightcard-mainbox">
+                <a href="#" class="flightcardlink">
+                  <img src="assets/images/international-flights-to-us/india/Washington.webp" alt="">
+                  <p>Washington D.C. (IAD) — New Delhi (DEL)</p>
+                  <img src="assets/images/international-flights-to-us/india/NewDelhi7.webp" alt="">
+                </a>
+              </div> -->
+              <!-- <div class="flightcard-mainbox">
+                <a href="#" class="flightcardlink">
+                  <img src="assets/images/international-flights-to-us/india/NewYork11.webp" alt="">
+                  <p>New York (JFK) — Mumbai (BOM)</p>
+                  <img src="assets/images/international-flights-to-us/india/Mumbai6.webp" alt="">
+                </a>
+              </div> -->
+              <!-- <div class="flightcard-mainbox">
+                <a href="#" class="flightcardlink">
+                  <img src="assets/images/international-flights-to-us/india/SanFrancisco56.webp" alt="">
+                  <p>San Francisco (SFO) — Bengaluru (BLR)</p>
+                  <img src="assets/images/international-flights-to-us/india/Bengaluru09.webp" alt="">
+                </a>
+              </div> -->
+            </div>
+          </div>
+          <div class="tab-pane fade" id="oceania" role="tabpanel" aria-labelledby="oceania-tab">
+            <div class="flight-class-tabs-content d-none">
+              <div class="flight-class-tab-card">
+                <div class="flight-class-tab-card-left">
+                  <div class="flight-class-tab-card-left-image-box">
+                    <img src="assets/images/international-flights-from-us/oceania/auckland1.webp" alt="Overseas Flight"
+                      class="d-none d-lg-flex" />
+                    <img src="assets/images/international-flights-from-us/losangeles1.webp" alt="Overseas Flight"
+                      class="d-lg-none" />
+                    <div class="flight-class-tab-card-left-image-price-badge">
+                      <span class="flight-class-tab-card-left-price-badge-label">From</span>
+                      <span class="flight-class-tab-card-left-price">$610.50*</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="flight-class-tab-card-right">
+                  <h3 class="flight-class-tab-card-right-title">
+                    Journey to the Oceania, starting at just
+                    <span class="flight-class-tab-card-right-title-price">$610.50*!</span>
+                  </h3>
+                  <div class="flight-class-tab-card-right-content">
+                    <div class="flight-class-tab-card-right-content-wrap">
+                      @for(destination of flightDestinations.oceania;track
+                      destination.code){
+                      <div class="flight-class-tab-inner-card cursor-pointer" (click)="onDestinationClick(destination)">
+                        <h6 class="flight-class-tab-inner-card-title">
+                          {{ destination.city }}
+                        </h6>
+                        <div class="flight-class-tab-inner-card-price-content">
+                          <span class="flight-class-tab-inner-card-price">
+                            {{ destination.price | appCurrency }}</span>
+                          <a href="javascript:void(0);" class="flight-class-tab-inner-card-price-icon">
+                            <svg width="33" height="33" viewBox="0 0 33 33" fill="none"
+                              xmlns="http://www.w3.org/2000/svg">
+                              <g clip-path="url(#clip0_362_5802)">
+                                <path
+                                  d="M11.7012 9.52267C15.3262 7.10214 20.2141 8.07597 22.6346 11.701C25.0552 15.326 24.0814 20.2139 20.4563 22.6344C16.8313 25.0549 11.9435 24.0811 9.52292 20.4561C7.10239 16.8311 8.07621 11.9432 11.7012 9.52267ZM19.9413 21.8631C23.1421 19.7258 24.0006 15.4168 21.8634 12.216C19.7261 9.01518 15.417 8.15667 12.2162 10.294C9.01542 12.4312 8.15692 16.7403 10.2942 19.9411C12.4315 23.1419 16.7405 24.0004 19.9413 21.8631Z"
+                                  fill=""></path>
+                                <path fill-rule="evenodd" clip-rule="evenodd"
+                                  d="M19.2904 18.272C19.2364 18.2711 19.1831 18.2595 19.1335 18.238C19.084 18.2165 19.0392 18.1854 19.0016 18.1466C18.9641 18.1077 18.9347 18.0618 18.9149 18.0115C18.8951 17.9613 18.8855 17.9076 18.8865 17.8536L18.9516 14.1993L13.7554 19.2151C13.6771 19.2908 13.5719 19.3322 13.463 19.3303C13.3541 19.3283 13.2504 19.2832 13.1748 19.2049C13.0991 19.1265 13.0577 19.0213 13.0596 18.9124C13.0615 18.8035 13.1066 18.6998 13.185 18.6242L18.3812 13.6083L14.7269 13.5444C14.6179 13.5425 14.5141 13.4973 14.4383 13.4188C14.3626 13.3404 14.3211 13.235 14.323 13.126C14.325 13.017 14.3701 12.9131 14.4486 12.8374C14.5271 12.7617 14.6324 12.7202 14.7414 12.7221L19.387 12.8042C19.441 12.8051 19.4943 12.8166 19.5438 12.8381C19.5934 12.8596 19.6382 12.8907 19.6757 12.9296C19.7132 12.9684 19.7427 13.0143 19.7624 13.0646C19.7822 13.1149 19.7918 13.1685 19.7908 13.2226L19.7088 17.8681C19.7079 17.9221 19.6964 17.9754 19.6748 18.0249C19.6533 18.0745 19.6222 18.1193 19.5834 18.1568C19.5445 18.1943 19.4986 18.2238 19.4484 18.2436C19.3981 18.2633 19.3444 18.273 19.2904 18.272Z"
+                                  fill=""></path>
+                              </g>
+                              <defs>
+                                <clipPath id="clip0_362_5802">
+                                  <rect width="23.1854" height="23.1854" fill="white"
+                                    transform="translate(32.1572 19.2817) rotate(146.268)"></rect>
+                                </clipPath>
+                              </defs>
+                            </svg>
+                          </a>
+                        </div>
+                      </div>
+                      }
+                    </div>
+
+                    <div class="flight-class-tab-card-right-footer d-flex align-items-center justify-content-between">
+                      <a href="javascript:void(0);" class="country-deals-details-link">
+                        View all Asia Deals
+                      </a>
+                      <a href="javascript:void(0);" class="country-deals-details-btn">
+                        Need Another Destination?
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="listcarsec">
+              <div class="flightcard-mainbox">
+                <a href="#" class="flightcardlink">
+                  <img src="assets/images/international-flights-to-us/oceania/auckland1.webp" alt="">
+                  <p>Auckland (AKL) — Los Angeles (LAX)</p>
+                  <img src="assets/images/international-flights-to-us/oceania/losangeles1.webp" alt="">
+                </a>
+              </div>
+              <div class="flightcard-mainbox">
+                <a href="#" class="flightcardlink">
+                  <img src="assets/images/international-flights-to-us/oceania/sydney1.webp" alt="">
+                  <p>Sydney (SYD) — Los Angeles (LAX)</p>
+                  <img src="assets/images/international-flights-to-us/oceania/losangeles2.webp" alt="">
+                </a>
+              </div>
+              <div class="flightcard-mainbox">
+                <a href="#" class="flightcardlink">
+                  <img src="assets/images/international-flights-to-us/oceania/melbourne1.webp" alt="">
+                  <p>Melbourne (MEL) — Los Angeles (LAX)</p>
+                  <img src="assets/images/international-flights-to-us/oceania/losangeles3.webp" alt="">
+                </a>
+              </div>
+              <div class="flightcard-mainbox">
+                <a href="#" class="flightcardlink">
+                  <img src="assets/images/international-flights-to-us/oceania/brisbane1.webp" alt="">
+                  <p>Brisbane (BNE) — Los Angeles (LAX)</p>
+                  <img src="assets/images/international-flights-to-us/oceania/losangeles4.webp" alt="">
+                </a>
+              </div>
+              <div class="flightcard-mainbox">
+                <a href="#" class="flightcardlink">
+                  <img src="assets/images/international-flights-to-us/oceania/sydney2.webp" alt="">
+                  <p>Sydney (SYD) — San Francisco (SFO)</p>
+                  <img src="assets/images/international-flights-to-us/oceania/san_francisco2.webp" alt="">
+                </a>
+              </div>
+              <div class="flightcard-mainbox">
+                <a href="#" class="flightcardlink">
+                  <img src="assets/images/international-flights-to-us/oceania/auckland2.webp" alt="">
+                  <p>Auckland (AKL) — San Francisco (SFO)</p>
+                  <img src="assets/images/international-flights-to-us/oceania/san_francisco3.webp" alt="">
+                </a>
+              </div>
+              <div class="flightcard-mainbox">
+                <a href="#" class="flightcardlink">
+                  <img src="assets/images/international-flights-to-us/oceania/melbourne2.webp" alt="">
+                  <p>Melbourne (MEL) — San Francisco (SFO)</p>
+                  <img src="assets/images/international-flights-to-us/oceania/SanFrancisco4.webp" alt="">
+                </a>
+              </div>
+              <div class="flightcard-mainbox">
+                <a href="#" class="flightcardlink">
+                  <img src="assets/images/international-flights-to-us/oceania/brisbane2.webp" alt="">
+                  <p>Brisbane (BNE) — San Francisco (SFO)</p>
+                  <img src="assets/images/international-flights-to-us/oceania/sanfranisco5.webp" alt="">
+                </a>
+              </div>
+              <div class="flightcard-mainbox">
+                <a href="#" class="flightcardlink">
+                  <img src="assets/images/international-flights-to-us/oceania/auckland3.webp" alt="">
+                  <p>Auckland (AKL) — Seattle (SEA)</p>
+                  <img src="assets/images/international-flights-to-us/oceania/seattle.webp" alt="">
+                </a>
+              </div>
+              <div class="flightcard-mainbox">
+                <a href="#" class="flightcardlink">
+                  <img src="assets/images/international-flights-to-us/oceania/sydney3.webp" alt="">
+                  <p>Sydney (SYD) — Seattle (SEA)</p>
+                  <img src="assets/images/international-flights-to-us/oceania/seattle1.webp" alt="">
+                </a>
+              </div>
+            </div>
+          </div>
+          <div class="tab-pane fade" id="na" role="tabpanel" aria-labelledby="na-tab">
+            <div class="flight-class-tabs-content d-none">
+              <div class="flight-class-tab-card">
+                <div class="flight-class-tab-card-left">
+                  <div class="flight-class-tab-card-left-image-box">
+                    <img src="assets/images/international-flights-from-us/africa.webp" alt="Overseas Flight"
+                      class="d-none d-lg-flex" />
+                    <img src="assets/images/international-flights-from-us/africa.webp" alt="Overseas Flight"
+                      class="d-lg-none" />
+                    <div class="flight-class-tab-card-left-image-price-badge">
+                      <span class="flight-class-tab-card-left-price-badge-label">From</span>
+                      <span class="flight-class-tab-card-left-price">$120.48*</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="flight-class-tab-card-right">
+                  <h3 class="flight-class-tab-card-right-title">
+                    Journey to the North America, starting at just
+                    <span class="flight-class-tab-card-right-title-price">$120.48*!</span>
+                  </h3>
+                  <div class="flight-class-tab-card-right-content">
+                    <div class="flight-class-tab-card-right-content-wrap">
+                      @for(destination of flightDestinations.na;track
+                      destination.code){
+                      <div class="flight-class-tab-inner-card cursor-pointer" (click)="onDestinationClick(destination)">
+                        <h6 class="flight-class-tab-inner-card-title">
+                          {{ destination.city }}
+                        </h6>
+                        <div class="flight-class-tab-inner-card-price-content">
+                          <span class="flight-class-tab-inner-card-price">
+                            {{ destination.price | appCurrency }}</span>
+                          <a href="javascript:void(0);" class="flight-class-tab-inner-card-price-icon">
+                            <svg width="33" height="33" viewBox="0 0 33 33" fill="none"
+                              xmlns="http://www.w3.org/2000/svg">
+                              <g clip-path="url(#clip0_362_5802)">
+                                <path
+                                  d="M11.7012 9.52267C15.3262 7.10214 20.2141 8.07597 22.6346 11.701C25.0552 15.326 24.0814 20.2139 20.4563 22.6344C16.8313 25.0549 11.9435 24.0811 9.52292 20.4561C7.10239 16.8311 8.07621 11.9432 11.7012 9.52267ZM19.9413 21.8631C23.1421 19.7258 24.0006 15.4168 21.8634 12.216C19.7261 9.01518 15.417 8.15667 12.2162 10.294C9.01542 12.4312 8.15692 16.7403 10.2942 19.9411C12.4315 23.1419 16.7405 24.0004 19.9413 21.8631Z"
+                                  fill=""></path>
+                                <path fill-rule="evenodd" clip-rule="evenodd"
+                                  d="M19.2904 18.272C19.2364 18.2711 19.1831 18.2595 19.1335 18.238C19.084 18.2165 19.0392 18.1854 19.0016 18.1466C18.9641 18.1077 18.9347 18.0618 18.9149 18.0115C18.8951 17.9613 18.8855 17.9076 18.8865 17.8536L18.9516 14.1993L13.7554 19.2151C13.6771 19.2908 13.5719 19.3322 13.463 19.3303C13.3541 19.3283 13.2504 19.2832 13.1748 19.2049C13.0991 19.1265 13.0577 19.0213 13.0596 18.9124C13.0615 18.8035 13.1066 18.6998 13.185 18.6242L18.3812 13.6083L14.7269 13.5444C14.6179 13.5425 14.5141 13.4973 14.4383 13.4188C14.3626 13.3404 14.3211 13.235 14.323 13.126C14.325 13.017 14.3701 12.9131 14.4486 12.8374C14.5271 12.7617 14.6324 12.7202 14.7414 12.7221L19.387 12.8042C19.441 12.8051 19.4943 12.8166 19.5438 12.8381C19.5934 12.8596 19.6382 12.8907 19.6757 12.9296C19.7132 12.9684 19.7427 13.0143 19.7624 13.0646C19.7822 13.1149 19.7918 13.1685 19.7908 13.2226L19.7088 17.8681C19.7079 17.9221 19.6964 17.9754 19.6748 18.0249C19.6533 18.0745 19.6222 18.1193 19.5834 18.1568C19.5445 18.1943 19.4986 18.2238 19.4484 18.2436C19.3981 18.2633 19.3444 18.273 19.2904 18.272Z"
+                                  fill=""></path>
+                              </g>
+                              <defs>
+                                <clipPath id="clip0_362_5802">
+                                  <rect width="23.1854" height="23.1854" fill="white"
+                                    transform="translate(32.1572 19.2817) rotate(146.268)"></rect>
+                                </clipPath>
+                              </defs>
+                            </svg>
+                          </a>
+                        </div>
+                      </div>
+                      }
+                    </div>
+
+                    <div class="flight-class-tab-card-right-footer d-flex align-items-center justify-content-between">
+                      <a href="javascript:void(0);" class="country-deals-details-link">
+                        View all Asia Deals
+                      </a>
+                      <a href="javascript:void(0);" class="country-deals-details-btn">
+                        Need Another Destination?
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="listcarsec">
+              <div class="flightcard-mainbox">
+                <a href="#" class="flightcardlink">
+                  <img src="assets/images/international-flights-to-us/north-america/toronto1.webp" alt="toronto1">
+                  <p>Toronto (YYZ) — New York (JFK/LGA/EWR)</p>
+                  <img src="assets/images/international-flights-to-us/north-america/new_york1.webp" alt="new_york1">
+                </a>
+              </div>
+              <div class="flightcard-mainbox">
+                <a href="#" class="flightcardlink">
+                  <img src="assets/images/international-flights-to-us/north-america/toronto2.webp" alt="toronto2">
+                  <p>Toronto (YYZ) — Chicago (ORD)</p>
+                  <img src="assets/images/international-flights-to-us/north-america/chicago1.webp" alt="chicago1">
+                </a>
+              </div>
+              <div class="flightcard-mainbox">
+                <a href="#" class="flightcardlink">
+                  <img src="assets/images/international-flights-to-us/north-america/toronto3.webp" alt="toronto3">
+                  <p>Toronto (YYZ) — Los Angeles (LAX)</p>
+                  <img src="assets/images/international-flights-to-us/north-america/los-angeles1.webp" alt="los-angeles1">
+                </a>
+              </div>
+              <div class="flightcard-mainbox">
+                <a href="#" class="flightcardlink">
+                  <img src="assets/images/international-flights-to-us/north-america/toronto4.webp" alt="toronto4">
+                  <p>Toronto (YYZ) — San Francisco (SFO)</p>
+                  <img src="assets/images/international-flights-to-us/north-america/sanfrancisco1.webp" alt="sanfrancisco1">
+                </a>
+              </div>
+              <div class="flightcard-mainbox">
+                <a href="#" class="flightcardlink">
+                  <img src="assets/images/international-flights-to-us/north-america/vancouver.webp" alt="vancouver">
+                  <p>Vancouver (YVR) — Los Angeles (LAX)</p>
+                  <img src="assets/images/international-flights-to-us/north-america/losangeles2.webp" alt="losangeles2">
+                </a>
+              </div>
+              <div class="flightcard-mainbox">
+                <a href="#" class="flightcardlink">
+                  <img src="assets/images/international-flights-to-us/north-america/vancouver2.webp" alt="vancouver2">
+                  <p>Vancouver (YVR) — San Francisco (SFO)</p>
+                  <img src="assets/images/international-flights-to-us/north-america/sanfrancisco2.webp" alt="sanfrancisco2">
+                </a>
+              </div>
+              <div class="flightcard-mainbox">
+                <a href="#" class="flightcardlink">
+                  <img src="assets/images/international-flights-to-us/north-america/vancouver3.webp" alt="vancouver3">
+                  <p>Vancouver (YVR) — New York (JFK)</p>
+                  <img src="assets/images/international-flights-to-us/north-america/newyork.webp" alt="newyork">
+                </a>
+              </div>
+              <div class="flightcard-mainbox">
+                <a href="#" class="flightcardlink">
+                  <img src="assets/images/international-flights-to-us/north-america/mexicocity.webp" alt="mexicocity">
+                  <p>Mexico City (MEX) — Los Angeles (LAX)</p>
+                  <img src="assets/images/international-flights-to-us/north-america/losangeles3.webp" alt="losangeles3">
+                </a>
+              </div>
+              <div class="flightcard-mainbox">
+                <a href="#" class="flightcardlink">
+                  <img src="assets/images/international-flights-to-us/north-america/mexico2.webp" alt="mexico2">
+                  <p>Mexico City (MEX) — Houston (IAH)</p>
+                  <img src="assets/images/international-flights-to-us/north-america/houston.webp" alt="houston">
+                </a>
+              </div>
+              <div class="flightcard-mainbox">
+                <a href="#" class="flightcardlink">
+                  <img src="assets/images/international-flights-to-us/north-america/mexico3.webp" alt="mexico3">
+                  <p>Mexico City (MEX) — Dallas/Fort Worth (DFW)</p>
+                  <img src="assets/images/international-flights-to-us/north-america/dallasefort_worth.webp" alt="dallasefort_worth">
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- === === -->
+
+<!-- === === -->
+<section class="fly-section">
+  <div class="fly-container container container-xxl">
+    <div class="fly-row row">
+      <article class="fly-article fly-padding">
+        <div class="fly-flex">
+          <section class="fly-main">
+            <h2 class="fly-title">Find Budget-Friendly Flights with Ease</h2>
+            <div class="fly-text">
+              <p>
+                Whether it’s for business, fun, or reuniting with family, we’re
+                here to make your travel plans simple and affordable.
+              </p>
+              <p>
+                Wherever your journey takes you, we’ll help you score the best
+                deals. Need to book in a hurry? Call us anytime for quick,
+                hassle-free support.
+              </p>
+              <p>
+                Always on the move? Our user-friendly mobile app lets you book
+                flights in minutes - on both Android and iOS. Whether it's a
+                surprise trip or a well-planned escape, booking has never been
+                easier.
+              </p>
+
+              <div class="fly-faq">
+                <!-- FAQ 1 -->
+                <div class="fly-faq-item">
+                  <h3 class="fly-faq-question">Flight-Saving Hacks You Need</h3>
+                  <div class="fly-faq-answer">
+                    <ul class="fly-tip-list">
+                      <li>
+                        <strong>1. Book in advance:</strong> Reserving tickets
+                        3–4 weeks ahead often results in lower prices.
+                      </li>
+                      <li>
+                        <strong>2. Fly budget airlines:</strong> Low-cost
+                        carriers can cut your travel expenses significantly.
+                      </li>
+                      <li>
+                        <strong>3. Redeem rewards:</strong> Use points from
+                        credit cards or airline programs to save on fares.
+                      </li>
+                      <li>
+                        <strong>4. Talk to an agent:</strong> Travel agents may
+                        offer special discounts and lower booking fees.
+                      </li>
+                      <li>
+                        <strong>5. Stay flexible:</strong> Changing your dates
+                        or destination could unlock better flight deals.
+                      </li>
+                      <li>
+                        <strong>6. Join loyalty programs:</strong> These are
+                        free and let you earn rewards toward future flights.
+                      </li>
+                      <li>
+                        <strong>7. Set fare alerts:</strong> Sign up for
+                        notifications to track discounts and price changes fast.
+                      </li>
+                      <li>
+                        <strong>8. Try different currencies:</strong> Booking in
+                        foreign currency can sometimes offer lower prices.
+                      </li>
+                      <li>
+                        <strong>9. Combine carriers:</strong> One-way tickets
+                        with multiple airlines may be cheaper than roundtrips.
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+
+                <!-- FAQ 2 -->
+                <div class="fly-faq-item">
+                  <h3 class="fly-faq-question">Your Guide to Low-Fare Days</h3>
+                  <div class="fly-faq-answer">
+                    <p>
+                      Though it depends on your route, midweek flights,
+                      especially between Monday and Thursday, are typically
+                      cheaper. Fridays and weekends often cost more because of
+                      increased demand. Steering clear of holiday periods and
+                      peak travel seasons can also help you snag better deals.
+                    </p>
+                  </div>
+                </div>
+
+                <!-- FAQ 3 -->
+                <div class="fly-faq-item">
+                  <h3 class="fly-faq-question">
+                    Best Budget Destinations for 2025
+                  </h3>
+                  <div class="fly-faq-answer">
+                    <ul class="fly-dest-list">
+                      <li>Lisbon</li>
+                      <li>Medellín</li>
+                      <li>Zagreb</li>
+                      <li>La Paz</li>
+                      <li>New Orleans</li>
+                      <li>San Antonio</li>
+                      <li>Albuquerque</li>
+                      <li>Lima</li>
+                      <li>Hanoi</li>
+                      <li>Bali</li>
+                      <li>Puerto Rico</li>
+                      <li>Kuala Lumpur</li>
+                    </ul>
+                  </div>
+                </div>
+
+                <!-- FAQ 4 -->
+                <div class="fly-faq-item">
+                  <h3 class="fly-faq-question">
+                    Looking for a Last-Minute Flight?
+                  </h3>
+                  <div class="fly-faq-answer">
+                    <p>
+                      Got an urgent trip? Discover affordable last-minute
+                      airfare to top global spots. Use our site to search
+                      instantly, or speak with our round-the-clock support team
+                      to grab the best deals fast—no hassle, just smooth travel
+                      planning.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+<!-- === === -->

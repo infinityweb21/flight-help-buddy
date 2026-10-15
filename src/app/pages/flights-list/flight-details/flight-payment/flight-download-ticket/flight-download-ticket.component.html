@@ -1,0 +1,1535 @@
+<!-- ==== ==== -->
+@if(iscommonSkeleton&&this.cnfirmData==''){
+
+<app-payment-loader></app-payment-loader>
+}
+@if (!iscommonSkeleton&&this.cnfirmData!='') {
+<section class="flight-booking-confirm-section">
+  <span class="booking-banner-patern-left">
+    <svg xmlns="http://www.w3.org/2000/svg" width="148" height="81" viewBox="0 0 148 81" fill="none">
+      <path
+        d="M146.182 0.381424C130.323 38.8144 99.989 59.2084 58.771 60.7214C48.343 61.1044 37.807 60.7564 27.582 62.8364C16.153 65.1614 7.326 70.7464 0 79.7224"
+        stroke="#FF6A19" stroke-width="2" stroke-miterlimit="10" stroke-dasharray="6 6" />
+    </svg>
+  </span>
+  <span class="booking-banner-patern-right">
+    <svg xmlns="http://www.w3.org/2000/svg" width="147" height="81" viewBox="0 0 147 81" fill="none">
+      <path
+        d="M0.924377 79.9733C16.7834 41.5403 47.1174 21.1463 88.3354 19.6333C98.7634 19.2503 109.299 19.5983 119.524 17.5183C130.953 15.1933 139.78 9.60829 147.106 0.632294"
+        stroke="#FF6A19" stroke-width="2" stroke-miterlimit="10" stroke-dasharray="6 6" />
+    </svg>
+  </span>
+  <div class="container container-xxl">
+    <div class="booking-confirm">
+      <div class="row">
+        <div class="col-md-8 booking-confirm-info-column">
+          <div class="booking-confirm__confirmation-info">
+            <div class="booking-confirm__icon-wrapper">
+              <svg class="booking-confirm__icon" xmlns="http://www.w3.org/2000/svg" width="48" height="48"
+                viewBox="0 0 48 48" fill="none">
+                <path
+                  d="M24 0C37.2548 1.03081e-06 48 10.7452 48 24C48 37.2548 37.2548 48 24 48C10.7452 48 1.03088e-06 37.2548 0 24C0 10.7452 10.7452 0 24 0ZM35.3516 14.5254C34.5373 13.7791 33.2717 13.8342 32.5254 14.6484L19.1592 29.2295L13.2939 24.2529C12.4517 23.5383 11.1892 23.6412 10.4746 24.4834C9.75999 25.3256 9.86383 26.5881 10.7061 27.3027L18.0391 33.5254C18.8585 34.2207 20.0814 34.1437 20.8076 33.3516L35.4746 17.3516C36.2209 16.5373 36.1658 15.2717 35.3516 14.5254Z"
+                  fill="currentColor" />
+              </svg>
+            </div>
+
+            <div class="booking-confirm__details">
+              <h1 class="booking-confirm__title">Booking In Progress</h1>
+
+              <p class="booking-confirm__meta">
+                <span class="booking-confirm__meta-group">
+                  <span class="booking-confirm__meta-label">Booking ID:</span>
+                  <span class="booking-confirm__meta-value">{{cnfirmData?.booking_details?.bookingId}}</span>
+                </span>
+                <span class="booking-confirm__date-time-content-wrap">
+                  <span class="booking-confirm__meta-separator d-none d-md-flex">|</span>
+                  <span class="booking-confirm__meta-value">Booking Date: {{cnfirmData?.booking_details?.created_at |
+                    date: 'MMM dd, yyyy'}}</span>
+                  <span class="booking-confirm__meta-separator">|</span>
+                  <span class="booking-confirm__meta-value">{{ cnfirmData?.booking_details?.created_at | date:
+                    'HH:mm:ss' }} (PST)</span>
+                </span>
+              </p>
+
+              <h3 class="booking-confirm__subtitle">Thank you for choosing Infinity Travels</h3>
+
+              <p class="booking-confirm__message">
+                We are currently processing your booking and awaiting confirmation from the airline regarding the
+                details. Our
+                team is actively monitoring the status and will promptly notify you when we receive the update. If you
+                require
+                assistance or have any questions, please contact our customer service center at <a class="booking-confirm__linkbtn"
+                                href="tel:{{ getData?.phoneNumber }}">{{ getData?.phoneNumber }}</a>.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 booking-confirm__image-section-info-col">
+          <div class="booking-confirm__image-section">
+            <div class="booking-confirm__image-section--passport">
+              <img src="assets/images/booking-confirmation/passport.png" alt="Passport" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- ==== ==== -->
+<!-- ==== ==== -->
+<section class="flight-booking-details-section">
+  <div class="container container-xxl">
+    <div class="flight-booking-details-content-wrapper">
+      <div class="trip-summary">
+        @if(getMainDetails?.Direction!='multicity'){
+        <div class="trip-summary__info">
+          <span class="trip-summary__route-wrapper">
+            <div class="trip-summary__route-arrival-wrap">
+              <span class="trip-summary__label">{{ getMainDetails?.Citypairs?.length === 1 ? 'One way' : 'Roundtrip'
+                }}:</span>
+              <span class="trip-summary__route"> {{
+                ((getMainDetails?.Citypairs)[0]?.FlightSegment)[0]?.DepartureDisplayName }} <span
+                  class="trip-summary__airport-code">({{
+                  ((getMainDetails?.Citypairs)[0]?.FlightSegment)[0]?.DepartureLocationCode }}) </span> to </span>
+            </div>
+            <span class="trip-summary__route-arrival-time-wrap">
+              <span class="trip-summary__route"> {{
+                ((getMainDetails?.Citypairs)[0]?.FlightSegment)[(getMainDetails?.Citypairs)[0]?.FlightSegment.length -
+                1]
+                ?.DisplayName
+                }} <span class="trip-summary__airport-code">({{
+                  ((getMainDetails?.Citypairs)[0]?.FlightSegment)[(getMainDetails?.Citypairs)[0]?.FlightSegment.length -
+                  1]
+                  ?.ArrivalLocationCode
+                  }})</span> </span>
+              <span class="trip-summary__separator">|</span>
+              @if (getMainDetails?.Citypairs?.length === 1) {
+              <span class="trip-summary__dates">
+                {{
+                getMainDetails?.Citypairs[0]?.FlightSegment[0]?.DepartureDateTime
+                | date: 'MMM dd, yyyy'
+                }}
+              </span>
+              }
+              @if (getMainDetails?.Citypairs?.length === 2) {
+              <span class="trip-summary__dates">
+                {{
+                getMainDetails?.Citypairs[0]?.FlightSegment[0]?.DepartureDateTime
+                | date: 'MMM dd'
+                }} -
+                {{
+                getMainDetails?.Citypairs[1]?.FlightSegment[0]?.DepartureDateTime
+                | date: 'MMM dd, yyyy'
+                }}
+              </span>
+              }
+
+
+            </span>
+          </span>
+        </div>
+        }@else {
+        <div class="trip-summary__info">
+          <span class="trip-summary__route-wrapper">
+
+            <!-- Trip type label -->
+            <div class="trip-summary__route-arrival-wrap">
+              <span class="trip-summary__label">
+                <!-- Multicity -->
+                <ng-container *ngIf="getMainDetails?.Direction === 'multicity'">
+                  Multi-city
+                </ng-container>
+              </span>
+
+
+            </div>
+
+
+          </span>
+        </div>
+        }
+
+        <div class="trip-summary__actions">
+          <button class="trip-summary__download-btn d-none" (click)="downloadTicket()">Download PDF</button>
+
+          <!-- <a  class="trip-summary__share-btn" (click)="shareOnWhatsApp()">
+            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25" fill="none">
+              <path
+                d="M21.875 6.25C21.875 7.97589 20.4759 9.375 18.75 9.375C17.0241 9.375 15.625 7.97589 15.625 6.25C15.625 4.52411 17.0241 3.125 18.75 3.125C20.4759 3.125 21.875 4.52411 21.875 6.25Z"
+                stroke="currentColor"
+                stroke-width="2"
+              />
+              <path
+                d="M21.875 18.75C21.875 20.4759 20.4759 21.875 18.75 21.875C17.0241 21.875 15.625 20.4759 15.625 18.75C15.625 17.0241 17.0241 15.625 18.75 15.625C20.4759 15.625 21.875 17.0241 21.875 18.75Z"
+                stroke="currentColor"
+                stroke-width="2"
+              />
+              <path
+                d="M9.375 12.5C9.375 14.2259 7.97589 15.625 6.25 15.625C4.52411 15.625 3.125 14.2259 3.125 12.5C3.125 10.7741 4.52411 9.375 6.25 9.375C7.97589 9.375 9.375 10.7741 9.375 12.5Z"
+                stroke="currentColor"
+                stroke-width="2"
+              />
+              <path
+                d="M9.0838 11.083L15.6249 7.8125"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+              <path
+                d="M9.06836 13.9094L15.6246 17.1875"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+          </a> -->
+
+          <div class="trip-share closetrip1" (click)="toggleShareDropdown1()">
+            <span class="trip-summary__share-btn">
+              <svg class="trip-share__icon" xmlns="http://www.w3.org/2000/svg" width="25" height="25"
+                viewBox="0 0 25 25" fill="none">
+                <path
+                  d="M21.875 6.25C21.875 7.97589 20.4759 9.375 18.75 9.375C17.0241 9.375 15.625 7.97589 15.625 6.25C15.625 4.52411 17.0241 3.125 18.75 3.125C20.4759 3.125 21.875 4.52411 21.875 6.25Z"
+                  stroke="currentColor" stroke-width="2" />
+                <path
+                  d="M21.875 18.75C21.875 20.4759 20.4759 21.875 18.75 21.875C17.0241 21.875 15.625 20.4759 15.625 18.75C15.625 17.0241 17.0241 15.625 18.75 15.625C20.4759 15.625 21.875 17.0241 21.875 18.75Z"
+                  stroke="currentColor" stroke-width="2" />
+                <path
+                  d="M9.375 12.5C9.375 14.2259 7.97589 15.625 6.25 15.625C4.52411 15.625 3.125 14.2259 3.125 12.5C3.125 10.7741 4.52411 9.375 6.25 9.375C7.97589 9.375 9.375 10.7741 9.375 12.5Z"
+                  stroke="currentColor" stroke-width="2" />
+                <path d="M9.0838 11.083L15.6249 7.8125" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                  stroke-linejoin="round" />
+                <path d="M9.06836 13.9094L15.6246 17.1875" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                  stroke-linejoin="round" />
+              </svg>
+            </span>
+            @if (showShareMenu1) {
+            <div class="trip-share__dropdown">
+              <ul class="trip-share__list">
+                <li class="trip-share__item" (click)="copyLink()">
+                  <a target="_blank" class="trip-share__link " [class.active]="activeShare1 === 'copy'">
+                    <span class="trip-share__link-icon">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
+                        <path fill="currentColor"
+                          d="m12.922 16.587l-3.671 3.671a3.896 3.896 0 0 1-5.504-5.509l-.002.002l3.671-3.671a1.3 1.3 0 0 0-1.837-1.835l.001-.001l-3.671 3.671a6.494 6.494 0 0 0 9.187 9.175l-.003.002l3.671-3.671a1.3 1.3 0 0 0-1.837-1.835l.001-.001zM24.007 6.489A6.494 6.494 0 0 0 12.921 1.9L9.25 5.571a1.3 1.3 0 1 0 1.835 1.837l.001-.001l3.671-3.671a3.896 3.896 0 0 1 5.504 5.509l.002-.002l-3.671 3.671a1.3 1.3 0 1 0 1.835 1.837l.001-.001l3.671-3.671a6.43 6.43 0 0 0 1.908-4.58V6.49z" />
+                        <path fill="currentColor"
+                          d="M7.412 16.592c.235.235.559.38.918.38s.683-.145.918-.38L16.59 9.25a1.3 1.3 0 0 0-1.837-1.835l.001-.001l-7.342 7.342c-.235.235-.38.559-.38.918s.145.683.38.918" />
+                      </svg>
+                    </span>
+                    @if(!copySuccess){
+                    <span class="trip-share__link-text">Copy Link</span>
+                    }
+                    @if(copySuccess){
+                    <span class="trip-share__link-text">Copied!</span>
+                    }
+
+                  </a>
+                </li>
+
+                <li class="trip-share__item" (click)="shareOnWhatsApp()">
+                  <a target="_blank" class="trip-share__link" [class.active]="activeShare1 === 'whatsapp'">
+                    <span class="trip-share__link-icon">
+                      <img src="assets/images/booking-confirmation/whatsapp-icon.svg" alt="Whatsapp Icon">
+                    </span>
+                    <span class="trip-share__link-text">Whatsapp</span>
+                  </a>
+                </li>
+              </ul>
+            </div>
+            }
+          </div>
+
+
+
+        </div>
+      </div>
+
+      <div class="flight-booking-confirmation">
+        <h3 class="flight-booking-confirmation__title">Booking Details</h3>
+        @for (cp of getMainDetails?.Citypairs; track $index;let isLast = $last) {
+
+        @if (cp?.FlightSegment?.length > 0) {
+        <div class="flight-booking-confirmation__segment flight-booking-confirmation__segment--departure">
+          <div class="flight-booking-confirmation__segment-info-wrapper">
+            <div class="flight-booking-confirmation__segment-heading-wrap">
+
+              <!-- <h6 class="flight-booking-confirmation__segment-heading">Departure</h6> -->
+              @if(getMainDetails?.Direction!='multicity'){
+              <h6 class="flight-booking-confirmation__segment-heading"> {{ $index === 0 ? 'Departure' : $index === 1 ?
+                'Return' : ''
+                }}</h6>
+              }@else{
+              <span class="c-flight-schedule--departure__multicity-label">
+                Flight {{ $index + 1 }}
+              </span>
+              }
+              <span class="flight-booking-confirmation__date">
+                {{ (cp?.FlightSegment)[0]?.DepartureDateTime | date: "EEEE, MMM" }}
+                <span class="flight-booking-confirmation__date-day">{{
+                  (cp?.FlightSegment)[0]?.DepartureDateTime | date: "d,"
+                  }}</span>{{ (cp?.FlightSegment)[0]?.DepartureDateTime | date: "y" }}
+              </span>
+            </div>
+            <div class="flight-booking-confirmation__segment-info-content-wrap">
+              <div class="flight-booking-confirmation__segment-info">
+
+
+                <span class="flight-booking-confirmation__route">
+                  {{ (cp?.FlightSegment)[0]?.DepartureDisplayName }}
+                  <span class="flight-booking-confirmation__airport-code">({{
+                    (cp?.FlightSegment)[0]?.DepartureLocationCode }})</span>
+                  to
+                  {{
+                  (cp?.FlightSegment)[cp?.FlightSegment.length - 1]
+                  ?.DisplayName
+                  }}
+                  <span class="flight-booking-confirmation__airport-code">({{
+                    (cp?.FlightSegment)[cp?.FlightSegment.length - 1]
+                    ?.ArrivalLocationCode
+                    }})</span>
+                </span>
+
+                <span class="flight-booking-confirmation__time">
+                  {{ (cp?.FlightSegment)[0]?.DepartureDateTime | date: "HH:mm" }} -
+                  {{
+                  (cp?.FlightSegment)[cp?.FlightSegment.length - 1]
+                  ?.ArrivalDateTime | date: "HH:mm"
+                  }}@if(getSegmentDurationParts(cp?.FlightSegment).days > 0){<span
+                    class="flight-booking-confirmation__time-offset">+</span>
+                  <span class="flight-booking-confirmation__time-days">{{getSegmentDurationParts(cp?.FlightSegment).days
+                    }}</span>
+                  }
+                </span>
+              </div>
+              <div class="flight-booking-confirmation__segment-meta">
+                <!-- <span class="flight-booking-confirmation__date">
+                  {{ (cp?.FlightSegment)[0]?.DepartureDateTime | date: "EEEE, MMM" }}
+                  <span class="flight-booking-confirmation__date-day">{{
+                    (cp?.FlightSegment)[0]?.DepartureDateTime | date: "d,"
+                  }}</span
+                  >{{ (cp?.FlightSegment)[0]?.DepartureDateTime | date: "y" }}
+                </span> -->
+
+                <span class="flight-booking-confirmation__duration">
+                  <span class="flight-booking-confirmation__duration-label">Journey Duration</span> :
+                  {{ cp?.Duration | durationToHours }}
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <hr class="flight-booking-confirmation__divider-light" />
+
+          <div class="trip-itinerary-content-wrapper">
+            <div>
+              <div class="c-flight-schedule--departure">
+                <div class="c-flight-schedule--departure__body">
+                  <div class="c-flight-itinerary">
+                    @for (flight of cp?.FlightSegment; track $index; let i = $index) {
+                    <div class="c-flight-itinerary__segment c-flight-itinerary__segment--departed">
+                      <div class="c-flight-itinerary__segment--left">
+                        <div class="c-flight-itinerary__time">
+                          <span class="c-flight-itinerary__time--departure">{{
+                            flight.DepartureDateTime | date: "HH:mm"
+                            }}</span>
+                        </div>
+                        <div class="c-flight-itinerary__duration">
+                          <span class="c-flight-itinerary__duration--label">Flight Time</span>
+                          <span class="c-flight-itinerary__duration--time">{{ flight.Duration | lowercase }}</span>
+                        </div>
+                      </div>
+
+                      <div class="c-flight-itinerary__segment--right">
+                        <div class="c-flight-itinerary__airport-info">
+                          <div class="c-flight-itinerary__airport-name">
+                            <span class="c-flight-itinerary__airport-name--full">{{ flight.OriginAirportName }}
+                              <span class="c-flight-itinerary__airport-name--code">({{ flight.DepartureLocationCode
+                                }})</span></span>
+                          </div>
+                          <div class="c-flight-itinerary__airline-info">
+                            <div class="c-flight-itinerary__airline-logo-wrap">
+                              <div class="c-flight-itinerary__airline-logo">
+                                <img [src]="imageUrl + flight.FlightLogoName" [alt]="flight.FlightLogoName" />
+                              </div>
+                            </div>
+                            <div class="c-flight-itinerary__airline-details">
+                              <span class="c-flight-itinerary__airline-name"> {{ flight.MarketingAirlineName }}</span>
+                              <span class="c-flight-itinerary__cabin-class">{{ classMap[(flight?.CabinClass)] ||
+                                flight?.CabinClass }} @if(flight?.BookingClass!='' && flight?.BookingClass!=null){
+                                ({{ flight.BookingClass }})}</span>
+                              <span class="c-flight-itinerary__flight-info">
+                                <span class="c-flight-itinerary__flight-number">Flight {{ flight.FlightNumber }}</span>
+                                <span class="c-flight-itinerary__separator"></span>
+                                <span class="c-flight-itinerary__aircraft">{{ flight.AirEquipmentType }}</span>
+                              </span>
+
+                              <span *ngIf="
+                                            flight.OperatingAirlineName &&
+                                            flight.OperatingAirlineName.trim() !==
+                                              '' &&
+                                            flight.OperatingAirlineName.trim() !==
+                                              flight.MarketingAirlineName?.trim()
+                                          " class="c-flight-itinerary__operated-by">
+                                Operated by
+                                {{ flight.OperatingAirlineName }}
+                              </span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      @if (i != 0) {
+                      <div class="c-flight-itinerary__post-layover-icon">
+                        <span class="c-flight-itinerary__post-layover-icon--box"></span>
+                      </div>
+                      } @if (i === 0) {
+                      <div class="c-flight-itinerary--flight-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                          <path
+                            d="M7.712 3V4.538L10.558 6.542V10.873L3 7.827V9.788L10.558 15.119V19.558C10.558 19.954 10.6993 20.2933 10.982 20.576C11.2647 20.8587 11.604 21 12 21C12.396 21 12.7353 20.8587 13.018 20.576C13.3007 20.2933 13.442 19.954 13.442 19.558V15.119L21 9.79V7.828L13.442 10.874V6.544L16.269 4.539V3L12 4.308L7.712 3Z"
+                            fill="#B0B1BE" />
+                        </svg>
+                      </div>
+                      }
+                    </div>
+
+                    <!-- 🕓 Layover segment (shown AFTER this flight) -->
+                    @if (i < cp.FlightSegment.length - 1) { <div
+                      class="c-flight-itinerary__segment c-flight-itinerary__segment--layover">
+                      <div class="c-flight-itinerary__segment--left">
+                        <div class="c-flight-itinerary__time c-flight-itinerary__time--layover">
+                          <span class="c-flight-itinerary__time--layover-time">{{
+                            flight.ArrivalDateTime | date: "HH:mm"
+                            }}</span>
+                        </div>
+                      </div>
+                      <div class="c-flight-itinerary__segment--right">
+                        <div class="c-flight-itinerary__layover-info">
+                          <span class="c-flight-itinerary__layover-airport">{{ cp.FlightSegment[i + 1].OriginAirportName
+                            }} ({{
+                            cp.FlightSegment[i + 1].DepartureLocationCode
+                            }})</span>
+                          <span class="c-flight-itinerary__layover-duration">{{ cp.FlightSegment[i + 1].LayoverTime|
+                            durationToHours }} Layover</span>
+                        </div>
+                      </div>
+                      <div class="c-flight-itinerary__layover-icon">
+                        <span class="c-flight-itinerary__layover-icon--box"></span>
+                      </div>
+                  </div>
+
+                  }
+
+                  <!-- 🛬 Final Arrival segment -->
+                  @if (i === cp.FlightSegment.length - 1) {
+
+                  <div class="c-flight-itinerary__segment c-flight-itinerary__segment--arrived">
+                    <div class="c-flight-itinerary__segment--left">
+                      <div class="c-flight-itinerary__time">
+                        <span class="c-flight-itinerary__time--arrival">{{ flight.ArrivalDateTime | date: "HH:mm" }}
+                          <!-- <span
+                              *ngIf="getSegmentDurationParts(cp?.FlightSegment).days > 0"
+                              class="c-flight-itinerary__time--arrival__sup"
+                              >+{{ getSegmentDurationParts(cp?.FlightSegment).days }}</span
+                            > -->
+                        </span>
+                      </div>
+                    </div>
+                    <div class="c-flight-itinerary__segment--right">
+                      <div class="c-flight-itinerary__airport-name">
+                        <span class="c-flight-itinerary__airport-name--full">
+                          {{ flight.DestinationAirportName }}
+                          <span class="c-flight-itinerary__airport-name--code">({{ flight.ArrivalLocationCode
+                            }})</span></span>
+                      </div>
+                    </div>
+                    <div class="c-flight-itinerary--location-icon">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                        <path fill-rule="evenodd" clip-rule="evenodd"
+                          d="M7.953 5.552C8.992 4.592 10.388 4 12 4C13.612 4 15.008 4.592 16.047 5.552L16.054 5.558C16.6667 6.10959 17.1566 6.78387 17.4919 7.53707C17.8271 8.29027 18.0003 9.10556 18 9.93C18 11.487 17.336 12.962 16.359 14.392C15.379 15.825 13.941 17.417 12 19.166C10.059 17.416 8.62 15.825 7.641 14.392C6.661 12.958 6 11.492 6 9.929C6.00002 9.10489 6.17327 8.29 6.50851 7.53716C6.84376 6.78432 7.33351 6.11037 7.946 5.559L7.953 5.552ZM12 2C9.88 2 8.002 2.785 6.6 4.08C5.78142 4.81889 5.12703 5.72137 4.67916 6.72907C4.2313 7.73677 3.99992 8.82726 4 9.93C4 12.07 4.908 13.936 5.99 15.52C7.206 17.298 8.991 19.21 11.344 21.255C11.526 21.4131 11.7589 21.5002 12 21.5002C12.2411 21.5002 12.474 21.4131 12.656 21.255C15.009 19.21 16.794 17.298 18.01 15.52C19.09 13.938 20 12.063 20 9.93C20.0001 8.82726 19.7687 7.73677 19.3208 6.72907C18.873 5.72137 18.2186 4.81889 17.4 4.08C15.999 2.785 14.12 2 12 2ZM12 12C12.5304 12 13.0391 11.7893 13.4142 11.4142C13.7893 11.0391 14 10.5304 14 10C14 9.46957 13.7893 8.96086 13.4142 8.58579C13.0391 8.21071 12.5304 8 12 8C11.4696 8 10.9609 8.21071 10.5858 8.58579C10.2107 8.96086 10 9.46957 10 10C10 10.5304 10.2107 11.0391 10.5858 11.4142C10.9609 11.7893 11.4696 12 12 12Z"
+                          fill="#B0B1BE" />
+                      </svg>
+                    </div>
+                  </div>
+                  } }
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="flight-booking-confirmation__arrival">
+          <span class="flight-booking-confirmation__arrival--highlight">Arrives:</span>{{
+          (cp?.FlightSegment)[cp?.FlightSegment.length - 1]
+          ?.ArrivalDateTime | date: "EEEE, MMM"
+          }}
+          <span class="flight-booking-confirmation__arrival--highlight">{{
+            (cp?.FlightSegment)[cp?.FlightSegment.length - 1]
+            ?.ArrivalDateTime | date: "d,"
+            }} </span>{{
+          (cp?.FlightSegment)[cp?.FlightSegment.length - 1]
+          ?.ArrivalDateTime | date: "y"
+          }}
+        </div>
+
+
+        <div class="flight-booking-confirmation__baggage-info">
+
+          <div class="flight-booking-confirmation__baggage-item" *ngIf="getFirstDepartureBag()?.carryOn as bag">
+            <div class="flight-booking-confirmation__baggage-icon-group">
+              <span class="flight-booking-confirmation__baggage-icon-carry-on">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="19" viewBox="0 0 24 19" fill="none">
+                  <path
+                    d="M20.8758 3.32618H15.7541V0.735214C15.7541 0.329162 15.425 0 15.0189 0H8.35605C7.95 0 7.62083 0.329162 7.62083 0.735214V3.32618H2.49916C1.12113 3.32618 0 4.44731 0 5.82529V16.0216C0 17.3996 1.12113 18.5207 2.49916 18.5207H20.8758C22.2539 18.5207 23.375 17.3995 23.375 16.0216V5.82529C23.375 4.44731 22.2538 3.32618 20.8758 3.32618ZM9.09126 1.47048H14.2837V3.32622H9.09126V1.47048ZM4.06569 17.0503H2.49916C1.9319 17.0503 1.47043 16.5888 1.47043 16.0216V5.82529C1.47043 5.25808 1.9319 4.79662 2.49916 4.79662H4.06569V17.0503ZM17.8388 17.0503H5.53617V4.79662H17.8388L17.8388 17.0503ZM21.9045 16.0216C21.9045 16.5888 21.4431 17.0503 20.8758 17.0503H19.3093V4.79662H20.8758C21.4431 4.79662 21.9045 5.25808 21.9045 5.82529V16.0216Z"
+                    fill="#1C1C1C" />
+                </svg>
+              </span>
+                 @if (bag?.count>0) {
+                    
+                         <span class="flight-booking-confirmation__baggage-icon-carry-on-checked">
+                <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 15 15" fill="none">
+                  <path fill-rule="evenodd" clip-rule="evenodd"
+                    d="M7.43814 1.23926C6.94789 1.23926 6.47747 1.43387 6.13038 1.78096L5.57691 2.33443C5.46188 2.44788 5.30709 2.51193 5.14553 2.51293H4.36398C4.121 2.51285 3.88038 2.56065 3.65589 2.65359C3.43139 2.74654 3.2274 2.88281 3.05559 3.05462C2.88378 3.22644 2.74751 3.43042 2.65456 3.65492C2.56161 3.87942 2.51382 4.12003 2.5139 4.36301V5.14518C2.5129 5.30675 2.44885 5.46153 2.3354 5.57656L1.78192 6.13003C1.43509 6.47687 1.24023 6.94729 1.24023 7.43779C1.24023 7.9283 1.43509 8.39871 1.78192 8.74555L2.3354 9.29903C2.44885 9.41406 2.5129 9.56884 2.5139 9.7304V10.5126C2.5139 11.0031 2.70875 11.4735 3.05559 11.8203C3.40243 12.1672 3.87285 12.362 4.36336 12.362H5.14553C5.3073 12.362 5.46287 12.4265 5.57691 12.5405L6.13038 13.094C6.47722 13.4409 6.94764 13.6357 7.43814 13.6357C7.92865 13.6357 8.39906 13.4409 8.7459 13.094L9.29938 12.5405C9.41441 12.4271 9.56919 12.363 9.73075 12.362H10.5129C11.0034 12.362 11.4739 12.1672 11.8207 11.8203C12.1675 11.4735 12.3624 11.0031 12.3624 10.5126V9.7304C12.3624 9.56864 12.4268 9.41307 12.5409 9.29903L13.0944 8.74555C13.4412 8.39871 13.6361 7.9283 13.6361 7.43779C13.6361 6.94729 13.4412 6.47687 13.0944 6.13003L12.5409 5.57656C12.4274 5.46153 12.3634 5.30675 12.3624 5.14518V4.36301C12.3624 3.8725 12.1675 3.40208 11.8207 3.05524C11.4739 2.7084 11.0034 2.51355 10.5129 2.51355H9.73075C9.56919 2.51255 9.41441 2.4485 9.29938 2.33505L8.7459 1.78158C8.5743 1.60962 8.37045 1.4732 8.14605 1.38014C7.92164 1.28708 7.68108 1.23921 7.43814 1.23926ZM9.72084 6.03025C9.78138 5.9734 9.82987 5.90496 9.86345 5.829C9.89702 5.75304 9.91498 5.6711 9.91628 5.58806C9.91756 5.50503 9.90215 5.42257 9.87095 5.34561C9.83976 5.26864 9.79341 5.19873 9.73466 5.14003C9.67592 5.08132 9.60597 5.03502 9.52898 5.00388C9.45199 4.97274 9.36953 4.95738 9.28649 4.95873C9.20346 4.96008 9.12154 4.9781 9.0456 5.01173C8.96966 5.04536 8.90126 5.0939 8.84445 5.15448L6.20848 7.79046L5.417 6.99898C5.30079 6.88268 5.14313 6.81732 4.97872 6.81726C4.81431 6.8172 4.65661 6.88246 4.54031 6.99867C4.42401 7.11489 4.35864 7.27254 4.35858 7.43695C4.35852 7.60137 4.42378 7.75907 4.54 7.87537L5.77028 9.10503C5.88651 9.22123 6.04413 9.2865 6.20848 9.2865C6.37282 9.2865 6.53044 9.22123 6.64667 9.10503L9.72084 6.03087V6.03025Z"
+                    fill="#3AB54A" />
+                </svg>
+              </span>
+                    }@else {
+       <span class="flight-booking-confirmation__baggage-icon-check-in-checked">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 17 17" fill="none">
+                    <path fill-rule="evenodd" clip-rule="evenodd"
+                      d="M8.167 1.36096C7.62868 1.36096 7.11214 1.57466 6.73102 1.95577L6.12329 2.5635C5.99698 2.68808 5.82702 2.7584 5.64962 2.7595H4.79144C4.52464 2.75941 4.26044 2.8119 4.01393 2.91396C3.76742 3.01602 3.54344 3.16565 3.35478 3.3543C3.16613 3.54296 3.01649 3.76694 2.91444 4.01345C2.81238 4.25996 2.75989 4.52416 2.75998 4.79096V5.64982C2.75888 5.82722 2.68856 5.99718 2.56398 6.12349L1.95625 6.73123C1.5754 7.11207 1.36145 7.6286 1.36145 8.1672C1.36145 8.70579 1.5754 9.22233 1.95625 9.60317L2.56398 10.2109C2.68856 10.3372 2.75888 10.5072 2.75998 10.6846V11.5434C2.75998 12.082 2.97394 12.5986 3.35478 12.9794C3.73563 13.3603 4.25216 13.5742 4.79076 13.5742H5.64962C5.82725 13.5742 5.99807 13.645 6.12329 13.7702L6.73102 14.3779C7.11187 14.7588 7.6284 14.9727 8.167 14.9727C8.70559 14.9727 9.22212 14.7588 9.60297 14.3779L10.2107 13.7702C10.337 13.6456 10.507 13.5753 10.6844 13.5742H11.5432C12.0818 13.5742 12.5984 13.3603 12.9792 12.9794C13.3601 12.5986 13.574 12.082 13.574 11.5434V10.6846C13.574 10.5069 13.6448 10.3361 13.77 10.2109L14.3777 9.60317C14.7586 9.22233 14.9725 8.70579 14.9725 8.1672C14.9725 7.6286 14.7586 7.11207 14.3777 6.73123L13.77 6.12349C13.6454 5.99718 13.5751 5.82722 13.574 5.64982V4.79096C13.574 4.25237 13.3601 3.73583 12.9792 3.35498C12.5984 2.97414 12.0818 2.76018 11.5432 2.76018H10.6844C10.507 2.75908 10.337 2.68876 10.2107 2.56418L9.60297 1.95645C9.41454 1.76763 9.19071 1.61784 8.9443 1.51566C8.6979 1.41347 8.43375 1.3609 8.167 1.36096Z"
+                      fill="#1C1C1C" />
+                    <path
+                      d="M8.1531 11.8029V5.43923H8.56077V11.8029H8.1531ZM9.32888 7.4751C9.30568 7.258 9.2079 7.08897 9.03556 6.968C8.86486 6.84702 8.6428 6.78653 8.36936 6.78653C8.17713 6.78653 8.01224 6.81553 7.87469 6.87353C7.73714 6.93154 7.63191 7.01025 7.55899 7.10969C7.48608 7.20912 7.44879 7.32264 7.44713 7.45024C7.44713 7.5563 7.47116 7.64827 7.51922 7.72616C7.56894 7.80405 7.63605 7.87034 7.72057 7.92503C7.80509 7.97806 7.89872 8.0228 8.00146 8.05926C8.10421 8.09572 8.20779 8.12638 8.31219 8.15123L8.78946 8.27055C8.9817 8.3153 9.16647 8.37578 9.34379 8.45202C9.52277 8.52825 9.68269 8.62436 9.82355 8.74037C9.96607 8.85637 10.0788 8.9964 10.1616 9.16047C10.2445 9.32453 10.2859 9.51676 10.2859 9.73717C10.2859 10.0355 10.2097 10.2981 10.0572 10.5252C9.90476 10.7505 9.68435 10.927 9.396 11.0546C9.1093 11.1806 8.76212 11.2436 8.35445 11.2436C7.95838 11.2436 7.61451 11.1822 7.32284 11.0596C7.03283 10.937 6.8058 10.758 6.64173 10.5227C6.47933 10.2874 6.3915 10.0007 6.37824 9.6626H7.28556C7.29881 9.83992 7.3535 9.98741 7.44962 10.1051C7.54574 10.2227 7.67085 10.3106 7.82497 10.3686C7.98075 10.4266 8.15476 10.4556 8.34699 10.4556C8.54751 10.4556 8.72317 10.4257 8.87398 10.3661C9.02644 10.3048 9.14576 10.2202 9.23193 10.1125C9.31811 10.0032 9.36202 9.87555 9.36368 9.72971C9.36202 9.59714 9.32308 9.48776 9.24685 9.40159C9.17062 9.31376 9.06373 9.24084 8.92618 9.18284C8.79029 9.12318 8.6312 9.07015 8.44891 9.02375L7.86972 8.8746C7.45045 8.76688 7.11901 8.60365 6.8754 8.3849C6.63345 8.16449 6.51247 7.872 6.51247 7.50741C6.51247 7.20746 6.59368 6.94479 6.75608 6.71942C6.92014 6.49404 7.14304 6.3192 7.42476 6.19491C7.70648 6.06897 8.02549 6.00599 8.38179 6.00599C8.74306 6.00599 9.05959 6.06897 9.33137 6.19491C9.6048 6.3192 9.81941 6.49238 9.97519 6.71444C10.131 6.93485 10.2113 7.1884 10.2163 7.4751H9.32888Z"
+                      fill="white" />
+                  </svg>
+                </span>
+                    }
+
+
+            </div>
+
+            <div class="flight-booking-confirmation__baggage-text">
+              <span class="flight-booking-confirmation__baggage-text-label">
+                <span class="flight-booking-confirmation__baggage-text-label-highlight">Carry-on Bag</span>
+             @if (bag?.count>0) {
+                <span class="flight-booking-confirmation__badge-included">Included</span>
+                } @else {
+                <span class="flight-booking-confirmation__badge-not-included">Not-Included</span>
+                }
+              </span>
+              <span class="flight-booking-confirmation__baggage-text-description"> @if (bag?.description1 ||
+                bag?.description2) {
+                {{ toTitleCase(bag.description1 || bag.description2) }}
+                } @else {
+                Kindly check with the airline.
+                 <!-- for
+                <a (click)="onrouteBagage()" class="o-text-link">
+                  baggage details
+                </a>. -->
+                }</span>
+            </div>
+          </div>
+          <div class="flight-booking-confirmation__baggage-divider" *ngIf="
+    getFirstDepartureBag()?.checkIn &&
+    getFirstDepartureBag()?.carryOn
+  "></div>
+          <div *ngIf="getFirstDepartureBag()?.checkIn as bag">
+            <div class="flight-booking-confirmation__baggage-item">
+              <div class="flight-booking-confirmation__baggage-icon-group">
+                <span class="flight-booking-confirmation__baggage-icon-check-in">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="26" viewBox="0 0 18 26" fill="none">
+                    <path
+                      d="M14.4375 3.20833H12.8333V1.60417C13.2763 1.60417 13.6354 1.24503 13.6354 0.802083C13.6354 0.359133 13.2763 0 12.8333 0C11.6889 0 5.95968 0 4.81249 0C4.36954 0 4.01042 0.359133 4.01042 0.802083C4.01042 1.24503 4.36954 1.60417 4.81249 1.60417V3.20833H3.20832C1.43924 3.20833 0 4.64757 0 6.41667V20.8542C0 22.6233 1.43924 24.0625 3.20832 24.0625H3.60938V24.8646C3.60938 25.3075 3.9685 25.6667 4.41147 25.6667C4.85442 25.6667 5.21354 25.3075 5.21354 24.8646V24.0625H12.4323V24.8646C12.4323 25.3075 12.7914 25.6667 13.2344 25.6667C13.6773 25.6667 14.0364 25.3075 14.0364 24.8646V24.0625H14.4375C16.2066 24.0625 17.6458 22.6233 17.6458 20.8542V6.41667C17.6458 4.64757 16.2066 3.20833 14.4375 3.20833ZM6.41667 1.60417H11.2292V3.20833H6.41667V1.60417ZM16.0417 20.8542C16.0417 21.7387 15.322 22.4583 14.4375 22.4583H3.20832C2.32378 22.4583 1.60417 21.7387 1.60417 20.8542V6.41667C1.60417 5.53212 2.32378 4.8125 3.20832 4.8125H14.4375C15.322 4.8125 16.0417 5.53212 16.0417 6.41667V20.8542Z"
+                      fill="#1C1C1C" />
+                    <path
+                      d="M6.16061 6.13367C5.79636 6.13367 5.50098 6.36965 5.50098 6.66079V20.8921C5.50098 21.1831 5.79636 21.4192 6.16061 21.4192C6.52491 21.4192 6.82026 21.1831 6.82026 20.8921V6.66079C6.82026 6.36965 6.52491 6.13367 6.16061 6.13367Z"
+                      fill="#1C1C1C" />
+                    <path
+                      d="M11.4858 6.13367C11.1215 6.13367 10.8262 6.36965 10.8262 6.66077V20.8921C10.8262 21.1831 11.1215 21.4192 11.4858 21.4192C11.8501 21.4192 12.1454 21.1831 12.1454 20.8921V6.66077C12.1454 6.36965 11.8501 6.13367 11.4858 6.13367Z"
+                      fill="#1C1C1C" />
+                  </svg>
+                </span>
+               @if (bag?.count>0) {
+                    
+                         <span class="flight-booking-confirmation__baggage-icon-carry-on-checked">
+                <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 15 15" fill="none">
+                  <path fill-rule="evenodd" clip-rule="evenodd"
+                    d="M7.43814 1.23926C6.94789 1.23926 6.47747 1.43387 6.13038 1.78096L5.57691 2.33443C5.46188 2.44788 5.30709 2.51193 5.14553 2.51293H4.36398C4.121 2.51285 3.88038 2.56065 3.65589 2.65359C3.43139 2.74654 3.2274 2.88281 3.05559 3.05462C2.88378 3.22644 2.74751 3.43042 2.65456 3.65492C2.56161 3.87942 2.51382 4.12003 2.5139 4.36301V5.14518C2.5129 5.30675 2.44885 5.46153 2.3354 5.57656L1.78192 6.13003C1.43509 6.47687 1.24023 6.94729 1.24023 7.43779C1.24023 7.9283 1.43509 8.39871 1.78192 8.74555L2.3354 9.29903C2.44885 9.41406 2.5129 9.56884 2.5139 9.7304V10.5126C2.5139 11.0031 2.70875 11.4735 3.05559 11.8203C3.40243 12.1672 3.87285 12.362 4.36336 12.362H5.14553C5.3073 12.362 5.46287 12.4265 5.57691 12.5405L6.13038 13.094C6.47722 13.4409 6.94764 13.6357 7.43814 13.6357C7.92865 13.6357 8.39906 13.4409 8.7459 13.094L9.29938 12.5405C9.41441 12.4271 9.56919 12.363 9.73075 12.362H10.5129C11.0034 12.362 11.4739 12.1672 11.8207 11.8203C12.1675 11.4735 12.3624 11.0031 12.3624 10.5126V9.7304C12.3624 9.56864 12.4268 9.41307 12.5409 9.29903L13.0944 8.74555C13.4412 8.39871 13.6361 7.9283 13.6361 7.43779C13.6361 6.94729 13.4412 6.47687 13.0944 6.13003L12.5409 5.57656C12.4274 5.46153 12.3634 5.30675 12.3624 5.14518V4.36301C12.3624 3.8725 12.1675 3.40208 11.8207 3.05524C11.4739 2.7084 11.0034 2.51355 10.5129 2.51355H9.73075C9.56919 2.51255 9.41441 2.4485 9.29938 2.33505L8.7459 1.78158C8.5743 1.60962 8.37045 1.4732 8.14605 1.38014C7.92164 1.28708 7.68108 1.23921 7.43814 1.23926ZM9.72084 6.03025C9.78138 5.9734 9.82987 5.90496 9.86345 5.829C9.89702 5.75304 9.91498 5.6711 9.91628 5.58806C9.91756 5.50503 9.90215 5.42257 9.87095 5.34561C9.83976 5.26864 9.79341 5.19873 9.73466 5.14003C9.67592 5.08132 9.60597 5.03502 9.52898 5.00388C9.45199 4.97274 9.36953 4.95738 9.28649 4.95873C9.20346 4.96008 9.12154 4.9781 9.0456 5.01173C8.96966 5.04536 8.90126 5.0939 8.84445 5.15448L6.20848 7.79046L5.417 6.99898C5.30079 6.88268 5.14313 6.81732 4.97872 6.81726C4.81431 6.8172 4.65661 6.88246 4.54031 6.99867C4.42401 7.11489 4.35864 7.27254 4.35858 7.43695C4.35852 7.60137 4.42378 7.75907 4.54 7.87537L5.77028 9.10503C5.88651 9.22123 6.04413 9.2865 6.20848 9.2865C6.37282 9.2865 6.53044 9.22123 6.64667 9.10503L9.72084 6.03087V6.03025Z"
+                    fill="#3AB54A" />
+                </svg>
+              </span>
+                    }@else {
+       <span class="flight-booking-confirmation__baggage-icon-check-in-checked">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 17 17" fill="none">
+                    <path fill-rule="evenodd" clip-rule="evenodd"
+                      d="M8.167 1.36096C7.62868 1.36096 7.11214 1.57466 6.73102 1.95577L6.12329 2.5635C5.99698 2.68808 5.82702 2.7584 5.64962 2.7595H4.79144C4.52464 2.75941 4.26044 2.8119 4.01393 2.91396C3.76742 3.01602 3.54344 3.16565 3.35478 3.3543C3.16613 3.54296 3.01649 3.76694 2.91444 4.01345C2.81238 4.25996 2.75989 4.52416 2.75998 4.79096V5.64982C2.75888 5.82722 2.68856 5.99718 2.56398 6.12349L1.95625 6.73123C1.5754 7.11207 1.36145 7.6286 1.36145 8.1672C1.36145 8.70579 1.5754 9.22233 1.95625 9.60317L2.56398 10.2109C2.68856 10.3372 2.75888 10.5072 2.75998 10.6846V11.5434C2.75998 12.082 2.97394 12.5986 3.35478 12.9794C3.73563 13.3603 4.25216 13.5742 4.79076 13.5742H5.64962C5.82725 13.5742 5.99807 13.645 6.12329 13.7702L6.73102 14.3779C7.11187 14.7588 7.6284 14.9727 8.167 14.9727C8.70559 14.9727 9.22212 14.7588 9.60297 14.3779L10.2107 13.7702C10.337 13.6456 10.507 13.5753 10.6844 13.5742H11.5432C12.0818 13.5742 12.5984 13.3603 12.9792 12.9794C13.3601 12.5986 13.574 12.082 13.574 11.5434V10.6846C13.574 10.5069 13.6448 10.3361 13.77 10.2109L14.3777 9.60317C14.7586 9.22233 14.9725 8.70579 14.9725 8.1672C14.9725 7.6286 14.7586 7.11207 14.3777 6.73123L13.77 6.12349C13.6454 5.99718 13.5751 5.82722 13.574 5.64982V4.79096C13.574 4.25237 13.3601 3.73583 12.9792 3.35498C12.5984 2.97414 12.0818 2.76018 11.5432 2.76018H10.6844C10.507 2.75908 10.337 2.68876 10.2107 2.56418L9.60297 1.95645C9.41454 1.76763 9.19071 1.61784 8.9443 1.51566C8.6979 1.41347 8.43375 1.3609 8.167 1.36096Z"
+                      fill="#1C1C1C" />
+                    <path
+                      d="M8.1531 11.8029V5.43923H8.56077V11.8029H8.1531ZM9.32888 7.4751C9.30568 7.258 9.2079 7.08897 9.03556 6.968C8.86486 6.84702 8.6428 6.78653 8.36936 6.78653C8.17713 6.78653 8.01224 6.81553 7.87469 6.87353C7.73714 6.93154 7.63191 7.01025 7.55899 7.10969C7.48608 7.20912 7.44879 7.32264 7.44713 7.45024C7.44713 7.5563 7.47116 7.64827 7.51922 7.72616C7.56894 7.80405 7.63605 7.87034 7.72057 7.92503C7.80509 7.97806 7.89872 8.0228 8.00146 8.05926C8.10421 8.09572 8.20779 8.12638 8.31219 8.15123L8.78946 8.27055C8.9817 8.3153 9.16647 8.37578 9.34379 8.45202C9.52277 8.52825 9.68269 8.62436 9.82355 8.74037C9.96607 8.85637 10.0788 8.9964 10.1616 9.16047C10.2445 9.32453 10.2859 9.51676 10.2859 9.73717C10.2859 10.0355 10.2097 10.2981 10.0572 10.5252C9.90476 10.7505 9.68435 10.927 9.396 11.0546C9.1093 11.1806 8.76212 11.2436 8.35445 11.2436C7.95838 11.2436 7.61451 11.1822 7.32284 11.0596C7.03283 10.937 6.8058 10.758 6.64173 10.5227C6.47933 10.2874 6.3915 10.0007 6.37824 9.6626H7.28556C7.29881 9.83992 7.3535 9.98741 7.44962 10.1051C7.54574 10.2227 7.67085 10.3106 7.82497 10.3686C7.98075 10.4266 8.15476 10.4556 8.34699 10.4556C8.54751 10.4556 8.72317 10.4257 8.87398 10.3661C9.02644 10.3048 9.14576 10.2202 9.23193 10.1125C9.31811 10.0032 9.36202 9.87555 9.36368 9.72971C9.36202 9.59714 9.32308 9.48776 9.24685 9.40159C9.17062 9.31376 9.06373 9.24084 8.92618 9.18284C8.79029 9.12318 8.6312 9.07015 8.44891 9.02375L7.86972 8.8746C7.45045 8.76688 7.11901 8.60365 6.8754 8.3849C6.63345 8.16449 6.51247 7.872 6.51247 7.50741C6.51247 7.20746 6.59368 6.94479 6.75608 6.71942C6.92014 6.49404 7.14304 6.3192 7.42476 6.19491C7.70648 6.06897 8.02549 6.00599 8.38179 6.00599C8.74306 6.00599 9.05959 6.06897 9.33137 6.19491C9.6048 6.3192 9.81941 6.49238 9.97519 6.71444C10.131 6.93485 10.2113 7.1884 10.2163 7.4751H9.32888Z"
+                      fill="white" />
+                  </svg>
+                </span>
+                    }
+
+              </div>
+
+              <div class="flight-booking-confirmation__baggage-text">
+                <span class="flight-booking-confirmation__baggage-text-label"><span
+                    class="flight-booking-confirmation__baggage-text-label-highlight">Check-in Bag Only</span>
+  @if (bag?.count>0) {
+                  <span class="flight-booking-confirmation__badge-included">Included</span>
+                  } @else {
+                  <span class="flight-booking-confirmation__badge-not-included">Not Included</span>
+                  }                </span>
+                <span class="flight-booking-confirmation__baggage-text-description">
+                  @if (bag?.description1 || bag?.description2) {
+                  {{ toTitleCase(bag.description1 || bag.description2) }}
+                  } @else {
+                  Kindly check with the airline.
+                   <!-- for
+                  <a (click)="onrouteBagage()" class="o-text-link">
+                    baggage details
+                  </a>. -->
+                  }
+
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      @if(!isLast){
+      <hr class="flight-booking-confirmation__divider" />
+      }
+
+
+      }}
+      @if(getMainDetails?.Citypairs?.length===2){
+      <hr class="flight-booking-confirmation__divider" />
+
+      <div class="flight-booking-confirmation__segment flight-booking-confirmation__segment--return">
+        <div class="flight-booking-confirmation__segment-info-wrapper">
+          <div class="flight-booking-confirmation__segment-heading-wrap">
+            <h6 class="flight-booking-confirmation__segment-heading">Return</h6>
+            <span class="flight-booking-confirmation__date">
+              {{ ((getMainDetails?.Citypairs)[1]?.FlightSegment)[0]?.DepartureDateTime | date: "EEEE, MMM" }}
+              <span class="flight-booking-confirmation__date-day">{{
+                ((getMainDetails?.Citypairs)[1]?.FlightSegment)[0]?.DepartureDateTime | date: "d,"
+                }}</span>{{ ((getMainDetails?.Citypairs)[1]?.FlightSegment)[0]?.DepartureDateTime | date: "y" }}
+            </span>
+          </div>
+          <div class="flight-booking-confirmation__segment-info-content-wrap">
+            <div class="flight-booking-confirmation__segment-info">
+              <span class="flight-booking-confirmation__route">
+                {{ ((getMainDetails?.Citypairs)[1]?.FlightSegment)[0]?.DepartureDisplayName }}
+                <span class="flight-booking-confirmation__airport-code">({{
+                  ((getMainDetails?.Citypairs)[1]?.FlightSegment)[0]?.DepartureLocationCode }})</span>
+                to
+                {{
+                ((getMainDetails?.Citypairs)[1]?.FlightSegment)[(getMainDetails?.Citypairs)[1]?.FlightSegment.length -
+                1]
+                ?.DisplayName
+                }}
+                <span class="flight-booking-confirmation__airport-code">(
+                  {{
+                  ((getMainDetails?.Citypairs)[1]?.FlightSegment)[(getMainDetails?.Citypairs)[1]?.FlightSegment.length -
+                  1]
+                  ?.ArrivalLocationCode
+                  }})</span>
+              </span>
+
+              <span class="flight-booking-confirmation__time">
+                {{ ((getMainDetails?.Citypairs)[1]?.FlightSegment)[0]?.DepartureDateTime | date: "HH:mm" }} -
+                {{
+                ((getMainDetails?.Citypairs)[1]?.FlightSegment)[(getMainDetails?.Citypairs)[1]?.FlightSegment.length -
+                1]
+                ?.ArrivalDateTime | date: "HH:mm"
+                }}@if(getSegmentDurationParts((getMainDetails?.Citypairs)[1]?.FlightSegment).days > 0){<span
+                  class="flight-booking-confirmation__time-offset">+</span>
+                <span class="flight-booking-confirmation__time-days">{{
+                  getSegmentDurationParts((getMainDetails?.Citypairs)[1]?.FlightSegment).days
+                  }}</span>
+                }
+              </span>
+            </div>
+            <div class="flight-booking-confirmation__segment-meta">
+              <!-- <span class="flight-booking-confirmation__date">
+                  {{ ((getMainDetails?.Citypairs)[1]?.FlightSegment)[0]?.DepartureDateTime | date: "EEEE, MMM" }}
+                  <span class="flight-booking-confirmation__date-day">{{
+                    ((getMainDetails?.Citypairs)[1]?.FlightSegment)[0]?.DepartureDateTime | date: "d,"
+                  }}</span
+                  >{{ ((getMainDetails?.Citypairs)[1]?.FlightSegment)[0]?.DepartureDateTime | date: "y" }}
+                </span> -->
+
+              <span class="flight-booking-confirmation__duration">
+                <span class="flight-booking-confirmation__duration-label">Journey Duration</span> :
+                {{ (getMainDetails?.Citypairs)[1]?.Duration | durationToHours }}
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <hr class="flight-booking-confirmation__divider-light" />
+
+        <div class="trip-itinerary-content-wrapper">
+          <div>
+            <div class="c-flight-schedule--return">
+              <div class="c-flight-schedule--return__body">
+                <div class="c-flight-itinerary">
+                  @for (flight of getMainDetails?.Citypairs[1]?.FlightSegment; track $index; let i = $index) {
+                  <div class="c-flight-itinerary__segment c-flight-itinerary__segment--departed">
+                    <div class="c-flight-itinerary__segment--left">
+                      <div class="c-flight-itinerary__time">
+                        <span class="c-flight-itinerary__time--departure">{{
+                          flight.DepartureDateTime | date: "HH:mm"
+                          }}</span>
+                      </div>
+                      <div class="c-flight-itinerary__duration">
+                        <span class="c-flight-itinerary__duration--label">Flight Time</span>
+                        <span class="c-flight-itinerary__duration--time">{{ flight.Duration | lowercase }}</span>
+                      </div>
+                    </div>
+
+                    <div class="c-flight-itinerary__segment--right">
+                      <div class="c-flight-itinerary__airport-info">
+                        <div class="c-flight-itinerary__airport-name">
+                          <span class="c-flight-itinerary__airport-name--full">{{ flight.OriginAirportName }}
+                            <span class="c-flight-itinerary__airport-name--code">({{ flight.DepartureLocationCode
+                              }})</span></span>
+                        </div>
+                        <div class="c-flight-itinerary__airline-info">
+                          <div class="c-flight-itinerary__airline-logo-wrap">
+                            <div class="c-flight-itinerary__airline-logo">
+                              <img [src]="imageUrl + flight.FlightLogoName" [alt]="flight.FlightLogoName" />
+                            </div>
+                          </div>
+                          <div class="c-flight-itinerary__airline-details">
+                            <span class="c-flight-itinerary__airline-name"> {{ flight.MarketingAirlineName }}</span>
+                            <span class="c-flight-itinerary__cabin-class">{{ classMap[(flight?.CabinClass)] ||
+                              flight?.CabinClass }} @if(flight?.BookingClass!='' && flight?.BookingClass!=null){
+                              ({{ flight.BookingClass }})}</span>
+                            <span class="c-flight-itinerary__flight-info">
+                              <span class="c-flight-itinerary__flight-number">Flight {{ flight.FlightNumber }}</span>
+                              <span class="c-flight-itinerary__separator"></span>
+                              <span class="c-flight-itinerary__aircraft">{{ flight.AirEquipmentType }}</span>
+                            </span>
+
+                            <span *ngIf="
+                                            flight.OperatingAirlineName &&
+                                            flight.OperatingAirlineName.trim() !==
+                                              '' &&
+                                            flight.OperatingAirlineName.trim() !==
+                                              flight.MarketingAirlineName?.trim()
+                                          " class="c-flight-itinerary__operated-by">
+                              Operated by
+                              {{ flight.OperatingAirlineName }}
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    @if (i != 0) {
+                    <div class="c-flight-itinerary__post-layover-icon">
+                      <span class="c-flight-itinerary__post-layover-icon--box"></span>
+                    </div>
+                    } @if (i === 0) {
+                    <div class="c-flight-itinerary--flight-icon">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                        <path
+                          d="M7.712 3V4.538L10.558 6.542V10.873L3 7.827V9.788L10.558 15.119V19.558C10.558 19.954 10.6993 20.2933 10.982 20.576C11.2647 20.8587 11.604 21 12 21C12.396 21 12.7353 20.8587 13.018 20.576C13.3007 20.2933 13.442 19.954 13.442 19.558V15.119L21 9.79V7.828L13.442 10.874V6.544L16.269 4.539V3L12 4.308L7.712 3Z"
+                          fill="#B0B1BE" />
+                      </svg>
+                    </div>
+                    }
+                  </div>
+
+                  <!-- 🕓 Layover segment (shown AFTER this flight) -->
+                  @if (i < getMainDetails.Citypairs[1].FlightSegment.length - 1) { <div
+                    class="c-flight-itinerary__segment c-flight-itinerary__segment--layover">
+                    <div class="c-flight-itinerary__segment--left">
+                      <div class="c-flight-itinerary__time c-flight-itinerary__time--layover">
+                        <span class="c-flight-itinerary__time--layover-time">{{
+                          flight.ArrivalDateTime | date: "HH:mm"
+                          }}</span>
+                      </div>
+                    </div>
+                    <div class="c-flight-itinerary__segment--right">
+                      <div class="c-flight-itinerary__layover-info">
+                        <span class="c-flight-itinerary__layover-airport">{{ getMainDetails.Citypairs[1].FlightSegment[i
+                          + 1].OriginAirportName }} ({{
+                          getMainDetails.Citypairs[1].FlightSegment[i + 1].DepartureLocationCode
+                          }})</span>
+                        <span class="c-flight-itinerary__layover-duration">{{
+                          getMainDetails.Citypairs[1].FlightSegment[i + 1].LayoverTime| durationToHours }} Layover</span>
+                      </div>
+                    </div>
+                    <div class="c-flight-itinerary__layover-icon">
+                      <span class="c-flight-itinerary__layover-icon--box"></span>
+                    </div>
+                </div>
+
+                }
+
+                <!-- 🛬 Final Arrival segment -->
+                @if (i === getMainDetails.Citypairs[1].FlightSegment.length - 1) {
+
+                <div class="c-flight-itinerary__segment c-flight-itinerary__segment--arrived">
+                  <div class="c-flight-itinerary__segment--left">
+                    <div class="c-flight-itinerary__time">
+                      <span class="c-flight-itinerary__time--arrival">{{ flight.ArrivalDateTime | date: "HH:mm" }}
+                        <!-- <span
+                              *ngIf="getSegmentDurationParts((getMainDetails?.Citypairs)[1]?.FlightSegment).days > 0"
+                              class="c-flight-itinerary__time--arrival__sup"
+                              >+{{ getSegmentDurationParts((getMainDetails?.Citypairs)[1]?.FlightSegment).days }}</span
+                            > -->
+                      </span>
+                    </div>
+                  </div>
+                  <div class="c-flight-itinerary__segment--right">
+                    <div class="c-flight-itinerary__airport-name">
+                      <span class="c-flight-itinerary__airport-name--full">
+                        {{ flight.DestinationAirportName }}
+                        <span class="c-flight-itinerary__airport-name--code">({{ flight.ArrivalLocationCode
+                          }})</span></span>
+                    </div>
+                  </div>
+                  <div class="c-flight-itinerary--location-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                      <path fill-rule="evenodd" clip-rule="evenodd"
+                        d="M7.953 5.552C8.992 4.592 10.388 4 12 4C13.612 4 15.008 4.592 16.047 5.552L16.054 5.558C16.6667 6.10959 17.1566 6.78387 17.4919 7.53707C17.8271 8.29027 18.0003 9.10556 18 9.93C18 11.487 17.336 12.962 16.359 14.392C15.379 15.825 13.941 17.417 12 19.166C10.059 17.416 8.62 15.825 7.641 14.392C6.661 12.958 6 11.492 6 9.929C6.00002 9.10489 6.17327 8.29 6.50851 7.53716C6.84376 6.78432 7.33351 6.11037 7.946 5.559L7.953 5.552ZM12 2C9.88 2 8.002 2.785 6.6 4.08C5.78142 4.81889 5.12703 5.72137 4.67916 6.72907C4.2313 7.73677 3.99992 8.82726 4 9.93C4 12.07 4.908 13.936 5.99 15.52C7.206 17.298 8.991 19.21 11.344 21.255C11.526 21.4131 11.7589 21.5002 12 21.5002C12.2411 21.5002 12.474 21.4131 12.656 21.255C15.009 19.21 16.794 17.298 18.01 15.52C19.09 13.938 20 12.063 20 9.93C20.0001 8.82726 19.7687 7.73677 19.3208 6.72907C18.873 5.72137 18.2186 4.81889 17.4 4.08C15.999 2.785 14.12 2 12 2ZM12 12C12.5304 12 13.0391 11.7893 13.4142 11.4142C13.7893 11.0391 14 10.5304 14 10C14 9.46957 13.7893 8.96086 13.4142 8.58579C13.0391 8.21071 12.5304 8 12 8C11.4696 8 10.9609 8.21071 10.5858 8.58579C10.2107 8.96086 10 9.46957 10 10C10 10.5304 10.2107 11.0391 10.5858 11.4142C10.9609 11.7893 11.4696 12 12 12Z"
+                        fill="#B0B1BE" />
+                    </svg>
+                  </div>
+                </div>
+                } }
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="flight-booking-confirmation__arrival">
+        <span>Arrives:</span>{{
+        ((getMainDetails?.Citypairs)[1]?.FlightSegment)[(getMainDetails?.Citypairs)[1]?.FlightSegment.length - 1]
+        ?.ArrivalDateTime | date: "EEEE, MMM"
+        }}<span>{{
+          ((getMainDetails?.Citypairs)[1]?.FlightSegment)[(getMainDetails?.Citypairs)[1]?.FlightSegment.length - 1]
+          ?.ArrivalDateTime | date: "d,"
+          }}</span>{{
+        ((getMainDetails?.Citypairs)[1]?.FlightSegment)[(getMainDetails?.Citypairs)[1]?.FlightSegment.length - 1]
+        ?.ArrivalDateTime | date: "y"
+        }}
+      </div>
+
+      <div class="flight-booking-confirmation__baggage-info">
+
+        <div class="flight-booking-confirmation__baggage-item" *ngIf="getFirstReturnBag()?.carryOn as bag">
+          <div class="flight-booking-confirmation__baggage-icon-group">
+            <span class="flight-booking-confirmation__baggage-icon-carry-on">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="19" viewBox="0 0 24 19" fill="none">
+                <path
+                  d="M20.8758 3.32618H15.7541V0.735214C15.7541 0.329162 15.425 0 15.0189 0H8.35605C7.95 0 7.62083 0.329162 7.62083 0.735214V3.32618H2.49916C1.12113 3.32618 0 4.44731 0 5.82529V16.0216C0 17.3996 1.12113 18.5207 2.49916 18.5207H20.8758C22.2539 18.5207 23.375 17.3995 23.375 16.0216V5.82529C23.375 4.44731 22.2538 3.32618 20.8758 3.32618ZM9.09126 1.47048H14.2837V3.32622H9.09126V1.47048ZM4.06569 17.0503H2.49916C1.9319 17.0503 1.47043 16.5888 1.47043 16.0216V5.82529C1.47043 5.25808 1.9319 4.79662 2.49916 4.79662H4.06569V17.0503ZM17.8388 17.0503H5.53617V4.79662H17.8388L17.8388 17.0503ZM21.9045 16.0216C21.9045 16.5888 21.4431 17.0503 20.8758 17.0503H19.3093V4.79662H20.8758C21.4431 4.79662 21.9045 5.25808 21.9045 5.82529V16.0216Z"
+                  fill="#1C1C1C" />
+              </svg>
+            </span>
+            <span class="flight-booking-confirmation__baggage-icon-carry-on-checked">
+              <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 15 15" fill="none">
+                <path fill-rule="evenodd" clip-rule="evenodd"
+                  d="M7.43814 1.23926C6.94789 1.23926 6.47747 1.43387 6.13038 1.78096L5.57691 2.33443C5.46188 2.44788 5.30709 2.51193 5.14553 2.51293H4.36398C4.121 2.51285 3.88038 2.56065 3.65589 2.65359C3.43139 2.74654 3.2274 2.88281 3.05559 3.05462C2.88378 3.22644 2.74751 3.43042 2.65456 3.65492C2.56161 3.87942 2.51382 4.12003 2.5139 4.36301V5.14518C2.5129 5.30675 2.44885 5.46153 2.3354 5.57656L1.78192 6.13003C1.43509 6.47687 1.24023 6.94729 1.24023 7.43779C1.24023 7.9283 1.43509 8.39871 1.78192 8.74555L2.3354 9.29903C2.44885 9.41406 2.5129 9.56884 2.5139 9.7304V10.5126C2.5139 11.0031 2.70875 11.4735 3.05559 11.8203C3.40243 12.1672 3.87285 12.362 4.36336 12.362H5.14553C5.3073 12.362 5.46287 12.4265 5.57691 12.5405L6.13038 13.094C6.47722 13.4409 6.94764 13.6357 7.43814 13.6357C7.92865 13.6357 8.39906 13.4409 8.7459 13.094L9.29938 12.5405C9.41441 12.4271 9.56919 12.363 9.73075 12.362H10.5129C11.0034 12.362 11.4739 12.1672 11.8207 11.8203C12.1675 11.4735 12.3624 11.0031 12.3624 10.5126V9.7304C12.3624 9.56864 12.4268 9.41307 12.5409 9.29903L13.0944 8.74555C13.4412 8.39871 13.6361 7.9283 13.6361 7.43779C13.6361 6.94729 13.4412 6.47687 13.0944 6.13003L12.5409 5.57656C12.4274 5.46153 12.3634 5.30675 12.3624 5.14518V4.36301C12.3624 3.8725 12.1675 3.40208 11.8207 3.05524C11.4739 2.7084 11.0034 2.51355 10.5129 2.51355H9.73075C9.56919 2.51255 9.41441 2.4485 9.29938 2.33505L8.7459 1.78158C8.5743 1.60962 8.37045 1.4732 8.14605 1.38014C7.92164 1.28708 7.68108 1.23921 7.43814 1.23926ZM9.72084 6.03025C9.78138 5.9734 9.82987 5.90496 9.86345 5.829C9.89702 5.75304 9.91498 5.6711 9.91628 5.58806C9.91756 5.50503 9.90215 5.42257 9.87095 5.34561C9.83976 5.26864 9.79341 5.19873 9.73466 5.14003C9.67592 5.08132 9.60597 5.03502 9.52898 5.00388C9.45199 4.97274 9.36953 4.95738 9.28649 4.95873C9.20346 4.96008 9.12154 4.9781 9.0456 5.01173C8.96966 5.04536 8.90126 5.0939 8.84445 5.15448L6.20848 7.79046L5.417 6.99898C5.30079 6.88268 5.14313 6.81732 4.97872 6.81726C4.81431 6.8172 4.65661 6.88246 4.54031 6.99867C4.42401 7.11489 4.35864 7.27254 4.35858 7.43695C4.35852 7.60137 4.42378 7.75907 4.54 7.87537L5.77028 9.10503C5.88651 9.22123 6.04413 9.2865 6.20848 9.2865C6.37282 9.2865 6.53044 9.22123 6.64667 9.10503L9.72084 6.03087V6.03025Z"
+                  fill="#3AB54A" />
+              </svg>
+            </span>
+          </div>
+
+          <div class="flight-booking-confirmation__baggage-text">
+            <span class="flight-booking-confirmation__baggage-text-label">
+              <span class="flight-booking-confirmation__baggage-text-label-highlight">Carry-on Bag</span>
+              <span class="flight-booking-confirmation__badge-included">Included</span>
+            </span>
+            <span class="flight-booking-confirmation__baggage-text-description"> @if (bag?.description1 ||
+              bag?.description2) {
+              {{ toTitleCase(bag.description1 || bag.description2) }}
+              } @else {
+              Kindly check with the airline.
+               <!-- for
+              <a (click)="onrouteBagage()" class="o-text-link">
+                baggage details
+              </a>. -->
+              }</span>
+          </div>
+        </div>
+        <div class="flight-booking-confirmation__baggage-divider" *ngIf="
+    getFirstReturnBag()?.checkIn &&
+    getFirstReturnBag()?.carryOn
+  "></div>
+        <div *ngIf="getFirstReturnBag()?.checkIn as bag">
+          <div class="flight-booking-confirmation__baggage-item">
+            <div class="flight-booking-confirmation__baggage-icon-group">
+              <span class="flight-booking-confirmation__baggage-icon-check-in">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="26" viewBox="0 0 18 26" fill="none">
+                  <path
+                    d="M14.4375 3.20833H12.8333V1.60417C13.2763 1.60417 13.6354 1.24503 13.6354 0.802083C13.6354 0.359133 13.2763 0 12.8333 0C11.6889 0 5.95968 0 4.81249 0C4.36954 0 4.01042 0.359133 4.01042 0.802083C4.01042 1.24503 4.36954 1.60417 4.81249 1.60417V3.20833H3.20832C1.43924 3.20833 0 4.64757 0 6.41667V20.8542C0 22.6233 1.43924 24.0625 3.20832 24.0625H3.60938V24.8646C3.60938 25.3075 3.9685 25.6667 4.41147 25.6667C4.85442 25.6667 5.21354 25.3075 5.21354 24.8646V24.0625H12.4323V24.8646C12.4323 25.3075 12.7914 25.6667 13.2344 25.6667C13.6773 25.6667 14.0364 25.3075 14.0364 24.8646V24.0625H14.4375C16.2066 24.0625 17.6458 22.6233 17.6458 20.8542V6.41667C17.6458 4.64757 16.2066 3.20833 14.4375 3.20833ZM6.41667 1.60417H11.2292V3.20833H6.41667V1.60417ZM16.0417 20.8542C16.0417 21.7387 15.322 22.4583 14.4375 22.4583H3.20832C2.32378 22.4583 1.60417 21.7387 1.60417 20.8542V6.41667C1.60417 5.53212 2.32378 4.8125 3.20832 4.8125H14.4375C15.322 4.8125 16.0417 5.53212 16.0417 6.41667V20.8542Z"
+                    fill="#1C1C1C" />
+                  <path
+                    d="M6.16061 6.13367C5.79636 6.13367 5.50098 6.36965 5.50098 6.66079V20.8921C5.50098 21.1831 5.79636 21.4192 6.16061 21.4192C6.52491 21.4192 6.82026 21.1831 6.82026 20.8921V6.66079C6.82026 6.36965 6.52491 6.13367 6.16061 6.13367Z"
+                    fill="#1C1C1C" />
+                  <path
+                    d="M11.4858 6.13367C11.1215 6.13367 10.8262 6.36965 10.8262 6.66077V20.8921C10.8262 21.1831 11.1215 21.4192 11.4858 21.4192C11.8501 21.4192 12.1454 21.1831 12.1454 20.8921V6.66077C12.1454 6.36965 11.8501 6.13367 11.4858 6.13367Z"
+                    fill="#1C1C1C" />
+                </svg>
+              </span>
+              <span class="flight-booking-confirmation__baggage-icon-check-in-checked">
+                <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 17 17" fill="none">
+                  <path fill-rule="evenodd" clip-rule="evenodd"
+                    d="M8.167 1.36096C7.62868 1.36096 7.11214 1.57466 6.73102 1.95577L6.12329 2.5635C5.99698 2.68808 5.82702 2.7584 5.64962 2.7595H4.79144C4.52464 2.75941 4.26044 2.8119 4.01393 2.91396C3.76742 3.01602 3.54344 3.16565 3.35478 3.3543C3.16613 3.54296 3.01649 3.76694 2.91444 4.01345C2.81238 4.25996 2.75989 4.52416 2.75998 4.79096V5.64982C2.75888 5.82722 2.68856 5.99718 2.56398 6.12349L1.95625 6.73123C1.5754 7.11207 1.36145 7.6286 1.36145 8.1672C1.36145 8.70579 1.5754 9.22233 1.95625 9.60317L2.56398 10.2109C2.68856 10.3372 2.75888 10.5072 2.75998 10.6846V11.5434C2.75998 12.082 2.97394 12.5986 3.35478 12.9794C3.73563 13.3603 4.25216 13.5742 4.79076 13.5742H5.64962C5.82725 13.5742 5.99807 13.645 6.12329 13.7702L6.73102 14.3779C7.11187 14.7588 7.6284 14.9727 8.167 14.9727C8.70559 14.9727 9.22212 14.7588 9.60297 14.3779L10.2107 13.7702C10.337 13.6456 10.507 13.5753 10.6844 13.5742H11.5432C12.0818 13.5742 12.5984 13.3603 12.9792 12.9794C13.3601 12.5986 13.574 12.082 13.574 11.5434V10.6846C13.574 10.5069 13.6448 10.3361 13.77 10.2109L14.3777 9.60317C14.7586 9.22233 14.9725 8.70579 14.9725 8.1672C14.9725 7.6286 14.7586 7.11207 14.3777 6.73123L13.77 6.12349C13.6454 5.99718 13.5751 5.82722 13.574 5.64982V4.79096C13.574 4.25237 13.3601 3.73583 12.9792 3.35498C12.5984 2.97414 12.0818 2.76018 11.5432 2.76018H10.6844C10.507 2.75908 10.337 2.68876 10.2107 2.56418L9.60297 1.95645C9.41454 1.76763 9.19071 1.61784 8.9443 1.51566C8.6979 1.41347 8.43375 1.3609 8.167 1.36096Z"
+                    fill="#1C1C1C" />
+                  <path
+                    d="M8.1531 11.8029V5.43923H8.56077V11.8029H8.1531ZM9.32888 7.4751C9.30568 7.258 9.2079 7.08897 9.03556 6.968C8.86486 6.84702 8.6428 6.78653 8.36936 6.78653C8.17713 6.78653 8.01224 6.81553 7.87469 6.87353C7.73714 6.93154 7.63191 7.01025 7.55899 7.10969C7.48608 7.20912 7.44879 7.32264 7.44713 7.45024C7.44713 7.5563 7.47116 7.64827 7.51922 7.72616C7.56894 7.80405 7.63605 7.87034 7.72057 7.92503C7.80509 7.97806 7.89872 8.0228 8.00146 8.05926C8.10421 8.09572 8.20779 8.12638 8.31219 8.15123L8.78946 8.27055C8.9817 8.3153 9.16647 8.37578 9.34379 8.45202C9.52277 8.52825 9.68269 8.62436 9.82355 8.74037C9.96607 8.85637 10.0788 8.9964 10.1616 9.16047C10.2445 9.32453 10.2859 9.51676 10.2859 9.73717C10.2859 10.0355 10.2097 10.2981 10.0572 10.5252C9.90476 10.7505 9.68435 10.927 9.396 11.0546C9.1093 11.1806 8.76212 11.2436 8.35445 11.2436C7.95838 11.2436 7.61451 11.1822 7.32284 11.0596C7.03283 10.937 6.8058 10.758 6.64173 10.5227C6.47933 10.2874 6.3915 10.0007 6.37824 9.6626H7.28556C7.29881 9.83992 7.3535 9.98741 7.44962 10.1051C7.54574 10.2227 7.67085 10.3106 7.82497 10.3686C7.98075 10.4266 8.15476 10.4556 8.34699 10.4556C8.54751 10.4556 8.72317 10.4257 8.87398 10.3661C9.02644 10.3048 9.14576 10.2202 9.23193 10.1125C9.31811 10.0032 9.36202 9.87555 9.36368 9.72971C9.36202 9.59714 9.32308 9.48776 9.24685 9.40159C9.17062 9.31376 9.06373 9.24084 8.92618 9.18284C8.79029 9.12318 8.6312 9.07015 8.44891 9.02375L7.86972 8.8746C7.45045 8.76688 7.11901 8.60365 6.8754 8.3849C6.63345 8.16449 6.51247 7.872 6.51247 7.50741C6.51247 7.20746 6.59368 6.94479 6.75608 6.71942C6.92014 6.49404 7.14304 6.3192 7.42476 6.19491C7.70648 6.06897 8.02549 6.00599 8.38179 6.00599C8.74306 6.00599 9.05959 6.06897 9.33137 6.19491C9.6048 6.3192 9.81941 6.49238 9.97519 6.71444C10.131 6.93485 10.2113 7.1884 10.2163 7.4751H9.32888Z"
+                    fill="white" />
+                </svg>
+              </span>
+            </div>
+
+            <div class="flight-booking-confirmation__baggage-text">
+              <span class="flight-booking-confirmation__baggage-text-label"><span
+                  class="flight-booking-confirmation__baggage-text-label-highlight">Check-in Bag Only</span>
+                <span class="flight-booking-confirmation__badge-not-included">Not Included</span></span>
+              <span class="flight-booking-confirmation__baggage-text-description">
+                @if (bag?.description1 || bag?.description2) {
+                {{ toTitleCase(bag.description1 || bag.description2) }}
+                } @else {
+                Kindly check with the airline.
+                 <!-- for
+                <a (click)="onrouteBagage()" class="o-text-link">
+                  baggage details
+                </a>. -->
+                }
+                <!-- <a  class="flight-booking-confirmation__baggage-text-link"> </a> -->
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    }
+  </div>
+
+  <div class="o-traveler-details-secttion">
+    <div class="o-traveler-details-card">
+      <h3 class="o-traveler-details-title">Traveler Details</h3>
+      <p class="o-traveler-details-description">
+        Please verify the traveler's name(s) below. As per the rules, travelers’ full names must match exactly with
+        those on
+        their Passports or Government-issued photo IDs. If you need any name changes, please connect with our customer
+        service center at 1 (800) 645-3851.
+      </p>
+
+      <div class="traveler-table-container table-responsive d-none d-md-block">
+        <table class="traveler-table table">
+          <thead class="traveler-table-head">
+            <tr class="traveler-table-row">
+              <th class="traveler-table-heading">Traveler Name</th>
+              <th class="traveler-table-heading">PNR</th>
+              <th class="traveler-table-heading">Seat Preference</th>
+              <th class="traveler-table-heading">KTN / Redress</th>
+            </tr>
+          </thead>
+
+          <tbody class="traveler-table-body">
+
+            <tr class="traveler-table-row" *ngFor="let t of formattedTravelers">
+              <td class="traveler-info">
+                <div class="traveler-info-wrapper">
+                  <span class="traveler-name">
+                    {{ t.title }} {{ t.fullName }} ({{ t.paxType }})
+                  </span>
+
+                  <div class="traveler-dob-gen-wrap">
+                    <span class="traveler-dob">
+                      <span class="dob-label">DOB:</span>{{ t.dob }}
+                    </span>
+                    <span class="traveler-gender">
+                      <span class="gen-label">Gender:</span>{{ t.gender | titlecase }}
+                    </span>
+                  </div>
+                </div>
+              </td>
+
+              <td class="traveler-pnr">
+                <span class="pnr-code d-none">{{ t.pnr }}</span>
+                <span class="pnr-code">Pending</span>
+              </td>
+
+              <td class="traveler-seat-preference">
+
+                <!-- ✅ Show seat preference only if NOT Infant -->
+                <ng-container *ngIf="t.paxType !== 'Infant'; else noSeat">
+
+                  <div class="seat-preference-wrapper" *ngFor="let s of t.seatPreferences">
+                    <span class="seat-preference-item">
+                      <span class="route-label">{{ s.route }}:</span>
+                      <span class="seat-type">{{ s.seat }}</span>
+                    </span>
+                  </div>
+
+                </ng-container>
+
+                <!-- ✅ Empty for Infant -->
+                <ng-template #noSeat>
+                  <span></span>
+                </ng-template>
+
+              </td>
+
+              <td class="traveler-tsa-details">
+                <div class="tsa-info-wrapper">
+                  <span class="tsa-info-item">
+                    <span class="ktn-label">KTN:</span> <span class="ktn-value">{{ t.ktn || 'N/A'}}</span>
+                  </span>
+
+                  <span class="tsa-info-item">
+                    <span class="redress-label">Redress:</span> <span class="redress-value">{{ t.redress || 'N/A'
+                      }}</span>
+                  </span>
+                </div>
+              </td>
+            </tr>
+
+
+          </tbody>
+        </table>
+      </div>
+
+      <div class="o-traveler-details-list-view d-md-none">
+        <div class="tdm">
+          <!-- Traveler Details -->
+
+          @for (t of formattedTravelers; track $index) {
+          <div class="tdm__item">
+            <div class="tdm__header">
+              <h3 class="tdm__name">{{ t.title }} {{ t.fullName }} ({{ t.paxType }})</h3>
+              <span class="tdm__info tdm__info--personal-details"><span class="tdm__label">DOB:</span>{{ t.dob }}</span>
+              <span class="tdm__info tdm__info--personal-details"><span class="tdm__label">Gender:</span> {{ t.gender |
+                titlecase }}</span>
+              <span class="tdm__info tdm__info--personal-details"><span class="tdm__label">PNR:</span>Pending</span>
+            </div>
+
+            <hr class="tdm__divider">
+
+            <div class="tdm__section">
+              <h3 class="tdm__section-title">Seat Preference</h3>
+              @for ( s of t.seatPreferences; track $index) {
+              <span class="tdm__info"><span class="tdm__label">{{ s.route }}:</span>{{ s.seat }}</span>
+
+              }
+            </div>
+
+            <hr class="tdm__divider">
+
+            <div class="tdm__section">
+              <h3 class="tdm__section-title">KTN / Redress</h3>
+              <span class="tdm__info"><span class="tdm__label">KTN:</span> {{ t.ktn }}</span>
+              <span class="tdm__info"><span class="tdm__label">Redress:</span> {{ t.redress }}</span>
+            </div>
+          </div>
+
+          <hr class="tdm__section-divider">
+          }
+
+
+        </div>
+
+      </div>
+
+      <!-- Contact Details -->
+      <div class="tr-contact-details-section">
+        <h3 class="tr-contact-details-title">Contact Details</h3>
+
+        <div class="tr-contact-details-wrapper">
+          <div class="tr-contact-item">
+            <span class="tr-contact-label">Email</span> <span class="tr-contact-value">{{cnfirmData?.email}}</span>
+          </div>
+
+          <div class="tr-separator"></div>
+
+          <div class="tr-contact-item">
+            <span class="tr-contact-label">Mobile Number</span> <span
+              class="tr-contact-value"> +{{cnfirmData?.customer_phone_country_code}}&nbsp;{{ removeCountryCode(cnfirmData?.phone,
+              cnfirmData?.customer_phone_country_code) }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="fare-card">
+    <div class="fare-card__title-wrapper">
+      <h3 class="fare-card__title">Fare Details</h3>
+    </div>
+
+    <div class="fare-card__row fare-card__row--header">
+      <span class="fare-card__label">Details</span> <span class="fare-card__label">Total Price</span>
+    </div>
+    @if(selectedAdults > 0){
+    <div class="fare-card__adult-rows-wrapper">
+      <div class="fare-card__row fare-card__row--adult">
+        <span class="fare-card__text">Adult x {{selectedAdults}}</span>
+        <span class="fare-card__amount">${{
+          getFormattedPrice(
+          getFareSubtotal("ADT", selectedAdults)
+          ).integer
+          }}.<span class="fare-card__amount-decimal-sup">{{
+            getFormattedPrice(
+            getFareSubtotal("ADT", selectedAdults)
+            ).decimal
+            }}</span> </span>
+      </div>
+    </div>
+    }
+    @if(selectedChildren > 0){
+    <div class="fare-card__adult-rows-wrapper">
+      <div class="fare-card__row fare-card__row--adult">
+        <span class="fare-card__text">Child x {{selectedChildren}}</span>
+        <span class="fare-card__amount">${{
+          getFormattedPrice(
+          getFareSubtotal("CHD", selectedChildren)
+          ).integer
+          }}.<span class="fare-card__amount-decimal-sup">{{
+            getFormattedPrice(
+            getFareSubtotal("CHD", selectedChildren)
+            ).decimal
+            }}</span> </span>
+      </div>
+    </div>
+    }
+    @if(selectedInfants > 0){
+    <div class="fare-card__adult-rows-wrapper">
+      <div class="fare-card__row fare-card__row--adult">
+        <span class="fare-card__text">Infant x {{selectedInfants}}</span>
+        <span class="fare-card__amount">${{
+          getFormattedPrice(
+          getFareSubtotal("INF", selectedInfants)
+          ).integer
+          }}.<span class="fare-card__amount-decimal-sup">{{
+            getFormattedPrice(
+            getFareSubtotal("INF", selectedInfants)
+            ).decimal
+            }}</span> </span>
+      </div>
+    </div>
+    }
+    <div class="fare-card__row fare-card__row--total">
+      <span class="fare-card__label">Subtotal</span>
+      <span class="fare-card__amount fare-card__amount--total">
+        ${{ getFormattedPrice(getsubTotal()).integer }}.<span class="fare-card__amount-decimal-sup">{{
+          getFormattedPrice(getsubTotal()).decimal }}</span>
+      </span>
+    </div>
+    @if(travelProtectionAmount > 0){
+    <div class="fare-card__adult-rows-wrapper">
+      <div class="fare-card__row fare-card__row--adult">
+        <span class="fare-card__text">Refund Shield</span>
+        <span class="fare-card__amount">${{
+          getFormattedPrice(
+          travelProtectionAmount
+          ).integer
+          }}.<span class="fare-card__amount-decimal-sup">{{
+            getFormattedPrice(
+            travelProtectionAmount
+            ).decimal
+            }}</span> </span>
+      </div>
+    </div>
+    }
+
+
+
+    <div class="fare-card__row fare-card__row--total">
+      <div class="total-tooltip-icon">
+        <span class="fare-card__label">Total</span>
+        <span class="fare-card__tax-info-tooltip-icon" [pTooltip]="taxTooltipContent"
+          [tooltipStyleClass]="'price-tool-tip'" severity="secondary" tooltipEvent="focus" tooltipPosition="top"
+          tabindex="0">
+          <!-- SVG -->
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+            <path
+              d="M8 14C11.3137 14 14 11.3137 14 8C14 4.68629 11.3137 2 8 2C4.68629 2 2 4.68629 2 8C2 11.3137 4.68629 14 8 14Z"
+              stroke="currentColor" stroke-width="1.33333" stroke-linecap="round" stroke-linejoin="round" />
+            <path d="M8 5.33325H8.00667V5.33992H8V5.33325Z" stroke="currentColor" stroke-width="2"
+              stroke-linejoin="round" />
+            <path d="M8 8V10.6667" stroke="currentColor" stroke-width="1.33333" stroke-linecap="round"
+              stroke-linejoin="round" />
+          </svg>
+        </span>
+      </div>
+      <span class="fare-card__amount fare-card__amount--total">
+        ${{ getFormattedPrice(getTotal()).integer }}.<span class="fare-card__amount-decimal-sup">{{
+          getFormattedPrice(getTotal()).decimal }}</span>
+      </span>
+    </div>
+  </div>
+
+  <div class="fare-note">
+    <p class="fare-note__text">
+      <span class="fare-note__label">Note:</span> All prices including taxes & fees are quoted in USD.
+    </p>
+  </div>
+
+  <div class="o-travel-add-part">
+    <div class="o-travel-add-part__top-decoration">
+      <div class="left-image-wrapper d-none d-lg-block">
+        <img src="assets/images/booking-confirmation/girl.png" alt="Girl" />
+      </div>
+
+      <div class="travel-add-part-content">
+        <h3 class="travel-add-part-title">Enjoy Your Journey with US</h3>
+        <p class="travel-add-part-description">
+          Thank you for choosing Infinity Travels! By accessing and using this site, you agree to be bound by the terms
+          and
+          conditions outlined here.
+        </p>
+      </div>
+
+      <div class="middle-image-wrapper d-none d-lg-block">
+        <img src="assets/images/booking-confirmation/flight.png" alt="Flight" />
+      </div>
+
+      <div class="right-image-wrapper"><img src="assets/images/booking-confirmation/baggage.png" alt="Baggage" /></div>
+    </div>
+
+    <div class="o-travel-add-part__bottom-decoration">
+      <div class="curve-wrapper">
+        <svg viewBox="0 0 1178 208" preserveAspectRatio="none">
+          <path
+            d="M0 200.909C0 204.221 2.68289 206.906 5.99442 206.909L1170.99 207.993C1174.86 207.997 1178 204.862 1178 200.993V0C1026.5 161.104 725.5 161.655 0 169.38V200.909Z"
+            fill="#FF6A19" fill-opacity="0.2" />
+        </svg>
+      </div>
+    </div>
+  </div>
+
+  <div class="flight-booking-terms">
+    <h3 class="flight-booking-terms__title">Flight Booking Terms & Conditions</h3>
+
+    <div class="flight-booking-terms__section">
+      <h5 class="flight-booking-terms__subtitle">
+        All bookings are subject to Infinity Travels' Terms & Conditions and Privacy Policy.
+      </h5>
+      <ul class="flight-booking-terms__list">
+        <li class="flight-booking-terms__item">
+          <span class="flight-booking-terms__text">
+            <span class="flight-booking-terms__icon"></span>
+            <span class="flight-booking-terms__description">
+              The above itinerary and agency reference number serve for informational purposes only. We are currently
+              processing your credit card payment.
+            </span>
+          </span>
+        </li>
+        <li class="flight-booking-terms__item">
+          <span class="flight-booking-terms__text">
+            <span class="flight-booking-terms__icon"></span>
+            <span class="flight-booking-terms__description">
+              You will receive your e-ticket(s) and airline confirmation via separate email.
+            </span>
+          </span>
+        </li>
+        <li class="flight-booking-terms__item">
+          <span class="flight-booking-terms__text">
+            <span class="flight-booking-terms__icon"></span>
+            <span class="flight-booking-terms__description">
+              We will issue your ticket(s) upon charging your payment. Fares are not guaranteed until payment processing
+              completes.
+            </span>
+          </span>
+        </li>
+        <li class="flight-booking-terms__item">
+          <span class="flight-booking-terms__text">
+            <span class="flight-booking-terms__icon"></span>
+            <span class="flight-booking-terms__description">
+              Infinity Travels assumes no liability for any fare or tax discrepancies while the ticket(s) are in the
+              issuance
+              process.
+            </span>
+          </span>
+        </li>
+        <li class="flight-booking-terms__item">
+          <span class="flight-booking-terms__text">
+            <span class="flight-booking-terms__icon"></span>
+            <span class="flight-booking-terms__description">
+              Traveler(s) must pay any fare or tax differences before ticket issuance.
+            </span>
+          </span>
+        </li>
+        <li class="flight-booking-terms__item">
+          <span class="flight-booking-terms__text">
+            <span class="flight-booking-terms__icon"></span>
+            <span class="flight-booking-terms__description">
+              Infinity Travels will notify you immediately of any payment processing issues. If you receive no email or
+              call
+              within 24 hours of your reservation, please visit
+              <a href="mailto:{{ getData?.email }}" class="flight-booking-terms__link">
+                {{ getData?.email }}
+              </a>
+              or call
+              <a href="tel:{{ getData?.phoneNumber }}" class="flight-booking-terms__link">
+                {{ getData?.phoneNumber }}
+              </a>.
+            </span>
+          </span>
+        </li>
+      </ul>
+    </div>
+
+    <div class="flight-booking-terms__section">
+      <h5 class="flight-booking-terms__subtitle">Change Rules:</h5>
+      <ul class="flight-booking-terms__list">
+        <li class="flight-booking-terms__item">
+          <span class="flight-booking-terms__text">
+            <span class="flight-booking-terms__icon"></span>
+            <span class="flight-booking-terms__description">
+              <span class="flight-booking-terms__highlight">Travel Date Changes:</span> Any changes to travel dates
+              incur an
+              administrative fee from the airline and Infinity Travels, as well as the applicable fare difference.
+            </span>
+          </span>
+        </li>
+        <li class="flight-booking-terms__item">
+          <span class="flight-booking-terms__text">
+            <span class="flight-booking-terms__icon"></span>
+            <span class="flight-booking-terms__description">
+              <span class="flight-booking-terms__highlight">Name Changes:</span> All tickets are non-transferable. Any
+              name
+              changes incur an administrative fee from the airline and Infinity Travels, plus the applicable fare and
+              tax
+              differences.
+            </span>
+          </span>
+        </li>
+        <li class="flight-booking-terms__item">
+          <span class="flight-booking-terms__text">
+            <span class="flight-booking-terms__icon"></span>
+            <span class="flight-booking-terms__description">
+              <span class="flight-booking-terms__highlight">Cancellation/Refund:</span> This booking is non-cancellable
+              and
+              non-refundable.
+            </span>
+          </span>
+        </li>
+      </ul>
+    </div>
+
+    <div class="flight-booking-terms__section">
+      <h5 class="flight-booking-terms__subtitle">Flight Rules and Restrictions:</h5>
+      <ul class="flight-booking-terms__list">
+        <li class="flight-booking-terms__item">
+          <span class="flight-booking-terms__text">
+            <span class="flight-booking-terms__icon"></span>
+            <span class="flight-booking-terms__description">
+              Infinity Travels recommends all traveler’s to have all of their travel documents, including Passports and
+              required visas, at the time of travel.
+            </span>
+          </span>
+        </li>
+        <li class="flight-booking-terms__item">
+          <span class="flight-booking-terms__text">
+            <span class="flight-booking-terms__icon"></span>
+            <span class="flight-booking-terms__description">
+              We advise all traveler’s to review their tickets and itinerary immediately upon receipt. All times in the
+              itinerary reflect local time zones.
+            </span>
+          </span>
+        </li>
+        <li class="flight-booking-terms__item">
+          <span class="flight-booking-terms__text">
+            <span class="flight-booking-terms__icon"></span>
+            <span class="flight-booking-terms__description">
+              We recommend that all traveler’s arrive at the airport 3 hours before their international departures and 2
+              hours before domestic departures.
+            </span>
+          </span>
+        </li>
+        <li class="flight-booking-terms__item">
+          <span class="flight-booking-terms__text">
+            <span class="flight-booking-terms__icon"></span>
+            <span class="flight-booking-terms__description">
+              All international flights must be confirmed 72 hours before departure.
+            </span>
+          </span>
+        </li>
+        <li class="flight-booking-terms__item">
+          <span class="flight-booking-terms__text">
+            <span class="flight-booking-terms__icon"></span>
+            <span class="flight-booking-terms__description">
+              Infinity Travels disclaims responsibility for any travel interruptions caused by matters beyond our
+              control,
+              including acts of God and Nature, overbooking, or changes made by carriers only.
+            </span>
+          </span>
+        </li>
+        <li class="flight-booking-terms__item">
+          <span class="flight-booking-terms__text">
+            <span class="flight-booking-terms__icon"></span>
+            <span class="flight-booking-terms__description">
+              We inform all traveler’s about the importance of travel insurance and the conditions applicable to
+              tickets.
+            </span>
+          </span>
+        </li>
+        <li class="flight-booking-terms__item">
+          <span class="flight-booking-terms__text">
+            <span class="flight-booking-terms__icon"></span>
+            <span class="flight-booking-terms__description">
+              Infinity Travels will not be liable for any expense resulting from a passenger's refusal to purchase
+              travel
+              insurance.
+            </span>
+          </span>
+        </li>
+        <li class="flight-booking-terms__item">
+          <span class="flight-booking-terms__text">
+            <span class="flight-booking-terms__icon"></span>
+            <span class="flight-booking-terms__description">
+              We guarantee no bookings or fares until the airline issues the tickets.
+            </span>
+          </span>
+        </li>
+        <li class="flight-booking-terms__item">
+          <span class="flight-booking-terms__text">
+            <span class="flight-booking-terms__icon"></span>
+            <span class="flight-booking-terms__description">
+              We may process your credit card payment in multiple charges that total the displayed amount.
+            </span>
+          </span>
+        </li>
+        <li class="flight-booking-terms__item">
+          <span class="flight-booking-terms__text">
+            <span class="flight-booking-terms__icon"></span>
+            <span class="flight-booking-terms__description">
+              Infinity Travels holds international and domestic traveler’s responsible for obtaining all required travel
+              documentation, including visas for the destination and any transit points. Traveler’s must secure visas
+              before
+              ticket issuance; Infinity Travels will not refund tickets for failure to obtain a visa.
+            </span>
+          </span>
+        </li>
+      </ul>
+    </div>
+
+    <div class="terms-note">
+      <span class="terms-note__text">
+        <span class="terms-note__highlight">Note:</span> This is your booking request only. We will send your e-ticket
+        shortly upon confirmation.
+      </span>
+    </div>
+  </div>
+
+  <div class="download-ticket-section">
+    <button class="download-ticket-section__button d-none" (click)="downloadTicket()">Download PDF</button>
+    <!-- <a  class="trip-summary__share-btn" (click)="shareOnWhatsApp()">
+          <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25" fill="none">
+            <path
+              d="M21.875 6.25C21.875 7.97589 20.4759 9.375 18.75 9.375C17.0241 9.375 15.625 7.97589 15.625 6.25C15.625 4.52411 17.0241 3.125 18.75 3.125C20.4759 3.125 21.875 4.52411 21.875 6.25Z"
+              stroke="currentColor"
+              stroke-width="2"
+            />
+            <path
+              d="M21.875 18.75C21.875 20.4759 20.4759 21.875 18.75 21.875C17.0241 21.875 15.625 20.4759 15.625 18.75C15.625 17.0241 17.0241 15.625 18.75 15.625C20.4759 15.625 21.875 17.0241 21.875 18.75Z"
+              stroke="currentColor"
+              stroke-width="2"
+            />
+            <path
+              d="M9.375 12.5C9.375 14.2259 7.97589 15.625 6.25 15.625C4.52411 15.625 3.125 14.2259 3.125 12.5C3.125 10.7741 4.52411 9.375 6.25 9.375C7.97589 9.375 9.375 10.7741 9.375 12.5Z"
+              stroke="currentColor"
+              stroke-width="2"
+            />
+            <path
+              d="M9.0838 11.083L15.6249 7.8125"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M9.06836 13.9094L15.6246 17.1875"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+        </a> -->
+
+    <div class="trip-share" (click)="toggleShareDropdown()">
+      <span class="trip-summary__share-btn">
+        <svg class="trip-share__icon" xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25"
+          fill="none">
+          <path
+            d="M21.875 6.25C21.875 7.97589 20.4759 9.375 18.75 9.375C17.0241 9.375 15.625 7.97589 15.625 6.25C15.625 4.52411 17.0241 3.125 18.75 3.125C20.4759 3.125 21.875 4.52411 21.875 6.25Z"
+            stroke="currentColor" stroke-width="2" />
+          <path
+            d="M21.875 18.75C21.875 20.4759 20.4759 21.875 18.75 21.875C17.0241 21.875 15.625 20.4759 15.625 18.75C15.625 17.0241 17.0241 15.625 18.75 15.625C20.4759 15.625 21.875 17.0241 21.875 18.75Z"
+            stroke="currentColor" stroke-width="2" />
+          <path
+            d="M9.375 12.5C9.375 14.2259 7.97589 15.625 6.25 15.625C4.52411 15.625 3.125 14.2259 3.125 12.5C3.125 10.7741 4.52411 9.375 6.25 9.375C7.97589 9.375 9.375 10.7741 9.375 12.5Z"
+            stroke="currentColor" stroke-width="2" />
+          <path d="M9.0838 11.083L15.6249 7.8125" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+            stroke-linejoin="round" />
+          <path d="M9.06836 13.9094L15.6246 17.1875" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+            stroke-linejoin="round" />
+        </svg>
+      </span>
+      @if (showShareMenu) {
+      <div class="trip-share__dropdown trip-share__dropdown--footer">
+        <ul class="trip-share__list">
+          <li class="trip-share__item" (click)="copyLink()">
+            <a target="_blank" class="trip-share__link " [class.active]="activeShare === 'copy'">
+              <span class="trip-share__link-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
+                  <path fill="currentColor"
+                    d="m12.922 16.587l-3.671 3.671a3.896 3.896 0 0 1-5.504-5.509l-.002.002l3.671-3.671a1.3 1.3 0 0 0-1.837-1.835l.001-.001l-3.671 3.671a6.494 6.494 0 0 0 9.187 9.175l-.003.002l3.671-3.671a1.3 1.3 0 0 0-1.837-1.835l.001-.001zM24.007 6.489A6.494 6.494 0 0 0 12.921 1.9L9.25 5.571a1.3 1.3 0 1 0 1.835 1.837l.001-.001l3.671-3.671a3.896 3.896 0 0 1 5.504 5.509l.002-.002l-3.671 3.671a1.3 1.3 0 1 0 1.835 1.837l.001-.001l3.671-3.671a6.43 6.43 0 0 0 1.908-4.58V6.49z" />
+                  <path fill="currentColor"
+                    d="M7.412 16.592c.235.235.559.38.918.38s.683-.145.918-.38L16.59 9.25a1.3 1.3 0 0 0-1.837-1.835l.001-.001l-7.342 7.342c-.235.235-.38.559-.38.918s.145.683.38.918" />
+                </svg>
+              </span>
+              @if(!copySuccess){
+              <span class="trip-share__link-text">Copy Link</span>
+              }
+              @if(copySuccess){
+              <span class="trip-share__link-text">Copied!</span>
+              }
+            </a>
+          </li>
+
+          <li class="trip-share__item" (click)="shareOnWhatsApp()">
+            <a target="_blank" class="trip-share__link" [class.active]="activeShare === 'whatsapp'">
+              <span class="trip-share__link-icon">
+                <img src="assets/images/booking-confirmation/whatsapp-icon.svg" alt="Whatsapp Icon">
+              </span>
+              <span class="trip-share__link-text">Whatsapp</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+      }
+    </div>
+
+  </div>
+  </div>
+  </div>
+</section>
+<!-- ==== ==== -->
+
+
+<ng-template #taxTooltipContent>
+  <div class="price-tooltip-inner-content">
+    <!-- <div class="price-tooltip-inner-content--header">
+      <span class="price-tooltip-inner-content--title">Price Info:</span>
+      <span class="price-tooltip-inner-content--description">Incl. tax & delivery</span>
+    </div> -->
+    <span class="price-tooltip-inner-content--validity">Total price includes base price,
+      <a (click)="onrouteTax()" class="o-text-link">taxes & fees</a> and our service fees</span>
+  </div>
+</ng-template>
+}

@@ -1,0 +1,487 @@
+.innerbannersection {
+    min-height: 45vh;
+    position: relative;
+    overflow: hidden;
+    display: block;
+    align-content: center;
+}
+
+.innerbannerimgbox {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.innerbannerimg {
+    object-position: 9%;
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+
+.innerbanner-txt {
+    display: block;
+    align-content: center;
+    position: relative;
+    z-index: 2;
+}
+
+.innerbanner-txt h1 {
+    text-align: center;
+    font-size: 40px;
+    font-weight: 700;
+    color: #fff;
+}
+
+.innerbannersection::after {
+    content: '';
+    width: 100%;
+    height: 100%;
+    background-color: #000;
+    position: absolute;
+    left: 0;
+    top: 0;
+    opacity: 0.7;
+}
+
+.subtitletext {
+    color: #FF6A19;
+}
+
+.breadcrumbssec {
+    margin-top: 1rem;
+}
+
+.breadcrumbssec .currentpagesec {
+    color: #fff;
+}
+
+.breadcrumbssec .breadcrumb-item.active {
+    color: #FF6A19;
+}
+
+.breadcrumbssec .breadcrumb-item+.breadcrumb-item::before {
+    color: rgb(255 255 255);
+}
+
+.section-shape {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 96px;
+    background-size: contain;
+    background-repeat: repeat-x;
+    z-index: 1;
+}
+
+.section-shape.section-shape1 {
+    transform: rotate(180deg);
+}
+
+.floating-filter-card {
+    background: #fff;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+    border-radius: 16px;
+    padding: 20px;
+    position: relative;
+    transition: all 0.3s ease;
+    margin-bottom: 2rem;
+}
+
+.filter-input,
+.filter-select {
+    border-radius: 8px;
+    height: 48px;
+    font-size: 15px;
+    border: 1px solid #f7821f;
+}
+
+.filtersearchico {
+    border-color: #f7821f;
+}
+
+.filter-input::placeholder {
+    color: #999;
+}
+
+.filter-input,
+.filter-input:focus,
+.filter-input:hover,
+.filter-select:focus,
+.filter-select:hover {
+    outline: none;
+    box-shadow: none;
+}
+
+.joblistcard {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 18px;
+}
+
+@media (max-width: 992px) {
+    .joblistcard {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 576px) {
+    .joblistcard {
+        grid-template-columns: 1fr;
+    }
+}
+
+.job-card {
+    /* border: 1px solid #b3b3b3; */
+    border-radius: 12px;
+    padding: 20px;
+    background: #fffaf5;
+    transition: all 0.3s ease;
+    box-shadow: 0px 2.52px 12.85px 0px rgba(0, 0, 0, 0.10);
+    cursor: pointer;
+}
+
+
+
+.job-card-title {
+    font-size: 18px;
+    font-weight: 600;
+    color: #000;
+    line-height: normal;
+    margin-bottom: 8px;
+}
+
+.job-card-link {
+    font-size: 14px;
+    color: #f7821f;
+    font-weight: 600;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.job-card-link:hover {
+    color: #f7821f;
+    text-decoration: underline;
+}
+
+.apply-form-card {
+    background: #fff;
+    border-radius: 16px;
+    padding: 30px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+}
+
+.apply-form-title {
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.apply-form-input,
+.apply-form-input:focus,
+.apply-form-input:hover {
+    border-radius: 5px;
+    height: auto;
+    font-size: 15px;
+    outline: none;
+    box-shadow: none;
+    border-color: #f7821f;
+}
+
+.apply-form-input::placeholder,
+.apply-form-textarea::placeholder {
+    font-size: 13px;
+}
+
+.apply-form-card .form-label {
+    font-weight: 600;
+    color: #000;
+}
+
+.apply-form-textarea,
+.apply-form-textarea:focus,
+.apply-form-textarea:hover {
+    border-radius: 8px;
+    font-size: 15px;
+    outline: none;
+    box-shadow: none;
+    border-color: #f7821f;
+}
+
+.apply-form-submit {
+    background-color: #FF6A19;
+    color: #fff;
+    border-radius: 8px;
+    padding: 8px 35px;
+    border: none;
+    transition: background-color 0.3s ease;
+}
+
+.apply-form-submit:hover {
+    background-color: #e4802e;
+}
+
+.apply-form-card label.form-check-label {
+    line-height: normal;
+}
+
+.job-desc-card h2 {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 16px;
+    color: #000;
+}
+
+.job-desc-card h3 {
+    font-size: 18px;
+    font-weight: 600;
+    margin-top: 24px;
+    margin-bottom: 12px;
+    color: #000;
+}
+
+.job-desc-card p {
+    margin-bottom: 12px;
+    line-height: 1.6;
+}
+
+.job-desc-card ul {
+    padding-left: 30px;
+    margin-bottom: 12px;
+    list-style: disc;
+}
+
+.job-desc-card li {
+    margin-bottom: 8px;
+}
+
+.highlight {
+    font-weight: 600;
+    color: #FF6A19;
+}
+
+.job-desc-card h2.jobposition {
+    font-size: 26px;
+}
+
+.strongsec {
+    color: #000;
+}
+
+@media(max-width:1024px) {
+    .innerbanner-txt h1 {
+        font-size: 30px;
+    }
+
+    .joblistcard {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 15px;
+    }
+
+    .job-card-title {
+        font-size: 15px;
+    }
+
+}
+
+@media(max-width:991px) {
+    .cmn-gap {
+        padding: 0px 0;
+        padding-bottom: 1rem !important;
+    }
+
+    .filter-input,
+    .filter-select {
+        height: 38px;
+        font-size: 12px;
+    }
+
+    .filter-input::placeholder,
+    .filter-select::placeholder {
+        font-size: 12px;
+        color: #000;
+    }
+
+    .innerbanner-txt h1 {
+        font-size: 24px;
+    }
+}
+
+@media(max-width:767px) {
+    input.form-control.filter-input {
+        margin-bottom: 0;
+    }
+
+    .floating-filter-card .input-group {
+        flex-direction: row;
+        flex-wrap: nowrap;
+    }
+
+    .joblistcard {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+    }
+
+    .innerbannersection {
+        min-height: 36vh;
+    }
+
+    .job-desc-card h2.jobposition,
+    .apply-form-title {
+        font-size: 22px;
+    }
+
+    .job-desc-card li {
+        font-size: 13px;
+    }
+
+    .job-desc-card h2 {
+        font-size: 16px;
+    }
+
+    .job-desc-card p {
+        font-size: 13px;
+    }
+
+    .apply-form-card {
+        padding: 20px;
+    }
+
+    .apply-form-card label.form-check-label {
+        font-size: 13px;
+    }
+}
+
+@media(max-width:580px) {
+    .innerbanner-txt h1 {
+        font-size: 25px;
+    }
+
+    .joblistcard {
+        grid-template-columns: repeat(1, 1fr);
+        gap: 10px;
+    }
+
+    .innerbannersection {
+        min-height: 36vh;
+    }
+
+    .job-desc-card h2.jobposition,
+    .apply-form-title {
+        font-size: 18px;
+    }
+
+    .job-desc-card h3 {
+        font-size: 14px;
+    }
+}
+
+// 
+/* inner banner css */
+.innerbannersection {
+    min-height: 45vh;
+    position: relative;
+    overflow: hidden;
+    display: block;
+    align-content: center;
+}
+
+.innerbannerimgbox {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.innerbannerimg {
+    object-position: 9%;
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+
+.innerbanner-txt {
+    display: block;
+    align-content: center;
+    position: relative;
+    z-index: 2;
+}
+
+.innerbanner-txt h1 {
+    text-align: center;
+    font-size: 40px;
+    font-weight: 700;
+    color: #fff;
+    text-transform: capitalize;
+}
+
+.innerbannersection::after {
+    content: '';
+    width: 100%;
+    height: 100%;
+    background-color: #000;
+    position: absolute;
+    left: 0;
+    top: 0;
+    opacity: 0.7;
+}
+
+.subtitletext {
+    color: #FF6A19;
+}
+
+.breadcrumbssec {
+    margin-top: 1rem;
+}
+
+.breadcrumbssec .currentpagesec {
+    color: #fff;
+}
+
+.breadcrumbssec .breadcrumb-item.active {
+    color: #FF6A19;
+}
+
+.breadcrumbssec .breadcrumb-item+.breadcrumb-item::before {
+    color: rgb(255 255 255);
+}
+
+.section-shape {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 97px;
+    background-size: contain;
+    background-repeat: repeat-x;
+    z-index: 1;
+}
+.section-shape.section-shape1 {
+    transform: rotate(180deg);
+}
+@media(max-width:1024px) {
+    .innerbanner-txt h1 {
+        font-size: 30px;
+    }
+}
+@media(max-width:991px) {
+    .innerbanner-txt h1 {
+        font-size: 24px;
+    }
+}
+@media(max-width:767px) {
+    .innerbannersection {
+        min-height: 36vh;
+    }
+}
+@media(max-width:580px) {
+    .innerbanner-txt h1 {
+        font-size: 25px;
+    }
+    .innerbannersection {
+        min-height: 36vh;
+    }
+}

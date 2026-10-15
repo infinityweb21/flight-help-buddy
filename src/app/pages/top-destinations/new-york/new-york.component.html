@@ -1,0 +1,511 @@
+<!-- == Main Banner Part Start == -->
+<app-top-destinations-head></app-top-destinations-head>
+<!-- == Main Banner Part End == -->
+<!-- == Flight Search Start == -->
+<!-- <div class="container container-xxl py-3"><app-flights-tab></app-flights-tab></div> -->
+<!-- == Flight Search End == -->
+<!-- == Main Body Start == -->
+        <!--=========== Banner Section Start  ==============-->
+ 
+        <!--=========== Banner Section end  ==============-->
+
+        <section class="details-contentntsec">
+            <div class="container container-xxl">
+                <div class="row">
+                    <div class="col-12 d-flex justify-content-between align-items-center flex-wrap">
+                        <h5 class="customhead">New York</h5>
+                        <div class="custom-topbar">
+                            Call Us Toll-Free to Get the Best Deal! <a href="tel:{{getData?.phoneNumber}}">{{getData?.phoneNumber}}</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Tabs Navigation -->
+                <ul class="nav custom-nav-tabs mt-3" id="customTab" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link active" id="overview-tab" data-bs-toggle="tab"
+                            data-bs-target="#overview" type="button" role="tab">Overview</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="things-tab" data-bs-toggle="tab" data-bs-target="#things"
+                            type="button" role="tab">Things to Do</button>
+                    </li>
+                    <!-- <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="hotels-tab" data-bs-toggle="tab" data-bs-target="#hotels"
+                            type="button" role="tab">Best Hotels</button>
+                    </li> -->
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="visit-tab" data-bs-toggle="tab" data-bs-target="#visit"
+                            type="button" role="tab">When to visit</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="map-tab" data-bs-toggle="tab" data-bs-target="#map" type="button"
+                            role="tab">Map</button>
+                    </li>
+                    <!-- <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="photos-tab" data-bs-toggle="tab" data-bs-target="#photos"
+                            type="button" role="tab">Photos</button>
+                    </li> -->
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="support-tab" data-bs-toggle="tab" data-bs-target="#support"
+                            type="button" role="tab">Get Support</button>
+                    </li>
+                </ul>
+            </div>
+        </section>
+        <section class="content-boxsection">
+            <div class="container container-xxl">
+                <!-- Tabs Content -->
+                <div class="tab-content custom-tab-content" id="customTabContent">
+                    <div class="tab-pane fade show active" id="overview" role="tabpanel">
+                        <div class="custom-tab-title">The City That Defines Dreams — Welcome to New York</div>
+                        <p class="custom-tab-paragraph">
+                            New York goes beyond being a city — it’s a vibe you feel, a mood you live, and a moment that sticks with you long after you’ve left. Known as the city that never sleeps, New York pulses with a unique kind of energy that wraps you in its magic from the very first moment. Whether you're staring up at the iconic skyline, roaming through its historic streets, or soaking in the magic of Broadway lights, New York always finds a way to move you.
+                        </p>
+                        <p class="custom-tab-paragraph">
+                            From the timeless charm of Central Park to the towering architecture of the Empire State Building, New York blends nature and concrete in the most spectacular way. Walk through the colorful chaos of Times Square, feel the wonder as you stand beneath the timeless beauty of Grand Central Terminal or simply sip coffee in a cozy SoHo café. Every part of the city has a story to tell: one of art, hardship, passion, and success.
+                        </p>
+                        <p class="custom-tab-paragraph">
+                            It’s not just about sightseeing; it’s about feeling alive in a place that’s constantly evolving. Here, cultures collide, dreams take flight, and every street feels like a movie set. New York isn’t just a destination; it’s a once-in-a-lifetime adventure waiting to happen. So go ahead, book your ticket, and let the Big Apple steal your heart.
+                        </p>
+                        <div class="row mt-4">
+                            <div class="col-lg-8 col-md-6 col-12">
+
+                                <div class="custom-tab-title">Best Time To Visit New York City, USA</div>
+                                <div class="accordion season-accordion" id="seasonAccordion">
+
+                                    <!-- Item 1 -->
+                                    <div class="accordion-item">
+                                        <h2 class="accordion-header" id="headingOne">
+                                            <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                                data-bs-target="#collapseOne" aria-expanded="true">
+                                                <span class="season-label label-green">Sep to Nov</span>
+                                                <span class="season-subtext">Is Peak Season</span>
+                                            </button>
+                                        </h2>
+                                        <div id="collapseOne" class="accordion-collapse collapse show"
+                                            data-bs-parent="#seasonAccordion">
+                                            <div class="accordion-body">
+                                                Fall in New York is crisp and colorful when Central Park transforms into a canvas of autumn hues, and cultural events flourish across the five boroughs. 
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Item 2 -->
+                                    <div class="accordion-item">
+                                        <h2 class="accordion-header" id="headingTwo">
+                                            <button class="accordion-button collapsed" type="button"
+                                                data-bs-toggle="collapse" data-bs-target="#collapseTwo">
+                                                <span class="season-label label-blue">Apr to Jun</span>
+                                                <span class="season-subtext">Is Moderate Season</span>
+                                            </button>
+                                        </h2>
+                                        <div id="collapseTwo" class="accordion-collapse collapse"
+                                            data-bs-parent="#seasonAccordion">
+                                            <div class="accordion-body">
+                                                Spring is beautiful with blooming cherry trees, moderate crowds, and perfect time to explore museums and neighborhoods. 
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Item 3 -->
+                                    <div class="accordion-item">
+                                        <h2 class="accordion-header" id="headingThree">
+                                            <button class="accordion-button collapsed" type="button"
+                                                data-bs-toggle="collapse" data-bs-target="#collapseThree">
+                                                <span class="season-label label-orange">Dec to Mar / Jul to Aug</span>
+                                                <span class="season-subtext">Is Off Season</span>
+                                            </button>
+                                        </h2>
+                                        <div id="collapseThree" class="accordion-collapse collapse"
+                                            data-bs-parent="#seasonAccordion">
+                                            <div class="accordion-body">
+                                                Winter brings snow and holiday magic, while summer can be humid. Both seasons see fewer crowds, discounted hotels, and more local experiences. 
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-6 col-12">
+                                <div class="weather-table-wrapper">
+
+                                    <div class="weather-table bg-white">
+                                        <table>
+                                            <thead>
+                                                <tr>
+                                                    <th>Month</th>
+                                                    <th>Temp (Max/Min)</th>
+                                                    <th>Rain mm</th>
+                                                    <th>Weather Opinion</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td><a href="#" class="month-link">Jan</a></td>
+                                                    <td class="temp-col">26º/15º</td>
+                                                    <td class="rain-col">10</td>
+                                                    <td class="opinion-col"><i
+                                                            class="fa-regular fa-face-grin-hearts"></i> Peak</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><a href="#" class="month-link">Feb</a></td>
+                                                    <td class="temp-col">26º/15º</td>
+                                                    <td class="rain-col">10</td>
+                                                    <td class="opinion-col"><i
+                                                            class="fa-regular fa-face-smile-beam"></i> Moderate</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><a href="#" class="month-link">Mar</a></td>
+                                                    <td class="temp-col">26º/15º</td>
+                                                    <td class="rain-col">10</td>
+                                                    <td class="opinion-col"><i class="fa-regular fa-face-sad-cry"></i>
+                                                        Off</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><a href="#" class="month-link">Apr</a></td>
+                                                    <td class="temp-col">26º/15º</td>
+                                                    <td class="rain-col">10</td>
+                                                    <td class="opinion-col"><i
+                                                            class="fa-regular fa-face-grin-hearts"></i> Moderate</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><a href="#" class="month-link">May</a></td>
+                                                    <td class="temp-col">26º/15º</td>
+                                                    <td class="rain-col">10</td>
+                                                    <td class="opinion-col"><i
+                                                            class="fa-regular fa-face-grin-hearts"></i> Moderate</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><a href="#" class="month-link">Jun</a></td>
+                                                    <td class="temp-col">26º/15º</td>
+                                                    <td class="rain-col">10</td>
+                                                    <td class="opinion-col"><i
+                                                            class="fa-regular fa-face-grin-hearts"></i> Moderate</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><a href="#" class="month-link">Jul</a></td>
+                                                    <td class="temp-col">26º/15º</td>
+                                                    <td class="rain-col">10</td>
+                                                    <td class="opinion-col"><i
+                                                            class="fa-regular fa-face-grin-hearts"></i> Moderate</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><a href="#" class="month-link">Aug</a></td>
+                                                    <td class="temp-col">26º/15º</td>
+                                                    <td class="rain-col">10</td>
+                                                    <td class="opinion-col"><i
+                                                            class="fa-regular fa-face-grin-hearts"></i> Moderate</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><a href="#" class="month-link">Sep</a></td>
+                                                    <td class="temp-col">26º/15º</td>
+                                                    <td class="rain-col">10</td>
+                                                    <td class="opinion-col"><i
+                                                            class="fa-regular fa-face-grin-hearts"></i> Moderate</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><a href="#" class="month-link">Oct</a></td>
+                                                    <td class="temp-col">26º/15º</td>
+                                                    <td class="rain-col">10</td>
+                                                    <td class="opinion-col"><i
+                                                            class="fa-regular fa-face-grin-hearts"></i> Moderate</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><a href="#" class="month-link">Nov</a></td>
+                                                    <td class="temp-col">26º/15º</td>
+                                                    <td class="rain-col">10</td>
+                                                    <td class="opinion-col"><i
+                                                            class="fa-regular fa-face-grin-hearts"></i> Moderate</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><a href="#" class="month-link">Dec</a></td>
+                                                    <td class="temp-col">26º/15º</td>
+                                                    <td class="rain-col">10</td>
+                                                    <td class="opinion-col"><i
+                                                            class="fa-regular fa-face-grin-hearts"></i> Moderate</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Placeholder tabs for other sections -->
+                    <div class="tab-pane fade" id="things" role="tabpanel">
+                        <div class="desilistcard">
+                            <div class="destination-card">
+                                <div class="destination-image">
+                                    <img src="assets/images/tab_photos/new_york/things_to_do/central-park.webp" alt="central-park">
+                                </div>
+                                <div class="destination-content">
+                                    <h3>Central Park</h3>
+                                    <p>
+                                        This vast 693-acre green haven lies at the heart and soul of Manhattan. Central Park offers a breath of fresh air amidst the city chaos, from scenic meadows to quiet lakes and romantic bridges. Whether you're cycling, walking, or picnicking under the sun, the park lets you pause, breathe, and simply enjoy life.
+                                    </p>
+                                    <div class="last-updated">Last Update: 20/07/2025</div>
+                                </div>
+                            </div>
+                            <div class="destination-card">
+                                <div class="destination-image">
+                                    <img src="assets/images/tab_photos/new_york/things_to_do/whitney-museum.webp" alt="whitney-museum">
+                                </div>
+                                <div class="destination-content">
+                                    <h3>Whitney Museum of American Art</h3>
+                                    <p>
+                                        If you love art, the Whitney is a spot you can’t miss. You’ll find incredible works by legends like Basquiat and Calder, a huge indoor gallery, amazing rooftop views, and even a cool restaurant and bar by Danny Meyer. It’s where great art and a great vibe come together.
+                                    </p>
+                                    <div class="last-updated">Last Update: 20/07/2025</div>
+                                </div>
+                            </div>
+                            <div class="destination-card">
+                                <div class="destination-image">
+                                    <img src="assets/images/tab_photos/new_york/things_to_do/bryant-park.webp" alt="bryant-park">
+                                </div>
+                                <div class="destination-content">
+                                    <h3>Bryant Park</h3>
+                                    <p>
+                                        Just a skip away from Times Square lies this charming green pocket where locals come to relax. From lunch breaks and outdoor yoga to fashion shows and live piano sessions, Bryant Park always has something happening. In Midtown Manhattan, the buzz of the city meets quiet corners, creating a space where energy and calm live side by side.
+                                    </p>
+                                    <div class="last-updated">Last Update: 20/07/2025</div>
+                                </div>
+                            </div>
+                            <div class="destination-card">
+                                <div class="destination-image">
+                                    <img src="assets/images/tab_photos/new_york/things_to_do/grand-central.webp" alt="grand-central">
+                                </div>
+                                <div class="destination-content">
+                                    <h3>Grand Central Terminal</h3>
+                                    <p>
+                                        Step into a living postcard of old New York at Grand Central. This iconic train station is more than a transit hub, it's a masterpiece of architecture, history, and motion. Look up at the celestial ceiling, dine in legendary eateries, and feel the heartbeat of the city.
+                                    </p>
+                                    <div class="last-updated">Last Update: 20/07/2025</div>
+                                </div>
+                            </div>
+                            <div class="destination-card">
+                                <div class="destination-image">
+                                    <img src="assets/images/tab_photos/new_york/things_to_do/coney-island.webp" alt="coney-island">
+                                </div>
+                                <div class="destination-content">
+                                    <h3>Coney Island</h3>
+                                    <p>
+                                        Fun, food, and nostalgia — Coney Island has it all. From roller coasters and boardwalk fries to sandy beaches and vintage vibes, this coastal playground is a New York classic. Come for the thrills, stay for the views, and leave with a smile.
+                                    </p>
+                                    <div class="last-updated">Last Update: 20/07/2025</div>
+                                </div>
+                            </div>
+                            <div class="destination-card">
+                                <div class="destination-image">
+                                    <img src="assets/images/tab_photos/new_york/things_to_do/brooklyn-bridge.webp" alt="brooklyn-bridge">
+                                </div>
+                                <div class="destination-content">
+                                    <h3>Brooklyn Bridge</h3>
+                                    <p>
+                                        Walking across the Brooklyn Bridge is one of those unforgettable New York experiences. This iconic bridge stretches over the East River, linking Brooklyn and Manhattan, giving you some of the best skyline views in the city. Whether you walk, bike, or just stand still, the view is worth every step.
+                                    </p>
+                                    <div class="last-updated">Last Update: 20/07/2025</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- <div class="tab-pane fade" id="hotels" role="tabpanel">Coming soon...</div> -->
+                    <div class="tab-pane fade" id="visit" role="tabpanel">
+
+                        <div class="row">
+                            <div class="col-lg-8 col-md-6 col-12">
+
+                                <div class="custom-tab-title">Best Time To Visit New York City, USA</div>
+                                <div class="accordion season-accordion" id="seasonAccordion01">
+
+                                    <!-- Item 1 -->
+                                    <div class="accordion-item">
+                                        <h2 class="accordion-header" id="headingOne">
+                                            <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                                data-bs-target="#collapseOne" aria-expanded="true">
+                                                <span class="season-label label-green">Sep to Nov</span>
+                                                <span class="season-subtext">Is Peak Season</span>
+                                            </button>
+                                        </h2>
+                                        <div id="collapseOne" class="accordion-collapse collapse show"
+                                            data-bs-parent="#seasonAccordion01">
+                                            <div class="accordion-body">
+                                                Fall in New York is crisp and colorful when Central Park transforms into a canvas of autumn hues, and cultural events flourish across the five boroughs. 
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Item 2 -->
+                                    <div class="accordion-item">
+                                        <h2 class="accordion-header" id="headingTwo">
+                                            <button class="accordion-button collapsed" type="button"
+                                                data-bs-toggle="collapse" data-bs-target="#collapseTwo">
+                                                <span class="season-label label-blue">Apr to Jun</span>
+                                                <span class="season-subtext">Is Moderate Season</span>
+                                            </button>
+                                        </h2>
+                                        <div id="collapseTwo" class="accordion-collapse collapse"
+                                            data-bs-parent="#seasonAccordion01">
+                                            <div class="accordion-body">
+                                                Spring is beautiful with blooming cherry trees, moderate crowds, and perfect time to explore museums and neighborhoods.
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Item 3 -->
+                                    <div class="accordion-item">
+                                        <h2 class="accordion-header" id="headingThree">
+                                            <button class="accordion-button collapsed" type="button"
+                                                data-bs-toggle="collapse" data-bs-target="#collapseThree">
+                                                <span class="season-label label-orange">Dec to Mar / Jul to Aug</span>
+                                                <span class="season-subtext">Is Off Season</span>
+                                            </button>
+                                        </h2>
+                                        <div id="collapseThree" class="accordion-collapse collapse"
+                                            data-bs-parent="#seasonAccordion01">
+                                            <div class="accordion-body">
+                                                Winter brings snow and holiday magic, while summer can be humid. Both seasons see fewer crowds, discounted hotels, and more local experiences. 
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-6 col-12">
+                                <div class="weather-table-wrapper">
+
+                                    <div class="weather-table bg-white">
+                                        <table>
+                                            <thead>
+                                                <tr>
+                                                    <th>Month</th>
+                                                    <th>Temp (Max/Min)</th>
+                                                    <th>Rain mm</th>
+                                                    <th>Weather Opinion</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td><a href="#" class="month-link">Jan</a></td>
+                                                    <td class="temp-col">26º/15º</td>
+                                                    <td class="rain-col">10</td>
+                                                    <td class="opinion-col"><i
+                                                            class="fa-regular fa-face-grin-hearts"></i> Peak</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><a href="#" class="month-link">Feb</a></td>
+                                                    <td class="temp-col">26º/15º</td>
+                                                    <td class="rain-col">10</td>
+                                                    <td class="opinion-col"><i
+                                                            class="fa-regular fa-face-smile-beam"></i> Moderate</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><a href="#" class="month-link">Mar</a></td>
+                                                    <td class="temp-col">26º/15º</td>
+                                                    <td class="rain-col">10</td>
+                                                    <td class="opinion-col"><i class="fa-regular fa-face-sad-cry"></i>
+                                                        Off</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><a href="#" class="month-link">Apr</a></td>
+                                                    <td class="temp-col">26º/15º</td>
+                                                    <td class="rain-col">10</td>
+                                                    <td class="opinion-col"><i
+                                                            class="fa-regular fa-face-grin-hearts"></i> Moderate</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><a href="#" class="month-link">May</a></td>
+                                                    <td class="temp-col">26º/15º</td>
+                                                    <td class="rain-col">10</td>
+                                                    <td class="opinion-col"><i
+                                                            class="fa-regular fa-face-grin-hearts"></i> Moderate</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><a href="#" class="month-link">Jun</a></td>
+                                                    <td class="temp-col">26º/15º</td>
+                                                    <td class="rain-col">10</td>
+                                                    <td class="opinion-col"><i
+                                                            class="fa-regular fa-face-grin-hearts"></i> Moderate</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><a href="#" class="month-link">Jul</a></td>
+                                                    <td class="temp-col">26º/15º</td>
+                                                    <td class="rain-col">10</td>
+                                                    <td class="opinion-col"><i
+                                                            class="fa-regular fa-face-grin-hearts"></i> Moderate</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><a href="#" class="month-link">Aug</a></td>
+                                                    <td class="temp-col">26º/15º</td>
+                                                    <td class="rain-col">10</td>
+                                                    <td class="opinion-col"><i
+                                                            class="fa-regular fa-face-grin-hearts"></i> Moderate</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><a href="#" class="month-link">Sep</a></td>
+                                                    <td class="temp-col">26º/15º</td>
+                                                    <td class="rain-col">10</td>
+                                                    <td class="opinion-col"><i
+                                                            class="fa-regular fa-face-grin-hearts"></i> Moderate</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><a href="#" class="month-link">Oct</a></td>
+                                                    <td class="temp-col">26º/15º</td>
+                                                    <td class="rain-col">10</td>
+                                                    <td class="opinion-col"><i
+                                                            class="fa-regular fa-face-grin-hearts"></i> Moderate</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><a href="#" class="month-link">Nov</a></td>
+                                                    <td class="temp-col">26º/15º</td>
+                                                    <td class="rain-col">10</td>
+                                                    <td class="opinion-col"><i
+                                                            class="fa-regular fa-face-grin-hearts"></i> Moderate</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><a href="#" class="month-link">Dec</a></td>
+                                                    <td class="temp-col">26º/15º</td>
+                                                    <td class="rain-col">10</td>
+                                                    <td class="opinion-col"><i
+                                                            class="fa-regular fa-face-grin-hearts"></i> Moderate</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="map" role="tabpanel">
+                        <div class="mapsec">
+                                       <agm-map [latitude]="this.lat" [longitude]="this.lng" style="width:100%; height:450px;"
+                    frameborder="0" scrolling="no" id="gmap_canvas" marginheight="0" marginwidth="0">
+                    <agm-marker [latitude]="this.lat" [longitude]="this.lng"></agm-marker>
+                  </agm-map>
+                            <div class="locationname">
+                                <i class="fa-solid fa-location-dot"></i>New York City, USA
+                            </div>
+                        </div>
+                    </div>
+                    <!-- <div class="tab-pane fade" id="photos" role="tabpanel">Coming soon...</div> -->
+                    <div class="tab-pane fade" id="support" role="tabpanel">
+                        <div class="booking-cta-banner">
+                            <div class="ctatex">
+                                <img src="assets/images/global-vacation-hotsport/ctatex.png" alt="">
+                            </div>
+                            <div class="booking-cta-text">
+                                <h2>MAKE EASY BOOKINGS HAPPEN NOW</h2>
+                                <p>Your travel experts are here to make each trip of yours more memorable and exciting
+                                </p>
+                                <a href="tel:{{getData?.phoneNumber}}" class="booking-cta-button">
+                                    <i class="fas fa-phone-volume"></i>{{getData?.phoneNumber}}
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+<!-- == Main Body End == -->
+<!-- == Destination List Part Start == -->
+<div class="container container-xxl"><app-top-destinations-list></app-top-destinations-list></div>
+<!-- == Destination List Part End == -->

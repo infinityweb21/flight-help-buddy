@@ -1,0 +1,1550 @@
+<ng-container *ngIf="isSkeleton">
+  <app-flight-payment-skeleton></app-flight-payment-skeleton>
+</ng-container>
+
+<section class="hotelbooking-sec-section common-section">
+  <div class="container">
+    <div class="row hotelbooking-section-row">
+      <div class="col-lg-4 col-md-12 col-12">
+        <div class="sticky-sec">
+          <div class="fare-summary-card">
+            <h4 class="fare-summary-title">Fare Summary</h4>
+            <div class="fare-summary-row">
+              <span
+                >{{ room }} room{{ room > 1 ? "s" : "" }} x
+                {{ noOfNights }} night{{ noOfNights > 1 ? "s" : "" }}</span
+              >
+              <span class="fare-price">{{
+                formatPrice(getPricePerNightRate(rateDetails))
+              }}</span>
+            </div>
+            <div class="fare-summary-row lastchild-row">
+              <span
+                [pTooltip]="taxTooltipContent"
+                [tooltipStyleClass]="'price-tool-tip'"
+                tooltipEvent="focus"
+                tooltipPosition="top"
+                tabindex="0"
+                >Taxes & fees and charges
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  viewBox="0 0 16 16"
+                  fill="none"
+                >
+                  <path
+                    d="M8 14C11.3137 14 14 11.3137 14 8C14 4.68629 11.3137 2 8 2C4.68629 2 2 4.68629 2 8C2 11.3137 4.68629 14 8 14Z"
+                    stroke="currentColor"
+                    stroke-width="1.33333"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                  <path
+                    d="M8 5.33334H8.00667V5.34001H8V5.33334Z"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linejoin="round"
+                  />
+                  <path
+                    d="M8 8V10.6667"
+                    stroke="currentColor"
+                    stroke-width="1.33333"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  /></svg
+              ></span>
+              <span class="fare-price">
+                <span class="c-price-short-summary__travel-wrap--travel-value">
+                  @if (rateDetails?.includesTaxes) {
+                    Included
+                  } @else {
+                    ${{
+                      getFormattedPrice(rateDetails?.perNightTaxesAndFees)
+                        .integer
+                    }}.<span class="c-price-spec--sub-total-item__value--sup">
+                      {{
+                        getFormattedPrice(rateDetails?.perNightTaxesAndFees)
+                          .decimal
+                      }}</span
+                    >
+                  }
+                </span>
+              </span>
+            </div>
+            <div class="fare-summary-total">
+              <span
+                class="total-title"
+                [pTooltip]="taxTotal"
+                hideDelay="300"
+                [tooltipStyleClass]="'price-tool-tip'"
+                severity="secondary"
+                tooltipEvent="focus"
+                tooltipPosition="top"
+                tabindex="0"
+                >Net Amount Payable
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  viewBox="0 0 16 16"
+                  fill="none"
+                >
+                  <path
+                    d="M8 14C11.3137 14 14 11.3137 14 8C14 4.68629 11.3137 2 8 2C4.68629 2 2 4.68629 2 8C2 11.3137 4.68629 14 8 14Z"
+                    stroke="currentColor"
+                    stroke-width="1.33333"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                  <path
+                    d="M8 5.33334H8.00667V5.34001H8V5.33334Z"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linejoin="round"
+                  />
+                  <path
+                    d="M8 8V10.6667"
+                    stroke="currentColor"
+                    stroke-width="1.33333"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  /></svg
+              ></span>
+              <span class="total-price"
+                >${{
+                  getFormattedPrice(getTotalPriceRate(rateDetails)).integer
+                }}.<span
+                  class="c-price-spec--item__value--sup c-price-spec--item__value--sup__price-summary"
+                  >{{
+                    getFormattedPrice(getTotalPriceRate(rateDetails)).decimal
+                  }}</span
+                ></span
+              >
+            </div>
+            <ng-container *ngIf="hasExcludedFee(hotelDetails?.fare)">
+              <div class="fare-summary-row lastchild-row mb-3">
+                <span class="hotel-room-price__nights"
+                  >Resort Fee ({{
+                    formatPrice(getExcludedFeeAmount(hotelDetails?.fare))
+                  }})</span
+                >
+                <span class="fare-price"> Pay Later </span>
+              </div>
+            </ng-container>
+            <!-- <div class="booking-summary-wrap">
+                            <div class="btn-primarysec-outer">
+                                <button type="button" class="btn-primarysec" (click)="onComplete($event)">
+                                    Complete Booking
+                                </button>
+                            </div>
+                        </div> -->
+          </div>
+          <!-- <div class="sp-req-card d-none">
+                        <h3 class="sp-req-title">Special Request</h3>
+                        <p class="sp-req-note">
+                            We will forward your request to the hotel. Please note that this is subject to
+                            availability and based on the hotel policies
+                        </p>
+                        <div class="sp-req-inputbox">
+                            <textarea maxlength="100" class="sp-req-textarea" placeholder="Enter Request"></textarea>
+                            <span class="sp-req-count">0/100</span>
+                        </div>
+                        <div class="sp-req-actions">
+                            <button class="sp-req-submit">Submit Request</button>
+                            <button class="sp-req-dismiss">Dismiss</button>
+                        </div>
+                    </div> -->
+          <div class="cancel-policy-card">
+            <h3 class="cn-title">Cancellation Policy</h3>
+            <p class="cn-desc">100% amount will be deducted on cancellation.</p>
+            <div class="cn-timeline-box">
+              <span class="cn-tag">Non Refundable</span>
+              <div class="cn-line">
+                <div class="cn-point left">
+                  <i class="fa-solid fa-circle-check"></i>
+                  <span>Now</span>
+                </div>
+                <div class="cn-point right">
+                  <i class="fa-solid fa-clock-rotate-left"></i>
+                  <span>Check-In</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="confirm-info-box">
+            <p class="confirm-info-text">
+              By clicking on <strong>Pay Now/Book Now</strong>, I confirm that I
+              have read, understood, and agree with the
+              <a [routerLink]="['/cancellation-policy']" class="info-link"
+                >Cancellation Policy</a
+              >
+              and
+              <a [routerLink]="['/privacy-policy']" class="info-link"
+                >Privacy Policy</a
+              >
+            </p>
+            <p class="confirm-info-note">
+              Please note that the system will not provide a tax invoice. You
+              will be given a commercial receipt to serve as proof of
+              transaction.
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-8 col-md-12 col-12">
+        <div class="hotel-summary-card">
+          <div class="hotel-top-info">
+            <img
+              [src]="roomDetails?.roomImages[0]?.imageUrl"
+              alt="Room"
+              class="hotel-img"
+            />
+            <div class="hotel-main-content">
+              <div class="maintitlehotel">
+                <span class="hotel-title">{{ hotelDetails?.hotelName }}</span>
+                <span class="hotel-stars">
+                  <li
+                    class="o-hotel-payment-booking-summary__card--ratings-list__item"
+                    style="list-style: none"
+                  >
+                    <ng-container
+                      *ngFor="
+                        let star of getStarArray(hotelDetails?.starRating);
+                        track $index
+                      "
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="16"
+                        height="16"
+                        viewBox="0 0 16 16"
+                        fill="none"
+                      >
+                        <path
+                          d="M8.19186 2.18554C8.22034 2.12984 8.26434 2.08294 8.31889 2.05016C8.37345 2.01737 8.43638 2 8.50058 2C8.56479 2 8.62772 2.01737 8.68227 2.05016C8.73682 2.08294 8.78082 2.12984 8.80931 2.18554L10.3107 5.12954C10.4096 5.32331 10.5556 5.49095 10.7361 5.61807C10.9167 5.7452 11.1264 5.82801 11.3473 5.8594L14.7049 6.33507C14.7685 6.34399 14.8283 6.36997 14.8775 6.41007C14.9266 6.45016 14.9632 6.50278 14.9831 6.56196C15.003 6.62114 15.0054 6.68453 14.99 6.74495C14.9746 6.80537 14.942 6.86041 14.896 6.90386L12.4678 9.19286C12.3077 9.34393 12.1879 9.53041 12.1187 9.73625C12.0495 9.94209 12.0331 10.1611 12.0707 10.3745L12.644 13.6085C12.6552 13.6701 12.6483 13.7335 12.6241 13.7914C12.6 13.8494 12.5594 13.8996 12.5072 13.9363C12.4549 13.9731 12.3931 13.9949 12.3287 13.9992C12.2642 14.0035 12.1999 13.9903 12.1429 13.9609L9.14143 12.4332C8.94366 12.3327 8.72363 12.2801 8.50026 12.2801C8.27689 12.2801 8.05686 12.3327 7.85909 12.4332L4.85831 13.9609C4.80133 13.9901 4.73703 14.0032 4.67272 13.9988C4.60841 13.9944 4.54668 13.9726 4.49454 13.9358C4.4424 13.8991 4.40194 13.849 4.37778 13.7911C4.35362 13.7333 4.34672 13.67 4.35786 13.6085L4.93046 10.3751C4.96828 10.1616 4.95189 9.94248 4.88271 9.73651C4.81353 9.53054 4.69362 9.34396 4.53334 9.19286L2.10516 6.90449C2.05875 6.86109 2.02586 6.80595 2.01024 6.74535C1.99463 6.68474 1.9969 6.62111 2.01682 6.5617C2.03673 6.50229 2.07349 6.44948 2.12289 6.4093C2.17229 6.36912 2.23236 6.34318 2.29624 6.33444L5.65319 5.8594C5.87434 5.82825 6.08435 5.74555 6.26517 5.61841C6.44598 5.49127 6.59216 5.3235 6.69115 5.12954L8.19186 2.18554Z"
+                          fill="currentColor"
+                          stroke="currentColor"
+                          stroke-width="0.998888"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        />
+                      </svg>
+                    </ng-container>
+                  </li>
+                </span>
+              </div>
+              <p class="hotel-location">
+                <i class="fa-solid fa-location-dot"></i>
+                {{ hotelDetails?.descriptions?.location }}
+              </p>
+              <div class="hotel-meta">
+                <span class="meta-item"
+                  ><i class="fa-solid fa-bed"></i> {{ room }} Room
+                  {{ room > 1 ? "s" : "" }}</span
+                >
+                <span class="meta-item"
+                  ><i class="fa-solid fa-user-group"></i> {{ noOfNights }} Night
+                  {{ noOfNights > 1 ? "s" : "" }}</span
+                >
+              </div>
+              <div class="booking-summary">
+                <div class="booking-summary__item">
+                  <span class="booking-summary__label">Check-in</span>
+                  <strong class="booking-summary__value">{{
+                    formatTime(hotelDetails?.checkin)
+                  }}</strong>
+                </div>
+                <div class="booking-summary__divider"></div>
+                <div class="booking-summary__item">
+                  <span class="booking-summary__label">Check-out</span>
+                  <strong class="booking-summary__value">{{
+                    formatTime(hotelDetails?.checkout)
+                  }}</strong>
+                </div>
+                <div class="booking-summary__divider"></div>
+                <div class="booking-summary__item">
+                  <span class="booking-summary__label"
+                    >{{ noOfNights }} Night
+                    {{ noOfNights > 1 ? "s" : "" }}</span
+                  >
+                  <strong class="booking-summary__value"
+                    >{{ room }} Room {{ room > 1 ? "s" : "" }}</strong
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+          <hr />
+          <h4 class="section-title">Room Details</h4>
+          <div class="room-detail-box">
+            <img
+              [src]="roomDetails?.roomImages[0]?.imageUrl"
+              class="room-img"
+              alt="room-image"
+            />
+            <div class="room-details">
+              <p class="room-title">{{ roomDetails?.roomName }}</p>
+              <div class="room-icons">
+                <ng-container *ngIf="roomDetails?.roomSize">
+                  <span
+                    ><i class="fa-regular fa-square"></i>
+                    {{ roomDetails?.roomSize }}
+                  </span>
+                </ng-container>
+                <ng-container *ngIf="roomDetails?.bedCount">
+                  <span
+                    ><i class="fa-solid fa-bed"></i
+                    >{{ roomDetails?.bedCount }} Bed</span
+                  >
+                </ng-container>
+                <ng-container *ngIf="roomDetails?.view">
+                  <span
+                    ><i class="fa-solid fa-city"></i> {{ roomDetails?.view }}
+                  </span>
+                </ng-container>
+                <ng-container *ngIf="roomDetails?.bedCount">
+                  <span
+                    ><i class="fa-solid fa-user"></i> Sleeps
+                    {{ roomDetails?.bedCount }}
+                  </span>
+                </ng-container>
+              </div>
+            </div>
+          </div>
+          <ng-container *ngIf="roomDetails?.amenities?.length">
+            <h4 class="section-title">Room Benefits</h4>
+            <ul class="room-benefits">
+              <ng-container *ngFor="let item of roomDetails?.amenities">
+                <li><i class="fa-solid fa-check"></i> {{ item }}</li>
+              </ng-container>
+            </ul>
+          </ng-container>
+        </div>
+        <div class="bk-step-content active">
+          <form [formGroup]="bookingForm" novalidate>
+            <div class="ct-card">
+              <div class="ct-head">
+                <span class="ct-sub">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="18px"
+                    height="18px"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    class="icon icon-tabler icons-tabler-outline icon-tabler-building-skyscraper"
+                  >
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                    <path d="M3 21l18 0" />
+                    <path d="M5 21v-14l8 -4v18" />
+                    <path d="M19 21v-10l-6 -4" />
+                    <path d="M9 9l0 .01" />
+                    <path d="M9 12l0 .01" />
+                    <path d="M9 15l0 .01" />
+                    <path d="M9 18l0 .01" />
+                  </svg>
+                  Hotel
+                </span>
+                <h3>Guest Details (Adults)</h3>
+                <span class="ct-required">*Required field</span>
+              </div>
+
+              <div formArrayName="travelers">
+                <div
+                  *ngFor="
+                    let traveler of travelers.controls | slice: 0 : 1;
+                    let i = index
+                  "
+                  [formGroupName]="i"
+                >
+                  <div class="ct-head">
+                    <h3>Adults</h3>
+                  </div>
+
+                  <div class="row g-2">
+                    <div class="col-md-3">
+                      <div class="ct-field">
+                        <label>First Name *</label>
+                        <input
+                          type="text"
+                          placeholder="Enter first name"
+                          formControlName="firstName"
+                          [class.is-invalid]="
+                            (getControl(traveler, 'firstName')?.touched ||
+                              submitted) &&
+                            getControl(traveler, 'firstName')?.invalid
+                          "
+                        />
+                        <ng-container
+                          *ngIf="
+                            (getControl(traveler, 'firstName')?.touched ||
+                              submitted) &&
+                            getControl(traveler, 'firstName')?.invalid
+                          "
+                        >
+                          <div class="text-danger">
+                            <ng-container
+                              *ngIf="
+                                getControl(traveler, 'firstName')?.errors?.[
+                                  'required'
+                                ]
+                              "
+                            >
+                              <small>Please enter first name.</small>
+                            </ng-container>
+                          </div>
+                        </ng-container>
+                      </div>
+                    </div>
+
+                    <div class="col-md-3">
+                      <div class="ct-field">
+                        <label>Last Name *</label>
+                        <input
+                          type="text"
+                          placeholder="Enter last name"
+                          formControlName="lastName"
+                          [class.is-invalid]="
+                            (getControl(traveler, 'lastName')?.touched ||
+                              submitted) &&
+                            getControl(traveler, 'lastName')?.invalid
+                          "
+                        />
+                        <ng-container
+                          *ngIf="
+                            (getControl(traveler, 'lastName')?.touched ||
+                              submitted) &&
+                            getControl(traveler, 'lastName')?.invalid
+                          "
+                        >
+                          <div class="text-danger">
+                            <ng-container
+                              *ngIf="
+                                getControl(traveler, 'lastName')?.errors?.[
+                                  'required'
+                                ]
+                              "
+                            >
+                              <small>Please enter last name.</small>
+                            </ng-container>
+                          </div>
+                        </ng-container>
+                      </div>
+                    </div>
+
+                    <div class="col-md-4">
+                      <div
+                        class="dob-field ct-field dob-select dob-nationality"
+                      >
+                        <span class="dob-placeholder">Email *</span>
+                        <input
+                          type="email"
+                          placeholder="example@abc.com"
+                          formControlName="email"
+                          [class.is-invalid]="
+                            (getControl(traveler, 'email')?.touched ||
+                              submitted) &&
+                            getControl(traveler, 'email')?.invalid
+                          "
+                        />
+                        <ng-container
+                          *ngIf="
+                            (getControl(traveler, 'email')?.touched ||
+                              submitted) &&
+                            getControl(traveler, 'email')?.invalid
+                          "
+                        >
+                          <div class="text-danger">
+                            <ng-container
+                              *ngIf="
+                                getControl(traveler, 'email')?.errors?.[
+                                  'required'
+                                ]
+                              "
+                            >
+                              <small>Please enter email.</small>
+                            </ng-container>
+                          </div>
+                        </ng-container>
+                      </div>
+                    </div>
+
+                    <div class="col-md-2">
+                      <div class="ct-field">
+                        <label>Gender *</label>
+                        <select
+                          formControlName="gender"
+                          [class.is-invalid]="
+                            (getControl(traveler, 'gender')?.touched ||
+                              submitted) &&
+                            getControl(traveler, 'gender')?.invalid
+                          "
+                        >
+                          <option value="" selected="true">Select</option>
+                          <option value="male">Male</option>
+                          <option value="female">Female</option>
+                        </select>
+                        <ng-container
+                          *ngIf="
+                            (getControl(traveler, 'gender')?.touched ||
+                              submitted) &&
+                            getControl(traveler, 'gender')?.invalid
+                          "
+                        >
+                          <div class="text-danger">
+                            <small>Please select gender.</small>
+                          </div>
+                        </ng-container>
+                      </div>
+                    </div>
+
+                    <div class="dob-row">
+                      <label class="dob-label">Date of birth *</label>
+
+                      <div class="dob-fields">
+                        <div class="dob-field ct-field">
+                          <span class="dob-placeholder">Day</span>
+                          <input
+                            type="text"
+                            placeholder="DD"
+                            maxlength="2"
+                            formControlName="day"
+                            [class.is-invalid]="
+                              (getControl(traveler, 'day')?.touched ||
+                                submitted) &&
+                              (getControl(traveler, 'day')?.invalid ||
+                                getControl(traveler, 'dateOfBirth')?.errors?.[
+                                  'ageRange'
+                                ] ||
+                                getControl(traveler, 'dateOfBirth')?.errors?.[
+                                  'infantTooOld'
+                                ] ||
+                                getControl(traveler, 'dateOfBirth')?.errors?.[
+                                  'infantFutureDate'
+                                ] ||
+                                getControl(traveler, 'dateOfBirth')?.errors?.[
+                                  'childTooOld'
+                                ] ||
+                                getControl(traveler, 'dateOfBirth')?.errors?.[
+                                  'childTooYoung'
+                                ])
+                            "
+                          />
+                        </div>
+
+                        <div class="dob-field ct-field dob-select">
+                          <span class="dob-placeholder">Month</span>
+                          <select
+                            formControlName="month"
+                            [class.is-invalid]="
+                              (getControl(traveler, 'month')?.touched ||
+                                submitted) &&
+                              (getControl(traveler, 'month')?.invalid ||
+                                getControl(traveler, 'dateOfBirth')?.errors?.[
+                                  'ageRange'
+                                ] ||
+                                getControl(traveler, 'dateOfBirth')?.errors?.[
+                                  'infantTooOld'
+                                ] ||
+                                getControl(traveler, 'dateOfBirth')?.errors?.[
+                                  'infantFutureDate'
+                                ] ||
+                                getControl(traveler, 'dateOfBirth')?.errors?.[
+                                  'childTooOld'
+                                ] ||
+                                getControl(traveler, 'dateOfBirth')?.errors?.[
+                                  'childTooYoung'
+                                ])
+                            "
+                          >
+                            <option value="" selected="true">Select</option>
+                            <option value="1">Jan</option>
+                            <option value="2">Feb</option>
+                            <option value="3">Mar</option>
+                            <option value="4">Apr</option>
+                            <option value="5">May</option>
+                            <option value="6">Jun</option>
+                            <option value="7">Jul</option>
+                            <option value="8">Aug</option>
+                            <option value="9">Sep</option>
+                            <option value="10">Oct</option>
+                            <option value="11">Nov</option>
+                            <option value="12">Dec</option>
+                          </select>
+                        </div>
+
+                        <div class="dob-field ct-field">
+                          <span class="dob-placeholder">Year</span>
+                          <input
+                            type="text"
+                            placeholder="YYYY"
+                            maxlength="4"
+                            formControlName="year"
+                            [class.is-invalid]="
+                              (getControl(traveler, 'year')?.touched ||
+                                submitted) &&
+                              (getControl(traveler, 'year')?.invalid ||
+                                getControl(traveler, 'dateOfBirth')?.errors?.[
+                                  'ageRange'
+                                ] ||
+                                getControl(traveler, 'dateOfBirth')?.errors?.[
+                                  'infantTooOld'
+                                ] ||
+                                getControl(traveler, 'dateOfBirth')?.errors?.[
+                                  'infantFutureDate'
+                                ] ||
+                                getControl(traveler, 'dateOfBirth')?.errors?.[
+                                  'childTooOld'
+                                ] ||
+                                getControl(traveler, 'dateOfBirth')?.errors?.[
+                                  'childTooYoung'
+                                ])
+                            "
+                          />
+                          <ng-container
+                            *ngIf="
+                              (getControl(traveler, 'dateOfBirth')?.touched ||
+                                submitted) &&
+                              getControl(traveler, 'dateOfBirth')?.invalid
+                            "
+                          >
+                            <div class="text-danger">
+                              <ng-container
+                                *ngIf="
+                                  getControl(traveler, 'dateOfBirth')?.errors?.[
+                                    'required'
+                                  ]
+                                "
+                              >
+                                <small
+                                  >Please provide a valid date of birth.</small
+                                >
+                              </ng-container>
+
+                              <ng-container
+                                *ngIf="
+                                  getControl(traveler, 'dateOfBirth')?.errors?.[
+                                    'futureDate'
+                                  ]
+                                "
+                              >
+                                <small
+                                  >Date of birth cannot be in the future.</small
+                                >
+                              </ng-container>
+
+                              <ng-container
+                                *ngIf="
+                                  getControl(traveler, 'dateOfBirth')?.errors?.[
+                                    'ageRange'
+                                  ]
+                                "
+                              >
+                                <small>
+                                  Age must be between
+                                  {{
+                                    getControl(traveler, "dateOfBirth")
+                                      ?.errors?.["ageRange"].requiredMin
+                                  }}
+                                  and
+                                  {{
+                                    getControl(traveler, "dateOfBirth")
+                                      ?.errors?.["ageRange"].requiredMax
+                                  }}
+                                  years.
+                                </small>
+                              </ng-container>
+
+                              <ng-container
+                                *ngIf="
+                                  getControl(traveler, 'dateOfBirth')?.errors?.[
+                                    'infantTooOld'
+                                  ]
+                                "
+                              >
+                                <small
+                                  >Infant must be younger than 2 years.</small
+                                >
+                              </ng-container>
+                            </div>
+                          </ng-container>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <p class="ct-note mb-0">
+                    Please make sure your contact information is correct. We'll
+                    use it to send your booking confirmation and reminders.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div formGroupName="billingInfo">
+              <div class="ct-card">
+                <div class="ct-head">
+                  <span class="ct-sub">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="18px"
+                      height="18px"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      class="icon icon-tabler icons-tabler-outline icon-tabler-receipt"
+                    >
+                      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                      <path
+                        d="M5 21v-16a2 2 0 0 1 2 -2h10a2 2 0 0 1 2 2v16l-3 -2l-2 2l-2 -2l-2 2l-2 -2l-3 2m4 -14h6m-6 4h6m-2 4h2"
+                      />
+                    </svg>
+                    Billing Information
+                  </span>
+
+                  <h3>Billing Details</h3>
+                  <p>As per the bank records or credit card company</p>
+                  <span class="ct-required">*Required field</span>
+                </div>
+
+                <div>
+                  <div class="row g-3">
+                    <div class="col-md-4">
+                      <div class="ct-field">
+                        <label>Address *</label>
+                        <input
+                          type="text"
+                          placeholder="Enter address"
+                          formControlName="street" [class.is-invalid]="
+                                    (billingInfo.get('street')?.touched || submitted) && billingInfo.get('street')?.invalid
+                                  " 
+                                  
+                        />
+                        <ng-container
+    *ngIf="
+        (billingInfo.get('street')?.touched || submitted) &&
+        billingInfo.get('street')?.invalid
+    "
+>
+    <div class="text-danger">
+
+        <ng-container
+            *ngIf="billingInfo.get('street')?.errors?.['required']"
+        >
+            <small>Please provide valid Address.</small>
+        </ng-container>
+
+    </div>
+</ng-container>
+                      </div>
+                    </div>
+
+                    <div class="col-md-4">
+                      <div class="ct-field">
+                        <label>Country *</label>
+
+                        <p-dropdown
+                          id="country"
+                          [options]="country"
+                          placeholder="Select"
+                          formControlName="Country"
+                          optionLabel="name"
+                          optionValue="code2"
+                          [filter]="true"
+                          inputId="title"
+                          [styleClass]="'c-select__input c-select__input--tel'"
+                          appendTo="body"
+                          (onChange)="onCountryState($event.value)"
+                          [class.is-invalid]="
+                            (billingInfo.get('Country')?.touched ||
+                              submitted) &&
+                            billingInfo.get('Country')?.invalid
+                          "
+                        >
+                        </p-dropdown>
+
+                        <ng-container
+                          *ngIf="
+                            billingInfo.get('Country')?.touched &&
+                            billingInfo.get('Country')?.invalid
+                          "
+                        >
+                          <div class="text-danger">
+                            <ng-container
+                              *ngIf="
+                                billingInfo.get('Country')?.errors?.['required']
+                              "
+                            >
+                              <small>Please select country.</small>
+                            </ng-container>
+                          </div>
+                        </ng-container>
+                      </div>
+                    </div>
+                       @if (hasStates) {
+                    <div class="col-md-4">
+                      <div class="ct-field">
+                        <label>State *</label>
+
+                        <p-dropdown
+                          id="state"
+                          [options]="state"
+                          placeholder="Select"
+                          formControlName="State"
+                          optionLabel="name" optionValue="code" [filter]="true" inputId="title"
+                          [styleClass]="'c-select__input c-select__input--tel'"
+                          appendTo="body"
+                          
+                          [class.is-invalid]="
+                            (billingInfo.get('State')?.touched || submitted) &&
+                            billingInfo.get('State')?.invalid
+                          "
+                        >
+                        </p-dropdown>
+
+                        <ng-container
+                          *ngIf="
+                            (billingInfo.get('State')?.touched || submitted) &&
+                            billingInfo.get('State')?.invalid
+                          "
+                        >
+                          <div class="text-danger">
+                            <ng-container
+                              *ngIf="
+                                billingInfo.get('State')?.errors?.['required']
+                              "
+                            >
+                              <small>Please select state.</small>
+                            </ng-container>
+                          </div>
+                        </ng-container>
+                      </div>
+                    </div>
+                }
+                 @if (!hasStates) {
+                    <div class="col-md-4">
+                      <div class="ct-field">
+                        <label>State *</label>
+                        <input
+                          type="text"
+                          formControlName="State"
+                          placeholder="Enter state"
+                          [class.is-invalid]="
+                            (billingInfo.get('State')?.touched || submitted) &&
+                            billingInfo.get('State')?.invalid
+                          "
+                        />
+                        <ng-container
+                          *ngIf="
+                            (billingInfo.get('State')?.touched || submitted) &&
+                            billingInfo.get('State')?.invalid
+                          "
+                        >
+                          <div class="text-danger">
+                            <ng-container
+                              *ngIf="
+                                billingInfo.get('State')?.errors?.['required']
+                              "
+                            >
+                              <small>Please select state.</small>
+                            </ng-container>
+                          </div>
+                        </ng-container>
+                      </div>
+                    </div>
+                }
+                    <div class="col-md-4">
+                      <div class="ct-field">
+                        <label>City *</label>
+                        <input
+                          type="text"
+                          placeholder="Enter city"
+                          formControlName="City" [class.is-invalid]="
+                                    (billingInfo.get('City')?.touched || submitted) && billingInfo.get('City')?.invalid
+                                  " 
+                        />
+                        <ng-container
+    *ngIf="
+        (billingInfo.get('City')?.touched || submitted) &&
+        billingInfo.get('City')?.invalid
+    "
+>
+    <div class="text-danger">
+        <ng-container
+            *ngIf="billingInfo.get('City')?.errors?.['required']"
+        >
+            <small>Please provide valid City.</small>
+        </ng-container>
+
+        <ng-container
+            *ngIf="billingInfo.get('City')?.errors?.['pattern']"
+        >
+            <small>Please provide valid City.</small>
+        </ng-container>
+    </div>
+</ng-container>
+                      </div>
+                    </div>
+    @if (hasZipCode) {
+                    <div class="col-md-4">
+                      <div class="ct-field">
+                        <label>Zipcode *</label>
+                        <input
+                          type="text"
+                          placeholder="Enter ZIP code"
+                          formControlName="ZipCode" [class.is-invalid]="
+                                    (billingInfo.get('ZipCode')?.touched || submitted) && billingInfo.get('ZipCode')?.invalid
+                                  " 
+                        />
+                        <ng-container
+    *ngIf="
+        (billingInfo.get('ZipCode')?.touched || submitted) &&
+        billingInfo.get('ZipCode')?.invalid
+    "
+>
+    <div class="text-danger">
+
+        <ng-container
+            *ngIf="billingInfo.get('ZipCode')?.errors?.['required']"
+        >
+            <small>Please provide valid Zip Code.</small>
+        </ng-container>
+
+        <ng-container
+            *ngIf="billingInfo.get('ZipCode')?.errors?.['pattern']"
+        >
+            <small>Please provide valid Zip Code.</small>
+        </ng-container>
+
+    </div>
+</ng-container>
+                      </div>
+                    </div>
+                }
+                  </div>
+                  <!--  -->
+                </div>
+              </div>
+
+              <div class="ct-card">
+                <div class="ct-head">
+                  <span class="ct-sub"
+                    ><svg
+                      width="18px"
+                      height="18px"
+                      viewBox="0 0 1024 1024"
+                      fill="#000000"
+                      class="icon"
+                      version="1.1"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                      <g
+                        id="SVGRepo_tracerCarrier"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      ></g>
+                      <g id="SVGRepo_iconCarrier">
+                        <path
+                          d="M935.974 815.98h-166.006c-11.264 0-25.17-6.514-32.386-15.17l-59.498-71.402c-8.154-9.764-8.154-25.076 0-34.842l59.498-71.402c7.216-8.654 21.124-15.17 32.386-15.17h166.006c13.234 0 23.998 10.766 23.998 23.998v159.99c0 13.234-10.764 23.998-23.998 23.998z m-166.006-191.988c-6.42 0-15.982 4.484-20.108 9.422l-59.496 71.402c-3.188 3.812-3.188 10.532 0 14.344l59.496 71.4c4.124 4.938 13.688 9.422 20.108 9.422h166.006c4.406 0 8-3.594 8-8v-159.99c0-4.406-3.594-8-8-8h-166.006z"
+                          fill=""
+                        ></path>
+                        <path
+                          d="M807.982 767.984c-30.874 0-55.996-25.124-55.996-55.996s25.124-55.996 55.996-55.996 55.998 25.124 55.998 55.996-25.124 55.996-55.998 55.996z m0-95.994c-22.06 0-39.998 17.936-39.998 39.998 0 22.06 17.938 39.996 39.998 39.996s39.998-17.936 39.998-39.996c0-22.062-17.938-39.998-39.998-39.998z"
+                          fill=""
+                        ></path>
+                        <path
+                          d="M807.982 735.986c-13.232 0-23.998-10.766-23.998-23.998 0-13.234 10.766-24 23.998-24 13.234 0 23.998 10.766 23.998 24 0 13.232-10.764 23.998-23.998 23.998z m0-31.998c-4.404 0-7.998 3.594-7.998 8s3.594 8 7.998 8c4.406 0 8-3.594 8-8s-3.594-8-8-8zM312.49 304.012c-4.414 0-8.078-3.578-8.078-8 0-4.422 3.5-8 7.922-8h0.156a7.994 7.994 0 0 1 7.998 8c0 4.422-3.578 8-7.998 8zM312.49 272.014c-4.414 0-8.078-3.578-8.078-8 0-4.422 3.5-8 7.922-8h0.156a7.994 7.994 0 0 1 7.998 8c0 4.422-3.578 8-7.998 8zM312.49 240.016c-4.414 0-8.078-3.578-8.078-8 0-4.422 3.5-8 7.922-8h0.156a7.994 7.994 0 0 1 7.998 8c0 4.422-3.578 8-7.998 8zM312.49 208.018c-4.414 0-8.078-3.578-8.078-8 0-4.422 3.5-8 7.922-8h0.156a7.994 7.994 0 0 1 7.998 8c0 4.422-3.578 8-7.998 8zM312.49 176.02c-4.414 0-8.078-3.578-8.078-8 0-4.422 3.5-8 7.922-8h0.156a7.994 7.994 0 0 1 7.998 8c0 4.422-3.578 8-7.998 8zM312.49 144.022c-4.414 0-8.078-3.578-8.078-8 0-4.422 3.5-8 7.922-8h0.156a7.994 7.994 0 0 1 7.998 8c0 4.422-3.578 8-7.998 8z"
+                          fill=""
+                        ></path>
+                        <path
+                          d="M583.996 352.01c-4.422 0-8-3.578-8-8V79.23c-15.654-3.204-27.996-15.546-31.184-31.202H255.21c-3.188 15.656-15.544 27.998-31.194 31.202v264.78c0 4.422-3.578 8-7.998 8-4.422 0-8-3.578-8-8V72.028c0-4.422 3.578-8 8-8 13.232 0 23.998-10.766 23.998-23.998 0-4.422 3.578-8 8-8h303.98c4.422 0 8 3.578 8 8 0 13.232 10.766 23.998 23.998 23.998 4.422 0 8 3.578 8 8v271.982a7.992 7.992 0 0 1-7.998 8z"
+                          fill=""
+                        ></path>
+                        <path
+                          d="M615.994 352.01a7.994 7.994 0 0 1-7.998-8V16.03H192.02v327.98c0 4.422-3.578 8-7.998 8-4.422 0-8-3.578-8-8V8.032c0-4.422 3.578-8 8-8h431.972c4.422 0 8 3.578 8 8v335.978c0 4.422-3.578 8-8 8z"
+                          fill=""
+                        ></path>
+                        <path
+                          d="M488.002 320.012c-4.422 0-8-3.578-8-8V120.024c0-4.42 3.578-8 8-8s8 3.578 8 8v191.988c0 4.422-3.578 8-8 8zM440.006 304.012h-79.996c-4.422 0-8-3.578-8-8 0-4.422 3.578-8 8-8h79.996a7.994 7.994 0 0 1 7.998 8c0 4.422-3.578 8-7.998 8zM416.006 256.016h-31.998c-17.646 0-31.998-14.358-31.998-31.998s14.352-31.998 31.998-31.998h31.998c17.648 0 31.998 14.358 31.998 31.998s-14.35 31.998-31.998 31.998z m-31.998-47.998c-8.818 0-15.998 7.17-15.998 16s7.18 16 15.998 16h31.998c8.82 0 16-7.17 16-16s-7.18-16-16-16h-31.998zM416.006 176.02h-31.998c-17.646 0-31.998-14.358-31.998-31.998s14.352-31.998 31.998-31.998h31.998c17.648 0 31.998 14.358 31.998 31.998s-14.35 31.998-31.998 31.998z m-31.998-47.996c-8.818 0-15.998 7.172-15.998 16s7.18 16 15.998 16h31.998c8.82 0 16-7.172 16-16s-7.18-16-16-16h-31.998z"
+                          fill=""
+                        ></path>
+                        <path
+                          d="M376.01 320.012a7.976 7.976 0 0 1-5.656-2.344l-16-16a8 8 0 1 1 11.312-11.312l15.998 16a8 8 0 0 1-5.654 13.656zM440.006 320.012c-4.422 0-8-3.578-8-8v-31.998c0-4.42 3.578-8 8-8a7.994 7.994 0 0 1 7.998 8v31.998c0 4.422-3.578 8-7.998 8zM735.52 352.01c-0.688 0-1.376-0.094-2.062-0.266a7.994 7.994 0 0 1-5.656-9.812l43.714-163.146c-6.984-3.454-12.794-8.89-16.78-15.78-3.984-6.906-5.782-14.656-5.282-22.436l-98.682-26.436a7.994 7.994 0 0 1-5.656-9.812c1.124-4.25 5.562-6.704 9.782-5.656l105.65 28.31c2.062 0.562 3.81 1.89 4.874 3.734s1.344 4.032 0.782 6.078c-1.656 6.202-0.812 12.67 2.39 18.216s8.376 9.5 14.578 11.156a7.986 7.986 0 0 1 5.658 9.812l-45.592 170.114a8.002 8.002 0 0 1-7.718 5.924z"
+                          fill=""
+                        ></path>
+                        <path
+                          d="M768.672 352.01c-0.688 0-1.376-0.094-2.062-0.266a7.984 7.984 0 0 1-5.654-9.796L818.78 126.024l-168.006-45.012a7.992 7.992 0 0 1-5.656-9.812c1.124-4.25 5.562-6.704 9.782-5.656l175.738 47.09a7.982 7.982 0 0 1 5.656 9.796l-59.902 223.642c-0.938 3.578-4.188 5.938-7.72 5.938zM903.976 512c-4.422 0-8-3.578-8-8 0-39.7-32.292-71.996-71.994-71.996-4.422 0-8-3.578-8-8 0-4.422 3.578-8 8-8 48.528 0 87.994 39.482 87.994 87.994a7.996 7.996 0 0 1-8 8.002z"
+                          fill=""
+                        ></path>
+                        <path
+                          d="M823.982 1023.968H120.026c-4.422 0-8-3.578-8-8s3.578-8 8-8h703.958c39.702 0 71.994-32.292 71.994-71.994 0-4.422 3.578-8 8-8s8 3.578 8 8c-0.002 48.512-39.468 87.994-87.996 87.994z"
+                          fill=""
+                        ></path>
+                        <path
+                          d="M903.976 441.348c-4.422 0-8-3.578-8-8v-25.342c0-39.7-32.292-71.996-71.994-71.996-4.422 0-8-3.578-8-8 0-4.422 3.578-8 8-8 48.528 0 87.994 39.482 87.994 87.994v25.342a7.996 7.996 0 0 1-8 8.002z"
+                          fill=""
+                        ></path>
+                        <path
+                          d="M120.026 432.004c-30.874 0-55.998-25.124-55.998-55.998 0-4.42 3.578-8 8-8s8 3.578 8 8c0 22.062 17.944 39.998 39.998 39.998a7.994 7.994 0 0 1 7.998 8c0 4.422-3.578 8-7.998 8z"
+                          fill=""
+                        ></path>
+                        <path
+                          d="M120.026 1023.968c-30.874 0-55.998-25.124-55.998-55.996 0-4.422 3.578-8 8-8s8 3.578 8 8c0 22.06 17.944 39.996 39.998 39.996 4.42 0 7.998 3.578 7.998 8s-3.578 8-7.998 8z"
+                          fill=""
+                        ></path>
+                        <path
+                          d="M72.028 384.008c-4.422 0-8-3.578-8-8 0-30.874 25.124-55.996 55.998-55.996a7.994 7.994 0 0 1 7.998 8c0 4.42-3.578 8-7.998 8-22.054 0-39.998 17.936-39.998 39.998a7.994 7.994 0 0 1-8 7.998z"
+                          fill=""
+                        ></path>
+                        <path
+                          d="M823.982 432.004H120.026c-4.422 0-8-3.578-8-8 0-4.422 3.578-8 8-8h703.958a7.994 7.994 0 0 1 7.998 8 7.998 7.998 0 0 1-8 8z"
+                          fill=""
+                        ></path>
+                        <path
+                          d="M807.982 384.008H136.024c-4.422 0-8-3.578-8-8 0-4.42 3.578-8 8-8h671.958c4.422 0 8 3.578 8 8 0 4.422-3.578 8-8 8z"
+                          fill=""
+                        ></path>
+                        <path
+                          d="M72.028 975.972c-4.422 0-8-3.578-8-8V376.008c0-4.42 3.578-8 8-8s8 3.578 8 8v591.964c0 4.422-3.578 8-8 8z"
+                          fill=""
+                        ></path>
+                        <path
+                          d="M823.982 336.01h-16a7.994 7.994 0 0 1-7.998-8c0-4.422 3.578-8 7.998-8h16a7.994 7.994 0 0 1 7.998 8c0 4.422-3.578 8-7.998 8z"
+                          fill=""
+                        ></path>
+                        <path
+                          d="M152.024 336.01H120.026c-4.422 0-8-3.578-8-8 0-4.422 3.578-8 8-8h31.998a7.994 7.994 0 0 1 7.998 8c0 4.422-3.578 8-7.998 8z"
+                          fill=""
+                        ></path>
+                        <path
+                          d="M152.024 480.002h-16c-4.422 0-8-3.578-8-8 0-4.42 3.578-8 8-8h16a7.994 7.994 0 0 1 7.998 8c0 4.422-3.578 8-7.998 8zM776.734 480.002h-31.216a7.984 7.984 0 0 1-7.998-8c0-4.42 3.56-8 7.998-8h31.216c4.438 0 8 3.578 8 8 0 4.422-3.562 8-8 8z m-62.464 0h-31.232a7.994 7.994 0 0 1-7.998-8c0-4.42 3.576-8 7.998-8h31.232c4.422 0 8 3.578 8 8 0 4.422-3.578 8-8 8z m-62.466 0h-31.248c-4.406 0-8-3.578-8-8 0-4.42 3.594-8 8-8h31.248c4.406 0 8 3.578 8 8 0 4.422-3.594 8-8 8z m-62.48 0h-31.232c-4.422 0-8-3.578-8-8 0-4.42 3.578-8 8-8h31.232c4.422 0 8 3.578 8 8 0 4.422-3.578 8-8 8z m-62.472 0H495.62c-4.422 0-8-3.578-8-8 0-4.42 3.578-8 8-8h31.232a7.984 7.984 0 0 1 7.992 8c0 4.422-3.562 8-7.992 8z m-62.474 0h-31.232c-4.422 0-8-3.578-8-8 0-4.42 3.578-8 8-8h31.232c4.422 0 8 3.578 8 8 0 4.422-3.578 8-8 8z m-62.472 0h-31.232c-4.422 0-8-3.578-8-8 0-4.42 3.578-8 8-8h31.232c4.422 0 8 3.578 8 8 0 4.422-3.578 8-8 8z m-62.472 0h-31.232c-4.422 0-8-3.578-8-8 0-4.42 3.578-8 8-8h31.232c4.422 0 8 3.578 8 8 0 4.422-3.578 8-8 8z m-62.474 0h-31.232c-4.422 0-8-3.578-8-8 0-4.42 3.578-8 8-8h31.232a7.994 7.994 0 0 1 7.998 8c0 4.422-3.576 8-7.998 8z m-62.472 0H183.256c-4.422 0-8-3.578-8-8 0-4.42 3.578-8 8-8h31.232a7.994 7.994 0 0 1 7.998 8c0 4.422-3.576 8-7.998 8zM823.982 480.002h-16a7.994 7.994 0 0 1-7.998-8c0-4.42 3.578-8 7.998-8h16a7.994 7.994 0 0 1 7.998 8c0 4.422-3.578 8-7.998 8z"
+                          fill=""
+                        ></path>
+                        <path
+                          d="M152.024 975.988h-16c-4.422 0-8-3.578-8-8s3.578-8 8-8h16c4.42 0 7.998 3.578 7.998 8s-3.578 8-7.998 8zM776.734 975.988h-31.216c-4.438 0-7.998-3.578-7.998-8s3.56-8 7.998-8h31.216c4.438 0 8 3.578 8 8s-3.562 8-8 8z m-62.464 0h-31.232c-4.422 0-7.998-3.578-7.998-8s3.576-8 7.998-8h31.232c4.422 0 8 3.578 8 8s-3.578 8-8 8z m-62.466 0h-31.248c-4.406 0-8-3.578-8-8s3.594-8 8-8h31.248c4.406 0 8 3.578 8 8s-3.594 8-8 8z m-62.48 0h-31.232c-4.422 0-8-3.578-8-8s3.578-8 8-8h31.232c4.422 0 8 3.578 8 8s-3.578 8-8 8z m-62.472 0H495.62c-4.422 0-8-3.578-8-8s3.578-8 8-8h31.232c4.43 0 7.992 3.578 7.992 8s-3.562 8-7.992 8z m-62.474 0h-31.232c-4.422 0-8-3.578-8-8s3.578-8 8-8h31.232c4.422 0 8 3.578 8 8s-3.578 8-8 8z m-62.472 0h-31.232c-4.422 0-8-3.578-8-8s3.578-8 8-8h31.232c4.422 0 8 3.578 8 8s-3.578 8-8 8z m-62.472 0h-31.232c-4.422 0-8-3.578-8-8s3.578-8 8-8h31.232c4.422 0 8 3.578 8 8s-3.578 8-8 8z m-62.474 0h-31.232c-4.422 0-8-3.578-8-8s3.578-8 8-8h31.232c4.422 0 7.998 3.578 7.998 8s-3.576 8-7.998 8z m-62.472 0H183.256c-4.422 0-8-3.578-8-8s3.578-8 8-8h31.232c4.422 0 7.998 3.578 7.998 8s-3.576 8-7.998 8zM823.982 975.988h-16c-4.42 0-7.998-3.578-7.998-8s3.578-8 7.998-8h16c4.42 0 7.998 3.578 7.998 8s-3.578 8-7.998 8z"
+                          fill=""
+                        ></path>
+                        <path
+                          d="M903.976 591.996c-4.422 0-8-3.578-8-8V504c0-4.42 3.578-8 8-8s8 3.578 8 8v79.996c0 4.422-3.578 8-8 8z"
+                          fill=""
+                        ></path>
+                        <path
+                          d="M903.976 943.972c-4.422 0-8-3.578-8-7.998V839.98c0-4.422 3.578-8 8-8s8 3.578 8 8v95.994a7.994 7.994 0 0 1-8 7.998z"
+                          fill=""
+                        ></path>
+                      </g>
+                    </svg>
+                    Payment Details
+                  </span>
+
+                  <h3>Payment Information</h3>
+                  <p>Secured Encrypted Transaction</p>
+                  <span class="ct-required">*Required field</span>
+                </div>
+
+                <div>
+                  <div class="row g-3">
+                    <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12">
+                      <div class="ct-field">
+                        <label>Credit / Debit Card Number *</label>
+                        <input
+                          type="text"
+                          placeholder="Enter card number"
+                          formControlName="CardNumber"
+                          (input)="onCardNumberInput()"
+                          [class.is-invalid]="
+                            (billingInfo.get('CardNumber')?.touched ||
+                              submitted) &&
+                            billingInfo.get('CardNumber')?.invalid
+                          "
+                        />
+                        <ng-container
+                          *ngIf="
+                            (billingInfo.get('CardNumber')?.touched ||
+                              submitted) &&
+                            billingInfo.get('CardNumber')?.invalid
+                          "
+                        >
+                          <div class="text-danger">
+                            <ng-container
+                              *ngIf="
+                                billingInfo.get('CardNumber')?.errors?.[
+                                  'invalidCardType'
+                                ]
+                              "
+                            >
+                              <small>Invalid card number.</small>
+                            </ng-container>
+
+                            <ng-container
+                              *ngIf="
+                                billingInfo.get('CardNumber')?.errors?.[
+                                  'required'
+                                ]
+                              "
+                            >
+                              <small>Please provide a valid card number.</small>
+                            </ng-container>
+
+                            <ng-container
+                              *ngIf="
+                                !billingInfo.get('CardNumber')?.errors?.[
+                                  'invalidCardType'
+                                ] &&
+                                billingInfo.get('CardNumber')?.errors?.[
+                                  'invalidLength'
+                                ]
+                              "
+                            >
+                              <small>Invalid card number length.</small>
+                            </ng-container>
+                          </div>
+                        </ng-container>
+                      </div>
+                    </div>
+
+                    <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12">
+                      <div class="ct-field">
+                        <label>Card Holder's Name *</label>
+                        <input
+                          type="text"
+                          placeholder="Enter card holder's name"
+                          formControlName="cardHolder"
+                          [class.is-invalid]="
+                            (billingInfo.get('cardHolder')?.touched ||
+                              submitted) &&
+                            billingInfo.get('cardHolder')?.invalid
+                          "
+                        />
+                        <ng-container
+                          *ngIf="
+                            (billingInfo.get('cardHolder')?.touched ||
+                              submitted) &&
+                            billingInfo.get('cardHolder')?.invalid
+                          "
+                        >
+                          <div class="text-danger">
+                            <ng-container
+                              *ngIf="
+                                billingInfo.get('cardHolder')?.errors?.[
+                                  'required'
+                                ]
+                              "
+                            >
+                              <small
+                                >Please provide the name on your card.</small
+                              >
+                            </ng-container>
+                          </div>
+                        </ng-container>
+                      </div>
+                    </div>
+
+                    <div class="col-xl-2 col-lg-4 col-md-4 col-sm-4 col-8">
+                      <div class="dob-field ct-field">
+                        <span class="dob-placeholder">Expiry Date *</span>
+                        <input
+                          type="text"
+                          id="cvvexpiry"
+                          inputmode="numeric"
+                          placeholder="MM/YY"
+                          formControlName="ExpiryDate"
+                          maxlength="5"
+                          (input)="onExpiryInput($event)"
+                          [class.is-invalid]="
+                            (billingInfo.get('ExpiryDate')?.touched ||
+                              submitted) &&
+                            billingInfo.get('ExpiryDate')?.invalid
+                          "
+                        /><ng-container
+                          *ngIf="
+                            (billingInfo.get('ExpiryDate')?.touched ||
+                              submitted) &&
+                            billingInfo.get('ExpiryDate')?.invalid
+                          "
+                        >
+                          <div class="text-danger">
+                            <ng-container
+                              *ngIf="
+                                billingInfo.get('ExpiryDate')?.errors?.[
+                                  'required'
+                                ]
+                              "
+                            >
+                              <small
+                                >Please select a valid expiration date.</small
+                              >
+                            </ng-container>
+
+                            <ng-container
+                              *ngIf="
+                                billingInfo.get('ExpiryDate')?.errors?.[
+                                  'pattern'
+                                ]
+                              "
+                            >
+                              <small>Format must be MM/YY.</small>
+                            </ng-container>
+
+                            <ng-container
+                              *ngIf="
+                                !billingInfo.get('ExpiryDate')?.errors?.[
+                                  'pattern'
+                                ] &&
+                                billingInfo.get('ExpiryDate')?.errors?.[
+                                  'yearRange'
+                                ]
+                              "
+                            >
+                              <small>
+                                Expiration year must be within the next 30
+                                years.
+                              </small>
+                            </ng-container>
+                          </div>
+                        </ng-container>
+                      </div>
+                    </div>
+
+                    <div class="col-xl-2 col-lg-4 col-md-4 col-sm-4 col-4">
+                      <div class="ct-field">
+                        <label>CVV Code *</label>
+                        <input
+                          type="text"
+                          id="cvv"
+                          placeholder="Enter CVV"
+                          inputmode="numeric"
+                          formControlName="CVV"
+                          minlength="3"
+                          maxlength="4"
+                          (input)="onCvvInput($event)"
+                          [class.is-invalid]="
+                            (billingInfo.get('CVV')?.touched || submitted) &&
+                            billingInfo.get('CVV')?.invalid
+                          "
+                        /><ng-container
+                          *ngIf="
+                            (billingInfo.get('CVV')?.touched || submitted) &&
+                            billingInfo.get('CVV')?.invalid
+                          "
+                        >
+                          <div class="text-danger">
+                            <ng-container
+                              *ngIf="
+                                billingInfo.get('CVV')?.errors?.['required']
+                              "
+                            >
+                              <small
+                                >Please provide a valid security code.</small
+                              >
+                            </ng-container>
+
+                            <ng-container
+                              *ngIf="
+                                billingInfo.get('CVV')?.errors?.['minlength']
+                              "
+                            >
+                              <small>Invalid.</small>
+                            </ng-container>
+
+                            <ng-container
+                              *ngIf="
+                                billingInfo.get('CVV')?.errors?.['maxlength']
+                              "
+                            >
+                              <small>Invalid.</small>
+                            </ng-container>
+                          </div>
+                        </ng-container>
+                      </div>
+                    </div>
+
+                    <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4">
+                      <div class="ct-field">
+                        <label>Email *</label>
+                        <input
+                          type="email"
+                          id="email"
+                          class="c-form-group__input"
+                          placeholder="Enter email address"
+                          formControlName="email"
+                          appValidate="email"
+                          [class.is-invalid]="
+                            (billingInfo.get('email')?.touched || submitted) &&
+                            billingInfo.get('email')?.invalid
+                          "
+                        /><ng-container
+                          *ngIf="
+                            (billingInfo.get('email')?.touched || submitted) &&
+                            billingInfo.get('email')?.invalid
+                          "
+                        >
+                          <div class="text-danger">
+                            <ng-container
+                              *ngIf="
+                                billingInfo.get('email')?.errors?.['required']
+                              "
+                            >
+                              <small>Please provide valid email.</small>
+                            </ng-container>
+                          </div>
+                        </ng-container>
+                      </div>
+                    </div>
+
+                    <div class="col-xl-2 col-lg-4 col-md-4 col-sm-4 col-4">
+                      <div class="ct-field ct-intl">
+                        <label for="code">Code *</label>
+
+                        <ngx-intl-tel-input
+                          [cssClass]="'c-payment-details-contact__input'"
+                          [preferredCountries]="preferredCountries"
+                          [enableAutoCountrySelect]="true"
+                          [enablePlaceholder]="false"
+                          [searchCountryFlag]="true"
+                          [searchCountryField]="[
+                            SearchCountryField.Iso2,
+                            SearchCountryField.Name,
+                          ]"
+                          [selectFirstCountry]="true"
+                          [selectedCountryISO]="selectedCountryISO"
+                          [separateDialCode]="true"
+                          [phoneValidation]="false"
+                          formControlName="phoneCode"
+                          name="phoneCode"
+                          (countryChange)="onCountryChange($event)"
+                          (click)="addActiveClass()"
+                        >
+                        </ngx-intl-tel-input>
+                      </div>
+                    </div>
+
+                    <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-8">
+                      <div class="ct-field">
+                        <label for="phone">
+                          Phone Number<span class="u-text-required">*</span>
+                        </label>
+
+                        <input
+                          type="tel"
+                          id="phone"
+                          inputmode="numeric"
+                          class=""
+                          placeholder="Enter phone number"
+                          formControlName="phoneNumber"
+                          maxlength="15"
+                          [class.is-invalid]="
+                            (billingInfo.get('phoneNumber')?.touched ||
+                              submitted) &&
+                            billingInfo.get('phoneNumber')?.invalid
+                          "
+                        />
+
+                        <div
+                          *ngIf="
+                            billingInfo.get('phoneNumber')?.touched &&
+                            billingInfo.get('phoneNumber')?.invalid
+                          "
+                          class="text-danger"
+                        >
+                          <div
+                            *ngIf="
+                              billingInfo.get('phoneNumber')?.errors?.[
+                                'required'
+                              ]
+                            "
+                          >
+                            Please provide a valid phone number.
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <p class="ct-note mb-0">
+                    Your card may be charged by the domain or directly by the
+                    Hotel, depending on the fare selected.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="belowconf-info">
+              <div class="text-sec-links">
+                By proceeding with this booking, I agree to
+                <a [routerLink]="['/terms-and-conditions']"
+                  >Terms & Conditions</a
+                >
+                and <a [routerLink]="['/privacy-policy']">Privacy Policy</a>.
+              </div>
+
+              <button
+                type="button"
+                class="btn-primarysec"
+                (click)="onComplete($event)"
+              >
+                Continue to Booking
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="psc-sheet">
+    <!-- Price Summary Panel -->
+    <div class="psc-panel" id="pscPanel" [class.is-open]="pscPanelOpen">
+      <div class="psc-panel__handle">
+        <span></span>
+      </div>
+
+      <h3 class="psc-panel__title">Price Summary</h3>
+
+      <div class="psc-panel__body">
+        <!-- Room × Nights -->
+        <div class="psc-row">
+          <span class="psc-row__label">
+            {{ room }} room{{ room > 1 ? "s" : "" }}
+            ×
+            {{ noOfNights }} night{{ noOfNights > 1 ? "s" : "" }}
+          </span>
+
+          <span class="psc-row__value">
+            ${{ getFormattedPrice(getPricePerNightRate(rateDetails)).integer }}
+            <sup>
+              .{{
+                getFormattedPrice(getPricePerNightRate(rateDetails)).decimal
+              }}
+            </sup>
+          </span>
+        </div>
+
+        <!-- Taxes & Fees -->
+        <div class="psc-row">
+          <span
+            class="psc-row__label psc-row__label--muted"
+            [pTooltip]="taxTooltipContent"
+            [tooltipStyleClass]="'price-tool-tip'"
+            tooltipEvent="focus"
+            tooltipPosition="top"
+            tabindex="0"
+          >
+            Taxes &amp; fees and charges
+
+            <i class="fa-regular fa-circle-question"></i>
+          </span>
+
+          <span class="psc-row__value psc-row__value--muted">
+            @if (rateDetails?.includesTaxes) {
+              Included
+            } @else {
+              ${{
+                getFormattedPrice(rateDetails?.perNightTaxesAndFees).integer
+              }}
+
+              <sup>
+                .{{
+                  getFormattedPrice(rateDetails?.perNightTaxesAndFees).decimal
+                }}
+              </sup>
+            }
+          </span>
+        </div>
+
+        <!-- Resort Fee -->
+        @if (hasExcludedFee(hotelDetails?.fare)) {
+          <div class="psc-row">
+            <span class="psc-row__label psc-row__label--muted">
+              Resort Fee ({{
+                formatPrice(getExcludedFeeAmount(hotelDetails?.fare))
+              }})
+            </span>
+
+            <span class="psc-row__value psc-row__value--muted">
+              Pay Later
+            </span>
+          </div>
+        }
+
+        <!-- Total -->
+        <div class="psc-row psc-row--total">
+          <span
+            class="psc-row__label"
+            [pTooltip]="taxTotal"
+            [tooltipStyleClass]="'price-tool-tip'"
+            tooltipEvent="focus"
+            tooltipPosition="top"
+            tabindex="0"
+          >
+            Net Amount Payable
+
+            <i class="fa-regular fa-circle-question"></i>
+          </span>
+
+          <span class="psc-row__value">
+            ${{ getFormattedPrice(getTotalPriceRate(rateDetails)).integer }}
+
+            <sup>
+              .{{ getFormattedPrice(getTotalPriceRate(rateDetails)).decimal }}
+            </sup>
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mobile Bottom Bar -->
+    <div class="psc-bar" id="pscToggle">
+      <div class="psc-bar__price-block">
+        <span class="psc-bar__price">
+          ${{ getFormattedPrice(getTotalPriceRate(rateDetails)).integer }}.
+
+          <sup>
+            {{ getFormattedPrice(getTotalPriceRate(rateDetails)).decimal }}
+          </sup>
+
+          <i
+            class="fa-solid"
+            id="pscChevron"
+            [class.fa-chevron-down]="!pscPanelOpen"
+            [class.fa-chevron-up]="pscPanelOpen"
+            (click)="togglePscPanel($event)"
+          ></i>
+        </span>
+
+        <span class="psc-bar__label"> Total Price </span>
+      </div>
+
+      <button type="button" class="psc-bar__btn" (click)="onComplete($event)">
+        Complete Booking
+      </button>
+    </div>
+  </div>
+</section>
+
+<ng-template #taxTooltipContent>
+  <div class="price-tooltip-inner-content">
+    <span class="price-tooltip-inner-content--validity"
+      >Taxes and fees include U.S. and international government taxes,
+      airline-imposed charges, and Domain service fees.</span
+    >
+  </div>
+</ng-template>
+
+<ng-template #taxTotal>
+  <div class="price-tooltip-inner-content">
+    <span class="price-tooltip-inner-content--validity"
+      >Total price includes base price,
+      <a (click)="onrouteTax()" class="o-text-link">taxes & fees</a> and our
+      service fees</span
+    >
+  </div>
+</ng-template>

@@ -1,0 +1,17 @@
+<div class="top-destination-wrapper common-sec-pb-space">
+  <h2 class="title">
+    <strong>Top</strong> <span class="highlight"> Destinations</span>
+  </h2>
+
+  <div class="destination-table-wrap table-responsive c-scrollbar">
+    <table class="destination-table">
+      <tbody>
+        <tr *ngFor="let row of destinationRows">
+          <td *ngFor="let destination of row" [routerLink]="getRoute(destination)">
+            <span >{{ destination }}</span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

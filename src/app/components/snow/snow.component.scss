@@ -1,0 +1,56 @@
+.snow-wrapper {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9999;
+  overflow: hidden;
+}
+
+.snowflake {
+  position: absolute;
+  top: -10px;
+  width: 3px;
+  height: 3px;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 50%;
+  animation-name: fall;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+/* -------- DESKTOP (default) -------- */
+@for $i from 1 through 300 {
+  .snowflake:nth-child(#{$i}) {
+    left: random(100) * 1%;
+    animation-duration: random(10) + 8s; // 8s – 18s
+    animation-delay: random(12) * -1s;
+    opacity: random(6) * 0.15 + 0.3;
+
+    // random size variation
+    width: random(4) + 2px;
+    height: random(4) + 2px;
+  }
+}
+
+/* -------- MOBILE -------- */
+@media (max-width: 768px) {
+  .snowflake:nth-child(n+120) {
+    display: none;
+  }
+
+  .snowflake {
+    width: 2px;
+    height: 2px;
+    opacity: 0.6;
+  }
+}
+
+/* -------- KEYFRAMES -------- */
+@keyframes fall {
+  0% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(110vh);
+  }
+}

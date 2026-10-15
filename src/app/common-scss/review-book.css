@@ -1,0 +1,851 @@
+/* ===== pkgrev = package-review (unique BEM prefix) ===== */
+
+.pkgrev {
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.pkgrev__card {
+  background-color: rgba(var(--white-color), 1);
+  border: 1px solid #e5e8ec;
+  border-radius: 10px;
+  overflow: visible;
+}
+
+/* ---- Good choice banner ---- */
+
+.pkgrev__banner {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 18px;
+  font-size: 14px;
+  color: #3c4753;
+}
+
+.pkgrev__banner i.fa-thumbs-up {
+  color: #1a8f4c;
+  font-size: 15px;
+}
+
+.pkgrev__banner strong {
+  color: #1a8f4c;
+  font-weight: 700;
+}
+
+.pkgrev__info-trigger {
+  background: none;
+  border: none;
+  padding: 0;
+  margin-left: 2px;
+  color: #8994a1;
+  cursor: pointer;
+  font-size: 13px;
+  display: inline-flex;
+  position: relative;
+}
+
+.pkgrev__info-trigger:hover,
+.pkgrev__info-trigger:focus-visible {
+  color: #4a5563;
+  outline: none;
+}
+
+/* ---- Shared tooltip ---- */
+
+.pkgrev__tip {
+  position: absolute;
+  top: calc(100% + 10px);
+  left: 0;
+  z-index: 40;
+  width: 260px;
+  max-width: 82vw;
+  background-color: rgba(var(--white-color), 1);
+  border: 1px solid #e5e8ec;
+  border-radius: 10px;
+  box-shadow: 0 14px 32px rgba(20, 30, 50, 0.18);
+  padding: 12px 14px;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(4px);
+  transition:
+    opacity 0.15s ease,
+    transform 0.15s ease,
+    visibility 0.15s;
+  text-align: left;
+  font-weight: 400;
+  white-space: normal;
+}
+
+.pkgrev__tip.is-open {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.pkgrev__tip::before {
+  content: "";
+  position: absolute;
+  top: -6px;
+  right: 14px;
+  width: 12px;
+  height: 12px;
+  background-color: rgba(var(--white-color), 1);
+  border-left: 1px solid #e5e8ec;
+  border-top: 1px solid #e5e8ec;
+  transform: rotate(45deg);
+}
+.pkgrev__banner .pkgrev__tip::before {
+  right: auto;
+  left: 14px;
+}
+.pkgrev__link--more .pkgrev__tip::before {
+  right: auto;
+  left: 14px;
+}
+
+.pkgrev__tip-title {
+  font-size: 13.5px;
+  font-weight: 700;
+  color: #14202e;
+  margin: 0 0 6px;
+}
+
+.pkgrev__tip-row {
+  font-size: 12.5px;
+  color: #4a5563;
+  margin-bottom: 3px;
+}
+
+.pkgrev__tip-row strong {
+  color: #14202e;
+}
+
+/* ---- Hotel card ---- */
+
+.pkgrev__hotel {
+  display: flex;
+  padding: 18px;
+  gap: 18px;
+  align-items: stretch;
+  flex-wrap: wrap;
+}
+
+.pkgrev__hotel-img {
+  position: relative;
+  width: 200px;
+  height: 150px;
+  border-radius: 8px;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.pkgrev__hotel-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.pkgrev__hotel-stars {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  background-color: #14202e;
+  color: rgba(var(--white-color), 1);
+  font-size: 11px;
+  font-weight: 700;
+  padding: 2px 7px;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  gap: 3px;
+}
+
+.pkgrev__hotel-stars i {
+  font-size: 9px;
+  color: #ffcc33;
+}
+
+.pkgrev__hotel-body {
+  flex: 1;
+  min-width: 260px;
+  display: flex;
+  flex-direction: column;
+}
+
+.pkgrev__hotel-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.pkgrev__hotel-name {
+  font-size: 17px;
+  font-weight: 700;
+  color: #14202e;
+  margin: 0 0 3px;
+}
+
+.pkgrev__hotel-address {
+  font-size: 13px;
+  color: #6b7684;
+  margin: 0;
+}
+
+.pkgrev__hotel-meta {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin-top: 16px;
+  flex-wrap: wrap;
+}
+
+.pkgrev__hotel-room-label {
+  font-size: 11.5px;
+  color: #8994a1;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+  margin: 0 0 3px;
+}
+
+.pkgrev__hotel-room-value {
+  font-size: 13.5px;
+  font-weight: 700;
+  color: #14202e;
+}
+
+.pkgrev__link {
+  color: rgba(var(--second-color), 1);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 13px;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.pkgrev__link:hover,
+.pkgrev__link:focus-visible {
+  text-decoration: underline;
+  outline: none;
+}
+
+.pkgrev__link--relative {
+  position: relative;
+}
+
+.pkgrev__link--more {
+  font-size: 12px;
+}
+
+.pkgrev__tip--right {
+  left: auto;
+  right: 0;
+}
+
+.pkgrev__date-label {
+  font-size: 11.5px;
+  color: #8994a1;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+  margin: 0 0 3px;
+}
+
+.pkgrev__date-value {
+  font-size: 13.5px;
+  font-weight: 700;
+  color: #14202e;
+}
+
+.pkgrev__hotel-footer {
+  margin-top: auto;
+  padding-top: 14px;
+  text-align: right;
+}
+
+.pkgrev__btn {
+  color: rgba(var(--second-color), 1);
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  white-space: nowrap;
+  text-decoration: underline;
+  transition: color 0.15s ease;
+}
+
+.pkgrev__btn:hover,
+.pkgrev__btn:focus-visible ,.pkgrev__btn:visited{
+  outline: none;
+  color: rgba(var(--second-color), 1);
+  text-decoration: underline;
+}
+
+/* ---- Flight card ---- */
+.pkgrev__flight {
+  margin-bottom: 20px;
+}
+.pkgrev__flight-header {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  padding: 16px 18px;
+  border-bottom: 1px solid #eef0f3;
+  flex-wrap: wrap;
+}
+
+.pkgrev__flight-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: #14202e;
+  margin: 0;
+  flex-shrink: 0;
+}
+
+.pkgrev__flight-route {
+  font-size: 14px;
+  font-weight: 700;
+  color: #14202e;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.pkgrev__flight-route i {
+  color: #6b7684;
+  font-size: 13px;
+}
+
+.pkgrev__flight-daterange {
+  background-color: #eef1f4;
+  color: #3c4753;
+  font-size: 12.5px;
+  font-weight: 600;
+  padding: 5px 12px;
+  border-radius: 20px;
+}
+
+.pkgrev__flight-travelers {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 13px;
+  color: #3c4753;
+}
+
+.pkgrev__flight-travelers i {
+  color: #6b7684;
+}
+
+.pkgrev__flight-header .pkgrev__btn {
+  margin-left: auto;
+}
+
+.pkgrev__leg {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  padding: 18px;
+  border-bottom: 1px dashed #e5e8ec;
+  flex-wrap: wrap;
+}
+
+.pkgrev__leg:last-child {
+  border-bottom: none;
+}
+
+.pkgrev__leg-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: 700;
+  color: #14202e;
+  width: 100px;
+  flex-shrink: 0;
+}
+
+.pkgrev__leg-label i {
+  color: #6b7684;
+  font-size: 13px;
+}
+
+.pkgrev__leg-airline {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 190px;
+  flex-shrink: 0;
+}
+
+.pkgrev__airline-logo {
+  background-color: #fff2ef;
+  color: rgba(var(--white-color), 1);
+  font-size: 10px;
+  font-weight: 700;
+  padding: 4px 7px;
+  border-radius: 4px;
+  flex-shrink: 0;
+}
+.pkgrev__airline-logo img {
+  width: 30px;
+  height: 30px;
+  object-fit: contain;
+}
+
+.pkgrev__leg-airline-info {
+  font-size: 13px;
+  color: #14202e;
+  line-height: 1.4;
+}
+
+.pkgrev__leg-airline-info span {
+  display: block;
+  color: #6b7684;
+  font-size: 12px;
+  position: relative;
+}
+
+.pkgrev__leg-times {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  flex: 1;
+  min-width: 260px;
+}
+
+.pkgrev__leg-time {
+  text-align: center;
+  flex-shrink: 0;
+}
+
+.pkgrev__leg-time-value {
+  font-size: 15px;
+  font-weight: 700;
+  color: #14202e;
+  white-space: nowrap;
+}
+
+.pkgrev__leg-time-nextday {
+  display: block;
+  font-size: 10.5px;
+  font-weight: 700;
+  color: rgba(var(--second-color), 1);
+  text-transform: uppercase;
+  margin-bottom: 1px;
+}
+
+.pkgrev__leg-time-code {
+  font-size: 12px;
+  color: #6b7684;
+}
+
+.pkgrev__leg-duration {
+  flex: 1;
+  text-align: center;
+  min-width: 90px;
+}
+
+.pkgrev__leg-duration-line {
+  border-top: 1px solid #c7ccd2;
+  margin-bottom: 4px;
+}
+
+.pkgrev__leg-duration-text {
+  font-size: 12px;
+  color: #6b7684;
+}
+
+.pkgrev__leg-stop {
+  font-size: 11.5px;
+  color: #6b7684;
+}
+
+.pkgrev__leg-cabin {
+  width: 100%;
+  font-size: 12.5px;
+  color: #6b7684;
+  margin-top: 10px;
+  padding-left: 118px;
+}
+
+/* ================= Responsive ================= */
+
+@media (max-width: 900px) {
+  .pkgrev__hotel-img {
+    width: 160px;
+    height: 130px;
+  }
+  .pkgrev__leg-airline {
+    width: 160px;
+  }
+}
+
+@media (max-width: 767px) {
+  .pkgrev__hotel {
+    flex-direction: column;
+    padding: 14px;
+  }
+  .pkgrev__banner {
+    display: none;
+  }
+  .pkgrev__hotel-img {
+    width: 100%;
+    height: 180px;
+  }
+  .pkgrev__hotel-footer {
+    text-align: left;
+  }
+  .pkgrev__btn {
+    width: auto;
+    text-align: center;
+  }
+  .pkgrev__hotel-meta p {
+    margin-bottom: 0;
+  }
+  .pkgrev__hotel-meta {
+    gap: 5px 10px;
+  }
+  .pkgrev__flight-header {
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    gap: 10px;
+  }
+  .pkgrev__flight-header .pkgrev__btn {
+    margin-left: 0;
+    width: max-content;
+  }
+  .pkgrev__tip--right {
+    left: 30px;
+    right: auto;
+  }
+  
+  .pkgrev__link--relative .pkgrev__tip::before {
+    left: 14px;
+    right: auto;
+  }
+  .pkgrev__leg {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+  .pkgrev__leg-label {
+    width: auto;
+  }
+  .pkgrev__leg-airline {
+    width: 100%;
+  }
+  .pkgrev__leg-times {
+    width: 100%;
+    min-width: 0;
+    gap: 10px;
+  }
+  .pkgrev__leg-cabin {
+    padding-left: 0;
+  }
+}
+
+@media (max-width: 420px) {
+  .pkgrev__leg-time-value {
+    font-size: 13.5px;
+  }
+  .pkgrev__leg-duration-text,
+  .pkgrev__leg-stop {
+    font-size: 10.5px;
+  }
+}
+
+/* ===== pkgsum = package-summary (unique BEM prefix) ===== */
+
+/* ---- Timer notice ---- */
+
+.pkgsum__timer {
+  display: flex;
+  align-items: flex-start;
+  gap: 7px;
+  font-size: 13px;
+  color: #0d6efd;
+  line-height: 1.4;
+  margin-bottom: 12px;
+}
+
+.pkgsum__timer i.fa-clock {
+  margin-top: 2px;
+  font-size: 12px;
+  flex-shrink: 0;
+}
+
+.pkgsum__timer strong {
+  font-weight: 700;
+}
+
+.pkgsum__info-trigger {
+  background: none;
+  border: none;
+  padding: 0;
+  color: #8994a1;
+  cursor: pointer;
+  font-size: 12px;
+  display: inline-flex;
+  position: relative;
+  margin-left: 2px;
+}
+
+.pkgsum__info-trigger:hover,
+.pkgsum__info-trigger:focus-visible {
+  color: #4a5563;
+  outline: none;
+}
+
+/* ---- Tooltip ---- */
+
+.pkgsum__tip {
+  position: absolute;
+  top: calc(100% + 9px);
+  right: 0;
+  z-index: 40;
+  width: 230px;
+  max-width: 78vw;
+  background-color: rgba(var(--white-color), 1);
+  border: 1px solid #e5e8ec;
+  border-radius: 9px;
+  box-shadow: 0 14px 32px rgba(20, 30, 50, 0.18);
+  padding: 11px 13px;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(4px);
+  transition:
+    opacity 0.15s ease,
+    transform 0.15s ease,
+    visibility 0.15s;
+  text-align: left;
+  font-weight: 400;
+  white-space: normal;
+  font-size: 12px;
+  color: #4a5563;
+  line-height: 1.45;
+}
+
+.pkgsum__tip.is-open {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.pkgsum__tip::before {
+  content: "";
+  position: absolute;
+  top: -6px;
+  right: 12px;
+  width: 11px;
+  height: 11px;
+  background-color: rgba(var(--white-color), 1);
+  border-left: 1px solid #e5e8ec;
+  border-top: 1px solid #e5e8ec;
+  transform: rotate(45deg);
+}
+
+/* ---- Card ---- */
+
+.pkgsum__card {
+  background-color: rgba(var(--white-color), 1);
+  border: 1px solid #e5e8ec;
+  border-radius: 12px;
+  padding: 18px 18px 16px;
+}
+
+.pkgsum__title {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  font-size: 16.5px;
+  font-weight: 700;
+  color: #14202e;
+  margin: 0 0 6px;
+}
+
+.pkgsum__title-icons {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 13px;
+  color: #0d6efd;
+}
+
+.pkgsum__title-icons .fa-plus {
+  font-size: 9px;
+  color: #b3b9c1;
+}
+
+.pkgsum__route {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #3c4753;
+  margin: 0 0 16px;
+  line-height: 1.4;
+}
+
+.pkgsum__route i {
+  color: #8994a1;
+  font-size: 11px;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.pkgsum__box {
+  background-color: #f7f8fa;
+  border: 1px solid #edeff2;
+  border-radius: 9px;
+  padding: 14px 14px 4px;
+}
+
+.pkgsum__row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.pkgsum__row-label {
+  font-size: 13px;
+  color: #4a5563;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.pkgsum__row-label i {
+  color: #8994a1;
+  font-size: 11px;
+  width: 13px;
+  text-align: center;
+  flex-shrink: 0;
+}
+
+.pkgsum__row-sub {
+  font-size: 11.5px;
+  color: #8994a1;
+  margin: 2px 0 0 20px;
+}
+
+.pkgsum__row-value {
+  font-size: 13.5px;
+  font-weight: 700;
+  color: #14202e;
+  white-space: nowrap;
+}
+
+.pkgsum__row-value sup {
+  font-size: 10.5px;
+  font-weight: 700;
+}
+
+.pkgsum__divider {
+  border-top: 1px dashed #dde1e6;
+  margin: 0 0 12px;
+}
+
+.pkgsum__row--total {
+  margin-bottom: 14px;
+}
+
+.pkgsum__row--total .pkgsum__row-label {
+  font-size: 14px;
+  font-weight: 700;
+  color: #14202e;
+}
+
+.pkgsum__row--total .pkgsum__row-value {
+  font-size: 17px;
+  font-weight: 800;
+  color: #14202e;
+}
+
+.pkgsum__note {
+  display: flex;
+  align-items: flex-start;
+  gap: 7px;
+  font-size: 11.5px;
+  color: #8994a1;
+  margin: 14px 0 16px;
+  line-height: 1.4;
+}
+
+.pkgsum__note i {
+  margin-top: 1px;
+  font-size: 10.5px;
+  flex-shrink: 0;
+}
+
+.pkgsum__note strong {
+  color: #6b7684;
+}
+
+.pkgsum__actions {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+}
+
+.pkgsum__btn {
+  border: none;
+  border-radius: 8px;
+  padding: 13px 16px;
+  font-size: 14.5px;
+  font-weight: 700;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  transition:
+    background-color 0.15s ease,
+    box-shadow 0.15s ease;
+}
+
+.pkgsum__btn--primary {
+  background-color: #ff5722;
+  color: rgba(var(--white-color), 1);
+  box-shadow: 0 4px 10px rgba(255, 87, 34, 0.3);
+}
+
+.pkgsum__btn--primary:hover,
+.pkgsum__btn--primary:focus-visible {
+  background-color: #e64a19;
+  outline: none;
+}
+
+.pkgsum__btn--secondary {
+  background-color: rgba(var(--white-color), 1);
+  color: #3c4753;
+  border: 1px solid #d6dbe2;
+}
+
+.pkgsum__btn--secondary:hover,
+.pkgsum__btn--secondary:focus-visible {
+  background-color: #f7f8fa;
+  outline: none;
+}
+
+/* ================= Responsive ================= */
+
+@media (max-width: 767px) {
+  .pkgsum {
+    position: static;
+  }
+  .pkgsum__actions {
+    flex-direction: column-reverse;
+  }
+}

@@ -1,0 +1,342 @@
+<!--=========== Banner Section Start  ==============-->
+<section
+  class="inf-hero-section"
+  [ngStyle]="{ 'background-image': 'url(' + backgroundImageUrl + ')' }"
+>
+  <div class="container">
+    <div class="row justify-content-end align-items-center">
+      <div class="col-lg-6 col-md-7">
+        <div class="inf-hero-content">
+          <h1>{{ headerText }}</h1>
+          <p>{{ subHeaderText }}</p>
+        </div>
+
+        <div class="inf-call-widget">
+          <h2>Purchase Best <span>Deals</span></h2>
+          <form
+            name="inf-call-form"
+            action="#"
+            method="post"
+            novalidate
+            [formGroup]="contactForm"
+          >
+            <div class="form-row">
+              <div class="row g-2 g-lg-3">
+                <div class="col-md-6">
+                  <input
+                    type="text"
+                    name="sub_name"
+                    placeholder="Your Name"
+                    class="form-control"
+                    required
+                    formControlName="name"
+                    [class.is-invalid]="isInvalid('name')"
+                  />
+                  <div *ngIf="isInvalid('name')" class="text-danger">
+                    Name is required.
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="wrapper">
+                    <ngx-intl-tel-input
+                      [cssClass]="'form-control'"
+                      [preferredCountries]="preferredCountries"
+                      [enableAutoCountrySelect]="true"
+                      [enablePlaceholder]="true"
+                      [searchCountryFlag]="true"
+                      [searchCountryField]="[
+                        SearchCountryField.Iso2,
+                        SearchCountryField.Name
+                      ]"
+                      [selectFirstCountry]="false"
+                      [selectedCountryISO]="CountryISO.UnitedStates"
+                      [maxLength]="15"
+                      [phoneValidation]="true"
+                      [separateDialCode]="separateDialCode"
+                      [numberFormat]="PhoneNumberFormat.National"
+                      name="phone"
+                      formControlName="phone"
+                      [class.is-invalid]="isInvalid('phone')"
+                    >
+                    </ngx-intl-tel-input>
+                  </div>
+                  <div *ngIf="isInvalid('phone')" class="text-danger">
+                    Phone number is required.
+                  </div>
+                  <div
+                    *ngIf="contactForm.get('phone')?.errors?.['invalidPhoneLength']"
+                    class="text-danger"
+                  >
+                    Please enter a valid phone number (6–15 digits).
+                  </div>
+                </div>
+              </div>
+              <button
+                type="submit"
+                class="banner-form-submit-btn"
+                (click)="submitContactForm()"
+              >
+                Get a Call
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<div
+  class="container container-xxl py-3 mt-4 newfiltersec"
+  style="background-color: #bfbfbf1f"
+>
+  <app-flights-tab></app-flights-tab>
+</div>
+
+<section class="travel-best cmn-gap pb-0 pt-5">
+  <div class="container container-xxl">
+    <div
+      class="common-slider-container d-flex align-items-center justify-content-between"
+    >
+      @for (feature of travelFeatures; track $index) {
+      <div class="w-100">
+        <div class="travel-feature-card">
+          <div class="travel-feature-card-wrap">
+            <div
+              class="travel-feature-card-icon-box travel-feature-card-orange-icon"
+            >
+              <img [src]="feature.icon" alt="" class="feico" />
+            </div>
+            <div class="travel-feature-card-content-box">
+              <h4 class="travel-feature-card-title">{{ feature.title }}</h4>
+              <p class="travel-feature-card-desc">{{ feature.description }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      }
+    </div>
+  </div>
+</section>
+
+<!--=========== Contact ==============-->
+<section class="policy-content">
+  <div class="container container-xxl">
+    <div class="page-content m-0">
+      <!-- <h1>Find Cheap Flights from New York to Los Angeles</h1> -->
+
+      <p>
+        Having the key interest of traveling to your most favorite destination
+        now? We will be happy to serve you with full interest and also with
+        complete dedication. We do also assure you to fetch you with the
+        complete exotic packages that can derive the key interest in you to make
+        effective partnerships with us in the near future whenever you do have
+        the desire of traveling. With us, by your side, traveling can be more
+        fun as we do bring to you the best deals of the day for your own
+        convenience.
+      </p>
+      <p>
+        We do have the dealings and the partnerships with the leading airlines
+        of the world and we are here to take you across the globe to wherever
+        you do wish to travel. The best routes can take you to the most
+        enlightening places across the planet. Hence it is also true that we do cater to
+        the needs and demands of each of the travelers as we believe that it is
+        our duty to serve each of the customers with full dedication and
+        sincerity from the core of our heart. The efficacy of the customer build
+        up has been stronger as, we look after each of the individual needs of
+        all the passengers and hence provide them with utmost comfort.
+      </p>
+
+      <h4>Where can you expect to go with us?</h4>
+      <p>
+        With us, by your side, you do get to witness that dream destination of
+        yours that you have been long awaiting for. With the arrival of the
+        pandemic, there has been much cancellation from both the side of the
+        customers as well as from the side of the airlines. With the reopening
+        of the flights now, we are more careful in developing the effective type
+        of the strategies that can boost your key interest in making the best of
+        the partnerships with you, for a lifetime and more. Through some of the
+        leading partners, we can take you to any of the places from the extreme
+        Northern regions of Europe to the southern west of the Middle East. We
+        are simply here to fulfill all your dreams and desires of traveling to
+        any of the exotic places that you do wish to go for.
+      </p>
+
+      <h4>Top Domestic Holiday Destinations</h4>
+      <p>
+        Grab the best deals of the day as we take you to the beautiful
+        destinations across the domestic places that you do wish to see prior to
+        the pandemic. From the variety of the choices that you do get to
+        witness, there is the wide range of the price range that you do get to
+        witness. There are many delighting offers that can derive the key
+        interest in you to book your flights now. From the northern hills of the
+        beautiful Kashmir to the southern exotic temples of Maharashtra and the
+        iconic temples of Pondicherry, we can guarantee to take you everywhere
+        with full sincerity and dedication. From the cheap packages that we do
+        bring to you, you can see that beautiful sunset with your loved ones.
+        Domestically, we can take you to all the places, with us.
+      </p>
+
+      <h4>Top International Holiday Destinations</h4>
+      <p>
+        Wishing to travel abroad? Here are some of the best deals of the day.
+        Feel free to plan your next trip to any of the places that you do wish
+        for. There are many destinations that you can travel to within the most
+        convenient budget. With our planned services, you do get to the best air
+        deals. From the best of the countries of Europe, to the beaches of
+        Australia, you can witness the best of the moments of your life with us.
+      </p>
+
+      <h4>How to avail the best flight deals of the day?</h4>
+      <p>
+        To get the best flights of the day, you do get to witness our page more
+        often as there are many offers that you do get to avail at any time of
+        the day. Our prices of the flights do fluctuate at all time of the day.
+        Hence, it is required for you to be in touch with our customer care
+        executive 24/7 that can be available only for your assistance at any
+        time of trouble.
+      </p>
+      <section>
+        <div class="container container-xxl">
+          <div class="callbg mt-4 mb-5">
+            <div class="row align-items-center">
+              <div class="col-lg-6 col-xs-12">
+                <div class="lt-text-bestdeal">
+                  <p class="callerhead">
+                    You Dream it, We’ll Guide it! Call to Speak with Our Travel
+                    Partner:
+                  </p>
+                </div>
+              </div>
+              <div class="col-lg-6 col-xs-12">
+                <div class="phone">
+                  <h2 class="text-white">
+                    <b
+                      ><i class="fa fa-volume-control-phone"></i>
+                      <a
+                        class="text-white"
+                        href="tel:{{ getData?.phoneNumber }}"
+                        >{{ getData?.phoneNumber }}</a
+                      ></b
+                    >
+                  </h2>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- Top Destinations -->
+      <div class="top-destination-wrapper pt-0" *ngIf="flightData?.length">
+        <h2 class="title">
+          <strong>Top</strong>
+          <span class="highlight"> Routes</span>
+        </h2>
+
+        <div class="destination-table-wrap table-responsive c-scrollbar">
+          <table class="destination-table">
+            <tbody>
+              <tr *ngFor="let row of flightData">
+                <td *ngFor="let route of row">
+                  <a
+                  class="destination-link"
+                    [routerLink]="['/top-routes', route?.slug]"
+                    (click)="onDestinationClick(route)"
+                  >
+                    {{ route.name }}
+                  </a>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- <div class="faq-wrapper">
+        <h2 class="title">
+          <strong
+            >Frequently <span class="highlight">Asked</span> Questions</strong
+          >
+        </h2>
+        <div class="accordion ltc-accordion" id="ltcAccordion">
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="services">
+              <button
+                class="accordion-button collapsed"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#servicesOne"
+                aria-expanded="false"
+                aria-controls="servicesOne"
+              >
+                What services do you offer?
+              </button>
+            </h2>
+            <div
+              id="servicesOne"
+              class="accordion-collapse collapse"
+              aria-labelledby="faqOne"
+              data-bs-parent="#ltcAccordion"
+            >
+              <div class="accordion-body">
+                We offer complete UI/UX design, web development, and product
+                design system implementation for startups and enterprise
+                clients.
+              </div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="faqTwo">
+              <button
+                class="accordion-button collapsed"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#servicesTwo"
+                aria-expanded="false"
+                aria-controls="servicesTwo"
+              >
+                Do you provide support after delivery?
+              </button>
+            </h2>
+            <div
+              id="servicesTwo"
+              class="accordion-collapse collapse"
+              aria-labelledby="faqTwo"
+              data-bs-parent="#ltcAccordion"
+            >
+              <div class="accordion-body">
+                Yes, we offer ongoing support and maintenance services to ensure
+                your product remains up-to-date and fully functional.
+              </div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="faqThree">
+              <button
+                class="accordion-button collapsed"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#servicesThree"
+                aria-expanded="false"
+                aria-controls="servicesThree"
+              >
+                What is your pricing model?
+              </button>
+            </h2>
+            <div
+              id="servicesThree"
+              class="accordion-collapse collapse"
+              aria-labelledby="faqThree"
+              data-bs-parent="#ltcAccordion"
+            >
+              <div class="accordion-body">
+                We offer project-based, hourly, and retainer pricing options
+                based on your project needs and scope.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div> -->
+    </div>
+  </div>
+</section>
+<!--=========== Contact ==============-->

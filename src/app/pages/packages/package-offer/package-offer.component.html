@@ -1,0 +1,383 @@
+<!--=========== Package Section Start  ==============-->
+<section class="recoend cmn-gap pb-0">
+    <div class="container container-xxl">
+        <div class="cmn-heading">
+            <div class="section-title-wrap">
+                <h2 class="section-title new-title-content">Trending Escapes You’ll Love</h2>
+                <!-- <a href="#" class="link-text-small">See all</a> -->
+            </div>
+        </div>
+        <div class="common-slider-container">
+             <p-carousel
+        [value]="recommendedProducts"
+        [numVisible]="4"
+        [numScroll]="1"
+        [circular]="true"
+        [showIndicators]="false"
+        [showNavigators]="true"
+        [responsiveOptions]="productResponsiveOptions"
+      >
+        <ng-template let-product #item>
+          @if (product.type === 'dealassist') {
+          <div class="">
+            <a
+              href="tel:{{ contactNumber }}"
+              role="button"
+              class="dealassist-card"
+            >
+              <div class="dealassist-icon"></div>
+              <div class="dealassist-details">
+                <div class="dealassist-title">
+                  Need assistance finding the best deals?
+                </div>
+                <div class="dealassist-subtitle">
+                  Our experts are standing by to help you score the perfect
+                  phone deal.
+                </div>
+                <div class="dealassist-msg">Ready to book? Give us a call!</div>
+              </div>
+              <div class="dealassist-actions">
+                <div class="dealassist-callbtn">
+                  <div class="dealassist-dialicon"></div>
+                  <div class="dealassist-number">{{ contactNumber }}</div>
+                </div>
+                <div class="dealassist-availability">
+                  Expert assistance available 24/7
+                </div>
+              </div>
+            </a>
+          </div>
+          } @else {
+          <div class="mx-2" routerLink="{{ product?.link }}">
+            <div class="package-card">
+              <div class="package-card-img">
+                <img [src]="product?.image" alt="Product" class="img-fluid w-100" />
+                <button class="like-btn" aria-label="Like this package">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 14 14"
+                  >
+                    <g fill="none">
+                      <path
+                        class="heart-bg"
+                        fill=""
+                        d="M7.004 12.36L1.53 7.402c-2.976-2.976 1.398-8.688 5.474-4.067c4.076-4.621 8.43 1.111 5.474 4.067z"
+                      />
+                      <path
+                        class="heart-border"
+                        stroke=""
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        d="M7.004 12.36L1.53 7.402c-2.976-2.976 1.398-8.688 5.474-4.067c4.076-4.621 8.43 1.111 5.474 4.067z"
+                        stroke-width="1"
+                      />
+                    </g>
+                  </svg>
+                </button>
+              </div>
+
+              <div class="package-img-bottom-txt">
+                <div class="package-card-rating-txt">
+                  <h2 class="package-destination-title">
+                    {{ product?.title }}
+                  </h2>
+                  <span class="package-destination-duration">{{
+                    product?.duration
+                  }}</span>
+                </div>
+                <div class="package-card-rating d-flex align-items-center">
+                  <span
+                    ><svg
+                      width="24"
+                      height="25"
+                      viewBox="0 0 24 25"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M21.0963 8.63874L15.2623 7.79087L12.6543 2.50374C12.5831 2.35898 12.4659 2.24179 12.3211 2.17056C11.9581 1.99134 11.5169 2.14069 11.3354 2.50374L8.72743 7.79087L2.89343 8.63874C2.73259 8.66172 2.58553 8.73755 2.47294 8.85243C2.33683 8.99234 2.26182 9.18055 2.26441 9.37573C2.26699 9.5709 2.34696 9.75707 2.48673 9.89332L6.70771 14.0086L5.71048 19.8196C5.6871 19.9548 5.70205 20.0938 5.75366 20.2209C5.80527 20.348 5.89146 20.4581 6.00245 20.5388C6.11345 20.6194 6.24482 20.6673 6.38166 20.677C6.51849 20.6868 6.65533 20.658 6.77664 20.594L11.9948 17.8504L17.213 20.594C17.3555 20.6698 17.5209 20.6951 17.6795 20.6675C18.0793 20.5986 18.3481 20.2194 18.2792 19.8196L17.282 14.0086L21.503 9.89332C21.6178 9.78073 21.6937 9.63367 21.7166 9.47283C21.7787 9.07072 21.4984 8.69848 21.0963 8.63874Z"
+                        fill="black"
+                      /></svg
+                  ></span>
+                  <span class="package-card-star-rating">{{
+                    product?.rating
+                  }}</span>
+                </div>
+              </div>
+
+              <div
+                class="package-rating-bottom-txt package-facility-itel-list-wrap"
+              >
+                <ul class="package-facility-itel-list">
+                  <li>
+                    <span>
+                      <svg
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <g opacity="0.5" clip-path="url(#clip0_299_6670)">
+                          <path
+                            d="M20.5085 16.6626L19.2351 16.2651L13.6862 14.5308V17.397L14.9997 18.3823L15.3913 18.6763V21.7456L14.1413 21.3882L11.4255 20.6118L8.71066 21.3882L7.46164 21.7456V18.6763L7.85324 18.3823L9.16672 17.397V14.5308L3.61691 16.2651L2.34445 16.6626V13.0806L2.80539 12.7925L9.16672 8.81592V4.66943C9.16672 3.42018 10.1772 2.40967 11.4265 2.40967C12.6757 2.40974 13.6862 3.42022 13.6862 4.66943V8.81592L20.0476 12.7925L20.5085 13.0806V16.6626Z"
+                            fill="white"
+                            stroke="black"
+                            stroke-width="1.96075"
+                          />
+                        </g>
+                        <defs>
+                          <clipPath id="clip0_299_6670">
+                            <rect
+                              width="23.529"
+                              height="23.529"
+                              fill="white"
+                              transform="translate(0.151855 0.15332)"
+                            />
+                          </clipPath>
+                        </defs>
+                      </svg>
+                    </span>
+                    {{ product.details.flights }}
+                  </li>
+                  <li>
+                    <span>
+                      <svg
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <g opacity="0.5">
+                          <path
+                            d="M21.7844 20.741H2.17685V18.7802H3.15723V4.07461C3.15723 3.8146 3.26051 3.56524 3.44437 3.38138C3.62823 3.19753 3.87759 3.09424 4.1376 3.09424H17.8629C18.1229 3.09424 18.3722 3.19753 18.5561 3.38138C18.7399 3.56524 18.8432 3.8146 18.8432 4.07461V8.97649H20.804V18.7802H21.7844V20.741ZM16.8825 18.7802H18.8432V10.9372H12.961V18.7802H14.9217V12.898H16.8825V18.7802ZM16.8825 8.97649V5.05499H5.11798V18.7802H11.0002V8.97649H16.8825ZM7.07873 10.9372H9.03948V12.898H7.07873V10.9372ZM7.07873 14.8587H9.03948V16.8195H7.07873V14.8587ZM7.07873 7.01574H9.03948V8.97649H7.07873V7.01574Z"
+                            fill="black"
+                          />
+                        </g></svg
+                    ></span>
+                    {{ product.details.hotels }}
+                  </li>
+                  <li>
+                    <span
+                      ><svg
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <g opacity="0.5" clip-path="url(#clip0_299_6678)">
+                          <path
+                            d="M22.1376 10.4079L17.9891 9.76875L15.461 5.63877C15.3283 5.4226 15.142 5.24434 14.9203 5.12123C14.6985 4.99813 14.4487 4.93435 14.195 4.93607L3.5997 5.02049C3.29399 5.02307 2.99668 5.12081 2.74907 5.30014C2.50146 5.47946 2.31587 5.73146 2.21806 6.02112L1.01404 9.59141V17.8001H3.54185C3.73835 18.4389 4.13447 18.9979 4.67205 19.3949C5.20963 19.792 5.86034 20.0062 6.52865 20.0062C7.19697 20.0062 7.84768 19.792 8.38525 19.3949C8.92283 18.9979 9.31895 18.4389 9.51546 17.8001H14.2034C14.3999 18.4389 14.7961 18.9979 15.3336 19.3949C15.8712 19.792 16.5219 20.0062 17.1902 20.0062C17.8586 20.0062 18.5093 19.792 19.0468 19.3949C19.5844 18.9979 19.9805 18.4389 20.177 17.8001H23.0725V11.498C23.0737 11.2342 22.9799 10.9789 22.8082 10.7787C22.6365 10.5785 22.3984 10.4469 22.1376 10.4079ZM10.5727 6.43545L14.2067 6.40649L16.2334 9.71742L10.5727 9.71545V6.43545ZM3.61147 6.49096L9.10214 6.44721V9.71494L2.52509 9.7126L3.61147 6.49096ZM6.52865 18.5354C6.20145 18.5354 5.88159 18.4384 5.60953 18.2566C5.33746 18.0748 5.12542 17.8164 5.0002 17.5141C4.87498 17.2118 4.84222 16.8792 4.90606 16.5583C4.96989 16.2374 5.12746 15.9426 5.35883 15.7112C5.5902 15.4798 5.88498 15.3223 6.2059 15.2584C6.52682 15.1946 6.85946 15.2274 7.16176 15.3526C7.46406 15.4778 7.72244 15.6899 7.90422 15.9619C8.08601 16.234 8.18304 16.5538 8.18304 16.881C8.18255 17.3197 8.00809 17.7402 7.69794 18.0503C7.38779 18.3605 6.96727 18.5349 6.52865 18.5354ZM17.1902 18.5354C16.863 18.5354 16.5432 18.4384 16.2711 18.2566C15.9991 18.0748 15.787 17.8164 15.6618 17.5141C15.5366 17.2118 15.5038 16.8792 15.5676 16.5583C15.6315 16.2374 15.789 15.9426 16.0204 15.7112C16.2518 15.4798 16.5466 15.3223 16.8675 15.2584C17.1884 15.1946 17.521 15.2274 17.8233 15.3526C18.1256 15.4778 18.384 15.6899 18.5658 15.9619C18.7476 16.234 18.8446 16.5538 18.8446 16.881C18.8441 17.3197 18.6697 17.7402 18.3595 18.0503C18.0494 18.3605 17.6289 18.5349 17.1902 18.5354ZM21.6019 16.3296H20.2655C20.1363 15.608 19.7574 14.9548 19.1952 14.4843C18.6331 14.0138 17.9233 13.756 17.1902 13.756C16.4572 13.756 15.7474 14.0138 15.1852 14.4843C14.623 14.9548 14.2442 15.608 14.115 16.3296H9.60388C9.47468 15.608 9.09585 14.9548 8.53366 14.4843C7.97147 14.0138 7.26173 13.756 6.52865 13.756C5.79557 13.756 5.08584 14.0138 4.52365 14.4843C3.96146 14.9548 3.58262 15.608 3.45343 16.3296H2.4846V11.1838L17.674 11.2081L21.6019 11.8133V16.3296Z"
+                            fill="black"
+                            stroke="black"
+                            stroke-width="0.490188"
+                          />
+                        </g>
+                        <defs>
+                          <clipPath id="clip0_299_6678">
+                            <rect
+                              width="23.529"
+                              height="23.529"
+                              fill="white"
+                              transform="translate(0.279663 0.15332)"
+                            />
+                          </clipPath>
+                        </defs></svg
+                    ></span>
+                    {{ product.details.transfers }}
+                  </li>
+                  <li>
+                    <span
+                      ><svg
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <g opacity="0.5">
+                          <path
+                            d="M17.8929 9.95731L14.9517 11.4279L11.0302 8.48675L10.0499 13.8788L13.4812 16.8199L13.9714 21.2316M17.8929 8.48675V21.2316M10.0499 16.8199L8.08911 21.2316M8.5793 8.48675C7.10873 9.46712 6.12836 11.9181 6.12836 11.9181L8.08911 12.8984M12.0106 6.526C12.5306 6.526 13.0294 6.31942 13.3971 5.9517C13.7648 5.58399 13.9714 5.08527 13.9714 4.56524C13.9714 4.04522 13.7648 3.5465 13.3971 3.17878C13.0294 2.81107 12.5306 2.60449 12.0106 2.60449C11.4906 2.60449 10.9919 2.81107 10.6242 3.17878C10.2564 3.5465 10.0499 4.04522 10.0499 4.56524C10.0499 5.08527 10.2564 5.58399 10.6242 5.9517C10.9919 6.31942 11.4906 6.526 12.0106 6.526Z"
+                            stroke="black"
+                            stroke-width="1.96075"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                          />
+                        </g>
+                      </svg>
+                    </span>
+                    {{ product.details.activities }}
+                  </li>
+                </ul>
+              </div>
+
+              <ul class="package-rating-txt-list package-facility-list-feature">
+                <li *ngFor="let item of product.description">{{ item }}</li>
+              </ul>
+
+              <div class="package-price">
+                <div class="package-price-right">
+                  <a [href]="product.link" class="cmn-btn">Reserve Now</a>
+                </div>
+              </div>
+            </div>
+          </div>
+          }
+        </ng-template>
+      </p-carousel>
+        </div>
+    </div>
+</section>
+<!--=========== Package Section End  ==============-->
+<!--=========== Booking Section Start  ==============-->
+<section class="booking cmn-gap pb-0">
+    <div class="container container-xxl">
+        <div class="booking-parent" style="background: url('./assets/images/booking-background.png')">
+            <div class="booking-left">
+                <h2>Make your next travel journey a special one!</h2>
+                <p>Plan your journey, your way! Our expertise and your choices would make the perfect itinerary </p>
+            </div>
+            <div class="booking-right">
+                <a href="tel:{{getData?.flightContactNumber}}" class="cmn-btn btn-orange fs-20 fw-semibold">Book Now</a>
+            </div>
+        </div>
+    </div>
+</section>
+<!--=========== Booking Section End  ==============-->
+<!--=========== Trip Section Start  ==============-->
+@if (flights.length>0) {
+<section class="cmn-gap pb-0 d-none">
+    <div class="container container-xxl">
+        <div class="cmn-heading">
+            <div class="heading-cmn-flex">
+                <h2 class="new-title-content">Most Popular Flights Worldwide</h2>
+                <!-- <a href="#">See all</a> -->
+            </div>
+        </div>
+        <p-carousel
+        [value]="flights"
+        [numVisible]="4"
+        [numScroll]="1"
+        [circular]="true"
+        [showIndicators]="false"
+        [showNavigators]="true"
+        [responsiveOptions]="popularResponsiveOptions"
+      >
+        <ng-template pTemplate="item" let-flight>
+          <div class="mx-2">
+            <div
+              class="trip-card cursor-pointer"
+              (click)="onDestinationClick(flight)"
+            >
+              <div class="trip-card-img">
+                <img [src]="flight.image" alt="Flight" class="img-fluid w-100" />
+              </div>
+              <div class="trip-card-info">
+                <div class="trip-card-rating-info">
+                  <h2 class="trip-card-place">{{ flight.destination }}</h2>
+                  <div class="trip-card-rating">
+                    <span class="trip-card-rating-icon">
+                      <svg
+                        width="13"
+                        height="13"
+                        viewBox="0 0 13 13"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M11.004 4.53531L7.99682 4.09826L6.65251 1.37294C6.6158 1.29832 6.55539 1.23792 6.48078 1.2012C6.29364 1.10882 6.06623 1.1858 5.97266 1.37294L4.62836 4.09826L1.62115 4.53531C1.53824 4.54715 1.46244 4.58624 1.4044 4.64546C1.33424 4.71757 1.29558 4.81459 1.29691 4.9152C1.29824 5.0158 1.33946 5.11176 1.41151 5.182L3.58727 7.30327L3.07323 10.2986C3.06118 10.3683 3.06889 10.44 3.09549 10.5055C3.12209 10.571 3.16652 10.6278 3.22373 10.6693C3.28095 10.7109 3.34866 10.7356 3.4192 10.7406C3.48973 10.7456 3.56027 10.7308 3.6228 10.6978L6.31259 9.2836L9.00238 10.6978C9.07581 10.7369 9.16109 10.7499 9.24282 10.7357C9.4489 10.7002 9.58748 10.5047 9.55195 10.2986L9.03791 7.30327L11.2137 5.182C11.2729 5.12396 11.312 5.04816 11.3238 4.96525C11.3558 4.75798 11.2113 4.5661 11.004 4.53531Z"
+                          fill="white"
+                        />
+                      </svg>
+                    </span>
+                    <span class="trip-card-rating-value">
+                      {{ flight.rating }}</span
+                    >
+                  </div>
+                </div>
+                <div class="trip-card-details">
+                  <div class="trip-card-details-info">
+                    <span class="trip-card-route">{{ flight.route }}</span>
+                  </div>
+                  <div class="trip-card-dates-price">
+                    <span class="trip-card-dates">{{ flight.dateRange }}</span>
+                    <!-- <span class="trip-card-price">{{ flight?.price | appCurrency }} <span class="price-unit">Per person</span></span> -->
+                  </div>
+                </div>
+              </div>
+              <!-- <div class="recoend-img-bottom-txt">
+                                <div class="recoend-card-rating-txt">
+                                    <h2>{{ flight.destination }}</h2>
+                                    <span>{{ flight.route }}</span>
+                                    <span class="d-block">{{ flight.dateRange }}</span>
+                                </div>
+                                <div class="recoend-card-rating">
+                                    <span><i class="fa-solid fa-star"></i></span> {{ flight.rating }}
+                                </div>
+                            </div>
+            
+                            <div class="recoend-price">
+                                <div class="recoend-price-left">
+                                    <h2>
+                                        <b>${{ flight.price }}</b>
+                                        <span>Per person</span>
+                                    </h2>
+                                </div>
+                                <div class="recoend-price-right">
+                                    <a [href]="flight.link" class="cmn-btn">View Now</a>
+                                </div>
+                            </div> -->
+            </div>
+          </div>
+        </ng-template>
+      </p-carousel>
+    </div>
+</section>
+}
+<!--=========== Trip Section End  ==============-->
+<!--=========== Offer Section Start  ==============-->
+<section class="offer cmn-gap">
+    <div class="container container-xxl">
+        <div class="cmn-heading">
+            <div class="heading-cmn-flex">
+                <h2>Specially Picked Deals Only For You</h2>
+            </div>
+        </div>
+        <p-carousel
+      [value]="offers"
+      [numVisible]="3"
+      [numScroll]="1"
+      [circular]="false"
+      [showIndicators]="false"
+      [showNavigators]="false"
+      [responsiveOptions]="oferResponsiveOptions"
+    >
+      <ng-template pTemplate="item" let-offer>
+        <div class="offer-card">
+          <div class="offer-card-content-wrap">
+            <div class="offer-card-left-image-box">
+              <img [src]="offer.image" alt="Offer" />
+            </div>
+            <div class="offer-card-content-info">
+              <h6 class="offer-card-flight-category">{{ offer.category }}</h6>
+              <h5 class="offer-card-flight-caption">{{ offer.title }}</h5>
+              <p class="offer-card-flight-price-text">
+                {{ offer.description }}
+              </p>
+              <a
+                href="tel:{{ getData?.flightContactNumber }}"
+                class="offer-card-book-now-btn"
+                >Book Now</a
+              >
+            </div>
+          </div>
+        </div>
+      </ng-template>
+    </p-carousel>
+    </div>
+</section>
+<!--=========== Offer Section End  ==============-->

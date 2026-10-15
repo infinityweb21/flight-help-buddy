@@ -1,0 +1,59 @@
+@import url(../../../hotels-list/hotel-details/hotel-booking-payment/hotel-booking-payment.component.scss);
+
+.traveler-action-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+
+    min-height: 28px;
+    padding: 5px 10px;
+
+    border: 1px solid transparent;
+    border-radius: 5px;
+
+    font-size: 11px;
+    font-weight: 600;
+    line-height: 1.2;
+    white-space: nowrap;
+
+    cursor: pointer;
+    transition: all 0.2s ease;
+
+    &:focus {
+        outline: none;
+        box-shadow: none;
+    }
+}
+
+.traveler-action-btn--add {
+    color: #0a6cff;
+    background: #eef5ff;
+    border-color: #cfe1ff;
+
+    &:hover {
+        color: #fff;
+        background: #0a6cff;
+        border-color: #0a6cff;
+    }
+}
+
+.traveler-action-btn--remove {
+    color: #dc3545;
+    background: #fff1f2;
+    border-color: #ffd5d9;
+
+    &:hover {
+        color: #fff;
+        background: #dc3545;
+        border-color: #dc3545;
+    }
+}
+
+@media (max-width: 576px) {
+    .traveler-action-btn {
+        min-height: 26px;
+        padding: 4px 8px;
+        font-size: 10px;
+    }
+}

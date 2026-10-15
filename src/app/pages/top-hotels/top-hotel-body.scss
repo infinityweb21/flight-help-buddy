@@ -1,0 +1,569 @@
+.banner-txt h1 {
+    margin-bottom: 2rem;
+}
+
+.details-contentntsec {
+    background-color: rgb(255, 255, 255);
+    padding: 30px 0px;
+}
+
+.content-boxsection {
+    padding: 30px 0px;
+    background-color: rgb(248 248 248);
+}
+
+.customhead {
+    color: #000000;
+    font-weight: 600;
+    font-size: 24px;
+    text-transform: capitalize;
+}
+
+.custom-nav-tabs {
+    border-bottom: 1px solid #dddddd00;
+    padding-top: 10px;
+    display: flex;
+    gap: 10px;
+}
+
+.custom-nav-tabs .nav-link {
+    color: #000;
+    font-weight: 500;
+    font-size: 16px;
+    margin-right: 20px;
+    padding: 0;
+    border: none;
+    text-transform: capitalize;
+    border-bottom: 2px solid transparent;
+}
+
+.custom-nav-tabs .nav-link.active {
+    border-color: #ff6a19;
+    color: #000;
+}
+
+.custom-tab-content {
+    padding: 0px 0;
+}
+
+.custom-tab-title {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #112211;
+}
+
+.custom-tab-paragraph {
+    font-size: 15px;
+    font-weight: 500;
+    line-height: 1.4;
+    color: #112211;
+    opacity: 75%;
+    margin-bottom: 1rem;
+}
+
+
+
+.custom-topbar {
+    font-size: 16px;
+    text-align: right;
+    padding: 10px 0;
+    color: #535353;
+    font-weight: 500;
+}
+
+.custom-topbar a {
+    color: #ff6a19;
+    text-decoration: none;
+}
+
+
+.season-accordion .accordion-button {
+    background-color: #ffffff00;
+    box-shadow: none;
+    padding: 1rem;
+    font-weight: 500;
+    font-size: 16px;
+    color: #112211;
+    display: flex;
+    align-items: center;
+    border-radius: 0;
+}
+
+.season-accordion .accordion-button::after {
+    margin-left: auto;
+}
+
+.season-accordion .accordion-item {
+    border: none;
+    border-bottom: 1px solid #ddd;
+    background-color: transparent;
+    border-radius: 0;
+}
+
+.season-accordion .season-label {
+    font-size: 14px;
+    font-weight: 500;
+    padding: 12px 20px;
+    border-radius: 100px;
+    color: #fff;
+    margin-right: 15px;
+    white-space: nowrap;
+}
+
+.label-green {
+    background: linear-gradient(89.85deg, #50AD50 0.1%, #017601 102.15%);
+}
+
+.label-blue {
+    background: linear-gradient(90deg, #3195FF 0%, #ff6a19 95.2%);
+}
+
+.label-orange {
+    background: linear-gradient(90deg, #FBB040 0%, #F88623 106.4%);
+}
+
+.season-subtext {
+    font-weight: 500;
+    font-size: 14px;
+    color: #000;
+}
+
+.accordion-body {
+    font-size: 15px;
+    font-weight: 500;
+    color: #112211;
+    padding-top: 0.5rem;
+}
+
+
+
+.weather-table {
+    box-shadow: 0px 4px 4px 0px #00000040;
+    border-radius: 0px;
+    overflow-x: auto;
+}
+
+.weather-table table {
+    table-layout: auto !important;
+    /* ensure natural width */
+    width: max-content;
+    /* table grows with content */
+    border-collapse: collapse;
+}
+
+.weather-table td,
+.weather-table th {
+    white-space: nowrap;
+    /* width: 1%; */
+    padding: 8px 12px;
+    /* you can reduce this more */
+    vertical-align: middle;
+    text-align: center;
+}
+
+.weather-table th {
+    background-color: #ffffff;
+    font-size: 12px;
+    font-weight: 500;
+    text-align: center;
+    line-height: normal;
+    padding: 12px 16px;
+    border-bottom: 1px solid #ddd;
+    white-space: pre-wrap;
+    color: #000000;
+}
+
+.weather-table td {
+    padding: 12px 16px;
+    font-size: 12px;
+    font-weight: 400;
+    vertical-align: middle;
+    color: #565656;
+}
+
+.month-link {
+    font-size: 12px;
+    color: #ff6a19;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.temp-col {
+    background-color: #F1FFF4;
+    color: #565656;
+}
+
+.rain-col {
+    background-color: #FFF5ED;
+}
+
+.opinion-col {
+    background-color: #F0F7FF;
+    text-align: left !important;
+}
+
+.weather-icon {
+    margin-right: 5px;
+}
+
+.weather-table-wrapper {
+    overflow-x: auto;
+    max-width: max-content;
+    scrollbar-width: thin;
+    margin: 0 auto;
+}
+
+/* Custom Scrollbar for WebKit browsers */
+.weather-table-wrapper::-webkit-scrollbar {
+    height: 2px;
+}
+
+.weather-table-wrapper::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+}
+
+.weather-table-wrapper::-webkit-scrollbar-thumb {
+    background: #007bff42;
+    border-radius: 10px;
+}
+
+.weather-table-wrapper::-webkit-scrollbar-thumb:hover {
+    background: #0057b33a;
+}
+
+/* Optional: Firefox scrollbar styling */
+@supports (scrollbar-color: red blue) {
+    .weather-table-wrapper {
+        scrollbar-width: thin;
+        scrollbar-color: #007bff2d #f1f1f1;
+    }
+}
+
+@media (max-width: 576px) {
+    .weather-table table {
+        font-size: 13px;
+    }
+
+    .weather-table td,
+    .weather-table th {
+        padding: 10px;
+    }
+}
+
+
+
+.top-destinations {
+    padding: 30px 0px;
+    margin: auto;
+}
+
+.top-destinations h2 {
+    font-size: 30px;
+    font-weight: bold;
+    margin-bottom: 2rem;
+    text-align: left;
+    color: #112211;
+}
+
+.destination-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.destination {
+    flex: 1 1 calc(20% - 1rem);
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+    gap: 0.5rem;
+    font-weight: 500;
+    /* background-color: #f8f8f8; */
+    padding: 0;
+    border-radius: 0px;
+    color: #112211;
+    transition: background 0.3s ease;
+}
+
+
+
+.destination .flighticosmall {
+    width: 20px;
+    height: 20px;
+}
+
+/* Responsive Layout */
+@media (max-width: 992px) {
+    .destination {
+        flex: 1 1 calc(33.33% - 1rem);
+    }
+}
+
+@media (max-width: 768px) {
+    .destination {
+        flex: 1 1 calc(50% - 1rem);
+    }
+}
+
+@media (max-width: 480px) {
+    .destination {
+        flex: 1 1 100%;
+    }
+}
+
+
+.destination-card {
+    display: flex;
+    overflow: hidden;
+    /* box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); */
+    /* max-width: 1000px; */
+    // margin: auto;
+    flex-wrap: wrap;
+}
+
+.destination-image {
+    flex: 1 1 250px;
+    max-width: 250px;
+    height: 165px;
+    overflow: hidden;
+    border-radius: 5px;
+}
+
+.destination-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.destination-content {
+    flex: 2 1 500px;
+    padding: 1rem;
+}
+
+.destination-content h3 {
+    font-size: 16px;
+    font-weight: 600;
+    color: #000;
+    margin-bottom: 0.5rem;
+}
+
+.destination-content p {
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 1.5;
+    color: #000000;
+}
+
+.last-updated {
+    font-size: 12px;
+    color: #626262;
+    font-weight: 500;
+    margin-top: 1rem;
+}
+
+@media (max-width: 768px) {
+    .destination-card {
+        flex-direction: column;
+    }
+
+    .destination-image,
+    .destination-content {
+        max-width: 100%;
+        flex: 1 1 100%;
+    }
+
+    .destination-content {
+        padding: 1rem;
+    }
+}
+
+.desilistcard {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.locationname {
+    font-size: 15px;
+    color: #112211;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    margin-top: 0.3rem;
+}
+
+.mapsec iframe {
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.booking-cta-banner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: linear-gradient(90deg, #007aff 60%, #007aff 60%);
+    border-radius: 12px;
+    padding: 50px;
+    color: #fff;
+    overflow: hidden;
+    position: relative;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+.booking-cta-text {
+    /* max-width: 00px; */
+}
+
+.booking-cta-text h2 {
+    font-size: 40px;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+    color: #fff;
+}
+
+.booking-cta-text p {
+    font-size: 18px;
+    margin-bottom: 1.5rem;
+    color: #FFFFFF;
+}
+
+.destination:hover {
+    color: #ff6a19;
+}
+
+.booking-cta-button {
+    background: linear-gradient(to right, #ffb347, #ff9900);
+    border: none;
+    padding: 0.75rem 1.5rem;
+    font-size: 18px;
+    font-weight: 600;
+    color: #fff;
+    border-radius: 8px;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    text-decoration: none;
+}
+
+.booking-cta-button i {
+    color: #fff;
+}
+
+.ctatex {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: auto;
+    height: 100%;
+}
+
+@media (max-width: 768px) {
+    .booking-cta-banner {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 2rem 1rem;
+    }
+
+    .booking-cta-graphic {
+        display: none;
+    }
+}
+
+
+@media (max-width: 1024px) {
+    .destination {
+        font-size: 12px;
+        line-height: normal;
+    }
+
+    .top-destinations h2,
+    .booking-cta-text h2 {
+        font-size: 20px;
+    }
+
+    .custom-tab-paragraph {
+        font-size: 13px;
+    }
+
+    .accordion-body {
+        font-size: 13px;
+    }
+
+    .destination-image {
+        height: auto;
+    }
+
+    .booking-cta-text p {
+        font-size: 14px;
+        max-width: 420px;
+    }
+
+    .booking-cta-button {
+        padding: 6px 10px;
+        font-size: 15px;
+    }
+}
+
+
+@media (max-width: 768px) {
+    .destination-image {
+        height: 150px;
+        margin: 0 auto;
+        margin-left: 0;
+    }
+
+    .custom-nav-tabs .nav-link {
+        font-size: 13px;
+        margin-right: 10px;
+    }
+
+    .destination-image img {
+        width: 100%;
+        height: 150px;
+        object-fit: contain;
+        margin: 0 auto;
+    }
+
+    .custom-tab-title {
+        font-size: 15px;
+    }
+
+    .custom-topbar {
+        font-size: 12px;
+    }
+
+}
+
+@media (max-width: 767px) {
+    .weather-table-wrapper {
+        margin-top: 2rem;
+    }
+
+    .custom-topbar {
+        text-align: left;
+    }
+
+    .ctatex {
+        display: none;
+    }
+
+    .season-accordion .season-label {
+        font-size: 12px;
+        padding: 7px 14px;
+        margin-right: 10px;
+    }
+
+    .accordion-body {
+        font-size: 12px;
+    }
+
+    .destination-content {
+        padding: 1rem 0rem;
+    }
+}
+

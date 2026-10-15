@@ -1,0 +1,363 @@
+/* ===== Page ===== */
+.contact-page {
+  padding: 36px 0 48px;
+  background: #ffffff;
+}
+
+.contact-page__header {
+  margin-bottom: 20px;
+}
+
+.contact-page__title {
+  font-size: 26px;
+  font-weight: 700;
+  color: rgba(var(--main-color), 1);
+  margin: 0 0 10px;
+}
+
+.contact-page__eyebrow {
+  display: block;
+  font-size: 15px;
+  font-weight: 700;
+  color: #1c1c1c;
+  margin-bottom: 6px;
+}
+
+.contact-page__subtitle {
+  font-size: 15px;
+  color: #6b7280;
+  margin: 0;
+}
+
+/* ===== Info cards row ===== */
+.contact-page__info-row {
+  margin-bottom: 16px;
+  row-gap: 12px;
+  justify-content: center;
+}
+
+/* ===== Form + Map panel ===== */
+.contact-page__panel {
+  background: #ffffff;
+  border: 1px solid #eef0f4;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.06);
+  padding: 20px;
+}
+
+.contact-page__panel-heading {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.contact-page__panel-heading h4 {
+  font-size: 16px;
+  font-weight: 700;
+  color: #10182c;
+  margin: 0;
+}
+
+.contact-page__panel-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 25px;
+  height: 25px;
+  border-radius: 4px;
+  background: rgba(var(--main-color), 1);
+  color: #fff;
+  flex-shrink: 0;
+  font-size: 14px;
+}
+
+.contact-page__panel-icon svg {
+  width: 12px;
+  height: 12px;
+}
+
+.contact-page__map-placeholder {
+  width: 100%;
+  height: 100%;
+  min-height: 260px;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #f3f5f9;
+  border: 1px dashed #d7dbe4;
+}
+
+.contact-page__map-placeholder iframe {
+  width: 100%;
+  height: 100%;
+}
+/* ===== Info Cards ===== */
+.contact-info-card {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  height: 100%;
+  padding: 12px 14px;
+  background: #ffffff;
+  border: 1px solid #eef0f4;
+  border-radius: 10px;
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.05);
+}
+
+.contact-info-card__icon {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  background: rgba(var(--main-color), 0.1);
+  color: rgba(var(--main-color), 1);
+}
+
+.contact-info-card__icon svg {
+  width: 16px;
+  height: 16px;
+}
+
+.contact-info-card__icon--whatsapp {
+  background: rgba(37, 211, 102, 0.12);
+  color: #25d366;
+}
+
+.contact-info-card__content {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.contact-info-card__label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: rgba(var(--main-color), 1);
+}
+
+.contact-info-card__value {
+  font-size: 13.5px;
+  font-weight: 600;
+  color: #10182c;
+  text-decoration: none;
+  word-break: break-word;
+}
+
+.contact-info-card__value:hover {
+  color: rgba(var(--main-color), 1);
+}
+
+/* ===== Form fields ===== */
+.contact-two__input-box {
+  margin-bottom: 14px;
+  position: relative;
+}
+
+.contact-two__label {
+  display: block;
+  font-size: 12.5px;
+  font-weight: 600;
+  color: rgba(var(--main-color), 1);
+  margin-bottom: 5px;
+}
+
+.contact-two__label .req {
+  color: rgba(var(--main-color), 1);
+}
+
+.contact-two__input-box input,
+.contact-two__input-box textarea,
+.wrapper .form-control {
+  width: 100%;
+  background: #f6f7fb;
+  border: 1px solid #e7e9f0;
+  border-radius: 8px;
+  padding: 9px 13px;
+  font-size: 13.5px;
+  font-family: inherit;
+  color: #10182c;
+  outline: none;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.contact-two__input-box input::placeholder,
+.contact-two__input-box textarea::placeholder {
+  color: #9aa1b1;
+}
+
+.contact-two__input-box input:focus,
+.contact-two__input-box textarea:focus,
+.wrapper .form-control:focus {
+  border-color: rgba(var(--main-color), 0.5);
+  box-shadow: 0 0 0 3px rgba(var(--main-color), 0.1);
+}
+
+.contact-two__input-box input.is-invalid,
+.contact-two__input-box textarea.is-invalid {
+  border-color: #e5484d;
+}
+
+.contact-two__input-box textarea {
+  min-height: 90px;
+  resize: vertical;
+}
+
+/* ngx-intl-tel-input country-code segment (Angular renders .iti / .form-control here) */
+.wrapper .iti {
+  width: 100%;
+}
+
+.wrapper .form-control {
+  padding-left: 90px;
+  display: flex;
+  align-items: center;
+}
+
+.wrapper .iti__selected-flag {
+  background: #eef0f4;
+  border-right: 1px solid #e7e9f0;
+  border-radius: 8px 0 0 8px;
+}
+
+// .contact-two__input-box .text-danger {
+//   margin-top: 6px;
+//   font-size: 12.5px;
+//   color: #e5484d;
+// }
+
+.text-message-box {
+  margin-bottom: 14px;
+}
+
+.contact-two__btn-box {
+  margin-top: 2px;
+}
+
+.contact-two__btn.thm-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-radius: 999px;
+  padding: 10px 22px;
+  font-size: 13.5px;
+  font-weight: 700;
+  color: #ffffff;
+  background: rgba(var(--main-color), 1);
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+}
+
+.contact-two__btn.thm-btn:hover {
+  opacity: 0.9;
+}
+
+/* Preview-only fake phone input (index.html uses this since ngx-intl-tel-input
+   only renders inside Angular). Delete this block once wired into your component. */
+.preview-phone-input {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding-left: 16px !important;
+}
+
+.preview-phone-flag {
+  font-weight: 600;
+  color: #10182c;
+}
+
+.preview-phone-placeholder {
+  color: #9aa1b1;
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 767px) {
+  .contact-page {
+    padding: 28px 0 36px;
+  }
+
+  .contact-page__panel {
+    padding: 16px;
+  }
+
+  .contact-page__map-placeholder {
+    margin-top: 14px;
+    min-height: 200px;
+  }
+}
+
+::ng-deep .iti__tel-input.form-control {
+  background: #f6f7fb;
+  border: 1px solid #e7e9f0;
+  border-radius: 8px;
+  padding: 9px 13px 9px 50px;
+  font-size: 13.5px;
+  width: 100% !important;
+}
+::ng-deep {
+  .iti {
+    width: 100% !important;
+  }
+  .iti__tel-input.form-control:focus {
+    border-color: rgba(var(--main-color), 0.5) !important;
+    box-shadow: 0 0 0 3px rgba(var(--main-color), 0.1) !important;
+  }
+  .iti__country-list {
+    max-height: 200px;
+  }
+  .iti__country {
+    font-size: 13px;
+    font-weight: 700;
+    color: #ff1500;
+  }
+  ngx-intl-tel-input.ng-invalid.ng-dirty.is-invalid.ng-touched
+    .iti__tel-input.form-control {
+    border-color: #e5484d !important;
+  }
+}
+
+/* validation errors float below the pill, they never push row height */
+.contact-two__input-box .text-danger {
+  position: absolute;
+  top: calc(100% + 3px);
+  left: 0;
+  white-space: nowrap;
+  font-size: 11px;
+  text-align: start;
+  line-height: normal;
+  z-index: 5;
+  font-weight: 600;
+  color: #fff !important;
+  width: max-content;
+  min-width: 200px;
+  background: #ff1616;
+  padding: 4px;
+  border-radius: 2px;
+}
+
+.contact-two__input-box .text-danger::after {
+  content: "";
+  position: absolute;
+  top: -5px;
+  left: 10px;
+  width: 10px;
+  height: 10px;
+  background: #ff1616;
+  border-right: 1px solid #ff1616;
+  border-bottom: 1px solid #ff1616;
+  transform: rotate(45deg);
+}
+
+@media (max-width: 580px) {
+  .contact-page__map-placeholder {
+    height: auto;
+  }
+}

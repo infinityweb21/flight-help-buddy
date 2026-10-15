@@ -1,0 +1,3463 @@
+@if (!isdialogopen) {
+<section class="common-section text-section top-searchbar">
+  <div class="container">
+    <div class="row">
+      <div class="col-12 onlymobhide-new">
+        @if (packageTabActive) {
+        <app-packages-tab></app-packages-tab>
+        }@else {
+        <app-flights-tab />
+        }
+
+      </div>
+      <!-- === == -->
+      @if (isMobileSearchVisible) {
+      <!-- == === -->
+      <div class="onlymobactivenew">
+        <!-- Trigger Card -->
+        @if (packageTabActive) {
+        <div class="fsr-card" data-bs-toggle="offcanvas" data-bs-target="#fsrOffcanvas" role="button" tabindex="0"
+          aria-controls="fsrOffcanvas">
+
+          <span class="fsr-card__icon">
+            <i class="fa-solid fa-magnifying-glass"></i>
+          </span>
+
+          <div class="fsr-card__body">
+            @if (!diparture) {
+            <p-skeleton width="85%" height="16px" styleClass="mb-2" />
+            <p-skeleton width="95%" height="12px" />
+            } @else {
+            <span class="fsr-card__route">
+              {{ diparture }} {{ departureCity }}
+              <i class="fa-solid fa-right-left"></i>
+              {{ searchHotelData?.destination?.name }}
+            </span>
+            <span class="fsr-card__meta">
+              {{ dipartureDate | date: "EEE, MMM d" }}
+              @if (tripType !== "oneway") {
+              - {{ arrivalDate | date: "EEE, MMM d" }}
+              }
+              · {{ inputValue }} · {{ room }} {{ room > 1 ? "Rooms" : "Room" }} · {{ cabinName }}
+            </span>
+            }
+          </div>
+
+          <span class="fsr-card__icon endbox" (click)="removeBackdrop()">
+            <i class="fa-solid fa-pen"></i>
+          </span>
+        </div>
+        } @else {
+        <div class="fsr-card" data-bs-toggle="offcanvas" data-bs-target="#fsrOffcanvas" role="button" tabindex="0"
+          aria-controls="fsrOffcanvas">
+
+          <span class="fsr-card__icon">
+            <i class="fa-solid fa-magnifying-glass"></i>
+          </span>
+
+          <div class="fsr-card__body">
+            @if (!diparture || !arrival) {
+            <p-skeleton width="75%" height="16px" styleClass="mb-2" />
+            <p-skeleton width="90%" height="12px" />
+            } @else {
+            <span class="fsr-card__route">
+              {{ diparture }} <i class="fa-solid fa-right-left"></i> {{ arrival }}
+            </span>
+            <span class="fsr-card__meta">
+              {{ dipartureDate | date: "EEE, MMM d" }}
+              @if (tripType !== "oneway") {
+              - {{ arrivalDate | date: "EEE, MMM d" }}
+              }
+              &middot; {{ inputValue }} &middot; {{ cabinName }}
+            </span>
+            }
+            <span class="fsr-card__icon endbox" (click)="removeBackdrop()">
+              <i class="fa-solid fa-pen"></i>
+            </span>
+          </div>
+        </div>
+        }
+      </div>
+      <!-- == === -->
+      }
+    </div>
+  </div>
+</section>
+} @else {
+<!-- Custom Dialog -->
+<div class="custom-dialog-mask custome-mask" *ngIf="isdialogopen" (click)="onMaskClick()">
+  <div class="custom-dialog search-modal-popup small-popup" (click)="$event.stopPropagation()">
+    <div class="drawer-body">
+      <section
+        class="banner banner-content-wrap common-banner-content-wrap list-top-form-wrap d-lg-flex banner-list-madal-form"
+        [class.d-none]="isMobileSearchVisible">
+        <div class="container container-xxl">
+          <div class="row">
+            <button (click)="onCloseClick()" type="button" class="search-list-form-close-btn">
+              <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28" fill="none">
+                <path
+                  d="M7.57675 7.5915C7.07557 8.09268 7.07557 8.90523 7.57675 9.40641L12.1777 14.0073L7.57675 18.6083C7.07557 19.1095 7.07557 19.9221 7.57675 20.4232C8.07792 20.9244 8.89049 20.9244 9.39165 20.4232L13.9926 15.8222L18.5936 20.4232C19.0947 20.9244 19.9073 20.9244 20.4085 20.4232C20.9096 19.9221 20.9096 19.1095 20.4085 18.6083L15.8075 14.0073L20.4085 9.40643C20.9096 8.90526 20.9096 8.09269 20.4085 7.59152C19.9072 7.09034 19.0947 7.09034 18.5936 7.59152L13.9926 12.1924L9.39165 7.5915C8.89049 7.09033 8.07792 7.09033 7.57675 7.5915Z"
+                  fill="currentColor" />
+              </svg>
+            </button>
+            <div class="search-list-modal-form">
+              @if (packageTabActive) {
+              <app-packages-tab></app-packages-tab>
+              }@else {
+              <app-flights-tab />
+              }
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+</div>
+
+<!-- <p-dialog [(visible)]="isdialogopen" position="top" styleClass="search-modal-popup small-popup" maskStyleClass="custome-mask" >
+  <ng-template #headless>
+
+    <div class="drawer-body">
+ <section class="banner banner-content-wrap common-banner-content-wrap list-top-form-wrap  d-lg-flex "
+  [class.d-none]="isMobileSearchVisible">
+  <div class="container container-xxl " >
+
+    <div class="row">
+                  <button (click)="onCloseClick()" class="searchmodalclose btn">X</button>
+
+
+       <app-flights-tab />
+
+    </div>
+  
+  </div>
+
+</section>
+    </div>
+  </ng-template>
+</p-dialog> -->
+}
+
+@if (getMainDetails.length > 0 && !isSkeleton) {
+@if(packageTabActive){
+<section class="common-section p-0 booking_stessp">
+  <div class="container">
+    <div class="booking-steps">
+      <div class="booking-step success">
+        <span class="step-number"><i class="fa-solid fa-check"></i></span>
+        <span class="step-name">Stay</span>
+      </div>
+
+      <span class="step-arrow">››</span>
+
+      <div class="booking-step active">
+        <span class="step-number">2</span>
+        <span class="step-name">Flight</span>
+      </div>
+
+      <span class="step-arrow">››</span>
+
+      <div class="booking-step">
+        <span class="step-number">3</span>
+        <span class="step-name">Review & Payment</span>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="common-deatils-section">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <div class="bksum" id="bksumRoot" tabindex="-1" (keydown)="onKeydown($event)">
+          <!-- Hotel -->
+          <div class="bksum__hotel">
+            <div class="bksum__hotel-img">
+              <img [src]="roomDetails?.roomImages[0]?.imageUrl" alt="Room" />
+
+              <span class="bksum__hotel-stars">
+                <i class="fa-solid fa-star"></i>{{hotelDetails?.starRating}}
+              </span>
+            </div>
+
+            <div class="bksum__hotel-info">
+              <p class="bksum__hotel-name">{{hotelDetails?.hotelName}}</p>
+
+              <p class="bksum__hotel-dates">
+                {{ searchHotelData?.checkIn | date: "EEE, MMM d, y" }}
+                -
+                {{ searchHotelData?.checkOut | date: "EEE, MMM d, y" }}
+              </p>
+
+              <div class="bksum__hotel-actions">
+                <!-- Change Hotel -->
+                <button type="button" class="bksum__link" (click)="onChangeHotel()">
+                  Change Hotel
+                </button>
+
+                <span class="bksum__actions-sep">|</span>
+
+                <!-- View Details -->
+                <button type="button" class="bksum__link" [attr.aria-expanded]="isTipOpen('hotel')"
+                  aria-describedby="tipHotel" (click)="toggleTip('hotel')">
+                  View Details
+
+                  <div class="bksum__tip bksum__tip--hotel" id="tipHotel" role="tooltip"
+                    [class.is-open]="isTipOpen('hotel')" (click)="$event.stopPropagation()">
+                    <p class="bksum__tip-title">{{hotelDetails?.hotelName}}</p>
+
+                    <p class="bksum__tip-sub">
+                      {{ searchHotelData?.checkIn | date: "EEE, MMM d, y" }}
+                      -
+                      {{ searchHotelData?.checkOut | date: "EEE, MMM d, y" }}
+                    </p>
+
+                    <p class="bksum__tip-row">
+                      <strong>Selected Room:</strong>
+                      {{room}} Room {{ room > 1 ? 's'
+                      : '' }},{{roomDetails?.bedCount?roomDetails?.bedCount:1}} Bed | {{noOfNights}} Night {{
+                      noOfNights > 1 ?'s' : '' }}
+                    </p>
+
+                    <a class="bksum__tip-link" (click)="onChangeHotelRoom()">
+                      Change Room
+                    </a>
+                  </div>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Plus -->
+          <span class="bksum__plus">
+            <i class="fa-solid fa-plus"></i>
+          </span>
+
+          <!-- Flights -->
+          <div class="bksum__flights">
+            @if(packageFlightDetails?.Citypairs?.length>=1){
+            <!-- Depart -->
+            <div class="bksum__flight-row">
+              <button type="button" class="bksum__flight-toggle" [attr.aria-expanded]="isTipOpen('depart')"
+                aria-describedby="tipDepart" (click)="toggleTip('depart')">
+                <i class="fa-solid fa-chevron-down"></i>
+                Depart
+              </button>
+
+              <div class="bksum__flight-times">
+                <div class="bksum__flight-time">
+                  <div class="bksum__flight-time-value">{{
+                    (packageFlightDetails?.Citypairs[0]?.FlightSegment)[0]?.DepartureDateTime | date: "HH:mm" }}</div>
+
+                  <div class="bksum__flight-time-code">({{
+                    (packageFlightDetails?.Citypairs[0]?.FlightSegment)[0]?.DepartureLocationCode }})</div>
+                </div>
+
+                <div class="bksum__flight-duration">
+                  <div class="bksum__flight-duration-line"></div>
+
+                  <div class="bksum__flight-duration-text">{{ packageFlightDetails?.Citypairs[0]?.Duration |
+                    durationToHours }}</div>
+
+                  <div class="bksum__flight-stop">@if (packageFlightDetails?.Citypairs[0]?.NoOfStops == 0) {
+                    Non stop
+                    } @else if (packageFlightDetails?.Citypairs[0]?.NoOfStops > 0) {
+
+                    {{ packageFlightDetails?.Citypairs[0]?.NoOfStops }}
+                    {{ packageFlightDetails?.Citypairs[0]?.NoOfStops > 1 ? "Stops" : "Stop" }}
+
+                    }</div>
+                </div>
+
+                <div class="bksum__flight-time">
+                  <div class="bksum__flight-time-value">{{
+                    (packageFlightDetails?.Citypairs[0]?.FlightSegment)[packageFlightDetails?.Citypairs[0]?.FlightSegment.length
+                    - 1]?.ArrivalDateTime | date: "HH:mm" }}<sup *ngIf="
+                                    getSegmentDurationParts(packageFlightDetails?.Citypairs[0]?.FlightSegment)
+                                      .days > 0
+                                  ">+{{
+                      getSegmentDurationParts(packageFlightDetails?.Citypairs[0]?.FlightSegment)
+                      .days
+                      }}</sup></div>
+
+                  <div class="bksum__flight-time-code">( {{
+                    (packageFlightDetails?.Citypairs[0]?.FlightSegment)[packageFlightDetails?.Citypairs[0]?.FlightSegment.length
+                    - 1]?.ArrivalLocationCode
+                    }})</div>
+                </div>
+              </div>
+
+              <!-- Depart Tooltip -->
+              <div class="bksum__tip bksum__tip--flight" id="tipDepart" role="tooltip"
+                [class.is-open]="isTipOpen('depart')" (click)="$event.stopPropagation()">
+                <p class="bksum__tip-title">Depart {{
+                  (packageFlightDetails?.Citypairs[0]?.FlightSegment)[0]?.DepartureDateTime | date: "EEEE, MMM " }}
+
+                  {{ (packageFlightDetails?.Citypairs[0]?.FlightSegment)[0]?.DepartureDateTime | date: " d, " }}
+
+                  {{ (packageFlightDetails?.Citypairs[0]?.FlightSegment)[0]?.DepartureDateTime | date: " y" }}</p>
+
+                <div class="bksum__tip-flightrow">
+                  <div class="bksum__tip-flighttime">
+                    <div class="bksum__tip-flighttime-value">{{
+                      (packageFlightDetails?.Citypairs[0]?.FlightSegment)[0]?.DepartureDateTime | date: "HH:mm" }}</div>
+
+                    <div class="bksum__tip-flighttime-code">({{
+                      (packageFlightDetails?.Citypairs[0]?.FlightSegment)[0]?.DepartureLocationCode }})</div>
+                  </div>
+
+                  <div class="bksum__tip-flightline">
+                    <div class="bksum__tip-flightline-rule"></div>
+
+                    <div class="bksum__tip-flightline-text">{{ packageFlightDetails?.Citypairs[0]?.Duration |
+                      durationToHours }}</div>
+
+                    <div class="bksum__tip-flightline-text">@if (packageFlightDetails?.Citypairs[0]?.NoOfStops == 0) {
+                      Non stop
+                      } @else if (packageFlightDetails?.Citypairs[0]?.NoOfStops > 0) {
+
+                      {{ packageFlightDetails?.Citypairs[0]?.NoOfStops }}
+                      {{ packageFlightDetails?.Citypairs[0]?.NoOfStops > 1 ? "Stops" : "Stop" }}
+
+                      }</div>
+                  </div>
+
+                  <div class="bksum__tip-flighttime">
+                    <div class="bksum__tip-flighttime-value">{{
+                      (packageFlightDetails?.Citypairs[0]?.FlightSegment)[packageFlightDetails?.Citypairs[0]?.FlightSegment.length
+                      - 1]?.ArrivalDateTime | date: "HH:mm" }}<sup *ngIf="
+                                    getSegmentDurationParts(packageFlightDetails?.Citypairs[0]?.FlightSegment)
+                                      .days > 0
+                                  ">+{{
+                        getSegmentDurationParts(packageFlightDetails?.Citypairs[0]?.FlightSegment)
+                        .days
+                        }}</sup></div>
+
+                    <div class="bksum__tip-flighttime-code">({{
+                      (packageFlightDetails?.Citypairs[0]?.FlightSegment)[packageFlightDetails?.Citypairs[0]?.FlightSegment.length
+                      - 1]?.ArrivalLocationCode
+                      }})</div>
+                  </div>
+                </div>
+
+                <div class="bksum__tip-airline">
+                  <span class="bksum__tip-airline-logo">
+                    <img [src]="
+                            imageUrl +
+                                  (packageFlightDetails?.Citypairs[0]?.FlightSegment)[0]?.FlightLogoName
+                                " [alt]="
+                                  (packageFlightDetails?.Citypairs[0]?.FlightSegment)[0]?.MarketingAirlineName
+                                " />
+                  </span>
+
+                  {{(packageFlightDetails?.Citypairs[0]?.FlightSegment)[0]?.MarketingAirlineName}} &nbsp;|&nbsp; Flight
+                  {{(packageFlightDetails?.Citypairs[0]?.FlightSegment)[0]?.FlightNumber}}
+                </div>
+              </div>
+            </div>
+            }
+            @if(packageFlightDetails?.Citypairs?.length==2){
+            <!-- Return -->
+            <div class="bksum__flight-row">
+              <button type="button" class="bksum__flight-toggle" [attr.aria-expanded]="isTipOpen('return')"
+                aria-describedby="tipReturn" (click)="toggleTip('return')">
+                <i class="fa-solid fa-chevron-down"></i>
+                Return
+              </button>
+
+              <div class="bksum__flight-times">
+                <div class="bksum__flight-time">
+                  <div class="bksum__flight-time-value">{{
+                    (packageFlightDetails?.Citypairs[1]?.FlightSegment)[0]?.DepartureDateTime | date: "HH:mm" }}</div>
+
+                  <div class="bksum__flight-time-code">({{
+                    (packageFlightDetails?.Citypairs[1]?.FlightSegment)[0]?.DepartureLocationCode }})</div>
+                </div>
+
+                <div class="bksum__flight-duration">
+                  <div class="bksum__flight-duration-line"></div>
+
+                  <div class="bksum__flight-duration-text">{{ packageFlightDetails?.Citypairs[1]?.Duration |
+                    durationToHours }}</div>
+
+                  <div class="bksum__flight-stop">@if (packageFlightDetails?.Citypairs[1]?.NoOfStops == 0) {
+                    Non stop
+                    } @else if (packageFlightDetails?.Citypairs[1]?.NoOfStops > 0) {
+
+                    {{ packageFlightDetails?.Citypairs[1]?.NoOfStops }}
+                    {{ packageFlightDetails?.Citypairs[1]?.NoOfStops > 1 ? "Stops" : "Stop" }}
+
+                    }</div>
+                </div>
+
+                <div class="bksum__flight-time">
+                  <div class="bksum__flight-time-value">{{
+                    (packageFlightDetails?.Citypairs[1]?.FlightSegment)[packageFlightDetails?.Citypairs[1]?.FlightSegment.length
+                    - 1]?.ArrivalDateTime | date: "HH:mm" }}<sup *ngIf="
+                                    getSegmentDurationParts(packageFlightDetails?.Citypairs[1]?.FlightSegment)
+                                      .days > 0
+                                  ">+{{
+                      getSegmentDurationParts(packageFlightDetails?.Citypairs[1]?.FlightSegment)
+                      .days
+                      }}</sup></div>
+
+                  <div class="bksum__flight-time-code">( {{
+                    (packageFlightDetails?.Citypairs[1]?.FlightSegment)[packageFlightDetails?.Citypairs[1]?.FlightSegment.length
+                    - 1]?.ArrivalLocationCode
+                    }})</div>
+                </div>
+              </div>
+              <!-- Return Tooltip -->
+              <div class="bksum__tip bksum__tip--flight" id="tipReturn" role="tooltip"
+                [class.is-open]="isTipOpen('return')" (click)="$event.stopPropagation()">
+                <p class="bksum__tip-title">Return {{
+                  (packageFlightDetails?.Citypairs[1]?.FlightSegment)[0]?.DepartureDateTime | date: "EEEE, MMM " }}
+
+                  {{ (packageFlightDetails?.Citypairs[1]?.FlightSegment)[0]?.DepartureDateTime | date: " d, " }}
+
+                  {{ (packageFlightDetails?.Citypairs[1]?.FlightSegment)[0]?.DepartureDateTime | date: " y" }}</p>
+
+                <div class="bksum__tip-flightrow">
+                  <div class="bksum__tip-flighttime">
+                    <div class="bksum__tip-flighttime-value">{{
+                      (packageFlightDetails?.Citypairs[1]?.FlightSegment)[0]?.DepartureDateTime | date: "HH:mm" }}</div>
+
+                    <div class="bksum__tip-flighttime-code">({{
+                      (packageFlightDetails?.Citypairs[1]?.FlightSegment)[0]?.DepartureLocationCode }})</div>
+                  </div>
+
+                  <div class="bksum__tip-flightline">
+                    <div class="bksum__tip-flightline-rule"></div>
+
+                    <div class="bksum__tip-flightline-text">{{ packageFlightDetails?.Citypairs[1]?.Duration |
+                      durationToHours }}</div>
+
+                    <div class="bksum__tip-flightline-text">@if (packageFlightDetails?.Citypairs[1]?.NoOfStops == 0) {
+                      Non stop
+                      } @else if (packageFlightDetails?.Citypairs[1]?.NoOfStops > 0) {
+
+                      {{ packageFlightDetails?.Citypairs[1]?.NoOfStops }}
+                      {{ packageFlightDetails?.Citypairs[1]?.NoOfStops > 1 ? "Stops" : "Stop" }}
+
+                      }</div>
+                  </div>
+
+                  <div class="bksum__tip-flighttime">
+                    <div class="bksum__tip-flighttime-value"> {{
+                      (packageFlightDetails?.Citypairs[1]?.FlightSegment)[packageFlightDetails?.Citypairs[1]?.FlightSegment.length
+                      - 1]?.ArrivalDateTime | date: "HH:mm" }}<sup *ngIf="
+                                    getSegmentDurationParts(packageFlightDetails?.Citypairs[1]?.FlightSegment)
+                                      .days > 0
+                                  ">+{{
+                        getSegmentDurationParts(packageFlightDetails?.Citypairs[1]?.FlightSegment)
+                        .days
+                        }}</sup></div>
+
+                    <div class="bksum__tip-flighttime-code">({{
+                      (packageFlightDetails?.Citypairs[1]?.FlightSegment)[packageFlightDetails?.Citypairs[1]?.FlightSegment.length
+                      - 1]?.ArrivalLocationCode
+                      }})</div>
+                  </div>
+                </div>
+
+                <div class="bksum__tip-airline">
+                  <span class="bksum__tip-airline-logo">
+                    <img [src]="
+                            imageUrl +
+                                  (packageFlightDetails?.Citypairs[1]?.FlightSegment)[0]?.FlightLogoName
+                                " [alt]="
+                                  (packageFlightDetails?.Citypairs[1]?.FlightSegment)[0]?.MarketingAirlineName
+                                " />
+                  </span>
+
+                  {{(packageFlightDetails?.Citypairs[1]?.FlightSegment)[0]?.MarketingAirlineName}} &nbsp;|&nbsp; Flight
+                  {{(packageFlightDetails?.Citypairs[1]?.FlightSegment)[0]?.FlightNumber}}
+                </div>
+              </div>
+            </div>
+            }
+          </div>
+
+          <!-- Divider -->
+          <span class="bksum__rule"></span>
+
+          <!-- Price -->
+          <div class="bksum__price">
+            <div class="bksum__price-amount">
+
+              @if (packageFlightDetails?.Fares?.[0]?.PaxType === 'ADT') {
+              ${{
+              getFormattedPrice(
+              getTotalPrice(packageFlightDetails?.Fares?.[0]?.CCMax)
+              ).integer
+              }}<sup>.{{
+                getFormattedPrice(
+                getTotalPrice(packageFlightDetails?.Fares?.[0]?.CCMax)
+                ).decimal
+                }}</sup>
+                <span class="bksum__price-per"> / person </span>
+              }
+
+              
+            </div>
+
+            <div class="bksum__price-note">
+              Flight+Hotel (incl. taxes &amp; fees)
+            </div>
+
+            <div class="bksum__price-total">
+              Total
+              <strong>$ {{ getFormattedPrice(getRatePerNightTotal(rateDetails)).integer }}<sup>.{{
+                  getFormattedPrice(getRatePerNightTotal(rateDetails)).decimal }}</sup> </strong>
+            </div>
+          </div>
+
+          <!-- CTA -->
+          <div class="bksum__cta">
+            <button type="button" class="bksum__btn" (click)="navigateFlightDetails(packageFlightDetails)">
+              Continue@if (spinloading) {
+              <span class="spinner spinner-bottom-price"></span>
+              }
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+}
+<section class="fiter-sec-list-section common-section">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-3 col-md-3 col-12 dmobnone">
+        <aside class="fs-filter-panel">
+          <form class="fs-filter-form" method="get">
+            <!-- Header -->
+            <div class="searchresult">
+              <span>{{ getFlightAllDetails.length }}</span> Flights Available
+            </div>
+            <div class="fs-filter-header">
+              <h6>Filters</h6>
+              <button type="reset" class="fs-clear-btn" (click)="reset()">
+                Clear All
+              </button>
+            </div>
+
+            <!-- Smart Filter -->
+            <!-- <div class="fs-smart-box">
+                            <i class="fa-solid fa-bolt fs-smart-icon"></i>
+                            <div>
+                              <h6>Smart Filters</h6>
+                              <p>Quickly find best flights</p>
+                            </div>
+                          </div> -->
+
+            <!-- Stops -->
+            <div class="fs-block">
+              <h6 class="fs-title">Stops</h6>
+              @for (stop of stopOptions; track $index) {
+              @if (getTotalPrice(fullStopWiseLowestFare[stop.key]) > 0) {
+              <label class="fs-checkbox-main">
+                <div class="fs-checkbox">
+                  <input type="checkbox" name="stops" [checked]="filters.stopes.includes(stop.value)"
+                    (change)="onStopChange(stop.value, $event)" [disabled]="!fullStopWiseLowestFare[stop.key]" />
+                  <span></span>
+                  {{ stop.label }}
+                </div>
+                {{
+                getTotalPrice(fullStopWiseLowestFare[stop.key])
+                | number: "1.2-2"
+                }}
+              </label>
+              }
+              }
+            </div>
+
+            <!-- Price -->
+            <!-- <div class="fs-block">
+              <h6 class="fs-title">Flight Price</h6>
+
+              <div class="fs-range">
+                <p-slider [(ngModel)]="sliderValue[0]" [min]="lowestPrice" [max]="highestPrice"
+                  (onSlideEnd)="onPriceRangeChange()" styleClass="price-slider"
+                  [ngModelOptions]="{ standalone: true }"></p-slider>
+                <div class="fs-range-values">
+                  <span>
+                    ${{
+                    getTotalPrice(sliderValue[0]) | number: "1.0-0"
+                    }}</span>
+                  <span>
+                    ${{
+                    getTotalPrice(sliderValue[1]) | number: "1.0-0"
+                    }}</span>
+                </div>
+              </div>
+
+             
+            </div> -->
+
+            <!-- Airlines -->
+            <div class="fs-block">
+              <h6 class="fs-title">Airlines</h6>
+              @for (carrier of visibleAirlines; track $index) {
+              <label class="fs-checkbox-main fs-airline">
+                <div class="fs-checkbox">
+                  <input type="checkbox" name="airline" [value]="carrier.ValidatingCarrierName" [checked]="
+                          filters.airlines.includes(
+                            carrier.ValidatingCarrierName
+                          )
+                        " (change)="
+                          toggleAirlineSelection(
+                            carrier.ValidatingCarrierName,
+                            $event
+                          )
+                        " />
+                  <span></span>
+                  <div class="textsecb">
+                    {{ carrier.ValidatingCarrierName }}
+                  </div>
+                </div>
+                ${{ getTotalPrice(carrier.lowestFare) | number: "1.0-2" }}
+              </label>
+              }
+              @if (
+              getFlightsAdvanced?.uniqueCarriersWithLowestFare?.length > 5
+              ) {
+              <button type="button" class="c-show-more-btn" (click)="showMoreAirlines($event)">
+                <span class="c-show-more-btn__label">{{
+                  showAllAirlines ? "Show less" : "Show more"
+                  }}</span>
+              </button>
+              }
+            </div>
+
+            @if (getAllTimedetails[0]?.Citypairs?.length > 0) {
+            <!-- Departure Time -->
+            <div class="fs-block">
+              <h6 class="fs-title">
+                Departure from
+                {{
+                getAllTimedetails[0]?.Citypairs[0]?.FlightSegment[0]
+                ?.DepartureDisplayName
+                }}
+                ({{
+                getAllTimedetails[0]?.Citypairs[0]?.FlightSegment[0]
+                ?.DepartureLocationCode
+                }})
+              </h6>
+
+              <div class="fs-time-grid">
+                <label class="fs-time-card">
+                  <input type="checkbox" name="dep_time" value="before_6am"
+                    [checked]="filters.departureTime.includes('night')" (click)="toggleDepartureTime('night')" />
+                  <span class="fs-time-ui">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                      stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                      class="icon icon-tabler icons-tabler-outline icon-tabler-sunset-2">
+                      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                      <path d="M3 13h1" />
+                      <path d="M20 13h1" />
+                      <path d="M5.6 6.6l.7 .7" />
+                      <path d="M18.4 6.6l-.7 .7" />
+                      <path d="M8 13a4 4 0 1 1 8 0" />
+                      <path d="M3 17h18" />
+                      <path d="M7 20h5" />
+                      <path d="M16 20h1" />
+                      <path d="M12 5v-1" />
+                    </svg>
+                    <strong>Early Morning</strong>
+                    <small>00:01 - 06:00</small>
+                  </span>
+                </label>
+
+                <label class="fs-time-card">
+                  <input type="checkbox" name="dep_time" value="6am_12pm"
+                    [checked]="filters.departureTime.includes('morning')" (click)="toggleDepartureTime('morning')" />
+                  <span class="fs-time-ui">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                      fill="currentColor" class="icon icon-tabler icons-tabler-filled icon-tabler-sun">
+                      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                      <path
+                        d="M12 19a1 1 0 0 1 .993 .883l.007 .117v1a1 1 0 0 1 -1.993 .117l-.007 -.117v-1a1 1 0 0 1 1 -1z" />
+                      <path
+                        d="M18.313 16.91l.094 .083l.7 .7a1 1 0 0 1 -1.32 1.497l-.094 -.083l-.7 -.7a1 1 0 0 1 1.218 -1.567l.102 .07z" />
+                      <path
+                        d="M7.007 16.993a1 1 0 0 1 .083 1.32l-.083 .094l-.7 .7a1 1 0 0 1 -1.497 -1.32l.083 -.094l.7 -.7a1 1 0 0 1 1.414 0z" />
+                      <path d="M4 11a1 1 0 0 1 .117 1.993l-.117 .007h-1a1 1 0 0 1 -.117 -1.993l.117 -.007h1z" />
+                      <path d="M21 11a1 1 0 0 1 .117 1.993l-.117 .007h-1a1 1 0 0 1 -.117 -1.993l.117 -.007h1z" />
+                      <path
+                        d="M6.213 4.81l.094 .083l.7 .7a1 1 0 0 1 -1.32 1.497l-.094 -.083l-.7 -.7a1 1 0 0 1 1.217 -1.567l.102 .07z" />
+                      <path
+                        d="M19.107 4.893a1 1 0 0 1 .083 1.32l-.083 .094l-.7 .7a1 1 0 0 1 -1.497 -1.32l.083 -.094l.7 -.7a1 1 0 0 1 1.414 0z" />
+                      <path
+                        d="M12 2a1 1 0 0 1 .993 .883l.007 .117v1a1 1 0 0 1 -1.993 .117l-.007 -.117v-1a1 1 0 0 1 1 -1z" />
+                      <path d="M12 7a5 5 0 1 1 -4.995 5.217l-.005 -.217l.005 -.217a5 5 0 0 1 4.995 -4.783z" />
+                    </svg>
+                    <strong>Morning</strong>
+                    <small>06:01 - 12:00</small>
+                  </span>
+                </label>
+
+                <label class="fs-time-card">
+                  <input type="checkbox" name="dep_time" value="12pm_6pm"
+                    [checked]="filters.departureTime.includes('afternoon')"
+                    (click)="toggleDepartureTime('afternoon')" />
+                  <span class="fs-time-ui">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                      stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                      class="icon icon-tabler icons-tabler-outline icon-tabler-sunset">
+                      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                      <path d="M3 17h1m16 0h1m-15.4 -6.4l.7 .7m12.1 -.7l-.7 .7m-9.7 5.7a4 4 0 0 1 8 0" />
+                      <path d="M3 21l18 0" />
+                      <path d="M12 3v6l3 -3m-6 0l3 3" />
+                    </svg>
+                    <strong>Afternoon</strong>
+                    <small>12:01 - 18:00</small>
+                  </span>
+                </label>
+
+                <label class="fs-time-card">
+                  <input type="checkbox" name="dep_time" value="after_6pm"
+                    [checked]="filters.departureTime.includes('evening')" (click)="toggleDepartureTime('evening')" />
+                  <span class="fs-time-ui">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                      stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                      class="icon icon-tabler icons-tabler-outline icon-tabler-moon-stars">
+                      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+                      <path d="M17 4a2 2 0 0 0 2 2a2 2 0 0 0 -2 2a2 2 0 0 0 -2 -2a2 2 0 0 0 2 -2" />
+                      <path d="M19 11h2m-1 -1v2" />
+                    </svg>
+                    <strong>Evening</strong>
+                    <small>18:01 - 23:59</small>
+                  </span>
+                </label>
+              </div>
+            </div>
+
+            <!-- Arrival Time -->
+            <div class="fs-block">
+              <h6 class="fs-title">
+                Arrival to
+                {{
+                ((getAllTimedetails[0]?.Citypairs)[0]?.FlightSegment)[
+                (getAllTimedetails[0]?.Citypairs)[0]?.FlightSegment
+                .length - 1
+                ]?.DisplayName
+                }}
+                ({{
+                ((getAllTimedetails[0]?.Citypairs)[0]?.FlightSegment)[
+                (getAllTimedetails[0]?.Citypairs)[0]?.FlightSegment
+                .length - 1
+                ]?.ArrivalLocationCode
+                }})
+              </h6>
+
+              <div class="fs-time-grid">
+                <label class="fs-time-card">
+                  <input type="checkbox" name="arr_time" [checked]="filters.arrivalTime.includes('night')"
+                    (click)="toggleArrivalTime('night')" />
+                  <span class="fs-time-ui">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                      stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                      class="icon icon-tabler icons-tabler-outline icon-tabler-sunset-2">
+                      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                      <path d="M3 13h1" />
+                      <path d="M20 13h1" />
+                      <path d="M5.6 6.6l.7 .7" />
+                      <path d="M18.4 6.6l-.7 .7" />
+                      <path d="M8 13a4 4 0 1 1 8 0" />
+                      <path d="M3 17h18" />
+                      <path d="M7 20h5" />
+                      <path d="M16 20h1" />
+                      <path d="M12 5v-1" />
+                    </svg>
+                    <strong>Early Morning</strong>
+                    <small>00:01 - 06:00</small>
+                  </span>
+                </label>
+
+                <label class="fs-time-card">
+                  <input type="checkbox" name="arr_time" [checked]="filters.arrivalTime.includes('morning')"
+                    (click)="toggleArrivalTime('morning')" />
+                  <span class="fs-time-ui">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                      fill="currentColor" class="icon icon-tabler icons-tabler-filled icon-tabler-sun">
+                      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                      <path
+                        d="M12 19a1 1 0 0 1 .993 .883l.007 .117v1a1 1 0 0 1 -1.993 .117l-.007 -.117v-1a1 1 0 0 1 1 -1z" />
+                      <path
+                        d="M18.313 16.91l.094 .083l.7 .7a1 1 0 0 1 -1.32 1.497l-.094 -.083l-.7 -.7a1 1 0 0 1 1.218 -1.567l.102 .07z" />
+                      <path
+                        d="M7.007 16.993a1 1 0 0 1 .083 1.32l-.083 .094l-.7 .7a1 1 0 0 1 -1.497 -1.32l.083 -.094l.7 -.7a1 1 0 0 1 1.414 0z" />
+                      <path d="M4 11a1 1 0 0 1 .117 1.993l-.117 .007h-1a1 1 0 0 1 -.117 -1.993l.117 -.007h1z" />
+                      <path d="M21 11a1 1 0 0 1 .117 1.993l-.117 .007h-1a1 1 0 0 1 -.117 -1.993l.117 -.007h1z" />
+                      <path
+                        d="M6.213 4.81l.094 .083l.7 .7a1 1 0 0 1 -1.32 1.497l-.094 -.083l-.7 -.7a1 1 0 0 1 1.217 -1.567l.102 .07z" />
+                      <path
+                        d="M19.107 4.893a1 1 0 0 1 .083 1.32l-.083 .094l-.7 .7a1 1 0 0 1 -1.497 -1.32l.083 -.094l.7 -.7a1 1 0 0 1 1.414 0z" />
+                      <path
+                        d="M12 2a1 1 0 0 1 .993 .883l.007 .117v1a1 1 0 0 1 -1.993 .117l-.007 -.117v-1a1 1 0 0 1 1 -1z" />
+                      <path d="M12 7a5 5 0 1 1 -4.995 5.217l-.005 -.217l.005 -.217a5 5 0 0 1 4.995 -4.783z" />
+                    </svg>
+                    <strong>Morning</strong>
+                    <small>06:01 - 12:00</small>
+                  </span>
+                </label>
+
+                <label class="fs-time-card">
+                  <input type="checkbox" name="arr_time" [checked]="filters.arrivalTime.includes('afternoon')"
+                    (click)="toggleArrivalTime('afternoon')" />
+                  <span class="fs-time-ui">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                      stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                      class="icon icon-tabler icons-tabler-outline icon-tabler-sunset">
+                      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                      <path d="M3 17h1m16 0h1m-15.4 -6.4l.7 .7m12.1 -.7l-.7 .7m-9.7 5.7a4 4 0 0 1 8 0" />
+                      <path d="M3 21l18 0" />
+                      <path d="M12 3v6l3 -3m-6 0l3 3" />
+                    </svg>
+                    <strong>Afternoon</strong>
+                    <small>12:01 - 18:00</small>
+                  </span>
+                </label>
+
+                <label class="fs-time-card">
+                  <input type="checkbox" name="arr_time" [checked]="filters.arrivalTime.includes('evening')"
+                    (click)="toggleArrivalTime('evening')" />
+                  <span class="fs-time-ui">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                      stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                      class="icon icon-tabler icons-tabler-outline icon-tabler-moon-stars">
+                      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+                      <path d="M17 4a2 2 0 0 0 2 2a2 2 0 0 0 -2 2a2 2 0 0 0 -2 -2a2 2 0 0 0 2 -2" />
+                      <path d="M19 11h2m-1 -1v2" />
+                    </svg>
+                    <strong>Evening</strong>
+                    <small>18:01 - 23:59</small>
+                  </span>
+                </label>
+              </div>
+            </div>
+            }
+            @if (
+            getAllTimedetails[0]?.Citypairs?.length === 2 &&
+            getAllTimedetails[0]?.Direction != "multicity"
+            ) {
+            <!-- Departure Time -->
+            <div class="fs-block">
+              <h6 class="fs-title">
+                Departure from
+                {{
+                getAllTimedetails[0]?.Citypairs[1]?.FlightSegment[0]
+                ?.DepartureDisplayName
+                }}
+                ({{
+                getAllTimedetails[0]?.Citypairs[1]?.FlightSegment[0]
+                ?.DepartureLocationCode
+                }})
+              </h6>
+
+              <div class="fs-time-grid">
+                <label class="fs-time-card">
+                  <input type="checkbox" name="dep_time" value="before_6am" [checked]="
+                          filters.returnDepartureTime.includes('night')
+                        " (click)="toggleReturnDepartureTime('night')" />
+                  <span class="fs-time-ui">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                      stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                      class="icon icon-tabler icons-tabler-outline icon-tabler-sunset-2">
+                      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                      <path d="M3 13h1" />
+                      <path d="M20 13h1" />
+                      <path d="M5.6 6.6l.7 .7" />
+                      <path d="M18.4 6.6l-.7 .7" />
+                      <path d="M8 13a4 4 0 1 1 8 0" />
+                      <path d="M3 17h18" />
+                      <path d="M7 20h5" />
+                      <path d="M16 20h1" />
+                      <path d="M12 5v-1" />
+                    </svg>
+                    <strong>Early Morning</strong>
+                    <small>00:01 - 06:00</small>
+                  </span>
+                </label>
+
+                <label class="fs-time-card">
+                  <input type="checkbox" name="dep_time" value="6am_12pm" [checked]="
+                          filters.returnDepartureTime.includes('morning')
+                        " (click)="toggleReturnDepartureTime('morning')" />
+                  <span class="fs-time-ui">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                      fill="currentColor" class="icon icon-tabler icons-tabler-filled icon-tabler-sun">
+                      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                      <path
+                        d="M12 19a1 1 0 0 1 .993 .883l.007 .117v1a1 1 0 0 1 -1.993 .117l-.007 -.117v-1a1 1 0 0 1 1 -1z" />
+                      <path
+                        d="M18.313 16.91l.094 .083l.7 .7a1 1 0 0 1 -1.32 1.497l-.094 -.083l-.7 -.7a1 1 0 0 1 1.218 -1.567l.102 .07z" />
+                      <path
+                        d="M7.007 16.993a1 1 0 0 1 .083 1.32l-.083 .094l-.7 .7a1 1 0 0 1 -1.497 -1.32l.083 -.094l.7 -.7a1 1 0 0 1 1.414 0z" />
+                      <path d="M4 11a1 1 0 0 1 .117 1.993l-.117 .007h-1a1 1 0 0 1 -.117 -1.993l.117 -.007h1z" />
+                      <path d="M21 11a1 1 0 0 1 .117 1.993l-.117 .007h-1a1 1 0 0 1 -.117 -1.993l.117 -.007h1z" />
+                      <path
+                        d="M6.213 4.81l.094 .083l.7 .7a1 1 0 0 1 -1.32 1.497l-.094 -.083l-.7 -.7a1 1 0 0 1 1.217 -1.567l.102 .07z" />
+                      <path
+                        d="M19.107 4.893a1 1 0 0 1 .083 1.32l-.083 .094l-.7 .7a1 1 0 0 1 -1.497 -1.32l.083 -.094l.7 -.7a1 1 0 0 1 1.414 0z" />
+                      <path
+                        d="M12 2a1 1 0 0 1 .993 .883l.007 .117v1a1 1 0 0 1 -1.993 .117l-.007 -.117v-1a1 1 0 0 1 1 -1z" />
+                      <path d="M12 7a5 5 0 1 1 -4.995 5.217l-.005 -.217l.005 -.217a5 5 0 0 1 4.995 -4.783z" />
+                    </svg>
+                    <strong>Morning</strong>
+                    <small>06:01 - 12:00</small>
+                  </span>
+                </label>
+
+                <label class="fs-time-card">
+                  <input type="checkbox" name="dep_time" value="12pm_6pm" [checked]="
+                          filters.returnDepartureTime.includes('afternoon')
+                        " (click)="toggleReturnDepartureTime('afternoon')" />
+                  <span class="fs-time-ui">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                      stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                      class="icon icon-tabler icons-tabler-outline icon-tabler-sunset">
+                      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                      <path d="M3 17h1m16 0h1m-15.4 -6.4l.7 .7m12.1 -.7l-.7 .7m-9.7 5.7a4 4 0 0 1 8 0" />
+                      <path d="M3 21l18 0" />
+                      <path d="M12 3v6l3 -3m-6 0l3 3" />
+                    </svg>
+                    <strong>Afternoon</strong>
+                    <small>12:01 - 18:00</small>
+                  </span>
+                </label>
+
+                <label class="fs-time-card">
+                  <input type="checkbox" name="dep_time" value="after_6pm" [checked]="
+                          filters.returnDepartureTime.includes('evening')
+                        " (click)="toggleReturnDepartureTime('evening')" />
+                  <span class="fs-time-ui">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                      stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                      class="icon icon-tabler icons-tabler-outline icon-tabler-moon-stars">
+                      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+                      <path d="M17 4a2 2 0 0 0 2 2a2 2 0 0 0 -2 2a2 2 0 0 0 -2 -2a2 2 0 0 0 2 -2" />
+                      <path d="M19 11h2m-1 -1v2" />
+                    </svg>
+                    <strong>Evening</strong>
+                    <small>18:01 - 23:59</small>
+                  </span>
+                </label>
+              </div>
+            </div>
+
+            <!-- Arrival Time -->
+            <div class="fs-block">
+              <h6 class="fs-title">
+                Arrival to
+                {{
+                ((getAllTimedetails[0]?.Citypairs)[1]?.FlightSegment)[
+                (getAllTimedetails[0]?.Citypairs)[1]?.FlightSegment
+                .length - 1
+                ]?.DisplayName
+                }}
+                ({{
+                ((getAllTimedetails[0]?.Citypairs)[1]?.FlightSegment)[
+                (getAllTimedetails[0]?.Citypairs)[1]?.FlightSegment
+                .length - 1
+                ]?.ArrivalLocationCode
+                }})
+              </h6>
+
+              <div class="fs-time-grid">
+                <label class="fs-time-card">
+                  <input type="checkbox" name="arr_time" [checked]="filters.returnArrivalTime.includes('night')"
+                    (click)="toggleReturnArrivalTime('night')" />
+                  <span class="fs-time-ui">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                      stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                      class="icon icon-tabler icons-tabler-outline icon-tabler-sunset-2">
+                      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                      <path d="M3 13h1" />
+                      <path d="M20 13h1" />
+                      <path d="M5.6 6.6l.7 .7" />
+                      <path d="M18.4 6.6l-.7 .7" />
+                      <path d="M8 13a4 4 0 1 1 8 0" />
+                      <path d="M3 17h18" />
+                      <path d="M7 20h5" />
+                      <path d="M16 20h1" />
+                      <path d="M12 5v-1" />
+                    </svg>
+                    <strong>Early Morning</strong>
+                    <small>00:01 - 06:00</small>
+                  </span>
+                </label>
+
+                <label class="fs-time-card">
+                  <input type="checkbox" name="arr_time" [checked]="
+                          filters.returnArrivalTime.includes('morning')
+                        " (click)="toggleReturnArrivalTime('morning')" />
+                  <span class="fs-time-ui">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                      fill="currentColor" class="icon icon-tabler icons-tabler-filled icon-tabler-sun">
+                      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                      <path
+                        d="M12 19a1 1 0 0 1 .993 .883l.007 .117v1a1 1 0 0 1 -1.993 .117l-.007 -.117v-1a1 1 0 0 1 1 -1z" />
+                      <path
+                        d="M18.313 16.91l.094 .083l.7 .7a1 1 0 0 1 -1.32 1.497l-.094 -.083l-.7 -.7a1 1 0 0 1 1.218 -1.567l.102 .07z" />
+                      <path
+                        d="M7.007 16.993a1 1 0 0 1 .083 1.32l-.083 .094l-.7 .7a1 1 0 0 1 -1.497 -1.32l.083 -.094l.7 -.7a1 1 0 0 1 1.414 0z" />
+                      <path d="M4 11a1 1 0 0 1 .117 1.993l-.117 .007h-1a1 1 0 0 1 -.117 -1.993l.117 -.007h1z" />
+                      <path d="M21 11a1 1 0 0 1 .117 1.993l-.117 .007h-1a1 1 0 0 1 -.117 -1.993l.117 -.007h1z" />
+                      <path
+                        d="M6.213 4.81l.094 .083l.7 .7a1 1 0 0 1 -1.32 1.497l-.094 -.083l-.7 -.7a1 1 0 0 1 1.217 -1.567l.102 .07z" />
+                      <path
+                        d="M19.107 4.893a1 1 0 0 1 .083 1.32l-.083 .094l-.7 .7a1 1 0 0 1 -1.497 -1.32l.083 -.094l.7 -.7a1 1 0 0 1 1.414 0z" />
+                      <path
+                        d="M12 2a1 1 0 0 1 .993 .883l.007 .117v1a1 1 0 0 1 -1.993 .117l-.007 -.117v-1a1 1 0 0 1 1 -1z" />
+                      <path d="M12 7a5 5 0 1 1 -4.995 5.217l-.005 -.217l.005 -.217a5 5 0 0 1 4.995 -4.783z" />
+                    </svg>
+                    <strong>Morning</strong>
+                    <small>06:01 - 12:00</small>
+                  </span>
+                </label>
+
+                <label class="fs-time-card">
+                  <input type="checkbox" name="arr_time" [checked]="
+                          filters.returnArrivalTime.includes('afternoon')
+                        " (click)="toggleReturnArrivalTime('afternoon')" />
+                  <span class="fs-time-ui">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                      stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                      class="icon icon-tabler icons-tabler-outline icon-tabler-sunset">
+                      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                      <path d="M3 17h1m16 0h1m-15.4 -6.4l.7 .7m12.1 -.7l-.7 .7m-9.7 5.7a4 4 0 0 1 8 0" />
+                      <path d="M3 21l18 0" />
+                      <path d="M12 3v6l3 -3m-6 0l3 3" />
+                    </svg>
+                    <strong>Afternoon</strong>
+                    <small>12:01 - 18:00</small>
+                  </span>
+                </label>
+
+                <label class="fs-time-card">
+                  <input type="checkbox" name="arr_time" [checked]="
+                          filters.returnArrivalTime.includes('evening')
+                        " (click)="toggleReturnArrivalTime('evening')" />
+                  <span class="fs-time-ui">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                      stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                      class="icon icon-tabler icons-tabler-outline icon-tabler-moon-stars">
+                      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+                      <path d="M17 4a2 2 0 0 0 2 2a2 2 0 0 0 -2 2a2 2 0 0 0 -2 -2a2 2 0 0 0 2 -2" />
+                      <path d="M19 11h2m-1 -1v2" />
+                    </svg>
+                    <strong>Evening</strong>
+                    <small>18:01 - 23:59</small>
+                  </span>
+                </label>
+              </div>
+            </div>
+            }
+
+            <!-- Airlines -->
+            <div class="fs-block">
+              <h6 class="fs-title">Connecting Airports</h6>
+              @for (s of visibleConnectingAirports; track $index) {
+              <label class="fs-checkbox-main fs-airline">
+                <div class="fs-checkbox">
+                  <input type="checkbox" name="airline" [value]="s.DepartureLocationCode" [checked]="
+                          filters.connectingAirports.includes(
+                            s.DepartureLocationCode
+                          )
+                        " (change)="
+                          toggleConnectingAirport(
+                            s.DepartureLocationCode,
+                            $event
+                          )
+                        " />
+                  <span></span>
+                  <div class="textsecb">
+                    {{ s.DepartureLocationCode }} -
+                    {{ s.OriginAirportName }}
+                  </div>
+                </div>
+              </label>
+              }
+              @if (
+              getFlightsAdvanced?.uniqueCarriersWithLowestFare?.length > 5
+              ) {
+              <button type="button" class="c-show-more-btn" (click)="showMoreAirlines($event)">
+                <span class="c-show-more-btn__label">{{
+                  showAllAirlines ? "Show less" : "Show more"
+                  }}</span>
+              </button>
+              }
+            </div>
+
+            <div class="fs-block">
+              <h6 class="fs-title">Duration</h6>
+              <div class="o-filter-duration--content__duration-item-wrap">
+                @for (dur of finalLayoverFlights?.duration; track $index) {
+                <div class="o-filter-duration--content__duration-item">
+                  <div class="o-filter-duration--content__duration-item--destination-wrap">
+                    <div class="o-filter-duration--content__duration-item--destination">
+                      <!-- ✅ ARRIVAL -->
+                      <div class="o-filter-duration--content__duration-item--destination__arrival">
+                        {{
+                        getTimeDetails()?.Citypairs[$index]
+                        ?.FlightSegment[0]?.DepartureDisplayName
+                        }}
+                      </div>
+
+                      <div class="o-filter-duration--content__duration-item--destination__icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="15" height="12" viewBox="0 0 15 12" fill="none">
+                          <path
+                            d="M1 5.3C0.613401 5.3 0.3 5.6134 0.3 6C0.3 6.3866 0.613401 6.7 1 6.7V6V5.3ZM14.495 6.49497C14.7683 6.22161 14.7683 5.77839 14.495 5.50503L10.0402 1.05025C9.76684 0.776886 9.32362 0.776886 9.05025 1.05025C8.77689 1.32362 8.77689 1.76684 9.05025 2.0402L13.0101 6L9.05025 9.9598C8.77689 10.2332 8.77689 10.6764 9.05025 10.9497C9.32362 11.2231 9.76684 11.2231 10.0402 10.9497L14.495 6.49497ZM1 6V6.7H14V6V5.3H1V6Z"
+                            fill="currentColor"></path>
+                        </svg>
+                      </div>
+
+                      <!-- ✅ DEPARTURE -->
+                      <div class="o-filter-duration--content__duration-item--destination__departure">
+                        {{
+                        getTimeDetails()?.Citypairs[$index]
+                        ?.FlightSegment[
+                        getTimeDetails()?.Citypairs[$index]
+                        ?.FlightSegment.length - 1
+                        ]?.DisplayName
+                        }}
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="o-filter-duration--content__duration-item--range-content">
+                    <div class="o-filter-duration--content__duration-item--range-content__wrap">
+                      <div class="o-filter-duration--content__duration-item--range-content__title">
+                        Total Trip Time
+                      </div>
+
+                      <div class="o-filter-duration--content__duration-item--range-content__value">
+                        upto
+                        <span class="o-filter-duration--content__duration-item--range-content__value--hour">
+                          {{
+                          formatDuration(getCurrentDuration(dur.type))
+                          .hours
+                          }}h
+                        </span>
+                        <span class="o-filter-duration--content__duration-item--range-content__value--minute">
+                          {{
+                          formatDuration(getCurrentDuration(dur.type))
+                          .minutes
+                          }}m
+                        </span>
+                      </div>
+
+                      <div class="o-filter-duration--content__duration-item--range">
+                        <div class="c-range">
+                          <!-- ✅ FULLY DYNAMIC -->
+                          <input type="range" class="c-range__input" min="0" [max]="getMaxMinutes(dur.highestDuration)"
+                            step="10" [(ngModel)]="filters.durations[dur.type]" [style.--fill-percent.%]="
+                                  getFillPercent(
+                                    filters.durations[dur.type],
+                                    getMaxMinutes(dur.highestDuration)
+                                  )
+                                " (input)="onDurationChange(dur.type, $event)" />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                }
+              </div>
+            </div>
+          </form>
+        </aside>
+      </div>
+      <div class="col-lg-7 col-md-12 col-12">
+        <div class="df-wrapper d-none">
+          <button class="df-nav-btn df-prev" id="dfPrev">
+            <i class="fa-solid fa-chevron-left"></i>
+          </button>
+
+          <div class="df-slider" id="dfSlider">
+            <div class="df-track">
+              <div class="df-item df-active">
+                <span>Tue, 23 Dec</span>
+                <strong>₹11,831</strong>
+              </div>
+
+              <div class="df-item">
+                <span>Wed, 24 Dec</span>
+                <strong>₹10,886</strong>
+              </div>
+
+              <div class="df-item">
+                <span>Thu, 25 Dec</span>
+                <strong>₹9,941</strong>
+              </div>
+
+              <div class="df-item">
+                <span>Fri, 26 Dec</span>
+                <strong>₹8,681</strong>
+              </div>
+
+              <div class="df-item">
+                <span>Sat, 27 Dec</span>
+                <strong>₹9,206</strong>
+              </div>
+
+              <div class="df-item">
+                <span>Sun, 28 Dec</span>
+                <strong>₹9,934</strong>
+              </div>
+
+              <div class="df-item">
+                <span>Mon, 29 Dec</span>
+                <strong>₹8,202</strong>
+              </div>
+              <div class="df-item">
+                <span>Tue, 30 Dec</span>
+                <strong>₹8,202</strong>
+              </div>
+              <div class="df-item">
+                <span>Wed, 31 Dec</span>
+                <strong>₹8,202</strong>
+              </div>
+              <div class="df-item">
+                <span>Thu, 1 Jan</span>
+                <strong>₹8,202</strong>
+              </div>
+              <div class="df-item">
+                <span>Fri, 2 Jan</span>
+                <strong>₹8,202</strong>
+              </div>
+            </div>
+          </div>
+
+          <button class="df-nav-btn df-next" id="dfNext">
+            <i class="fa-solid fa-chevron-right"></i>
+          </button>
+        </div>
+        <div class="mainsb-wrapper m-mds-0 mt-0">
+          <div class="sb-wrapper fl-wrapper only-mb">
+            <label class="sb-label">Filter By</label>
+            <div class="filterbtn">
+              <button class="filterbtnin" data-bs-toggle="offcanvas" data-bs-target="#offcanvasfilter"
+                aria-controls="offcanvasfilter">
+                Filter By <i class="bi bi-sort-down"></i>
+              </button>
+            </div>
+          </div>
+          <!-- <div class="sb-wrapper">
+            <label class="sb-label">Sort by</label>
+
+            <div class="sb-select" id="sbSelect">
+              <div class="sb-selected" (click)="toggleSortMenu()">
+                <span>{{ selectedSortLabel }}</span>
+                <i class="fa-solid fa-chevron-down"></i>
+              </div>
+
+              <ul class="sb-options" [class.sb-show]="sortMenuOpen">
+              
+                <li data-value="cheapest" (click)="selectSort('cheapest')">
+                  Cheapest Fare
+                </li>
+
+                <li data-value="recommended" (click)="selectSort('recommended')">
+                  Recommended
+                </li>
+
+             
+                @if (getNearbyDetails.length != 0) {
+                <li data-value="alternate" (click)="selectSort('alternate')">
+                  Nearby Airport
+                </li>
+                }
+              </ul>
+            </div>
+          </div> -->
+          <!-- <div class="searchresult">
+            <span>{{ getFlightAllDetails.length }}</span> Flights Available
+          </div> -->
+        </div>
+        <div class="list-flight-main-wrapper">
+          <h3 class="common-title">
+            {{ selectedSortLabel }} departing flights
+          </h3>
+          <p class="fd-ad-desc-new">Prices are displayed in USD per person and include applicable <a
+              href="javascript:void(0)" (click)="onrouteTax()">taxes and fees</a>. <a href="javascript:void(0)"
+              (click)="onrouteBagage()">Baggage Fees</a> are not included.
+
+          </p>
+
+          @if (
+          selectedTab === "recommended" ||
+          selectedTab === "cheapest" ||
+          selectedTab === "all" ||
+          selectedTab === "alternate"
+          ) {
+          @for (
+          flightInfo of getSortedVisibleSegments();
+          track flightInfo.ItineraryId;
+          let i = $index;
+          let segmentindex = $index
+          ) {
+          <div class="fr-card-wrapper" [class.mark-box]="flightInfo.ItineraryId===packageFlightDetails?.ItineraryId">
+            <!-- ===== FLIGHT SUMMARY CARD ===== -->
+            <div class="fr-card">
+              <div class="fr-top-actions-main">
+                <div class="fr-top-actions">
+                  <div class="fr-action-btn">
+                    <i class="fa-solid fa-couch"></i>
+                    {{
+                    classMap[flightInfo?.CabinClass] ||
+                    flightInfo?.CabinClass
+                    }} 
+                  </div>
+                </div>
+
+                <div class="fr-top-actions justify-content-end">
+                  @if (i == 0) {
+                  <div class="cheapestbadge">Cheapest</div>
+                  }
+
+                  <div class="bestbadge">
+                    <i class="fa-solid fa-fire"></i>
+                    @if (flightInfo?.Source === "agency-flight") {
+                    Few tickets left
+                    } @else {
+                    {{
+                    flightInfo?.noOfSeats === 0
+                    ? 1
+                    : flightInfo?.noOfSeats
+                    }}
+                    tickets left
+                    }
+                  </div>
+
+                  <!-- INFO BUTTON -->
+                  <div class="ifo-secbox fr-main-rows" (click)="
+                            handleFlightDetailsClick(i, flightInfo, $event)
+                          ">
+                    <button type="button" data-bs-toggle="tooltip" class="tootlifobtn" data-bs-placement="top"
+                      title="CLICK TO MORE DETAILS">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="currentColor"
+                        class="icon icon-tabler icons-tabler-filled icon-tabler-info-square-rounded">
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+
+                        <path
+                          d="M12 2l.642 .005l.616 .017l.299 .013l.579 .034l.553 .046c4.687 .455 6.65 2.333 7.166 6.906l.03 .29l.046 .553l.041 .727l.006 .15l.017 .617l.005 .642l-.005 .642l-.017 .616l-.013 .299l-.034 .579l-.046 .553c-.455 4.687 -2.333 6.65 -6.906 7.166l-.29 .03l-.553 .046l-.727 .041l-.15 .006l-.617 .017l-.642 .005l-.642 -.005l-.616 -.017l-.299 -.013l-.579 -.034l-.553 -.046c-4.687 -.455 -6.65 -2.333 -7.166 -6.906l-.03 -.29l-.046 -.553l-.041 -.727l-.006 -.15l-.017 -.617l-.004 -.318v-.648l.004 -.318l.017 -.616l.013 -.299l.034 -.579l.046 -.553c.455 -4.687 2.333 -6.65 6.906 -7.166l.29 -.03l.553 -.046l.727 -.041l.15 -.006l.617 -.017c.21 -.003 .424 -.005 .642 -.005zm0 9h-1l-.117 .007a1 1 0 0 0 0 1.986l.117 .007v3l.007 .117a1 1 0 0 0 .876 .876l.117 .007h1l.117 -.007a1 1 0 0 0 .876 -.876l.007 -.117l-.007 -.117a1 1 0 0 0 -.764 -.857l-.112 -.02l-.117 -.006v-3l-.007 -.117a1 1 0 0 0 -.876 -.876l-.117 -.007zm.01 -3l-.127 .007a1 1 0 0 0 0 1.986l.117 .007l.127 -.007a1 1 0 0 0 0 -1.986l-.117 -.007z" />
+                      </svg>
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <!-- =========================================
+         FLIGHT CARD
+    ========================================== -->
+
+              <div class="fr-flight-card">
+                <div [class.round-fr-mainrow]="tripType === 'roundtrip'" [class.fr-mainrow]="tripType === 'oneway'"
+                  (click)="
+                          handleFlightDetailsClick(i, flightInfo, $event)
+                        ">
+                  <!-- ===== FLIGHT ROW 1 ===== -->
+
+                  <div class="fr-main-row" *ngFor="
+                            let seg of flightInfo?.Citypairs;
+                            let i = index
+                          ">
+                    <!-- Airline / Route -->
+                    <div class="fr-left fr-main-rows">
+                      <div class="fr-img">
+                        <img [src]="
+                                  imageUrl +
+                                  (seg?.FlightSegment)[0]?.FlightLogoName
+                                " [alt]="
+                                  (seg?.FlightSegment)[0]?.MarketingAirlineName
+                                " />
+                      </div>
+
+                      <div>
+                        <div class="fr-time">
+                          {{
+                          (seg?.FlightSegment)[0]?.DepartureDateTime
+                          | date: "HH:mm"
+                          | lowercase
+                          }}
+                          –
+                          {{
+                          (seg?.FlightSegment)[
+                          seg?.FlightSegment.length - 1
+                          ]?.ArrivalDateTime
+                          | date: "HH:mm"
+                          | lowercase
+                          }}<sup *ngIf="
+                                    getSegmentDurationParts(seg?.FlightSegment)
+                                      .days > 0
+                                  ">+{{
+                            getSegmentDurationParts(seg?.FlightSegment)
+                            .days
+                            }}</sup>
+                        </div>
+
+                        <div class="fr-route">
+                          {{
+                          (seg?.FlightSegment)[0]?.DepartureLocationCode
+                          }}
+                          –
+                          {{
+                          (seg?.FlightSegment)[
+                          seg?.FlightSegment.length - 1
+                          ]?.ArrivalLocationCode
+                          }}
+                        </div>
+
+                        <div class="fr-airline" *ngIf="getOperatedAirlines(flightInfo)?.length">
+                          <span>Operated by:</span>
+                          <ng-container *ngFor="
+                                    let airline of getOperatedAirlines(
+                                      flightInfo
+                                    );
+                                    let last = last
+                                  ">
+                            <span>{{ airline }}</span>
+                            <span *ngIf="!last" class="c-flight-list-card__separator">|</span>
+                          </ng-container>
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- Stops -->
+                    <div class="fr-mid fr-main-rows">
+                      @if (seg?.NoOfStops == 0) {
+                      <div class="fr-stop">Non stop</div>
+                      } @else if (seg?.NoOfStops > 0) {
+                      <div class="fr-stop">
+                        {{ seg?.NoOfStops }}
+                        {{ seg?.NoOfStops > 1 ? "Stops" : "Stop" }}
+                      </div>
+                      }
+                      @if (seg?.NoOfStops > 0) {
+                      <ng-container *ngIf="
+                                  getLayoverSegments(
+                                    seg.FlightSegment
+                                  ) as layoverSegments
+                                ">
+                        <div class="fr-stop-sub">
+                          <ng-container *ngFor="
+                                      let flight of layoverSegments;
+                                      let j = index
+                                    ">
+                            {{ flight.DepartureLocationCode
+                            }}<span *ngIf="j < layoverSegments.length - 1">,
+                            </span>
+                          </ng-container>
+                        </div>
+                      </ng-container>
+                      }
+                    </div>
+
+                    <!-- Duration -->
+                    <div class="fr-mid fr-main-rows">
+                      <div class="fr-duration">
+                        {{ seg?.Duration | durationToHours }}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- =========================================
+           PRICE BOX
+      ========================================== -->
+
+                <div class="fr-price-box">
+                  <div>
+                    @for (f of flightInfo.Fares; track $index) {
+                    <div>
+                      <div class="fr-price">
+                        @if(packageTabActive){
+                        @if (f?.PaxType == "ADT") {
+                        ${{
+                        getFormattedPrice(getTotalPrice(f?.CCMax))
+                        .integer
+                        }}.{{
+                        getFormattedPrice(getTotalPrice(f?.CCMax))
+                        .decimal
+                        }}
+                        }
+                        <!-- @if (f?.PaxType == "ADT") {
+                        @let difference = getPackagePriceDifference(
+                        f?.CCMax,
+                        packageFlightDetails?.Fares?.[0]?.CCMax
+                        );
+
+                        {{ difference >= 0 ? '+' : '-' }}${{
+                        getFormattedPrice(getAbsoluteValue(difference)).integer
+                        }}.{{
+                        getFormattedPrice(getAbsoluteValue(difference)).decimal
+                        }}
+
+                        } -->
+
+                        }@else{
+                        @if (f?.PaxType == "ADT") {
+                        ${{
+                        getFormattedPrice(getTotalPrice(f?.CCMax))
+                        .integer
+                        }}.{{
+                        getFormattedPrice(getTotalPrice(f?.CCMax))
+                        .decimal
+                        }}
+
+                        }
+
+                        }
+
+
+                      </div>
+                    </div>
+                    }
+                    <sub class="fr-per">/ person</sub>
+                    <div class="fr-total">
+                      @if(packageTabActive){
+                      ${{
+                      getFormattedPrice(getRatePerNightTotalPackage(flightInfo.Fares[0]))
+                      .integer
+                      }}.{{
+                      getFormattedPrice(getRatePerNightTotalPackage(flightInfo.Fares[0]))
+                      .decimal
+                      }}
+                      }@else{
+                      ${{
+                      getFormattedPrice(getTotal(flightInfo.Fares))
+                      .integer
+                      }}.{{
+                      getFormattedPrice(getTotal(flightInfo.Fares))
+                      .decimal
+                      }}
+                      }
+                    </div>
+                  </div>
+
+                  <button type="button" class="fr-select-btn" (click)="navigateFlightDetails(flightInfo)">
+                    Select
+                    @if (spinloading) {
+                    <span class="spinner spinner-bottom-price"></span>
+                    }
+                  </button>
+                </div>
+                <!-- FLIGHT DETAILS BUTTON -->
+                <a href="javascript:void(0)" class="abbtnsec" (click)="openFlightDetails($event, 'frDetails1')">
+                  Flight Details
+                </a>
+              </div>
+            </div>
+
+            <!-- =========================================
+       FLIGHT DETAILS
+  ========================================== -->
+
+            <div class="fr-details" (click)="$event.stopPropagation()" #dropdownPanel [class.fr-open]="openIndex === i">
+              <div class="fd-card combocard">
+                <!-- =========================================
+           DETAILS HEADER
+      ========================================== -->
+
+                <div class="fd-header">
+                  <div class="tab-box-sec-inner">
+                    <ul class="nav nav-pills travel-type-tabs__nav" [id]="'travelTypeTab-' + i" role="tablist">
+                      <!-- Route -->
+                      <li class="nav-item" role="presentation">
+                        <button class="nav-link active travel-type-tabs__item" [id]="'route-tab-' + i"
+                          data-bs-toggle="pill" [attr.data-bs-target]="'#route-' + i" type="button" role="tab"
+                          [attr.aria-controls]="'route-' + i" aria-selected="true">
+                          <span class="travel-type-tabs__content">
+                            <strong>Route</strong>
+                          </span>
+                        </button>
+                      </li>
+
+                      <!-- Baggage -->
+                      <li class="nav-item" role="presentation">
+                        <button class="nav-link travel-type-tabs__item" [id]="'baggage-tab-' + i" data-bs-toggle="pill"
+                          [attr.data-bs-target]="'#baggage-' + i" type="button" role="tab"
+                          [attr.aria-controls]="'baggage-' + i" aria-selected="false">
+                          <span class="travel-type-tabs__content">
+                            <strong>Baggage</strong>
+                          </span>
+                        </button>
+                      </li>
+
+                      <!-- Instant Support -->
+                      <li class="nav-item" role="presentation">
+                        <button class="nav-link travel-type-tabs__item" [id]="'is-tab-' + i" data-bs-toggle="pill"
+                          [attr.data-bs-target]="'#is-' + i" type="button" role="tab" [attr.aria-controls]="'is-' + i"
+                          aria-selected="false">
+                          <span class="travel-type-tabs__content">
+                            <strong>Instant Support</strong>
+                          </span>
+                        </button>
+                      </li>
+                    </ul>
+                  </div>
+
+                  <!-- CLOSE BUTTON -->
+                  <div class="rightclosesec">
+                    <button type="button" class="fr-close-btn" (click)="closeFlightDetails($event)">
+                      ✕
+                    </button>
+                  </div>
+                </div>
+
+                <!-- =========================================
+           TAB CONTENT
+      ========================================== -->
+
+                <div class="tab-content travel-type-tabs__content-area" id="travelTypeTabContent">
+                  <!-- =========================================
+             ROUTE TAB
+        ========================================== -->
+
+                  <div class="tab-pane fade" [class.show]="activeTravelTab === 'route'"
+                    [class.active]="activeTravelTab === 'route'" [id]="'route-' + i" role="tabpanel"
+                    [attr.aria-labelledby]="'route-tab-' + i">
+                    @if (flightInfo?.Citypairs?.length >= 1) {
+                    <div class="fd-card p-0">
+                      <!-- ================= DEPARTURE ================= -->
+
+                      <!-- Segment 1 / Departure -->
+                      <div class="fd-segment p-0">
+                        <div class="inline-flex-sec fd-segment pb-0">
+                          <div class="dtitle">
+                            Depart ·
+                            {{
+                            flightInfo?.Citypairs[0]?.FlightSegment[0]
+                            ?.DepartureDateTime | date: "EEE, d MMM"
+                            }}
+                          </div>
+
+                          <span class="duration-size">
+                            Journey Duration:
+                            {{
+                            flightInfo?.Citypairs[0]?.Duration
+                            | durationToHours
+                            }}
+                          </span>
+                        </div>
+
+                        @for (
+                        flight of flightInfo?.Citypairs[0]
+                        ?.FlightSegment;
+                        track $index;
+                        let i = $index
+                        ) {
+                        <!-- ================= FLIGHT SEGMENT ================= -->
+                        <div class="fd-segment">
+                          <div class="fd-seg-head">
+                            <img [src]="imageUrl + flight.FlightLogoName" class="fd-air-logo"
+                              [alt]="flight.FlightLogoName" />
+
+                            <span>
+                              {{ flight.MarketingAirlineName }}
+                              {{ flight.FlightNumber }}
+                            </span>
+
+                            <span class="fd-chip">
+                              {{ flight.AirEquipmentType }}
+                            </span>
+
+                            <div class="fd-icons">
+                              <!-- Keep your existing SVG icons here -->
+                            </div>
+                          </div>
+
+                          <div class="fd-seg-body">
+                            <div class="fd-time-col">
+                              <strong>
+                                {{
+                                flight.DepartureDateTime
+                                | date: "HH:mm"
+                                }}
+                              </strong>
+
+                              <span>
+                                {{ flight.OriginAirportName }}
+                                ({{ flight.DepartureLocationCode }})
+                              </span>
+                            </div>
+
+                            <div class="fd-mid">
+                              <span class="fd-flight-icon"> ✈ </span>
+
+                              <small>
+                                {{ flight.Duration | lowercase }}
+                              </small>
+
+                              @if (
+                              flight.DepartureDateTime &&
+                              flight.ArrivalDateTime &&
+                              (flight.DepartureDateTime
+                              | date: "yyyyMMdd") !==
+                              (flight.ArrivalDateTime
+                              | date: "yyyyMMdd")
+                              ) {
+                              <span class="fd-tag">
+                                Overnight flight
+                              </span>
+                              }
+                            </div>
+
+                            <div class="fd-time-col">
+                              <strong>
+                                {{
+                                flight.ArrivalDateTime
+                                | date: "HH:mm"
+                                }}
+                              </strong>
+
+                              <span>
+                                {{ flight.DestinationAirportName }}
+                                ({{ flight.ArrivalLocationCode }})
+                              </span>
+
+                              @if (
+                              flight.DepartureDateTime &&
+                              flight.ArrivalDateTime &&
+                              (flight.DepartureDateTime
+                              | date: "yyyyMMdd") !==
+                              (flight.ArrivalDateTime
+                              | date: "yyyyMMdd")
+                              ) {
+                              <small class="fd-arrival">
+                                Arrives
+                                {{
+                                flight.ArrivalDateTime
+                                | date: "EEE, d MMM"
+                                }}
+                              </small>
+                              }
+                            </div>
+                          </div>
+                        </div>
+
+                        <!-- ================= LAYOVER ================= -->
+                        @if (
+                        i < flightInfo?.Citypairs[0]?.FlightSegment ?.length - 1 ) { <div class="fd-layover">
+                          {{
+                          flightInfo?.Citypairs[0]?.FlightSegment[
+                          i + 1
+                          ]?.LayoverTime | lowercase
+                          }}
+
+                          · Change planes in
+
+                          {{
+                          flightInfo?.Citypairs[0]?.FlightSegment[
+                          i + 1
+                          ]?.OriginAirportName
+                          }}
+
+                          (
+                          {{
+                          flightInfo?.Citypairs[0]?.FlightSegment[
+                          i + 1
+                          ]?.DepartureLocationCode
+                          }}
+                          )
+
+                          <span class="fd-badge orange">
+                            Long stopover
+                          </span>
+
+                          <span class="fd-badge gray">
+                            Self-transfer
+                          </span>
+                      </div>
+                      }
+                      }
+                    </div>
+                  </div>
+
+                  <!-- ================= RETURN ================= -->
+                  @if (flightInfo?.Citypairs?.length === 2) {
+                  <div class="fd-card p-0">
+                    <div class="fd-segment p-0">
+                      <div class="inline-flex-sec fd-segment pb-0">
+                        <div class="dtitle">
+                          Return ·
+                          {{
+                          flightInfo?.Citypairs[1]
+                          ?.FlightSegment[0]?.DepartureDateTime
+                          | date: "EEE, d MMM"
+                          }}
+                        </div>
+
+                        <span class="duration-size">
+                          Journey Duration:
+                          {{
+                          flightInfo?.Citypairs[1]?.Duration
+                          | durationToHours
+                          }}
+                        </span>
+                      </div>
+
+                      @for (
+                      flight of flightInfo?.Citypairs[1]
+                      ?.FlightSegment;
+                      track $index;
+                      let i = $index
+                      ) {
+                      <!-- ================= RETURN FLIGHT SEGMENT ================= -->
+                      <div class="fd-segment">
+                        <div class="fd-seg-head">
+                          <img [src]="
+                                            imageUrl + flight.FlightLogoName
+                                          " class="fd-air-logo" [alt]="flight.FlightLogoName" />
+
+                          <span>
+                            {{ flight.MarketingAirlineName }}
+                            {{ flight.FlightNumber }}
+                          </span>
+
+                          <span class="fd-chip">
+                            {{ flight.AirEquipmentType }}
+                          </span>
+
+                          <!-- <span class="fd-amenity">
+                            <img src="assets/images/flight/food-svgrepo-com.svg" alt="" />
+
+                            Light meal available
+                          </span> -->
+                        </div>
+
+                        <div class="fd-seg-body">
+                          <div class="fd-time-col">
+                            <strong>
+                              {{
+                              flight.DepartureDateTime
+                              | date: "HH:mm"
+                              }}
+                            </strong>
+
+                            <span>
+                              {{ flight.OriginAirportName }}
+                              ({{ flight.DepartureLocationCode }})
+                            </span>
+                          </div>
+
+                          <div class="fd-mid">
+                            <span class="fd-flight-icon">
+                              ✈
+                            </span>
+
+                            <small>
+                              {{ flight.Duration | lowercase }}
+                            </small>
+
+                            @if (
+                            flight.DepartureDateTime &&
+                            flight.ArrivalDateTime &&
+                            (flight.DepartureDateTime
+                            | date: "yyyyMMdd") !==
+                            (flight.ArrivalDateTime
+                            | date: "yyyyMMdd")
+                            ) {
+                            <span class="fd-tag">
+                              Overnight flight
+                            </span>
+                            }
+                          </div>
+
+                          <div class="fd-time-col">
+                            <strong>
+                              {{
+                              flight.ArrivalDateTime
+                              | date: "HH:mm"
+                              }}
+                            </strong>
+
+                            <span>
+                              {{ flight.DestinationAirportName }}
+                              ({{ flight.ArrivalLocationCode }})
+                            </span>
+
+                            @if (
+                            flight.DepartureDateTime &&
+                            flight.ArrivalDateTime &&
+                            (flight.DepartureDateTime
+                            | date: "yyyyMMdd") !==
+                            (flight.ArrivalDateTime
+                            | date: "yyyyMMdd")
+                            ) {
+                            <small class="fd-arrival">
+                              Arrives
+                              {{
+                              flight.ArrivalDateTime
+                              | date: "EEE, d MMM"
+                              }}
+                            </small>
+                            }
+                          </div>
+                        </div>
+                      </div>
+
+                      <!-- ================= RETURN LAYOVER ================= -->
+                      @if (
+                      i < flightInfo?.Citypairs[1]?.FlightSegment ?.length - 1 ) { <div class="fd-layover">
+                        {{
+                        flightInfo?.Citypairs[1]
+                        ?.FlightSegment[i + 1]?.LayoverTime
+                        | lowercase
+                        }}
+
+                        · Change planes in
+
+                        {{
+                        flightInfo?.Citypairs[1]
+                        ?.FlightSegment[i + 1]
+                        ?.OriginAirportName
+                        }}
+
+                        (
+                        {{
+                        flightInfo?.Citypairs[1]
+                        ?.FlightSegment[i + 1]
+                        ?.DepartureLocationCode
+                        }}
+                        )
+
+                        <span class="fd-badge orange">
+                          Long stopover
+                        </span>
+
+                        <span class="fd-badge gray">
+                          Self-transfer
+                        </span>
+                    </div>
+                    }
+                    }
+                  </div>
+                </div>
+                }
+                }
+              </div>
+
+              <!-- =========================================
+             BAGGAGE TAB
+        ========================================== -->
+
+              <div class="tab-pane fade" [class.show]="activeTravelTab === 'baggage'"
+                [class.active]="activeTravelTab === 'baggage'" [id]="'baggage-' + i" role="tabpanel"
+                [attr.aria-labelledby]="'baggage-tab-' + i">
+                <div class="fd-card">
+                  @if (flightBaggage) {
+                  <div class="fd-segment">
+                    <div class="inline-flex-sec">
+                      <div class="dtitle">Baggage Information</div>
+                    </div>
+
+                    @if (allRoutes.length > 0) {
+                    <div class="rt-tabnav" role="tablist" #routeList>
+                      @for (route of allRoutes; track $index) {
+                      <button class="rt-tab" type="button" [class.active]="
+                                          $index === selectedRouteIndex
+                                        " (click)="selectRoute($index, routeItem)" #routeItem>
+                        <i class="fa-solid fa-plane"></i>
+                        {{ route.departure }} to
+                        {{ route.arrival }}
+                      </button>
+                      }
+                    </div>
+
+                    @if (selectedRoute) {
+                    <div class="bg-card">
+                      <div class="bg-card__header">
+                        <div class="bg-card__airline">
+                          <div class="bg-card__logo">
+                            <img [src]="
+                                                imageUrl +
+                                                selectedRoute.flights
+                                                  .FlightLogoName
+                                              " [alt]="
+                                                selectedRoute.flights
+                                                  .FlightLogoName
+                                              " />
+                          </div>
+
+                          <div class="bg-card__name">
+                            {{
+                            selectedRoute.flights
+                            .MarketingAirlineName
+                            }}
+                          </div>
+                        </div>
+
+                        <div class="bg-card__class">
+                          {{
+                          classMap[
+                          selectedRoute.flights?.CabinClass
+                          ] ||
+                          selectedRoute.flights?.CabinClass
+                          }}
+                          @if (
+                          selectedRoute.flights
+                          ?.BookingClass != "" &&
+                          selectedRoute.flights
+                          ?.BookingClass != null
+                          ) {
+                          ({{
+                          selectedRoute.flights
+                          .BookingClass
+                          }})
+                          }
+                        </div>
+                      </div>
+
+                      <!-- Check-in Bag -->
+                      <div class="bg-row">
+                        <div class="bg-row__left">
+                          <div class="bg-row__icon">
+                            <i class="fa-solid fa-suitcase-rolling"></i>
+                            @let bagicon =
+                            getBag(
+                            "CHECKIN",
+                            selectedRoute.bags
+                            );
+                            @if (bagicon?.count > 0) {
+                            <i class="fa-solid fa-circle-check"></i>
+                            } @else {
+                            <i class="fa-solid fa-circle-exclamation"></i>
+                            }
+                          </div>
+
+                          <div>
+                            <p class="bg-row__title">
+                              Check-in Bag
+                            </p>
+
+                            <p class="bg-row__sub">
+                              @if (
+                              hasCheckinBag(
+                              selectedRoute.bags
+                              )
+                              ) {
+                              @let bag =
+                              getBag(
+                              "CHECKIN",
+                              selectedRoute.bags
+                              );
+
+                              @if (
+                              bag?.description1 ||
+                              bag?.description2
+                              ) {
+                              {{
+                              toTitleCase(
+                              bag.description1 ||
+                              bag.description2
+                              )
+                              }}
+                              } @else {
+                              Kindly check with the airline.
+                              }
+                              } @else {
+                              Kindly check with the airline.
+                              }
+                            </p>
+                          </div>
+                        </div>
+                        @let bag =
+                        getBag("CHECKIN", selectedRoute.bags);
+                        @if (bag?.count > 0) {
+                        <div class="bg-row__status bg-row__status--ok">
+                          Included
+                        </div>
+                        } @else {
+                        <div class="bg-row__status bg-row__status--no">
+                          Not Included
+                        </div>
+                        }
+                      </div>
+
+                      <!-- Carry-on Bag -->
+                      <div class="bg-row">
+                        <div class="bg-row__left">
+                          <div class="bg-row__icon">
+                            <i class="fa-solid fa-briefcase"></i>
+
+                            @let bagiconcarryon =
+                            getBag(
+                            "CARRYON",
+                            selectedRoute.bags
+                            );
+                            @if (bagiconcarryon?.count > 0) {
+                            <i class="fa-solid fa-circle-check"></i>
+                            } @else {
+                            <i class="fa-solid fa-circle-exclamation"></i>
+                            }
+                          </div>
+
+                          <div>
+                            <p class="bg-row__title">
+                              Carry-on Bag
+                            </p>
+
+                            <p class="bg-row__sub">
+                              @if (
+                              hasCarryOnBag(
+                              selectedRoute.bags
+                              )
+                              ) {
+                              @let bag =
+                              getBag(
+                              "CARRYON",
+                              selectedRoute.bags
+                              );
+
+                              @if (
+                              bag?.description1 ||
+                              bag?.description2
+                              ) {
+                              {{
+                              toTitleCase(
+                              bag.description1 ||
+                              bag.description2
+                              )
+                              }}
+                              } @else {
+                              Kindly check with the airline.
+                              }
+                              } @else {
+                              Kindly check with the airline.
+                              }
+                            </p>
+                          </div>
+                        </div>
+
+                        @let bagcarryon =
+                        getBag("CARRYON", selectedRoute.bags);
+                        @if (bagcarryon?.count > 0) {
+                        <div class="bg-row__status bg-row__status--ok">
+                          Included
+                        </div>
+                        } @else {
+                        <div class="bg-row__status bg-row__status--no">
+                          Not Included
+                        </div>
+                        }
+                      </div>
+
+                      <div class="bg-card__note">
+                        All prices are quoted in USD. Baggage
+                        allowance and fee amounts are not
+                        guaranteed and are subject to change by
+                        the airline. Be sure to verify the
+                        actual fees with your airline(s) before
+                        you travel.
+                      </div>
+                      <div class="bg-card__confirm">
+                        Confirm bag fees, weight and size
+                        restrictions with
+                        <a (click)="onrouteBagage()">
+                          {{
+                          selectedRoute.flights
+                          .MarketingAirlineName
+                          }}
+                        </a>
+                      </div>
+                    </div>
+                    }
+                    } @else {
+                    <p class="c-baggage-item__note">
+                      Kindly check with the airline.
+                    </p>
+                    }
+                  </div>
+                  } @else {
+                  <p class="c-baggage-item__note">
+                    Kindly check with the airline.
+                  </p>
+                  }
+                </div>
+              </div>
+
+              <!-- =========================================
+             INSTANT SUPPORT TAB
+        ========================================== -->
+
+              <div class="tab-pane fade" [class.show]="activeTravelTab === 'is'"
+                [class.active]="activeTravelTab === 'is'" [id]="'is-' + i" role="tabpanel"
+                [attr.aria-labelledby]="'is-tab-' + i">
+                <div class="fd-card">
+                  <div class="isc-card">
+                    <!-- Header -->
+                    <div class="isc-card__header">
+                      <span class="isc-card__icon" aria-hidden="true">
+                        <i class="fa-solid fa-headset"></i>
+                      </span>
+
+                      <div class="isc-card__heading">
+                        <h3 class="isc-card__title">
+                          Get Fast Support
+                        </h3>
+
+                        <p class="isc-card__subtitle">
+                          We’re here to help you whenever you need.
+                        </p>
+                      </div>
+                    </div>
+
+                    <!-- Agent -->
+                    <div class="isc-agent">
+                      <span class="isc-agent__avatar">
+                        <img src="https://api.dicebear.com/9.x/personas/svg?seed=support-agent&backgroundColor=eaf2ff"
+                          alt="Support agent" />
+
+                        <span class="isc-agent__status" aria-hidden="true"></span>
+                      </span>
+
+                      <p class="isc-agent__text">
+                        <strong> Hi! I’m your travel support.</strong>
+                        I am here to assist you with bookings, itineraries, & other travel queries- always.
+                      </p>
+                    </div>
+
+                    <!-- Features -->
+                    <div class="isc-features">
+                      <div class="isc-features__item">
+                        <span class="isc-features__icon" aria-hidden="true">
+                          <i class="fa-solid fa-bolt"></i>
+                        </span>
+
+                        <span class="isc-features__body">
+                          <span class="isc-features__label">
+                            Instant Support
+                          </span>
+
+                          <span class="isc-features__value">
+                            Get help in under 30 sec.
+                          </span>
+                        </span>
+                      </div>
+
+                      <div class="isc-features__item">
+                        <span class="isc-features__icon" aria-hidden="true">
+                          <i class="fa-solid fa-shield-halved"></i>
+                        </span>
+
+                        <span class="isc-features__body">
+                          <span class="isc-features__label">
+                            Total Security
+                          </span>
+
+                          <span class="isc-features__value">
+                            You data is protected with us
+                          </span>
+                        </span>
+                      </div>
+
+                      <div class="isc-features__item">
+                        <span class="isc-features__icon" aria-hidden="true">
+                          <i class="fa-solid fa-thumbs-up"></i>
+                        </span>
+
+                        <span class="isc-features__body">
+                          <span class="isc-features__label">
+                            Expert Help
+                          </span>
+
+                          <span class="isc-features__value">
+                            4.9/5 Rating
+                          </span>
+                        </span>
+                      </div>
+                    </div>
+
+                    <!-- CTA -->
+                    <a href="tel:{{ getData?.phoneNumber }}" class="isc-cta">
+                      <i class="fa-solid fa-phone" aria-hidden="true"></i>
+
+                      Need Help! Call Now
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- =========================================
+         DETAILS PRICE BAR
+    ========================================== -->
+
+          <div class="fp-pricebar">
+            <div class="fp-price-left">
+              <!-- <span class="fp-deals"> 4 deals from </span> -->
+
+
+
+
+              @for (f of flightInfo.Fares; track $index) {
+
+              <div class="fp-price">
+                @if(packageTabActive){
+                @if (f?.PaxType == "ADT") {
+                ${{
+                getFormattedPrice(getTotalPrice(f?.CCMax))
+                .integer
+                }}.{{
+                getFormattedPrice(getTotalPrice(f?.CCMax))
+                .decimal
+                }}
+                <span class="fp-per"> / person </span>
+                }
+                <!-- @if (f?.PaxType == "ADT") {
+                        @let difference = getPackagePriceDifference(
+                        f?.CCMax,
+                        packageFlightDetails?.Fares?.[0]?.CCMax
+                        );
+
+                        {{ difference >= 0 ? '+' : '-' }}${{
+                        getFormattedPrice(getAbsoluteValue(difference)).integer
+                        }}.{{
+                        getFormattedPrice(getAbsoluteValue(difference)).decimal
+                        }}
+
+                        } -->
+
+                }@else{
+                @if (f?.PaxType == "ADT") {
+                ${{
+                getFormattedPrice(getTotalPrice(f?.CCMax))
+                .integer
+                }}.{{
+                getFormattedPrice(getTotalPrice(f?.CCMax))
+                .decimal
+                }}
+                 <span class="fp-per"> / person </span>
+                }
+                
+                }
+
+
+              </div>
+
+              }
+
+              <div class="fp-total"> @if(packageTabActive){
+                ${{
+                getFormattedPrice(getRatePerNightTotalPackage(flightInfo.Fares[0]))
+                .integer
+                }}.{{
+                getFormattedPrice(getRatePerNightTotalPackage(flightInfo.Fares[0]))
+                .decimal
+                }}
+                }@else{
+                ${{
+                getFormattedPrice(getTotal(flightInfo.Fares))
+                .integer
+                }}.{{
+                getFormattedPrice(getTotal(flightInfo.Fares))
+                .decimal
+                }}
+                } total</div>
+            </div>
+            <button type="button" class="fp-select-btn" (click)="navigateFlightDetails(flightInfo)">
+              Select
+              @if (spinloading) {
+              <span class="spinner spinner-bottom-price"></span>
+              }
+            </button>
+          </div>
+        </div>
+      </div>
+
+      @if (randomInsertIndexes.includes(i)) {
+      <div class="fd-ad-banner">
+        <div class="fd-ad-left">
+          <div class="fd-ad-icon">
+            <i class="fa-solid fa-indian-rupee-sign"></i>
+          </div>
+
+          <div class="fd-ad-text">
+            <div class="fd-ad-title">
+              Great Deal Just For You!
+            </div>
+
+            <div class="fd-ad-desc">
+              Save more on your next flight with special discounts and flash deals
+            </div>
+          </div>
+        </div>
+
+        <a href="tel:{{ getData?.phoneNumber }}" class="fd-ad-btn">Shop Flight + Stay</a>
+      </div>
+      }
+      }
+      }
+      <!-- <div class="loader-button-sec">
+        <button class="loadmorebt" type="button">
+          <div class="dot-spinner">
+            <div class="dot-spinner__dot"></div>
+            <div class="dot-spinner__dot"></div>
+            <div class="dot-spinner__dot"></div>
+            <div class="dot-spinner__dot"></div>
+            <div class="dot-spinner__dot"></div>
+            <div class="dot-spinner__dot"></div>
+            <div class="dot-spinner__dot"></div>
+            <div class="dot-spinner__dot"></div>
+          </div>
+          Load more flights
+        </button>
+      </div> -->
+    </div>
+  </div>
+  <div class="col-lg-2 col-md-4 col-12 dmobnone">
+    <div class="ofr-ad-wrapper">
+      <!-- Card 1 -->
+      <div class="ofr-ad-card">
+        <img src="assets/images/ads/ad3.jpg" class="ofr-bg" />
+
+        <div class="ofr-overlay"></div>
+
+        <div class="ofr-content">
+          <span class="ofr-tag">Festive Hotel Offers</span>
+          <h3>Unlock Your Deals Now</h3>
+          <p>Up to 40% off</p>
+
+          <a href="tel:{{ getData?.phoneNumber }}" class="ofr-btn"> Call Us </a>
+        </div>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="ofr-ad-card">
+        <img src="assets/images/ads/ad4.webp" class="ofr-bg" />
+
+        <div class="ofr-overlay"></div>
+
+        <div class="ofr-content">
+          <span class="ofr-tag">Special Offers</span>
+          <h3>Flight Deals</h3>
+          <p>Save More on Great Fares</p>
+
+          <a href="tel:{{ getData?.phoneNumber }}" class="ofr-btn"> Call Us </a>
+        </div>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="ofr-ad-card">
+        <img src="assets/images/ads/ad5.webp" class="ofr-bg" />
+
+        <div class="ofr-overlay"></div>
+
+        <div class="ofr-content">
+          <span class="ofr-tag">Holiday {{ currentYear }}</span>
+          <h3>Holiday Packages</h3>
+          <p>All inclusive trips</p>
+
+          <a href="tel:{{ getData?.phoneNumber }}" class="ofr-btn"> Call Us </a>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+  </div>
+</section>
+}
+
+<!-- Offcanvas: top to bottom -->
+<div class="offcanvas offcanvas-top fsr-offcanvas" tabindex="-1" id="fsrOffcanvas" aria-labelledby="fsrOffcanvasLabel">
+  <div class="container">
+    <div class="fsr-offcanvas__header">
+      <h5 class="fsr-offcanvas__title" id="fsrOffcanvasLabel">
+        Edit your search
+      </h5>
+      <button type="button" class="btn-close fsr-offcanvas__close" data-bs-dismiss="offcanvas"
+        aria-label="Close"></button>
+    </div>
+
+    <div class="fsr-offcanvas__body">
+      @if (packageTabActive) {
+      <app-packages-tab></app-packages-tab>
+      }@else {
+      <app-flights-tab />
+      }
+    </div>
+  </div>
+</div>
+ 
+<!-- ===== All modal & Offcanvas (Mobile)  ===== -->
+<div class="offcanvas offcanvas-start filterofcanvas" tabindex="-1" id="offcanvasfilter"
+  aria-labelledby="offcanvasfilterLabel">
+  <div class="offcanvas-header">
+    <h5 class="offcanvas-title" id="offcanvasfilterLabel">Filters</h5>
+    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+  <div class="offcanvas-body">
+    <aside class="fs-filter-panel">
+      <form class="fs-filter-form" method="get">
+        <!-- Header -->
+        <div class="fs-filter-header">
+          <h6>Filters</h6>
+          <button type="reset" class="fs-clear-btn" (click)="reset()">
+            Clear All
+          </button>
+        </div>
+
+        <!-- Smart Filter -->
+        <!-- <div class="fs-smart-box">
+                            <i class="fa-solid fa-bolt fs-smart-icon"></i>
+                            <div>
+                              <h6>Smart Filters</h6>
+                              <p>Quickly find best flights</p>
+                            </div>
+                          </div> -->
+
+        <!-- Stops -->
+        <div class="fs-block">
+          <h6 class="fs-title">Stops</h6>
+          @for (stop of stopOptions; track $index) {
+          @if (getTotalPrice(fullStopWiseLowestFare[stop.key]) > 0) {
+          <label class="fs-checkbox-main">
+            <div class="fs-checkbox">
+              <input type="checkbox" name="stops" [checked]="filters.stopes.includes(stop.value)"
+                (change)="onStopChange(stop.value, $event)" [disabled]="!fullStopWiseLowestFare[stop.key]" />
+              <span></span>
+              {{ stop.label }}
+            </div>
+            {{
+            getTotalPrice(fullStopWiseLowestFare[stop.key])
+            | number: "1.2-2"
+            }}
+          </label>
+          }
+          }
+        </div>
+
+        <!-- Price -->
+        <!-- <div class="fs-block ">
+          <h6 class="fs-title">Flight Price</h6>
+
+          <div class="fs-range">
+            <p-slider [(ngModel)]="sliderValue[0]" [min]="lowestPrice" [max]="highestPrice"
+              (onSlideEnd)="onPriceRangeChange()" styleClass="price-slider"
+              [ngModelOptions]="{ standalone: true }"></p-slider>
+            <div class="fs-range-values">
+              <span>
+                ${{ getTotalPrice(sliderValue[0]) | number: "1.0-0" }}</span>
+              <span>
+                ${{ getTotalPrice(sliderValue[1]) | number: "1.0-0" }}</span>
+            </div>
+          </div>
+
+        
+        </div> -->
+
+        <!-- Airlines -->
+        <div class="fs-block">
+          <h6 class="fs-title">Airlines</h6>
+          @for (carrier of visibleAirlines; track $index) {
+          <label class="fs-checkbox-main fs-airline">
+            <div class="fs-checkbox">
+              <input type="checkbox" name="airline" [value]="carrier.ValidatingCarrierName" [checked]="
+                    filters.airlines.includes(carrier.ValidatingCarrierName)
+                  " (change)="
+                    toggleAirlineSelection(
+                      carrier.ValidatingCarrierName,
+                      $event
+                    )
+                  " />
+              <span></span>
+              <div class="textsecb">{{ carrier.ValidatingCarrierName }}</div>
+            </div>
+            ${{ getTotalPrice(carrier.lowestFare) | number: "1.0-2" }}
+          </label>
+          }
+          @if (getFlightsAdvanced?.uniqueCarriersWithLowestFare?.length > 5) {
+          <button type="button" class="c-show-more-btn" (click)="showMoreAirlines($event)">
+            <span class="c-show-more-btn__label">{{
+              showAllAirlines ? "Show less" : "Show more"
+              }}</span>
+          </button>
+          }
+        </div>
+
+        @if (getAllTimedetails[0]?.Citypairs?.length > 0) {
+        <!-- Departure Time -->
+        <div class="fs-block">
+          <h6 class="fs-title">
+            Departure from
+            {{
+            getAllTimedetails[0]?.Citypairs[0]?.FlightSegment[0]
+            ?.DepartureDisplayName
+            }}
+            ({{
+            getAllTimedetails[0]?.Citypairs[0]?.FlightSegment[0]
+            ?.DepartureLocationCode
+            }})
+          </h6>
+
+          <div class="fs-time-grid">
+            <label class="fs-time-card">
+              <input type="checkbox" name="dep_time" value="before_6am"
+                [checked]="filters.departureTime.includes('night')" (click)="toggleDepartureTime('night')" />
+              <span class="fs-time-ui">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                  class="icon icon-tabler icons-tabler-outline icon-tabler-sunset-2">
+                  <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                  <path d="M3 13h1" />
+                  <path d="M20 13h1" />
+                  <path d="M5.6 6.6l.7 .7" />
+                  <path d="M18.4 6.6l-.7 .7" />
+                  <path d="M8 13a4 4 0 1 1 8 0" />
+                  <path d="M3 17h18" />
+                  <path d="M7 20h5" />
+                  <path d="M16 20h1" />
+                  <path d="M12 5v-1" />
+                </svg>
+                <strong>Early Morning</strong>
+                <small>00:01 - 06:00</small>
+              </span>
+            </label>
+
+            <label class="fs-time-card">
+              <input type="checkbox" name="dep_time" value="6am_12pm"
+                [checked]="filters.departureTime.includes('morning')" (click)="toggleDepartureTime('morning')" />
+              <span class="fs-time-ui">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"
+                  class="icon icon-tabler icons-tabler-filled icon-tabler-sun">
+                  <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                  <path
+                    d="M12 19a1 1 0 0 1 .993 .883l.007 .117v1a1 1 0 0 1 -1.993 .117l-.007 -.117v-1a1 1 0 0 1 1 -1z" />
+                  <path
+                    d="M18.313 16.91l.094 .083l.7 .7a1 1 0 0 1 -1.32 1.497l-.094 -.083l-.7 -.7a1 1 0 0 1 1.218 -1.567l.102 .07z" />
+                  <path
+                    d="M7.007 16.993a1 1 0 0 1 .083 1.32l-.083 .094l-.7 .7a1 1 0 0 1 -1.497 -1.32l.083 -.094l.7 -.7a1 1 0 0 1 1.414 0z" />
+                  <path d="M4 11a1 1 0 0 1 .117 1.993l-.117 .007h-1a1 1 0 0 1 -.117 -1.993l.117 -.007h1z" />
+                  <path d="M21 11a1 1 0 0 1 .117 1.993l-.117 .007h-1a1 1 0 0 1 -.117 -1.993l.117 -.007h1z" />
+                  <path
+                    d="M6.213 4.81l.094 .083l.7 .7a1 1 0 0 1 -1.32 1.497l-.094 -.083l-.7 -.7a1 1 0 0 1 1.217 -1.567l.102 .07z" />
+                  <path
+                    d="M19.107 4.893a1 1 0 0 1 .083 1.32l-.083 .094l-.7 .7a1 1 0 0 1 -1.497 -1.32l.083 -.094l.7 -.7a1 1 0 0 1 1.414 0z" />
+                  <path
+                    d="M12 2a1 1 0 0 1 .993 .883l.007 .117v1a1 1 0 0 1 -1.993 .117l-.007 -.117v-1a1 1 0 0 1 1 -1z" />
+                  <path d="M12 7a5 5 0 1 1 -4.995 5.217l-.005 -.217l.005 -.217a5 5 0 0 1 4.995 -4.783z" />
+                </svg>
+                <strong>Morning</strong>
+                <small>06:01 - 12:00</small>
+              </span>
+            </label>
+
+            <label class="fs-time-card">
+              <input type="checkbox" name="dep_time" value="12pm_6pm"
+                [checked]="filters.departureTime.includes('afternoon')" (click)="toggleDepartureTime('afternoon')" />
+              <span class="fs-time-ui">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                  class="icon icon-tabler icons-tabler-outline icon-tabler-sunset">
+                  <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                  <path d="M3 17h1m16 0h1m-15.4 -6.4l.7 .7m12.1 -.7l-.7 .7m-9.7 5.7a4 4 0 0 1 8 0" />
+                  <path d="M3 21l18 0" />
+                  <path d="M12 3v6l3 -3m-6 0l3 3" />
+                </svg>
+                <strong>Afternoon</strong>
+                <small>12:01 - 18:00</small>
+              </span>
+            </label>
+
+            <label class="fs-time-card">
+              <input type="checkbox" name="dep_time" value="after_6pm"
+                [checked]="filters.departureTime.includes('evening')" (click)="toggleDepartureTime('evening')" />
+              <span class="fs-time-ui">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                  class="icon icon-tabler icons-tabler-outline icon-tabler-moon-stars">
+                  <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                  <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+                  <path d="M17 4a2 2 0 0 0 2 2a2 2 0 0 0 -2 2a2 2 0 0 0 -2 -2a2 2 0 0 0 2 -2" />
+                  <path d="M19 11h2m-1 -1v2" />
+                </svg>
+                <strong>Evening</strong>
+                <small>18:01 - 23:59</small>
+              </span>
+            </label>
+          </div>
+        </div>
+
+        <!-- Arrival Time -->
+        <div class="fs-block">
+          <h6 class="fs-title">
+            Arrival to
+            {{
+            ((getAllTimedetails[0]?.Citypairs)[0]?.FlightSegment)[
+            (getAllTimedetails[0]?.Citypairs)[0]?.FlightSegment.length - 1
+            ]?.DisplayName
+            }}
+            ({{
+            ((getAllTimedetails[0]?.Citypairs)[0]?.FlightSegment)[
+            (getAllTimedetails[0]?.Citypairs)[0]?.FlightSegment.length - 1
+            ]?.ArrivalLocationCode
+            }})
+          </h6>
+
+          <div class="fs-time-grid">
+            <label class="fs-time-card">
+              <input type="checkbox" name="arr_time" [checked]="filters.arrivalTime.includes('night')"
+                (click)="toggleArrivalTime('night')" />
+              <span class="fs-time-ui">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                  class="icon icon-tabler icons-tabler-outline icon-tabler-sunset-2">
+                  <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                  <path d="M3 13h1" />
+                  <path d="M20 13h1" />
+                  <path d="M5.6 6.6l.7 .7" />
+                  <path d="M18.4 6.6l-.7 .7" />
+                  <path d="M8 13a4 4 0 1 1 8 0" />
+                  <path d="M3 17h18" />
+                  <path d="M7 20h5" />
+                  <path d="M16 20h1" />
+                  <path d="M12 5v-1" />
+                </svg>
+                <strong>Early Morning</strong>
+                <small>00:01 - 06:00</small>
+              </span>
+            </label>
+
+            <label class="fs-time-card">
+              <input type="checkbox" name="arr_time" [checked]="filters.arrivalTime.includes('morning')"
+                (click)="toggleArrivalTime('morning')" />
+              <span class="fs-time-ui">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"
+                  class="icon icon-tabler icons-tabler-filled icon-tabler-sun">
+                  <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                  <path
+                    d="M12 19a1 1 0 0 1 .993 .883l.007 .117v1a1 1 0 0 1 -1.993 .117l-.007 -.117v-1a1 1 0 0 1 1 -1z" />
+                  <path
+                    d="M18.313 16.91l.094 .083l.7 .7a1 1 0 0 1 -1.32 1.497l-.094 -.083l-.7 -.7a1 1 0 0 1 1.218 -1.567l.102 .07z" />
+                  <path
+                    d="M7.007 16.993a1 1 0 0 1 .083 1.32l-.083 .094l-.7 .7a1 1 0 0 1 -1.497 -1.32l.083 -.094l.7 -.7a1 1 0 0 1 1.414 0z" />
+                  <path d="M4 11a1 1 0 0 1 .117 1.993l-.117 .007h-1a1 1 0 0 1 -.117 -1.993l.117 -.007h1z" />
+                  <path d="M21 11a1 1 0 0 1 .117 1.993l-.117 .007h-1a1 1 0 0 1 -.117 -1.993l.117 -.007h1z" />
+                  <path
+                    d="M6.213 4.81l.094 .083l.7 .7a1 1 0 0 1 -1.32 1.497l-.094 -.083l-.7 -.7a1 1 0 0 1 1.217 -1.567l.102 .07z" />
+                  <path
+                    d="M19.107 4.893a1 1 0 0 1 .083 1.32l-.083 .094l-.7 .7a1 1 0 0 1 -1.497 -1.32l.083 -.094l.7 -.7a1 1 0 0 1 1.414 0z" />
+                  <path
+                    d="M12 2a1 1 0 0 1 .993 .883l.007 .117v1a1 1 0 0 1 -1.993 .117l-.007 -.117v-1a1 1 0 0 1 1 -1z" />
+                  <path d="M12 7a5 5 0 1 1 -4.995 5.217l-.005 -.217l.005 -.217a5 5 0 0 1 4.995 -4.783z" />
+                </svg>
+                <strong>Morning</strong>
+                <small>06:01 - 12:00</small>
+              </span>
+            </label>
+
+            <label class="fs-time-card">
+              <input type="checkbox" name="arr_time" [checked]="filters.arrivalTime.includes('afternoon')"
+                (click)="toggleArrivalTime('afternoon')" />
+              <span class="fs-time-ui">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                  class="icon icon-tabler icons-tabler-outline icon-tabler-sunset">
+                  <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                  <path d="M3 17h1m16 0h1m-15.4 -6.4l.7 .7m12.1 -.7l-.7 .7m-9.7 5.7a4 4 0 0 1 8 0" />
+                  <path d="M3 21l18 0" />
+                  <path d="M12 3v6l3 -3m-6 0l3 3" />
+                </svg>
+                <strong>Afternoon</strong>
+                <small>12:01 - 18:00</small>
+              </span>
+            </label>
+
+            <label class="fs-time-card">
+              <input type="checkbox" name="arr_time" [checked]="filters.arrivalTime.includes('evening')"
+                (click)="toggleArrivalTime('evening')" />
+              <span class="fs-time-ui">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                  class="icon icon-tabler icons-tabler-outline icon-tabler-moon-stars">
+                  <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                  <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+                  <path d="M17 4a2 2 0 0 0 2 2a2 2 0 0 0 -2 2a2 2 0 0 0 -2 -2a2 2 0 0 0 2 -2" />
+                  <path d="M19 11h2m-1 -1v2" />
+                </svg>
+                <strong>Evening</strong>
+                <small>18:01 - 23:59</small>
+              </span>
+            </label>
+          </div>
+        </div>
+        }
+        @if (
+        getAllTimedetails[0]?.Citypairs?.length === 2 &&
+        getAllTimedetails[0]?.Direction != "multicity"
+        ) {
+        <!-- Departure Time -->
+        <div class="fs-block">
+          <h6 class="fs-title">
+            Departure from
+            {{
+            getAllTimedetails[0]?.Citypairs[1]?.FlightSegment[0]
+            ?.DepartureDisplayName
+            }}
+            ({{
+            getAllTimedetails[0]?.Citypairs[1]?.FlightSegment[0]
+            ?.DepartureLocationCode
+            }})
+          </h6>
+
+          <div class="fs-time-grid">
+            <label class="fs-time-card">
+              <input type="checkbox" name="dep_time" value="before_6am"
+                [checked]="filters.returnDepartureTime.includes('night')"
+                (click)="toggleReturnDepartureTime('night')" />
+              <span class="fs-time-ui">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                  class="icon icon-tabler icons-tabler-outline icon-tabler-sunset-2">
+                  <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                  <path d="M3 13h1" />
+                  <path d="M20 13h1" />
+                  <path d="M5.6 6.6l.7 .7" />
+                  <path d="M18.4 6.6l-.7 .7" />
+                  <path d="M8 13a4 4 0 1 1 8 0" />
+                  <path d="M3 17h18" />
+                  <path d="M7 20h5" />
+                  <path d="M16 20h1" />
+                  <path d="M12 5v-1" />
+                </svg>
+                <strong>Early Morning</strong>
+                <small>00:01 - 06:00</small>
+              </span>
+            </label>
+
+            <label class="fs-time-card">
+              <input type="checkbox" name="dep_time" value="6am_12pm"
+                [checked]="filters.returnDepartureTime.includes('morning')"
+                (click)="toggleReturnDepartureTime('morning')" />
+              <span class="fs-time-ui">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"
+                  class="icon icon-tabler icons-tabler-filled icon-tabler-sun">
+                  <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                  <path
+                    d="M12 19a1 1 0 0 1 .993 .883l.007 .117v1a1 1 0 0 1 -1.993 .117l-.007 -.117v-1a1 1 0 0 1 1 -1z" />
+                  <path
+                    d="M18.313 16.91l.094 .083l.7 .7a1 1 0 0 1 -1.32 1.497l-.094 -.083l-.7 -.7a1 1 0 0 1 1.218 -1.567l.102 .07z" />
+                  <path
+                    d="M7.007 16.993a1 1 0 0 1 .083 1.32l-.083 .094l-.7 .7a1 1 0 0 1 -1.497 -1.32l.083 -.094l.7 -.7a1 1 0 0 1 1.414 0z" />
+                  <path d="M4 11a1 1 0 0 1 .117 1.993l-.117 .007h-1a1 1 0 0 1 -.117 -1.993l.117 -.007h1z" />
+                  <path d="M21 11a1 1 0 0 1 .117 1.993l-.117 .007h-1a1 1 0 0 1 -.117 -1.993l.117 -.007h1z" />
+                  <path
+                    d="M6.213 4.81l.094 .083l.7 .7a1 1 0 0 1 -1.32 1.497l-.094 -.083l-.7 -.7a1 1 0 0 1 1.217 -1.567l.102 .07z" />
+                  <path
+                    d="M19.107 4.893a1 1 0 0 1 .083 1.32l-.083 .094l-.7 .7a1 1 0 0 1 -1.497 -1.32l.083 -.094l.7 -.7a1 1 0 0 1 1.414 0z" />
+                  <path
+                    d="M12 2a1 1 0 0 1 .993 .883l.007 .117v1a1 1 0 0 1 -1.993 .117l-.007 -.117v-1a1 1 0 0 1 1 -1z" />
+                  <path d="M12 7a5 5 0 1 1 -4.995 5.217l-.005 -.217l.005 -.217a5 5 0 0 1 4.995 -4.783z" />
+                </svg>
+                <strong>Morning</strong>
+                <small>06:01 - 12:00</small>
+              </span>
+            </label>
+
+            <label class="fs-time-card">
+              <input type="checkbox" name="dep_time" value="12pm_6pm"
+                [checked]="filters.returnDepartureTime.includes('afternoon')"
+                (click)="toggleReturnDepartureTime('afternoon')" />
+              <span class="fs-time-ui">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                  class="icon icon-tabler icons-tabler-outline icon-tabler-sunset">
+                  <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                  <path d="M3 17h1m16 0h1m-15.4 -6.4l.7 .7m12.1 -.7l-.7 .7m-9.7 5.7a4 4 0 0 1 8 0" />
+                  <path d="M3 21l18 0" />
+                  <path d="M12 3v6l3 -3m-6 0l3 3" />
+                </svg>
+                <strong>Afternoon</strong>
+                <small>12:01 - 18:00</small>
+              </span>
+            </label>
+
+            <label class="fs-time-card">
+              <input type="checkbox" name="dep_time" value="after_6pm"
+                [checked]="filters.returnDepartureTime.includes('evening')"
+                (click)="toggleReturnDepartureTime('evening')" />
+              <span class="fs-time-ui">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                  class="icon icon-tabler icons-tabler-outline icon-tabler-moon-stars">
+                  <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                  <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+                  <path d="M17 4a2 2 0 0 0 2 2a2 2 0 0 0 -2 2a2 2 0 0 0 -2 -2a2 2 0 0 0 2 -2" />
+                  <path d="M19 11h2m-1 -1v2" />
+                </svg>
+                <strong>Evening</strong>
+                <small>18:01 - 23:59</small>
+              </span>
+            </label>
+          </div>
+        </div>
+
+        <!-- Arrival Time -->
+        <div class="fs-block">
+          <h6 class="fs-title">
+            Arrival to
+            {{
+            ((getAllTimedetails[0]?.Citypairs)[1]?.FlightSegment)[
+            (getAllTimedetails[0]?.Citypairs)[1]?.FlightSegment.length - 1
+            ]?.DisplayName
+            }}
+            ({{
+            ((getAllTimedetails[0]?.Citypairs)[1]?.FlightSegment)[
+            (getAllTimedetails[0]?.Citypairs)[1]?.FlightSegment.length - 1
+            ]?.ArrivalLocationCode
+            }})
+          </h6>
+
+          <div class="fs-time-grid">
+            <label class="fs-time-card">
+              <input type="checkbox" name="arr_time" [checked]="filters.returnArrivalTime.includes('night')"
+                (click)="toggleReturnArrivalTime('night')" />
+              <span class="fs-time-ui">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                  class="icon icon-tabler icons-tabler-outline icon-tabler-sunset-2">
+                  <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                  <path d="M3 13h1" />
+                  <path d="M20 13h1" />
+                  <path d="M5.6 6.6l.7 .7" />
+                  <path d="M18.4 6.6l-.7 .7" />
+                  <path d="M8 13a4 4 0 1 1 8 0" />
+                  <path d="M3 17h18" />
+                  <path d="M7 20h5" />
+                  <path d="M16 20h1" />
+                  <path d="M12 5v-1" />
+                </svg>
+                <strong>Early Morning</strong>
+                <small>00:01 - 06:00</small>
+              </span>
+            </label>
+
+            <label class="fs-time-card">
+              <input type="checkbox" name="arr_time" [checked]="filters.returnArrivalTime.includes('morning')"
+                (click)="toggleReturnArrivalTime('morning')" />
+              <span class="fs-time-ui">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"
+                  class="icon icon-tabler icons-tabler-filled icon-tabler-sun">
+                  <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                  <path
+                    d="M12 19a1 1 0 0 1 .993 .883l.007 .117v1a1 1 0 0 1 -1.993 .117l-.007 -.117v-1a1 1 0 0 1 1 -1z" />
+                  <path
+                    d="M18.313 16.91l.094 .083l.7 .7a1 1 0 0 1 -1.32 1.497l-.094 -.083l-.7 -.7a1 1 0 0 1 1.218 -1.567l.102 .07z" />
+                  <path
+                    d="M7.007 16.993a1 1 0 0 1 .083 1.32l-.083 .094l-.7 .7a1 1 0 0 1 -1.497 -1.32l.083 -.094l.7 -.7a1 1 0 0 1 1.414 0z" />
+                  <path d="M4 11a1 1 0 0 1 .117 1.993l-.117 .007h-1a1 1 0 0 1 -.117 -1.993l.117 -.007h1z" />
+                  <path d="M21 11a1 1 0 0 1 .117 1.993l-.117 .007h-1a1 1 0 0 1 -.117 -1.993l.117 -.007h1z" />
+                  <path
+                    d="M6.213 4.81l.094 .083l.7 .7a1 1 0 0 1 -1.32 1.497l-.094 -.083l-.7 -.7a1 1 0 0 1 1.217 -1.567l.102 .07z" />
+                  <path
+                    d="M19.107 4.893a1 1 0 0 1 .083 1.32l-.083 .094l-.7 .7a1 1 0 0 1 -1.497 -1.32l.083 -.094l.7 -.7a1 1 0 0 1 1.414 0z" />
+                  <path
+                    d="M12 2a1 1 0 0 1 .993 .883l.007 .117v1a1 1 0 0 1 -1.993 .117l-.007 -.117v-1a1 1 0 0 1 1 -1z" />
+                  <path d="M12 7a5 5 0 1 1 -4.995 5.217l-.005 -.217l.005 -.217a5 5 0 0 1 4.995 -4.783z" />
+                </svg>
+                <strong>Morning</strong>
+                <small>06:01 - 12:00</small>
+              </span>
+            </label>
+
+            <label class="fs-time-card">
+              <input type="checkbox" name="arr_time" [checked]="filters.returnArrivalTime.includes('afternoon')"
+                (click)="toggleReturnArrivalTime('afternoon')" />
+              <span class="fs-time-ui">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                  class="icon icon-tabler icons-tabler-outline icon-tabler-sunset">
+                  <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                  <path d="M3 17h1m16 0h1m-15.4 -6.4l.7 .7m12.1 -.7l-.7 .7m-9.7 5.7a4 4 0 0 1 8 0" />
+                  <path d="M3 21l18 0" />
+                  <path d="M12 3v6l3 -3m-6 0l3 3" />
+                </svg>
+                <strong>Afternoon</strong>
+                <small>12:01 - 18:00</small>
+              </span>
+            </label>
+
+            <label class="fs-time-card">
+              <input type="checkbox" name="arr_time" [checked]="filters.returnArrivalTime.includes('evening')"
+                (click)="toggleReturnArrivalTime('evening')" />
+              <span class="fs-time-ui">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                  class="icon icon-tabler icons-tabler-outline icon-tabler-moon-stars">
+                  <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                  <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+                  <path d="M17 4a2 2 0 0 0 2 2a2 2 0 0 0 -2 2a2 2 0 0 0 -2 -2a2 2 0 0 0 2 -2" />
+                  <path d="M19 11h2m-1 -1v2" />
+                </svg>
+                <strong>Evening</strong>
+                <small>18:01 - 23:59</small>
+              </span>
+            </label>
+          </div>
+        </div>
+        }
+
+        <!-- Airlines -->
+        <div class="fs-block">
+          <h6 class="fs-title">Connecting Airports</h6>
+          @for (s of visibleConnectingAirports; track $index) {
+          <label class="fs-checkbox-main fs-airline">
+            <div class="fs-checkbox">
+              <input type="checkbox" name="airline" [value]="s.DepartureLocationCode" [checked]="
+                    filters.connectingAirports.includes(s.DepartureLocationCode)
+                  " (change)="
+                    toggleConnectingAirport(s.DepartureLocationCode, $event)
+                  " />
+              <span></span>
+              <div class="textsecb">
+                {{ s.DepartureLocationCode }} - {{ s.OriginAirportName }}
+              </div>
+            </div>
+          </label>
+          }
+          @if (getFlightsAdvanced?.uniqueCarriersWithLowestFare?.length > 5) {
+          <button type="button" class="c-show-more-btn" (click)="showMoreAirlines($event)">
+            <span class="c-show-more-btn__label">{{
+              showAllAirlines ? "Show less" : "Show more"
+              }}</span>
+          </button>
+          }
+        </div>
+
+        <div class="fs-block">
+          <h6 class="fs-title">Duration</h6>
+          <div class="o-filter-duration--content__duration-item-wrap">
+            @for (dur of finalLayoverFlights?.duration; track $index) {
+            <div class="o-filter-duration--content__duration-item">
+              <div class="o-filter-duration--content__duration-item--destination-wrap">
+                <div class="o-filter-duration--content__duration-item--destination">
+                  <!-- ✅ ARRIVAL -->
+                  <div class="o-filter-duration--content__duration-item--destination__arrival">
+                    {{
+                    getTimeDetails()?.Citypairs[$index]?.FlightSegment[0]
+                    ?.DepartureDisplayName
+                    }}
+                  </div>
+
+                  <div class="o-filter-duration--content__duration-item--destination__icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="15" height="12" viewBox="0 0 15 12" fill="none">
+                      <path
+                        d="M1 5.3C0.613401 5.3 0.3 5.6134 0.3 6C0.3 6.3866 0.613401 6.7 1 6.7V6V5.3ZM14.495 6.49497C14.7683 6.22161 14.7683 5.77839 14.495 5.50503L10.0402 1.05025C9.76684 0.776886 9.32362 0.776886 9.05025 1.05025C8.77689 1.32362 8.77689 1.76684 9.05025 2.0402L13.0101 6L9.05025 9.9598C8.77689 10.2332 8.77689 10.6764 9.05025 10.9497C9.32362 11.2231 9.76684 11.2231 10.0402 10.9497L14.495 6.49497ZM1 6V6.7H14V6V5.3H1V6Z"
+                        fill="currentColor"></path>
+                    </svg>
+                  </div>
+
+                  <!-- ✅ DEPARTURE -->
+                  <div class="o-filter-duration--content__duration-item--destination__departure">
+                    {{
+                    getTimeDetails()?.Citypairs[$index]?.FlightSegment[
+                    getTimeDetails()?.Citypairs[$index]?.FlightSegment
+                    .length - 1
+                    ]?.DisplayName
+                    }}
+                  </div>
+                </div>
+              </div>
+
+              <div class="o-filter-duration--content__duration-item--range-content">
+                <div class="o-filter-duration--content__duration-item--range-content__wrap">
+                  <div class="o-filter-duration--content__duration-item--range-content__title">
+                    Total Trip Time
+                  </div>
+
+                  <div class="o-filter-duration--content__duration-item--range-content__value">
+                    upto
+                    <span class="o-filter-duration--content__duration-item--range-content__value--hour">
+                      {{
+                      formatDuration(getCurrentDuration(dur.type)).hours
+                      }}h
+                    </span>
+                    <span class="o-filter-duration--content__duration-item--range-content__value--minute">
+                      {{
+                      formatDuration(getCurrentDuration(dur.type)).minutes
+                      }}m
+                    </span>
+                  </div>
+
+                  <div class="o-filter-duration--content__duration-item--range">
+                    <div class="c-range">
+                      <!-- ✅ FULLY DYNAMIC -->
+                      <input type="range" class="c-range__input" min="0" [max]="getMaxMinutes(dur.highestDuration)"
+                        step="10" [(ngModel)]="filters.durations[dur.type]" [style.--fill-percent.%]="
+                            getFillPercent(
+                              filters.durations[dur.type],
+                              getMaxMinutes(dur.highestDuration)
+                            )
+                          " (input)="onDurationChange(dur.type, $event)" />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            }
+          </div>
+        </div>
+      </form>
+    </aside>
+  </div>
+</div>
+
+@if (getMainDetails.length <= 0 && isSkeleton && isfirstload) { <app-flight-list-skeleton></app-flight-list-skeleton>
+  }
+  @if (getMainDetails.length <= 0 && !isSkeleton && !isfirstload) { <div class="flight-preloader">
+    <div class="container container-xl">
+      <div class="flight-preloader__content">
+        <div class="flight-preloader__image">
+          <svg width="360" height="228" viewBox="0 0 360 228" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <mask id="mask0_5805_15" style="mask-type: alpha" maskUnits="userSpaceOnUse" x="2" y="7" width="353"
+              height="214">
+              <path
+                d="M310.302 70.8625C304.236 91.2987 333.425 122.376 348.777 135.36C378.157 184.966 289.568 207.414 190.086 218.32C90.6038 229.226 40.2945 199.869 15.6013 179.609C-4.15323 163.402 1.88099 145.106 7.36742 137.984C17.7145 131.505 34.4206 112.968 18.4676 90.6549C2.51454 68.3414 16.0423 49.3865 20.0858 40.4337C57.559 -0.632649 74.096 42.328 176.94 14.4997C279.783 -13.3286 317.884 45.3173 310.302 70.8625Z"
+                fill="white" />
+            </mask>
+            <g mask="url(#mask0_5805_15)">
+              <path
+                d="M310.302 70.8625C304.236 91.2987 333.425 122.376 348.777 135.36C378.157 184.966 289.568 207.414 190.086 218.32C90.6038 229.226 40.2945 199.869 15.6013 179.609C-4.15323 163.402 1.88099 145.106 7.36742 137.984C17.7145 131.505 34.4206 112.968 18.4676 90.6549C2.51454 68.3414 16.0423 49.3865 20.0858 40.4337C57.559 -0.632649 74.096 42.328 176.94 14.4997C279.783 -13.3286 317.884 45.3173 310.302 70.8625Z"
+                fill="white" />
+              <path
+                d="M133.27 60.3065C133.27 62.9179 143.353 65.0349 155.789 65.0349C168.227 65.0349 178.31 62.9179 178.31 60.3065C178.31 57.695 168.227 55.5786 155.789 55.5786C143.353 55.5786 133.27 57.695 133.27 60.3065Z"
+                fill="#EEEEEE" />
+              <path
+                d="M147.389 66.8071C147.389 69.1853 156.672 71.1134 168.123 71.1134C179.575 71.1134 188.858 69.1853 188.858 66.8071C188.858 64.4289 179.575 62.5009 168.123 62.5009C156.672 62.5014 147.389 64.4294 147.389 66.8071Z"
+                fill="#EEEEEE" />
+              <path
+                d="M131.309 63.8523C131.309 65.8112 136.789 67.3989 143.549 67.3989C150.309 67.3989 155.789 65.8112 155.789 63.8523C155.789 61.894 150.309 60.3063 143.549 60.3063C136.789 60.3063 131.309 61.894 131.309 63.8523Z"
+                fill="#EEEEEE" />
+              <path
+                d="M109.646 44.9553C120.88 44.9553 129.987 43.1408 129.987 40.9025C129.987 38.6641 120.88 36.8496 109.646 36.8496C98.4122 36.8496 89.3052 38.6641 89.3052 40.9025C89.3052 43.1408 98.4122 44.9553 109.646 44.9553Z"
+                fill="#EEEEEE" />
+              <path
+                d="M92.3965 44.9555C92.3965 47.1005 97.0041 48.8396 102.688 48.8396C108.372 48.8396 112.98 47.1005 112.98 44.9555C112.98 42.8105 108.372 41.0714 102.688 41.0714C97.0041 41.072 92.3965 42.8105 92.3965 44.9555Z"
+                fill="#EEEEEE" />
+              <path
+                d="M347.951 103.455L328.598 103.418C328.403 103.418 328.245 103.567 328.245 103.751C328.245 103.934 328.403 104.084 328.597 104.084L328.712 104.085L328.677 121.304L309.459 177.534L309.45 180.943L300.255 180.925L300.295 162.896L300.52 162.897C300.899 162.897 301.207 162.608 301.207 162.251C301.21 161.891 300.903 161.6 300.521 161.6L298.282 161.595L298.341 134.582H298.432C298.812 134.582 299.118 134.293 299.12 133.935C299.12 133.576 298.815 133.284 298.435 133.284L273.986 133.237C273.606 133.236 273.299 133.527 273.299 133.886C273.297 134.243 273.605 134.535 273.985 134.535H274.077L274.029 156.584C273.964 156.568 273.902 156.547 273.836 156.547L271.388 156.541L271.45 127.016H271.55C271.966 127.016 272.301 126.699 272.302 126.308C272.302 125.917 271.968 125.598 271.552 125.596L269.187 125.592L269.214 113.01L272.065 113.015L263.365 98.7427L253.134 98.7223L244.373 112.964L247.222 112.969L247.197 125.55L244.829 125.544C244.415 125.544 244.077 125.862 244.077 126.253C244.077 126.645 244.413 126.964 244.828 126.965H244.926L244.862 156.492L242.417 156.486C242.001 156.486 241.664 156.803 241.662 157.195C241.661 157.586 241.999 157.905 242.413 157.905H242.658L242.63 171.106L235.678 171.093L235.714 154.003L211.193 154.336L211.159 171.046L199.026 171.023L199.035 166.652L197.925 166.054L197.951 153.56L194.636 153.553L194.649 147.693H194.114L194.101 153.553L186.86 153.538L186.873 147.679L186.337 147.678L186.325 153.537L182.555 153.531L182.546 157.756L174.579 153.458L174.696 98.9981H174.844C175.093 98.9981 175.295 98.8086 175.296 98.5741C175.296 98.3383 175.094 98.1479 174.845 98.1457L150.032 98.0995C149.781 98.0995 149.578 98.289 149.577 98.5245C149.577 98.7593 149.779 98.9496 150.031 98.9518H150.177L149.992 185.104L148.682 185.102L148.72 167.516L148.848 167.517C149.065 167.517 149.242 167.351 149.242 167.147C149.243 166.941 149.067 166.776 148.85 166.773L140.842 166.759L140.849 163.666C141.948 162.742 142.645 161.399 142.649 159.901C142.654 157.104 140.254 154.833 137.289 154.827C134.323 154.822 131.914 157.084 131.907 159.879C131.905 161.38 132.596 162.723 133.693 163.652L133.686 166.745L127.27 166.733C127.052 166.733 126.876 166.898 126.875 167.103C126.875 167.308 127.05 167.474 127.268 167.476H127.396L127.358 185.061L125.895 185.059L125.929 168.947H126.127C126.459 168.948 126.73 168.692 126.73 168.378C126.732 168.062 126.461 167.807 126.129 167.805L124.161 167.802L124.213 144.079L124.293 144.08C124.626 144.08 124.897 143.824 124.899 143.51C124.899 143.194 124.628 142.939 124.295 142.939L122.394 142.935L122.475 105.558L124.765 105.561L118.014 94.4837L118.518 94.4848C118.853 94.4859 119.124 94.2297 119.124 93.9156C119.125 93.6013 118.855 93.3454 118.521 93.3443L117.928 93.3421L117.939 87.8249L118.533 87.826C118.866 87.826 119.138 87.572 119.139 87.2568C119.139 86.9436 118.869 86.6885 118.535 86.6866L116.428 86.6833L116.433 84.8604L110.935 84.8496L110.931 86.6725L108.824 86.6681C108.491 86.6681 108.22 86.9221 108.218 87.2353C108.218 87.5527 108.488 87.8078 108.822 87.8078L109.415 87.8089L109.404 93.3261L108.811 93.325C108.476 93.325 108.206 93.5812 108.205 93.8952C108.204 94.2096 108.474 94.4655 108.807 94.4655L109.314 94.4677L102.516 105.518L104.805 105.524L104.724 142.902L102.824 142.898C102.491 142.897 102.219 143.152 102.219 143.467C102.218 143.781 102.49 144.037 102.822 144.038H102.902L102.85 167.761L100.884 167.758C100.551 167.758 100.281 168.011 100.279 168.328C100.279 168.642 100.55 168.898 100.882 168.898L101.078 168.9L101.066 174.961L99.3872 174.957L99.4374 151.465L99.6086 151.467C99.8985 151.467 100.134 151.246 100.135 150.971C100.136 150.698 99.9008 150.475 99.6098 150.474L70.7868 150.42C70.4958 150.419 70.2595 150.642 70.2583 150.915C70.2583 151.19 70.4935 151.41 70.7845 151.41L70.9545 151.413L70.9031 174.903L66.4921 174.894L66.5435 151.403L66.7136 151.404C67.0046 151.404 67.2386 151.182 67.2397 150.909C67.2409 150.635 67.0069 150.412 66.7147 150.412L63.8776 150.406L63.9051 137.424H64.0433C64.2796 137.424 64.4713 137.242 64.4713 137.023C64.4724 136.8 64.2819 136.618 64.0456 136.618L60.954 136.612L60.9733 127.823H61.077C61.2529 127.824 61.3943 127.691 61.3943 127.525C61.3943 127.359 61.2529 127.225 61.0782 127.225L59.0033 127.22C58.7944 123.928 55.9105 121.314 52.3646 121.308C48.8199 121.302 45.9246 123.904 45.7011 127.194L43.6262 127.191C43.4503 127.19 43.3089 127.323 43.3089 127.49C43.3089 127.655 43.4503 127.79 43.6262 127.79H43.7311L43.7118 136.579L40.6202 136.574C40.3838 136.573 40.1922 136.752 40.191 136.975C40.191 137.197 40.3827 137.378 40.6178 137.38H40.7572L40.7297 150.362L37.8891 150.357C37.6005 150.356 37.3641 150.578 37.3641 150.852C37.3629 151.126 37.5981 151.348 37.8879 151.349H38.058L38.0065 174.84L35.6784 174.836C35.3438 174.834 35.0736 175.089 35.0724 175.404C35.0724 175.719 35.3418 175.974 35.6751 175.975H35.8715L35.8338 193.552L33.8036 193.549L33.8275 182.156L30.6059 182.15L30.6483 162.4L27.1573 162.392L27.1962 144.162L14.3939 152.734L14.3723 162.368L10.8813 162.363L10.8389 182.112L7.6173 182.106L7.59335 193.499L5.59616 193.495L5.30518 329.198L347.351 329.85L347.835 104.12H347.95C348.145 104.12 348.304 103.972 348.305 103.786C348.303 103.606 348.144 103.455 347.951 103.455Z"
+                fill="#EEEEEE" fill-opacity="0.7" />
+            </g>
+            <path d="M247.027 159.705L269.746 127.953L255.68 122.72L216.567 148.374L247.027 159.705Z" fill="#FF6A19" />
+            <path
+              d="M220.029 148.395C233.709 148.378 247.506 147.527 256.5 146.465L252.67 151.818C247.022 153.281 241.278 154.468 235.476 155.409L223.324 150.888L220.884 149.98L220.029 148.395Z"
+              fill="#FF6A19" />
+            <path
+              d="M41.3769 96.7967C45.6833 91.7344 53.2495 90.5988 58.7953 90.5296C62.4516 90.484 66.0814 91.1262 69.5083 92.401L251.351 160.047C252.401 160.437 253.291 161.166 253.88 162.12C255.989 165.531 253.459 169.92 249.449 169.804L211.811 168.718C206.244 168.557 200.742 167.485 195.523 165.544L56.7757 113.929C56.7757 113.929 34.0074 105.46 41.3769 96.7967Z"
+              fill="white" />
+            <path
+              d="M42.6301 95.5115C44.8507 102.05 59.2083 107.392 59.2083 107.392L225.095 169.102L211.811 168.718C206.245 168.558 200.743 167.485 195.524 165.544L56.776 113.93C56.776 113.93 34.0074 105.46 41.3772 96.7967C41.7692 96.3361 42.1883 95.909 42.6301 95.5115Z"
+              fill="#FF6A19" fill-opacity="0.21" />
+            <path
+              d="M237.823 155.014C216.788 158.677 194.922 159.038 174.082 157.567L69.8052 118.776C132.297 142.023 183.754 148.176 220.03 148.395L237.823 155.014Z"
+              fill="#FF6A19" />
+            <path
+              d="M52.8611 91.0463L62.1725 94.5102C62.7239 94.7154 63.0047 95.3288 62.7995 95.8802L62.1872 97.5259C61.9819 98.0773 61.3686 98.3582 60.8172 98.1529L46.6752 92.8919C48.6397 91.9852 50.7657 91.4051 52.8611 91.0463Z"
+              fill="#FF6A19" />
+            <path
+              d="M71.3538 97.9258L72.9995 98.5381C73.5509 98.7433 73.8318 99.3567 73.6265 99.908L73.0143 101.554C72.8093 102.105 72.1957 102.386 71.6443 102.181L69.9985 101.569C69.4471 101.363 69.1663 100.75 69.3716 100.199L69.9838 98.5528C70.1888 98.0014 70.8021 97.7205 71.3538 97.9258Z"
+              fill="#FF6A19" />
+            <path
+              d="M81.2195 101.596L82.8653 102.208C83.4167 102.414 83.6975 103.027 83.4923 103.578L82.88 105.224C82.675 105.775 82.0614 106.056 81.51 105.851L79.8643 105.239C79.3129 105.033 79.032 104.42 79.2373 103.869L79.8495 102.223C80.0548 101.672 80.6681 101.391 81.2195 101.596Z"
+              fill="#FF6A19" />
+            <path
+              d="M100.954 108.937L102.6 109.549C103.151 109.754 103.432 110.368 103.227 110.919L102.614 112.565C102.409 113.116 101.796 113.397 101.244 113.192L99.5986 112.58C99.0472 112.374 98.7664 111.761 98.9717 111.21L99.5839 109.564C99.7889 109.012 100.402 108.731 100.954 108.937Z"
+              fill="#FF6A19" />
+            <path
+              d="M110.82 112.607L112.465 113.219C113.017 113.425 113.298 114.038 113.092 114.589L112.48 116.235C112.275 116.786 111.662 117.067 111.11 116.862L109.464 116.25C108.913 116.045 108.632 115.431 108.837 114.88L109.45 113.234C109.655 112.683 110.268 112.402 110.82 112.607Z"
+              fill="#FF6A19" />
+            <path
+              d="M120.686 116.277L122.332 116.89C122.883 117.095 123.164 117.708 122.959 118.26L122.346 119.905C122.141 120.457 121.528 120.738 120.976 120.532L119.331 119.92C118.779 119.715 118.498 119.101 118.704 118.55L119.316 116.904C119.521 116.353 120.134 116.072 120.686 116.277Z"
+              fill="#FF6A19" />
+            <path
+              d="M130.553 119.948L132.198 120.56C132.75 120.765 133.031 121.378 132.825 121.93L132.213 123.576C132.008 124.127 131.394 124.408 130.843 124.203L129.197 123.59C128.646 123.385 128.365 122.772 128.57 122.22L129.183 120.575C129.388 120.023 130.001 119.743 130.553 119.948Z"
+              fill="#FF6A19" />
+            <path
+              d="M140.418 123.618L142.064 124.23C142.615 124.435 142.896 125.049 142.691 125.6L142.079 127.246C141.873 127.797 141.26 128.078 140.709 127.873L139.063 127.261C138.512 127.055 138.231 126.442 138.436 125.891L139.048 124.245C139.253 123.693 139.867 123.413 140.418 123.618Z"
+              fill="#FF6A19" />
+            <path
+              d="M150.284 127.288L151.93 127.901C152.481 128.106 152.762 128.719 152.557 129.271L151.944 130.916C151.739 131.468 151.126 131.749 150.574 131.543L148.929 130.931C148.377 130.726 148.096 130.112 148.302 129.561L148.914 127.915C149.119 127.364 149.733 127.083 150.284 127.288Z"
+              fill="#FF6A19" />
+            <path
+              d="M160.151 130.958L161.797 131.571C162.348 131.776 162.629 132.389 162.424 132.941L161.812 134.586C161.606 135.138 160.993 135.419 160.442 135.213L158.796 134.601C158.245 134.396 157.964 133.782 158.169 133.231L158.781 131.585C158.986 131.034 159.6 130.753 160.151 130.958Z"
+              fill="#FF6A19" />
+            <path
+              d="M170.018 134.629L171.664 135.241C172.215 135.446 172.496 136.06 172.291 136.611L171.679 138.257C171.474 138.808 170.86 139.089 170.309 138.884L168.663 138.272C168.112 138.066 167.831 137.453 168.036 136.902L168.648 135.256C168.853 134.705 169.467 134.424 170.018 134.629Z"
+              fill="#FF6A19" />
+            <path
+              d="M179.884 138.299L181.53 138.911C182.081 139.117 182.362 139.73 182.157 140.281L181.545 141.927C181.339 142.479 180.726 142.759 180.175 142.554L178.529 141.942C177.977 141.737 177.697 141.123 177.902 140.572L178.514 138.926C178.719 138.375 179.332 138.094 179.884 138.299Z"
+              fill="#FF6A19" />
+            <path
+              d="M189.75 141.969L191.396 142.581C191.947 142.787 192.228 143.4 192.023 143.951L191.411 145.597C191.205 146.149 190.592 146.429 190.041 146.224L188.395 145.612C187.844 145.407 187.563 144.793 187.768 144.242L188.38 142.596C188.586 142.045 189.199 141.764 189.75 141.969Z"
+              fill="#FF6A19" />
+            <path
+              d="M199.617 145.64L201.263 146.252C201.814 146.457 202.095 147.071 201.89 147.622L201.277 149.268C201.072 149.819 200.459 150.1 199.907 149.895L198.262 149.282C197.71 149.077 197.429 148.464 197.635 147.912L198.247 146.267C198.452 145.715 199.066 145.434 199.617 145.64Z"
+              fill="#FF6A19" />
+            <path
+              d="M91.6098 103.97L93.1835 104.556C94.4086 105.012 95.0323 106.374 94.5767 107.599L91.9071 114.775C91.4513 116 90.0888 116.624 88.8636 116.168L87.2899 115.583C86.0648 115.127 85.4411 113.765 85.8967 112.539L88.5661 105.364C89.0219 104.139 90.3847 103.515 91.6098 103.97Z"
+              stroke="#FF6A19" stroke-width="0.331096" stroke-miterlimit="10" />
+            <path
+              d="M148.368 144.833L146.74 149.21C145.394 152.829 141.369 154.671 137.75 153.325L127.074 149.353L131.14 138.424L148.368 144.833Z"
+              fill="#FF6A19" fill-opacity="0.21" />
+            <path
+              d="M126.45 142.901C125.327 145.919 125.606 148.808 127.073 149.353C128.54 149.899 130.64 147.895 131.762 144.877C132.885 141.859 132.606 138.97 131.139 138.425C129.672 137.879 127.572 139.883 126.45 142.901Z"
+              fill="white" />
+            <path
+              d="M127.095 143.141C126.305 145.265 126.293 147.22 127.068 147.508C127.844 147.797 129.113 146.309 129.903 144.185C130.693 142.062 130.705 140.106 129.929 139.818C129.154 139.529 127.885 141.017 127.095 143.141Z"
+              fill="#FF6A19" />
+            <path
+              d="M166.468 156.751L164.84 161.128C163.494 164.746 159.469 166.589 155.851 165.243L145.175 161.271L149.24 150.342L166.468 156.751Z"
+              fill="#FF6A19" fill-opacity="0.21" />
+            <path
+              d="M149.875 156.787C150.998 153.769 150.719 150.88 149.252 150.334C147.785 149.788 145.685 151.793 144.563 154.811C143.44 157.829 143.719 160.718 145.186 161.264C146.653 161.809 148.753 159.805 149.875 156.787Z"
+              fill="white" />
+            <path
+              d="M145.196 155.059C144.406 157.183 144.395 159.138 145.17 159.426C145.945 159.715 147.214 158.227 148.005 156.103C148.795 153.98 148.806 152.024 148.031 151.736C147.255 151.447 145.986 152.935 145.196 155.059Z"
+              fill="#FF6A19" />
+            <path d="M157.3 144.24L105.134 124.834L183.229 172.547L199.167 178.476L157.3 144.24Z" fill="white" />
+            <path d="M252.308 169.02L215.775 155.43L254.648 178.207L272.484 184.842L252.308 169.02Z" fill="#FF6A19" />
+            <path
+              d="M279.264 105.85V105.818M279.264 96.2066C279.264 81.7427 292.844 84.9566 292.844 73.7067C292.844 66.606 286.763 60.8496 279.264 60.8496C273.183 60.8496 268.036 64.6333 266.305 69.8496"
+              stroke="black" stroke-width="6.92308" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+        </div>
+        <div class="flight-preloader__text">
+          <h3 class="flight-preloader__title">No results found</h3>
+          <p class="flight-preloader__description d-lg-none">
+            <span class="flight-preloader__description--text1">Try another search criteria</span>
+
+            <span class="flight-preloader__description--text2">
+              or call {{ getData?.phoneNumber }} now for best deals!
+            </span>
+          </p>
+          <p class="flight-preloader__description d-none d-lg-flex">
+            <span class="flight-preloader__description--text1">Try another search criteria or call
+              <a [href]="isMobile ? 'tel:' + getData?.phoneNumber : ''"
+                (click)="handleCtaClick(getData?.phoneNumber, $event)" class="c-phone-deals__link">
+                {{ getData?.phoneNumber }}
+              </a>
+            </span>
+            now for best deals!
+          </p>
+        </div>
+        <div class="flight-preloader__actions">
+          <button class="flight-preloader__button" routerLink="/">
+            Go Back
+          </button>
+        </div>
+      </div>
+    </div>
+    </div>
+    }
+     
+@if (
+  getMainDetails?.length > 0 &&
+  visibleSegments.length === 0 &&
+  !isSkeleton 
+ 
+) { <div class="flight-preloader">
+      <div class="container container-xl">
+        <div class="flight-preloader__content">
+          <div class="flight-preloader__image">
+            <svg width="360" height="228" viewBox="0 0 360 228" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <mask id="mask0_5805_15" style="mask-type: alpha" maskUnits="userSpaceOnUse" x="2" y="7" width="353"
+                height="214">
+                <path
+                  d="M310.302 70.8625C304.236 91.2987 333.425 122.376 348.777 135.36C378.157 184.966 289.568 207.414 190.086 218.32C90.6038 229.226 40.2945 199.869 15.6013 179.609C-4.15323 163.402 1.88099 145.106 7.36742 137.984C17.7145 131.505 34.4206 112.968 18.4676 90.6549C2.51454 68.3414 16.0423 49.3865 20.0858 40.4337C57.559 -0.632649 74.096 42.328 176.94 14.4997C279.783 -13.3286 317.884 45.3173 310.302 70.8625Z"
+                  fill="white" />
+              </mask>
+              <g mask="url(#mask0_5805_15)">
+                <path
+                  d="M310.302 70.8625C304.236 91.2987 333.425 122.376 348.777 135.36C378.157 184.966 289.568 207.414 190.086 218.32C90.6038 229.226 40.2945 199.869 15.6013 179.609C-4.15323 163.402 1.88099 145.106 7.36742 137.984C17.7145 131.505 34.4206 112.968 18.4676 90.6549C2.51454 68.3414 16.0423 49.3865 20.0858 40.4337C57.559 -0.632649 74.096 42.328 176.94 14.4997C279.783 -13.3286 317.884 45.3173 310.302 70.8625Z"
+                  fill="white" />
+                <path
+                  d="M133.27 60.3065C133.27 62.9179 143.353 65.0349 155.789 65.0349C168.227 65.0349 178.31 62.9179 178.31 60.3065C178.31 57.695 168.227 55.5786 155.789 55.5786C143.353 55.5786 133.27 57.695 133.27 60.3065Z"
+                  fill="#EEEEEE" />
+                <path
+                  d="M147.389 66.8071C147.389 69.1853 156.672 71.1134 168.123 71.1134C179.575 71.1134 188.858 69.1853 188.858 66.8071C188.858 64.4289 179.575 62.5009 168.123 62.5009C156.672 62.5014 147.389 64.4294 147.389 66.8071Z"
+                  fill="#EEEEEE" />
+                <path
+                  d="M131.309 63.8523C131.309 65.8112 136.789 67.3989 143.549 67.3989C150.309 67.3989 155.789 65.8112 155.789 63.8523C155.789 61.894 150.309 60.3063 143.549 60.3063C136.789 60.3063 131.309 61.894 131.309 63.8523Z"
+                  fill="#EEEEEE" />
+                <path
+                  d="M109.646 44.9553C120.88 44.9553 129.987 43.1408 129.987 40.9025C129.987 38.6641 120.88 36.8496 109.646 36.8496C98.4122 36.8496 89.3052 38.6641 89.3052 40.9025C89.3052 43.1408 98.4122 44.9553 109.646 44.9553Z"
+                  fill="#EEEEEE" />
+                <path
+                  d="M92.3965 44.9555C92.3965 47.1005 97.0041 48.8396 102.688 48.8396C108.372 48.8396 112.98 47.1005 112.98 44.9555C112.98 42.8105 108.372 41.0714 102.688 41.0714C97.0041 41.072 92.3965 42.8105 92.3965 44.9555Z"
+                  fill="#EEEEEE" />
+                <path
+                  d="M347.951 103.455L328.598 103.418C328.403 103.418 328.245 103.567 328.245 103.751C328.245 103.934 328.403 104.084 328.597 104.084L328.712 104.085L328.677 121.304L309.459 177.534L309.45 180.943L300.255 180.925L300.295 162.896L300.52 162.897C300.899 162.897 301.207 162.608 301.207 162.251C301.21 161.891 300.903 161.6 300.521 161.6L298.282 161.595L298.341 134.582H298.432C298.812 134.582 299.118 134.293 299.12 133.935C299.12 133.576 298.815 133.284 298.435 133.284L273.986 133.237C273.606 133.236 273.299 133.527 273.299 133.886C273.297 134.243 273.605 134.535 273.985 134.535H274.077L274.029 156.584C273.964 156.568 273.902 156.547 273.836 156.547L271.388 156.541L271.45 127.016H271.55C271.966 127.016 272.301 126.699 272.302 126.308C272.302 125.917 271.968 125.598 271.552 125.596L269.187 125.592L269.214 113.01L272.065 113.015L263.365 98.7427L253.134 98.7223L244.373 112.964L247.222 112.969L247.197 125.55L244.829 125.544C244.415 125.544 244.077 125.862 244.077 126.253C244.077 126.645 244.413 126.964 244.828 126.965H244.926L244.862 156.492L242.417 156.486C242.001 156.486 241.664 156.803 241.662 157.195C241.661 157.586 241.999 157.905 242.413 157.905H242.658L242.63 171.106L235.678 171.093L235.714 154.003L211.193 154.336L211.159 171.046L199.026 171.023L199.035 166.652L197.925 166.054L197.951 153.56L194.636 153.553L194.649 147.693H194.114L194.101 153.553L186.86 153.538L186.873 147.679L186.337 147.678L186.325 153.537L182.555 153.531L182.546 157.756L174.579 153.458L174.696 98.9981H174.844C175.093 98.9981 175.295 98.8086 175.296 98.5741C175.296 98.3383 175.094 98.1479 174.845 98.1457L150.032 98.0995C149.781 98.0995 149.578 98.289 149.577 98.5245C149.577 98.7593 149.779 98.9496 150.031 98.9518H150.177L149.992 185.104L148.682 185.102L148.72 167.516L148.848 167.517C149.065 167.517 149.242 167.351 149.242 167.147C149.243 166.941 149.067 166.776 148.85 166.773L140.842 166.759L140.849 163.666C141.948 162.742 142.645 161.399 142.649 159.901C142.654 157.104 140.254 154.833 137.289 154.827C134.323 154.822 131.914 157.084 131.907 159.879C131.905 161.38 132.596 162.723 133.693 163.652L133.686 166.745L127.27 166.733C127.052 166.733 126.876 166.898 126.875 167.103C126.875 167.308 127.05 167.474 127.268 167.476H127.396L127.358 185.061L125.895 185.059L125.929 168.947H126.127C126.459 168.948 126.73 168.692 126.73 168.378C126.732 168.062 126.461 167.807 126.129 167.805L124.161 167.802L124.213 144.079L124.293 144.08C124.626 144.08 124.897 143.824 124.899 143.51C124.899 143.194 124.628 142.939 124.295 142.939L122.394 142.935L122.475 105.558L124.765 105.561L118.014 94.4837L118.518 94.4848C118.853 94.4859 119.124 94.2297 119.124 93.9156C119.125 93.6013 118.855 93.3454 118.521 93.3443L117.928 93.3421L117.939 87.8249L118.533 87.826C118.866 87.826 119.138 87.572 119.139 87.2568C119.139 86.9436 118.869 86.6885 118.535 86.6866L116.428 86.6833L116.433 84.8604L110.935 84.8496L110.931 86.6725L108.824 86.6681C108.491 86.6681 108.22 86.9221 108.218 87.2353C108.218 87.5527 108.488 87.8078 108.822 87.8078L109.415 87.8089L109.404 93.3261L108.811 93.325C108.476 93.325 108.206 93.5812 108.205 93.8952C108.204 94.2096 108.474 94.4655 108.807 94.4655L109.314 94.4677L102.516 105.518L104.805 105.524L104.724 142.902L102.824 142.898C102.491 142.897 102.219 143.152 102.219 143.467C102.218 143.781 102.49 144.037 102.822 144.038H102.902L102.85 167.761L100.884 167.758C100.551 167.758 100.281 168.011 100.279 168.328C100.279 168.642 100.55 168.898 100.882 168.898L101.078 168.9L101.066 174.961L99.3872 174.957L99.4374 151.465L99.6086 151.467C99.8985 151.467 100.134 151.246 100.135 150.971C100.136 150.698 99.9008 150.475 99.6098 150.474L70.7868 150.42C70.4958 150.419 70.2595 150.642 70.2583 150.915C70.2583 151.19 70.4935 151.41 70.7845 151.41L70.9545 151.413L70.9031 174.903L66.4921 174.894L66.5435 151.403L66.7136 151.404C67.0046 151.404 67.2386 151.182 67.2397 150.909C67.2409 150.635 67.0069 150.412 66.7147 150.412L63.8776 150.406L63.9051 137.424H64.0433C64.2796 137.424 64.4713 137.242 64.4713 137.023C64.4724 136.8 64.2819 136.618 64.0456 136.618L60.954 136.612L60.9733 127.823H61.077C61.2529 127.824 61.3943 127.691 61.3943 127.525C61.3943 127.359 61.2529 127.225 61.0782 127.225L59.0033 127.22C58.7944 123.928 55.9105 121.314 52.3646 121.308C48.8199 121.302 45.9246 123.904 45.7011 127.194L43.6262 127.191C43.4503 127.19 43.3089 127.323 43.3089 127.49C43.3089 127.655 43.4503 127.79 43.6262 127.79H43.7311L43.7118 136.579L40.6202 136.574C40.3838 136.573 40.1922 136.752 40.191 136.975C40.191 137.197 40.3827 137.378 40.6178 137.38H40.7572L40.7297 150.362L37.8891 150.357C37.6005 150.356 37.3641 150.578 37.3641 150.852C37.3629 151.126 37.5981 151.348 37.8879 151.349H38.058L38.0065 174.84L35.6784 174.836C35.3438 174.834 35.0736 175.089 35.0724 175.404C35.0724 175.719 35.3418 175.974 35.6751 175.975H35.8715L35.8338 193.552L33.8036 193.549L33.8275 182.156L30.6059 182.15L30.6483 162.4L27.1573 162.392L27.1962 144.162L14.3939 152.734L14.3723 162.368L10.8813 162.363L10.8389 182.112L7.6173 182.106L7.59335 193.499L5.59616 193.495L5.30518 329.198L347.351 329.85L347.835 104.12H347.95C348.145 104.12 348.304 103.972 348.305 103.786C348.303 103.606 348.144 103.455 347.951 103.455Z"
+                  fill="#EEEEEE" fill-opacity="0.7" />
+              </g>
+              <path d="M247.027 159.705L269.746 127.953L255.68 122.72L216.567 148.374L247.027 159.705Z"
+                fill="#FF6A19" />
+              <path
+                d="M220.029 148.395C233.709 148.378 247.506 147.527 256.5 146.465L252.67 151.818C247.022 153.281 241.278 154.468 235.476 155.409L223.324 150.888L220.884 149.98L220.029 148.395Z"
+                fill="#FF6A19" />
+              <path
+                d="M41.3769 96.7967C45.6833 91.7344 53.2495 90.5988 58.7953 90.5296C62.4516 90.484 66.0814 91.1262 69.5083 92.401L251.351 160.047C252.401 160.437 253.291 161.166 253.88 162.12C255.989 165.531 253.459 169.92 249.449 169.804L211.811 168.718C206.244 168.557 200.742 167.485 195.523 165.544L56.7757 113.929C56.7757 113.929 34.0074 105.46 41.3769 96.7967Z"
+                fill="white" />
+              <path
+                d="M42.6301 95.5115C44.8507 102.05 59.2083 107.392 59.2083 107.392L225.095 169.102L211.811 168.718C206.245 168.558 200.743 167.485 195.524 165.544L56.776 113.93C56.776 113.93 34.0074 105.46 41.3772 96.7967C41.7692 96.3361 42.1883 95.909 42.6301 95.5115Z"
+                fill="#FF6A19" fill-opacity="0.21" />
+              <path
+                d="M237.823 155.014C216.788 158.677 194.922 159.038 174.082 157.567L69.8052 118.776C132.297 142.023 183.754 148.176 220.03 148.395L237.823 155.014Z"
+                fill="#FF6A19" />
+              <path
+                d="M52.8611 91.0463L62.1725 94.5102C62.7239 94.7154 63.0047 95.3288 62.7995 95.8802L62.1872 97.5259C61.9819 98.0773 61.3686 98.3582 60.8172 98.1529L46.6752 92.8919C48.6397 91.9852 50.7657 91.4051 52.8611 91.0463Z"
+                fill="#FF6A19" />
+              <path
+                d="M71.3538 97.9258L72.9995 98.5381C73.5509 98.7433 73.8318 99.3567 73.6265 99.908L73.0143 101.554C72.8093 102.105 72.1957 102.386 71.6443 102.181L69.9985 101.569C69.4471 101.363 69.1663 100.75 69.3716 100.199L69.9838 98.5528C70.1888 98.0014 70.8021 97.7205 71.3538 97.9258Z"
+                fill="#FF6A19" />
+              <path
+                d="M81.2195 101.596L82.8653 102.208C83.4167 102.414 83.6975 103.027 83.4923 103.578L82.88 105.224C82.675 105.775 82.0614 106.056 81.51 105.851L79.8643 105.239C79.3129 105.033 79.032 104.42 79.2373 103.869L79.8495 102.223C80.0548 101.672 80.6681 101.391 81.2195 101.596Z"
+                fill="#FF6A19" />
+              <path
+                d="M100.954 108.937L102.6 109.549C103.151 109.754 103.432 110.368 103.227 110.919L102.614 112.565C102.409 113.116 101.796 113.397 101.244 113.192L99.5986 112.58C99.0472 112.374 98.7664 111.761 98.9717 111.21L99.5839 109.564C99.7889 109.012 100.402 108.731 100.954 108.937Z"
+                fill="#FF6A19" />
+              <path
+                d="M110.82 112.607L112.465 113.219C113.017 113.425 113.298 114.038 113.092 114.589L112.48 116.235C112.275 116.786 111.662 117.067 111.11 116.862L109.464 116.25C108.913 116.045 108.632 115.431 108.837 114.88L109.45 113.234C109.655 112.683 110.268 112.402 110.82 112.607Z"
+                fill="#FF6A19" />
+              <path
+                d="M120.686 116.277L122.332 116.89C122.883 117.095 123.164 117.708 122.959 118.26L122.346 119.905C122.141 120.457 121.528 120.738 120.976 120.532L119.331 119.92C118.779 119.715 118.498 119.101 118.704 118.55L119.316 116.904C119.521 116.353 120.134 116.072 120.686 116.277Z"
+                fill="#FF6A19" />
+              <path
+                d="M130.553 119.948L132.198 120.56C132.75 120.765 133.031 121.378 132.825 121.93L132.213 123.576C132.008 124.127 131.394 124.408 130.843 124.203L129.197 123.59C128.646 123.385 128.365 122.772 128.57 122.22L129.183 120.575C129.388 120.023 130.001 119.743 130.553 119.948Z"
+                fill="#FF6A19" />
+              <path
+                d="M140.418 123.618L142.064 124.23C142.615 124.435 142.896 125.049 142.691 125.6L142.079 127.246C141.873 127.797 141.26 128.078 140.709 127.873L139.063 127.261C138.512 127.055 138.231 126.442 138.436 125.891L139.048 124.245C139.253 123.693 139.867 123.413 140.418 123.618Z"
+                fill="#FF6A19" />
+              <path
+                d="M150.284 127.288L151.93 127.901C152.481 128.106 152.762 128.719 152.557 129.271L151.944 130.916C151.739 131.468 151.126 131.749 150.574 131.543L148.929 130.931C148.377 130.726 148.096 130.112 148.302 129.561L148.914 127.915C149.119 127.364 149.733 127.083 150.284 127.288Z"
+                fill="#FF6A19" />
+              <path
+                d="M160.151 130.958L161.797 131.571C162.348 131.776 162.629 132.389 162.424 132.941L161.812 134.586C161.606 135.138 160.993 135.419 160.442 135.213L158.796 134.601C158.245 134.396 157.964 133.782 158.169 133.231L158.781 131.585C158.986 131.034 159.6 130.753 160.151 130.958Z"
+                fill="#FF6A19" />
+              <path
+                d="M170.018 134.629L171.664 135.241C172.215 135.446 172.496 136.06 172.291 136.611L171.679 138.257C171.474 138.808 170.86 139.089 170.309 138.884L168.663 138.272C168.112 138.066 167.831 137.453 168.036 136.902L168.648 135.256C168.853 134.705 169.467 134.424 170.018 134.629Z"
+                fill="#FF6A19" />
+              <path
+                d="M179.884 138.299L181.53 138.911C182.081 139.117 182.362 139.73 182.157 140.281L181.545 141.927C181.339 142.479 180.726 142.759 180.175 142.554L178.529 141.942C177.977 141.737 177.697 141.123 177.902 140.572L178.514 138.926C178.719 138.375 179.332 138.094 179.884 138.299Z"
+                fill="#FF6A19" />
+              <path
+                d="M189.75 141.969L191.396 142.581C191.947 142.787 192.228 143.4 192.023 143.951L191.411 145.597C191.205 146.149 190.592 146.429 190.041 146.224L188.395 145.612C187.844 145.407 187.563 144.793 187.768 144.242L188.38 142.596C188.586 142.045 189.199 141.764 189.75 141.969Z"
+                fill="#FF6A19" />
+              <path
+                d="M199.617 145.64L201.263 146.252C201.814 146.457 202.095 147.071 201.89 147.622L201.277 149.268C201.072 149.819 200.459 150.1 199.907 149.895L198.262 149.282C197.71 149.077 197.429 148.464 197.635 147.912L198.247 146.267C198.452 145.715 199.066 145.434 199.617 145.64Z"
+                fill="#FF6A19" />
+              <path
+                d="M91.6098 103.97L93.1835 104.556C94.4086 105.012 95.0323 106.374 94.5767 107.599L91.9071 114.775C91.4513 116 90.0888 116.624 88.8636 116.168L87.2899 115.583C86.0648 115.127 85.4411 113.765 85.8967 112.539L88.5661 105.364C89.0219 104.139 90.3847 103.515 91.6098 103.97Z"
+                stroke="#FF6A19" stroke-width="0.331096" stroke-miterlimit="10" />
+              <path
+                d="M148.368 144.833L146.74 149.21C145.394 152.829 141.369 154.671 137.75 153.325L127.074 149.353L131.14 138.424L148.368 144.833Z"
+                fill="#FF6A19" fill-opacity="0.21" />
+              <path
+                d="M126.45 142.901C125.327 145.919 125.606 148.808 127.073 149.353C128.54 149.899 130.64 147.895 131.762 144.877C132.885 141.859 132.606 138.97 131.139 138.425C129.672 137.879 127.572 139.883 126.45 142.901Z"
+                fill="white" />
+              <path
+                d="M127.095 143.141C126.305 145.265 126.293 147.22 127.068 147.508C127.844 147.797 129.113 146.309 129.903 144.185C130.693 142.062 130.705 140.106 129.929 139.818C129.154 139.529 127.885 141.017 127.095 143.141Z"
+                fill="#FF6A19" />
+              <path
+                d="M166.468 156.751L164.84 161.128C163.494 164.746 159.469 166.589 155.851 165.243L145.175 161.271L149.24 150.342L166.468 156.751Z"
+                fill="#FF6A19" fill-opacity="0.21" />
+              <path
+                d="M149.875 156.787C150.998 153.769 150.719 150.88 149.252 150.334C147.785 149.788 145.685 151.793 144.563 154.811C143.44 157.829 143.719 160.718 145.186 161.264C146.653 161.809 148.753 159.805 149.875 156.787Z"
+                fill="white" />
+              <path
+                d="M145.196 155.059C144.406 157.183 144.395 159.138 145.17 159.426C145.945 159.715 147.214 158.227 148.005 156.103C148.795 153.98 148.806 152.024 148.031 151.736C147.255 151.447 145.986 152.935 145.196 155.059Z"
+                fill="#FF6A19" />
+              <path d="M157.3 144.24L105.134 124.834L183.229 172.547L199.167 178.476L157.3 144.24Z" fill="white" />
+              <path d="M252.308 169.02L215.775 155.43L254.648 178.207L272.484 184.842L252.308 169.02Z" fill="#FF6A19" />
+              <path
+                d="M279.264 105.85V105.818M279.264 96.2066C279.264 81.7427 292.844 84.9566 292.844 73.7067C292.844 66.606 286.763 60.8496 279.264 60.8496C273.183 60.8496 268.036 64.6333 266.305 69.8496"
+                stroke="black" stroke-width="6.92308" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </div>
+          <div class="flight-preloader__text no-match-flight-content">
+            <h3 class="flight-preloader__title">No Matching Flights Found</h3>
+            <p class="flight-preloader__description">
+              <span class="flight-preloader__description--text1">We're sorry, your combination of outbound and inbound
+                timing
+                filters returned no results. Kindly select a broader time window
+                or call
+                <a href="tel:{{ getData?.phoneNumber }}" class="c-phone-deals__link">
+                  {{ getData?.phoneNumber }}
+                </a>
+                now for expert help finding the perfect options!
+              </span>
+            </p>
+          </div>
+          <div class="flight-preloader__actions">
+            <button class="flight-preloader__button" routerLink="/">
+              Go Back
+            </button>
+          </div>
+        </div>
+      </div>
+      </div>
+      }
+      @if (isfilterDialogOpen) {
+      <p-dialog [(visible)]="isfilterDialogOpen" position="center" styleClass="search-main-drawer">
+        <ng-template #headless>
+          <div class="drawer-header popup-header" [class.android]="isAndroid">
+            <div class="filter-modal-btn" (click)="onClose()">
+              <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40" fill="none">
+                <path
+                  d="M10.8241 10.845C10.1081 11.561 10.1081 12.7218 10.8241 13.4377L17.3968 20.0105L10.8241 26.5833C10.1081 27.2992 10.1081 28.4601 10.8241 29.176C11.54 29.8919 12.7009 29.8919 13.4168 29.176L19.9895 22.6031L26.5624 29.176C27.2783 29.8919 28.4392 29.8919 29.1551 29.176C29.871 28.4601 29.871 27.2992 29.1551 26.5833L22.5822 20.0105L29.1551 13.4377C29.871 12.7218 29.871 11.561 29.1551 10.845C28.439 10.1291 27.2783 10.1291 26.5624 10.845L19.9895 17.4178L13.4168 10.845C12.7009 10.129 11.54 10.129 10.8241 10.845Z"
+                  fill="currentColor" />
+              </svg>
+            </div>
+          </div>
+          <div class="drawer-body">
+            <ng-content>
+              <app-flight-filter-modal *ngIf="filtersForModal" [initialFilters]="filtersForModal"
+                [stopOptions]="stopOptions" [fullStopWiseLowestFare]="fullStopWiseLowestFare"
+                [getAllTimedetails]="getAllTimedetails" [getFlightAllDetails]="getFlightAllDetails"
+                [visibleAirlines]="getAllCarrierWiseFares" [sliderValue]="sliderValue" [lowestPrice]="lowestPrice"
+                [highestPrice]="highestPrice" [finalLayoverFlights]="finalLayoverFlights"
+                [getNearbyfare]="getNearbyfare" [getrangeValues]="getrangeValues" [getDurations]="getDurations"
+                (apply)="onFiltersApplied($event)">
+              </app-flight-filter-modal>
+            </ng-content>
+          </div>
+        </ng-template>
+      </p-dialog>
+      }
+
+      <ng-template #tooltipMultipleContent>
+        <div
+          class="c-flight-list-card__tooltip c-flight-list-card__tooltip--multiple c-flight-list-card__tooltip--multiple-center">
+          <div class="c-flight-list-card__tooltip--item-wrap">
+            @for (layover of layoverList; track layover.AirportCode) {
+            <div class="c-flight-list-card__tooltip--item-inner-content">
+              <span
+                class="c-flight-list-card__tooltip--item-inner-content__text c-flight-list-card__tooltip--item-inner-content__text-overflow">
+                {{ getAirportLabel(layover.OriginAirportName) }}
+              </span>
+              <span class="c-flight-list-card__tooltip--text-separator">|</span>
+              <span
+                class="c-flight-list-card__tooltip--item-inner-content__text c-flight-list-card__tooltip--item-inner-content__text-layover">
+                Layover: {{ layover.LayoverTime | durationToHours }}
+              </span>
+            </div>
+            }
+          </div>
+        </div>
+      </ng-template>
+
+      <!-- <button class="back-to-top" [class.show]="showBtn" (click)="scrollToTop()" aria-label="Back to top">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5"
+          stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="6 15 12 9 18 15"></polyline>
+        </svg>
+      </button> -->

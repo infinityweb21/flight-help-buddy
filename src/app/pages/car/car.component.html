@@ -1,0 +1,393 @@
+<app-main-filter />
+
+<section class="common-section tab-section-box">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-md-10 col-12">
+                <div class="common-heading-box">
+                    <h2 class="common-heading-title">Match Your Ride With Your Trip. Book Your Car Today</h2>
+                    <p>Getting the right car will turn your trip into an everlasting experience. Select the vehicle that
+                        perfectly fits your style. Start enjoying the freedom of the road by booking your car with
+                        {{companyname.companyName}}</p>
+                </div>
+            </div>
+            <div class="col-12">
+
+                <div class="fsr-services">
+
+                    <div class="fsr-service-card">
+                        <div class="fsr-service-card__icon"><i class="fa-solid fa-car"></i></div>
+                        <h3 class="fsr-service-card__title">Wide Vehicle Options</h3>
+                        <p class="fsr-service-card__desc">Choose your vehicle according to your needs.</p>
+                    </div>
+
+                    <div class="fsr-service-card">
+                        <div class="fsr-service-card__icon"><i class="fa-solid fa-key"></i></div>
+                        <h3 class="fsr-service-card__title">Easy Pick-Up &amp; Return</h3>
+                        <p class="fsr-service-card__desc">Get on the road fast with our easy pick-up.</p>
+                    </div>
+
+                    <div class="fsr-service-card">
+                        <div class="fsr-service-card__icon"><i class="fa-solid fa-tags"></i></div>
+                        <h3 class="fsr-service-card__title">Transparent Pricing</h3>
+                        <p class="fsr-service-card__desc">There are no hidden fees.</p>
+                    </div>
+
+                    <div class="fsr-service-card">
+                        <div class="fsr-service-card__icon"><i class="fa-solid fa-user-tie"></i></div>
+                        <h3 class="fsr-service-card__title">Private Chauffeur Services</h3>
+                        <p class="fsr-service-card__desc">Other additional rental offers.</p>
+                    </div>
+
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+</section>
+<section class="common-section text-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-12">
+                <div class="main-box-card m-0">
+                    <h2 class="tp-trust-title">
+                        Book Your Car Instantly
+                    </h2>
+
+                    <div class="tp-trust-box">
+
+
+                        <div class="tp-trust-item">
+                            <div class="tp-trust-icon">
+                                <i class="fa-solid fa-headset"></i>
+                            </div>
+
+                            <div class="tp-trust-info">
+                                <h5>24/7 Customer Support</h5>
+                                <p>Our travel experts are always available to help you.</p>
+                            </div>
+                        </div>
+
+                        <div class="tp-trust-item">
+                            <div class="tp-trust-icon">
+                                <i class="fa-solid fa-car"></i>
+                            </div>
+
+                            <div class="tp-trust-info">
+                                <h5>Premium Cars</h5>
+                                <p>Elevate your journey experience.</p>
+                            </div>
+                        </div>
+
+                        <div class="tp-trust-item">
+                            <div class="tp-trust-icon">
+                                <i class="fa-solid fa-tags"></i>
+                            </div>
+
+                            <div class="tp-trust-info">
+                                <h5>Best Pricing</h5>
+                                <p>We keep it transparent and affordable.</p>
+                            </div>
+                        </div>
+
+                        <div class="tp-trust-item">
+                            <div class="tp-trust-icon">
+                                <i class="fa-solid fa-bolt"></i>
+                            </div>
+
+                            <div class="tp-trust-info">
+                                <h5>Instant Booking</h5>
+                                <p>Get confirmation in a single click.</p>
+                            </div>
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="common-section flight-list-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 col-md-6 col-sm-8 col-9">
+                <div class="common-heading-box">
+                    <h2 class="common-heading-title">Get Behind The Wheel</h2>
+                    <p>Book your car today and access amazing deals.</p>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-4 col-3">
+                <div class="flex-end-sec">
+                    <div class="common-nav-arrow-box">
+                        <button class="car-ai-prev" (click)="carPrevious()" aria-label="Previous car">
+                            <i class="fa-solid fa-arrow-left"></i>
+                        </button>
+
+                        <button class="car-ai-next" (click)="carNext()" aria-label="Next car">
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 mt-2">
+                <div class="car-slider owl-carousel">
+
+                    <a href="tel:{{ getData?.phoneNumber }}" class="car-card-link" *ngFor="let car of carCards"
+                        (click)="selectCar(car)" [attr.aria-label]="'Call to book ' + car.title">
+
+                        <article class="car-card-box">
+
+                            <!-- IMAGE -->
+                            <div class="car-card-img">
+                                <img [src]="car.image" [alt]="car.title" class="car-card-photo" loading="lazy" />
+
+                                <span class="car-card-tag">{{ car.category }}</span>
+
+                                <span class="car-card-rating">
+                                    <i class="fa fa-star"></i>{{ car.rating }}
+                                </span>
+
+                                <span class="car-card-logo">
+                                    <img [src]="car.logo" alt="Rental company" />
+                                </span>
+                            </div>
+
+                            <!-- BODY -->
+                            <div class="car-card-body">
+
+                                <h3 class="car-card-title" [title]="car.title">{{ car.title }}</h3>
+
+                                <div class="car-card-location">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                    <span>{{ car.location }}</span>
+                                </div>
+
+                                <!-- SPECS (dashboard strip) -->
+                                <ul class="car-card-specs">
+                                    <li>
+                                        <i class="fas fa-gas-pump"></i>
+                                        <strong>{{ car.fuel }}</strong>
+                                        <small>Fuel</small>
+                                    </li>
+                                    <li>
+                                        <i class="fas fa-cogs"></i>
+                                        <strong>{{ car.gear }}</strong>
+                                        <small>Gear</small>
+                                    </li>
+                                    <li>
+                                        <i class="fas fa-users"></i>
+                                        <strong>{{ car.guests }}</strong>
+                                        <small>Seats</small>
+                                    </li>
+                                    <li>
+                                        <i class="fas fa-snowflake"></i>
+                                        <strong>{{ car.ac }}</strong>
+                                        <small>A/C</small>
+                                    </li>
+                                </ul>
+
+                                <!-- FEATURES -->
+                                <div class="car-card-features">
+                                    <span class="car-card-feature" title="Wi-Fi"><i class="fas fa-wifi"></i></span>
+                                    <span class="car-card-feature" title="Luggage space"><i
+                                            class="fas fa-suitcase"></i></span>
+                                    <span class="car-card-feature" title="Roadside assistance"><i
+                                            class="fas fa-life-ring"></i></span>
+                                    <span class="car-card-more">+2 more</span>
+                                </div>
+
+                                <!-- PRICE + CTA -->
+                                <div class="car-card-footer">
+                                    <div class="car-card-price">
+                                        <strong>{{ car.price }}</strong>
+                                        <small>{{ car.pricePeriod }}</small>
+                                    </div>
+
+                                    <span class="car-card-cta">
+                                        <i class="fa fa-phone-alt"></i> Call to book
+                                    </span>
+                                </div>
+
+                            </div>
+
+                        </article>
+
+                    </a>
+
+                </div>
+                <div class="div-text"><strong>*Note:</strong> The prices that are displayed are in USD. The fares may
+                    vary depending on reservation and availability.</div>
+
+
+                <div class="fsr-brands">
+
+                    <div class="fsr-brands__label">Search 30+ car rental<br>companies at once</div>
+
+                    <div class="fsr-brand-box"><img src="assets/images/car/alamo.svg" alt=""></div>
+                    <div class="fsr-brand-box"><img src="assets/images/car/hertz.svg" alt=""></div>
+                    <div class="fsr-brand-box"><img src="assets/images/car/enterprise.svg" alt=""></div>
+                    <div class="fsr-brand-box"><img src="assets/images/car/avis_no_bg.svg" alt=""></div>
+                    <div class="fsr-brand-box"><img src="assets/images/car/budget_no_bg.svg" alt=""></div>
+                    <div class="fsr-brand-box"><img src="assets/images/car/sixt.svg" alt=""></div>
+                    <div class="fsr-brand-box"><img src="assets/images/car/national.svg" alt=""></div>
+                    <div class="fsr-brand-box"><img src="assets/images/car/ace_usa.svg" alt=""></div>
+                    <div class="fsr-brand-box"><img src="assets/images/car/cargets.svg" alt=""></div>
+                    <div class="fsr-brand-box"><img src="assets/images/car/addcar.svg" alt=""></div>
+                    <div class="fsr-brand-box"><img src="assets/images/car/europcar.svg" alt=""></div>
+                    <div class="fsr-brand-box"><img src="assets/images/car/green_motion.svg" alt=""></div>
+                    <div class="fsr-brand-box"><img src="assets/images/car/drivus.svg" alt=""></div>
+                    <div class="fsr-brands__more">&hellip; more</div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="common-section feature-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="tp-feature-strip">
+                    <div class="tp-feature-item">
+
+                        <div class="tp-feature-icon">
+                            <img src="assets/images/search-icon.png" alt="Search">
+                        </div>
+
+                        <div class="tp-feature-content">
+                            <h4>Comfortable &amp; Premium Rides</h4>
+                            <p>Make your travel journey smooth and cozy</p>
+                        </div>
+
+                    </div>
+
+                    <div class="tp-feature-item">
+
+                        <div class="tp-feature-icon">
+                            <img src="assets/images/fees-icon.png" alt="Fees">
+                        </div>
+
+                        <div class="tp-feature-content">
+                            <h4>No Hidden Fees</h4>
+                            <p>Transparent pricing, avoid last-minute surprises</p>
+                        </div>
+
+                    </div>
+
+                    <div class="tp-feature-item">
+
+                        <div class="tp-feature-icon">
+                            <img src="assets/images/flexible-icon.png" alt="Flexible">
+                        </div>
+
+                        <div class="tp-feature-content">
+                            <h4>Flexible Booking Options</h4>
+                            <p>You can change your car booking dates</p>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="common-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-7 col-md-10 col-12">
+                <div class="common-heading-box">
+                    <h2 class="common-heading-title">Frequently Asked Questions - FAQs
+                    </h2>
+                    <p>Find answers to common questions about our car rental services.</p>
+                </div>
+            </div>
+            <!-- Column 1 -->
+            <div class="col-lg-6">
+                <div class="cst-acc-col-title">General Information</div>
+                <div class="accordion" id="cstAccLeft">
+
+                    <div class="cst-acc__item">
+                        <h2 class="cst-acc__header" id="lHead1">
+                            <button class="cst-acc__btn" type="button" data-bs-toggle="collapse" data-bs-target="#lCol1"
+                                aria-expanded="true" aria-controls="lCol1">
+                                <span class="cst-acc__title">Can I get chauffeur services for airport transfers?</span>
+                                <i class="fa-solid fa-chevron-down cst-acc__chevron"></i>
+                            </button>
+                        </h2>
+                        <div id="lCol1" class="collapse show" aria-labelledby="lHead1" data-bs-parent="#cstAccLeft">
+                            <div class="cst-acc__body">
+                                Yes, chauffeur services are available for airport pickups, drop-offs, and other travel
+                                requirements.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="cst-acc__item">
+                        <h2 class="cst-acc__header" id="lHead2">
+                            <button class="cst-acc__btn collapsed" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#lCol2" aria-expanded="false" aria-controls="lCol2">
+                                <span class="cst-acc__title">Can I choose my vehicle type?</span>
+                                <i class="fa-solid fa-chevron-down cst-acc__chevron"></i>
+                            </button>
+                        </h2>
+                        <div id="lCol2" class="collapse" aria-labelledby="lHead2" data-bs-parent="#cstAccLeft">
+                            <div class="cst-acc__body">
+                                Yes, you can choose your vehicle type, but it generally depends on location and
+                                availability.
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Column 2 -->
+            <div class="col-lg-6">
+                <div class="cst-acc-col-title">Cancellation &amp; Support</div>
+                <div class="accordion" id="cstAccRight">
+
+                    <div class="cst-acc__item">
+                        <h2 class="cst-acc__header" id="rHead1">
+                            <button class="cst-acc__btn" type="button" data-bs-toggle="collapse" data-bs-target="#rCol1"
+                                aria-expanded="true" aria-controls="rCol1">
+                                <span class="cst-acc__title">How can I change my car rental booking dates?</span>
+                                <i class="fa-solid fa-chevron-down cst-acc__chevron"></i>
+                            </button>
+                        </h2>
+                        <div id="rCol1" class="collapse show" aria-labelledby="rHead1" data-bs-parent="#cstAccRight">
+                            <div class="cst-acc__body">
+                                To change your car booking dates, you need to talk to our customer support and review
+                                your available options.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="cst-acc__item">
+                        <h2 class="cst-acc__header" id="rHead2">
+                            <button class="cst-acc__btn collapsed" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#rCol2" aria-expanded="false" aria-controls="rCol2">
+                                <span class="cst-acc__title">Are there any hidden fees when renting a car?</span>
+                                <i class="fa-solid fa-chevron-down cst-acc__chevron"></i>
+                            </button>
+                        </h2>
+                        <div id="rCol2" class="collapse" aria-labelledby="rHead2" data-bs-parent="#cstAccRight">
+                            <div class="cst-acc__body">
+                                No, we keep transparent pricing. There are no hidden fees, and therefore you do not have
+                                to face any last-minute surprises.
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

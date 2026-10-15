@@ -1,0 +1,871 @@
+@import url(../flights-list/flights-list.component.scss);
+/* Main Card */
+.cruise-booking-card {
+  max-width: 1200px;
+  margin: auto;
+  background: #fff;
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.08);
+}
+
+/* Layout */
+.cruise-card-body {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+/* LEFT – Carousel */
+.cruise-image-section {
+  flex: 0 0 42%;
+}
+
+.cruise-carousel-wrapper {
+  height: 100%;
+}
+
+.cruise-slide-item {
+  height: 100%;
+  min-height: 380px;
+  background-size: cover;
+  background-position: center;
+}
+
+/* Hide nav/dots */
+.owl-nav,
+.owl-dots {
+  display: none !important;
+}
+
+/* RIGHT – Content */
+.cruise-content-section {
+  flex: 0 0 58%;
+  padding: 28px;
+}
+
+/* Header */
+.cruise-header-title {
+  font-size: 26px;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+/* Ship Info */
+.cruise-ship-info {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  padding-bottom: 12px;
+  margin-bottom: 16px;
+  border-bottom: 1px solid #e6e6e6;
+}
+
+.cruise-ship-label {
+  color: #777;
+  font-weight: 600;
+}
+.cruise-ship-name {
+  color: #4c63d2;
+  font-weight: 600;
+}
+.cruise-ship-operator {
+  font-size: 13px;
+  color: #999;
+}
+
+/* Details */
+.cruise-details-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
+  margin-bottom: 16px;
+}
+
+.cruise-detail-label {
+  font-size: 12px;
+  color: #777;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.cruise-detail-value {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+/* Ports */
+.cruise-ports-section {
+  background: #f8f9fb;
+  padding: 14px;
+  border-radius: 10px;
+  margin-bottom: 16px;
+}
+
+.cruise-ports-label {
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+  color: #666;
+}
+
+.cruise-ports-list {
+  font-size: 13px;
+  line-height: 1.6;
+  color: #333;
+}
+
+/* Pricing */
+.cruise-pricing-section {
+  background: linear-gradient(135deg, #5a67d8, #667eea);
+  border-radius: 14px;
+  padding: 18px;
+  color: #fff;
+  margin-bottom: 18px;
+}
+
+.cruise-price-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 15px;
+}
+
+.cruise-price-main {
+  font-size: 30px;
+  font-weight: 700;
+}
+
+.cruise-price-from,
+.cruise-price-per-night {
+  font-size: 13px;
+  opacity: 0.9;
+}
+
+/* Button */
+.cruise-book-button {
+  background: #fff;
+  color: #5a67d8;
+  border: none;
+  padding: 12px 36px;
+  font-size: 15px;
+  font-weight: 700;
+  border-radius: 8px;
+  transition: 0.3s;
+}
+
+.cruise-book-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Pricing Table */
+.cruise-pricing-table {
+  border: 1px solid #a7a7a7;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.cruise-pricing-table th {
+  background: #d1dbff;
+  font-size: 11px;
+  text-transform: uppercase;
+  padding: 12px;
+  text-align: center;
+}
+
+.cruise-pricing-table td {
+  padding: 14px 10px;
+  text-align: center;
+  border: 0;
+  border-left: 1px solid #a7a7a7;
+}
+.cruise-pricing-table td:first-child {
+  border-left: none;
+}
+.cruise-price-amount {
+  font-size: 14px;
+  font-weight: 700;
+  color: rgba(var(--main-color), 1);
+}
+
+.cruise-price-currency {
+  font-size: 12px;
+  color: #999;
+  display: block;
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+  .cruise-image-section,
+  .cruise-content-section {
+    flex: 0 0 100%;
+  }
+
+  .cruise-details-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .cruise-price-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .cruise-book-button {
+    width: 100%;
+  }
+}
+
+.main-crusie-card {
+  width: 100%;
+  background: rgba(var(--white-color), 1);
+  border-radius: 14px;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.08);
+  padding: 0;
+  gap: 18px;
+  align-items: flex-start;
+  margin: 10px 0px;
+}
+
+/* Hide extra items initially */
+.more-items-unique {
+  display: none;
+}
+
+/* Toggle button */
+.filter-toggle-btn {
+  background: none;
+  border: none;
+  color: rgba(var(--second-color), 1);
+  font-weight: 600;
+  margin-top: 2px;
+  cursor: pointer;
+  font-size: 13px;
+}
+.filter-toggle-btn:hover {
+  color: rgba(var(--second-color), 1);
+}
+
+.flight-list-header {
+  background-color: rgba(var(--black-color), 1);
+}
+
+.ms-wrapper {
+  margin: 40px auto;
+  margin-top: 20px;
+}
+.Modify-search-box-section {
+  padding-bottom: 0;
+  padding-top: 0;
+  overflow: visible;
+  position: sticky;
+  top: 0;
+  z-index: 99;
+}
+
+/* Open state */
+.ms-edit-btn.ms-btn-open .ms-icon-edit {
+  opacity: 0;
+  transform: scale(0.7);
+}
+
+.ms-edit-btn.ms-btn-open .ms-icon-close {
+  opacity: 1;
+  transform: scale(1);
+}
+/* Modify Box */
+.ms-modify-box {
+  width: 95%;
+  margin: 0 auto;
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transform: translateY(-10px);
+  transition: max-height 0.45s ease, opacity 0.35s ease, transform 0.35s ease;
+  margin-top: 0px;
+  border: 1px solid #cfe4ff;
+  border-radius: 12px;
+  border-top: 0;
+  border-top-right-radius: 0;
+  border-top-left-radius: 0;
+  padding: 0 16px;
+  background: rgba(var(--white-color), 1);
+}
+
+/* Open State */
+.ms-modify-box.ms-modify-open {
+  max-height: 1400px; /* adjust if form height changes */
+  opacity: 1;
+  transform: translateY(0);
+  padding: 16px;
+  padding-top: 25px;
+  overflow: visible !important;
+  scrollbar-width: none;
+}
+
+.ms-modify-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: 600;
+  margin-bottom: 14px;
+}
+
+.ms-close-btn {
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.map-card-unique {
+  background: rgba(var(--white-color), 1);
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  transition: 0.3s ease;
+  margin-bottom: 24px;
+}
+
+/* Card hover subtle lift */
+.map-card-unique:hover {
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
+}
+
+/* iframe style */
+.map-iframe-box {
+  width: 100%;
+  height: 160px;
+  overflow: hidden;
+}
+
+.map-iframe-box iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+/* Bottom clickable section */
+.map-explore-btn {
+  display: block;
+  text-align: center;
+  padding: 15px 10px;
+  font-size: 15px;
+  font-weight: 600;
+  color: rgba(var(--second-color), 1);
+  text-decoration: none;
+  transition: 0.3s ease;
+}
+
+/* Text hover effect only for explore button */
+.map-explore-btn:hover,
+.map-explore-btn:focus,
+.map-explore-btn:visited {
+  color: rgba(var(--second-color), 1);
+}
+.search-box-unique {
+  background: rgba(var(--white-color), 1);
+  border: 1.5px solid #5c5c5c;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  padding: 6px 12px;
+  transition: 0.2s;
+  margin: 15px 0px;
+}
+
+.search-box-unique:hover {
+  border-color: #999;
+}
+
+/* input styles */
+.search-box-unique input {
+  flex: 1;
+  border: none;
+  outline: none;
+  font-size: 14px;
+  color: #333;
+}
+
+.search-box-unique input::placeholder {
+  color: #a9a9a9;
+  font-weight: 400;
+}
+
+/* icon button */
+.search-icon-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  margin-left: 8px;
+}
+
+/* search icon CSS (using pure CSS circle + handle) */
+.search-icon {
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  border: 2px solid rgba(var(--second-color), 1);
+  border-radius: 50%;
+  position: relative;
+}
+
+/* Hide extra items initially */
+.more-items-unique {
+  display: none;
+}
+
+/* Toggle button */
+.filter-toggle-btn {
+  background: none;
+  border: none;
+  color: rgba(var(--second-color), 1);
+  font-weight: 600;
+  margin-top: 2px;
+  cursor: pointer;
+  font-size: 13px;
+}
+.filter-toggle-btn:hover {
+  color: rgba(var(--second-color), 1);
+}
+
+.cruise-list-card {
+	width: 100%;
+	background: #fff;
+	border-radius: 14px;
+	box-shadow: 0 0 8px rgba(0, 0, 0, 0.08);
+	display: flex;
+	padding: 15px;
+	gap: 18px;
+	align-items: flex-start;
+	margin: 10px 0px;
+	margin-top: 0;
+}
+.smallsizetext{
+  font-size: 13px;
+}
+
+.cruise-img-area {
+  width: 35%;
+  position: relative;
+  border-radius: 14px;
+  overflow: hidden;
+}
+
+.cruise-carousel-unique img {
+  width: 100%;
+  height: 210px;
+  object-fit: cover;
+  border-radius: 14px;
+}
+.cruise-carousel-unique .owl-stage {
+  transition: all 1s ease-in-out !important;
+}
+.tag {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background: rgba(var(--main-color), 1);
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 12px;
+  color: #fff;
+  font-weight: 600;
+  z-index: 3;
+}
+
+.fav-icon {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 28px;
+  height: 28px;
+  background: url("/assets/images/cruise/heart.svg") no-repeat center/contain;
+  color: rgba(var(--main-color), 1);
+  z-index: 3;
+}
+
+::ng-deep .cruise-carousel-unique .owl-nav {
+  display: none;
+}
+.cruise-img-area {
+  position: relative;
+}
+
+::ng-deep .cruise-img-area:hover .owl-nav {
+  display: block;
+}
+::ng-deep .cruise-carousel-unique .owl-nav button.owl-prev,
+::ng-deep .cruise-carousel-unique .owl-nav button.owl-next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(var(--white-color), 0.6) !important;
+  color: rgba(var(--second-color), 1) !important;
+  padding: 4px 8px !important;
+  border-radius: 50%;
+  font-size: 18px !important;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+::ng-deep .cruise-carousel-unique .owl-prev {
+  left: 10px;
+}
+::ng-deep .cruise-carousel-unique .owl-next {
+  right: 10px;
+}
+
+::ng-deep .cruise-carousel-unique .owl-dots {
+  position: absolute;
+  bottom: 15px;
+  width: 100%;
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+}
+::ng-deep .cruise-carousel-unique .owl-dots .owl-dot span {
+  width: 8px;
+  height: 8px;
+  background: rgba(var(--white-color), 1) !important;
+  display: block;
+  border-radius: 50px;
+  margin: 0px 2px;
+}
+
+.cruise-content {
+  width: 45%;
+}
+
+.cruise-title {
+  font-size: 19px;
+  margin: 0;
+  font-weight: 800;
+  max-width: calc(100% - 20px);
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  color: rgba(var(--main-color), 1);
+}
+.cruise-toptitlesec {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.stars {
+  font-size: 14px;
+  color: rgba(var(--second-color), 1);
+  font-weight: 600;
+}
+.location {
+  font-size: 12px;
+  color: #666;
+  margin: 4px 0;
+}
+
+.rating-row {
+  margin: 8px 0;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.rating-box {
+  background: rgba(var(--second-color), 1);
+  color: rgba(var(--white-color), 1);
+  padding: 3px 6px;
+  border-radius: 4px;
+  font-weight: 600;
+  font-size: 13px;
+}
+
+.features,
+.icons {
+  margin-top: 6px;
+  font-size: 14px;
+  color: #333;
+}
+.fitem svg {
+  width: 16px;
+  height: 15px;
+  margin-right: 2px;
+}
+.fitem.check {
+  color: rgba(var(--fifth-color), 1);
+  font-weight: 500;
+  margin-right: 12px;
+}
+.icons .iitem {
+  margin-right: 12px;
+  color: #444;
+}
+.iitem {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  color: #000000;
+  font-weight: 600;
+  font-size: 12px;
+  text-transform: uppercase;
+  margin-bottom: 5px;
+}
+.cruise-ports-list {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  font-weight: 600;
+  font-size: 12px;
+}
+.price-area {
+  width: 20%;
+  text-align: right;
+}
+.price {
+  margin: 0;
+  font-size: 22px;
+  font-weight: 800;
+  font-family: var(--Inter-font) !important;
+}
+.tax {
+  font-size: 12px;
+  color: #666;
+  margin: 5px 0 15px;
+}
+.book-btn {
+  background: rgba(var(--main-color), 1);
+  color: rgba(var(--white-color), 1);
+  border: none;
+  padding: 10px 22px;
+  font-size: 15px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.price-filter-unique {
+  background: #d1dbff;
+  padding: 18px 25px;
+  border-radius: 14px;
+  margin: 10px 0px;
+  width: 100%;
+}
+
+.price-filter-unique h4 {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 15px;
+  color: rgba(var(--main-color), 1);
+}
+
+.price-btn-group-unique {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.price-btn-unique {
+  border: 1px solid #dcdcdc;
+  background: rgba(var(--white-color), 1);
+  padding: 8px 16px;
+  border-radius: 50px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: 0.3s;
+  font-weight: 700;
+}
+
+.price-btn-unique:hover {
+  border-color: rgba(var(--second-color), 1);
+  color: rgba(var(--second-color), 1);
+}
+
+.price-btn-unique.active {
+  background: rgba(var(--second-color), 1);
+  color: rgba(var(--white-color), 1);
+  border-color: rgba(var(--second-color), 1);
+}
+@media (max-width: 1366px) {
+  .book-btn {
+    padding: 8px 18px;
+    font-size: 14px;
+  }
+  .cruise-ports-list {
+    -webkit-line-clamp: 3;
+  }
+}
+@media (max-width: 1199px) {
+  .rating-row {
+    font-size: 12px;
+  }
+  .cruise-ports-list {
+    -webkit-line-clamp: 1;
+  }
+  .features,
+  .icons {
+    font-size: 11px;
+  }
+  .location {
+    font-size: 12px;
+    line-height: normal;
+  }
+  .tax {
+    font-size: 10px;
+  }
+  .book-btn {
+    padding: 8px 11px;
+    font-size: 13px;
+  }
+  .cruise-carousel-unique img {
+    height: 146px;
+  }
+  .search-icon-btn {
+    margin-left: -8px;
+  }
+  .search-box-unique input::placeholder {
+    font-size: 12px;
+  }
+  .fs-checkbox-main .fs-checkbox {
+    max-width: calc(100% - 20px);
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  .fs-checkbox span {
+    width: 20px !important;
+    height: 20px !important;
+    display: inline-flex;
+    margin-bottom: -5px;
+    margin-right: 4px;
+  }
+}
+.mainsbfiltersec {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 20px;
+	width: 100%;
+}
+@media (max-width: 991px) {
+  .sb-wrapper.fl-wrapper {
+    display: block !important;
+    width: auto !important;
+  }
+  .fs-checkbox-main .fs-checkbox {
+    max-width: calc(100% - 20px);
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  .fs-checkbox span {
+    width: 20px !important;
+    height: 20px !important;
+    display: inline-flex;
+    margin-bottom: -5px;
+    margin-right: 4px;
+  }
+}
+.sb-wrapper.fl-wrapper {
+  display: none;
+}
+.filterbtn{
+	align-items: center;
+	justify-content: space-between;
+	padding: 8px 12px;
+	border: 1px solid #cbd5e1;
+	border-radius: 8px;
+	background: rgba(var(--white-color), 1);
+	cursor: pointer;
+	width: max-content;
+	font-weight: 500;
+	font-size: 14px;
+	color: #000;
+	height: auto;
+}
+@media (max-width: 767px) {
+  .location {
+    font-size: 11px;
+  }
+  .features,
+  .icons,
+  .iitem {
+    font-size: 11px;
+  }
+  .tax {
+    font-size: 12px;
+  }
+  .features {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    margin-bottom: 8px;
+    border-bottom: 1px dashed #7c7c7c;
+    padding-bottom: 10px;
+  }
+  .cruise-ports-list {
+    -webkit-line-clamp: 2;
+  }
+}
+@media (max-width: 580px) {
+  .cruise-list-card {
+    flex-direction: column;
+  }
+  .cruise-img-area,
+  .cruise-content,
+  .price-area {
+    width: 100%;
+  }
+  .price-area {
+    text-align: left;
+  }
+  .price-btn-unique {
+    padding: 6px 13px;
+    font-size: 11px;
+  }
+  .price-filter-unique {
+    padding: 13px 16px;
+  }
+  .adsec {
+    margin-bottom: 10px;
+  }
+  .mainsb-wrapper {
+    margin-top: 5px;
+  }
+}
+.cruise-table-responsive {
+  overflow-x: auto !important;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Optional: smooth scrollbar appearance */
+.cruise-table-responsive::-webkit-scrollbar {
+  height: 6px;
+}
+.cruise-table-responsive::-webkit-scrollbar-thumb {
+  background: #c1c1c1;
+  border-radius: 4px;
+}
+
+.cruise-table th,
+.cruise-table td {
+  white-space: nowrap;
+}
+
+.htl-section {
+	padding: 24px;
+	background:rgba(var(--main-color), 1);
+	border-radius: 16px;
+}
+.htl-header p{
+    color: rgba(var(--white-color), 1);
+}
+
+.filter-overflow-scroll {
+    max-height: 260px;
+    min-height: 260px;
+    overflow: auto;
+}

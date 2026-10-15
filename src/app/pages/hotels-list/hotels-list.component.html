@@ -1,0 +1,794 @@
+@if (!isdialogopen) {
+<section class="common-section text-section top-searchbar">
+  <div class="container">
+    <div class="row">
+      <div class="col-12 onlymobhide-new">
+
+        @if (packageTabActive) {
+        <app-packages-tab></app-packages-tab>
+        }@else {
+        <app-hotels-tab />
+        }
+      </div>
+
+      @if (isMobileSearchVisible) {
+      <div class="onlymobactivenew">
+        @if (packageTabActive) {
+        @if (!packagediparture) {
+        <!-- Loading Skeleton -->
+        <div class="fsr-card fsr-card--skeleton" aria-label="Loading package search details">
+          <span class="fsr-card__icon">
+            <i class="fa-solid fa-magnifying-glass"></i>
+          </span>
+
+          <div class="fsr-card__body">
+            <div class="skeleton skeleton-route"></div>
+            <div class="skeleton skeleton-meta"></div>
+          </div>
+
+          <span class="fsr-card__icon endbox" (click)="removeBackdrop()">
+            <i class="fa-solid fa-pen"></i>
+          </span>
+        </div>
+        } @else {
+        <!-- Actual Package Search Card -->
+        <div class="fsr-card" data-bs-toggle="offcanvas" data-bs-target="#fsrOffcanvas" role="button" tabindex="0"
+          aria-controls="fsrOffcanvas">
+
+          <span class="fsr-card__icon">
+            <i class="fa-solid fa-magnifying-glass"></i>
+          </span>
+
+          <div class="fsr-card__body">
+            <span class="fsr-card__route">
+              {{ packagediparture }} ({{ departureCity }})
+              <i class="fa-solid fa-right-left"></i>
+              {{ hotelSearchData?.destination?.name }}
+            </span>
+
+            <span class="fsr-card__meta">
+              {{ packagedipartureDate | date: "EEE, MMM d" }}
+              @if (tripType !== "oneway") {
+              - {{ packagearrivalDate | date: "EEE, MMM d" }}
+              }
+              · {{ inputValue }}
+              · {{ totalRooms }} {{ totalRooms > 1 ? "Rooms" : "Room" }}
+              · {{ packagecabinName }}
+            </span>
+          </div>
+
+          <span class="fsr-card__icon endbox" (click)="removeBackdrop()">
+            <i class="fa-solid fa-pen"></i>
+          </span>
+        </div>
+        }
+        }@else {
+        <div class="fsr-card" data-bs-toggle="offcanvas" data-bs-target="#fsrOffcanvas" role="button" tabindex="0"
+          aria-controls="fsrOffcanvas">
+          <span class="fsr-card__icon"><i class="fa-solid fa-magnifying-glass"></i></span>
+          <div class="fsr-card__body">
+            <span class="fsr-card__route">{{
+              hotelSearchData?.destination?.name
+              }}</span>
+            <span class="fsr-card__meta">{{ hotelSearchData?.checkIn | date: "MMM d" }} –
+              {{ hotelSearchData?.checkOut | date: "d" }}
+              &middot; {{ totalGuests }}</span>
+          </div>
+          <span class="fsr-card__icon endbox" (click)="removeBackdrop()"><i class="fa-solid fa-pen"></i></span>
+        </div>
+        }
+      </div>
+      }
+    </div>
+  </div>
+</section>
+} @else {
+<div class="custom-dialog-mask custome-mask" *ngIf="isdialogopen" (click)="onMaskClick()">
+  <div class="custom-dialog search-modal-popup small-popup" (click)="$event.stopPropagation()">
+    <div class="drawer-body">
+      <section
+        class="banner banner-content-wrap common-banner-content-wrap list-top-form-wrap d-lg-flex banner-list-madal-form"
+        [class.d-none]="isMobileSearchVisible">
+        <div class="container container-xxl">
+          <div class="row">
+            <button (click)="onCloseClick()" type="button" class="search-list-form-close-btn">
+              <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28" fill="none">
+                <path
+                  d="M7.57675 7.5915C7.07557 8.09268 7.07557 8.90523 7.57675 9.40641L12.1777 14.0073L7.57675 18.6083C7.07557 19.1095 7.07557 19.9221 7.57675 20.4232C8.07792 20.9244 8.89049 20.9244 9.39165 20.4232L13.9926 15.8222L18.5936 20.4232C19.0947 20.9244 19.9073 20.9244 20.4085 20.4232C20.9096 19.9221 20.9096 19.1095 20.4085 18.6083L15.8075 14.0073L20.4085 9.40643C20.9096 8.90526 20.9096 8.09269 20.4085 7.59152C19.9072 7.09034 19.0947 7.09034 18.5936 7.59152L13.9926 12.1924L9.39165 7.5915C8.89049 7.09033 8.07792 7.09033 7.57675 7.5915Z"
+                  fill="currentColor" />
+              </svg>
+            </button>
+            <div class="search-list-modal-form">
+              @if (packageTabActive) {
+              <app-packages-tab></app-packages-tab>
+              }@else {
+              <app-hotels-tab />
+              }
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+</div>
+}
+
+@if (isSkeleton) {
+<app-hotel-list-skeleton></app-hotel-list-skeleton>
+}
+@if(!isSkeleton){
+@if(packageTabActive){
+<section class="common-section p-0 booking_stessp">
+  <div class="container">
+    <div class="booking-steps">
+      <div class="booking-step active">
+        <span class="step-number">1</span>
+        <span class="step-name">Stay</span>
+      </div>
+
+      <span class="step-arrow">››</span>
+
+      <div class="booking-step">
+        <span class="step-number">2</span>
+        <span class="step-name">Flight</span>
+      </div>
+
+      <span class="step-arrow">››</span>
+
+      <div class="booking-step">
+        <span class="step-number">3</span>
+        <span class="step-name">Review &amp; Payment</span>
+      </div>
+    </div>
+  </div>
+</section>
+}
+<section class="fiter-sec-list-section common-section">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-3 col-md-3 col-12 dmobnone">
+        <aside class="fs-filter-panel">
+          <form class="fs-filter-form" method="get">
+            @if (cityNameShow != "") {
+            <div class="searchresult mb-3">
+              <span>{{ totalRecords }}</span> Hotels Available
+            </div>
+            }
+            <div class="fs-filter-header">
+              <h6>Filters</h6>
+              <button type="reset" class="fs-clear-btn" (click)="clearFilter()">
+                Clear All
+              </button>
+            </div>
+
+            <div class="search-box-unique">
+              <input type="text" placeholder="Enter area, locality or hotel" [(ngModel)]="hotelName"
+                (input)="onHotelNameChange($event)" />
+              <button type="button" class="search-icon-btn">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                  class="icon icon-tabler icons-tabler-outline icon-tabler-search">
+                  <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                  <path d="M10 10m-7 0a7 7 0 1 0 14 0a7 7 0 1 0 -14 0" />
+                  <path d="M21 21l-6 -6" />
+                </svg>
+              </button>
+            </div>
+
+            @if (filtersData?.property?.length > 0) {
+            <div class="fs-block">
+              <h6 class="fs-title">Property Type</h6>
+              <div *ngFor="let item of filtersData?.property">
+                <label class="fs-checkbox-main">
+                  <div class="fs-checkbox">
+                    <input type="checkbox" [checked]="selectedPropertyTypes.includes(item.name)"
+                      (change)="togglePropertyType(item.name, $event)" />
+                    <span></span>
+                    {{ item.name }}
+                  </div>
+                  {{ item.count }}
+                </label>
+              </div>
+            </div>
+            }
+
+            @if (filtersData?.starRating?.length > 0) {
+            <div class="fs-block">
+              <h6 class="fs-title">Star Rating</h6>
+              <div *ngFor="let item of filtersData?.starRating">
+                <label class="fs-checkbox-main">
+                  <div class="fs-checkbox">
+                    <input type="checkbox" [checked]="selectedStarRatings.includes(item.rating)"
+                      (change)="toggleStarRating(item.rating, $event)" />
+                    <span></span>
+                    {{ item.name }} Star
+                  </div>
+                  {{ item.count }}
+                </label>
+              </div>
+            </div>
+            }
+
+            @if (filtersData?.guestRating?.length > 0) {
+            <div class="fs-block">
+              <h6 class="fs-title">Guest Rating</h6>
+              <div *ngFor="let item of filtersData?.guestRating">
+                <label class="fs-checkbox-main">
+                  <div class="fs-checkbox">
+                    <input type="checkbox" [checked]="selectedGuestRatings.includes(item.rating)"
+                      (change)="toggleGuestRating(item.rating, $event)" />
+                    <span></span>
+                    {{ item.name }}+
+                  </div>
+                  {{ item.count }}
+                </label>
+              </div>
+            </div>
+            }
+
+            @if (filtersData?.amenities?.length > 0) {
+            <div class="fs-block amenities-block">
+              <h6 class="fs-title">Amenities</h6>
+              <div *ngFor="
+                    let item of filtersData?.amenities;
+                    trackBy: trackByName
+                  ">
+                <label class="fs-checkbox-main">
+                  <div class="fs-checkbox">
+                    <input type="checkbox" [checked]="selectedAmenities.includes(item.code)"
+                      (change)="toggleAmenity(item.code, $event)" />
+                    <span></span>
+                    {{ item.name }}
+                  </div>
+                  {{ item.count }}
+                </label>
+              </div>
+            </div>
+            }
+
+            @if (filtersData?.mealPlan?.length > 0) {
+            <div class="fs-block">
+              <h6 class="fs-title">Room Plan</h6>
+              <div *ngFor="let item of filtersData?.mealPlan">
+                <label class="fs-checkbox-main">
+                  <div class="fs-checkbox">
+                    <input type="checkbox" [checked]="selectedMealPlans.includes(item.key)"
+                      (change)="toggleMealPlan(item.key, $event)" />
+                    <span></span>
+                    {{ item.name }}
+                  </div>
+                  {{ item.count }}
+                </label>
+              </div>
+            </div>
+            }
+
+            <div class="fs-block d-none">
+              <h6 class="fs-title">Price</h6>
+
+              <div class="fs-range">
+                <div class="c-price-chart__range-active" [style.left.%]="minPercent"
+                  [style.width.%]="maxPercent - minPercent"></div>
+
+                <input type="range" class="c-price-chart__input c-price-chart__input--min" [min]="min" [max]="max"
+                  [value]="minValue" (input)="onMinChange($any($event.target).value)" />
+
+                <input type="range" class="c-price-chart__input c-price-chart__input--max" [min]="min" [max]="max"
+                  [value]="maxValue" (input)="onMaxChange($any($event.target).value)" />
+
+                <div class="fs-range-values">
+                  <span>${{ minValue }}</span>
+                  <span>${{ maxValue }}</span>
+                </div>
+              </div>
+            </div>
+          </form>
+        </aside>
+      </div>
+
+      <div class="col-lg-7 col-md-12 col-12">
+        <div class="mainsb-wrapper mt-0">
+          <div class="mainsbfiltersec">
+            <div class="sb-wrapper fl-wrapper">
+              <label class="sb-label">Filter By</label>
+              <div class="filterbtn">
+                <button class="filterbtnin" data-bs-toggle="offcanvas" data-bs-target="#offcanvasfilter"
+                  aria-controls="offcanvasfilter">
+                  Filter By <i class="bi bi-sort-down"></i>
+                </button>
+              </div>
+            </div>
+            <!-- <div class="sb-wrapper">
+              <label class="sb-label">Sort by</label>
+              <div class="sb-select" id="sbSelect" [class.sb-open]="sbOpen" (click)="$event.stopPropagation()">
+                <div class="sb-selected" (click)="toggleSortDropdown($event)">
+                  <span id="sbSelectedText">
+                    {{ selectedSortValue }}
+                  </span>
+                  <i class="fa-solid fa-chevron-down"></i>
+                </div>
+
+                <ul class="sb-options">
+                  <li data-value="lowToHigh" (click)="selectSort('lowToHigh')">
+                    Price (Low to High)
+                  </li>
+                  <li data-value="highToLow" (click)="selectSort('highToLow')">
+                    Price (High to Low)
+                  </li>
+                </ul>
+              </div>
+            </div> -->
+          </div>
+          <!-- @if (cityNameShow != "") {
+          <div class="searchresult">
+            <span>{{ totalRecords }}</span> Hotels Available
+          </div>
+          } -->
+        </div>
+        <div class="list-flight-main-wrapper">
+          @if (cityNameShow != "") {
+          <h3 class="common-title">Hotels in {{ cityNameShow }}</h3>
+          }
+          @for (hotel of properties; track $index; let i = $index) {
+          <div class="hotel-list-card">
+            <div class="hotel-img-area">
+              <span *ngIf="hotel.fare.refundable" class="tag">
+                {{ getCancellationText(hotel.fare) }}
+              </span>
+              <span class="tag" *ngIf="hotel?.fare?.payLater">Pay Later</span>
+              <div class="hotel-carousel-unique owl-carousel">
+                @if (getAllImages(hotel.image)?.length) {
+                @for (
+                hotelImage of getAllImages(hotel.image);
+                track $index;
+                let i = $index
+                ) {
+                <img [src]="hotelImage" [alt]="hotel.name || 'Hotel image'"
+                  (error)="$any($event.target).src = 'assets/images/hotel/hotel-placeholder.png'" />
+                }
+                } @else {
+                <img src="assets/images/hotel/hotel-placeholder.png" [alt]="hotel.name || 'Hotel placeholder'" />
+                }
+              </div>
+              <span class="fav-icon"></span>
+            </div>
+
+            <div class="hotel-content">
+              <div class="hotel-toptitlesec">
+                <h3 class="hotel-title">{{ hotel.name }}</h3>
+                @if (hotel.type !== "BNB" && hotel.type !== "Resort") {
+                @for (star of getStarArray(hotel.rating); track $index) {
+                <span class="stars">
+
+                  ★
+
+                </span>
+                }
+                }
+              </div>
+              <p class="location">
+                {{ hotel.address?.line1 }}
+                @if (hotel.interestPoints?.length > 0) {
+                @if (+hotel.interestPoints[0]?.distance < 1000) { • {{ hotel.interestPoints[0]?.distance }} m } @else {
+                  {{ (+hotel.interestPoints[0]?.distance / 1000).toFixed(1) }} km } from {{
+                  hotel.interestPoints[0]?.name }} } </p>
+                  @if (hotel.guestReview?.score > 0) {
+                  <div class="rating-row">
+                    <span class="rating-box">{{
+                      hotel.guestReview.score
+                      }}</span>
+                    <span class="rate-text"><b>{{
+                        hotel.guestReview.comment ||
+                        (hotel.guestReview.score >= 9
+                        ? "Exceptional"
+                        : hotel.guestReview.score >= 8
+                        ? "Excellent"
+                        : hotel.guestReview.score >= 7
+                        ? "Very Good"
+                        : hotel.guestReview.score >= 6
+                        ? "Good"
+                        : hotel.guestReview.score >= 5
+                        ? "Average"
+                        : "Poor")
+                        }}</b>
+                      •
+                      {{
+                      (hotel.guestReview?.count || 0) > 0
+                      ? hotel.guestReview.count
+                      : "No"
+                      }}
+                      {{
+                      hotel.guestReview?.count > 1 ? "Reviews" : "Review"
+                      }}</span>
+                  </div>
+                  }
+
+                  <div class="features">
+                    @for (
+                    amenity of hotel.fare.amenities.slice(0, 4);
+                    track $index;
+                    let i = $index
+                    ) {
+                    <span class="fitem" [class.check]="i == 0"><i [class]="getAmenityIcon(amenity)"></i>
+                      {{ amenity }}</span>
+                    }
+                  </div>
+                  @if(packageTabActive && visibleSegments?.Citypairs?.length > 0) {
+                  <div class="booking-info">
+                    <div class="booking-info-item">
+                      <i class="fa-regular fa-calendar-days"></i>
+
+                      <span>{{noOfNights}} nights at hotel</span>
+
+                      <button type="button" class="booking-info-btn">
+                        <i class="fa-solid fa-info"></i>
+
+                        <span class="booking-info-tooltip">
+                          Your accommodation dates differ from your flight dates.
+                          Please ensure that you are happy with this.
+                        </span>
+                      </button>
+                    </div>
+
+                    <div class="booking-info-item flight-popover-wrap">
+                      <i class="fa-solid fa-plane-departure"></i>
+
+                      <button type="button" class="flight-popover-btn" (click)="toggleFlightPopover($event,i)">
+                        flights from {{visibleSegments?.Citypairs[0]?.FlightSegment[0]?.DepartureDisplayName}}
+                      </button>
+
+                      <div class="flight-popover" [class.show]="flightPopoverOpen === $index">
+                        @for (cp of visibleSegments?.Citypairs; track $index) {
+
+                        @if (cp?.FlightSegment?.length > 0) {
+
+                        <div class="popover-flight">
+
+                          <div class="popover-side">
+                            <div class="popover-date">
+                              <i class="fa-solid fa-plane-departure"></i>
+
+                              <span>
+                                {{ (cp?.FlightSegment)[0]?.DepartureDateTime | date: "EEEE, MMM " }}
+                                <span class="fd-flight-details__date-highlight">
+                                  {{ (cp?.FlightSegment)[0]?.DepartureDateTime | date: " d, " }}
+                                </span>
+                                {{ (cp?.FlightSegment)[0]?.DepartureDateTime | date: " y" }}
+                              </span>
+                            </div>
+
+                            <strong>
+                              {{ (cp?.FlightSegment)[0]?.DepartureDateTime | date: "HH:mm" }}
+                            </strong>
+
+                            <small>
+                              {{ (cp?.FlightSegment)[0]?.DepartureLocationCode }}
+                            </small>
+                          </div>
+
+
+                          <div class="popover-middle">
+                            <div class="duration">
+                              <span></span>
+                              <b>
+                                {{ (cp?.FlightSegment)[0]?.DepartureDateTime | date: "HH:mm" }}
+                              </b>
+                              <span></span>
+                            </div>
+
+                            <div class="flight-stop">
+                              <i class="fa-solid fa-plane"></i>
+                              <span>{{ cp?.NoOfStops }}</span>
+                            </div>
+                          </div>
+
+
+                          <div class="popover-side arrival">
+
+                            <strong>
+                              {{
+                              (cp?.FlightSegment)[cp?.FlightSegment.length - 1]?.ArrivalDateTime
+                              | date: "HH:mm"
+                              }}
+                            </strong>
+
+                            <small>
+                              {{
+                              (cp?.FlightSegment)[cp?.FlightSegment.length - 1]?.ArrivalLocationCode
+                              }}
+                            </small>
+
+                          </div>
+
+                        </div>
+
+                        <!-- Divider only between departure and return -->
+                        @if (visibleSegments?.Citypairs?.length === 2 && $index === 0) {
+                        <div class="popover-divider"></div>
+                        }
+
+                        }
+                        }
+
+                        <div class="popover-info">
+                          <i class="fa-solid fa-circle-info"></i>
+                          <span>You can change this flight later.</span>
+                        </div>
+                      </div>
+                    </div>
+                    @let baggage = getBaggageInfoCard(visibleSegments);
+                    <div class="booking-info-item">
+                      <i class="fa-solid fa-utensils"></i>
+                      <a href="#" style="border: 0">{{hotel.fare?.breakfastIncluded ? 'Breakfast included' : 'Room
+                        only'}}</a>
+                    </div>
+
+                    <div class="booking-info-item">
+                      <i class="fa-solid fa-suitcase"></i>
+                      <span>{{ baggage.carryon }} x cabin bags</span>
+                    </div>
+                  </div>
+                  }
+            </div>
+
+            <div class="price-area">
+              <h2 class="price">
+                {{ getOriginalPrice(hotel?.fare) }}
+                <sub class="offercutprice" *ngIf="hasOfferAmount(hotel?.fare?.offers)">{{
+                  formatPrice(getPricePerNight(hotel?.fare)) }}</sub>
+              </h2>
+
+              <p class="tax">
+                @if(packageTabActive){
+                {{
+                hotel?.fare?.includesTaxes
+                ? "(Flight + Hotel) Incl taxes & fees"
+                : "Excl taxes & fees"
+                }}<br />per night
+                }@else{
+                {{
+                hotel?.fare?.includesTaxes
+                ? "Incl taxes & fees"
+                : "Excl taxes & fees"
+                }}<br />per night
+                }
+
+              </p>
+
+              <button class="book-btn" (click)="navigateToDetails(hotel)">
+                See availability
+              </button>
+            </div>
+          </div>
+
+          @if (randomInsertIndexes.includes(i)) {
+          <div class="fd-ad-banner">
+            <div class="fd-ad-left">
+              <div class="fd-ad-icon">
+                <i class="fa-solid fa-indian-rupee-sign"></i>
+              </div>
+
+              <div class="fd-ad-text">
+                <div class="fd-ad-title">Great Deals Are Waiting For You</div>
+
+                <div class="fd-ad-desc">
+                  Book your next hotel now with the best deals available.
+                </div>
+              </div>
+            </div>
+            <a href="tel:{{ getData?.phoneNumber }}" class="fd-ad-btn">Book Here</a>
+          </div>
+          }
+          }
+        </div>
+      </div>
+      <div class="col-lg-2 col-md-4 col-12 dmobnone">
+        <div class="ofr-ad-wrapper">
+          <div class="ofr-ad-card">
+            <img src="assets/images/ads/ad3.jpg" class="ofr-bg" />
+            <div class="ofr-overlay"></div>
+            <div class="ofr-content">
+              <span class="ofr-tag">Hotel Offers</span>
+              <h3>Festive Hotel Savings</h3>
+              <p>Unlock Your Deals Now</p>
+
+              <a href="tel:{{ getData?.phoneNumber }}" class="ofr-btn"> Call Us </a>
+            </div>
+          </div>
+
+          <div class="ofr-ad-card">
+            <img src="assets/images/ads/ad4.webp" class="ofr-bg" />
+
+            <div class="ofr-overlay"></div>
+
+            <div class="ofr-content">
+              <span class="ofr-tag">Limited-Time Offer</span>
+              <h3>Hotel Deals</h3>
+              <p>Save On Your Next Day</p>
+
+              <a href="tel:{{ getData?.phoneNumber }}" class="ofr-btn"> Call Us </a>
+            </div>
+          </div>
+
+          <div class="ofr-ad-card">
+            <img src="assets/images/ads/ad5.webp" class="ofr-bg" />
+
+            <div class="ofr-overlay"></div>
+
+            <div class="ofr-content">
+              <span class="ofr-tag">Hotel {{ currentYear }}</span>
+              <h3>Hotel Deals</h3>
+              <p>Complete Stay Package</p>
+
+              <a href="tel:{{ getData?.phoneNumber }}" class="ofr-btn"> Call Us </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <p-paginator *ngIf="totalRecords > rows" [rows]="rows" [first]="first" [totalRecords]="totalRecords"
+      [rowsPerPageOptions]="[10, 20, 50]" (onPageChange)="onPageChange($event)" styleClass="custom-paginator">
+    </p-paginator>
+  </div>
+</section>
+
+<div class="offcanvas offcanvas-start filterofcanvas" tabindex="-1" id="offcanvasfilter"
+  aria-labelledby="offcanvasfilterLabel">
+  <div class="offcanvas-header">
+    <h5 class="offcanvas-title" id="offcanvasfilterLabel">Filters</h5>
+    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+  <div class="offcanvas-body">
+    <ng-container>
+      <aside class="fs-filter-panel">
+        <div class="fs-filter-header">
+          <h6>Filters</h6>
+          <button type="reset" class="fs-clear-btn" (click)="clearFilter()">
+            Clear All
+          </button>
+        </div>
+
+        <div class="search-box-unique">
+          <input type="text" placeholder="Enter area, locality or hotel" [(ngModel)]="hotelName"
+            (input)="onHotelNameChange($event)" />
+          <button type="button" class="search-icon-btn">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+              class="icon icon-tabler icons-tabler-outline icon-tabler-search">
+              <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+              <path d="M10 10m-7 0a7 7 0 1 0 14 0a7 7 0 1 0 -14 0" />
+              <path d="M21 21l-6 -6" />
+            </svg>
+          </button>
+        </div>
+
+        @if (filtersData?.property?.length > 0) {
+        <div class="fs-block">
+          <h6 class="fs-title">Property Type</h6>
+          <div *ngFor="let item of filtersData?.property">
+            <label class="fs-checkbox-main">
+              <div class="fs-checkbox">
+                <input type="checkbox" [checked]="selectedPropertyTypes.includes(item.name)"
+                  (change)="togglePropertyType(item.name, $event)" />
+                <span></span>
+                {{ item.name }}
+              </div>
+              {{ item.count }}
+            </label>
+          </div>
+        </div>
+        }
+
+        @if (filtersData?.starRating?.length > 0) {
+        <div class="fs-block">
+          <h6 class="fs-title">Star Rating</h6>
+          <div *ngFor="let item of filtersData?.starRating">
+            <label class="fs-checkbox-main">
+              <div class="fs-checkbox">
+                <input type="checkbox" [checked]="selectedStarRatings.includes(item.rating)"
+                  (change)="toggleStarRating(item.rating, $event)" />
+                <span></span>
+                {{ item.name }} Star
+              </div>
+              {{ item.count }}
+            </label>
+          </div>
+        </div>
+        }
+
+        @if (filtersData?.guestRating?.length > 0) {
+        <div class="fs-block">
+          <h6 class="fs-title">Guest Rating</h6>
+          <div *ngFor="let item of filtersData?.guestRating">
+            <label class="fs-checkbox-main">
+              <div class="fs-checkbox">
+                <input type="checkbox" [checked]="selectedGuestRatings.includes(item.rating)"
+                  (change)="toggleGuestRating(item.rating, $event)" />
+                <span></span>
+                {{ item.name }}+
+              </div>
+              {{ item.count }}
+            </label>
+          </div>
+        </div>
+        }
+
+        @if (filtersData?.amenities?.length > 0) {
+        <div class="fs-block amenities-block">
+          <h6 class="fs-title">Amenities</h6>
+          <div *ngFor="let item of filtersData?.amenities; trackBy: trackByName">
+            <label class="fs-checkbox-main">
+              <div class="fs-checkbox">
+                <input type="checkbox" [checked]="selectedAmenities.includes(item.code)"
+                  (change)="toggleAmenity(item.code, $event)" />
+                <span></span>
+                {{ item.name }}
+              </div>
+              {{ item.count }}
+            </label>
+          </div>
+        </div>
+        }
+
+        @if (filtersData?.mealPlan?.length > 0) {
+        <div class="fs-block">
+          <h6 class="fs-title">Room Plan</h6>
+          <div *ngFor="let item of filtersData?.mealPlan">
+            <label class="fs-checkbox-main">
+              <div class="fs-checkbox">
+                <input type="checkbox" [checked]="selectedMealPlans.includes(item.key)"
+                  (change)="toggleMealPlan(item.key, $event)" />
+                <span></span>
+                {{ item.name }}
+              </div>
+              {{ item.count }}
+            </label>
+          </div>
+        </div>
+        }
+
+        <div class="fs-block d-none">
+          <h6 class="fs-title">Price</h6>
+
+          <div class="fs-range">
+            <div class="c-price-chart__range-active" [style.left.%]="minPercent"
+              [style.width.%]="maxPercent - minPercent"></div>
+
+            <input type="range" class="c-price-chart__input c-price-chart__input--min" [min]="min" [max]="max"
+              [value]="minValue" (input)="onMinChange($any($event.target).value)" />
+
+            <input type="range" class="c-price-chart__input c-price-chart__input--max" [min]="min" [max]="max"
+              [value]="maxValue" (input)="onMaxChange($any($event.target).value)" />
+
+            <div class="fs-range-values">
+              <span>${{ minValue }}</span>
+              <span>${{ maxValue }}</span>
+            </div>
+          </div>
+        </div>
+      </aside>
+    </ng-container>
+  </div>
+</div>
+
+<div class="offcanvas offcanvas-top fsr-offcanvas" tabindex="-1" id="fsrOffcanvas" aria-labelledby="fsrOffcanvasLabel">
+  <div class="container">
+    <div class="fsr-offcanvas__header">
+      <h5 class="fsr-offcanvas__title" id="fsrOffcanvasLabel">
+        Edit your search
+      </h5>
+      <button type="button" class="btn-close fsr-offcanvas__close" data-bs-dismiss="offcanvas"
+        aria-label="Close"></button>
+    </div>
+
+    <div class="fsr-offcanvas__body">
+      @if (packageTabActive) {
+      <app-packages-tab></app-packages-tab>
+      }@else {
+      <app-hotels-tab />
+      }
+    </div>
+  </div>
+</div>
+
+}

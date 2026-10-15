@@ -1,0 +1,27 @@
+<p-dialog
+  [(visible)]="visible"
+  position="center"
+  styleClass="search-main-drawer"
+>
+  <ng-template #headless>
+    <div class="drawer-header popup-header" [class.android]="isAndroid">
+      <p-button
+        icon="fa-solid fa-times"
+        [rounded]="true"
+        severity="contrast"
+        size="small"
+        (click)="onClose()"
+      />
+    </div>
+    <div class="drawer-body">
+      <ng-content></ng-content>
+      <!-- ===== ====== -->
+      <!-- <div class="gradient-rectangle-box"></div>
+      <div class="gradient-ellipse"></div>
+      <div class="gradient-rectangle"></div>
+      <div class="gradient-polygon-1"></div>
+      <div class="gradient-polygon-2"></div> -->
+      <!-- ===== ====== -->
+    </div>
+  </ng-template>
+</p-dialog>

@@ -1,0 +1,81 @@
+.not-found-container {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #3b44e32e 0%, #0f16a11c 100%);
+  padding: 2rem;
+
+  .content {
+    text-align: center;
+    max-width: 500px;
+    animation: fadeIn 0.8s ease-in-out;
+
+    .illustration {
+      width: 300px;
+      margin: 0 auto;
+      display: block;
+      animation: float 3s ease-in-out infinite;
+    }
+
+    .error-code {
+      font-size: 5rem;
+      font-weight: 800;
+      color: #01032b;
+      margin-top: 1.5rem;
+    }
+
+    .error-message {
+      font-size: 1.8rem;
+      font-weight: 600;
+      color: #3b43e39c;
+    }
+
+    .description {
+      font-size: 1rem;
+      color: #64748b;
+      margin-top: 0.5rem;
+    }
+
+    .home-button {
+      display: inline-block;
+      margin-top: 1.5rem;
+      padding: 0.75rem 1.5rem;
+      font-size: 1rem;
+      color: #fff;
+      background-color: #020547;
+      border-radius: 8px;
+      text-decoration: none;
+      transition: background-color 0.3s ease;
+      cursor: pointer;
+
+      &:hover {
+        background-color: #0b0f5e;
+      }
+    }
+  }
+}
+
+// Animations
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}

@@ -1,0 +1,33 @@
+
+
+
+  <div class="tp-scroll-cta" id="tpScrollCta">
+
+    <div class="tp-scroll-cta__content">
+
+      <div class="tp-scroll-cta__agent">
+        <img src="https://i.pravatar.cc/60?img=12" alt="Travel Expert">
+      </div>
+
+      <div class="tp-scroll-cta__details">
+
+        <h4>Better Deals. <span>Just a Call Away.</span></h4>
+
+        <!-- <p>
+          <strong> {{ getRouteContactNumber() }}</strong>
+          Call and say
+          <span>DIAL50</span>
+          to save.
+          <i class="fa-solid fa-circle-info"></i>
+        </p> -->
+        <p>Dial <strong> <a [href]="'tel:' + getRouteContactNumber()">{{ getRouteContactNumber() }}</a></strong> Now</p>
+
+      </div>
+
+    </div>
+
+    <a [href]="'tel:' + getRouteContactNumber()" class="tp-scroll-cta__button">
+      Call us
+    </a>
+
+  </div>

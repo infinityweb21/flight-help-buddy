@@ -1,0 +1,152 @@
+<header class="MainHeader">
+  <nav class="navbar navbar-expand-xl DesktopNav">
+    <div class="container">
+      <div class="row">
+        <div class="col-xxl-2 col-xl-2 col-lg-2 col-md-6 col-sm-6 col-6">
+          <div class="Head-NavIcon">
+            <a class="navbar-brand" routerLink="/">
+              <img src="assets/images/logo-dark.png" alt="Logo" class="img-fluid">
+            </a>
+          </div>
+        </div>
+        <div class="col-xxl-10 col-xl-10 col-lg-10 col-md-6 col-sm-6 col-6">
+          <div class="HeadContainer">
+            <div class="NBM-box">
+              <div class="offcanvas offcanvas-start" tabindex="-1" id="navbarScroll"
+                aria-labelledby="navbarScrollLabel">
+                <div class="offcanvas-header">
+                  <a class="navbar-brand" routerLink="/"><img src="assets/images/logo-dark.png" alt=""
+                      class="img-fluid" /></a>
+                  <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                </div>
+                <div class="offcanvas-body">
+                  <ul class="navbar-nav">
+
+                    <!-- Home -->
+                    <li class="nav-item">
+                      <a class="nav-link" routerLink="/" routerLinkActive="active"
+                        [routerLinkActiveOptions]="{ exact: true }">
+                        Home
+                      </a>
+                    </li>
+
+                    <!-- Flight -->
+                    <li class="nav-item">
+                      <a class="nav-link" routerLink="/flight" routerLinkActive="active">
+                        Flight
+                      </a>
+                    </li>
+
+                    <!-- Hotel -->
+                    <li class="nav-item">
+                      <a class="nav-link" routerLink="/hotel" routerLinkActive="active">
+                        Hotel
+                      </a>
+                    </li>
+
+                    <!-- Car -->
+                   <!-- <li class="nav-item">
+                      <a class="nav-link" routerLink="/car" routerLinkActive="active">
+                        Car
+                      </a>
+                    </li> -->
+
+                    <!-- Cruise -->
+                    <!-- <li class="nav-item">
+                      <a class="nav-link" routerLink="/cruise" routerLinkActive="active">
+                        Cruise
+                      </a>
+                    </li> -->
+                    <!-- Packages -->
+                    <li class="nav-item">
+                      <a class="nav-link" routerLink="/packages" routerLinkActive="active">
+                        Packages
+                      </a>
+                    </li>
+                    <!-- About -->
+                    <li class="nav-item">
+                      <a class="nav-link" routerLink="/about" routerLinkActive="active">
+                        About
+                      </a>
+                    </li>
+
+                  </ul>
+                  
+                  <div class="tp-footer-widget mobactivenew">
+                    <h5>Member</h5>
+                    <ul class="member-list">
+                      <li>
+                        <a
+                          href="assets/images/footer/certificate/infinity-iata-2025.pdf"
+                          target="_blank"
+                          rel="nofollow"
+                        >
+                          <img
+                            src="assets/images/footer/certificateimg/iata-logo.svg"
+                            alt="IATA Certification"
+                          />
+                        </a>
+                      </li>
+                      <li>
+                        <a
+                          href="assets/images/footer/certificate/asta.pdf"
+                          target="_blank"
+                          rel="nofollow"
+                        >
+                          <img
+                            src="assets/images/footer/certificateimg/american-society.png"
+                            alt="American Society of Travel Advisors"
+                          />
+                        </a>
+                      </li>
+                      <li>
+                        <a
+                          href="assets/images/footer/certificate/cli.pdf"
+                          target="_blank"
+                          rel="nofollow"
+                        >
+                          <img
+                            src="assets/images/footer/certificateimg/cruise-lines-international.png"
+                            alt="Cruise Lines International"
+                          />
+                        </a>
+                      </li>
+                      <li>
+                        <a
+                          href="assets/images/footer/certificate/pci.pdf"
+                          target="_blank"
+                          rel="nofollow"
+                        >
+                          <img
+                            src="assets/images/footer/certificateimg/pci-compliance.png"
+                            alt="PCI Compliance"
+                          />
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div class="phone-deal-box">
+                <div class="phone-agent">
+                  <img src="https://i.pravatar.cc/60?img=12" alt="Agent" />
+                </div>
+                <div class="phone-deal-content">
+                  <span class="deal-text">Phone-Only Deals! Call</span><a [href]="'tel:' + getRouteContactNumber()"
+                    class="deal-number"> {{ getRouteContactNumber() }}</a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="Head-CaLog">
+            <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#navbarScroll"
+              aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon bar-1"></span><span class="navbar-toggler-icon bar-2"></span><span
+                class="navbar-toggler-icon bar-3"></span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+</header>

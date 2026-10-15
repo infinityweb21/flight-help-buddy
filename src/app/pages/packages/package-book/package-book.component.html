@@ -1,0 +1,469 @@
+<p-stepper [(value)]="activeStep">
+  <p-step-list>
+    <p-step [value]="1">Tab 1</p-step>
+    <p-step [value]="2">Tab 2</p-step>
+    <p-step [value]="3">Tab 3</p-step>
+       <p-step [value]="4">Tab 1</p-step>
+    <p-step [value]="5">Final Tab</p-step>
+  </p-step-list>
+
+  <p-step-panels>
+
+        <!-- Tab 1 Content -->
+    <p-step-panel [value]="1">
+      <ng-template #content let-activateCallback="activateCallback">
+        <section class="package-steps-sec">
+          <div class="container container-xxl td1-container">
+            <div class="row">
+              <!-- Left Side -->
+              <div class="col-md-12">
+                <div class="mb-3">
+                  <h6 class="desition-label-text">
+                    <div class="map-icon-wrap"><img src="assets/images/package/map-icon.png" width="20" /></div>
+                    <span class="text-label-head">{{ departureControl.value.displayName }}</span>
+                    <!-- <a href="#" class="destination-change-link">Change</a> -->
+                  </h6>
+                </div>
+              </div>
+
+              <div class="col-md-6 pe-lg-4 order-2 order-md-0">
+                <div class="td1-question mb-2">Where are you traveling from?</div>
+                <div class="td1-subtext">
+                  Tell us your departure location to find the best routes, travel tips, and personalized recommendations.
+                </div>
+
+                <!-- Form -->
+                <div class="td1-search-wrapper">
+                  <p-autoComplete
+                    [formControl]="departureControl"
+                    appendTo="body"
+                    [suggestions]="departureAirports"
+                    (completeMethod)="filterCountry($event)"
+                    field="displayName"
+                    [panelStyleClass]="'airport-autocomplete-panel'"
+                    placeholder="Traveling"
+                    class="form-control"
+                  >
+                    <ng-template let-airport pTemplate="item">
+                      <div class="airport-item">
+                        <!-- Icon -->
+                        <div class="airport-icon"><i class="pi pi-map-marker"></i></div>
+
+                        <!-- Info -->
+                        <div class="airport-text">
+                          <div class="city-country">
+                            {{ airport.city ? airport.city + ", " + airport.country : airport.country }}
+                          </div>
+                          <div class="airport-name">{{ airport.airport_name }}</div>
+                        </div>
+
+                        <!-- Code -->
+                        <div class="airport-code">{{ airport.code }}</div>
+                      </div>
+                    </ng-template>
+                  </p-autoComplete>
+                  <!-- <button class="td1-search-button">
+                    <i class="fas fa-search"></i>
+                  </button> -->
+                </div>
+
+                <!-- Validation Message -->
+                <div *ngIf="destinationControl.invalid && destinationControl.touched" class="text-danger mt-2">
+                  Please enter a destination
+                </div>
+
+                <!-- Buttons -->
+                <div class="td1-buttons d-flex">
+                  <button class="td1-btn-next" (click)="validateAndProceed(2)"><span>Next</span></button>
+                </div>
+              </div>
+
+              <!-- Right Side -->
+              <div class="col-md-6 d-flex justify-content-center align-items-center align-items-md-start align-items-lg-center">
+                <div class="td1-image td1-right-image-box">
+                  <img src="assets/images/package/right-image3.png" alt="Calendar Illustration" />
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </ng-template>
+    </p-step-panel>
+    <!-- Tab 2 Content -->
+    <p-step-panel [value]="2">
+      <ng-template #content let-activateCallback="activateCallback">
+        <section class="package-steps-sec">
+          <div class="container container-xxl td1-container">
+            <div class="row">
+              <!-- Left Side -->
+              <div class="col-md-12">
+                <div class="mb-3">
+                  <h6 class="desition-label-text">
+                    <div class="map-icon-wrap"><img src="assets/images/package/map-icon.png" width="20" /></div>
+                    <span class="text-label-head">{{ destinationControl.value.displayName }}</span>
+                    <!-- <a href="#" class="destination-change-link">Change</a> -->
+                  </h6>
+                </div>
+              </div>
+
+              <div class="col-md-6 pe-lg-4 order-2 order-md-0">
+                <div class="td1-question mb-2">Where are you planning to travel?</div>
+                <div class="td1-subtext">
+                  Discover your next adventure with our curated destinations. Whether it's mountains, beaches, or cities — we’ve
+                  got you covered
+                </div>
+
+                <!-- Form -->
+                <div class="td1-search-wrapper">
+                  <p-autoComplete
+                    [formControl]="destinationControl"
+                    appendTo="body"
+                    [suggestions]="departureAirports"
+                    (completeMethod)="filterCountry($event)"
+                    field="displayName"
+                    [panelStyleClass]="'airport-autocomplete-panel'"
+                    placeholder="Planning to travel"
+                    class="form-control"
+                  >
+                    <ng-template let-airport pTemplate="item">
+                      <div class="airport-item">
+                        <!-- Icon -->
+                        <div class="airport-icon"><i class="pi pi-map-marker"></i></div>
+
+                        <!-- Info -->
+                        <div class="airport-text">
+                          <div class="city-country">
+                            {{ airport.city ? airport.city + ", " + airport.country : airport.country }}
+                          </div>
+                          <div class="airport-name">{{ airport.airport_name }}</div>
+                        </div>
+
+                        <!-- Code -->
+                        <div class="airport-code">{{ airport.code }}</div>
+                      </div>
+                    </ng-template>
+                  </p-autoComplete>
+                  <!-- <button class="td1-search-button">
+                    <i class="fas fa-search"></i>
+                  </button> -->
+                </div>
+
+                <!-- Validation Message -->
+                <div *ngIf="destinationControl.invalid && destinationControl.touched" class="text-danger mt-2">
+                  Please enter a destination
+                </div>
+
+                <!-- Buttons -->
+                <div class="td1-buttons d-flex">
+                   <button class="td1-btn-back" (click)="activeStep = 1"><span>Back</span></button>
+                  <button class="td1-btn-next" (click)="validateAndProceed(3)"><span>Next</span></button>
+                </div>
+              </div>
+
+              <!-- Right Side -->
+              <div class="col-md-6 d-flex justify-content-center align-items-center align-items-md-start align-items-lg-center">
+                <div class="td1-image td1-right-image-box">
+                  <img src="assets/images/package/right-image3.png" alt="Calendar Illustration" />
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </ng-template>
+    </p-step-panel>
+
+    <!-- Tab 3 Content -->
+    <p-step-panel [value]="3">
+      <ng-template #content let-activateCallback="activateCallback">
+        <section class="package-steps-sec">
+          <div class="container container-xxl td1-container">
+            <div class="row">
+              <!-- Left Side -->
+              <div class="col-md-12">
+                <div class="mb-3">
+                  <h6 class="desition-label-text">
+                    <div class="map-icon-wrap"><img src="assets/images/package/map-icon.png" width="20" /></div>
+                    <span class="text-label-head">{{ (departureControl.value.displayName) }}  To  {{ (destinationControl.value.displayName) }}</span>
+                    <!-- <a href="#" class="destination-change-link">Change</a> -->
+                  </h6>
+                </div>
+              </div>
+
+              <div class="col-md-6 pe-lg-4 order-2 order-md-0">
+                <div class="td1-question mb-2">What's the duration of your holiday?</div>
+                <div class="td1-subtext">
+                  Let us know how long you’re escaping for — a quick getaway or a long retreat. We’ll tailor the perfect trip to
+                  match your timelin
+                </div>
+
+                <!-- Options -->
+                <div class="row custom-gap">
+                  <div *ngFor="let option of durationOptions" class="col-lg-6 d-flex">
+                    <div
+                      class="td1-option"
+                      [class.td1-selected]="durationControl.value === option.value"
+                      (click)="durationControl.setValue(option.value)"
+                    >
+                      {{ option.label }}
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Validation Message -->
+                <div *ngIf="durationControl.invalid && durationControl.touched" class="text-danger mt-2">
+                  Please select a duration
+                </div>
+
+                <!-- Buttons -->
+                <div class="td1-buttons d-flex">
+                  <button class="td1-btn-back" (click)="activeStep = 2"><span>Back</span></button>
+                  <button class="td1-btn-next" (click)="validateAndProceed(4)"><span>Next</span></button>
+                </div>
+              </div>
+
+              <!-- Right Side -->
+              <div class="col-md-6 d-flex justify-content-center align-items-center align-items-md-start align-items-lg-center">
+                <div class="td1-image td1-right-image-box">
+                  <img src="assets/images/package/right-image.png" alt="Calendar Illustration" />
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </ng-template>
+    </p-step-panel>
+
+    <!-- Tab 4 Content -->
+    <p-step-panel [value]="4">
+      <ng-template #content let-activateCallback="activateCallback">
+        <section class="package-steps-sec">
+          <div class="container container-xxl td1-container">
+            <div class="row">
+              <!-- Left Side -->
+              <div class="col-md-12">
+                <div class="mb-3">
+                  <h6 class="desition-label-text">
+                    <div class="map-icon-wrap"><img src="assets/images/package/map-icon.png" width="20" /></div>
+                    <span class="text-label-head">{{ (departureControl.value.displayName) }}  To  {{ (destinationControl.value.displayName) }}</span>
+                    <!-- <a href="#" class="destination-change-link">Change</a> -->
+                  </h6>
+                </div>
+              </div>
+
+              <div class="col-md-6 pe-lg-4 order-2 order-md-0">
+                <div class="td1-question mb-2">When is your departure date?</div>
+                <div class="td1-subtext">
+                  Choose your departure date to start planning your perfect journey. We’ll help you find the best deals and
+                  experiences for your timeline
+                </div>
+
+                <!-- PrimeNG Calendar -->
+                <div class="calendar-wrapper mb-3">
+                  <p-datepicker
+                    [minDate]="minDate"
+                    [maxDate]="maxDate"
+                    [readonlyInput]="true"
+                    dateFormat="dd/MM/yy"
+                    placeholder="Select departure date"
+                    class="w-100"
+                    styleClass="w-100"
+                    [formControl]="departureDateControl"
+                    [inline]="true"
+                    [showWeek]="true"
+                  ></p-datepicker>
+                </div>
+
+                <!-- Validation Message -->
+                <div *ngIf="departureDateControl.invalid && departureDateControl.touched" class="text-danger mt-2">
+                  Please select a departure date
+                </div>
+
+                <!-- Buttons -->
+                <div class="td1-buttons d-flex">
+                  <button class="td1-btn-back" (click)="activeStep = 3"><span>Back</span></button>
+                  <button class="td1-btn-next" (click)="validateAndProceed(5)"><span>Next</span></button>
+                </div>
+              </div>
+
+              <!-- Right Side -->
+              <div class="col-md-6 d-flex justify-content-center align-items-center align-items-md-start align-items-lg-center">
+                <div class="td1-image td1-right-image-box">
+                  <img src="assets/images/package/right-image2.png" alt="Calendar Illustration" />
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </ng-template>
+    </p-step-panel>
+
+    <!-- Tab 5 Content -->
+    <p-step-panel [value]="5">
+      <ng-template #content let-activateCallback="activateCallback">
+        <section class="package-steps-sec">
+          <div class="container container-xxl td1-container">
+            <div class="row">
+              <!-- Left Side -->
+              <div class="col-md-12">
+                <div class="mb-3">
+                  <h6 class="desition-label-text">
+                    <div class="map-icon-wrap"><img src="assets/images/package/map-icon.png" width="20" /></div>
+                    <span class="text-label-head">{{ (departureControl.value.displayName) }}  To  {{ (destinationControl.value.displayName) }}</span>
+                    <!-- <a href="#" class="destination-change-link">Change</a> -->
+                  </h6>
+                </div>
+              </div>
+
+              <div class="col-md-6 pe-lg-4 order-2 order-md-0">
+                <div class="td1-question mb-2">How many people are traveling?</div>
+                <div class="td1-subtext">
+                  Tell us how many are joining your adventure — solo, couple, family, or group. We’ll customize your trip to fit
+                  everyone’s needs and comfort.
+                </div>
+
+                <!-- Passenger and Room Selection -->
+                <div class="row">
+                  <div class="col-md-10 col-xl-8">
+                    <div class="passenger-content-wrap">
+                      <!-- Tabs nav -->
+                      <ul class="nav nav-tabs passenger-content-tab-list" id="paxRoomTabs" role="tablist">
+                        <li class="nav-item" role="presentation">
+                          <button
+                            class="nav-link tab-pax-button active"
+                            id="pax-tab"
+                            data-bs-toggle="tab"
+                            data-bs-target="#td1-tab-pax"
+                            type="button"
+                            role="tab"
+                            aria-controls="td1-tab-pax"
+                            aria-selected="true"
+                          >
+                            Number of Pax
+                          </button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                          <button
+                            class="nav-link tab-add-room-button"
+                            id="room-tab"
+                            data-bs-toggle="tab"
+                            data-bs-target="#td1-tab-room"
+                            type="button"
+                            role="tab"
+                            aria-controls="td1-tab-room"
+                            aria-selected="false"
+                          >
+                            Add New Room
+                          </button>
+                        </li>
+                      </ul>
+
+                      <!-- Tabs content -->
+                      <div class="tab-content passenger-tab-content">
+                        <!-- Pax Tab -->
+                        <div class="tab-pane fade show active" id="td1-tab-pax" role="tabpanel" aria-labelledby="pax-tab">
+                          <div class="td1-row">
+                            <div class="td1-label">Adult</div>
+                            <div class="td1-counter">
+                              <button
+                                class="td1-btn-circle"
+                                (click)="updateCount('adults', -1)"
+                                [disabled]="adultsControl.value <= 1"
+                              >
+                                −
+                              </button>
+                              <span id="adult-count" class="adult-count-box"> {{ adultsControl.value }} </span>
+                              <button class="td1-btn-circle" (click)="updateCount('adults', 1)">+</button>
+                            </div>
+                          </div>
+
+                          <div class="td1-row">
+                            <div class="td1-label">Child</div>
+                            <div class="td1-counter">
+                              <button
+                                class="td1-btn-circle"
+                                (click)="updateCount('children', -1)"
+                                [disabled]="childrenControl.value <= 0"
+                              >
+                                −
+                              </button>
+                              <span id="child-count" class="adult-count-box"> {{ childrenControl.value }} </span>
+                              <button class="td1-btn-circle" (click)="updateCount('children', 1)">+</button>
+                            </div>
+                          </div>
+
+                          <!-- Child Age Selectors -->
+                          <div *ngFor="let age of childAges; let i = index" class="td1-row">
+                            <div class="td1-label">Age Child {{ i + 1 }}</div>
+                            <div class="td1-select-wrap">
+                              <select class="td1-select form-select" (change)="updateChildAge(i, $any($event.target).value)">
+                                <option
+                                  *ngFor="let a of [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]"
+                                  [value]="a"
+                                  [selected]="age === a"
+                                >
+                                  {{ a }} {{ a === 1 ? "year" : "years" }}
+                                </option>
+                              </select>
+                            </div>
+                          </div>
+
+                          <div class="td1-row">
+                            <div class="td1-label">Infant</div>
+                            <div class="td1-counter">
+                              <button
+                                class="td1-btn-circle"
+                                (click)="updateCount('infants', -1)"
+                                [disabled]="infantsControl.value <= 0"
+                              >
+                                −
+                              </button>
+                              <span id="senior-count" class="adult-count-box"> {{ infantsControl.value }} </span>
+                              <button class="td1-btn-circle" (click)="updateCount('infants', 1)">+</button>
+                            </div>
+                          </div>
+                        </div>
+
+                        <!-- Room Tab -->
+                        <div class="tab-pane fade" id="td1-tab-room" role="tabpanel" aria-labelledby="room-tab">
+                          <div class="td1-row">
+                            <div class="td1-label">Room</div>
+                            <div class="td1-counter">
+                              <!-- <button
+                                class="td1-btn-circle"
+                                (click)="updateCount('rooms', -1)"
+                                [disabled]="roomsControl.value <= 1"
+                              >
+                                −
+                              </button> -->
+                              <span id="room-count" class="room-count-box"> {{ roomsControl.value }} </span>
+                              <!-- <button class="td1-btn-circle" (click)="updateCount('rooms', 1)">+</button> -->
+                            </div>
+                          </div>
+                          <!-- <div class="mt-2 text-muted small">
+                            Minimum rooms required: {{ Math.ceil((adultsControl.value || 0) / 2) }}
+                          </div> -->
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Buttons -->
+                <div class="td1-buttons d-flex">
+                  <button class="td1-btn-back" (click)="activeStep = 4"><span>Back</span></button>
+                  <button class="td1-btn-next" (click)="submitForm()"><span>Explore Now</span></button>
+                </div>
+              </div>
+
+              <div class="col-md-6 d-flex justify-content-center align-items-center align-items-md-start align-items-lg-center">
+                <div class="td1-image td1-right-image-box">
+                  <img src="assets/images/package/right-image4.png" alt="Calendar Illustration" />
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </ng-template>
+    </p-step-panel>
+  </p-step-panels>
+</p-stepper>

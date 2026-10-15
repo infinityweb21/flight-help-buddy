@@ -1,0 +1,179 @@
+// ::ng-deep .search-main-drawer {
+//   background: #F7F7F7 !important;
+//   backdrop-filter: blur(80px) !important;
+//   -webkit-backdrop-filter: blur(80px);
+//   position: relative;
+// }
+
+::ng-deep .p-button {
+  width: 24px !important;
+  height: 24px !important;
+}
+::ng-deep .p-button-sm .p-button-icon {
+  font-size: 12px !important;
+}
+// ::ng-deep .search-main-drawer .drawer-body{
+//   overflow-y: auto;
+//   height: calc(100vh - 151px);
+//   padding-bottom: 16px;
+// }
+
+
+// ::ng-deep .search-main-drawer .drawer-body::-webkit-scrollbar {
+//   width: 8px;
+//   height: 8px;
+// }
+
+// ::ng-deep .search-main-drawer .drawer-body::-webkit-scrollbar-track {
+//   background: #E9EBF8;
+//   border-radius: 6px;
+// }
+
+// ::ng-deep .search-main-drawer .drawer-body::-webkit-scrollbar-thumb {
+//   background-color: #1c1c1c;
+//   border-radius: 6px;
+//   border: 2px solid #E9EBF8;
+// }
+
+// ::ng-deep .search-main-drawer .drawer-body::-webkit-scrollbar-thumb:hover {
+//   background-color: #a0a0a0;
+// }
+
+// ::ng-deep .search-main-drawer .drawer-body::-webkit-scrollbar-corner {
+//   background: #E9EBF8;
+// }
+
+// .gradient-rectangle-box {
+//   position: absolute;
+//   width: 100%;
+//   height: 100%;
+//   top: 0;
+//   left: 0;
+//   background: linear-gradient(to bottom, rgb(255 255 255 / 60%) 100%, rgba(255, 255, 255, 0) 0%);
+//   mix-blend-mode: overlay; 
+//   backdrop-filter: blur(80px);
+//   -webkit-backdrop-filter: blur(80px);
+//   z-index: -6;
+//   display: block;
+// }
+
+// .gradient-ellipse {
+//   width: 219px;
+//   height: 220px;
+//   position: absolute;
+//   top: 337.48px;
+//   left: 80.89px;
+//   background: radial-gradient(circle, rgba(179, 40, 52, 0.7) 68%, rgba(247, 247, 246, 0) 15%);
+//   border-radius: 50%;
+//   backdrop-filter: blur(150px);
+//   -webkit-backdrop-filter: blur(150px);
+//   mix-blend-mode: overlay;
+//   z-index: -5;
+//   display: block;
+// }
+
+// .gradient-rectangle {
+//   position: absolute;
+//   width: 158px;
+//   height: 158px;
+//   top: 266.48px;
+//   left: 29.89px;
+//   background: linear-gradient(to right, rgba(225, 164, 47, 0.7) 100%, rgba(247, 247, 246, 0) 0%);
+//   mix-blend-mode: overlay; 
+//   backdrop-filter: blur(150px);
+//   -webkit-backdrop-filter: blur(150px);
+//   z-index: -5;
+//   display: block;
+// }
+
+// .gradient-polygon-1 {
+//   position: absolute;
+//   width: 263px;
+//   height: 264px;
+//   top: 548.48px;
+//   left: 111.89px;
+//   background: linear-gradient(to right, rgba(36, 200, 227, 0.7) 100%, rgba(247, 247, 246, 0) 0%);
+//   backdrop-filter: blur(150px);
+//   -webkit-backdrop-filter: blur(150px);
+//   mix-blend-mode: overlay;
+//   z-index: -4;
+//   display: block;
+// }
+
+// .gradient-polygon-2 {
+//   position: absolute;
+//   width: 219px;
+//   height: 220px;
+//   top: 378.48px;
+//   left: -0.11px;
+//   background: linear-gradient(to right, rgba(185, 95, 216, 0.7) 100%, rgba(247, 247, 246, 0) 0%);
+//   backdrop-filter: blur(150px);
+//   -webkit-backdrop-filter: blur(150px);
+//   mix-blend-mode: overlay;
+//   z-index: -4;
+//   display: block;
+// }
+//new css
+::ng-deep .search-main-drawer.p-dialog {
+  width: 100vw !important;
+  height: 100vh !important;
+  max-width: 100vw !important;
+  max-height: 100vh !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  top: 0 !important;
+  left: 0 !important;
+  border-radius: 0 !important;
+  background: #F7F7F7 !important;
+  position: relative;
+  border: 0px;
+}
+
+::ng-deep .search-main-drawer .p-dialog-content {
+  width: 100%;
+  height: 100%;
+  padding: 0 !important;
+  background: #F7F7F7 !important;
+  backdrop-filter: blur(80px) !important;
+  -webkit-backdrop-filter: blur(80px);
+  position: relative;
+  overflow: hidden; /* keep gradients inside */
+}
+
+// ::ng-deep .search-main-drawer .drawer-body {
+//   height: calc(100vh - 60px);
+//   overflow-y: auto;
+//   // padding-bottom: 16px;
+//   padding-bottom: 0px;
+// }
+body .p-dialog-mask {
+  position: fixed !important;
+  overflow: visible !important;
+}
+.search-main-drawer.p-dialog {
+  z-index: 9999 !important;
+}
+
+.p-dialog-mask {
+  z-index: 9998 !important;
+}
+
+.popup-header {
+  padding: 12px 12px 16px;
+}
+
+/* iOS */
+@supports (-webkit-touch-callout: none) {
+  .popup-header {
+    padding-top: calc(12px + 54px);
+  }
+}
+
+
+/* Android */
+.popup-header.android {
+  padding-top: calc(5px + 10px);
+}
+
+
+

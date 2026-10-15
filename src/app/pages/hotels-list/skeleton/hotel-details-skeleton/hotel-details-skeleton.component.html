@@ -1,0 +1,248 @@
+<div class="hotel-details-skeleton__content-wrap">
+    <div class="container container-xxl">
+        <div class="hotel-details-skeleton__back-btn-wrap d-none d-lg-flex">
+            <div class="hotel-details-skeleton__back-btn">
+                <p-skeleton styleClass="hotel-details-skeleton-back-btn">
+                </p-skeleton>
+            </div>
+            <div class="hotel-details-skeleton__back-text">
+                <p-skeleton styleClass="hotel-details-skeleton-title">
+                </p-skeleton>
+            </div>
+        </div>
+        <div class="hotel-details-skeleton__gallery d-none d-lg-grid">
+            <p-skeleton styleClass="hotel-details-skeleton-gallery-main">
+            </p-skeleton>
+            <div class="hotel-details-skeleton__gallery-side">
+                @for (item of [1,2,3,4]; track $index) {
+                <p-skeleton styleClass="hotel-details-skeleton-gallery-item">
+                </p-skeleton>
+                }
+            </div>
+            <div class="hotel-details-skeleton__gallery--image-count-badge">
+                <p-skeleton styleClass="hotel-details-skeleton-image-count-badge">
+                </p-skeleton>
+            </div>
+        </div>
+    </div>
+    <div class="hotel-details-skeleton__mob-banner-slider-card d-lg-none">
+        <div class="hotel-details-skeleton__mob-slider-back-btn">
+            <p-skeleton styleClass="hotel-details-mob-skeleton-back-btn">
+            </p-skeleton>
+        </div>
+        <div class="hotel-details-skeleton__mob-slider-badge">
+            <p-skeleton styleClass="hotel-details-mob-skeleton-badge">
+            </p-skeleton>
+        </div>
+        <div class="hotel-details-skeleton__mob-slider-count">
+            @for(item of [1,2,3,4,5]; track $index){
+            <p-skeleton styleClass="hotel-details-mob-skeleton-dot">
+            </p-skeleton>
+            }
+        </div>
+    </div>
+    <div class="hotel-details-skeleton__tabs-wrap">
+        <div class="container container-xxl">
+            <div class="hotel-details-skeleton__tabs">
+                @for (item of [1,2,3,4,5]; track $index) {
+                <p-skeleton styleClass="hotel-details-skeleton-mob-tab">
+                </p-skeleton>
+                }
+            </div>
+        </div>
+    </div>
+    <div class="container container-xxl">
+        <div class="hotel-details-skeleton__mob-card-wrapper d-lg-none">
+            <div class="hotel-details-skeleton__mob-overview-card">
+                <div class="hotel-details-skeleton__mob-overview-card-content-wrap">
+                    <div class="hotel-details-skeleton__mob-overview-card-title">
+                        <p-skeleton styleClass="hotel-details-skeleton-mob-heading"></p-skeleton>
+                    </div>
+                    <div class="hotel-details-skeleton__mob-overview-card-ratings">
+                        @for(item of [1,2,3]; track $index){
+                        <p-skeleton styleClass="hotel-details-skeleton-mob-star"></p-skeleton>
+                        }
+                    </div>
+                    <div class="hotel-details-skeleton__mob-overview-card-review-address-wrap">
+                        <div class="hotel-details-skeleton__mob-overview-card-review-address-icon">
+                            <p-skeleton styleClass="hotel-details-skeleton-mob-address-icon"></p-skeleton>
+                        </div>
+                        <div class="hotel-details-skeleton__mob-overview-card-review-address">
+                            <p-skeleton styleClass="hotel-details-skeleton-mob-address"></p-skeleton>
+                        </div>
+                    </div>
+                </div>
+                <div class="hotel-details-skeleton__mob-overview-card-review-wrap">
+                    <div class="hotel-details-skeleton__mob-overview-card-review-badge">
+                        <p-skeleton styleClass="hotel-details-skeleton-mob-review-badge"></p-skeleton>
+                    </div>
+                    <div class="hotel-details-skeleton__mob-overview-card-review-label">
+                        <p-skeleton styleClass="hotel-details-skeleton-mob-review-label"></p-skeleton>
+                    </div>
+                </div>
+            </div>
+            <div class="hotel-details-skeleton__location-map-wrap">
+                <div class="hotel-details-skeleton__location-title-wrap">
+                    <div class="hotel-details-skeleton__location-left-title">
+                        <p-skeleton styleClass="hotel-details-mob-location-left-title">
+                        </p-skeleton>
+                    </div>
+                    <div class="hotel-details-skeleton__location-right-title">
+                        <p-skeleton styleClass="hotel-details-mob-location-right-title">
+                        </p-skeleton>
+                    </div>
+                </div>
+                <div class="hotel-details-skeleton__map-container">
+                    <p-skeleton styleClass="hotel-details-mob-location-map">
+                    </p-skeleton>
+                </div>
+            </div>
+            <div class="hotel-details-skeleton__mob-sec-title-desc-wrap">
+                <div class="hotel-details-skeleton__sec-title">
+                    <p-skeleton styleClass="hotel-details-skeleton-mob-section-title"></p-skeleton>
+                </div>
+                <div class="hotel-details-skeleton__sec-description">
+                    @for(item of [1,2,3,4]; track $index){
+                    <p-skeleton styleClass="hotel-details-skeleton-mob-paragraph"></p-skeleton>
+                    }
+                </div>
+                <div class="hotel-details-skeleton__check-in-out-box-wrap">
+                    <div class="hotel-details-skeleton__check-in-box">
+                        <p-skeleton styleClass="hotel-details-skeleton-mob-check-card"></p-skeleton>
+                    </div>
+                    <div class="hotel-details-skeleton__check-out-box">
+                        <p-skeleton styleClass="hotel-details-skeleton-mob-check-card"></p-skeleton>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="hotel-details-skeleton__overview-amenities-price-card-wrap d-none d-lg-flex">
+            <div class="hotel-details-skeleton__overview-amenities-content-wrap">
+                <div class="hotel-details-skeleton__overview-card">
+                    <div class="hotel-details-skeleton__overview-title-review-content-wrap">
+                        <div class="hotel-details-skeleton__overview-title-rating-address-content-wrap">
+                            <div class="hotel-details-skeleton__overview-title">
+                                <p-skeleton styleClass="hotel-details-skeleton-heading"></p-skeleton>
+                            </div>
+                            <div class="hotel-details-skeleton__overview-rating">
+                                @for(item of [1,2,3]; track $index){
+                                <p-skeleton styleClass="hotel-details-skeleton-star"></p-skeleton>
+                                }
+                            </div>
+                            <div class="hotel-details-skeleton__overview-address">
+                                <p-skeleton styleClass="hotel-details-skeleton-address"></p-skeleton>
+                            </div>
+                        </div>
+                        <div class="hotel-details-skeleton__overview-review-content">
+                            <div class="hotel-details-skeleton__overview-review-badge">
+                                <p-skeleton styleClass="hotel-details-skeleton-review-score"></p-skeleton>
+                            </div>
+                            <div class="hotel-details-skeleton__overview-review-text-wrap">
+                                <div class="hotel-details-skeleton__overview-text-meta">
+                                    <p-skeleton styleClass="hotel-details-skeleton-review-text"></p-skeleton>
+                                </div>
+                                <div class="hotel-details-skeleton__overview-text-reviews">
+                                    <p-skeleton styleClass="hotel-details-skeleton-review-subtext"></p-skeleton>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="hotel-details-skeleton__overview-facility-chips-wrap">
+                        <div class="hotel-details-skeleton__overview-facility-chips-group">
+                            @for(item of [1,2,3,4,5]; track $index){
+                            <p-skeleton styleClass="hotel-details-skeleton-badge"></p-skeleton>
+                            }
+                        </div>
+                        <div class="hotel-details-skeleton__overview-facility-chips-arrow-btn">
+                            <p-skeleton styleClass="hotel-details-skeleton-facility-chips-arrow-btn"></p-skeleton>
+                        </div>
+                    </div>
+                    <div class="">
+                        <p-skeleton styleClass="hotel-details-skeleton-section-devider"></p-skeleton>
+                    </div>
+                    <div class="hotel-details-skeleton__sec-title-desc-wrap">
+                        <div class="hotel-details-skeleton__sec-title">
+                            <p-skeleton styleClass="hotel-details-skeleton-section-title"></p-skeleton>
+                        </div>
+                        <div class="hotel-details-skeleton__sec-description">
+                            @for(item of [1,2,3,4]; track $index){
+                            <p-skeleton styleClass="hotel-details-skeleton-paragraph"></p-skeleton>
+                            }
+                        </div>
+                        <div class="hotel-details-skeleton__check-in-out-box-wrap">
+                            <div class="hotel-details-skeleton__check-in-box">
+                                <p-skeleton styleClass="hotel-details-skeleton-check-card"></p-skeleton>
+                            </div>
+                            <div class="hotel-details-skeleton__check-out-box">
+                                <p-skeleton styleClass="hotel-details-skeleton-check-card"></p-skeleton>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="hotel-details-skeleton__overview-bed-details">
+                        <div class="hotel-details-skeleton__overview-bed-desc-wrap">
+                            <div class="hotel-details-skeleton__overview-bed-status-icon">
+                                <p-skeleton styleClass="hotel-details-skeleton-overview-bed-status-icon"></p-skeleton>
+                            </div>
+                            <div class="hotel-details-skeleton__overview-bed-category">
+                                <p-skeleton styleClass="hotel-details-skeleton-overview-bed-category"></p-skeleton>
+                            </div>
+                        </div>
+                        <div class="hotel-details-skeleton__overview-bed-desc-wrap">
+                            <div class="hotel-details-skeleton__overview-bed-status-icon">
+                                <p-skeleton styleClass="hotel-details-skeleton-overview-bed-status-icon"></p-skeleton>
+                            </div>
+                            <div class="hotel-details-skeleton__overview-bed-category">
+                                <p-skeleton styleClass="hotel-details-skeleton-overview-bed-category"></p-skeleton>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="hotel-details-skeleton__amenities-card">
+                    <div class="hotel-details-skeleton__amenities-card-wrap">
+                        <p-skeleton styleClass="hotel-details-skeleton-section-title"></p-skeleton>
+
+                        <div class="hotel-details-skeleton__amenities-grid">
+                            @for(item of [].constructor(12); track $index){
+                            <div class="hotel-details-skeleton-amenity">
+                                <p-skeleton styleClass="hotel-details-skeleton-amenity-icon"></p-skeleton>
+                                <p-skeleton styleClass="hotel-details-skeleton-amenity-text"></p-skeleton>
+                            </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="hotel-details-skeleton__price-card">
+                <p-skeleton styleClass="hotel-details-skeleton-price"></p-skeleton>
+                <p-skeleton styleClass="hotel-details-skeleton-price-small"></p-skeleton>
+
+                <div class="hotel-details-skeleton__price-lines">
+                    @for(item of [1,2,3]; track $index){
+                    <p-skeleton styleClass="hotel-details-skeleton-price-line"></p-skeleton>
+                    }
+                </div>
+
+                <div class="hotel-details-skeleton__price-btn-groups-lines">
+                    <p-skeleton styleClass="hotel-details-skeleton-button"></p-skeleton>
+                    <p-skeleton
+                        styleClass="hotel-details-skeleton-button hotel-details-skeleton-button--primary"></p-skeleton>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="hotel-details-skeleton__mob-price-strip d-lg-none">
+    <div class="hotel-details-skeleton__mob-price-wrap">
+        <div class="hotel-details-skeleton__mob-actual-price">
+            <p-skeleton styleClass="hotel-details-skeleton-mob-actual-price"></p-skeleton>
+        </div>
+        <div class="hotel-details-skeleton__mob-price-label">
+            <p-skeleton styleClass="hotel-details-skeleton-mob-price-label"></p-skeleton>
+        </div>
+    </div>
+    <div class="hotel-details-skeleton__mob-price-submit-btn">
+        <p-skeleton styleClass="hotel-details-skeleton-mob-price-submit-btn"></p-skeleton>
+    </div>
+</div>

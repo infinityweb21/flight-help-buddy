@@ -1,0 +1,105 @@
+<!--=========== innerBanner Section Start  ==============-->
+<section class="banner banner-content-wrap innerbannersection">
+  <div
+    class="section-shape section-shape1 top-inherit bottom-0"
+    style="background-image: url(assets/images/Careers/shape8.png)"
+  ></div>
+  <div class="innerbannerimgbox">
+    <img
+      src="assets/images/Careers/businesspeople-meeting-office-hand-shake.jpg"
+      alt="businesspeople-meeting"
+      class="innerbannerimg"
+    />
+  </div>
+  <div class="container container-xxl">
+    <div class="row justify-content-center">
+      <div class="col-lg-8 col-md-6 col-12">
+        <div class="innerbanner-txt">
+          <h1>
+            Our reinvention <span class="subtitletext">starts with you.</span>
+          </h1>
+          <div class="breadcrumbssec">
+            <ol class="breadcrumb bg-transparent justify-content-center">
+              <li class="breadcrumb-item">
+                <a href="/" class="currentpagesec"
+                  ><i class="fa-solid fa-house"></i> Home</a
+                >
+              </li>
+              <li class="breadcrumb-item active" aria-current="page">
+                Careers
+              </li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!--=========== innerBanner Section End  ==============-->
+<!--=========== inner Banner Bottom Section Start  ==============-->
+<section class="destinations pb-0 cmn-gap">
+  <div class="container container-xxl">
+    <div class="row">
+      <div class="col-12">
+        <div class="floating-filter-card">
+          <form class="row g-3 align-items-center">
+            <div class="col-md-3">
+              <div class="input-group">
+                <input
+                  type="text"
+                  class="form-control filter-input"
+                  placeholder="Search"
+                />
+                <span
+                  class="input-group-text bg-white border-start-0 filtersearchico"
+                >
+                  <i class="fa-solid fa-magnifying-glass"></i>
+                </span>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <select class="form-select filter-select">
+                <option selected>All Job Category</option>
+                <option>Design</option>
+                <option>Development</option>
+                <option>Marketing</option>
+              </select>
+            </div>
+            <div class="col-md-3">
+              <select class="form-select filter-select">
+                <option selected>All Job Type</option>
+                <option>Full Time</option>
+                <option>Part Time</option>
+                <option>Internship</option>
+              </select>
+            </div>
+            <div class="col-md-3">
+              <select class="form-select filter-select">
+                <option selected>All Job Location</option>
+                <option>Remote</option>
+                <option>On-site</option>
+                <option>Hybrid</option>
+              </select>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="col-12">
+        <div class="joblistcard">
+          @for (job of jobs; track $index) {
+          <div
+            class="job-card"
+            style="cursor: pointer"
+          >
+            <div class="job-card-title">{{ job.title }}</div>
+            <a [routerLink]="['/careers/job-details', job.id]" class="job-card-link"
+              >More Details →</a
+            >
+          </div>
+          }
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!--=========== innerbanner Bottom Section End  ==============-->

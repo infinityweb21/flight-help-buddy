@@ -1,0 +1,853 @@
+@if (isSkeleton && hotelDetails == null) {
+<app-hotel-details-skeleton></app-hotel-details-skeleton>
+}
+
+@if (hotelDetails) {
+<section class="timer-sec">
+    <div class="container">
+        <div class="flex-div">
+            <div class="backbtn">
+                <a href="javascript:void(0)" (click)="goBack()"><i class="fa-solid fa-angle-left"></i> Back to all
+                    hotels</a>
+            </div>
+            <div class="timer-box">
+                <span class="timer-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        class="icon icon-tabler icons-tabler-outline icon-tabler-stopwatch">
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                        <path d="M5 13a7 7 0 1 0 14 0a7 7 0 0 0 -14 0z" />
+                        <path d="M14.5 10.5l-2.5 2.5" />
+                        <path d="M17 8l1 -1" />
+                        <path d="M14 3h-4" />
+                    </svg>
+                </span>
+                <span class="text-sec-timer"> These deals may not last! </span>
+                <span class="timer-count" id="dealTimer">20:00</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="fiter-sec-list-section common-section">
+    <div class="container">
+        <div class="main-tab-groupbox">
+            @let images = getAllImages(hotelDetails.images)?.slice(0, 5);
+
+            <div class="gallery-wrapper">
+
+                <div class="gallery-left" data-bs-toggle="offcanvas" data-bs-target="#rgGallery">
+
+                    <img [src]="images?.[0] || 'assets/images/hotel/hotel-placeholder.png'"
+                        [alt]="hotelDetails.hotelName || 'Hotel image'"
+                        (error)="$any($event.target).src = 'assets/images/hotel/hotel-placeholder.png'" />
+
+                </div>
+
+                <div class="gallery-right">
+
+                    <div class="right-row">
+
+                        <div class="right-img" data-bs-toggle="offcanvas" data-bs-target="#rgGallery">
+
+                            <img [src]="images?.[1] || 'assets/images/hotel/hotel-placeholder.png'"
+                                [alt]="hotelDetails.hotelName || 'Hotel image'"
+                                (error)="$any($event.target).src = 'assets/images/hotel/hotel-placeholder.png'" />
+
+                        </div>
+
+                        <div class="right-img" data-bs-toggle="offcanvas" data-bs-target="#rgGallery">
+
+                            <img [src]="images?.[2] || 'assets/images/hotel/hotel-placeholder.png'"
+                                [alt]="hotelDetails.hotelName || 'Hotel image'"
+                                (error)="$any($event.target).src = 'assets/images/hotel/hotel-placeholder.png'" />
+
+                        </div>
+
+                    </div>
+
+                    <div class="right-row">
+
+                        <div class="right-img" data-bs-toggle="offcanvas" data-bs-target="#rgGallery">
+
+                            <img [src]="images?.[3] || 'assets/images/hotel/hotel-placeholder.png'"
+                                [alt]="hotelDetails.hotelName || 'Hotel image'"
+                                (error)="$any($event.target).src = 'assets/images/hotel/hotel-placeholder.png'" />
+
+                        </div>
+
+                        <div class="right-img overlay" data-bs-toggle="offcanvas" data-bs-target="#rgGallery">
+
+                            <img [src]="images?.[4] || 'assets/images/hotel/hotel-placeholder.png'"
+                                [alt]="hotelDetails.hotelName || 'Hotel image'"
+                                (error)="$any($event.target).src = 'assets/images/hotel/hotel-placeholder.png'" />
+
+                            <span>
+                                {{ hotelDetails.images?.length-5 || 0 }}+ Photos
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            @if (hotelDetails.fare; as fare) {
+            <div class="room-card">
+                <div class="room-header">
+                    <img [src]="getFareRoomImage(fare)" [alt]="fare.roomType" />
+                    <div>
+                        <span class="tag">Recommended Deal</span>
+                        <h3 class="room-title">{{ fare.roomType }}</h3>
+                    </div>
+                </div>
+                <ul class="room-features">
+                    @if (fare.refundable) {
+                    <li class="yes">Refundable</li>
+                    } @else {
+                    <li class="no">Non-refundable</li>
+                    }
+                    @if (fare.breakfastIncluded) {
+                    <li class="yes">Breakfast</li>
+                    }
+                </ul>
+                <div class="price-box">
+                    <h2>${{ getFormattedPrice(getChargedTotal(fare)).integer }}<sup>.{{
+                            getFormattedPrice(getChargedTotal(fare)).decimal }}</sup></h2>
+                    <p>
+                        @if(packageTabActive){
+                        @if (fare.includesTaxes) {
+                        (Flight + Hotel ) Includes taxes & fees<br>
+                        }
+                        @if (getDueAtPropertyAmount(fare) > 0) {
+                        + ${{ getFormattedPrice(getDueAtPropertyAmount(fare)).integer }} due at property<br>
+                        }
+                        for Per night, 1room
+                        }@else {
+                        @if (fare.includesTaxes) {
+                        Includes taxes & fees<br>
+                        }
+                        @if (getDueAtPropertyAmount(fare) > 0) {
+                        + ${{ getFormattedPrice(getDueAtPropertyAmount(fare)).integer }} due at property<br>
+                        }
+                        for Per night, 1room
+                        }
+
+                    </p>
+                </div>
+                <div class="group-btsec-ne">
+                    <button class="reserve-btn" (click)="reserveRecommendedDeal()">Reserve Room</button>
+                    <button type="button" class="view-btn" (click)="selectHotelTab($event, 'hotelRooms')">View All
+                        Rooms</button>
+                </div>
+            </div>
+            }
+        </div>
+    </div>
+</section>
+
+<section class="o-hotel-nav-section common-section pt-0">
+    <div class="o-hotel-nav-list-wrap">
+        <div class="container o-hotel-nav-list-container">
+            <div class="o-hotel-nav-list">
+                <ul class="nav">
+                    <li class="nav-item">
+                        <button type="button" class="nav-link" [class.active]="activeHotelTab === 'hotelOverview'"
+                            (click)="selectHotelTab($event, 'hotelOverview')">
+                            Overview
+                        </button>
+                    </li>
+                    <li class="nav-item">
+                        <button type="button" class="nav-link" [class.active]="activeHotelTab === 'hotelAmenities'"
+                            (click)="selectHotelTab($event, 'hotelAmenities')">
+                            Amenities
+                        </button>
+                    </li>
+                    <li class="nav-item">
+                        <button type="button" class="nav-link" [class.active]="activeHotelTab === 'hotelRooms'"
+                            (click)="selectHotelTab($event, 'hotelRooms')">
+                            Rooms
+                        </button>
+                    </li>
+                    <li class="nav-item">
+                        <button type="button" class="nav-link" [class.active]="activeHotelTab === 'hotelReviews'"
+                            (click)="selectHotelTab($event, 'hotelReviews')">
+                            Reviews
+                        </button>
+                    </li>
+                    <li class="nav-item">
+                        <button type="button" class="nav-link" [class.active]="activeHotelTab === 'hotelPolicies'"
+                            (click)="selectHotelTab($event, 'hotelPolicies')">
+                            Policies
+                        </button>
+                    </li>
+                    <li class="nav-item">
+                        <button type="button" class="nav-link" [class.active]="activeHotelTab === 'hotelLocation'"
+                            (click)="selectHotelTab($event, 'hotelLocation')">
+                            Location
+                        </button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="o-hotel-nav-list-content-wrap">
+        <div class="container">
+
+            <div class="o-overview-content-wrap hotelOverview" id="hotelOverview">
+                <div class="tab_content_wrap hotel-overview">
+                    <div class="hotel-overview__intro">
+                        <div class="hotel-overview__main">
+                            <div class="hotel-overview__heading">
+                                <h2 class="hotel-overview__name">{{ hotelDetails.hotelName }}</h2>
+                                <div class="hotel-overview__rating">
+                                    <span class="hotel-overview__stars">
+                                        @for (star of getStarArray(hotelDetails.starRating); track $index) {
+                                        <i class="fa-solid fa-star"></i>
+                                        }
+                                    </span>
+                                    <span class="hotel-overview__category">{{ hotelDetails.starRating }}-Star
+                                        Hotel</span>
+                                </div>
+                            </div>
+                            <div class="hotel-overview__location">
+                                <i class="fa-solid fa-location-dot"></i>
+                                <span>{{ hotelDetails.address?.line1 }}, {{ hotelDetails.address?.cityName }}, {{
+                                    hotelDetails.address?.countryName }}</span>
+                                <a [href]="'https://www.google.com/maps?q=' + hotelDetails.geo?.latitude + ',' + hotelDetails.geo?.longitude"
+                                    target="_blank">
+                                    Show on map
+                                </a>
+                            </div>
+                        </div>
+                        <div class="hotel-overview__review">
+                            @if (hotelDetails.guestReview?.count > 0) {
+                            <span>{{ hotelDetails.guestReview.score }} · {{ hotelDetails.guestReview.count }}
+                                reviews</span>
+                            } @else {
+                            <span>No reviews</span>
+                            }
+                        </div>
+                    </div>
+
+                    <div class="hotel-overview__facilities">
+                        @for (facility of (hotelDetails.facilities | slice:0:5); track facility) {
+                        <span class="hotel-overview__facility">{{ facility }}</span>
+                        }
+                    </div>
+
+                    <div class="hotel-overview__about">
+                        <div class="hotel-overview__section-heading">
+                            <span class="hotel-overview__eyebrow">HOTEL INFORMATION</span>
+                            <h3>About this property</h3>
+                        </div>
+                        <div class="hotel-overview__description">
+                            <p [innerHTML]="getHotelDescription()"></p>
+                        </div>
+                        @if ((hotelDetails.description?.length || 0) > 500) {
+                        <button type="button" class="hotel-overview__more" (click)="toggleDescription()">
+                            {{ showFullDescription ? 'Show less' : 'Show more' }}
+                        </button>
+                        }
+                    </div>
+
+                    <div class="hotel-overview__stay">
+                        <div class="hotel-overview__stay-item">
+                            <div class="hotel-overview__stay-icon"><i class="fa-solid fa-right-to-bracket"></i></div>
+                            <div class="hotel-overview__stay-info">
+                                <span class="hotel-overview__stay-label">CHECK-IN</span>
+                                <strong class="hotel-overview__stay-value">{{ formatTime(hotelDetails.checkin)
+                                    }}</strong>
+                            </div>
+                        </div>
+                        <div class="hotel-overview__stay-item">
+                            <div class="hotel-overview__stay-icon"><i class="fa-solid fa-right-from-bracket"></i></div>
+                            <div class="hotel-overview__stay-info">
+                                <span class="hotel-overview__stay-label">CHECK-OUT</span>
+                                <strong class="hotel-overview__stay-value">{{ formatTime(hotelDetails.checkout)
+                                    }}</strong>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="hotel-overview__rooms">
+                        <div class="hotel-overview__section-heading">
+                            <span class="hotel-overview__eyebrow">ROOM OPTIONS</span>
+                            <h3>Available room types</h3>
+                        </div>
+                        <div class="hotel-overview__room-list">
+                            @for (room of uniqueRooms; track room.roomId) {
+                            <div class="hotel-overview__room">
+                                <i class="fa-solid fa-circle-check"></i>
+                                <span>{{ room.roomName }}</span>
+                            </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+          <div class="o-amenities-content-wrap hotelAmenities" id="hotelAmenities">
+    <div class="tab_content_wrap">
+
+        <div class="hotel-amenities">
+
+            <div class="hotel-overview__section-heading">
+                <span class="hotel-overview__eyebrow">
+                    HOTEL FACILITIES
+                </span>
+
+                <h3>Services And Amenities</h3>
+            </div>
+
+            <div class="hotel-amenities__grid">
+
+                @for (
+                    facility of visibleFacilities;
+                    track $index
+                ) {
+                    <div class="hotel-amenities__item">
+                        <i [class]="getAmenityIcon(facility)"></i>
+                        <span>{{ facility }}</span>
+                    </div>
+                }
+
+            </div>
+
+            @if (
+                (hotelDetails?.facilities?.length ?? 0) > amenitiesPreviewCount
+            ) {
+
+                <button
+                    type="button"
+                    class="hotel-amenities__toggle"
+                    (click)="toggleAmenities()"
+                >
+
+                    <span class="hotel-amenities__toggle-text">
+                        {{ showAllAmenities ? 'Show less' : 'Show more' }}
+                    </span>
+
+                    <i
+                        class="fa-solid"
+                        [class.fa-chevron-down]="!showAllAmenities"
+                        [class.fa-chevron-up]="showAllAmenities">
+                    </i>
+
+                </button>
+
+            }
+
+        </div>
+
+    </div>
+</div>
+
+            <div class="o-rooms-content-wrap hotelRooms" id="hotelRooms">
+                <div class="tab_content_wrap">
+                    <div class="rm-container">
+                        <aside class="rm-preview-box">
+                            @if (selectedRoom) {
+                            <div class="room-gallery-slider">
+                                <div class="owl-carousel room-owl-carousel">
+                                    @for (img of selectedRoom.roomImages; track img.imageUrl) {
+                                    <div class="room-slide-item">
+                                        <img [src]="img.imageUrl" [alt]="img.imageDescription" />
+                                    </div>
+                                    }
+                                    @if (!selectedRoom.roomImages?.length) {
+                                    <div class="room-slide-item">
+                                        <img [src]="fallbackImage" alt="" />
+                                    </div>
+                                    }
+                                </div>
+                            </div>
+
+                            <div class="rm-info">
+                                <h3>{{ selectedRoom.roomName }}</h3>
+                                <div class="rm-details-grid">
+                                    @if (selectedRoom.roomSize) {
+                                    <span><i class="fa-regular fa-square"></i> {{ selectedRoom.roomSize }} sq.
+                                        mt.</span>
+                                    }
+                                    @if (selectedRoom.bedType) {
+                                    <span><i class="fa-solid fa-bed"></i> {{ selectedRoom.bedType }}</span>
+                                    }
+                                    @if (selectedRoom.view) {
+                                    <span>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13"
+                                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                            stroke-linecap="round" stroke-linejoin="round"
+                                            class="icon icon-tabler icons-tabler-outline icon-tabler-plant">
+                                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                            <path d="M7 15h10v4a2 2 0 0 1 -2 2h-6a2 2 0 0 1 -2 -2v-4z" />
+                                            <path d="M12 9a6 6 0 0 0 -6 -6h-3v2a6 6 0 0 0 6 6h3" />
+                                            <path d="M12 11a6 6 0 0 1 6 -6h3v1a6 6 0 0 1 -6 6h-3" />
+                                            <path d="M12 15l0 -6" />
+                                        </svg> {{ selectedRoom.view }}
+                                    </span>
+                                    }
+                                    @if (selectedRoom.maxOccupancy) {
+                                    <span><i class="fa-solid fa-users-line"></i> Sleeps {{ selectedRoom.maxOccupancy
+                                        }}</span>
+                                    }
+                                </div>
+                                <hr>
+                                <div class="rm-features-wrapper">
+                                    <ul class="rm-features-list">
+                                        @for (facility of getFacilitiesSlice(selectedRoom.roomFacilities, 8); track
+                                        facility.facilityCode) {
+                                        <li><i class="fa-regular fa-circle-check"></i>{{ formatLabel(facility.content) |
+                                            titlecase }}</li>
+                                        }
+                                    </ul>
+                                    @if ((selectedRoom.roomFacilities?.length || 0) > 8) {
+                                    <a href="javascript:void(0)" class="rm-view-link" data-bs-toggle="offcanvas"
+                                        data-bs-target="#offcanvasRight" (click)="openRoomFacilities(selectedRoom)">View
+                                        More</a>
+                                    }
+                                </div>
+                            </div>
+                            }
+                        </aside>
+
+                        <div class="rm-room-list">
+                            @for (room of rooms; track room.roomId) {
+                            @for (rate of room.rateList; track rate.id) {
+                            <div class="rm-room-card">
+                                @if (isRecommendedRate(rate, room)) {
+                                <span class="rm-recommended-badge">
+                                    <i class="fa-solid fa-tag"></i>
+                                    Recommended
+                                </span>
+                                }
+                                <div class="rm-room-info">
+                                    <h4>{{ room.roomName }}</h4>
+                                    @if (rate.freeCancellation) {
+                                    <p class="rm-cancellation">
+                                        <i class="fa-solid fa-circle-check"></i>
+                                        <span>
+                                            Free cancellation until {{ rate.cancellationPolicy?.[0]?.fromDate |
+                                            date:'medium' }}.
+                                            @if (rate.cancellationPolicy?.[0]?.amount) {
+                                            After that cancellation charges will be ${{
+                                            getFormattedPrice(rate.cancellationPolicy[0].amount).integer }}<sup>.{{
+                                                getFormattedPrice(rate.cancellationPolicy[0].amount).decimal }}</sup>
+                                            }
+                                        </span>
+                                    </p>
+                                    }
+                                    <div class="room_fecc">
+                                        <div class="rm-tags">
+                                            @if (rate.freeCancellation) {
+                                            <span class="rm-tags__item"
+                                                [class.rm-tags__item--green]="isRecommendedRate(rate, room)"
+                                                [class.rm-tags__item--yes]="!isRecommendedRate(rate, room)">
+                                                <i class="fa-regular fa-circle-check"></i>
+                                                <span>Refundable</span>
+                                            </span>
+                                            } @else {
+                                            <span class="rm-tags__item rm-tags__item--no">
+                                                <i class="fa-regular fa-circle-xmark"></i>
+                                                <span>Non-refundable</span>
+                                            </span>
+                                            }
+                                            @if (rate.breakfastIncluded) {
+                                            <span class="rm-tags__item rm-tags__item--yes">
+                                                <i class="fa-regular fa-circle-check"></i>
+                                                <span>Breakfast</span>
+                                            </span>
+                                            }
+                                            @for (facility of getFacilitiesSlice(room.roomFacilities, 4); track
+                                            facility.facilityCode) {
+                                            <span class="rm-tags__item rm-tags__item--yes">
+                                                <i class="fa-regular fa-circle-check"></i>
+                                                <span>{{ formatLabel(facility.content) | titlecase }}</span>
+                                            </span>
+                                            }
+                                        </div>
+                                        @if ((room.roomFacilities?.length || 0) > 4) {
+                                        <button class="rm-tags__more" type="button" data-bs-toggle="offcanvas"
+                                            data-bs-target="#offcanvasRight" (click)="openRoomFacilities(room)">
+                                            <span>Show more</span>
+                                            <i class="fa-solid fa-chevron-down"></i>
+                                        </button>
+                                        }
+                                    </div>
+                                </div>
+
+                                <div class="rm-price-box">
+                                    <h3>${{ getFormattedPrice(getRatePerNightTotal(rate)).integer }}<sup>.{{
+                                            getFormattedPrice(getRatePerNightTotal(rate)).decimal }}</sup></h3>
+                                    <p>
+                                        @if(packageTabActive){
+                                        (Flight + Hotel ) Includes taxes & fees<br>
+                                        per night 
+
+                                        }@else {
+                                        {{ rate.includesTaxes ? 'Includes' : '+' }} ${{
+                                        getFormattedPrice(rate.perNightTaxesAndFees).integer }}<sup>.{{
+                                            getFormattedPrice(rate.perNightTaxesAndFees).decimal }}</sup> taxes &
+                                        fees<br>
+                                        per night 
+                                        }
+                                    </p>
+                                    <button class="rm-btn-book" (click)="navigateToBooking(rate, room)">Reserve Room</button>
+                                </div>
+                            </div>
+                            }
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="o-hotel-details-guest-content-wrap hotelReviews m-0 pt-0 border-0" id="hotelReviews">
+                <div class="tab_content_wrap">
+                    <div class="hotel-overview__section-heading">
+                        <span class="hotel-overview__eyebrow">Reviews</span>
+                        <h3>Guest reviews</h3>
+                    </div>
+
+                    <div class="hotel-reviews__content">
+                        <div class="hotel-reviews__left">
+                            <div class="hotel-reviews__summary">
+                                <div class="hotel-reviews__overall">
+                                    <span class="hotel-reviews__rating">{{ hotelDetails.guestReview?.score || 0
+                                        }}</span>
+                                    <span class="hotel-reviews__status">{{
+                                        getReviewStatusLabel(hotelDetails.guestReview?.score) }}</span>
+                                    <span class="hotel-reviews__count">{{ hotelDetails.guestReview?.count || 0 }}
+                                        reviews</span>
+                                    <div class="hotel-reviews__stars">
+                                        @for (star of getStarArray(getRating(hotelDetails.guestReview?.score) / 2);
+                                        track $index) {
+                                        <i class="fa-solid fa-star"></i>
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="hotel-reviews__right">
+                            <div class="hotel-reviews__review-card">
+                                @if (hotelDetails.guestReview?.comment) {
+                                <div class="hotel-reviews__review-text">
+                                    <p>{{ hotelDetails.guestReview.comment }}</p>
+                                </div>
+                                } @else {
+                                <div class="hotel-reviews__review-text">
+                                    <p>No reviews yet for this hotel.</p>
+                                </div>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="o-hotel-policies-content-wrap hotelPolicies m-0 pt-0" id="hotelPolicies">
+                <div class="tab_content_wrap">
+                    <div class="hp-section">
+                        <div class="hotel-overview__section-heading">
+                            <span class="hotel-overview__eyebrow">Policies</span>
+                            <h3>Hotel Policies</h3>
+                        </div>
+
+                        <div class="hp-row">
+                            <div class="hp-left"><i class="fa-regular fa-clock"></i> Check-in</div>
+                            <div class="hp-right">From {{ formatTime(hotelDetails.checkin) }}</div>
+                        </div>
+                        <div class="hp-divider"></div>
+                        <div class="hp-row">
+                            <div class="hp-left"><i class="fa-regular fa-clock"></i> Check-out</div>
+                            <div class="hp-right">Till {{ formatTime(hotelDetails.checkout) }}</div>
+                        </div>
+
+                        @for (policy of hotelDetails.hotelPolicy; track policy.title) {
+                        <div class="hp-divider"></div>
+                        <div class="hp-row">
+                            <div class="hp-left"><i class="fa-solid fa-circle-info"></i> {{ policy.title }}</div>
+                            <div class="hp-right hp-content">
+                                <ul>
+                                    @for (item of policy.items; track item) {
+                                    <li>{{ item }}</li>
+                                    }
+                                </ul>
+                            </div>
+                        </div>
+                        }
+
+                        @if (hotelDetails.hotelPolicies?.know_before_you_go) {
+                        <div class="hp-divider"></div>
+                        <div class="hp-row">
+                            <div class="hp-left"><i class="fa-solid fa-circle-info"></i> Know Before You Go</div>
+                            <div class="hp-right hp-content">
+                                <p>{{ getTruncatedPolicy(hotelDetails.hotelPolicies.know_before_you_go,
+                                    'knowBeforeYouGo') }}</p>
+                                @if (hotelDetails.hotelPolicies.know_before_you_go.length > maxLength) {
+                                <button type="button" class="hotel-overview__more"
+                                    (click)="togglePolicy('knowBeforeYouGo')">
+                                    {{ policyStates['knowBeforeYouGo'] ? 'Show less' : 'Show more' }}
+                                </button>
+                                }
+                            </div>
+                        </div>
+                        }
+                    </div>
+                </div>
+            </div>
+
+            <div class="o-hotel-location-content-wrap hotelLocation m-0 pt-0" id="hotelLocation">
+                <div class="tab_content_wrap">
+                    <div class="hp-section">
+                        <div class="hotel-overview__section-heading">
+                            <span class="hotel-overview__eyebrow">Map</span>
+                            <h3>Explore the Area</h3>
+                        </div>
+
+                        <div class="location-box">
+                            <div class="location-icon"><i class="fa-solid fa-location-dot"></i></div>
+                            <div class="location-info">
+                                <p class="resort-address">{{ hotelDetails.address?.line1 }}, {{
+                                    hotelDetails.address?.cityName }}, {{ hotelDetails.address?.countryName }}</p>
+                                <a [href]="'https://www.google.com/maps?q=' + hotelDetails.geo?.latitude + ',' + hotelDetails.geo?.longitude"
+                                    target="_blank" class="map-link">View on map</a>
+                            </div>
+                        </div>
+
+                        <div class="ex-area-map-container">
+                            <iframe class="ex-area-map-frame" [src]="mapUrl" allowfullscreen="" loading="lazy"></iframe>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    @if (hotelDetails.fare; as fare) {
+    <div class="psc-sheet">
+
+        <!-- Price Summary Panel -->
+        <div class="psc-panel" id="pscPanel" [class.is-open]="pscPanelOpen">
+            <div class="psc-panel__handle">
+                <span></span>
+            </div>
+
+            <h3 class="psc-panel__title">
+                Price Summary
+            </h3>
+
+            <div class="psc-panel__body">
+
+                <div class="psc-row">
+                    <span class="psc-row__label">
+                        Guests
+                        <small>({{ fare.occupancy?.capacity || 1 }})</small>
+                    </span>
+
+                    <span class="psc-row__value">
+                        ${{ getFormattedPrice(getChargedTotal(fare)).integer }}
+                        <sup>
+                            .{{ getFormattedPrice(getChargedTotal(fare)).decimal }}
+                        </sup>
+                    </span>
+                </div>
+
+                <div class="psc-row">
+                    <span class="psc-row__label psc-row__label--muted">
+                        Subtotal
+                    </span>
+
+                    <span class="psc-row__value psc-row__value--muted">
+                        ${{ getFormattedPrice(getChargedTotal(fare)).integer }}
+                        <sup>
+                            .{{ getFormattedPrice(getChargedTotal(fare)).decimal }}
+                        </sup>
+                    </span>
+                </div>
+
+                @if (getDueAtPropertyAmount(fare) > 0) {
+                <div class="psc-row">
+                    <span class="psc-row__label psc-row__label--muted">
+                        Due at Property
+                    </span>
+
+                    <span class="psc-row__value psc-row__value--muted">
+                        ${{ getFormattedPrice(getDueAtPropertyAmount(fare)).integer }}
+                        <sup>
+                            .{{ getFormattedPrice(getDueAtPropertyAmount(fare)).decimal }}
+                        </sup>
+                    </span>
+                </div>
+                }
+
+                <div class="psc-row psc-row--total">
+                    <span class="psc-row__label">
+                        Total
+
+                        <i class="fa-regular fa-circle-question" (click)="onrouteTax()"></i>
+                    </span>
+
+                    <span class="psc-row__value">
+                        ${{ getFormattedPrice(getChargedTotal(fare)).integer }}
+                        <sup>
+                            .{{ getFormattedPrice(getChargedTotal(fare)).decimal }}
+                        </sup>
+                    </span>
+                </div>
+
+            </div>
+        </div>
+
+
+        <!-- Mobile Bottom Bar -->
+        <div class="psc-bar" id="pscToggle" (click)="togglePscPanel($event)">
+
+            <div class="psc-bar__price-block">
+
+                <span class="psc-bar__price">
+
+                    ${{ getFormattedPrice(getChargedTotal(fare)).integer }}
+
+                    <sup>
+                        .{{ getFormattedPrice(getChargedTotal(fare)).decimal }}
+                    </sup>
+
+                    <i class="fa-solid" id="pscChevron" [class.fa-chevron-down]="!pscPanelOpen"
+                        [class.fa-chevron-up]="pscPanelOpen"></i>
+
+                </span>
+
+                <span class="psc-bar__label">
+                    Total Price
+                </span>
+
+            </div>
+
+
+            <button type="button" class="psc-bar__btn" id="pscCompleteBtn" (click)="completeBooking($event)">
+               Continue Booking
+            </button>
+
+        </div>
+
+    </div>
+    }
+</section>
+
+<div class="offcanvas offcanvas-end rg-offcanvas" tabindex="-1" id="rgGallery">
+    <div class="offcanvas-header border-bottom">
+        <h5 class="offcanvas-title">{{ hotelDetails.hotelName }}</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
+    </div>
+    <div class="offcanvas-body p-0">
+        <div class="rg-flex-gallery">
+            @for (image of hotelDetails.images; track image.href) {
+            <img [src]="image.href" [alt]="hotelDetails.hotelName"
+                (error)="$any($event.target).src = 'assets/images/hotel/hotel-placeholder.png'" />
+            }
+        </div>
+    </div>
+</div>
+
+<div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+    <div class="rm-sidebar__header">
+        <div class="rm-sidebar__header-content">
+            <span class="rm-sidebar__eyebrow">ROOM DETAILS</span>
+            <h3 class="rm-sidebar__title">{{ selectedRoom?.roomName }}</h3>
+        </div>
+        <button type="button" class="rm-sidebar__close" data-bs-dismiss="offcanvas" aria-label="Close">
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+    </div>
+
+    <div class="rm-sidebar__body">
+        <section class="rm-sidebar__featured">
+            <h4 class="rm-sidebar__section-title">Featured amenities</h4>
+            <div class="rm-sidebar__featured-list">
+                @if (selectedRoom?.roomSize) {
+                <div class="rm-sidebar__featured-item"><i class="fa-solid fa-check"></i><span>{{ selectedRoom.roomSize
+                        }} sq. mt.</span></div>
+                }
+                @if (selectedRoom?.bedType) {
+                <div class="rm-sidebar__featured-item"><i class="fa-solid fa-check"></i><span>{{ selectedRoom.bedCount
+                        }} {{ selectedRoom.bedType }}</span></div>
+                }
+                @if (selectedRoom?.maxOccupancy) {
+                <div class="rm-sidebar__featured-item"><i class="fa-solid fa-check"></i><span>Sleeps {{
+                        selectedRoom.maxOccupancy }}</span></div>
+                }
+            </div>
+        </section>
+
+        @if (hasNonChargeableFacilities(selectedRoom)) {
+        <section class="rm-sidebar__group">
+            <h4 class="rm-sidebar__group-title">Included amenities</h4>
+            <div class="rm-sidebar__list">
+                @for (facility of selectedRoom.roomFacilities; track facility.facilityCode) {
+                @if (!facility.indFee) {
+                <span>{{ formatLabel(facility.content) | titlecase }}</span>
+                }
+                }
+            </div>
+        </section>
+        }
+
+        @if (hasChargeableFacilities(selectedRoom)) {
+        <section class="rm-sidebar__group">
+            <h4 class="rm-sidebar__group-title">Available for a fee</h4>
+            <div class="rm-sidebar__list">
+                @for (facility of selectedRoom.roomFacilities; track facility.facilityCode) {
+                @if (facility.indFee) {
+                <span>{{ formatLabel(facility.content) | titlecase }}</span>
+                }
+                }
+            </div>
+        </section>
+        }
+
+        @if (selectedRoom?.roomPolicies?.length) {
+        <section class="rm-sidebar__group">
+            <h4 class="rm-sidebar__group-title">Room policy</h4>
+            <div class="rm-sidebar__list">
+                @for (policy of selectedRoom.roomPolicies; track policy.title) {
+                <span>{{ policy.title }}</span>
+                @for (item of policy.items; track item) {
+                <span>{{ item }}</span>
+                }
+                }
+            </div>
+        </section>
+        }
+
+        @if (selectedRoom?.rateList?.[0]?.cancellationPolicy?.length) {
+        <section class="rm-sidebar__policy">
+            <h4 class="rm-sidebar__group-title">Cancellation policy</h4>
+            <div class="rm-sidebar__policy-content">
+                @if (selectedRoom.rateList[0].freeCancellation) {
+                <strong>Free Cancellation</strong>
+                <p>Cancel for free before {{ selectedRoom.rateList[0].cancellationPolicy[0].fromDate | date:'medium' }}.
+                </p>
+                } @else {
+                <strong>Non-refundable</strong>
+                <p>This rate cannot be cancelled or changed.</p>
+                }
+            </div>
+        </section>
+        }
+
+        <section class="rm-sidebar__payment">
+            <h4 class="rm-sidebar__group-title">Payment</h4>
+            <div class="rm-sidebar__payment-content">
+                <i class="fa-regular fa-credit-card"></i>
+                <span>{{ selectedRoom?.rateList?.[0]?.payLater ? 'Pay at hotel' : 'Book and pay now' }}</span>
+            </div>
+        </section>
+    </div>
+</div>
+}

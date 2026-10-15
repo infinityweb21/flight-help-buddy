@@ -1,0 +1,280 @@
+<section class="banner banner-content-wrap common-banner-content-wrap">
+  <div class="container container-xxl">
+    <div class="row align-items-center">
+      <div class="col-12">
+        <div class="banner-txt">
+          <h1>Exclusive Flight Offers </h1>
+          <p class="banner-sub-text d-none d-md-flex">
+            Save More When You Call
+            <a href="tel:+{{getData?.phoneNumber}}">{{getData?.phoneNumber}}</a> Now
+          </p>
+          <div class="banner-form banner-form-content mb-0">
+            <app-flights-tab></app-flights-tab>
+          </div>
+        </div>
+      </div>
+      <!-- <div class="col-xxl-4 d-none d-xxl-flex">
+        <div class="banner-right-image-box">
+          <div class="banner-right-image-box-content">
+            <div class="right-img-content-col">
+              <div class="right-img-box">
+                <img
+                  src="assets/images/flight/top-airlines/thumb-1.webp"
+                  alt="Banner Thumb"
+                />
+              </div>
+            </div>
+            <div class="right-img-content-col">
+              <div class="right-img-box">
+                <img
+                     src="assets/images/flight/top-airlines/thumb-2.webp"
+                  alt="Banner Thumb"
+                />
+              </div>
+              <div class="right-img-box">
+                <img
+                     src="assets/images/flight/top-airlines/thumb-3.webp"
+                  alt="Banner Thumb"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div> -->
+    </div>
+  </div>
+</section>
+
+<!-- === === -->
+<section class="cmn-gap pb-0 business-class-section">
+  <div class="container container-xxl">
+    <div class="section-header mb-3 mb-lg-4">
+      <h2 class="section-title mb-2">Exclusive Flight Offers </h2>
+      <p class="section-subtitle">
+        Save More When You Call <a href="tel:+{{getData?.phoneNumber}}"
+          class="link-highlight">{{getData?.phoneNumber}}</a>
+      </p>
+    </div>
+    <!-- == === -->
+    <div class="row g-2 g-lg-4">
+      <!-- Card 1 -->
+      <div class="col-6 col-lg-3 d-flex">
+        <div class="card amenity-card">
+          <div class="card-body text-start">
+            <div class="card-icon mb-3">
+              <i class="fa-light fa-plane-circle-check"></i>
+            </div>
+            <h5 class="card-title">Redefine the Way You Fly</h5>
+            <p class="card-text">
+              Travel isn’t just about the destination — it’s about arriving in luxury
+            </p>
+          </div>
+        </div>
+      </div>
+      <!-- Card 2 -->
+      <div class="col-6 col-lg-3 d-flex">
+        <div class="card amenity-card">
+          <div class="card-body text-start">
+            <div class="card-icon mb-3">
+              <i class="fa-light fa-plane-circle-check"></i>
+            </div>
+            <h5 class="card-title">In-Flight Connectivity</h5>
+            <p class="card-text">
+              Browse, stream, and work effortlessly with high-speed Wi-Fi that keeps you in touch above the clouds
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="col-6 col-lg-3 d-flex">
+        <div class="card amenity-card">
+          <div class="card-body text-start">
+            <div class="card-icon mb-3">
+              <i class="fa-light fa-plane-circle-check"></i>
+            </div>
+            <h5 class="card-title">Dedicated Cabin Crew</h5>
+            <p class="card-text">
+              Our attentive team delivers hospitality with every detail planned for your comfort
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 4 -->
+      <div class="col-6 col-lg-3 d-flex">
+        <div class="card amenity-card">
+          <div class="card-body text-start">
+            <div class="card-icon mb-3">
+              <i class="fa-light fa-plane-circle-check"></i>
+            </div>
+            <h5 class="card-title">Exclusive Airport Transfers</h5>
+            <p class="card-text">
+              Enjoy wide, open spaces, thoughtful lighting, and quiet zones for a calm and restful flight
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- == === -->
+  </div>
+</section>
+<!-- === === -->
+<section class="cmn-gap pb-0 spl-airline-deals-section">
+  <div class="container container-xxl">
+    <div class="section-header mb-3 mb-lg-4">
+      <h2 class="section-title mb-2">Exclusive Airline Offers</h2>
+    </div>
+    <!-- == === -->
+    <div class="row g-2 g-lg-4">
+      <div class="col-6 col-md-4 col-lg-3 deals-card-col d-flex flex-1"
+        *ngFor="let deal of deals.slice(0, visibleCount)">
+        <a href="javascript:void(0);" class="spl-airline-deals-card w-100">
+          <div class="spl-airline-deals-logo-container w-100">
+            <img src="{{ deal.logo }}" [alt]="deal.name" class="spl-airline-deals-logo" />
+          </div>
+          <div class="spl-airline-deals-info-container">
+            <h3 class="spl-airline-name">{{ deal.name }}</h3>
+            <p class="spl-airline-deals-description" [innerHTML]="deal.description"></p>
+            <div class="spl-airline-deals-button">Browse Offers</div>
+          </div>
+        </a>
+      </div>
+
+      <div class="load-more-link-wrap loadMoreTrigger">
+        <a href="javascript:void(0);" class="load-more-link" (click)="toggleShow()">
+          {{ visibleCount < deals.length ? "Show More" : "Show Less" }} </a>
+      </div>
+    </div>
+    <!-- == === -->
+  </div>
+</section>
+<!-- === === -->
+<section class="fly-section py-0">
+  <div class="fly-container container container-xxl">
+    <div class="fly-row row">
+      <article class="fly-article fly-padding">
+        <div class="fly-flex">
+          <section class="fly-main">
+            <h2 class="fly-title">Find Budget-Friendly Flights with Ease</h2>
+            <div class="fly-text">
+              <p>
+                Whether it’s for business, fun, or reuniting with family, we’re here to make your travel plans simple
+                and affordable.
+              </p>
+              <p>
+                Wherever your journey takes you, we’ll help you score the best deals. Need to book in a hurry? Call us
+                anytime for quick, hassle-free support.
+              </p>
+              <p>
+                Always on the move? Our user-friendly mobile app lets you book flights in minutes - on both Android and
+                iOS. Whether it's a surprise trip or a well-planned escape, booking has never been easier.
+              </p>
+
+              <div class="fly-faq">
+                <!-- FAQ 1 -->
+                <div class="fly-faq-item">
+                  <h3 class="fly-faq-question">
+                    Flight-Saving Hacks You Need
+                  </h3>
+                  <div class="fly-faq-answer">
+                    <ul class="fly-tip-list">
+                      <li>
+                        <strong>1. Book in advance:</strong> Reserving tickets 3–4 weeks ahead often results in lower
+                        prices.
+                      </li>
+                      <li>
+                        <strong>2. Fly budget airlines:</strong> Low-cost carriers can cut your travel expenses
+                        significantly.
+                      </li>
+                      <li>
+                        <strong>3. Redeem rewards:</strong> Use points from credit cards or airline programs to save on
+                        fares.
+                      </li>
+                      <li>
+                        <strong>4. Talk to an agent:</strong> Travel agents may offer special discounts and lower
+                        booking fees.
+                      </li>
+                      <li>
+                        <strong>5. Stay flexible:</strong> Changing your dates or destination could unlock better flight
+                        deals.
+                      </li>
+                      <li>
+                        <strong>6. Join loyalty programs: </strong> These are free and let you earn rewards toward
+                        future flights.
+                      </li>
+                      <li>
+                        <strong>7. Set fare alerts:</strong> Sign up for notifications to track discounts and price
+                        changes fast.
+                      </li>
+                      <li>
+                        <strong>8. Try different currencies:</strong> Booking in foreign currency can sometimes offer
+                        lower prices.
+                      </li>
+                      <li>
+                        <strong>9. Combine carriers:</strong>One-way tickets with multiple airlines may be cheaper than
+                        roundtrips.
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+
+                <!-- FAQ 2 -->
+                <div class="fly-faq-item">
+                  <h3 class="fly-faq-question">
+                    Your Guide to Low-Fare Days
+                  </h3>
+                  <div class="fly-faq-answer">
+                    <p>
+                      Though it depends on your route, midweek flights, especially between Monday and Thursday, are
+                      typically cheaper. Fridays and weekends often cost more because of increased demand. Steering
+                      clear of holiday periods and peak travel seasons can also help you snag better deals.
+                    </p>
+                  </div>
+                </div>
+
+                <!-- FAQ 3 -->
+                <div class="fly-faq-item">
+                  <h3 class="fly-faq-question">
+                    Best Budget Destinations for 2025
+                  </h3>
+                  <div class="fly-faq-answer">
+                    <ul class="fly-dest-list">
+                      <li>Lisbon</li>
+                      <li>Medellín</li>
+                      <li>Zagreb</li>
+                      <li>La Paz</li>
+                      <li>New Orleans</li>
+                      <li>San Antonio</li>
+                      <li>Albuquerque</li>
+                      <li>Lima</li>
+                      <li>Hanoi</li>
+                      <li>Bali</li>
+                      <li>Puerto Rico</li>
+                      <li>Kuala Lumpur</li>
+                    </ul>
+                  </div>
+                </div>
+
+                <!-- FAQ 4 -->
+                <div class="fly-faq-item">
+                  <h3 class="fly-faq-question">
+                    Looking for a Last-Minute Flight?
+                  </h3>
+                  <div class="fly-faq-answer">
+                    <p>
+                      Got an urgent trip? Discover affordable last-minute airfare to top global spots. Use our site to
+                      search instantly, or speak with our round-the-clock support team to grab the best deals fast—no
+                      hassle, just smooth travel planning.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+<!-- === === -->

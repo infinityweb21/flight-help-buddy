@@ -1,0 +1,514 @@
+<!-- == Main Banner Part Start == -->
+<app-top-destinations-head></app-top-destinations-head>
+<!-- == Main Banner Part End == -->
+<!-- == Flight Search Start == -->
+<!-- <div class="container container-xxl py-3"><app-flights-tab></app-flights-tab></div> -->
+<!-- == Flight Search End == -->
+<!-- == Main Body Start == -->
+        <!--=========== Banner Section Start  ==============-->
+ 
+        <!--=========== Banner Section end  ==============-->
+
+        <section class="details-contentntsec">
+            <div class="container container-xxl">
+                <div class="row">
+                    <div class="col-12 d-flex justify-content-between align-items-center flex-wrap">
+                        <h5 class="customhead">Bangkok</h5>
+                        <div class="custom-topbar">
+                            Call Us Toll-Free to Get the Best Deal! <a href="tel:{{getData?.phoneNumber}}">{{getData?.phoneNumber}}</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Tabs Navigation -->
+                <ul class="nav custom-nav-tabs mt-3" id="customTab" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link active" id="overview-tab" data-bs-toggle="tab"
+                            data-bs-target="#overview" type="button" role="tab">Overview</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="things-tab" data-bs-toggle="tab" data-bs-target="#things"
+                            type="button" role="tab">Things to Do</button>
+                    </li>
+                    <!-- <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="hotels-tab" data-bs-toggle="tab" data-bs-target="#hotels"
+                            type="button" role="tab">Best Hotels</button>
+                    </li> -->
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="visit-tab" data-bs-toggle="tab" data-bs-target="#visit"
+                            type="button" role="tab">When to visit</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="map-tab" data-bs-toggle="tab" data-bs-target="#map" type="button"
+                            role="tab">Map</button>
+                    </li>
+                    <!-- <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="photos-tab" data-bs-toggle="tab" data-bs-target="#photos"
+                            type="button" role="tab">Photos</button>
+                    </li> -->
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="support-tab" data-bs-toggle="tab" data-bs-target="#support"
+                            type="button" role="tab">Get Support</button>
+                    </li>
+                </ul>
+            </div>
+        </section>
+        <section class="content-boxsection">
+            <div class="container container-xxl">
+                <!-- Tabs Content -->
+                <div class="tab-content custom-tab-content" id="customTabContent">
+                    <div class="tab-pane fade show active" id="overview" role="tabpanel">
+                        <div class="custom-tab-title">Bangkok: Chaos Meets Charm in the Best Possible Way</div>
+                        <p class="custom-tab-paragraph">
+                            Bangkok means the city of nightlife, vibrancy, street foods and shopping. A city that offers both ancient parts and modern spectacles. Here, rooftop bars tower over golden temples, and street food stalls stand in line with glitzy malls. This is a place of contrast and somehow it just fits perfectly with what tourists come for.
+                        </p>
+                        <p class="custom-tab-paragraph">
+                            This is a city that doesn’t wait for you to adjust. It rushes in with tuk-tuk horns, sizzling woks, and bursts of incense from hidden shrines. From the buzz of neon-lit streets to the calm of narrow waterways, Bangkok shifts tempo without warning, and that’s the magic. In short, you will be bombarded from everywhere and anywhere.
+                        </p>
+                        <p class="custom-tab-paragraph">
+                            But beneath all the bustle, there’s a distinct rhythm. A kind of beautiful, pulsing balance where tradition and trend stand side by side and not against each other. You’ll find saffron-robed monks walking past street murals, century-old temples standing proudly beside hipster cafes, and markets that sell everything from silk to smartphones. And through it all, a deep sense of Thai warmth and hospitality. This makes even the most chaotic corner feel strangely comforting.
+                        </p>
+                        <p class="custom-tab-paragraph">
+                            Food, fashion, history, or thrill of the city life — whatever might be your purpose of visit, the city will not disappoint you. In fact, you might feel overwhelmed on the first day, but by the second, you will look for more.
+                        </p>
+                        <div class="row mt-4">
+                            <div class="col-lg-8 col-md-6 col-12">
+
+                                <div class="custom-tab-title">Best Time To Visit Bangkok, Thailand  </div>
+                                <div class="accordion season-accordion" id="seasonAccordion">
+
+                                    <!-- Item 1 -->
+                                    <div class="accordion-item">
+                                        <h2 class="accordion-header" id="headingOne">
+                                            <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                                data-bs-target="#collapseOne" aria-expanded="true">
+                                                <span class="season-label label-green">Nov to Feb</span>
+                                                <span class="season-subtext">Is Peak Season</span>
+                                            </button>
+                                        </h2>
+                                        <div id="collapseOne" class="accordion-collapse collapse show"
+                                            data-bs-parent="#seasonAccordion">
+                                            <div class="accordion-body">
+                                                Cooler weather and low humidity make sightseeing comfortable. The city is bustling with festivals like Loy Krathong and vibrant night markets. 
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Item 2 -->
+                                    <div class="accordion-item">
+                                        <h2 class="accordion-header" id="headingTwo">
+                                            <button class="accordion-button collapsed" type="button"
+                                                data-bs-toggle="collapse" data-bs-target="#collapseTwo">
+                                                <span class="season-label label-blue">Mar to May</span>
+                                                <span class="season-subtext">Is Moderate Season</span>
+                                            </button>
+                                        </h2>
+                                        <div id="collapseTwo" class="accordion-collapse collapse"
+                                            data-bs-parent="#seasonAccordion">
+                                            <div class="accordion-body">
+                                                It gets hotter, but with fewer tourists, temples and attractions are more accessible. Water festivals like Songkran brighten the streets in April. 
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Item 3 -->
+                                    <div class="accordion-item">
+                                        <h2 class="accordion-header" id="headingThree">
+                                            <button class="accordion-button collapsed" type="button"
+                                                data-bs-toggle="collapse" data-bs-target="#collapseThree">
+                                                <span class="season-label label-orange">Jun to Oct</span>
+                                                <span class="season-subtext">Is Off Season</span>
+                                            </button>
+                                        </h2>
+                                        <div id="collapseThree" class="accordion-collapse collapse"
+                                            data-bs-parent="#seasonAccordion">
+                                            <div class="accordion-body">
+                                                Rainy season sets in. While downpours are frequent, they are often brief. Prices are low and the city remains active for budget travelers. 
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-6 col-12">
+                                <div class="weather-table-wrapper">
+
+                                    <div class="weather-table bg-white">
+                                        <table>
+                                            <thead>
+                                                <tr>
+                                                    <th>Month</th>
+                                                    <th>Temp (Max/Min)</th>
+                                                    <th>Rain mm</th>
+                                                    <th>Weather Opinion</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td><a href="#" class="month-link">Jan</a></td>
+                                                    <td class="temp-col">26º/15º</td>
+                                                    <td class="rain-col">10</td>
+                                                    <td class="opinion-col"><i
+                                                            class="fa-regular fa-face-grin-hearts"></i> Peak</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><a href="#" class="month-link">Feb</a></td>
+                                                    <td class="temp-col">26º/15º</td>
+                                                    <td class="rain-col">10</td>
+                                                    <td class="opinion-col"><i
+                                                            class="fa-regular fa-face-smile-beam"></i> Moderate</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><a href="#" class="month-link">Mar</a></td>
+                                                    <td class="temp-col">26º/15º</td>
+                                                    <td class="rain-col">10</td>
+                                                    <td class="opinion-col"><i class="fa-regular fa-face-sad-cry"></i>
+                                                        Off</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><a href="#" class="month-link">Apr</a></td>
+                                                    <td class="temp-col">26º/15º</td>
+                                                    <td class="rain-col">10</td>
+                                                    <td class="opinion-col"><i
+                                                            class="fa-regular fa-face-grin-hearts"></i> Moderate</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><a href="#" class="month-link">May</a></td>
+                                                    <td class="temp-col">26º/15º</td>
+                                                    <td class="rain-col">10</td>
+                                                    <td class="opinion-col"><i
+                                                            class="fa-regular fa-face-grin-hearts"></i> Moderate</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><a href="#" class="month-link">Jun</a></td>
+                                                    <td class="temp-col">26º/15º</td>
+                                                    <td class="rain-col">10</td>
+                                                    <td class="opinion-col"><i
+                                                            class="fa-regular fa-face-grin-hearts"></i> Moderate</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><a href="#" class="month-link">Jul</a></td>
+                                                    <td class="temp-col">26º/15º</td>
+                                                    <td class="rain-col">10</td>
+                                                    <td class="opinion-col"><i
+                                                            class="fa-regular fa-face-grin-hearts"></i> Moderate</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><a href="#" class="month-link">Aug</a></td>
+                                                    <td class="temp-col">26º/15º</td>
+                                                    <td class="rain-col">10</td>
+                                                    <td class="opinion-col"><i
+                                                            class="fa-regular fa-face-grin-hearts"></i> Moderate</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><a href="#" class="month-link">Sep</a></td>
+                                                    <td class="temp-col">26º/15º</td>
+                                                    <td class="rain-col">10</td>
+                                                    <td class="opinion-col"><i
+                                                            class="fa-regular fa-face-grin-hearts"></i> Moderate</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><a href="#" class="month-link">Oct</a></td>
+                                                    <td class="temp-col">26º/15º</td>
+                                                    <td class="rain-col">10</td>
+                                                    <td class="opinion-col"><i
+                                                            class="fa-regular fa-face-grin-hearts"></i> Moderate</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><a href="#" class="month-link">Nov</a></td>
+                                                    <td class="temp-col">26º/15º</td>
+                                                    <td class="rain-col">10</td>
+                                                    <td class="opinion-col"><i
+                                                            class="fa-regular fa-face-grin-hearts"></i> Moderate</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><a href="#" class="month-link">Dec</a></td>
+                                                    <td class="temp-col">26º/15º</td>
+                                                    <td class="rain-col">10</td>
+                                                    <td class="opinion-col"><i
+                                                            class="fa-regular fa-face-grin-hearts"></i> Moderate</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Placeholder tabs for other sections -->
+                    <div class="tab-pane fade" id="things" role="tabpanel">
+                        <div class="desilistcard">
+                            <div class="destination-card">
+                                <div class="destination-image">
+                                    <img src="assets/images/tab_photos/bangkok/things_to_do/the-grand-palace.webp" alt="Statue of Liberty">
+                                </div>
+                                <div class="destination-content">
+                                    <h3>The Grand Palace</h3>
+                                    <p>
+                                        Golden spires, courtyards, and sacred halls — a complex that will leave you dazzled. You cannot miss the Grand Palace, Bangkok’s most iconic landmark. Once it was the royal residence, now it is known as a spiritual and ceremonial center. The architecture here will stun you, and the revered Temple of the Emerald Buddha (Wat Phra Kaew) is the most recommended one among the tourists. Keep in mind to dress modestly, and you will be awestruck by centuries of Thai craftsmanship and cultural pride.
+                                    </p>
+                                    <div class="last-updated">Last Update: 20/07/2025</div>
+                                </div>
+                            </div>
+                            <div class="destination-card">
+                                <div class="destination-image">
+                                    <img src="assets/images/tab_photos/bangkok/things_to_do/wat-arun.webp" alt="Statue of Liberty">
+                                </div>
+                                <div class="destination-content">
+                                    <h3>Wat Arun</h3>
+                                    <p>
+                                        Bangkok’s one of the most striking temples, Wat Arun, stands beside the Chao Phraya River. This place is even more beautiful in the morning sunlight, as it is made of porcelain mosaics. Consider climbing up the central prang to get mesmerized by the panoramic landscape of the city. Your overall experience will be peaceful and steeped in symbolism.
+                                    </p>
+                                    <div class="last-updated">Last Update: 20/07/2025</div>
+                                </div>
+                            </div>
+                            <div class="destination-card">
+                                <div class="destination-image">
+                                    <img src="assets/images/tab_photos/bangkok/things_to_do/chatuchak.webp" alt="Statue of Liberty">
+                                </div>
+                                <div class="destination-content">
+                                    <h3>Chatuchak Weekend Market</h3>
+                                    <p>
+                                        With over 15,000 stalls, you can visit one of the world’s largest weekend markets. It’s a maze of clothes, antiques, street food, and local art all packed into one place. Be it hunting souvenirs, sampling Thai snacks, or people-watching, this market is an essential Bangkok experience. Come early, stay hydrated, and expect to haggle; your time will be extraordinary.
+                                    </p>
+                                    <div class="last-updated">Last Update: 20/07/2025</div>
+                                </div>
+                            </div>
+                            <div class="destination-card">
+                                <div class="destination-image">
+                                    <img src="assets/images/tab_photos/bangkok/things_to_do/jim-thompso.webp" alt="Statue of Liberty">
+                                </div>
+                                <div class="destination-content">
+                                    <h3>Jim Thompson House</h3>
+                                    <p>
+                                        Jim Thompson, the American silk entrepreneur who helped revive Thailand’s silk industry. Have a look at his world. His traditional teak home, amidst the lush gardens, is now maintained as a museum of Southeast Asian art and architecture. Take a guide and your tour will be full of stories - right in the middle of Bangkok.
+                                    </p>
+                                    <div class="last-updated">Last Update: 20/07/2025</div>
+                                </div>
+                            </div>
+                            <div class="destination-card">
+                                <div class="destination-image">
+                                    <img src="assets/images/tab_photos/bangkok/things_to_do/asiatique.webp" alt="Statue of Liberty">
+                                </div>
+                                <div class="destination-content">
+                                    <h3>Asiatique The Riverfront</h3>
+                                    <p>
+                                        With boutique shops, outdoor dining, and live performances, it’s a great place to unwind. You can shop for gifts, have dinner at roadside stalls or cozy restaurants, and witness some cultural shows right in the middle of the street. Take a ride on the Ferris wheel and be amazed by the skyline views of the city.
+                                    </p>
+                                    <div class="last-updated">Last Update: 20/07/2025</div>
+                                </div>
+                            </div>
+                            <div class="destination-card">
+                                <div class="destination-image">
+                                    <img src="assets/images/tab_photos/bangkok/things_to_do/khao-san-road.webp" alt="Statue of Liberty">
+                                </div>
+                                <div class="destination-content">
+                                    <h3>Khao San Road</h3>
+                                    <p>
+                                        Bangkok’s go-to spot for backpackers and late-night energy. Packed with bars, street food stalls, tattoo parlors, and budget stays, it’s loud, lively, and unapologetically vibrant. Whether you're there to party or just people-watch, it’s a spot that captures the youthful, unfiltered side of Bangkok nightlife.
+                                    </p>
+                                    <div class="last-updated">Last Update: 20/07/2025</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- <div class="tab-pane fade" id="hotels" role="tabpanel">Coming soon...</div> -->
+                    <div class="tab-pane fade" id="visit" role="tabpanel">
+
+                        <div class="row">
+                            <div class="col-lg-8 col-md-6 col-12">
+
+                                <div class="custom-tab-title">Best Time To Visit Bangkok, Thailand </div>
+                                <div class="accordion season-accordion" id="seasonAccordion01">
+
+                                    <!-- Item 1 -->
+                                    <div class="accordion-item">
+                                        <h2 class="accordion-header" id="headingOne">
+                                            <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                                data-bs-target="#collapseOne" aria-expanded="true">
+                                                <span class="season-label label-green">Nov to Feb</span>
+                                                <span class="season-subtext">Is Peak Season</span>
+                                            </button>
+                                        </h2>
+                                        <div id="collapseOne" class="accordion-collapse collapse show"
+                                            data-bs-parent="#seasonAccordion01">
+                                            <div class="accordion-body">
+                                                Cooler weather and low humidity make sightseeing comfortable. The city is bustling with festivals like Loy Krathong and vibrant night markets. 
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Item 2 -->
+                                    <div class="accordion-item">
+                                        <h2 class="accordion-header" id="headingTwo">
+                                            <button class="accordion-button collapsed" type="button"
+                                                data-bs-toggle="collapse" data-bs-target="#collapseTwo">
+                                                <span class="season-label label-blue">Mar to May</span>
+                                                <span class="season-subtext">Is Moderate Season</span>
+                                            </button>
+                                        </h2>
+                                        <div id="collapseTwo" class="accordion-collapse collapse"
+                                            data-bs-parent="#seasonAccordion01">
+                                            <div class="accordion-body">
+                                                It gets hotter, but with fewer tourists, temples and attractions are more accessible. Water festivals like Songkran brighten the streets in April. 
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Item 3 -->
+                                    <div class="accordion-item">
+                                        <h2 class="accordion-header" id="headingThree">
+                                            <button class="accordion-button collapsed" type="button"
+                                                data-bs-toggle="collapse" data-bs-target="#collapseThree">
+                                                <span class="season-label label-orange">Jun to Oct</span>
+                                                <span class="season-subtext">Is Off Season</span>
+                                            </button>
+                                        </h2>
+                                        <div id="collapseThree" class="accordion-collapse collapse"
+                                            data-bs-parent="#seasonAccordion01">
+                                            <div class="accordion-body">
+                                                Rainy season sets in. While downpours are frequent, they are often brief. Prices are low and the city remains active for budget travelers. 
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-6 col-12">
+                                <div class="weather-table-wrapper">
+
+                                    <div class="weather-table bg-white">
+                                        <table>
+                                            <thead>
+                                                <tr>
+                                                    <th>Month</th>
+                                                    <th>Temp (Max/Min)</th>
+                                                    <th>Rain mm</th>
+                                                    <th>Weather Opinion</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td><a href="#" class="month-link">Jan</a></td>
+                                                    <td class="temp-col">26º/15º</td>
+                                                    <td class="rain-col">10</td>
+                                                    <td class="opinion-col"><i
+                                                            class="fa-regular fa-face-grin-hearts"></i> Peak</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><a href="#" class="month-link">Feb</a></td>
+                                                    <td class="temp-col">26º/15º</td>
+                                                    <td class="rain-col">10</td>
+                                                    <td class="opinion-col"><i
+                                                            class="fa-regular fa-face-smile-beam"></i> Moderate</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><a href="#" class="month-link">Mar</a></td>
+                                                    <td class="temp-col">26º/15º</td>
+                                                    <td class="rain-col">10</td>
+                                                    <td class="opinion-col"><i class="fa-regular fa-face-sad-cry"></i>
+                                                        Off</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><a href="#" class="month-link">Apr</a></td>
+                                                    <td class="temp-col">26º/15º</td>
+                                                    <td class="rain-col">10</td>
+                                                    <td class="opinion-col"><i
+                                                            class="fa-regular fa-face-grin-hearts"></i> Moderate</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><a href="#" class="month-link">May</a></td>
+                                                    <td class="temp-col">26º/15º</td>
+                                                    <td class="rain-col">10</td>
+                                                    <td class="opinion-col"><i
+                                                            class="fa-regular fa-face-grin-hearts"></i> Moderate</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><a href="#" class="month-link">Jun</a></td>
+                                                    <td class="temp-col">26º/15º</td>
+                                                    <td class="rain-col">10</td>
+                                                    <td class="opinion-col"><i
+                                                            class="fa-regular fa-face-grin-hearts"></i> Moderate</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><a href="#" class="month-link">Jul</a></td>
+                                                    <td class="temp-col">26º/15º</td>
+                                                    <td class="rain-col">10</td>
+                                                    <td class="opinion-col"><i
+                                                            class="fa-regular fa-face-grin-hearts"></i> Moderate</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><a href="#" class="month-link">Aug</a></td>
+                                                    <td class="temp-col">26º/15º</td>
+                                                    <td class="rain-col">10</td>
+                                                    <td class="opinion-col"><i
+                                                            class="fa-regular fa-face-grin-hearts"></i> Moderate</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><a href="#" class="month-link">Sep</a></td>
+                                                    <td class="temp-col">26º/15º</td>
+                                                    <td class="rain-col">10</td>
+                                                    <td class="opinion-col"><i
+                                                            class="fa-regular fa-face-grin-hearts"></i> Moderate</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><a href="#" class="month-link">Oct</a></td>
+                                                    <td class="temp-col">26º/15º</td>
+                                                    <td class="rain-col">10</td>
+                                                    <td class="opinion-col"><i
+                                                            class="fa-regular fa-face-grin-hearts"></i> Moderate</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><a href="#" class="month-link">Nov</a></td>
+                                                    <td class="temp-col">26º/15º</td>
+                                                    <td class="rain-col">10</td>
+                                                    <td class="opinion-col"><i
+                                                            class="fa-regular fa-face-grin-hearts"></i> Moderate</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><a href="#" class="month-link">Dec</a></td>
+                                                    <td class="temp-col">26º/15º</td>
+                                                    <td class="rain-col">10</td>
+                                                    <td class="opinion-col"><i
+                                                            class="fa-regular fa-face-grin-hearts"></i> Moderate</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="map" role="tabpanel">
+                        <div class="mapsec">
+                                       <agm-map [latitude]="this.lat" [longitude]="this.lng" style="width:100%; height:450px;"
+                    frameborder="0" scrolling="no" id="gmap_canvas" marginheight="0" marginwidth="0">
+                    <agm-marker [latitude]="this.lat" [longitude]="this.lng"></agm-marker>
+                  </agm-map>
+                            <div class="locationname">
+                                <i class="fa-solid fa-location-dot"></i>New York City, USA
+                            </div>
+                        </div>
+                    </div>
+                    <!-- <div class="tab-pane fade" id="photos" role="tabpanel">Coming soon...</div> -->
+                    <div class="tab-pane fade" id="support" role="tabpanel">
+                        <div class="booking-cta-banner">
+                            <div class="ctatex">
+                                <img src="assets/images/global-vacation-hotsport/ctatex.png" alt="global-vacation-hotspot">
+                            </div>
+                            <div class="booking-cta-text">
+                                <h2>MAKE EASY BOOKINGS HAPPEN NOW</h2>
+                                <p>Your travel experts are here to make each trip of yours more memorable and exciting
+                                </p>
+                               <a href="tel:{{getData?.phoneNumber}}" class="booking-cta-button">
+                                    <i class="fas fa-phone-volume"></i>{{getData?.phoneNumber}}
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+<!-- == Main Body End == -->
+<!-- == Destination List Part Start == -->
+<div class="container container-xxl"><app-top-destinations-list></app-top-destinations-list></div>
+<!-- == Destination List Part End == -->

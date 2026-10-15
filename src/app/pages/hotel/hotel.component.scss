@@ -1,0 +1,664 @@
+/* <<<<<< ************* HOTELLIST SECTION CSS START **************** >>>>>> */
+
+/* ======================= CARD ======================= */
+.card-journey-small {
+  --hc-img-h: 170px;
+
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 100%;
+  height: 100%;
+  margin-bottom: 16px;
+  overflow: hidden;
+  color: inherit;
+  text-decoration: none;
+  border-radius: 18px;
+  background-color: rgba(var(--white-color), 1);
+  border: 1px solid rgba(var(--main-color), 0.08);
+  box-shadow: 0 4px 12px rgba(var(--main-color), 0.07);
+  transition: box-shadow 0.3s ease, border-color 0.3s ease;
+}
+.card-journey-small:hover {
+  color: inherit;
+  border-color: rgba(var(--second-color), 0.35);
+  box-shadow: 0 14px 28px rgba(var(--main-color), 0.14);
+}
+.card-journey-small:focus-visible {
+  outline: 2px solid rgba(var(--second-color), 1);
+  outline-offset: 2px;
+}
+
+/* ======================= IMAGE ======================= */
+.card-journey-small .card-image {
+  position: relative;
+  flex-shrink: 0;
+  height: var(--hc-img-h);
+  line-height: normal;
+  overflow: hidden;
+  background: rgba(var(--main-color), 0.06);
+}
+.card-journey-small .card-image::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0) 45%);
+  pointer-events: none;
+}
+.card-journey-small .card-image img {
+  display: block;
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  transition: transform 0.6s ease;
+}
+.card-journey-small:hover .card-image img {
+  transform: scale(1.05);
+}
+
+/* label chip */
+.card-journey-small .card-image .label {
+  position: absolute;
+  z-index: 2;
+  top: 10px;
+  left: 10px;
+  padding: 4px 10px;
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 1.2;
+  border-radius: 999px;
+  color: rgba(var(--white-color), 1);
+  background-color: rgba(var(--second-color), 1);
+}
+
+/* wishlist heart */
+.card-journey-small .card-image .wish {
+  position: absolute;
+  z-index: 2;
+  top: 8px;
+  right: 10px;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  color: rgba(var(--second-color), 1);
+  background-color: rgba(255, 255, 255, 0.92);
+  -webkit-backdrop-filter: blur(4px);
+  backdrop-filter: blur(4px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  transition: background-color 0.25s ease, color 0.25s ease, transform 0.25s ease;
+}
+.card-journey-small .card-image .wish svg {
+  width: 16px;
+  height: 15px;
+  stroke: currentColor;
+}
+.card-journey-small .card-image .wish:hover {
+  color: rgba(var(--white-color), 1);
+  background-color: rgba(var(--second-color), 1);
+  transform: scale(1.08);
+}
+.card-journey-small .card-image .wish:focus-visible {
+  outline: 2px solid rgba(var(--white-color), 1);
+  outline-offset: 2px;
+}
+
+/* ======================= INFO ======================= */
+.card-journey-small .card-info {
+  position: relative;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  margin-top: 0;
+  padding: 22px 14px 14px;
+  border-radius: 0;
+  background-color: rgba(var(--white-color), 1);
+}
+
+/* rating pill sits on the seam between photo and info */
+.card-journey-small .card-info .card-rating {
+  position: absolute;
+  z-index: 3;
+  top: -14px;
+  left: 14px;
+  right: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.card-journey-small .card-info .card-rating .card-right .rating {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 10px;
+  font-size: 12px;
+  font-weight: 800;
+  line-height: 1.3;
+  border-radius: 999px;
+  color: rgba(var(--black-color), 1);
+  background-color: rgba(var(--white-color), 1);
+  border: 1px solid rgba(var(--main-color), 0.1);
+  box-shadow: 0 4px 12px rgba(var(--main-color), 0.12);
+}
+.card-journey-small .card-info .card-rating .card-right .rating i {
+  font-size: 11px;
+  color: #f5a623;
+}
+.card-journey-small .card-info .card-rating .rating .neutral-500 {
+  margin-left: 2px;
+  font-size: 11px;
+  font-weight: 500;
+  line-height: 1.3;
+  color: rgba(var(--black-color), 0.5) !important;
+}
+
+/* title */
+.card-journey-small .card-info .card-title {
+  margin: 0 0 4px;
+  font-family: var(--Overlock-font, inherit);
+  font-size: 15px;
+  font-weight: 800;
+  line-height: 1.3;
+  color: rgba(var(--black-color), 1);
+  transition: color 0.25s ease;
+}
+.card-journey-small .card-info .card-title > div {
+  font: inherit;
+  color: inherit;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.card-journey-small:hover .card-info .card-title {
+  color: rgba(var(--main-color), 1);
+}
+
+.card-journey-small .card-info .card-program {
+  position: relative;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/* location left, stars right */
+.card-journey-small .card-info .card-program .card-location {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+.card-journey-small .card-info .card-program .card-location .text-location {
+  min-width: 0;
+  padding-left: 0;
+  margin-bottom: 0 !important;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.4;
+  color: rgba(var(--black-color), 0.55) !important;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.card-journey-small .card-info .card-program .card-location .text-location i {
+  margin-right: 2px;
+  color: rgba(var(--second-color), 1);
+}
+.card-journey-small .ratingstar {
+  flex-shrink: 0;
+  display: inline-flex;
+  gap: 1px;
+  font-size: 11px;
+  color: #f5a623;
+}
+
+/* price + book */
+.card-journey-small .card-info .card-program .endtime {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-top: auto;
+  padding-top: 12px;
+  border-top: 1px solid rgba(var(--main-color), 0.08);
+}
+.card-journey-small .card-info .card-program .endtime .card-price {
+  min-width: 0;
+  display: flex;
+  align-items: baseline;
+  gap: 4px;
+}
+.card-journey-small .card-info .card-program .endtime .card-price h6 {
+  margin: 0;
+  font-size: 19px;
+  font-weight: 800;
+  line-height: 1;
+  color: rgba(var(--main-color), 1) !important;
+}
+.card-journey-small .card-info .card-program .endtime .card-price .neutral-500 {
+  font-size: 11px;
+  font-weight: 500;
+  line-height: 1.2;
+  white-space: nowrap;
+  color: rgba(var(--black-color), 0.55) !important;
+}
+
+/* Book Now: pill to match the other cards (only inside this card) */
+.card-journey-small .common-bgbookBtn,
+.card-journey-small .common-bgbookBtn:visited {
+  flex-shrink: 0;
+  padding: 7px 14px;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1.2;
+  border: 0;
+  border-radius: 999px;
+  color: rgba(var(--second-color), 1);
+  background-color: rgba(var(--second-color), 0.1);
+  transition: background-color 0.25s ease, color 0.25s ease;
+}
+.card-journey-small:hover .common-bgbookBtn,
+.card-journey-small .common-bgbookBtn:hover,
+.card-journey-small .common-bgbookBtn:focus-visible {
+  border: 0;
+  color: rgba(var(--white-color), 1);
+  background-color: rgba(var(--second-color), 1);
+}
+
+/* ======================= SHARED (unchanged, used elsewhere) ======================= */
+.neutral-500 {
+  color: #737373 !important;
+  font-weight: 500;
+  line-height: 22px;
+  font-size: 14px;
+  transition: all 0.3s ease 0s;
+  margin-bottom: 0 !important;
+}
+.ratingstar {
+  color: rgba(var(--second-color), 1);
+}
+
+.common-bgbookBtn,
+.common-bgbookBtn:visited {
+  background-color: transparent;
+  border: 1px solid rgba(var(--main-color), 1);
+  color: rgba(var(--main-color), 1);
+  font-size: 12px;
+  font-weight: 600;
+  padding: 6px 11px;
+  border-radius: 4px;
+  text-align: center;
+  display: inline-block;
+  transition: var(--transition-05s);
+}
+.common-bgbookBtn:hover,
+.common-bgbookBtn:focus {
+  background-color: rgba(var(--main-color), 1);
+  border: 1px solid rgba(var(--main-color), 1);
+  color: rgba(var(--white-color), 1);
+  transition: var(--transition-05s);
+}
+
+.viewallbtn-box {
+  margin-top: 20px;
+  text-align: center;
+}
+
+/* ======================= RESPONSIVE ======================= */
+@media (max-width: 767.98px) {
+  .card-journey-small {
+    --hc-img-h: 150px;
+    border-radius: 16px;
+  }
+  .card-journey-small .card-info {
+    padding: 20px 12px 12px;
+  }
+  .card-journey-small .card-info .card-rating {
+    left: 12px;
+    right: 12px;
+  }
+  .card-journey-small .card-info .card-title {
+    font-size: 14px;
+  }
+  .card-journey-small .card-info .card-program .endtime .card-price h6 {
+    font-size: 17px;
+  }
+  .card-journey-small .common-bgbookBtn,
+  .card-journey-small .common-bgbookBtn:visited {
+    padding: 6px 12px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card-journey-small,
+  .card-journey-small .card-image img,
+  .card-journey-small .card-image .wish,
+  .card-journey-small .common-bgbookBtn {
+    transition: none;
+  }
+  .card-journey-small:hover .card-image img,
+  .card-journey-small .card-image .wish:hover {
+    transform: none;
+  }
+}
+
+/* <<<<<< ************* HOTELLIST SECTION CSS end **************** >>>>>> */
+/* =========================================
+   TRAVEL TYPE TABS
+========================================= */
+
+/* =========================================
+   TAB CONTENT — ROUTE CARD
+========================================= */
+.route-card {
+  display: block;
+  min-width: 0;
+  height: 100%;
+  padding: 8px;
+  color: inherit;
+  text-decoration: none;
+  border-radius: 18px;
+  background: rgba(var(--white-color), 1);
+  border: 1px solid rgba(var(--main-color), 0.08);
+  box-shadow: 0 4px 12px rgba(var(--main-color), 0.06);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+.route-card:hover {
+  color: inherit;
+  transform: translateY(-3px);
+  border-color: rgba(var(--second-color), 0.35);
+  box-shadow: 0 14px 28px rgba(var(--main-color), 0.14);
+}
+.route-card:focus-visible {
+  outline: 2px solid rgba(var(--second-color), 1);
+  outline-offset: 3px;
+}
+
+/* Image (inset photo) */
+.route-card__image {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  border-radius: 12px;
+  background: rgba(var(--main-color), 0.06);
+}
+
+.route-card__image img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s ease;
+}
+
+/* Details: text left, round arrow button right */
+.route-card__details {
+  position: relative;
+  min-width: 0;
+  padding: 10px 46px 4px 6px;
+}
+
+/* arrow button circle */
+.route-card__details::after {
+  content: "";
+  position: absolute;
+  top: calc(50% + 3px);
+  right: 6px;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: rgba(var(--second-color), 0.1);
+  transform: translateY(-50%);
+  transition: background 0.25s ease;
+}
+
+/* arrow icon (same dashed arrow as the destination cards) */
+.route-card__details::before {
+  content: "";
+  position: absolute;
+  z-index: 1;
+  top: calc(50% + 3px);
+  right: 13px;
+  width: 18px;
+  height: 18px;
+  background: rgba(var(--second-color), 1);
+  transform: translateY(-50%);
+  transition: background 0.25s ease, transform 0.25s ease;
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12h.5m3 0h1.5m3 0h6'/%3E%3Cpath d='M15 16l4 -4'/%3E%3Cpath d='M15 8l4 4'/%3E%3C/svg%3E")
+    no-repeat center / contain;
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12h.5m3 0h1.5m3 0h6'/%3E%3Cpath d='M15 16l4 -4'/%3E%3Cpath d='M15 8l4 4'/%3E%3C/svg%3E")
+    no-repeat center / contain;
+}
+
+.route-card__title {
+  margin: 0;
+  font-size: 14.5px;
+  font-weight: 800;
+  line-height: 1.3;
+  color: rgba(var(--main-color), 1);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transition: color 0.25s ease;
+}
+
+.route-card__meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 2px 6px;
+  margin: 3px 0 0;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.4;
+  color: rgba(var(--black-color), 0.55);
+}
+
+.route-card__meta span {
+  font-size: 12px;
+  color: rgba(var(--second-color), 1);
+}
+
+/* ==========================================
+   HOVER
+========================================== */
+.route-card:hover .route-card__image img {
+  transform: scale(1.06);
+}
+
+.route-card:hover .route-card__title {
+  color: rgba(var(--second-color), 1);
+}
+
+.route-card:hover .route-card__details::after {
+  background: rgba(var(--second-color), 1);
+}
+
+.route-card:hover .route-card__details::before {
+  background: #fff;
+  transform: translate(2px, -50%);
+}
+
+/* ==========================================
+   MOBILE
+========================================== */
+@media (max-width: 575.98px) {
+  .popular-routes {
+    padding: 24px 0;
+  }
+
+  .route-card {
+    border-radius: 16px;
+  }
+
+  .route-card__title {
+    font-size: 14px;
+  }
+
+  .route-card__meta {
+    font-size: 11px;
+  }
+
+  .travel-type-tabs__nav {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow: auto;
+    scrollbar-width: none;
+  }
+
+  .travel-type-tabs__item {
+    padding: 7px 10px;
+    gap: 0;
+    font-size: 11px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .route-card,
+  .route-card__image img,
+  .route-card__details::before,
+  .route-card__details::after {
+    transition: none;
+  }
+  .route-card:hover,
+  .route-card:hover .route-card__image img {
+    transform: none;
+  }
+  .route-card:hover .route-card__details::before {
+    transform: translateY(-50%);
+  }
+}
+
+/* popular hotel css */
+.travel-type-tabs__content-area {
+  margin-top: 30px;
+}
+.popular-hotels__grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+.popular-hotel {
+  display: flex;
+  align-items: flex-start;
+  gap: 15px;
+  min-width: 0;
+}
+
+.popular-hotel > img {
+  width: 64px;
+  height: 64px;
+  flex: 0 0 64px;
+  object-fit: cover;
+  border-radius: 4px;
+  display: block;
+}
+
+.popular-hotel__info {
+  min-width: 0;
+}
+
+.popular-hotel__info h3 {
+  margin: -2px 0 5px;
+  font-size: 12px;
+  line-height: 1.25;
+  font-weight: 800;
+  color: rgba(var(--main-color), 1);
+}
+
+.popular-hotel__info p {
+  margin: 0 0 4px;
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 1.3;
+  color: rgba(var(--black-color), 0.7);
+}
+
+.popular-hotel__info span {
+  display: block;
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 1.3;
+  color: rgba(var(--black-color), 1);
+}
+
+/* Tablet */
+@media (max-width: 991.98px) {
+  .popular-hotels__grid {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow: auto;
+    scrollbar-width: none;
+    gap: 14px;
+  }
+
+  .popular-hotels__tabs {
+    gap: 18px;
+    margin-bottom: 30px;
+  }
+  .popular-hotel {
+    display: flex;
+    align-items: flex-start;
+    gap: 15px;
+    /* min-width: 0; */
+    width: 100%;
+    flex: 1;
+    min-width: 66%;
+  }
+  .card-journey-small .card-info .card-title {
+    font-size: 14px;
+  }
+  .card-journey-small .card-info .card-program .card-location .text-location {
+    font-size: 12px;
+  }
+  .card-journey-small .card-info {
+    padding: 30px 14px 15px;
+  }
+  .neutral-500 {
+    font-size: 11px;
+  }
+  .card-journey-small .card-info .card-program .card-location {
+    margin-bottom: 15px;
+  }
+}
+
+/* Mobile */
+@media (max-width: 767.98px) {
+  .popular-hotels__tabs {
+    gap: 16px;
+    margin-bottom: 28px;
+  }
+
+  .popular-hotels__tab {
+    font-size: 13px;
+  }
+
+  .popular-hotel > img {
+    width: 70px;
+    height: 64px;
+    flex-basis: 70px;
+  }
+  .card-journey-small .card-info .card-program .endtime {
+    flex-wrap: wrap;
+  }
+  .card-journey-small .card-image {
+    height: 180px;
+  }
+  .card-journey-small .card-info .card-program .endtime .card-price h6 {
+    font-size: 13px;
+  }
+  .card-journey-small .card-info .card-rating .card-right .rating {
+    padding: 5px 10px 6px 10px;
+    font-size: 11px;
+  }
+}

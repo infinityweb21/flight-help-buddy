@@ -1,0 +1,575 @@
+<form [formGroup]="hotelForm">
+
+  <div class="fsr-stage for-hotel" #datepop>
+    <div class="fsr-widget">
+      <!-- Hotel  destination-->
+      <div class="fsr-mainrow">
+        <div class="fsr-field"  (click)="focusDepartureInput()">
+          <div class="fsr-field__icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+              <path
+                d="M2.75 12h18.5c.69 0 1.25.56 1.25 1.25V18l.75-.75H.75l.75.75v-4.75c0-.69.56-1.25 1.25-1.25m0-1.5A2.75 2.75 0 0 0 0 13.25V18c0 .414.336.75.75.75h22.5A.75.75 0 0 0 24 18v-4.75a2.75 2.75 0 0 0-2.75-2.75zM0 18v3a.75.75 0 0 0 1.5 0v-3A.75.75 0 0 0 0 18m22.5 0v3a.75.75 0 0 0 1.5 0v-3a.75.75 0 0 0-1.5 0m-.75-6.75V4.5a2.25 2.25 0 0 0-2.25-2.25h-15A2.25 2.25 0 0 0 2.25 4.5v6.75a.75.75 0 0 0 1.5 0V4.5a.75.75 0 0 1 .75-.75h15a.75.75 0 0 1 .75.75v6.75a.75.75 0 0 0 1.5 0m-13.25-3h7a.25.25 0 0 1 .25.25v2.75l.75-.75h-9l.75.75V8.5a.25.25 0 0 1 .25-.25m0-1.5A1.75 1.75 0 0 0 6.75 8.5v2.75c0 .414.336.75.75.75h9a.75.75 0 0 0 .75-.75V8.5a1.75 1.75 0 0 0-1.75-1.75z">
+              </path>
+            </svg>
+          </div>
+          <div class="fsr-field__body hotel-destination-list">
+            <div class="fsr-field__label">
+              Enter destination
+            </div>
+            <div class="fsr-field__value fsr-placeholder">
+
+            </div>
+            <p-autoComplete #departureAC formControlName="destination" [suggestions]="destinationList"
+              (completeMethod)="filterCountry($event)" (onSelect)="onDepartSelected($event)" field="displayName"
+              [panelStyleClass]="'airport-autocomplete-panel'" placeholder="Where are you going?"
+              (keypress)="allowOnlyLetters($event)" (paste)="sanitizePaste($event)"
+               (mousedown)="checkDepartOpen()"
+              (onFocus)="highlightDepartureText($event)" (mousedown)="handleDepartureClick($event)"
+              (keydown)="clearDepartureIfHighlightedOnKey($event)" [class.is-invalid]="
+                 hotelForm.get('destination')?.touched && hotelForm.get('destination')?.hasError('required')
+              ">
+
+
+              <ng-template let-destination pTemplate="item">
+
+                <div class="c-hotel-destination-dropdown__content">
+
+                  <ul class="c-hotel-destination-dropdown__items-wrap">
+                    @if(destination.type === 'city'){
+                    <li class="fsr-hotel">
+                      <i class="fa-solid fa-hotel"></i>
+                      <div class="fsr-hotel__main">
+                        <div class="fsr-hotel__name">City <span class="fsr-hotel__code">{{destination?.name}}</span></div>
+                        <div class="fsr-hotel__sub">{{destination?.displayName}}</div>
+                      </div>
+                    </li>
+                    
+
+                    <!-- <li class="fsr-airport">
+                      <span class="c-hotel-destination-dropdown__item--label">City</span>
+                      <div class="c-hotel-destination-dropdown__item--content">
+                        <div class="c-hotel-destination-dropdown__item--icon-box">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="20" viewBox="0 0 16 20"
+                            fill="none">
+                            <path
+                              d="M8 10C8.55 10 9.02083 9.80417 9.4125 9.4125C9.80417 9.02083 10 8.55 10 8C10 7.45 9.80417 6.97917 9.4125 6.5875C9.02083 6.19583 8.55 6 8 6C7.45 6 6.97917 6.19583 6.5875 6.5875C6.19583 6.97917 6 7.45 6 8C6 8.55 6.19583 9.02083 6.5875 9.4125C6.97917 9.80417 7.45 10 8 10ZM8 17.35C10.0333 15.4833 11.5417 13.7875 12.525 12.2625C13.5083 10.7375 14 9.38333 14 8.2C14 6.38333 13.4208 4.89583 12.2625 3.7375C11.1042 2.57917 9.68333 2 8 2C6.31667 2 4.89583 2.57917 3.7375 3.7375C2.57917 4.89583 2 6.38333 2 8.2C2 9.38333 2.49167 10.7375 3.475 12.2625C4.45833 13.7875 5.96667 15.4833 8 17.35ZM8 20C5.31667 17.7167 3.3125 15.5958 1.9875 13.6375C0.6625 11.6792 0 9.86667 0 8.2C0 5.7 0.804167 3.70833 2.4125 2.225C4.02083 0.741667 5.88333 0 8 0C10.1167 0 11.9792 0.741667 13.5875 2.225C15.1958 3.70833 16 5.7 16 8.2C16 9.86667 15.3375 11.6792 14.0125 13.6375C12.6875 15.5958 10.6833 17.7167 8 20Z"
+                              fill="currentColor" />
+                          </svg>
+
+                        </div>
+                        <div class="c-hotel-destination-dropdown__item--destination">
+                          <h4 class="c-hotel-destination-dropdown__item--destination__title">{{destination?.name}}</h4>
+                          <h5 class="c-hotel-destination-dropdown__item--destination__sub-title">
+                            {{destination?.displayName}}</h5>
+                        </div>
+                      </div>
+                    </li> -->
+                    } @if(destination.type === 'hotel'){
+                    <!-- <li class="c-hotel-destination-dropdown__item">
+                      <span class="c-hotel-destination-dropdown__item--label">Hotel</span>
+                      <div class="c-hotel-destination-dropdown__item--content">
+                        <div class="c-hotel-destination-dropdown__item--icon-box">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                            fill="none">
+                            <path
+                              d="M2.79807 21.2908C2.33064 21.2908 1.96164 21.1406 1.69107 20.84C1.44164 20.5623 1.30736 20.198 1.28822 19.7471L1.28564 19.6327V3.52527C1.28564 3.01498 1.42079 2.61113 1.69107 2.3137C1.9405 2.03884 2.27407 1.89084 2.69179 1.8697L2.7985 1.8667H14.2872C14.7486 1.8667 15.1146 2.01556 15.3852 2.31327C15.6346 2.58756 15.7689 2.95284 15.7881 3.40913L15.7902 3.52484V6.34913H21.2116C21.6374 6.34913 21.9818 6.47727 22.2449 6.73356L22.3092 6.80041C22.5589 7.07756 22.6932 7.4417 22.7121 7.89284L22.7146 8.00727V19.6327C22.7146 20.1367 22.5795 20.5391 22.3092 20.84C22.0598 21.1171 21.7288 21.2666 21.3162 21.2883L21.2112 21.2908H2.79807ZM15.7898 19.6327C15.7898 19.6984 15.7875 19.7623 15.7829 19.8243H20.7278C20.9041 19.8243 21.0348 19.7817 21.1199 19.6966C21.1928 19.6234 21.2344 19.5148 21.2446 19.3708L21.2476 19.2958V8.34456C21.2476 8.16227 21.2051 8.02856 21.1199 7.94341C21.0471 7.87056 20.9406 7.82899 20.8006 7.8187L20.7278 7.81613L15.7898 7.8157V19.6327ZM13.8042 3.3337H3.28107C3.09879 3.3337 2.96507 3.37613 2.87993 3.46099C2.80707 3.53413 2.7655 3.6427 2.75522 3.7867L2.75264 3.86213V19.2958C2.75264 19.4778 2.79507 19.6114 2.87993 19.6966C2.95307 19.7694 3.06164 19.811 3.20564 19.8213L3.28107 19.8243L5.36693 19.8238V17.1367C5.36693 16.7776 5.44122 16.5051 5.58979 16.3194L5.63607 16.2663C5.79893 16.0977 6.04093 16.0058 6.36207 15.9907L6.46064 15.9886H10.6152C10.9915 15.9886 11.2678 16.0811 11.4441 16.2663C11.6044 16.4348 11.6918 16.6898 11.7064 17.0313L11.7085 17.1363L11.7081 19.8238H13.8038C13.9801 19.8238 14.1106 19.7814 14.1955 19.6966C14.2684 19.6234 14.3101 19.5148 14.3206 19.3708L14.3232 19.2958V3.86213C14.3232 3.67984 14.2806 3.54613 14.1955 3.46099C14.1106 3.37613 13.9805 3.3337 13.8042 3.3337ZM10.2235 17.1821H6.85236C6.67579 17.1821 6.57936 17.2624 6.56307 17.423L6.56093 17.4736L6.5605 19.8238H10.5145V17.4736C10.5145 17.297 10.4344 17.2006 10.2741 17.1843L10.2235 17.1821ZM19.2522 16.28C19.4414 16.28 19.5438 16.3667 19.5595 16.5401L19.5616 16.5898V18.011C19.5616 18.2004 19.4749 18.303 19.3015 18.3187L19.2522 18.3208H17.7852C17.6018 18.3208 17.5022 18.2341 17.4865 18.0607L17.4848 18.011V16.5898C17.4848 16.4004 17.5691 16.2978 17.7376 16.2821L17.7852 16.28H19.2522ZM19.2522 12.8C19.4414 12.8 19.5438 12.8867 19.5595 13.0601L19.5616 13.1094V14.5306C19.5616 14.72 19.4749 14.8226 19.3015 14.8383L19.2522 14.8404H17.7852C17.6018 14.8404 17.5022 14.7537 17.4865 14.5803L17.4848 14.5306V13.1094C17.4848 12.92 17.5691 12.8174 17.7376 12.8017L17.7852 12.7996L19.2522 12.8ZM7.2895 12.0616C7.51979 12.0616 7.64364 12.1677 7.66107 12.38L7.66322 12.4353V14.1573C7.66322 14.387 7.55707 14.5107 7.34479 14.5284L7.2895 14.5306H5.51307C5.2945 14.5306 5.17679 14.4246 5.15993 14.2126L5.15779 14.1568V12.4353C5.15779 12.2056 5.25864 12.0817 5.46036 12.0637L5.51307 12.0616H7.2895ZM11.5538 12.0616C11.7835 12.0616 11.9072 12.1677 11.9249 12.38L11.9271 12.4353V14.1573C11.9271 14.387 11.8209 14.5107 11.6086 14.5284L11.5534 14.5306H9.78593C9.56165 14.5306 9.44093 14.4246 9.42379 14.2126L9.42165 14.1568V12.4353C9.42165 12.2056 9.52507 12.0817 9.73193 12.0637L9.78593 12.0616H11.5538ZM19.2522 9.31913C19.4414 9.31913 19.5438 9.40599 19.5595 9.5797L19.5616 9.62899V11.0506C19.5616 11.2397 19.4749 11.3421 19.3015 11.3578L19.2522 11.36H17.7852C17.6018 11.36 17.5022 11.2733 17.4865 11.0998L17.4848 11.0506V9.62899C17.4848 9.44013 17.5691 9.33756 17.7376 9.32127L17.7852 9.31913H19.2522ZM7.2895 8.45341C7.51979 8.45341 7.64364 8.5597 7.66107 8.77227L7.66322 8.82713V10.5491C7.66322 10.7794 7.55707 10.9033 7.34479 10.9207L7.2895 10.9228H5.51307C5.2945 10.9228 5.17679 10.8167 5.15993 10.6044L5.15779 10.5491V8.82713C5.15779 8.59741 5.25864 8.4737 5.46036 8.45599L5.51307 8.45384L7.2895 8.45341ZM11.5538 8.45341C11.7835 8.45341 11.9072 8.5597 11.9249 8.77227L11.9271 8.82713V10.5491C11.9271 10.7794 11.8209 10.9033 11.6086 10.9207L11.5534 10.9228H9.78593C9.56165 10.9228 9.44093 10.8167 9.42379 10.6044L9.42165 10.5491V8.82713C9.42165 8.59741 9.52507 8.4737 9.73193 8.45599L9.78593 8.45384L11.5538 8.45341ZM7.2895 4.84613C7.51979 4.84613 7.64364 4.95213 7.66107 5.16413L7.66322 5.21984V6.94141C7.66322 7.17113 7.55707 7.29484 7.34479 7.31256L7.2895 7.31513H5.51307C5.2945 7.31513 5.17679 7.20898 5.15993 6.9967L5.15779 6.94141V5.21941C5.15779 4.9897 5.25864 4.86599 5.46036 4.84827L5.51307 4.84613H7.2895ZM11.5538 4.84613C11.7835 4.84613 11.9072 4.95213 11.9249 5.16413L11.9271 5.21984V6.94141C11.9271 7.17113 11.8209 7.29484 11.6086 7.31256L11.5534 7.31513H9.78593C9.56165 7.31513 9.44093 7.20898 9.42379 6.9967L9.42165 6.94141V5.21941C9.42165 4.9897 9.52507 4.86599 9.73193 4.84827L9.78593 4.84613H11.5538Z"
+                              fill="currentColor" />
+                          </svg>
+
+                        </div>
+                        <div class="c-hotel-destination-dropdown__item--destination">
+                          <h4 class="c-hotel-destination-dropdown__item--destination__title">{{destination?.name}}
+                          </h4>
+                          <h5 class="c-hotel-destination-dropdown__item--destination__sub-title">
+                            {{destination?.displayName}}</h5>
+                        </div>
+                      </div>
+                    </li> -->
+
+                      <li class="fsr-hotel">
+                      <i class="fa-solid fa-hotel"></i>
+                      <div class="fsr-hotel__main">
+                        <div class="fsr-hotel__name">Hotel <span class="fsr-hotel__code">{{destination?.name}}</span></div>
+                        <div class="fsr-hotel__sub">{{destination?.displayName}}</div>
+                      </div>
+                    </li>
+                    }
+
+                    <!-- <li class="c-hotel-destination-dropdown__item">
+                      <span class="c-hotel-destination-dropdown__item--label">Area</span>
+                      <div class="c-hotel-destination-dropdown__item--content">
+                        <div class="c-hotel-destination-dropdown__item--icon-box">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="20" viewBox="0 0 16 20"
+                            fill="none">
+                            <path
+                              d="M8 10C8.55 10 9.02083 9.80417 9.4125 9.4125C9.80417 9.02083 10 8.55 10 8C10 7.45 9.80417 6.97917 9.4125 6.5875C9.02083 6.19583 8.55 6 8 6C7.45 6 6.97917 6.19583 6.5875 6.5875C6.19583 6.97917 6 7.45 6 8C6 8.55 6.19583 9.02083 6.5875 9.4125C6.97917 9.80417 7.45 10 8 10ZM8 17.35C10.0333 15.4833 11.5417 13.7875 12.525 12.2625C13.5083 10.7375 14 9.38333 14 8.2C14 6.38333 13.4208 4.89583 12.2625 3.7375C11.1042 2.57917 9.68333 2 8 2C6.31667 2 4.89583 2.57917 3.7375 3.7375C2.57917 4.89583 2 6.38333 2 8.2C2 9.38333 2.49167 10.7375 3.475 12.2625C4.45833 13.7875 5.96667 15.4833 8 17.35ZM8 20C5.31667 17.7167 3.3125 15.5958 1.9875 13.6375C0.6625 11.6792 0 9.86667 0 8.2C0 5.7 0.804167 3.70833 2.4125 2.225C4.02083 0.741667 5.88333 0 8 0C10.1167 0 11.9792 0.741667 13.5875 2.225C15.1958 3.70833 16 5.7 16 8.2C16 9.86667 15.3375 11.6792 14.0125 13.6375C12.6875 15.5958 10.6833 17.7167 8 20Z"
+                              fill="currentColor" />
+                          </svg>
+                        </div>
+                        <div class="c-hotel-destination-dropdown__item--destination">
+                          <h4 class="c-hotel-destination-dropdown__item--destination__title">Manhattan</h4>
+                          <h5 class="c-hotel-destination-dropdown__item--destination__sub-title">New York, United States
+                            of America</h5>
+                        </div>
+                      </div>
+                    </li>
+                    <li class="c-hotel-destination-dropdown__item">
+                      <span class="c-hotel-destination-dropdown__item--label">Airport</span>
+                      <div class="c-hotel-destination-dropdown__item--content">
+                        <div class="c-hotel-destination-dropdown__item--icon-box">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="20" viewBox="0 0 16 20"
+                            fill="none">
+                            <path
+                              d="M8 10C8.55 10 9.02083 9.80417 9.4125 9.4125C9.80417 9.02083 10 8.55 10 8C10 7.45 9.80417 6.97917 9.4125 6.5875C9.02083 6.19583 8.55 6 8 6C7.45 6 6.97917 6.19583 6.5875 6.5875C6.19583 6.97917 6 7.45 6 8C6 8.55 6.19583 9.02083 6.5875 9.4125C6.97917 9.80417 7.45 10 8 10ZM8 17.35C10.0333 15.4833 11.5417 13.7875 12.525 12.2625C13.5083 10.7375 14 9.38333 14 8.2C14 6.38333 13.4208 4.89583 12.2625 3.7375C11.1042 2.57917 9.68333 2 8 2C6.31667 2 4.89583 2.57917 3.7375 3.7375C2.57917 4.89583 2 6.38333 2 8.2C2 9.38333 2.49167 10.7375 3.475 12.2625C4.45833 13.7875 5.96667 15.4833 8 17.35ZM8 20C5.31667 17.7167 3.3125 15.5958 1.9875 13.6375C0.6625 11.6792 0 9.86667 0 8.2C0 5.7 0.804167 3.70833 2.4125 2.225C4.02083 0.741667 5.88333 0 8 0C10.1167 0 11.9792 0.741667 13.5875 2.225C15.1958 3.70833 16 5.7 16 8.2C16 9.86667 15.3375 11.6792 14.0125 13.6375C12.6875 15.5958 10.6833 17.7167 8 20Z"
+                              fill="currentColor" />
+                          </svg>
+                        </div>
+                        <div class="c-hotel-destination-dropdown__item--destination">
+                          <h4 class="c-hotel-destination-dropdown__item--destination__title">New York (John F. Kennedy
+                            Intl.)</h4>
+                          <h5 class="c-hotel-destination-dropdown__item--destination__sub-title">New York, United States
+                            of America</h5>
+                        </div>
+                      </div>
+                    </li> -->
+
+                  </ul>
+                </div>
+
+
+              </ng-template>
+              <ng-template #header>
+                <div class="c-hotel-destination-dropdown__title-wrap">
+                  <h3 class="c-hotel-destination-dropdown__title">Suggested Destinations</h3>
+                </div>
+              </ng-template>
+            </p-autoComplete>
+               <div class="text-danger isinvalid-text"
+              *ngIf="hotelForm.get('destination')?.touched && hotelForm.get('destination')?.hasError('required')">
+              Destination is required.
+            </div>
+          </div>
+          <!-- <div class="fsr-dropdown">
+          <input class="fsr-dropdown__search" placeholder="City or airport" />
+          <div class="fsr-dropdown__list"></div>
+        </div> -->
+        </div>
+        @if(isMobile === false){
+        <div class="fsr-field" (click)="showDeparturePopover($event,datepop,'checkInDate')"
+          >
+          <div class="fsr-field__icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+              <path
+                d="M22.5 13.5v8.25a.75.75 0 0 1-.75.75H2.25a.75.75 0 0 1-.75-.75V5.25a.75.75 0 0 1 .75-.75h19.5a.75.75 0 0 1 .75.75zm1.5 0V5.25A2.25 2.25 0 0 0 21.75 3H2.25A2.25 2.25 0 0 0 0 5.25v16.5A2.25 2.25 0 0 0 2.25 24h19.5A2.25 2.25 0 0 0 24 21.75zm-23.25-3h22.5a.75.75 0 0 0 0-1.5H.75a.75.75 0 0 0 0 1.5M7.5 6V.75a.75.75 0 0 0-1.5 0V6a.75.75 0 0 0 1.5 0M18 6V.75a.75.75 0 0 0-1.5 0V6A.75.75 0 0 0 18 6M5.095 14.03a.75.75 0 1 0 1.06-1.06.75.75 0 0 0-1.06 1.06m.53-1.28a1.125 1.125 0 1 0 0 2.25 1.125 1.125 0 0 0 0-2.25.75.75 0 0 0 0 1.5.375.375 0 1 1 0-.75.375.375 0 0 1 0 .75.75.75 0 0 0 0-1.5m-.53 6.53a.75.75 0 1 0 1.06-1.06.75.75 0 0 0-1.06 1.06m.53-1.28a1.125 1.125 0 1 0 0 2.25 1.125 1.125 0 0 0 0-2.25.75.75 0 0 0 0 1.5.375.375 0 1 1 0-.75.375.375 0 0 1 0 .75.75.75 0 0 0 0-1.5m5.845-3.97a.75.75 0 1 0 1.06-1.06.75.75 0 0 0-1.06 1.06m.53-1.28A1.125 1.125 0 1 0 12 15a1.125 1.125 0 0 0 0-2.25.75.75 0 0 0 0 1.5.375.375 0 1 1 0-.75.375.375 0 0 1 0 .75.75.75 0 0 0 0-1.5m-.53 6.53a.75.75 0 1 0 1.06-1.06.75.75 0 0 0-1.06 1.06M12 18a1.125 1.125 0 1 0 0 2.25A1.125 1.125 0 0 0 12 18a.75.75 0 0 0 0 1.5.375.375 0 1 1 0-.75.375.375 0 0 1 0 .75.75.75 0 0 0 0-1.5m5.845-3.97a.75.75 0 1 0 1.06-1.06.75.75 0 0 0-1.06 1.06m.53-1.28a1.125 1.125 0 1 0 0 2.25 1.125 1.125 0 0 0 0-2.25.75.75 0 0 0 0 1.5.375.375 0 1 1 0-.75.375.375 0 0 1 0 .75.75.75 0 0 0 0-1.5m-.53 6.53a.75.75 0 1 0 1.06-1.06.75.75 0 0 0-1.06 1.06m.53-1.28a1.125 1.125 0 1 0 0 2.25 1.125 1.125 0 0 0 0-2.25.75.75 0 0 0 0 1.5.375.375 0 1 1 0-.75.375.375 0 0 1 0 .75.75.75 0 0 0 0-1.5">
+              </path>
+            </svg>
+          </div>
+          <div class="fsr-field__body">
+            <div class="fsr-field__label">Select dates</div>
+            <div class="fsr-field__value">
+              
+                           <ng-container *ngIf="formattedchecheckInDate || formattedcheckOutDate; else noDates">
+  {{ formattedchecheckInDate  }}
+
+  <ng-container *ngIf="formattedcheckOutDate  ;else noDates1">
+    –
+    {{ formattedcheckOutDate }}
+  </ng-container>
+  <ng-template #noDates1>
+  - Select Check-out date
+</ng-template>
+</ng-container>
+
+<ng-template #noDates>
+  Select dates
+</ng-template>
+            </div>
+          </div>
+          <div class="text-danger isinvalid-text" *ngIf="
+    hotelForm.get('checkInDate')?.touched &&
+    hotelForm.get('checkInDate')?.hasError('required') &&
+    !hotelForm.get('checkInDate')?.hasError('sameDayNotAllowed') &&
+    !hotelForm.get('checkInDate')?.hasError('checkInPast')
+  ">
+            Check In date is required.
+          </div>
+
+          <div class="text-danger isinvalid-text" *ngIf="hotelForm.get('checkInDate')?.hasError('sameDayNotAllowed')">
+            Same-day booking is not allowed.
+          </div>
+
+          <div class="text-danger isinvalid-text" *ngIf="hotelForm.get('checkInDate')?.hasError('checkInPast')">
+            Check-in date must be in the future.
+          </div>
+          <div class="text-danger isinvalid-text" *ngIf="
+    hotelForm.get('checkOutDate')?.touched &&
+    hotelForm.get('checkOutDate')?.hasError('required') &&
+    !hotelForm.get('checkOutDate')?.hasError('maxStayExceeded') &&
+    !hotelForm.get('checkOutDate')?.hasError('checkOutBeforeCheckIn')
+  ">
+            Check Out date is required.
+          </div>
+
+          <div class="text-danger isinvalid-text" *ngIf="
+    hotelForm.get('checkOutDate')?.touched &&
+    hotelForm.get('checkOutDate')?.hasError('checkOutBeforeCheckIn')
+  ">
+            Check-out date must be after check-in date.
+          </div>
+
+          <div class="text-danger isinvalid-text" *ngIf="
+    hotelForm.get('checkOutDate')?.touched &&
+    hotelForm.get('checkOutDate')?.hasError('maxStayExceeded')
+  ">
+            Stay cannot be more than 30 days.
+          </div>
+        </div>
+      } @else if(isMobile === true){
+        <div class="fsr-field" 
+          (click)="onInputFocus('checkInDate')">
+          <div class="fsr-field__icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+              <path
+                d="M22.5 13.5v8.25a.75.75 0 0 1-.75.75H2.25a.75.75 0 0 1-.75-.75V5.25a.75.75 0 0 1 .75-.75h19.5a.75.75 0 0 1 .75.75zm1.5 0V5.25A2.25 2.25 0 0 0 21.75 3H2.25A2.25 2.25 0 0 0 0 5.25v16.5A2.25 2.25 0 0 0 2.25 24h19.5A2.25 2.25 0 0 0 24 21.75zm-23.25-3h22.5a.75.75 0 0 0 0-1.5H.75a.75.75 0 0 0 0 1.5M7.5 6V.75a.75.75 0 0 0-1.5 0V6a.75.75 0 0 0 1.5 0M18 6V.75a.75.75 0 0 0-1.5 0V6A.75.75 0 0 0 18 6M5.095 14.03a.75.75 0 1 0 1.06-1.06.75.75 0 0 0-1.06 1.06m.53-1.28a1.125 1.125 0 1 0 0 2.25 1.125 1.125 0 0 0 0-2.25.75.75 0 0 0 0 1.5.375.375 0 1 1 0-.75.375.375 0 0 1 0 .75.75.75 0 0 0 0-1.5m-.53 6.53a.75.75 0 1 0 1.06-1.06.75.75 0 0 0-1.06 1.06m.53-1.28a1.125 1.125 0 1 0 0 2.25 1.125 1.125 0 0 0 0-2.25.75.75 0 0 0 0 1.5.375.375 0 1 1 0-.75.375.375 0 0 1 0 .75.75.75 0 0 0 0-1.5m5.845-3.97a.75.75 0 1 0 1.06-1.06.75.75 0 0 0-1.06 1.06m.53-1.28A1.125 1.125 0 1 0 12 15a1.125 1.125 0 0 0 0-2.25.75.75 0 0 0 0 1.5.375.375 0 1 1 0-.75.375.375 0 0 1 0 .75.75.75 0 0 0 0-1.5m-.53 6.53a.75.75 0 1 0 1.06-1.06.75.75 0 0 0-1.06 1.06M12 18a1.125 1.125 0 1 0 0 2.25A1.125 1.125 0 0 0 12 18a.75.75 0 0 0 0 1.5.375.375 0 1 1 0-.75.375.375 0 0 1 0 .75.75.75 0 0 0 0-1.5m5.845-3.97a.75.75 0 1 0 1.06-1.06.75.75 0 0 0-1.06 1.06m.53-1.28a1.125 1.125 0 1 0 0 2.25 1.125 1.125 0 0 0 0-2.25.75.75 0 0 0 0 1.5.375.375 0 1 1 0-.75.375.375 0 0 1 0 .75.75.75 0 0 0 0-1.5m-.53 6.53a.75.75 0 1 0 1.06-1.06.75.75 0 0 0-1.06 1.06m.53-1.28a1.125 1.125 0 1 0 0 2.25 1.125 1.125 0 0 0 0-2.25.75.75 0 0 0 0 1.5.375.375 0 1 1 0-.75.375.375 0 0 1 0 .75.75.75 0 0 0 0-1.5">
+              </path>
+            </svg>
+          </div>
+          <div class="fsr-field__body">
+            <div class="fsr-field__label">Select dates</div>
+            <div class="fsr-field__value">
+      <ng-container *ngIf="formattedchecheckInDate || formattedcheckOutDate; else noDates">
+  {{ formattedchecheckInDate  }}
+
+  <ng-container *ngIf="formattedcheckOutDate  ;else noDates1">
+    –
+    {{ formattedcheckOutDate }}
+  </ng-container>
+  <ng-template #noDates1>
+  - Select Check-out date
+</ng-template>
+</ng-container>
+<ng-template #noDates>
+  Select dates
+</ng-template>
+            </div>
+          </div>
+          <div class="text-danger isinvalid-text" *ngIf="
+    hotelForm.get('checkInDate')?.touched &&
+    hotelForm.get('checkInDate')?.hasError('required') &&
+    !hotelForm.get('checkInDate')?.hasError('sameDayNotAllowed') &&
+    !hotelForm.get('checkInDate')?.hasError('checkInPast')
+  ">
+            Check In date is required.
+          </div>
+
+          <div class="text-danger isinvalid-text" *ngIf="hotelForm.get('checkInDate')?.hasError('sameDayNotAllowed')">
+            Same-day booking is not allowed.
+          </div>
+
+          <div class="text-danger isinvalid-text" *ngIf="hotelForm.get('checkInDate')?.hasError('checkInPast')">
+            Check-in date must be in the future.
+          </div>
+          <div class="text-danger isinvalid-text" *ngIf="
+    hotelForm.get('checkOutDate')?.touched &&
+    hotelForm.get('checkOutDate')?.hasError('required') &&
+    !hotelForm.get('checkOutDate')?.hasError('maxStayExceeded') &&
+    !hotelForm.get('checkOutDate')?.hasError('checkOutBeforeCheckIn')
+  ">
+            Check Out date is required.
+          </div>
+
+          <div class="text-danger isinvalid-text" *ngIf="
+    hotelForm.get('checkOutDate')?.touched &&
+    hotelForm.get('checkOutDate')?.hasError('checkOutBeforeCheckIn')
+  ">
+            Check-out date must be after check-in date.
+          </div>
+
+          <div class="text-danger isinvalid-text" *ngIf="
+    hotelForm.get('checkOutDate')?.touched &&
+    hotelForm.get('checkOutDate')?.hasError('maxStayExceeded')
+  ">
+            Stay cannot be more than 30 days.
+          </div>
+        </div>
+      }
+        <div class="fsr-field" data-field="rooms" id="fsrFieldRooms" (click)="toggleRoomsDropdown($event)">
+
+          <div class="fsr-field__icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+              <path
+                d="M16.5 6a4.5 4.5 0 1 1-9 0 4.5 4.5 0 0 1 9 0M18 6A6 6 0 1 0 6 6a6 6 0 0 0 12 0M3 23.25a9 9 0 1 1 18 0 .75.75 0 0 0 1.5 0c0-5.799-4.701-10.5-10.5-10.5S1.5 17.451 1.5 23.25a.75.75 0 0 0 1.5 0">
+              </path>
+            </svg>
+          </div>
+
+          <div class="fsr-field__body">
+
+            <div class="fsr-field__label">
+              Select occupancy
+            </div>
+
+            <div class="fsr-field__value">
+              {{ adultsCount }} Adult{{ adultsCount > 1 ? 's' : '' }},
+              {{ childrenCount }}
+              {{ childrenCount === 1 ? 'Child' : 'Children' }},
+              {{ rooms.length }} Room{{ rooms.length > 1 ? 's' : '' }}
+            </div>
+
+          </div>
+
+
+          <!-- ============================= -->
+          <!-- ROOMS DROPDOWN -->
+          <!-- ============================= -->
+
+          <div class="fsr-dropdown fsr-travelers-menu" id="fsrRoomsDropdown" [class.fsr-show]="showRoomsDropdown"
+            (click)="$event.stopPropagation()">
+
+            <div class="fsr-trav-scroll">
+
+              <!-- ============================= -->
+              <!-- ROOM COUNT -->
+              <!-- ============================= -->
+
+              <div class="fsr-trav-row">
+
+                <div>
+                  <div class="fsr-trav-label">
+                    Rooms
+                  </div>
+
+                  <div class="fsr-trav-sub">
+                    Number of rooms
+                  </div>
+                </div>
+
+                <div class="fsr-trav-ctrl">
+
+                  <button class="fsr-trav-btn" type="button" [disabled]="rooms.length <= 1" (click)="changeRooms(-1)">
+                    −
+                  </button>
+
+                  <span class="fsr-trav-count">
+                    {{ rooms.length }}
+                  </span>
+
+                  <button class="fsr-trav-btn" type="button" [disabled]="rooms.length >= 9" (click)="changeRooms(1)">
+                    +
+                  </button>
+
+                </div>
+
+              </div>
+
+
+              <!-- ============================= -->
+              <!-- ROOM WISE DATA -->
+              <!-- ============================= -->
+
+              <div class="fsr-trav-child" *ngFor="let room of rooms.controls; let i = index">
+
+                <div class="fsr-trav-child__label">
+                  Room {{ i + 1 }}
+                </div>
+
+
+                <!-- ============================= -->
+                <!-- ADULTS -->
+                <!-- ============================= -->
+
+                <div class="fsr-trav-row" style="padding: 4px 0px;">
+
+                  <div>
+                    <div class="fsr-trav-label" style="font-size:13px;">
+                      Adults
+                    </div>
+                  </div>
+
+                  <div class="fsr-trav-ctrl">
+
+                    <button class="fsr-trav-btn" type="button" [disabled]="room.get('adults')?.value <= 1"
+                      (click)="changeRoomAdults(i, -1)">
+                      −
+                    </button>
+
+                    <span class="fsr-trav-count">
+                      {{ room.get('adults')?.value || 1 }}
+                    </span>
+
+                    <button class="fsr-trav-btn" type="button" (click)="changeRoomAdults(i, 1)">
+                      +
+                    </button>
+
+                  </div>
+
+                </div>
+
+
+                <!-- ============================= -->
+                <!-- CHILDREN -->
+                <!-- ============================= -->
+
+                <div class="fsr-trav-row" style="padding: 4px 0px;">
+
+                  <div>
+                    <div class="fsr-trav-label" style="font-size:13px;">
+                      Children
+                    </div>
+                  </div>
+
+                  <div class="fsr-trav-ctrl">
+
+                    <button class="fsr-trav-btn" type="button" [disabled]="getRoomChildren(i).length <= 0"
+                      (click)="changeRoomChildren(i, -1)">
+                      −
+                    </button>
+
+                    <span class="fsr-trav-count">
+                      {{ getRoomChildren(i).length }}
+                    </span>
+
+                    <button class="fsr-trav-btn" type="button" (click)="changeRoomChildren(i, 1)">
+                      +
+                    </button>
+
+                  </div>
+
+                </div>
+
+
+                <!-- ============================= -->
+                <!-- CHILD AGE -->
+                <!-- ============================= -->
+
+                <div class="fsr-age-grid" *ngIf="getRoomChildren(i).length > 0">
+
+                  <div class="fsr-trav-child" *ngFor="let age of getRoomChildren(i).controls; let j = index" style="
+              margin-top: 0px;
+              padding-left: 0px;
+            ">
+
+                    <div class="fsr-trav-child__label" style="font-size: 12px;">
+                      Child {{ j + 1 }} age
+                    </div>
+
+                    <div class="fsr-trav-age-wrap">
+
+                      <select class="fsr-trav-age-select" [value]="age.value"
+                        (change)="setRoomChildAge(i, j, $any($event.target).value)">
+
+                        <option value="" disabled>
+                          Select age
+                        </option>
+
+                        <option *ngFor="let childAge of ages" [value]="childAge">
+                          {{ childAge }}
+                        </option>
+
+                      </select>
+
+                      <i class="fa-solid fa-chevron-down"></i>
+
+                    </div>
+
+                  </div>
+
+                </div>
+
+              </div>
+
+            </div>
+
+
+            <!-- ============================= -->
+            <!-- FOOTER -->
+            <!-- ============================= -->
+
+            <div class="fsr-trav-footer">
+
+              <div class="fsr-trav-total">
+                {{ totalGuests }} travelers
+              </div>
+
+              <button class="fsr-trav-done" type="button" (click)="closeRoomsDropdown()">
+                Done
+              </button>
+
+            </div>
+
+          </div>
+
+        </div>
+        <button class="fsr-explore" id="fsrExploreBtn" type="button" (click)="submitForm()">
+          {{isHotelDetails ? 'Modify' : 'Search'}}
+        </button>
+      </div>
+    </div>
+  </div>
+</form>
+
+<p-popover #popcheckInDate styleClass="departure-popover departure-popover-wrap" appendTo="body"
+  (onHide)="resetActiveInput()">
+  <div class="departure-drawer-content">
+
+    <app-dates-drawer [formGroup]="hotelForm" controlName="checkInDate" placeholder="Destination"
+      [startDate]="checkInDateObj" [endDate]="checkOutDateObj" [isArrival]="false" [mode]="'range'" [isOpen]="true"
+      (datesChanged)="onDatesChanged($event)" (closeDrawer)="popcheckInDate.hide(); resetActiveInput()"
+      (datesApplied)="onDatesApplied($event)" />
+  </div>
+</p-popover>
+<p-popover #popcheckOutDate styleClass="arrival-popover arrival-popover-wrap" appendTo="body"
+  (onHide)="resetActiveInput()">
+  <div class="arrival-drawer-content">
+    <app-dates-drawer [formGroup]="hotelForm" [isArrival]="true" controlName="checkOutDate" placeholder="Destination"
+      [startDate]="checkInDateObj" [endDate]="checkOutDateObj" [mode]="'range'" [isOpen]="true"
+      (datesChanged)="onDatesChanged($event)" (datesApplied)="onDatesApplied($event)"
+      (closeDrawer)="popcheckOutDate.hide(); resetActiveInput()" />
+  </div>
+</p-popover>
+
+
+
+<app-drawer-wrapper [visible]="showDrawer" [title]="drawerTitle" [attr.data-key]="activeDrawer" (close)="closeDrawer()">
+  @switch (activeDrawer) {  @case ('checkInDate') {
+  <app-dates-drawer [formGroup]="getActiveFormGroup()" controlName="checkInDate" placeholder="Destination"
+    [titleTemplate]="titleTemplate" [startDate]="checkInDateObj" [endDate]="checkOutDateObj" [isArrival]="false"
+    [isOpen]="showDrawer" [mode]="'range'
+      " (closeDrawer)="showDrawer = false" (datesApplied)="onDatesApplied($event)" />
+  <ng-template #titleTemplate>
+    <!-- <div class="datepickr-title">Select Departure Date</div> -->
+    <div class="weekdays-container" [class.android]="isAndroid">
+      <span class="weekdays-day mo">Mo</span>
+      <span class="weekdays-day tu">Tu</span>
+      <span class="weekdays-day we">We</span>
+      <span class="weekdays-day th">Th</span>
+      <span class="weekdays-day fr">Fr</span>
+      <span class="weekdays-day sa weekend">Sa</span>
+      <span class="weekdays-day su weekend">Su</span>
+    </div>
+  </ng-template>
+  } @case ('checkOutDate') {
+  <app-dates-drawer [formGroup]="getActiveFormGroup()" [isArrival]="true" controlName="checkOutDate"
+    placeholder="Destination" [titleTemplate]="titleTemplate" [startDate]="checkInDateObj" [endDate]="checkOutDateObj"
+    [mode]="'range'" (closeDrawer)="showDrawer = false" [isOpen]="showDrawer" (datesApplied)="onDatesApplied($event)" />
+  <ng-template #titleTemplate>
+
+    <div class="weekdays-container" [class.android]="isAndroid">
+      <span class="weekdays-day mo">Mo</span>
+      <span class="weekdays-day tu">Tu</span>
+      <span class="weekdays-day we">We</span>
+      <span class="weekdays-day th">Th</span>
+      <span class="weekdays-day fr">Fr</span>
+      <span class="weekdays-day sa weekend">Sa</span>
+      <span class="weekdays-day su weekend">Su</span>
+    </div>
+  </ng-template>
+  } @case ('guests') {
+  <app-guest-drawer #guestDrawer [rooms]="rooms" [ages]="ages" [adultsCount]="adultsCount" [roomCount]="roomCount"
+    [childrenCount]="childrenCount" [childAgesArray]="childAgesArray" (adultsChanged)="changeAdults($event)"
+    (childrenChanged)="changeChildren($event)" (childAgeChanged)="setChildAge($event.index, $event.age)"
+    (applyPassengers)="onRoomsApply($event)" (closeDrawer)="closeDrawer()" />
+
+  } }
+</app-drawer-wrapper>
+

@@ -1,0 +1,569 @@
+<div class="common-section" >
+      <section class="top-cruise-detail">
+        <div class="container container-xxl">
+          <div class="row mobrow">
+            <div class="col-12">
+              <div class="tripCard">
+                <div class="tripCard__leftSection">
+                  <img [src]="cruiseDetails?.logo" alt="Royal Caribbean Logo" class="tripCard__logo">
+                  <img [src]="cruiseDetails?.image" alt="Cruise Ship" class="tripCard__image">
+                  <p class="tripCard__reference">Reference ID: <strong>{{cruiseDetails?.sailingID}}</strong></p>
+                </div>
+
+                <div class="tripCard__rightSection">
+                  <h2 class="tripCard__title">Your Cruise: {{cruiseDetails?.sailingPlanCode}}</h2>
+                  <div class="tripCard__lineBreak"></div>
+                  <div class="tripCard__rightSectioninner">
+                    <div>
+                      <div class="tripCard__info">
+                        <p><strong>Aboard:</strong> {{cruiseDetails?.cruiseSailingName}}</p>
+                        <p><strong>Roundtrip:</strong> {{cruiseDetails?.ports?.departurePortInfo?.City}} -
+              {{cruiseDetails?.ports?.departurePortInfo?.Name}}</p>
+                        <p><strong>Departs:</strong> {{cruiseDetails?.departureDate|date:'dd MMM yyyy, hh:mm a'}}</p>
+                        <p><strong>Returns:</strong> {{cruiseDetails?.returnDate|date:'dd MMM yyyy, hh:mm a'}}</p>
+                      </div>
+                      <!-- <div class="tripCard__offers">
+                        <p><strong>Rewards & Bonus Offers:</strong></p>
+                        <ul>
+                          <li>Cruises.com Rewards = Free Cash! Double points: Earn 20 points per $1 spent</li>
+                          <li>60% Off Second Guest</li>
+                          <li>48-Hour Flash Sale: Up to $325 Instant Savings</li>
+                        </ul>
+                      </div> -->
+                    </div>
+                    <div class="tripCard__priceBox">
+                      <div class="tripCard__priceText">starting from</div>
+                      <div class="tripCard__priceAmount">{{selectedCabin?.priceWithMarkupPerNight| number: "1.2-2"}}/night</div>
+                      <div class="tripCard__taxNote">incl. tax</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <section class="common-section booking-section pt-4">
+        <div class="container container-xxl">
+           <form class="booking-traveler-form"  [formGroup]="cruisesForm" novalidate>
+          <div class="row mobrow">
+            <div class="col-xxl-9 col-xl-9 col-lg-9 col-md-9 col-12">
+              <div class="flightdetailsmain-box" >
+                <div class="insideinfobox">
+                  <h2 class="common-titlenew">Booking Details Will Be Sent To</h2>
+                       <div class="traveler-info-row" formGroupName="primaryInfo">
+                      <!-- Name Fields -->
+                      <div class="row">
+                     <div class="col-lg-4 col-md-12">
+                          <div class="booking-form-group">
+                            <label for="travelerTitle" class="booking-form-label">
+                              Title<span class="booking-required-asterisk">*</span>
+                            </label>
+                            <div class="booking-select-wrapper">
+                              <select class="form-select booking-form-control booking-form-select"
+                                id="travelerTitle" name="Title" formControlName="title" required>
+                                <option value="" disabled>Select</option>
+                               <option value="Mr." >Mr.</option>
+                               <option value="Ms." >Ms.</option>
+                               <option value="room_service." >Mrs.</option>
+                              </select>
+                                   
+                            </div>
+                             @if (primaryInfoGroup.get('title')?.touched && primaryInfoGroup.get('title')?.invalid) {
+              <div class="text-danger">Title is required.</div>
+              }
+                          </div>
+                        </div>
+                
+                          <div class="col-lg-4 col-12">
+                           <label for="travelerFirstName" class="booking-form-label">
+                              First Name<span class="booking-required-asterisk">*</span>
+                            </label>
+                        <input type="text" class="form-control booking-form-control" id="travelerEmailAddress"
+                          name="name" placeholder="First name" formControlName="first_name" required />
+                          @if (primaryInfoGroup.get('first_name')?.touched && primaryInfoGroup.get('first_name')?.invalid) {
+              <div class="text-danger">First name is required.</div>
+              }
+                      </div>
+                        <div class="col-lg-4 col-12">
+                           <label for="travelerLastname" class="booking-form-label">
+                              Last Name<span class="booking-required-asterisk">*</span>
+                            </label>
+                        <input type="text" class="form-control booking-form-control" id="travelerEmailAddress"
+                          name="last name" placeholder="Last name" formControlName="last_name" required />
+                           @if (primaryInfoGroup.get('last_name')?.touched && primaryInfoGroup.get('last_name')?.invalid) {
+              <div class="text-danger">Last name is required.</div>
+              }
+                      </div>
+                      </div>
+
+                      <!-- Date of Birth and Gender -->
+                      <div class="row">
+                               <div class="col-lg-4 col-12">
+                           <label for="travelerDateOfBirth" class="booking-form-label">
+                              Email<span class="booking-required-asterisk">*</span>
+                            </label>
+                        <input type="email" class="form-control booking-form-control" id="travelerEmailAddress"
+                          name="email" placeholder="Email" formControlName="email" required />
+                           @if (primaryInfoGroup.get('email')?.touched && primaryInfoGroup.get('email')?.invalid) {
+              <div class="text-danger">Email is required.</div>
+              }
+                      </div>
+                           <div class="col-lg-4 col-12">
+                           <label for="travelerDateOfBirth" class="booking-form-label">
+                              Phone<span class="booking-required-asterisk">*</span>
+                            </label>
+
+
+                          <ngx-intl-tel-input [cssClass]="'form-control booking-form-control'"           
+
+                                                [preferredCountries]="preferredCountries"
+                                                [enableAutoCountrySelect]="true" [enablePlaceholder]="true"
+                                                [searchCountryFlag]="true" [searchCountryField]="[
+          SearchCountryField.Iso2,
+          SearchCountryField.Name
+        ]" [selectFirstCountry]="false" [selectedCountryISO]="CountryISO.UnitedStates" [maxLength]="15"
+                                                [phoneValidation]="true" [separateDialCode]="separateDialCode"
+                                                [numberFormat]="PhoneNumberFormat.National" name="phone" required
+                                                formControlName="phoneNumber" >
+                                            </ngx-intl-tel-input>
+                                            @if (primaryInfoGroup.get('phoneNumber')?.touched && primaryInfoGroup.get('phoneNumber')?.invalid) {
+              <div class="text-danger">Phone is required.</div>
+              }
+                      </div>
+                        <div class="col-lg-4 col-12">
+                           <label for="travelerDateOfBirth" class="booking-form-label">
+                              Address<span class="booking-required-asterisk">*</span>
+                            </label>
+                        <input type="text" class="form-control booking-form-control" id="travelerEmailAddress"
+                          name="address" placeholder="Address" formControlName="address" required />
+                          @if (primaryInfoGroup.get('address')?.touched && primaryInfoGroup.get('address')?.invalid) {
+              <div class="text-danger">Address is required.</div>
+              }
+                      </div>
+                      </div>
+                    </div>
+                  
+                 <hr>
+                    <!-- Traveler Information -->
+          <div formArrayName="travelers">
+  <h3 class="traveler-section-header">Who's Traveling</h3>
+
+  <div *ngFor="let traveler of travelers.controls; let i = index" [formGroupName]="i" class="traveler-info-row">
+    
+    <div class="row">
+      <div class="col-lg-4 col-md-12">
+        <div class="booking-form-group">
+          <label>Type<span class="booking-required-asterisk">*</span></label>
+          <select class="form-select booking-form-control" formControlName="type">
+            <option value="">Select</option>
+            <option value="Senior">Senior</option>
+            <option value="Adult">Adult</option>
+            <option value="Children">Children</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="col-lg-4 col-md-12">
+        <div class="booking-form-group">
+          <label>Title<span class="booking-required-asterisk">*</span></label>
+          <select class="form-select booking-form-control" formControlName="title">
+            <option value="">Select</option>
+            <option value="Mr.">Mr.</option>
+            <option value="Ms.">Ms.</option>
+            <option value="Mrs.">Mrs.</option>
+          </select>
+           <div
+                          *ngIf="(getControl(traveler, 'title')?.touched || submitted) && getControl(traveler, 'title')?.invalid"
+                          class="invalid-feedback">
+                          Title is required.
+                        </div>
+        </div>
+      </div>
+
+      <div class="col-lg-4 col-12">
+        <label>Full Name<span class="booking-required-asterisk">*</span></label>
+        <input type="text" class="form-control booking-form-control" formControlName="fullName" placeholder="Full name"/>
+        <div
+                          *ngIf="(getControl(traveler, 'fullName')?.touched || submitted) && getControl(traveler, 'fullName')?.invalid"
+                          class="invalid-feedback">
+                          Name is required.
+                        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-lg-4 col-md-12">
+        <div class="booking-form-group">
+          <label>Gender<span class="booking-required-asterisk">*</span></label>
+          <select class="form-select booking-form-control" formControlName="gender">
+            <option value="">Select Gender</option>
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+            <option value="other">Other</option>
+          </select>
+               <div
+                          *ngIf="(getControl(traveler, 'gender')?.touched || submitted) && getControl(traveler, 'gender')?.invalid"
+                          class="invalid-feedback">
+                          Gender is required.
+                        </div>
+        </div>
+      </div>
+
+      <div class="col-lg-4 col-md-12">
+        <div class="booking-form-group">
+          <label>Date of Birth<span class="booking-required-asterisk">*</span></label>
+          
+            <input type="text" class="form-control booking-form-control date-input commonDatePicker" placeholder="MM-DD-YY"
+                            formControlName="dateOfBirth" name="dateOfBirth" readonly [appFlatpickr]="'normal'"
+                            id="travelerDateOfBirth-{{i}}"
+                            [class.is-invalid]="(getControl(traveler, 'dateOfBirth')?.touched || submitted) && getControl(traveler, 'dateOfBirth')?.invalid" />
+
+                          <div
+                            *ngIf="(getControl(traveler, 'dateOfBirth')?.touched || submitted) && getControl(traveler, 'dateOfBirth')?.invalid"
+                            class="invalid-feedback">
+                            <div *ngIf="getControl(traveler, 'dateOfBirth')?.errors?.['required']">
+                              Date of birth is required.
+                            </div>
+                            <div *ngIf="getControl(traveler, 'dateOfBirth')?.errors?.['futureDate']">
+                              Date of birth cannot be in the future.
+                            </div>
+                          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-4 col-12">
+        <label>Citizenship<span class="booking-required-asterisk">*</span></label>
+
+               <input type="text" class="form-control booking-form-control" formControlName="citizenship"
+                          placeholder="Enter citizenship" id="citizenship-{{i}}" googlePlacesAutocomplete
+                          [autocompleteType]="'country'" (placeChanged)="onPlaceSelectedNation($event, i)"
+                          [class.is-invalid]="(getControl(traveler, 'citizenship')?.touched || submitted) && getControl(traveler, 'citizenship')?.invalid" />
+                        <div
+                          *ngIf="(getControl(traveler, 'citizenship')?.touched || submitted) && getControl(traveler, 'citizenship')?.invalid"
+                          class="invalid-feedback">
+                          Citizenship is required.
+                        </div>
+      </div>
+    </div>
+
+    <!-- Remove button -->
+ <div class="text-end" *ngIf="i > 0">
+      <button type="button" class="btn btn-danger btn-sm mt-2" (click)="removeTraveler(i)">
+        <i class="fa-solid fa-trash"></i> Remove
+      </button>
+    </div>
+
+    <hr />
+  </div>
+</div>
+
+<!-- Add button -->
+
+<div class="btnaddbox">
+                  <a  class="inlinebtn addbtn" id="newaddtraveler" (click)="addTraveler()"><i
+                      class="fa-solid fa-plus"></i> Add/Edit Travelers
+                  </a>
+                </div>
+
+                  </div>
+              </div>
+              <div class="flightdetailsmain-box bookingflightsecbox" formGroupName="billingInfo">
+                <h2 class="detailstiitle">Payment Options</h2>
+
+                <div class="flightinfo">
+                  <h3>Payment Methods</h3>
+                  <div class="allpaymentoptions">
+                    <a href="#"> <svg width="72" height="24" viewBox="0 0 72 24" fill="none"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <rect x="0.5" y="0.5" width="71" height="23" rx="3.5" fill="#F9F9F9" />
+                        <rect x="0.5" y="0.5" width="71" height="23" rx="3.5" stroke="#D9D9D9" />
+                        <path fill-rule="evenodd" clip-rule="evenodd"
+                          d="M26.0004 18.8903H22.5387L19.9428 8.02951C19.8196 7.52991 19.558 7.08824 19.1731 6.88008C18.2128 6.35695 17.1545 5.94062 16 5.73064V5.3125H21.5766C22.3463 5.3125 22.9235 5.94062 23.0197 6.6701L24.3666 14.5044L27.8267 5.3125H31.1922L26.0004 18.8903ZM33.1164 18.8903H29.8471L32.5392 5.3125H35.8085L33.1164 18.8903ZM40.0383 9.07461C40.1345 8.34332 40.7118 7.92518 41.3852 7.92518C42.4435 7.82019 43.5963 8.03016 44.5584 8.55148L45.1356 5.62812C44.1735 5.20998 43.1153 5 42.1549 5C38.9818 5 36.6728 6.88073 36.6728 9.49094C36.6728 11.4767 38.3083 12.5193 39.4628 13.1474C40.7118 13.7737 41.1928 14.1919 41.0966 14.8182C41.0966 15.7576 40.1345 16.1758 39.1742 16.1758C38.0197 16.1758 36.8652 15.8626 35.8086 15.3395L35.2314 18.2647C36.3859 18.786 37.6349 18.996 38.7893 18.996C42.3473 19.0991 44.5584 17.2202 44.5584 14.4C44.5584 10.8485 40.0383 10.6404 40.0383 9.07461ZM56 18.8903L53.4041 5.3125H50.6158C50.0385 5.3125 49.4613 5.73064 49.2689 6.35695L44.4619 18.8903H47.8275L48.4992 16.9064H52.6344L53.0192 18.8903H56ZM51.0968 8.96875L52.0572 14.086H49.3651L51.0968 8.96875Z"
+                          fill="#172B85" />
+                      </svg></a>
+
+                    <a href="#">
+                      <svg width="72" height="24" viewBox="0 0 72 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="0.5" y="0.5" width="71" height="23" rx="3.5" fill="#F9F9F9" />
+                        <rect x="0.5" y="0.5" width="71" height="23" rx="3.5" stroke="#D9D9D9" />
+                        <path fill-rule="evenodd" clip-rule="evenodd"
+                          d="M22.771 21.5999V13.289H29.9553L30.7261 14.5198L31.5224 13.289H57.5998V21.0267C57.5998 21.0267 56.9179 21.5916 56.1291 21.5999H41.6895L40.8205 20.2898V21.5999H37.9727V19.3635C37.9727 19.3635 37.5836 19.6757 36.7426 19.6757H35.7733V21.5999H31.4615L30.6918 20.3427L29.9102 21.5999H22.771ZM14.3999 7.02625L16.0163 2.39999H18.8118L19.7291 4.99143V2.39999H23.2041L23.7502 4.27301L24.2796 2.39999H39.8787V3.34162C39.8787 3.34162 40.6987 2.39999 42.0464 2.39999L47.1077 2.42171L48.0092 4.97923V2.39999H50.9173L51.7177 3.86909V2.39999H54.6524V10.7109H51.7177L50.9506 9.23702V10.7109H46.6781L46.2484 9.40078H45.0998L44.6771 10.7109H41.7796C40.62 10.7109 39.8787 9.78847 39.8787 9.78847V10.7109H35.51L34.6429 9.40078V10.7109H18.3976L17.9683 9.40078H16.8233L16.397 10.7109H14.3999V7.02625ZM14.4083 9.64479L16.5885 3.42187H18.2414L20.4195 9.64479H18.9688L18.5687 8.39868H16.23L15.8278 9.64479H14.4083ZM18.1083 7.04782L17.3954 4.87031L16.6805 7.04782H18.1083ZM20.5688 9.6448V3.42187L22.5859 3.43107L23.7591 7.44321L24.9042 3.42187H26.9051V9.6448H25.6379V5.05948L24.2945 9.6448H23.1831L21.836 5.05948V9.6448H20.5688ZM27.7723 9.6448V3.42187H31.9076V4.81384H29.0529V5.87829H31.8409V7.18838H29.0529V8.29377H31.9076V9.6448H27.7723ZM32.6428 9.64479V3.42187H35.4629C36.3974 3.42187 37.2346 4.13122 37.2346 5.44074C37.2346 6.56019 36.5287 7.28124 35.8444 7.35214L37.5118 9.64479H35.9632L34.4437 7.43402H33.9101V9.64479H32.6428ZM35.3595 4.81406H33.9109V6.12414H35.3783C35.6323 6.12414 35.9598 5.88252 35.9598 5.4691C35.9598 5.14776 35.707 4.81406 35.3595 4.81406ZM39.045 9.6448H37.751V3.42187H39.045V9.6448ZM42.1144 9.6448H41.8351C40.4837 9.6448 39.6632 8.33778 39.6632 6.55892C39.6632 4.73611 40.4745 3.42187 42.1811 3.42187H43.5817V4.89572H42.1298C41.4371 4.89572 40.9471 5.55942 40.9471 6.57427C40.9471 7.77942 41.5074 8.28558 42.3144 8.28558H42.6479L42.1144 9.6448ZM42.6898 9.64479L44.87 3.42187H46.5229L48.701 9.64479H47.2503L46.8501 8.39868H44.5115L44.1092 9.64479H42.6898ZM46.3893 7.04782L45.6765 4.87031L44.9616 7.04782H46.3893ZM48.8499 9.6448V3.42187H50.461L52.5183 7.33167V3.42187H53.7856V9.6448H52.2265L50.1171 5.63265V9.6448H48.8499ZM23.6379 20.5385V14.3155H27.7732V15.7075H24.9185V16.772H27.7065V18.082H24.9185V19.1874H27.7732V20.5385H23.6379ZM43.9002 20.5385V14.3155H48.0355V15.7075H45.1808V16.772H47.9555V18.082H45.1808V19.1874H48.0355V20.5385H43.9002ZM27.9334 20.5385L29.9469 17.4654L27.8855 14.3155H29.4821L30.7098 16.2628L31.9416 14.3155H33.4757L31.4413 17.427L33.4585 20.5385H31.8622L30.6701 18.6219L29.5071 20.5385H27.9334ZM33.61 20.5362V14.3133H36.4092C37.5578 14.3133 38.2288 15.2221 38.2288 16.4063C38.2288 17.8359 37.3733 18.5711 36.2446 18.5711H34.9106V20.5362H33.61ZM36.3149 15.7195H34.9101V17.1524H36.3107C36.6809 17.1524 36.9402 16.8513 36.9402 16.436C36.9402 15.9939 36.6795 15.7195 36.3149 15.7195ZM38.779 20.5362V14.3133H41.5991C42.5335 14.3133 43.3708 15.0226 43.3708 16.3321C43.3708 17.4516 42.6649 18.1726 41.9805 18.2435L43.648 20.5362H42.0993L40.5799 18.3254H40.0463V20.5362H38.779ZM41.4957 15.7055H40.0471V17.0155H41.5145C41.7685 17.0155 42.096 16.7739 42.096 16.3605C42.096 16.0392 41.8432 15.7055 41.4957 15.7055ZM48.6234 20.5385V19.1874H51.1596C51.5348 19.1874 51.6973 18.9385 51.6973 18.6654C51.6973 18.4038 51.5353 18.1394 51.1596 18.1394H50.0135C49.0173 18.1394 48.4624 17.3942 48.4624 16.2756C48.4624 15.2778 48.9705 14.3155 50.4509 14.3155H52.9187L52.3851 15.7157H50.2508C49.8428 15.7157 49.7172 15.9785 49.7172 16.2295C49.7172 16.4875 49.8724 16.772 50.1841 16.772H51.3847C52.4952 16.772 52.9771 17.5453 52.9771 18.558C52.9771 19.6467 52.4401 20.5385 51.3242 20.5385H48.6234ZM53.0875 20.5385V19.1874H55.6237C55.999 19.1874 56.1615 18.9385 56.1615 18.6654C56.1615 18.4038 55.9995 18.1394 55.6237 18.1394H54.4776C53.4814 18.1394 52.9266 17.3942 52.9266 16.2756C52.9266 15.2778 53.4347 14.3155 54.915 14.3155H57.3829L56.8493 15.7157H54.7149C54.3069 15.7157 54.1813 15.9785 54.1813 16.2295C54.1813 16.4875 54.3366 16.772 54.6482 16.772H55.8488C56.9593 16.772 57.4412 17.5453 57.4412 18.558C57.4412 19.6467 56.9043 20.5385 55.7884 20.5385H53.0875Z"
+                          fill="#006FCF" />
+                      </svg>
+                    </a>
+                    <a href="#">
+                      <svg width="72" height="24" viewBox="0 0 72 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="0.5" y="0.5" width="71" height="23" rx="3.5" fill="#F9F9F9" />
+                        <rect x="0.5" y="0.5" width="71" height="23" rx="3.5" stroke="#D9D9D9" />
+                        <rect width="35" height="21" transform="translate(18.5 1.5)" fill="#F9F9F9" />
+                        <path
+                          d="M53.5 12C53.5 17.7615 48.8154 22.5 43 22.5C37.2385 22.5 32.5 17.7615 32.5 12C32.5 6.23846 37.1846 1.5 42.9462 1.5C48.8154 1.5 53.5 6.23846 53.5 12Z"
+                          fill="#F9B50B" />
+                        <path
+                          d="M39.4462 12.0538C39.4462 11.3 39.3385 10.5462 39.2308 9.84615H32.7692C32.8231 9.46923 32.9308 9.14615 33.0385 8.71538H38.8C38.6923 8.33846 38.5308 7.96154 38.3692 7.58462H33.4692C33.6308 7.20769 33.8462 6.88462 34.0615 6.45385H37.7769C37.5615 6.07692 37.2923 5.7 36.9692 5.32308H34.9231C35.2462 4.94615 35.5692 4.62308 36 4.24615C34.1692 2.52308 31.6923 1.5 28.9462 1.5C23.2385 1.66154 18.5 6.23846 18.5 12C18.5 17.7615 23.1846 22.5 29 22.5C31.7462 22.5 34.1692 21.4231 36.0538 19.7538C36.4308 19.4308 36.7538 19.0538 37.1308 18.6231H34.9769C34.7077 18.3 34.4385 17.9231 34.2231 17.5462H37.8846C38.1 17.2231 38.3154 16.8462 38.4769 16.4154H33.5769C33.4154 16.0923 33.2538 15.7154 33.1462 15.2846H38.9077C39.2308 14.3154 39.4462 13.2385 39.4462 12.0538Z"
+                          fill="#C8191C" />
+                        <path
+                          d="M32.7169 14.692L32.8785 13.7228C32.8246 13.7228 32.7169 13.7766 32.6093 13.7766C32.2323 13.7766 32.1785 13.5612 32.2323 13.4535L32.5554 11.5151H33.1477L33.3093 10.4381H32.7708L32.8785 9.79199H31.7477C31.7477 9.79199 31.1016 13.4535 31.1016 13.8843C31.1016 14.5305 31.4785 14.8535 32.0169 14.8535C32.34 14.8535 32.6093 14.7458 32.7169 14.692Z"
+                          fill="white" />
+                        <path
+                          d="M33.0938 12.9154C33.0938 14.4769 34.1707 14.8539 35.0322 14.8539C35.8399 14.8539 36.2168 14.6923 36.2168 14.6923L36.4322 13.6154C36.4322 13.6154 35.8399 13.8846 35.2476 13.8846C34.0091 13.8846 34.2245 12.9693 34.2245 12.9693H36.4861C36.4861 12.9693 36.6476 12.2693 36.6476 11.9462C36.6476 11.2462 36.2707 10.3308 35.0322 10.3308C33.9553 10.2769 33.0938 11.5154 33.0938 12.9154ZM35.0322 11.3C35.6245 11.3 35.5168 12 35.5168 12.0539H34.2784C34.3322 12 34.4399 11.3 35.0322 11.3Z"
+                          fill="white" />
+                        <path
+                          d="M42.0849 14.6923L42.3002 13.4538C42.3002 13.4538 41.7618 13.7231 41.331 13.7231C40.5772 13.7231 40.2002 13.1308 40.2002 12.4308C40.2002 11.0846 40.8464 10.3846 41.6541 10.3846C42.1925 10.3846 42.6772 10.7077 42.6772 10.7077L42.8387 9.52306C42.8387 9.52306 42.1925 9.25383 41.5464 9.25383C40.2541 9.25383 39.0156 10.3846 39.0156 12.4846C39.0156 13.8846 39.6618 14.8 41.0079 14.8C41.4925 14.8538 42.0849 14.6923 42.0849 14.6923Z"
+                          fill="white" />
+                        <path
+                          d="M26.6313 10.2773C25.8774 10.2773 25.2851 10.4927 25.2851 10.4927L25.1236 11.462C25.1236 11.462 25.6082 11.2466 26.362 11.2466C26.7389 11.2466 27.062 11.3004 27.062 11.6235C27.062 11.8389 27.0082 11.8927 27.0082 11.8927H26.5236C25.5543 11.8927 24.5312 12.2697 24.5312 13.562C24.5312 14.585 25.1774 14.8004 25.6082 14.8004C26.362 14.8004 26.7389 14.3158 26.7928 14.3158L26.7389 14.7466H27.6543L28.0851 11.6773C28.0851 10.3312 27.0082 10.2773 26.6313 10.2773ZM26.8466 12.7543C26.8466 12.9158 26.7389 13.8312 26.0928 13.8312C25.7697 13.8312 25.662 13.562 25.662 13.4004C25.662 13.1312 25.8236 12.7543 26.6851 12.7543C26.7928 12.7543 26.8466 12.7543 26.8466 12.7543Z"
+                          fill="white" />
+                        <path
+                          d="M29.1626 14.7996C29.4318 14.7996 30.8318 14.8534 30.8318 13.3457C30.8318 11.9457 29.4856 12.215 29.4856 11.6765C29.4856 11.4073 29.701 11.2996 30.0779 11.2996C30.2395 11.2996 30.8318 11.3534 30.8318 11.3534L30.9933 10.3303C30.9933 10.3303 30.6164 10.2227 29.9164 10.2227C29.1087 10.2227 28.2472 10.5457 28.2472 11.6765C28.2472 12.9688 29.6472 12.8611 29.6472 13.3457C29.6472 13.6688 29.2703 13.7227 29.001 13.7227C28.5164 13.7227 27.9779 13.5611 27.9779 13.5611L27.8164 14.5842C27.9241 14.6919 28.2472 14.7996 29.1626 14.7996Z"
+                          fill="white" />
+                        <path
+                          d="M51.3449 9.41504L51.1295 10.9227C51.1295 10.9227 50.6987 10.3843 50.0526 10.3843C49.0295 10.3843 48.168 11.6227 48.168 13.0766C48.168 13.992 48.5987 14.9073 49.568 14.9073C50.2141 14.9073 50.6449 14.4766 50.6449 14.4766L50.591 14.8535H51.7218L52.5295 9.52273L51.3449 9.41504ZM50.8064 12.3227C50.8064 12.915 50.5372 13.7227 49.891 13.7227C49.5141 13.7227 49.2987 13.3997 49.2987 12.8073C49.2987 11.892 49.6757 11.3535 50.2141 11.3535C50.591 11.4073 50.8064 11.6766 50.8064 12.3227Z"
+                          fill="white" />
+                        <path
+                          d="M20.5457 14.7458L21.1918 10.7612L21.2995 14.7458H22.0534L23.5072 10.7612L22.9149 14.7458H24.0995L25.0149 9.41504H23.1841L22.0534 12.6997L21.9995 9.41504H20.3841L19.4688 14.7458H20.5457Z"
+                          fill="white" />
+                        <path
+                          d="M37.7775 14.7463C38.1006 12.9155 38.1544 11.4078 38.9621 11.6771C39.0698 10.9771 39.2314 10.654 39.3391 10.3848H39.1237C38.6391 10.3848 38.2083 11.0309 38.2083 11.0309L38.316 10.4386H37.2391L36.5391 14.7463H37.7775Z"
+                          fill="white" />
+                        <path
+                          d="M44.6703 10.2773C43.9165 10.2773 43.3242 10.4927 43.3242 10.4927L43.1626 11.462C43.1626 11.462 43.6472 11.2466 44.4011 11.2466C44.778 11.2466 45.1011 11.3004 45.1011 11.6235C45.1011 11.8389 45.0472 11.8927 45.0472 11.8927H44.5626C43.5934 11.8927 42.5703 12.2697 42.5703 13.562C42.5703 14.585 43.2165 14.8004 43.6472 14.8004C44.4011 14.8004 44.778 14.3158 44.8319 14.3158L44.778 14.7466H45.8011L46.2319 11.6773C46.2319 10.3312 45.0472 10.2773 44.6703 10.2773ZM44.9395 12.7543C44.9395 12.9158 44.8319 13.8312 44.1857 13.8312C43.8626 13.8312 43.7549 13.562 43.7549 13.4004C43.7549 13.1312 43.9165 12.7543 44.778 12.7543C44.8857 12.7543 44.8857 12.7543 44.9395 12.7543Z"
+                          fill="white" />
+                        <path
+                          d="M47.0939 14.7463C47.417 12.9155 47.4709 11.4078 48.2785 11.6771C48.3862 10.9771 48.5478 10.654 48.6555 10.3848H48.4401C47.9555 10.3848 47.5247 11.0309 47.5247 11.0309L47.6324 10.4386H46.5555L45.8555 14.7463H47.0939Z"
+                          fill="white" />
+                      </svg>
+                    </a>
+                    <a href="#">
+                      <svg width="72" height="24" viewBox="0 0 72 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="0.5" y="0.5" width="71" height="23" rx="3.5" fill="#F9F9F9" />
+                        <rect x="0.5" y="0.5" width="71" height="23" rx="3.5" stroke="#D9D9D9" />
+                        <path fill-rule="evenodd" clip-rule="evenodd"
+                          d="M20.8058 5H17.6908C17.4777 5 17.2964 5.20192 17.2631 5.47636L16.0033 15.8897C15.9783 16.0953 16.1003 16.2804 16.2602 16.2804H17.7472C17.9604 16.2804 18.1417 16.0787 18.175 15.8037L18.5147 12.995C18.5475 12.72 18.7292 12.5181 18.942 12.5181H19.928C21.9798 12.5181 23.164 11.2236 23.4734 8.65851C23.6127 7.53614 23.4793 6.65445 23.0761 6.03688C22.6334 5.35877 21.8482 5 20.8058 5ZM21.1651 8.80373C20.9948 10.2609 20.1408 10.2609 19.3151 10.2609H18.845L19.1747 7.53949C19.1944 7.37499 19.3036 7.25391 19.4312 7.25391H19.6466C20.2091 7.25391 20.7397 7.25391 21.0139 7.67188C21.1774 7.92121 21.2275 8.29178 21.1651 8.80373Z"
+                          fill="#28356A" />
+                        <path fill-rule="evenodd" clip-rule="evenodd"
+                          d="M30.1962 8.67905H28.7046C28.5775 8.67905 28.4676 8.80014 28.4481 8.96463L28.382 9.50852L28.2778 9.31142C27.9549 8.70034 27.2347 8.49609 26.5161 8.49609C24.8677 8.49609 23.4599 10.1238 23.1857 12.4069C23.0432 13.5458 23.2458 14.6349 23.7414 15.3943C24.196 16.0925 24.8464 16.3836 25.6201 16.3836C26.9483 16.3836 27.6847 15.2702 27.6847 15.2702L27.6182 15.8106C27.5932 16.0172 27.7153 16.2025 27.8743 16.2025H29.2178C29.4315 16.2025 29.6119 16.0006 29.6456 15.7256L30.4517 9.06975C30.4772 8.86484 30.3555 8.67905 30.1962 8.67905ZM28.1169 12.464C27.973 13.5749 27.2967 14.3207 26.4341 14.3207C26.0009 14.3207 25.6548 14.1396 25.4325 13.7964C25.212 13.4556 25.1283 12.9704 25.1984 12.4301C25.3328 11.3286 26.0205 10.5584 26.87 10.5584C27.2936 10.5584 27.6379 10.742 27.8647 11.088C28.0919 11.4377 28.1821 11.9259 28.1169 12.464Z"
+                          fill="#28356A" />
+                        <path fill-rule="evenodd" clip-rule="evenodd"
+                          d="M38.0255 8.84375H36.5264C36.3834 8.84375 36.2491 8.93639 36.1681 9.09141L34.1007 13.0614L33.2244 9.24626C33.1692 9.00758 33.0003 8.84375 32.809 8.84375H31.3361C31.157 8.84375 31.0327 9.07178 31.0896 9.2915L32.7407 15.6082L31.1885 18.465C31.0664 18.6901 31.1894 18.9995 31.4003 18.9995H32.8974C33.0395 18.9995 33.1724 18.9091 33.2531 18.7573L38.2385 9.37516C38.3579 9.15079 38.2353 8.84375 38.0255 8.84375Z"
+                          fill="#28356A" />
+                        <path fill-rule="evenodd" clip-rule="evenodd"
+                          d="M43.0229 5H39.9076C39.6949 5 39.5137 5.20192 39.4804 5.47636L38.2205 15.8897C38.1955 16.0953 38.3176 16.2804 38.4766 16.2804H40.0753C40.2236 16.2804 40.3507 16.1392 40.3739 15.9468L40.7315 12.995C40.7643 12.72 40.9461 12.5181 41.1588 12.5181H42.1444C44.1966 12.5181 45.3804 11.2236 45.6902 8.65851C45.83 7.53614 45.6956 6.65445 45.2925 6.03688C44.8502 5.35877 44.0655 5 43.0229 5ZM43.3824 8.80373C43.2125 10.2609 42.3585 10.2609 41.5323 10.2609H41.0628L41.393 7.53949C41.4125 7.37499 41.5209 7.25391 41.6489 7.25391H41.8644C42.4264 7.25391 42.9575 7.25391 43.2316 7.67188C43.3952 7.92121 43.4448 8.29178 43.3824 8.80373Z"
+                          fill="#298FC2" />
+                        <path fill-rule="evenodd" clip-rule="evenodd"
+                          d="M52.411 8.67905H50.9202C50.7923 8.67905 50.6835 8.80014 50.6643 8.96463L50.5982 9.50852L50.4935 9.31142C50.1706 8.70034 49.4509 8.49609 48.7322 8.49609C47.0839 8.49609 45.6766 10.1238 45.4024 12.4069C45.2603 13.5458 45.462 14.6349 45.9575 15.3943C46.4131 16.0925 47.0624 16.3836 47.8363 16.3836C49.1644 16.3836 49.9009 15.2702 49.9009 15.2702L49.8344 15.8106C49.8094 16.0172 49.9314 16.2025 50.0914 16.2025H51.4345C51.6472 16.2025 51.8285 16.0006 51.8618 15.7256L52.6683 9.06975C52.6929 8.86484 52.5708 8.67905 52.411 8.67905ZM50.3318 12.464C50.1888 13.5749 49.5115 14.3207 48.6488 14.3207C48.2166 14.3207 47.8696 14.1396 47.6472 13.7964C47.4269 13.4556 47.3439 12.9704 47.4131 12.4301C47.5484 11.3286 48.2352 10.5584 49.0847 10.5584C49.5083 10.5584 49.8526 10.742 50.0794 11.088C50.3075 11.4377 50.3977 11.9259 50.3318 12.464Z"
+                          fill="#298FC2" />
+                        <path fill-rule="evenodd" clip-rule="evenodd"
+                          d="M54.0454 5.28625L52.7669 15.8902C52.7419 16.0958 52.8639 16.2809 53.0229 16.2809H54.3082C54.5219 16.2809 54.703 16.0792 54.7358 15.8042L55.9965 5.39137C56.0217 5.18579 55.8996 5 55.7406 5H54.3014C54.1744 5.0005 54.065 5.12175 54.0454 5.28625Z"
+                          fill="#298FC2" />
+                      </svg>
+                    </a>
+
+                  </div>
+                  
+                    <!-- Passport Details Section -->
+                    <div class="passport-details-section">
+                      <div class="row">
+                        <div class="col-lg-4 col-md-12">
+                          <div class="booking-form-group">
+                            <label for="travelerPassportNumber" class="booking-form-label">
+                              Name of card holder
+                            </label>
+                            <input type="text" class="form-control booking-form-control" id="tr"  placeholder="Card holder’s name"
+                formControlName="cardHolder" required />
+                 @if (billingInfoGroup.get('cardHolder')?.touched && billingInfoGroup.get('cardHolder')?.invalid) {
+              <div class="text-danger">Card holder name is required.</div>
+              }
+                          </div>
+                        </div>
+                        <div class="col-lg-4 col-md-6">
+                          <div class="booking-form-group">
+                            <label for="passportIssuingDate" class="booking-form-label">
+                              Card number
+                            </label>
+                            <input type="text" class="form-control booking-form-control" id="ete"placeholder="Card/Debit card number"
+                formControlName="CardNumber" minlength="15" maxlength="16"
+                              required />
+                               @if (billingInfoGroup.get('CardNumber')?.touched && billingInfoGroup.get('CardNumber')?.invalid) {
+              <div class="text-danger">Card number is required.</div>
+              }
+                 @if (billingInfoGroup.get('CardNumber')?.errors?.['minlength']) {
+              <div class="text-danger">Number must be at least 15 digits.</div>
+              }
+                 @if (billingInfoGroup.get('CardNumber')?.errors?.['maxlength']) {
+              <div class="text-danger">Number not more than 16 digits.</div>
+              }
+                          </div>
+                        </div>
+                        <div class="col-lg-2 col-md-6">
+                          <div class="booking-form-group">
+                            <label for="passportExpiryDate" class="booking-form-label">
+                              Exp date
+                            </label>
+                            <input type="text" class="form-control booking-form-control" id="exdate"
+                             placeholder="MM/YYYY"
+                    formControlName="ExpiryDate" required />
+                       @if (billingInfoGroup.get('ExpiryDate')?.touched && billingInfoGroup.get('ExpiryDate')?.invalid) {
+                  <div class="text-danger">
+                    @if (billingInfoGroup.get('ExpiryDate')?.errors?.['required']) {
+                    <div>Expiry date is required.</div>
+                    } @if (billingInfoGroup.get('ExpiryDate')?.errors?.['pattern']) {
+                    <div>Format must be MM/YYYY.</div>
+                    } </div>
+                  }
+                          </div>
+                        </div>
+
+
+                        
+                        <div class="col-lg-2 col-md-6">
+                          <div class="booking-form-group">
+                            <label for="passportExpiryDate" class="booking-form-label">
+                              Cvv
+                            </label>
+                            <input type="text" class="form-control booking-form-control" id="excvv"
+                             placeholder="CVV"
+                    formControlName="CVV" required />
+                     @if (billingInfoGroup.get('CVV')?.touched && billingInfoGroup.get('CVV')?.invalid) {
+                  <div class="text-danger">
+                    @if (billingInfoGroup.get('CVV')?.errors?.['required']) {
+                    <div>CVV is required.</div>
+                    } @if (billingInfoGroup.get('CVV')?.errors?.['minlength']) {
+                    <div>Minimum 3 digits.</div>
+                    } @if (billingInfoGroup.get('CVV')?.errors?.['maxlength']) {
+                    <div>Maximum 4 digits.</div>
+                    }
+                  </div>
+                  }
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                
+                </div>
+
+
+              </div>
+              <div class="flightdetailsmain-box bookingflightsecbox">
+                <h2 class="detailstiitle">Billing and Contact Information</h2>
+
+                <div class="flightinfo" formGroupName="billingInfo">
+      
+                    <!-- Passport Details Section -->
+                    <div class="passport-details-section">
+                      <div class="row">
+                        
+
+
+      @for (field of billingFields; track $index) {
+          <div class="col-lg-3 col-md-6">
+            <div class="booking-form-group">
+              <label class="booking-form-label">{{ field.label }}</label>
+
+@switch (field.type) {
+  @case ('input') {
+    <!-- If field.name is 'street' -->
+    <input
+      *ngIf="field.name === 'street'; else notStreet"
+      type="text"
+      class="form-control booking-form-control"
+      [placeholder]="field.placeholder"
+      [formControlName]="field.name"
+      googlePlacesAutocomplete 
+      [autocompleteType]="'address'"
+      (placeChanged)="onPlaceSelected($event)"
+      [readonly]="false"
+    />
+
+    <!-- Not street -->
+    <ng-template #notStreet>
+      <!-- If BillingPhoneNum, use ngx-intl-tel-input -->
+<ngx-intl-tel-input [cssClass]="'form-control booking-form-control'"           *ngIf="field.name === 'BillingPhoneNum'; else defaultInput"
+
+                                                [preferredCountries]="preferredCountries"
+                                                [enableAutoCountrySelect]="true" [enablePlaceholder]="true"
+                                                [searchCountryFlag]="true" [searchCountryField]="[
+          SearchCountryField.Iso2,
+          SearchCountryField.Name
+        ]" [selectFirstCountry]="false" [selectedCountryISO]="CountryISO.UnitedStates" [maxLength]="15"
+                                                [phoneValidation]="true" [separateDialCode]="separateDialCode"
+                                                [numberFormat]="PhoneNumberFormat.National" name="phone"
+                                                formControlName="BillingPhoneNum" >
+                                            </ngx-intl-tel-input>
+
+      <!-- Default input for all other fields -->
+      <ng-template #defaultInput>
+        <input
+          type="text"
+          class="form-control booking-form-control"
+          [placeholder]="field.placeholder" 
+          [formControlName]="field.name"
+          [readonly]="field.name !== 'street' && field.name !== 'BillingPhoneNum'&& field.name !== 'billingemail'"
+        />
+      </ng-template>
+    </ng-template>
+
+    <!-- Validation message -->
+    @if (billingInfoGroup.get(field.name)?.touched && billingInfoGroup.get(field.name)?.invalid) {
+      <div class="text-danger">{{ field.label }} is required.</div>
+    }
+  }
+}
+
+            </div>
+          </div>
+          }
+
+
+                      </div>
+                    </div>
+             
+                </div>
+
+
+              </div>
+              <div class="text-center">
+                <a  class="upgrade-action-button w-auto checkbtn confirmbtn" (click)="save()">Confirm Book</a>
+              </div>
+            </div>
+            <div class="col-lg-3" #itineraryTop>
+              <div class="stickybox">
+                <div class="itinerary-card shadow-sm m-0">
+                  <h5 class="mb-4">Itinerary</h5>
+                <div class="timeline">
+                <div class="timeline-item" *ngFor="let item of visibleItinerarylist; let i = index"
+                  [ngClass]="{ active: i === 0 }">
+                  <div class="timeline-icon"></div>
+                  <h6>Day {{ item.dayNumber }}</h6>
+                  <p><strong>{{ item.description }} ({{ item.portId }})</strong></p>
+
+                  <div class="row mt-2">
+                    <div class="col-6">
+                      <div class="date-label">Arrival Time</div>
+                      <div class="data-txt">
+                        {{ item.arrivalTime | date:'dd MMM y, hh:mm a' }}
+                      </div>
+                    </div>
+                    <div class="col-6">
+                      <div class="date-label">Departure Time</div>
+                      <div class="data-txt">
+                        {{ item.departureTime | date:'dd MMM y, hh:mm a' }}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Toggle -->
+                <a *ngIf="cruiseDetails?.itinerary?.length > 2" class="show-more mt-3" (click)="toggleItinerary()">
+                  {{ showAllItinerarylist ? 'Show Less' : 'Show More' }}
+                </a>
+              </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          </form>
+        </div>

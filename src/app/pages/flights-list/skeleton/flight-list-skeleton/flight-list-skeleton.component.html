@@ -1,0 +1,322 @@
+<div class="flight-list-loop d-lg-none">
+  <div class="flight-list--inner">
+    <div class="o-airline-offer-card-wrap">
+      <ul class="o-airline-offer-card-wrap__list">
+        @for ( x of [].constructor(skeletonCount); track $index) {
+        <li class="o-airline-offer-card-wrap__item">
+          <a class="o-airline-offer-card-wrap__link">
+            <p-skeleton size="3.5rem" class="pulse mr-2 skeleton-multiflight-card" />
+          </a>
+        </li>
+        }
+      </ul>
+    </div>
+
+    <div class="c-loader">
+      <div class="c-loader-card">
+        <div class="c-loader-card__body">
+          <div class="c-loader-card__loader-image">
+            <img src="assets/images/loader/flight-loader.gif" alt="Flight Loader">
+          </div>
+          <div class="c-loader-card__destination-info-wrap">
+            <div class="c-loader-card__route">
+              <span class="c-loader-card__route--name">{{diparture}}</span>
+              <span class="c-loader-card__route--icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                  <path
+                    d="M3 16.288L4.538 16.288L6.542 13.442L10.873 13.442L7.827 21L9.788 21L15.119 13.442L19.558 13.442C19.954 13.442 20.2933 13.3007 20.576 13.018C20.8587 12.7353 21 12.396 21 12C21 11.604 20.8587 11.2647 20.576 10.982C20.2933 10.6993 19.954 10.558 19.558 10.558L15.119 10.558L9.79 3L7.828 3L10.874 10.558L6.544 10.558L4.539 7.731L3 7.731L4.308 12L3 16.288Z"
+                    fill="currentColor" />
+                </svg>
+              </span>
+              <span class="c-loader-card__route--name">{{arrival}}</span>
+            </div>
+            <p class="c-loader-card__route--info-text">Please wait, we’re searching for the best options for you</p>
+          </div>
+        </div>
+        <div class="c-single-card-slider" (mouseenter)="stopAutoplay()" (mouseleave)="startAutoplay()">
+          <div class="c-single-card-slider__wrap">
+            <div class="c-single-card-slider__viewport">
+              <div class="c-single-card-slider__track" [style.transform]="'translateX(-' + activeIndex() * 100 + '%)'">
+                @for (item of items; track item.label; let i = $index) {
+                <div class="c-single-card-slider__item">
+                  <div class="c-single-card-slider__icon-box">
+                    @switch (i) {
+                    @case (0) {
+                    <svg width="13" height="11" viewBox="0 0 13 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path
+                        d="M11.4697 5.5791C11.6396 5.6735 11.7812 5.80566 11.8945 5.97559C12.0078 6.14551 12.0645 6.33431 12.0645 6.54199V7.92969C12.0645 8.15625 12.0078 8.35449 11.8945 8.52441C11.7812 8.69434 11.6396 8.8265 11.4697 8.9209V9.65723C11.4697 9.99707 11.347 10.2897 11.1016 10.5352C10.875 10.7617 10.5918 10.875 10.252 10.875H5.4375V9.65723H10.252V5.38086C10.252 4.79557 10.1387 4.24805 9.91211 3.73828C9.70443 3.22852 9.40234 2.78483 9.00586 2.40723C8.62826 2.01074 8.18457 1.70866 7.6748 1.50098C7.16504 1.27441 6.61751 1.16113 6.03223 1.16113C5.44694 1.16113 4.89941 1.27441 4.38965 1.50098C3.87988 1.70866 3.42676 2.01074 3.03027 2.40723C2.65267 2.78483 2.35059 3.22852 2.12402 3.73828C1.91634 4.24805 1.8125 4.79557 1.8125 5.38086V9.0625H1.18945C0.86849 9.0625 0.585286 8.94922 0.339844 8.72266C0.113281 8.47721 0 8.18457 0 7.84473V6.65527C0 6.42871 0.0472005 6.22103 0.141602 6.03223C0.254883 5.84342 0.405924 5.70182 0.594727 5.60742C0.594727 4.75781 0.736328 3.99316 1.01953 3.31348C1.32161 2.61491 1.72754 2.02018 2.2373 1.5293C2.76595 1.03841 3.35124 0.660807 3.99316 0.396484C4.63509 0.132161 5.31478 0 6.03223 0C6.74967 0 7.42936 0.132161 8.07129 0.396484C8.7321 0.660807 9.31738 1.04785 9.82715 1.55762C10.3369 2.0485 10.7334 2.63379 11.0166 3.31348C11.3187 3.99316 11.4697 4.74837 11.4697 5.5791ZM3.625 6.03223C3.625 6.20215 3.68164 6.35319 3.79492 6.48535C3.9082 6.59863 4.0498 6.65527 4.21973 6.65527C4.38965 6.65527 4.53125 6.59863 4.64453 6.48535C4.75781 6.35319 4.81445 6.20215 4.81445 6.03223C4.81445 5.8623 4.75781 5.7207 4.64453 5.60742C4.53125 5.49414 4.38965 5.4375 4.21973 5.4375C4.0498 5.4375 3.9082 5.49414 3.79492 5.60742C3.68164 5.7207 3.625 5.8623 3.625 6.03223ZM7.25 6.03223C7.25 6.20215 7.30664 6.35319 7.41992 6.48535C7.5332 6.59863 7.6748 6.65527 7.84473 6.65527C8.01465 6.65527 8.15625 6.59863 8.26953 6.48535C8.38281 6.35319 8.43945 6.20215 8.43945 6.03223C8.43945 5.8623 8.38281 5.7207 8.26953 5.60742C8.15625 5.49414 8.01465 5.4375 7.84473 5.4375C7.6748 5.4375 7.5332 5.49414 7.41992 5.60742C7.30664 5.7207 7.25 5.8623 7.25 6.03223ZM9.65723 4.84277C9.03418 4.84277 8.43945 4.72949 7.87305 4.50293C7.32552 4.27637 6.83464 3.96484 6.40039 3.56836C5.96615 3.15299 5.61686 2.68099 5.35254 2.15234C5.2015 2.96419 4.86165 3.68164 4.33301 4.30469C3.80436 4.92773 3.16243 5.39974 2.40723 5.7207C2.36947 5.11654 2.44499 4.57845 2.63379 4.10645C2.84147 3.61556 3.12467 3.2002 3.4834 2.86035C3.84212 2.52051 4.24805 2.26562 4.70117 2.0957C5.1543 1.9069 5.60742 1.8125 6.06055 1.8125C6.66471 1.8125 7.22168 1.94466 7.73145 2.20898C8.24121 2.47331 8.66602 2.84147 9.00586 3.31348C9.3457 3.7666 9.56283 4.27637 9.65723 4.84277Z"
+                        fill="currentColor" />
+                    </svg>
+                    }
+                    @case (1) {
+                    <svg width="13" height="13" viewBox="0 0 13 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path
+                        d="M12.2133 5.90005C12.4493 6.15571 12.5673 6.46055 12.5673 6.81456C12.5673 7.14889 12.4493 7.4439 12.2133 7.69956L7.69971 12.2131C7.4637 12.4491 7.1687 12.5671 6.8147 12.5671C6.46069 12.5671 6.16569 12.4491 5.92969 12.2131L0.354126 6.63755C0.118124 6.40155 0.000122335 6.10655 0.000122335 5.75254V1.23899C0.000122335 0.904657 0.118124 0.619487 0.354126 0.383484C0.609796 0.127815 0.904799 -1.97627e-05 1.23914 -1.97627e-05H5.75269C6.10669 -1.97627e-05 6.40169 0.117982 6.6377 0.353984L12.2133 5.90005ZM2.83215 3.77602C3.08782 3.77602 3.30416 3.68752 3.48116 3.51052C3.67783 3.31385 3.77616 3.08768 3.77616 2.83201C3.77616 2.55668 3.67783 2.33051 3.48116 2.1535C3.30416 1.9765 3.08782 1.888 2.83215 1.888C2.55682 1.888 2.33065 1.9765 2.15365 2.1535C1.97664 2.33051 1.88814 2.55668 1.88814 2.83201C1.88814 3.08768 1.97664 3.31385 2.15365 3.51052C2.33065 3.68752 2.55682 3.77602 2.83215 3.77602Z"
+                        fill="currentColor" />
+                    </svg>
+                    }
+                    @case (2) {
+                    <svg width="11" height="14" viewBox="0 0 11 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path
+                        d="M4.21973 9.68555L9.0625 4.84277L8.21289 3.99316L4.21973 7.95801L2.66211 6.40039L1.8125 7.25L4.21973 9.68555ZM5.4375 0L10.875 2.43555V6.06055C10.875 7.74089 10.3558 9.27962 9.31738 10.6768C8.27897 12.055 6.98568 12.9329 5.4375 13.3105C3.88932 12.9329 2.59603 12.055 1.55762 10.6768C0.519206 9.27962 0 7.74089 0 6.06055V2.43555L5.4375 0Z"
+                        fill="currentColor" />
+                    </svg>
+                    }
+                    }
+                  </div>
+                  <h6 class="c-single-card-slider__item-label">{{ item.label }}</h6>
+                </div>
+                }
+              </div>
+            </div>
+          </div>
+
+          @if (items.length > 1) {
+          <div class="c-single-card-slider__dots">
+            @for (item of items; track item.label; let i = $index) {
+            <button type="button" class="c-single-card-slider__dot" [class.is-active]="activeIndex() === i"
+              (click)="goTo(i)" [attr.aria-label]="'Go to slide ' + (i + 1)"
+              [attr.aria-current]="activeIndex() === i ? 'true' : null"></button>
+            }
+          </div>
+          }
+        </div>
+      </div>
+    </div>
+
+
+    <div class="o-flight-list-card-container">
+      <div class="o-flight-list-card-wrap">
+        @for ( y of [].constructor(skeletonlistCount); track $index) {
+        <div class="c-flight-list-card">
+          @for ( z of [].constructor(skeletonlistCount); track $index) {
+          <div class="c-flight-list-card__details">
+            <!-- Departure Segment -->
+            <div class="c-flight-list-card__segment">
+              <p-skeleton width="100%" height="120px" class="pulse" />
+            </div>
+          </div>
+          }
+        </div>
+        <div class="c-flight-list-card__divider"></div>
+        <!-- <div> -->
+        <div class="c-flight-list-card__airline-info">
+          <div class="c-flight-list-card__icons position-relative"></div>
+        </div>
+        <!-- </div> -->
+        <div class="c-flight-list-card__divider"></div>
+        }
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="flight-search flight-search--desktop">
+  <div class="container container-xxl">
+    <div class="flight-search__content">
+      <div class="flight-search__filters">
+        <div class="c-filter__card">
+          <div class="c-filter__header-wrap">
+            <div class="c-filter__header">
+              <h3 class="c-filter__header--title">Filter By</h3>
+            </div>
+            <hr class="c-filter-hr-devider" />
+          </div>
+          <div class="c-filter__body">
+            <div class="c-filter__item">
+              <div class="c-filter__item--title">Stops</div>
+
+              <div class="o-flight-time-options-container">
+                <div class="o-flight-time-options-wrap">
+                  <p-skeleton width="100%" height="150px" class="pulse" />
+                </div>
+              </div>
+            </div>
+            <hr class="c-filter-hr-devider" />
+            <div class="c-filter__item">
+              <div class="o-flight-time">
+                <div class="c-filter__item--title">Flight time</div>
+
+                <div class="o-flight-time-options-container">
+                  <div class="o-flight-time-options-wrap">
+                    <p-skeleton width="100%" height="150px" class="pulse" />
+                  </div>
+                </div>
+              </div>
+            </div>
+            <hr class="c-filter-hr-devider" />
+            <div class="c-filter__item">
+              <div class="c-filter__item--title">Airlines</div>
+
+              <div class="c-filter__item--list">
+                <p-skeleton width="100%" height="150px" class="pulse" />
+              </div>
+            </div>
+            <hr class="c-filter-hr-devider" />
+            <div class="c-filter__item">
+              <div class="c-filter__item--title">Connecting Airports</div>
+              <div class="c-filter__item--list">
+                <p-skeleton width="100%" height="150px" class="pulse" />
+              </div>
+            </div>
+            <hr class="c-filter-hr-devider" />
+            <div class="c-filter__item">
+              <div class="c-filter__item--title">Duration</div>
+
+              <div class="o-filter-duration--content__duration-item-wrap">
+                <div class="o-filter-duration--content__duration-item">
+                  <p-skeleton width="100%" height="150px" class="pulse" />
+                </div>
+              </div>
+            </div>
+            <hr class="c-filter-hr-devider" />
+            <div class="c-filter__item">
+              <div class="c-filter__item--title">Price</div>
+
+              <div class="o-filter-duration--content__duration-item-wrap">
+                <div class="o-filter-duration--content__duration-item">
+                  <p-skeleton width="100%" height="150px" class="pulse" />
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- <div class="c-filter__footer"></div> -->
+        </div>
+      </div>
+      <div class="flight-search__results">
+        <div class="fare-block d-none">
+          <div class="fare-wrap">
+            <!-- Slider: Airlines and fares -->
+            <div class="fare-slider" #tableWrapper>
+              <div class="fare-track">
+                @for ( x of [].constructor(skeletonCountDesktop); track
+                $index) {
+
+                <p-skeleton size="8rem" class="pulse mr-2" />
+
+                }
+              </div>
+            </div>
+            <!-- Scroll arrows -->
+            <div class="fare-arrows">
+              <button id="farePrevButton" disabled>
+                <svg viewBox="0 0 7 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path fill-rule="evenodd" clip-rule="evenodd"
+                    d="M0.278322 5.77789L5.65585 0L7 1.44422L2.29454 6.5L7 11.5558L5.65585 13L0.278322 7.22211C0.100112 7.03057 0 6.77083 0 6.5C0 6.22917 0.100112 5.96943 0.278322 5.77789Z"
+                    fill="currentColor" />
+                </svg>
+              </button>
+              <button id="fareNextButton" disabled>
+                <svg viewBox="0 0 7 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path fill-rule="evenodd" clip-rule="evenodd"
+                    d="M6.72168 5.77789L1.34415 0L0 1.44422L4.70546 6.5L0 11.5558L1.34415 13L6.72168 7.22211C6.89989 7.03057 7 6.77083 7 6.5C7 6.22917 6.89989 5.96943 6.72168 5.77789Z"
+                    fill="currentColor" />
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="c-loader d-none d-lg-flex">
+          <div class="c-loader-card">
+            <div class="c-loader-card__body">
+              <div class="c-loader-card__loader-image">
+                <img src="assets/images/loader/flight-loader.gif" alt="Flight Loader">
+              </div>
+              <div class="c-loader-card__destination-info-wrap">
+                <div class="c-loader-card__route">
+                  <span class="c-loader-card__route--name">{{diparture}}</span>
+                  <span class="c-loader-card__route--icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                      <path
+                        d="M3 16.288L4.538 16.288L6.542 13.442L10.873 13.442L7.827 21L9.788 21L15.119 13.442L19.558 13.442C19.954 13.442 20.2933 13.3007 20.576 13.018C20.8587 12.7353 21 12.396 21 12C21 11.604 20.8587 11.2647 20.576 10.982C20.2933 10.6993 19.954 10.558 19.558 10.558L15.119 10.558L9.79 3L7.828 3L10.874 10.558L6.544 10.558L4.539 7.731L3 7.731L4.308 12L3 16.288Z"
+                        fill="currentColor" />
+                    </svg>
+                  </span>
+                  <span class="c-loader-card__route--name">{{arrival}}</span>
+                </div>
+                <p class="c-loader-card__route--info-text">Please hold while we search best options for you</p>
+              </div>
+            </div>
+            <div class="c-single-usp-desktop-card">
+              <div class="c-single-usp-desktop-card__wrap">
+                <div class="c-single-usp-desktop-card__item">
+                  <div class="c-single-usp-desktop-card__item--inner-content-wrap">
+                    <div class="c-single-usp-desktop-card__item--left-content">
+                      <div class="c-single-usp-desktop-card__icon-box">
+                        <svg width="13" height="11" viewBox="0 0 13 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path
+                            d="M11.4697 5.5791C11.6396 5.6735 11.7812 5.80566 11.8945 5.97559C12.0078 6.14551 12.0645 6.33431 12.0645 6.54199V7.92969C12.0645 8.15625 12.0078 8.35449 11.8945 8.52441C11.7812 8.69434 11.6396 8.8265 11.4697 8.9209V9.65723C11.4697 9.99707 11.347 10.2897 11.1016 10.5352C10.875 10.7617 10.5918 10.875 10.252 10.875H5.4375V9.65723H10.252V5.38086C10.252 4.79557 10.1387 4.24805 9.91211 3.73828C9.70443 3.22852 9.40234 2.78483 9.00586 2.40723C8.62826 2.01074 8.18457 1.70866 7.6748 1.50098C7.16504 1.27441 6.61751 1.16113 6.03223 1.16113C5.44694 1.16113 4.89941 1.27441 4.38965 1.50098C3.87988 1.70866 3.42676 2.01074 3.03027 2.40723C2.65267 2.78483 2.35059 3.22852 2.12402 3.73828C1.91634 4.24805 1.8125 4.79557 1.8125 5.38086V9.0625H1.18945C0.86849 9.0625 0.585286 8.94922 0.339844 8.72266C0.113281 8.47721 0 8.18457 0 7.84473V6.65527C0 6.42871 0.0472005 6.22103 0.141602 6.03223C0.254883 5.84342 0.405924 5.70182 0.594727 5.60742C0.594727 4.75781 0.736328 3.99316 1.01953 3.31348C1.32161 2.61491 1.72754 2.02018 2.2373 1.5293C2.76595 1.03841 3.35124 0.660807 3.99316 0.396484C4.63509 0.132161 5.31478 0 6.03223 0C6.74967 0 7.42936 0.132161 8.07129 0.396484C8.7321 0.660807 9.31738 1.04785 9.82715 1.55762C10.3369 2.0485 10.7334 2.63379 11.0166 3.31348C11.3187 3.99316 11.4697 4.74837 11.4697 5.5791ZM3.625 6.03223C3.625 6.20215 3.68164 6.35319 3.79492 6.48535C3.9082 6.59863 4.0498 6.65527 4.21973 6.65527C4.38965 6.65527 4.53125 6.59863 4.64453 6.48535C4.75781 6.35319 4.81445 6.20215 4.81445 6.03223C4.81445 5.8623 4.75781 5.7207 4.64453 5.60742C4.53125 5.49414 4.38965 5.4375 4.21973 5.4375C4.0498 5.4375 3.9082 5.49414 3.79492 5.60742C3.68164 5.7207 3.625 5.8623 3.625 6.03223ZM7.25 6.03223C7.25 6.20215 7.30664 6.35319 7.41992 6.48535C7.5332 6.59863 7.6748 6.65527 7.84473 6.65527C8.01465 6.65527 8.15625 6.59863 8.26953 6.48535C8.38281 6.35319 8.43945 6.20215 8.43945 6.03223C8.43945 5.8623 8.38281 5.7207 8.26953 5.60742C8.15625 5.49414 8.01465 5.4375 7.84473 5.4375C7.6748 5.4375 7.5332 5.49414 7.41992 5.60742C7.30664 5.7207 7.25 5.8623 7.25 6.03223ZM9.65723 4.84277C9.03418 4.84277 8.43945 4.72949 7.87305 4.50293C7.32552 4.27637 6.83464 3.96484 6.40039 3.56836C5.96615 3.15299 5.61686 2.68099 5.35254 2.15234C5.2015 2.96419 4.86165 3.68164 4.33301 4.30469C3.80436 4.92773 3.16243 5.39974 2.40723 5.7207C2.36947 5.11654 2.44499 4.57845 2.63379 4.10645C2.84147 3.61556 3.12467 3.2002 3.4834 2.86035C3.84212 2.52051 4.24805 2.26562 4.70117 2.0957C5.1543 1.9069 5.60742 1.8125 6.06055 1.8125C6.66471 1.8125 7.22168 1.94466 7.73145 2.20898C8.24121 2.47331 8.66602 2.84147 9.00586 3.31348C9.3457 3.7666 9.56283 4.27637 9.65723 4.84277Z"
+                            fill="currentColor" />
+                        </svg>
+                      </div>
+                      <h6 class="c-single-usp-desktop-card__item-label">24x7 Customer Assistance</h6>
+                    </div>
+                    <div class="c-single-usp-desktop-card__item--dots"></div>
+                  </div>
+                </div>
+                <div class="c-single-usp-desktop-card__item">
+                  <div class="c-single-usp-desktop-card__item--inner-content-wrap">
+                    <div class="c-single-usp-desktop-card__item--left-content">
+                      <div class="c-single-usp-desktop-card__icon-box">
+                        <svg width="13" height="13" viewBox="0 0 13 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path
+                            d="M12.2133 5.90005C12.4493 6.15571 12.5673 6.46055 12.5673 6.81456C12.5673 7.14889 12.4493 7.4439 12.2133 7.69956L7.69971 12.2131C7.4637 12.4491 7.1687 12.5671 6.8147 12.5671C6.46069 12.5671 6.16569 12.4491 5.92969 12.2131L0.354126 6.63755C0.118124 6.40155 0.000122335 6.10655 0.000122335 5.75254V1.23899C0.000122335 0.904657 0.118124 0.619487 0.354126 0.383484C0.609796 0.127815 0.904799 -1.97627e-05 1.23914 -1.97627e-05H5.75269C6.10669 -1.97627e-05 6.40169 0.117982 6.6377 0.353984L12.2133 5.90005ZM2.83215 3.77602C3.08782 3.77602 3.30416 3.68752 3.48116 3.51052C3.67783 3.31385 3.77616 3.08768 3.77616 2.83201C3.77616 2.55668 3.67783 2.33051 3.48116 2.1535C3.30416 1.9765 3.08782 1.888 2.83215 1.888C2.55682 1.888 2.33065 1.9765 2.15365 2.1535C1.97664 2.33051 1.88814 2.55668 1.88814 2.83201C1.88814 3.08768 1.97664 3.31385 2.15365 3.51052C2.33065 3.68752 2.55682 3.77602 2.83215 3.77602Z"
+                            fill="currentColor" />
+                        </svg>
+
+                      </div>
+                      <h6 class="c-single-usp-desktop-card__item-label">Best Price Promise</h6>
+                    </div>
+                    <div class="c-single-usp-desktop-card__item--dots"></div>
+                  </div>
+                </div>
+                <div class="c-single-usp-desktop-card__item">
+                  <div class="c-single-usp-desktop-card__item--inner-content-wrap">
+                    <div class="c-single-usp-desktop-card__item--left-content">
+                      <div class="c-single-usp-desktop-card__icon-box">
+                        <svg width="11" height="14" viewBox="0 0 11 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path
+                            d="M4.21973 9.68555L9.0625 4.84277L8.21289 3.99316L4.21973 7.95801L2.66211 6.40039L1.8125 7.25L4.21973 9.68555ZM5.4375 0L10.875 2.43555V6.06055C10.875 7.74089 10.3558 9.27962 9.31738 10.6768C8.27897 12.055 6.98568 12.9329 5.4375 13.3105C3.88932 12.9329 2.59603 12.055 1.55762 10.6768C0.519206 9.27962 0 7.74089 0 6.06055V2.43555L5.4375 0Z"
+                            fill="currentColor" />
+                        </svg>
+                      </div>
+                      <h6 class="c-single-usp-desktop-card__item-label">Flexible Cancellation </h6>
+                    </div>
+                    <div class="c-single-usp-desktop-card__item--dots"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="o-flight-list-card-container">
+          <div class="o-flight-list-card-wrap">
+            @for ( y of [].constructor(skeletonlistCount); track $index) {
+            <div class="o-flight-list-card-drop-wrap">
+
+              <div class="c-flight-list-card c-flight-list-card-skeleton">
+                <div class="c-flight-list-card--body">
+                  <div class="c-flight-list-card--body__left-part">
+
+                    @for ( z of [].constructor(skeletonlistCount); track $index) {
+                    <div class="c-flight-list-card__details">
+                      <!-- Departure Segment -->
+                      <div class="c-flight-list-card__segment">
+                        <p-skeleton width="100%" height="120px" class="pulse" />
+                      </div>
+                    </div>
+                    }
+                  </div>
+                </div>
+              </div>
+
+            </div>
+            }
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

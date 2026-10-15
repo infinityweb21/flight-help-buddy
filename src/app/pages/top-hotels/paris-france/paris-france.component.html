@@ -1,0 +1,524 @@
+
+<app-main-filter></app-main-filter>
+
+        <section class="details-contentntsec">
+            <div class="container container-xxl">
+                <div class="row">
+                    <div class="col-12 d-flex justify-content-between align-items-center flex-wrap">
+                        <h5 class="customhead">Amsterdam</h5>
+                        <div class="custom-topbar">
+                            Call Us Toll-Free to Get the Best Deal! <a href="tel:{{getData?.phoneNumber}}">{{getData?.phoneNumber}}</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Tabs Navigation -->
+                <ul class="nav custom-nav-tabs mt-3" id="customTab" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link active" id="overview-tab" data-bs-toggle="tab"
+                            data-bs-target="#overview" type="button" role="tab">Overview</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="things-tab" data-bs-toggle="tab" data-bs-target="#things"
+                            type="button" role="tab">Things to Do</button>
+                    </li>
+                    <!-- <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="hotels-tab" data-bs-toggle="tab" data-bs-target="#hotels"
+                            type="button" role="tab">Best Hotels</button>
+                    </li> -->
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="visit-tab" data-bs-toggle="tab" data-bs-target="#visit"
+                            type="button" role="tab">When to visit</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="map-tab" data-bs-toggle="tab" data-bs-target="#map" type="button"
+                            role="tab">Map</button>
+                    </li>
+                    <!-- <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="photos-tab" data-bs-toggle="tab" data-bs-target="#photos"
+                            type="button" role="tab">Photos</button>
+                    </li> -->
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="support-tab" data-bs-toggle="tab" data-bs-target="#support"
+                            type="button" role="tab">Get Support</button>
+                    </li>
+                </ul>
+            </div>
+        </section>
+        <section class="content-boxsection">
+            <div class="container container-xxl">
+                <!-- Tabs Content -->
+                <div class="tab-content custom-tab-content" id="customTabContent">
+                    <div class="tab-pane fade show active" id="overview" role="tabpanel">
+                        <div class="custom-tab-title">Amsterdam: The Soul of the Netherlands</div>
+                        <p class="custom-tab-paragraph">
+                            The capital of the Dutch is located along a vast network of canals with history and modern life blend effortlessly. As you walk through cobblestone streets framed by charming 17th-century houses, the city opens up with vibrant neighborhoods, world-famous museums and a café culture. The city is more than tulips and bicycles with various ideas and art tells a story.
+                        </p>
+                        <p class="custom-tab-paragraph">
+                            You can start your day with a buttery stroopwafel by the canal, see Van Gogh's masterpieces before noon and enjoy Indonesian rijsttafel for dinner. The city invites you to slow down and feel in its charm whether you’re on foot, by bike, or gliding along the canals. The Dutch capital never loses its cool even in the chillier months when fairy lights reflect off the frozen canals creating a beautiful winter scene.
+                        </p>
+                        
+                        <div class="row mt-4">
+                            <div class="col-lg-8 col-md-6 col-12">
+
+                                <div class="custom-tab-title">Best Time To Visit New York City, USA</div>
+                                <div class="accordion season-accordion" id="seasonAccordion">
+
+                                    <!-- Item 1 -->
+                                    <div class="accordion-item">
+                                        <h2 class="accordion-header" id="headingOne">
+                                            <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                                data-bs-target="#collapseOne" aria-expanded="true">
+                                                <span class="season-label label-green">Jan to Mar</span>
+                                                <span class="season-subtext">Is Peak Season</span>
+                                            </button>
+                                        </h2>
+                                        <div id="collapseOne" class="accordion-collapse collapse show"
+                                            data-bs-parent="#seasonAccordion">
+                                            <div class="accordion-body">
+                                                Lorem Ipsum is simply dummy text of the printing and typesetting
+                                                industry. Lorem
+                                                Ipsum has been the industry's standard dummy text ever since the 1500s,
+                                                when an
+                                                unknown printer took a galley of type and scrambled it to make a type
+                                                specimen
+                                                book. It has survived not only five centuries,
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Item 2 -->
+                                    <div class="accordion-item">
+                                        <h2 class="accordion-header" id="headingTwo">
+                                            <button class="accordion-button collapsed" type="button"
+                                                data-bs-toggle="collapse" data-bs-target="#collapseTwo">
+                                                <span class="season-label label-blue">Apr to Jul</span>
+                                                <span class="season-subtext">Is Moderate Season</span>
+                                            </button>
+                                        </h2>
+                                        <div id="collapseTwo" class="accordion-collapse collapse"
+                                            data-bs-parent="#seasonAccordion">
+                                            <div class="accordion-body">
+                                                Lorem Ipsum is simply dummy text of the printing and typesetting
+                                                industry. Lorem
+                                                Ipsum has been the industry's standard dummy text ever since the
+                                                1500s...
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Item 3 -->
+                                    <div class="accordion-item">
+                                        <h2 class="accordion-header" id="headingThree">
+                                            <button class="accordion-button collapsed" type="button"
+                                                data-bs-toggle="collapse" data-bs-target="#collapseThree">
+                                                <span class="season-label label-orange">Aug to Dec</span>
+                                                <span class="season-subtext">Is Off Season</span>
+                                            </button>
+                                        </h2>
+                                        <div id="collapseThree" class="accordion-collapse collapse"
+                                            data-bs-parent="#seasonAccordion">
+                                            <div class="accordion-body">
+                                                Lorem Ipsum is simply dummy text of the printing and typesetting
+                                                industry. Lorem
+                                                Ipsum has been the industry's standard dummy text ever since the
+                                                1500s...
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-6 col-12">
+                                <div class="weather-table-wrapper">
+
+                                    <div class="weather-table bg-white">
+                                        <table>
+                                            <thead>
+                                                <tr>
+                                                    <th>Month</th>
+                                                    <th>Temp (Max/Min)</th>
+                                                    <th>Rain mm</th>
+                                                    <th>Weather Opinion</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td><a href="#" class="month-link">Jan</a></td>
+                                                    <td class="temp-col">26º/15º</td>
+                                                    <td class="rain-col">10</td>
+                                                    <td class="opinion-col"><i
+                                                            class="fa-regular fa-face-grin-hearts"></i> Peak</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><a href="#" class="month-link">Feb</a></td>
+                                                    <td class="temp-col">26º/15º</td>
+                                                    <td class="rain-col">10</td>
+                                                    <td class="opinion-col"><i
+                                                            class="fa-regular fa-face-smile-beam"></i> Moderate</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><a href="#" class="month-link">Mar</a></td>
+                                                    <td class="temp-col">26º/15º</td>
+                                                    <td class="rain-col">10</td>
+                                                    <td class="opinion-col"><i class="fa-regular fa-face-sad-cry"></i>
+                                                        Off</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><a href="#" class="month-link">Apr</a></td>
+                                                    <td class="temp-col">26º/15º</td>
+                                                    <td class="rain-col">10</td>
+                                                    <td class="opinion-col"><i
+                                                            class="fa-regular fa-face-grin-hearts"></i> Moderate</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><a href="#" class="month-link">May</a></td>
+                                                    <td class="temp-col">26º/15º</td>
+                                                    <td class="rain-col">10</td>
+                                                    <td class="opinion-col"><i
+                                                            class="fa-regular fa-face-grin-hearts"></i> Moderate</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><a href="#" class="month-link">Jun</a></td>
+                                                    <td class="temp-col">26º/15º</td>
+                                                    <td class="rain-col">10</td>
+                                                    <td class="opinion-col"><i
+                                                            class="fa-regular fa-face-grin-hearts"></i> Moderate</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><a href="#" class="month-link">Jul</a></td>
+                                                    <td class="temp-col">26º/15º</td>
+                                                    <td class="rain-col">10</td>
+                                                    <td class="opinion-col"><i
+                                                            class="fa-regular fa-face-grin-hearts"></i> Moderate</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><a href="#" class="month-link">Aug</a></td>
+                                                    <td class="temp-col">26º/15º</td>
+                                                    <td class="rain-col">10</td>
+                                                    <td class="opinion-col"><i
+                                                            class="fa-regular fa-face-grin-hearts"></i> Moderate</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><a href="#" class="month-link">Sep</a></td>
+                                                    <td class="temp-col">26º/15º</td>
+                                                    <td class="rain-col">10</td>
+                                                    <td class="opinion-col"><i
+                                                            class="fa-regular fa-face-grin-hearts"></i> Moderate</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><a href="#" class="month-link">Oct</a></td>
+                                                    <td class="temp-col">26º/15º</td>
+                                                    <td class="rain-col">10</td>
+                                                    <td class="opinion-col"><i
+                                                            class="fa-regular fa-face-grin-hearts"></i> Moderate</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><a href="#" class="month-link">Nov</a></td>
+                                                    <td class="temp-col">26º/15º</td>
+                                                    <td class="rain-col">10</td>
+                                                    <td class="opinion-col"><i
+                                                            class="fa-regular fa-face-grin-hearts"></i> Moderate</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><a href="#" class="month-link">Dec</a></td>
+                                                    <td class="temp-col">26º/15º</td>
+                                                    <td class="rain-col">10</td>
+                                                    <td class="opinion-col"><i
+                                                            class="fa-regular fa-face-grin-hearts"></i> Moderate</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Placeholder tabs for other sections -->
+                    <div class="tab-pane fade" id="things" role="tabpanel">
+                        <div class="desilistcard">
+                            <div class="destination-card">
+                                <div class="destination-image">
+                                    <img src="assets/images/global-vacation-hotsport/image.png" alt="Statue of Liberty">
+                                </div>
+                                <div class="destination-content">
+                                    <h3>Rijksmuseum</h3>
+                                    <p>
+                                        A home to masterpieces from Rembrandt, Vermeer and many other painters. The building and gardens themselves are worth exploring beyond its stunning galleries which is perfect for travelers wanting to know about the Golden Age of Dutch art.
+                                    </p>
+                                    <div class="last-updated">Last Update: 20/07/2025</div>
+                                </div>
+                            </div>
+                            <div class="destination-card">
+                                <div class="destination-image">
+                                    <img src="assets/images/global-vacation-hotsport/image.png" alt="Statue of Liberty">
+                                </div>
+                                <div class="destination-content">
+                                    <h3>Canal Cruise</h3>
+                                    <p>
+                                        A unique way to see the city’s iconic architecture and bridges is by boat whether you take a romantic evening cruise or a historical daytime tour and floating through Amsterdam’s UNESCO-listed canal ring offers a fresh perspective on its charm.
+                                    </p>
+                                    <div class="last-updated">Last Update: 20/07/2025</div>
+                                </div>
+                            </div>
+                            <div class="destination-card">
+                                <div class="destination-image">
+                                    <img src="assets/images/global-vacation-hotsport/image.png" alt="Statue of Liberty">
+                                </div>
+                                <div class="destination-content">
+                                    <h3>Anne Frank House</h3>
+                                    <p>
+                                        Check out the hidden place where Anne Frank wrote her diary and this educational experience brings the realities of World War II to life and it’s best to book tickets in advance due to its importance. 
+                                    </p>
+                                    <div class="last-updated">Last Update: 20/07/2025</div>
+                                </div>
+                            </div>
+                            <div class="destination-card">
+                                <div class="destination-image">
+                                    <img src="assets/images/global-vacation-hotsport/image.png" alt="Statue of Liberty">
+                                </div>
+                                <div class="destination-content">
+                                    <h3>Jordaan District</h3>
+                                    <p>
+                                        It is now a trendy neighborhood filled with independent boutiques, art galleries and some of the coziest cafés in the city. A morning spent wandering here is a mix of authenticity and local flavor.
+                                    </p>
+                                    <div class="last-updated">Last Update: 20/07/2025</div>
+                                </div>
+                            </div>
+                            <div class="destination-card">
+                                <div class="destination-image">
+                                    <img src="assets/images/global-vacation-hotsport/image.png" alt="Statue of Liberty">
+                                </div>
+                                <div class="destination-content">
+                                    <h3>Vondelpark</h3>
+                                    <p>
+                                        The most famous park is an escape right in the heart of the city with open lawns, small lakes and bike paths. It’s ideal for a picnic or simply watching the world go by and attend a free concert at the open-air theatre during summer.
+                                    </p>
+                                    <div class="last-updated">Last Update: 20/07/2025</div>
+                                </div>
+                            </div>
+                            <div class="destination-card">
+                                <div class="destination-image">
+                                    <img src="assets/images/global-vacation-hotsport/image.png" alt="Statue of Liberty">
+                                </div>
+                                <div class="destination-content">
+                                    <h3>Heineken Experience</h3>
+                                    <p>
+                                        A former brewery turned interactive museum offering a fun look into one of the world's most iconic beer brands. It’s a great mix of entertainment and tradition from brewing history to a rooftop bar with city views.
+                                    </p>
+                                    <div class="last-updated">Last Update: 20/07/2025</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- <div class="tab-pane fade" id="hotels" role="tabpanel">Coming soon...</div> -->
+                    <div class="tab-pane fade" id="visit" role="tabpanel">
+
+                        <div class="row">
+                            <div class="col-lg-8 col-md-6 col-12">
+
+                                <div class="custom-tab-title">Best Time To Visit New York City, USA</div>
+                                <div class="accordion season-accordion" id="seasonAccordion01">
+
+                                    <!-- Item 1 -->
+                                    <div class="accordion-item">
+                                        <h2 class="accordion-header" id="headingOne">
+                                            <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                                data-bs-target="#collapseOne" aria-expanded="true">
+                                                <span class="season-label label-green">Jan to Mar</span>
+                                                <span class="season-subtext">Is Peak Season</span>
+                                            </button>
+                                        </h2>
+                                        <div id="collapseOne" class="accordion-collapse collapse show"
+                                            data-bs-parent="#seasonAccordion01">
+                                            <div class="accordion-body">
+                                                Lorem Ipsum is simply dummy text of the printing and typesetting
+                                                industry. Lorem
+                                                Ipsum has been the industry's standard dummy text ever since the 1500s,
+                                                when an
+                                                unknown printer took a galley of type and scrambled it to make a type
+                                                specimen
+                                                book. It has survived not only five centuries,
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Item 2 -->
+                                    <div class="accordion-item">
+                                        <h2 class="accordion-header" id="headingTwo">
+                                            <button class="accordion-button collapsed" type="button"
+                                                data-bs-toggle="collapse" data-bs-target="#collapseTwo">
+                                                <span class="season-label label-blue">Apr to Jul</span>
+                                                <span class="season-subtext">Is Moderate Season</span>
+                                            </button>
+                                        </h2>
+                                        <div id="collapseTwo" class="accordion-collapse collapse"
+                                            data-bs-parent="#seasonAccordion01">
+                                            <div class="accordion-body">
+                                                Lorem Ipsum is simply dummy text of the printing and typesetting
+                                                industry. Lorem
+                                                Ipsum has been the industry's standard dummy text ever since the
+                                                1500s...
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Item 3 -->
+                                    <div class="accordion-item">
+                                        <h2 class="accordion-header" id="headingThree">
+                                            <button class="accordion-button collapsed" type="button"
+                                                data-bs-toggle="collapse" data-bs-target="#collapseThree">
+                                                <span class="season-label label-orange">Aug to Dec</span>
+                                                <span class="season-subtext">Is Off Season</span>
+                                            </button>
+                                        </h2>
+                                        <div id="collapseThree" class="accordion-collapse collapse"
+                                            data-bs-parent="#seasonAccordion01">
+                                            <div class="accordion-body">
+                                                Lorem Ipsum is simply dummy text of the printing and typesetting
+                                                industry. Lorem
+                                                Ipsum has been the industry's standard dummy text ever since the
+                                                1500s...
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-6 col-12">
+                                <div class="weather-table-wrapper">
+
+                                    <div class="weather-table bg-white">
+                                        <table>
+                                            <thead>
+                                                <tr>
+                                                    <th>Month</th>
+                                                    <th>Temp (Max/Min)</th>
+                                                    <th>Rain mm</th>
+                                                    <th>Weather Opinion</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td><a href="#" class="month-link">Jan</a></td>
+                                                    <td class="temp-col">26º/15º</td>
+                                                    <td class="rain-col">10</td>
+                                                    <td class="opinion-col"><i
+                                                            class="fa-regular fa-face-grin-hearts"></i> Peak</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><a href="#" class="month-link">Feb</a></td>
+                                                    <td class="temp-col">26º/15º</td>
+                                                    <td class="rain-col">10</td>
+                                                    <td class="opinion-col"><i
+                                                            class="fa-regular fa-face-smile-beam"></i> Moderate</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><a href="#" class="month-link">Mar</a></td>
+                                                    <td class="temp-col">26º/15º</td>
+                                                    <td class="rain-col">10</td>
+                                                    <td class="opinion-col"><i class="fa-regular fa-face-sad-cry"></i>
+                                                        Off</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><a href="#" class="month-link">Apr</a></td>
+                                                    <td class="temp-col">26º/15º</td>
+                                                    <td class="rain-col">10</td>
+                                                    <td class="opinion-col"><i
+                                                            class="fa-regular fa-face-grin-hearts"></i> Moderate</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><a href="#" class="month-link">May</a></td>
+                                                    <td class="temp-col">26º/15º</td>
+                                                    <td class="rain-col">10</td>
+                                                    <td class="opinion-col"><i
+                                                            class="fa-regular fa-face-grin-hearts"></i> Moderate</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><a href="#" class="month-link">Jun</a></td>
+                                                    <td class="temp-col">26º/15º</td>
+                                                    <td class="rain-col">10</td>
+                                                    <td class="opinion-col"><i
+                                                            class="fa-regular fa-face-grin-hearts"></i> Moderate</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><a href="#" class="month-link">Jul</a></td>
+                                                    <td class="temp-col">26º/15º</td>
+                                                    <td class="rain-col">10</td>
+                                                    <td class="opinion-col"><i
+                                                            class="fa-regular fa-face-grin-hearts"></i> Moderate</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><a href="#" class="month-link">Aug</a></td>
+                                                    <td class="temp-col">26º/15º</td>
+                                                    <td class="rain-col">10</td>
+                                                    <td class="opinion-col"><i
+                                                            class="fa-regular fa-face-grin-hearts"></i> Moderate</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><a href="#" class="month-link">Sep</a></td>
+                                                    <td class="temp-col">26º/15º</td>
+                                                    <td class="rain-col">10</td>
+                                                    <td class="opinion-col"><i
+                                                            class="fa-regular fa-face-grin-hearts"></i> Moderate</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><a href="#" class="month-link">Oct</a></td>
+                                                    <td class="temp-col">26º/15º</td>
+                                                    <td class="rain-col">10</td>
+                                                    <td class="opinion-col"><i
+                                                            class="fa-regular fa-face-grin-hearts"></i> Moderate</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><a href="#" class="month-link">Nov</a></td>
+                                                    <td class="temp-col">26º/15º</td>
+                                                    <td class="rain-col">10</td>
+                                                    <td class="opinion-col"><i
+                                                            class="fa-regular fa-face-grin-hearts"></i> Moderate</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><a href="#" class="month-link">Dec</a></td>
+                                                    <td class="temp-col">26º/15º</td>
+                                                    <td class="rain-col">10</td>
+                                                    <td class="opinion-col"><i
+                                                            class="fa-regular fa-face-grin-hearts"></i> Moderate</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="map" role="tabpanel">
+                        <div class="mapsec">
+                                       <agm-map [latitude]="this.lat" [longitude]="this.lng" style="width:100%; height:450px;"
+                    frameborder="0" scrolling="no" id="gmap_canvas" marginheight="0" marginwidth="0">
+                    <agm-marker [latitude]="this.lat" [longitude]="this.lng"></agm-marker>
+                  </agm-map>
+                            <div class="locationname">
+                                <i class="fa-solid fa-location-dot"></i>New York City, USA
+                            </div>
+                        </div>
+                    </div>
+                    <!-- <div class="tab-pane fade" id="photos" role="tabpanel">Coming soon...</div> -->
+                    <div class="tab-pane fade" id="support" role="tabpanel">
+                        <div class="booking-cta-banner">
+                            <div class="ctatex">
+                                <img src="assets/images/global-vacation-hotsport/ctatex.png" alt="">
+                            </div>
+                            <div class="booking-cta-text">
+                                <h2>MAKE EASY BOOKINGS HAPPEN NOW</h2>
+                                <p>Your travel experts are here to make each trip of yours more memorable and exciting
+                                </p>
+                                <a href="tel:0000000000" class="booking-cta-button">
+                                    <i class="fas fa-phone-volume"></i> (000)000-0000
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+<!-- == Main Body End == -->
+<!-- == Destination List Part Start == -->
+<div class="container container-xxl"><app-top-hotel-list></app-top-hotel-list></div>

@@ -1,0 +1,241 @@
+@if (loading) {
+  <div class="d-flex justify-content-center align-items-center" style="height: 50vh;">
+    <div class="spinner-border" role="status">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+  </div>
+} @else if (packageData) {
+  <!--=========== Banner Section Start  ==============-->
+  <section class="banner banner-content-wrap innerbannersection">
+    <div class="section-shape section-shape1 top-inherit bottom-0"
+        [style.background-image]="'url(' + packageData.sections.banner.shapeImage + ')'"></div>
+    <!-- <div class="innerbannerimgbox">
+      <img [src]="packageData.sections.banner.backgroundImage" alt="" class="innerbannerimg" />
+    </div> -->
+       <div class="innerbannerimgbox">
+        <img src="assets/images/about/banner1.webp" alt="banner1" class="innerbannerimg" />
+       </div>
+    <div class="container container-xxl">
+      <div class="row justify-content-center">
+        <div class="col-lg-8 col-md-6 col-12">
+          <div class="innerbanner-txt">
+            <h1>
+              {{ packageData.sections.banner.title.split('&')[0] }}
+              @if (packageData.sections.banner.title.includes('&')) {
+                & <span class="subtitletext">{{ packageData.sections.banner.subtitle }}</span>
+              }
+            </h1>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!--=========== Banner Section End  ==============-->
+
+  <section class="common-section">
+    <div class="container container-xxl">
+      <div class="row mobscreenrow mb-2">
+        <div class="col-lg-8 col-md-7 col-12">
+          <div class="common-titlebox">
+            <h2>{{ packageData.sections.mainContent.title }}</h2>
+            <div class="common-para">
+              <p>{{ packageData.sections.mainContent.description }}</p>
+            </div>
+            
+            <!-- Inclusions Section -->
+            <div class="inclusions-section">
+              <h2>{{ packageData.sections.inclusions.title }}</h2>
+              <div class="inclusions-list">
+                @for (category of packageData.sections.inclusions.categories; track category.category) {
+                  <div class="inclusion-item">
+                    <h3>{{ category.category }}</h3>
+                    <ul>
+                      @for (item of category.items; track item) {
+                        <li>{{ item }}</li>
+                      }
+                    </ul>
+                  </div>
+                }
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Inquiry Form -->
+        <div class="col-lg-4 col-md-5 col-12">
+          <div class="card shadow rounded" style="max-width: 400px; width: 100%">
+            <div class="card-header">
+              <h5 class="card-title text-center fw-semibold my-3 package-card-form-header">
+                Complete the form to unlock a free guide on choosing the
+                right travel package
+              </h5>
+            </div>
+            <div class="card-body p-4">
+              <form [formGroup]="inquiryForm" (ngSubmit)="onSubmit()">
+                <div class="mb-3">
+                  <input type="text" placeholder="Full Name" formControlName="fullName" [ngClass]="{
+                    'form-control': true,
+                    'is-valid': inquiryForm.get('fullName')?.valid && inquiryForm.get('fullName')?.touched,
+                    'is-invalid': inquiryForm.get('fullName')?.invalid && inquiryForm.get('fullName')?.touched
+                  }" />
+                </div>
+
+                <div class="mb-3">
+                  <input type="email" placeholder="Email" formControlName="email" [ngClass]="{
+                    'form-control': true,
+                    'is-valid': inquiryForm.get('email')?.valid && inquiryForm.get('email')?.touched,
+                    'is-invalid': inquiryForm.get('email')?.invalid && inquiryForm.get('email')?.touched
+                  }" />
+                </div>
+
+                <div class="mb-3">
+                  <ngx-intl-tel-input [cssClass]="
+                    'form-control ' +
+                    (inquiryForm.get('phone')?.valid && inquiryForm.get('phone')?.touched
+                      ? 'is-valid'
+                      : inquiryForm.get('phone')?.invalid && inquiryForm.get('phone')?.touched
+                      ? 'is-invalid'
+                      : '')
+                  " [preferredCountries]="preferredCountries" [enableAutoCountrySelect]="true"
+                      [enablePlaceholder]="true" [searchCountryFlag]="true" [searchCountryField]="[
+                    SearchCountryField.Iso2,
+                    SearchCountryField.Name
+                  ]" [selectFirstCountry]="false" [selectedCountryISO]="CountryISO.UnitedStates" [maxLength]="15"
+                      [phoneValidation]="true" [separateDialCode]="separateDialCode"
+                      [numberFormat]="PhoneNumberFormat.National" name="phone"
+                      formControlName="phone"></ngx-intl-tel-input>
+                </div>
+
+                <div class="mb-3">
+                  <input type="text" placeholder="Departure" formControlName="departure" [ngClass]="{
+                    'form-control': true,
+                    'is-valid': inquiryForm.get('departure')?.valid && inquiryForm.get('departure')?.touched,
+                    'is-invalid': inquiryForm.get('departure')?.invalid && inquiryForm.get('departure')?.touched
+                  }" />
+                </div>
+
+                <div class="mb-3">
+                  <input type="text" placeholder="Destination" formControlName="destination" [ngClass]="{
+                    'form-control': true,
+                    'is-valid': inquiryForm.get('destination')?.valid && inquiryForm.get('destination')?.touched,
+                    'is-invalid': inquiryForm.get('destination')?.invalid && inquiryForm.get('destination')?.touched
+                  }" />
+                </div>
+
+                <div class="mb-3 d-flex gap-2">
+                  <input type="number" placeholder="No. Of Days" formControlName="days" [ngClass]="{
+                    'form-control': true,
+                    'is-valid': inquiryForm.get('days')?.valid && inquiryForm.get('days')?.touched,
+                    'is-invalid': inquiryForm.get('days')?.invalid && inquiryForm.get('days')?.touched
+                  }" />
+                  <input type="number" placeholder="No. Of Pax" formControlName="pax" [ngClass]="{
+                    'form-control': true,
+                    'is-valid': inquiryForm.get('pax')?.valid && inquiryForm.get('pax')?.touched,
+                    'is-invalid': inquiryForm.get('pax')?.invalid && inquiryForm.get('pax')?.touched
+                  }" />
+                </div>
+
+                <div class="d-grid">
+                  <button type="submit" class="btn text-black fw-semibold inquiry-btn">
+                    Inquiry Now
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="row">
+        <!-- Gallery Section -->
+        <div class="col-lg-6 col-md-6 col-12">
+          <h2 class="cttitle">{{ packageData.sections.gallery.title }}</h2>
+          <p-galleria [value]="images" [responsiveOptions]="responsiveOptions"
+              [containerStyle]="{ 'max-width': '100%' }" [numVisible]="packageData.sections.gallery.settings.numVisible">
+            <ng-template #item let-item>
+              <img [src]="item.thumbnailImageSrc" style="width:100%" [alt]="item.alt" />
+            </ng-template>
+            <ng-template #thumbnail let-item>
+              <img [src]="item.thumbnailImageSrc" [alt]="item.alt" />
+            </ng-template>
+          </p-galleria>
+        </div>
+        
+        <!-- Location Section -->
+        <div class="col-lg-6 col-md-6 col-12">
+          <div class="mapsecinner">
+            <h2 class="cttitle">{{ packageData.sections.location.title }}</h2>
+            @if (safeMapUrl) {
+              <iframe width="100%" height="600" style="border:0;" allowfullscreen="" loading="lazy"
+                  frameborder="0" scrolling="no" marginheight="0" marginwidth="0"
+                  [src]="safeMapUrl"></iframe>
+            } @else {
+              <div class="d-flex justify-content-center align-items-center" style="height: 600px; background-color: #f8f9fa;">
+                <p class="text-muted">Map unavailable</p>
+              </div>
+            }
+          </div>
+        </div>
+        
+        <!-- Itinerary Section -->
+        <div class="col-12">
+          <div class="accordion custom-accordion" id="itineraryAccordion">
+            @for (day of packageData.sections.itinerary.days; track day.day; let i = $index) {
+              <div class="accordion-item">
+                <h2 class="accordion-header" [id]="'heading' + day.day">
+                  <button class="accordion-button" [class.collapsed]="!day.expanded" type="button" 
+                      data-bs-toggle="collapse" [attr.data-bs-target]="'#collapse' + day.day" 
+                      [attr.aria-expanded]="day.expanded" [attr.aria-controls]="'collapse' + day.day">
+                    Day {{ day.day }}: {{ day.title }}
+                  </button>
+                </h2>
+                <div [id]="'collapse' + day.day" class="accordion-collapse collapse" 
+                     [class.show]="day.expanded" [attr.aria-labelledby]="'heading' + day.day"
+                     data-bs-parent="#itineraryAccordion">
+                  <div class="accordion-body">
+                    <p>{{ day.description }}</p>
+                    
+                    @if (day.details) {
+                      @if (day.details.accommodation) {
+                        <div class="custom-section-title">Accommodation</div>
+                        <ul class="custom-list">
+                          @for (accommodation of day.details.accommodation; track accommodation) {
+                            <li>{{ accommodation }}</li>
+                          }
+                        </ul>
+                      }
+
+                      @if (day.details.includedActivities) {
+                        <div class="custom-section-title">Included Activities</div>
+                        <ul class="custom-list">
+                          @for (activity of day.details.includedActivities; track activity) {
+                            <li>{{ activity }}</li>
+                          }
+                        </ul>
+                      }
+
+                      @if (day.details.mealsIncluded) {
+                        <div class="custom-section-title">Meals Included</div>
+                        <ul class="custom-list">
+                          @for (meal of day.details.mealsIncluded; track meal) {
+                            <li>{{ meal }}</li>
+                          }
+                        </ul>
+                      }
+                    }
+                  </div>
+                </div>
+              </div>
+            }
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+} @else {
+  <div class="container text-center py-5">
+    <h2>Package Not Found</h2>
+    <p>The requested package could not be found.</p>
+    <a routerLink="/packages" class="btn btn-primary">View All Packages</a>
+  </div>
+}

@@ -1,0 +1,73 @@
+ .main {
+      background: linear-gradient(to bottom, #a3d5ff, #ffffff);
+      color: #024873;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      text-align: center;
+      margin: 0;
+      background-image: url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e');
+      background-size: cover;
+      background-position: center;
+      position: relative;
+    }
+
+    .overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(255, 255, 255, 0.85);
+      z-index: 0;
+    }
+
+    .container {
+      max-width: 600px;
+      padding: 20px;
+      z-index: 1;
+      position: relative;
+      background: rgba(255, 255, 255, 0.9);
+      border-radius: 15px;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    }
+
+    h1 {
+      font-size: 3em;
+      color: #024873;
+      margin-bottom: 10px;
+    }
+
+    p {
+      font-size: 1.2em;
+      color: #045a8d;
+      margin-top: 0;
+    }
+
+    .spinner {
+      margin: 30px auto;
+      width: 60px;
+      height: 60px;
+      border: 6px solid #b3d9ff;
+      border-top: 6px solid #024873;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    footer {
+      margin-top: 40px;
+      font-size: 0.9em;
+      color: #555;
+    }
+
+    .icon {
+      font-size: 3em;
+      margin-bottom: 10px;
+    }

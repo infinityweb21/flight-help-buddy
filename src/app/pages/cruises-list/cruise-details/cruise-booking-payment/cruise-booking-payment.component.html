@@ -1,0 +1,611 @@
+<ng-container *ngIf="loading">
+    <app-flight-payment-skeleton></app-flight-payment-skeleton>
+</ng-container>
+
+<section class="hotelbooking-sec-section common-section">
+    <div class="container">
+        <div class="row hotelbooking-section-row">
+            <div class="col-lg-4 col-md-12 col-12">
+                <div class="sticky-sec">
+                    <div class="fare-summary-card">
+                        <h4 class="fare-summary-title">Fare Summary</h4>
+                        <div class="fare-summary-total">
+                            <span class="total-title" tabindex="0">Starting From</span>
+                            <span class="total-price">${{ selectedCabin?.priceWithMarkup | number: "1.2-2" }}</span>
+                        </div>
+                        <div class="booking-summary-wrap">
+                            <div class="btn-primarysec-outer">
+                                <button type="button" class="btn-primarysec" (click)="save()">
+                                    Complete Booking
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="sp-req-card d-none">
+                        <h3 class="sp-req-title">Special Request</h3>
+                        <p class="sp-req-note">
+                            We will forward your request to the hotel. Please note that this
+                            is subject to availability and based on the hotel policies
+                        </p>
+                        <div class="sp-req-inputbox">
+                            <textarea maxlength="100" class="sp-req-textarea" placeholder="Enter Request"></textarea>
+                            <span class="sp-req-count">0/100</span>
+                        </div>
+                        <div class="sp-req-actions">
+                            <button class="sp-req-submit">Submit Request</button>
+                            <button class="sp-req-dismiss">Dismiss</button>
+                        </div>
+                    </div>
+                    <div class="cancel-policy-card">
+                        <h3 class="cn-title">Cancellation Policy</h3>
+                        <p class="cn-desc">100% amount will be deducted on cancellation.</p>
+                        <div class="cn-timeline-box">
+                            <span class="cn-tag">Non Refundable</span>
+                            <div class="cn-line">
+                                <div class="cn-point left">
+                                    <i class="fa-solid fa-circle-check"></i>
+                                    <span>Now</span>
+                                </div>
+                                <div class="cn-point right">
+                                    <i class="fa-solid fa-clock-rotate-left"></i>
+                                    <span>Cruise Check-In</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="confirm-info-box">
+                        <p class="confirm-info-text">
+                            By clicking on <strong>Pay Now/Book Now</strong>, I confirm that I
+                            have read, understood, and agree with the
+                            <a [routerLink]="['/cancellation-policy']" class="info-link">Cancellation Policy</a>
+                            and
+                            <a [routerLink]="['/privacy-policy']" class="info-link">Privacy Policy</a>
+                        </p>
+                        <p class="confirm-info-note">
+                            Please note that the system will not provide a tax invoice. You
+                            will be given a commercial receipt to serve as proof of
+                            transaction.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-8 col-md-12 col-12">
+                <div class="hotel-summary-card">
+                    <div class="hotel-top-info">
+                        <img alt="Room" class="hotel-img" [src]="cruiseDetails?.image"
+                            [alt]="cruiseDetails?.cruiseSailingName" />
+                        <div class="hotel-main-content">
+                            <div class="maintitlehotel">
+                                <span class="hotel-title">{{
+                                    cruiseDetails?.ports?.departurePortInfo?.portInfo?.Description
+                                    }}</span>
+                            </div>
+                            <p class="hotel-location">
+                                <i class="fa-solid fa-location-dot"></i> Reference ID:
+                                <strong>{{ cruiseDetails?.sailingID }}</strong>
+                            </p>
+                            <div class="hotel-meta">
+
+                                <span class="meta-item">
+                                    <i class="fa-solid fa-ship"></i>
+                                    <strong>Aboard:</strong>
+                                    {{ cruiseDetails?.cruiseSailingName }}
+                                </span>
+
+                                <span class="meta-item">
+                                    <i class="fa-solid fa-route"></i>
+                                    <strong>Roundtrip:</strong>
+                                    {{ cruiseDetails?.ports?.departurePortInfo?.City }} -
+                                    {{ cruiseDetails?.ports?.departurePortInfo?.Name }}
+                                </span>
+
+                                <span class="meta-item">
+                                    <i class="fa-solid fa-calendar-days"></i>
+                                    <strong>Departs:</strong>
+                                    {{ cruiseDetails?.departureDate | date: "dd MMM yyyy, hh:mm a" }}
+                                </span>
+
+                                <span class="meta-item">
+                                    <i class="fa-solid fa-calendar-check"></i>
+                                    <strong>Returns:</strong>
+                                    {{ cruiseDetails?.returnDate | date: "dd MMM yyyy, hh:mm a" }}
+                                </span>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bk-step-content active">
+                    <form [formGroup]="cruisesForm" novalidate (ngSubmit)="save()">
+                        <div formGroupName="primaryInfo">
+                            <div class="ct-card">
+                                <div class="ct-head">
+                                    <span class="ct-sub">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18"
+                                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                            stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+
+                                            <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
+                                            <circle cx="9" cy="7" r="4" />
+
+                                            <path d="M22 21v-2a4 4 0 0 0-3-3.87" />
+                                            <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+
+                                        </svg>
+
+                                        Guest
+                                    </span>
+                                    <h3>Booking Details Will Be Sent To</h3>
+                                    <span class="ct-required">*Required field</span>
+                                </div>
+
+                                <div class="row g-2">
+                                    <div class="col-md-4">
+                                        <div class="ct-field">
+                                            <label>Title *</label>
+                                            <select formControlName="title">
+                                                <option value="" selected="true">Select</option>
+                                                <option value="mr">Mr</option>
+                                                <option value="mrs">Mrs</option>
+                                                <option value="ms">Ms</option>
+                                                <option value="dr">Dr</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-4">
+                                        <div class="ct-field">
+                                            <label>First Name *</label>
+                                            <input type="text" placeholder="Enter first name"
+                                                formControlName="first_name" />
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-4">
+                                        <div class="ct-field">
+                                            <label>Last Name *</label>
+                                            <input type="text" placeholder="Enter last name"
+                                                formControlName="last_name" />
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-4">
+                                        <div class="dob-field ct-field dob-select dob-nationality">
+                                            <span class="dob-placeholder">Email *</span>
+                                            <input type="email" placeholder="example@abc.com" formControlName="email" />
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-4">
+                                        <div class="ct-field ct-intl">
+                                            <label for="primaryPhone">Phone *</label>
+
+                                            <ngx-intl-tel-input id="primaryPhone"
+                                                [cssClass]="'form-control booking-form-control'"
+                                                [preferredCountries]="preferredCountries"
+                                                [enableAutoCountrySelect]="true" [enablePlaceholder]="true"
+                                                [searchCountryFlag]="true" [searchCountryField]="[
+                          SearchCountryField.Iso2,
+                          SearchCountryField.Name,
+                        ]" [selectFirstCountry]="false" [selectedCountryISO]="selectedCountryISO" [maxLength]="15"
+                                                [phoneValidation]="true" [separateDialCode]="separateDialCode"
+                                                [numberFormat]="PhoneNumberFormat.National" name="phoneNumber"
+                                                formControlName="phoneNumber">
+                                            </ngx-intl-tel-input>
+
+                                            @if (
+                                            primaryInfoGroup.get("phoneNumber")?.touched &&
+                                            primaryInfoGroup.get("phoneNumber")?.invalid
+                                            ) {
+                                            <div class="text-danger">Phone is required.</div>
+                                            }
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-4">
+                                        <div class="ct-field">
+                                            <label>Address *</label>
+                                            <input type="text" placeholder="Enter address" formControlName="address" />
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <p class="ct-note mb-0">
+                                    Please make sure your contact information is correct. We'll
+                                    use it to send your booking confirmation and reminders.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div formArrayName="travelers">
+                            @for (
+                            traveler of travelers.controls;
+                            track $index;
+                            let i = $index
+                            ) {
+                            <div [formGroupName]="i">
+                                <div class="ct-card">
+                                    <div class="ct-head">
+                                        <span class="ct-sub">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18"
+                                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+
+                                                <path d="M20 21a8 8 0 0 0-16 0" />
+
+                                                <circle cx="12" cy="7" r="4" />
+
+                                            </svg>
+
+                                            Traveler
+                                        </span>
+                                        <h3>
+                                            Who's Traveling
+                                            @if (i > 0) {
+                                            (Traveler {{ i + 1 }})
+                                            }
+                                        </h3>
+                                        <span class="ct-required">*Required field</span>
+                                    </div>
+
+                                    <div class="row g-2">
+                                        <div class="col-md-4">
+                                            <div class="ct-field">
+                                                <label>Type *</label>
+                                                <select formControlName="type">
+                                                    <option value="" selected="true">Select</option>
+                                                    <option value="adult">Adult</option>
+                                                    <option value="child">Child</option>
+                                                    <option value="infant">Infant</option>
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-4">
+                                            <div class="ct-field">
+                                                <label>Title *</label>
+                                                <select formControlName="title">
+                                                    <option value="" selected="true">Select</option>
+                                                    <option value="mr">Mr</option>
+                                                    <option value="mrs">Mrs</option>
+                                                    <option value="ms">Ms</option>
+                                                    <option value="dr">Dr</option>
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-4">
+                                            <div class="ct-field">
+                                                <label>Full Name *</label>
+                                                <input type="text" placeholder="Enter full name"
+                                                    formControlName="fullName" />
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-4">
+                                            <div class="ct-field">
+                                                <label>Gender *</label>
+                                                <select formControlName="gender">
+                                                    <option value="" selected="true">Select</option>
+                                                    <option value="male">Male</option>
+                                                    <option value="female">Female</option>
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-4">
+                                            <div class="dob-field ct-field">
+                                                <span class="dob-placeholder">Date of Birth *</span>
+                                                <input type="text" placeholder="MM-DD-YY"
+                                                    formControlName="dateOfBirth" />
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-4">
+                                            <div class="ct-field">
+                                                <label>Citizenship *</label>
+                                                <input type="text" placeholder="Enter citizenship"
+                                                    formControlName="citizenship" />
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <p class="ct-note">
+                                        Please make sure your information is accurate.
+                                    </p>
+
+                                    <div class="traveler-actions">
+                                        @if (i === 0) {
+                                        <button type="button" id="newaddtraveler"
+                                            class="traveler-action-btn traveler-action-btn--add"
+                                            (click)="addTraveler()">
+                                            + Add/Edit Travelers
+                                        </button>
+                                        } @else {
+                                        <button type="button" class="traveler-action-btn traveler-action-btn--remove"
+                                            (click)="removeTraveler(i)">
+                                            Remove Traveler
+                                        </button>
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                            }
+                        </div>
+
+                        <div formGroupName="billingInfo">
+                            <div class="ct-card">
+                                <div class="ct-head">
+                                    <span class="ct-sub">
+                                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none"
+                                            xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+
+                                            <rect x="3" y="5" width="18" height="14" rx="2" stroke="#000000"
+                                                stroke-width="1.8" />
+
+                                            <path d="M3 9H21" stroke="#000000" stroke-width="1.8"
+                                                stroke-linecap="round" />
+
+                                            <path d="M7 14H11" stroke="#000000" stroke-width="1.8"
+                                                stroke-linecap="round" />
+
+                                            <path d="M7 16.5H9" stroke="#000000" stroke-width="1.8"
+                                                stroke-linecap="round" />
+
+                                        </svg>
+
+                                        Payment Details
+                                    </span>
+
+                                    <h3>Payment Options</h3>
+                                    <p>Secured Encrypted Transaction</p>
+                                    <span class="ct-required">*Required field</span>
+                                </div>
+
+                                <div>
+                                    <div class="row g-3">
+                                        <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12">
+                                            <div class="ct-field">
+                                                <label>Credit / Debit Card Number *</label>
+
+                                                <input type="text" class="form-control booking-form-control" id="ete"
+                                                    placeholder="Card/Debit card number" formControlName="CardNumber"
+                                                    minlength="15" maxlength="16" required />
+                                                @if (
+                                                billingInfoGroup.get("CardNumber")?.touched &&
+                                                billingInfoGroup.get("CardNumber")?.invalid
+                                                ) {
+                                                <div class="text-danger">
+                                                    Card number is required.
+                                                </div>
+                                                }
+                                                @if (
+                                                billingInfoGroup.get("CardNumber")?.touched &&
+                                                billingInfoGroup.get("CardNumber")?.errors?.[
+                                                "minlength"
+                                                ]
+                                                ) {
+                                                <div class="text-danger">
+                                                    Number must be at least 15 digits.
+                                                </div>
+                                                }
+                                                @if (
+                                                billingInfoGroup.get("CardNumber")?.touched &&
+                                                billingInfoGroup.get("CardNumber")?.errors?.[
+                                                "maxlength"
+                                                ]
+                                                ) {
+                                                <div class="text-danger">
+                                                    Number not more than 16 digits.
+                                                </div>
+                                                }
+                                            </div>
+                                        </div>
+
+                                        <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12">
+                                            <div class="ct-field">
+                                                <label>Card Holder's Name *</label>
+                                                <input type="text" placeholder="Enter card holder's name"
+                                                    formControlName="cardHolder" />
+                                            </div>
+                                        </div>
+
+                                        <div class="col-xl-2 col-lg-4 col-md-4 col-sm-4">
+                                            <div class="dob-field ct-field">
+                                                <span class="dob-placeholder">Expiry Date *</span>
+                                                <input type="text" class="form-control booking-form-control" id="exdate"
+                                                    placeholder="MM/YYYY" formControlName="ExpiryDate" required />
+                                                @if (
+                                                billingInfoGroup.get("ExpiryDate")?.touched &&
+                                                billingInfoGroup.get("ExpiryDate")?.invalid
+                                                ) {
+                                                <div class="text-danger">
+                                                    @if (
+                                                    billingInfoGroup.get("ExpiryDate")?.errors?.[
+                                                    "required"
+                                                    ]
+                                                    ) {
+                                                    <div>Expiry date is required.</div>
+                                                    }
+                                                    @if (
+                                                    billingInfoGroup.get("ExpiryDate")?.errors?.[
+                                                    "pattern"
+                                                    ]
+                                                    ) {
+                                                    <div>Format must be MM/YYYY.</div>
+                                                    }
+                                                </div>
+                                                }
+                                            </div>
+                                        </div>
+
+                                        <div class="col-xl-2 col-lg-4 col-md-4 col-sm-4">
+                                            <div class="ct-field">
+                                                <label>CVV Code *</label>
+                                                <input type="text" class="form-control booking-form-control" id="excvv"
+                                                    placeholder="CVV" formControlName="CVV" required />
+                                                @if (
+                                                billingInfoGroup.get("CVV")?.touched &&
+                                                billingInfoGroup.get("CVV")?.invalid
+                                                ) {
+                                                <div class="text-danger">
+                                                    @if (
+                                                    billingInfoGroup.get("CVV")?.errors?.["required"]
+                                                    ) {
+                                                    <div>CVV is required.</div>
+                                                    }
+                                                    @if (
+                                                    billingInfoGroup.get("CVV")?.errors?.["minlength"]
+                                                    ) {
+                                                    <div>Minimum 3 digits.</div>
+                                                    }
+                                                    @if (
+                                                    billingInfoGroup.get("CVV")?.errors?.["maxlength"]
+                                                    ) {
+                                                    <div>Maximum 4 digits.</div>
+                                                    }
+                                                </div>
+                                                }
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <p class="ct-note mb-0">
+                                        Your card may be charged by the domain or directly by the Cruise liners, depending on the fare selected. 
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="ct-card">
+                                <div class="ct-head">
+                                    <span class="ct-sub">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="18px" height="18px"
+                                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                            stroke-linecap="round" stroke-linejoin="round"
+                                            class="icon icon-tabler icons-tabler-outline icon-tabler-receipt">
+                                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                            <path
+                                                d="M5 21v-16a2 2 0 0 1 2 -2h10a2 2 0 0 1 2 2v16l-3 -2l-2 2l-2 -2l-2 2l-2 -2l-3 2m4 -14h6m-6 4h6m-2 4h2" />
+                                        </svg>
+                                        Billing Information
+                                    </span>
+
+                                    <h3>Billing and Contact Information</h3>
+                                    <p>This is where your confirmation will be sent</p>
+                                    <span class="ct-required">*Required field</span>
+                                </div>
+
+                                <div>
+                                    <div class="row g-3">
+                                        <div class="col-md-3">
+                                            <div class="ct-field">
+                                                <label>Street *</label>
+                                                <input type="text" placeholder="Enter address"
+                                                    formControlName="street" />
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-3">
+                                            <div class="ct-field">
+                                                <label>City *</label>
+                                                <input type="text" placeholder="Enter city" formControlName="City" />
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-3">
+                                            <div class="ct-field">
+                                                <label>Zipcode *</label>
+                                                <input type="text" placeholder="Enter ZIP code"
+                                                    formControlName="ZipCode" />
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-3">
+                                            <div class="ct-field">
+                                                <label>State *</label>
+                                                <input type="text" formControlName="State" placeholder="Enter state" />
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-4">
+                                            <div class="ct-field">
+                                                <label>Country *</label>
+                                                <input type="text" placeholder="Country" formControlName="Country" />
+                                                @if (
+                                                billingInfoGroup.get("Country")?.touched &&
+                                                billingInfoGroup.get("Country")?.invalid
+                                                ) {
+                                                <div class="text-danger">Country is required.</div>
+                                                }
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-4">
+                                            <div class="ct-field ct-intl">
+                                                <label for="billingPhone">Contact Number *</label>
+
+                                                <ngx-intl-tel-input id="billingPhone"
+                                                    [cssClass]="'form-control booking-form-control'"
+                                                    [preferredCountries]="preferredCountries"
+                                                    [enableAutoCountrySelect]="true" [enablePlaceholder]="true"
+                                                    [searchCountryFlag]="true" [searchCountryField]="[
+                            SearchCountryField.Iso2,
+                            SearchCountryField.Name,
+                          ]" [selectFirstCountry]="false" [selectedCountryISO]="selectedCountryISO" [maxLength]="15"
+                                                    [phoneValidation]="true" [separateDialCode]="separateDialCode"
+                                                    [numberFormat]="PhoneNumberFormat.National" name="billingPhone"
+                                                    formControlName="BillingPhoneNum">
+                                                </ngx-intl-tel-input>
+
+                                                @if (
+                                                billingInfoGroup.get("BillingPhoneNum")?.touched &&
+                                                billingInfoGroup.get("BillingPhoneNum")?.invalid
+                                                ) {
+                                                <div class="text-danger">Phone is required.</div>
+                                                }
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-4">
+                                            <div class="ct-field">
+                                                <label>Email *</label>
+                                                <input type="email" placeholder="Enter email address"
+                                                    formControlName="billingemail" />
+                                                @if (
+                                                billingInfoGroup.get("billingemail")?.touched &&
+                                                billingInfoGroup.get("billingemail")?.invalid
+                                                ) {
+                                                <div class="text-danger">
+                                                    Valid email is required.
+                                                </div>
+                                                }
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- <p class="ct-note">
+                                        Please make sure your contact information is correct. We'll
+                                        use it to send your booking confirmation and reminders.
+                                    </p> -->
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="belowconf-info">
+                            <div class="text-sec-links">
+                                By proceeding with this booking, I agree to
+                                <a [routerLink]="['/terms-and-conditions']">Terms & Conditions</a> and
+                                <a [routerLink]="['/privacy-policy']">Privacy Policy</a>.
+                            </div>
+
+                            <button type="button" class="btn-primarysec" (click)="save()">
+                                Continue to Booking
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

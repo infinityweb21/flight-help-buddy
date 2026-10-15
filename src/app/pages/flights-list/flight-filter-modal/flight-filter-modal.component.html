@@ -1,0 +1,907 @@
+<!-- == === -->
+<div class="c-filter-modal">
+  <div class="c-filter-modal--head">
+
+    <div class="c-filter-modal--head__tab-list-wrap">
+      <ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item" role="presentation">
+          <button class="nav-link active" id="tab1-tab" data-bs-toggle="tab" data-bs-target="#tab1" type="button"
+            role="tab">
+            <span class="tab-btn-content--element">Stop</span>
+            @if(mobileFilters.stopes.length!=0){
+            <span class="c-filter-status c-filter-status--select"></span>
+            }
+
+          </button>
+        </li>
+        <li class="nav-item" role="presentation">
+          <button class="nav-link" id="tab2-tab" data-bs-toggle="tab" data-bs-target="#tab2" type="button" role="tab">
+            <span class="tab-btn-content--element">Time</span>
+            @if(mobileFilters.departureTime.length!=0||mobileFilters.arrivalTime.length!=0||mobileFilters.returnDepartureTime.length!=0||mobileFilters.returnArrivalTime.length!=0){
+            <span class="c-filter-status c-filter-status--select"></span>
+            }
+          </button>
+        </li>
+        <li class="nav-item" role="presentation">
+          <button class="nav-link" id="tab3-tab" data-bs-toggle="tab" data-bs-target="#tab3" type="button" role="tab">
+            <span class="tab-btn-content--element">Durations</span>
+
+            @if(hasDurationChanges()){
+            <span class="c-filter-status c-filter-status--select"></span>
+            }
+
+          </button>
+        </li>
+        <li class="nav-item" role="presentation">
+          <button class="nav-link" id="tab4-tab" data-bs-toggle="tab" data-bs-target="#tab4" type="button" role="tab">
+            <span class="tab-btn-content--element">Price</span> @if(mobileFilters.rangeValues[0] !== lowestPrice ||
+            mobileFilters.rangeValues[1] !== highestPrice){
+            <span class="c-filter-status c-filter-status--select"></span>
+            }
+          </button>
+        </li>
+        <li class="nav-item" role="presentation">
+          <button class="nav-link" id="tab5-tab" data-bs-toggle="tab" data-bs-target="#tab5" type="button" role="tab">
+            <span class="tab-btn-content--element">Airlines</span>
+            @if(mobileFilters.airlines.length!=0){
+            <span class="c-filter-status c-filter-status--select"></span>
+            }
+          </button>
+        </li>
+        <li class="nav-item" role="presentation">
+          <button class="nav-link" id="tab6-tab" data-bs-toggle="tab" data-bs-target="#tab6" type="button" role="tab">
+            <span class="tab-btn-content--element">Airports</span>
+            @if(mobileFilters.getNearbyfaredepart.length!=0||mobileFilters.getNearbyfarereturn.length!=0||mobileFilters.connectingAirports.length!=0){
+            <span class="c-filter-status c-filter-status--select"></span>
+            }
+          </button>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="c-filter-modal--body">
+    <div class="tab-content">
+      <div class="tab-pane fade show active" id="tab1" role="tabpanel">
+        <div class="o-tabs--content">
+          <div class="o-tabs--content__head-wrap">
+            <div class="o-tabs--content__head">
+              <h3 class="o-tabs--content__head--title">Stops</h3>
+              <button type="button" class="c-reset-btn" (click)="onClearStopsClick()">Reset All</button>
+            </div>
+          </div>
+          <div class="o-tabs--content__items-wrap c-scrollbar o-scrollbar-space" [class.android]="isAndroid">
+
+            @for (stop of stopOptions(); track $index) {
+            @if (getTotalPrice(fullStopWiseLowestFare[stop.key]) > 0) {
+            <div class="c-checkbox--item">
+              <label class="c-checkbox">
+                <input type="checkbox" class="c-checkbox__input" [checked]="mobileFilters.stopes.includes(stop.value)"
+                  (change)="onStopChange(stop.value, $event)" [disabled]="!fullStopWiseLowestFare[stop.key]" />
+                <span class="c-checkbox__box"></span>
+                <span class="c-checkbox__label-text">{{ stop.label }}</span>
+              </label>
+
+              <div class="c-checkbox--item__value">
+                ${{ getTotalPrice(fullStopWiseLowestFare[stop.key]) | number: "1.2-2" }}
+              </div>
+            </div>
+            }
+            }
+
+          </div>
+        </div>
+      </div>
+      <div class="tab-pane fade" id="tab2" role="tabpanel">
+        <div class="o-tabs--content">
+          <div class="o-tabs--content__head-wrap">
+            <div class="o-tabs--content__head border-0">
+              <h3 class="o-tabs--content__head--title">Flight time</h3>
+              <button type="button" class="c-reset-btn" (click)="resetAlltime()">Reset All</button>
+            </div>
+          </div>
+          <div class="o-accordion-wrap c-scrollbar o-scrollbar-space" [class.android]="isAndroid">
+            <div class="o-tab-accordion">
+              <div class="accordion" id="commonAccordion">
+                @if (getAllTimedetails[0]?.Citypairs?.length>0) {
+                <div class="accordion-item">
+                  <h2 class="accordion-header" id="headingOne">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                      data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                      <span class="air-accordion-button-content-wrap">
+                        <span class="c-flight-route">
+                          <span class="c-flight-route__city c-flight-route__city--from"> {{
+                            getAllTimedetails[0]?.Citypairs[0]?.FlightSegment[0]
+                            ?.DepartureDisplayName
+                            }}</span>
+                          <span class="c-flight-route__icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="15" height="12" viewBox="0 0 15 12"
+                              fill="none">
+                              <path
+                                d="M1 5.3C0.613401 5.3 0.3 5.6134 0.3 6C0.3 6.3866 0.613401 6.7 1 6.7V6V5.3ZM14.495 6.49497C14.7683 6.22161 14.7683 5.77839 14.495 5.50503L10.0402 1.05025C9.76684 0.776886 9.32362 0.776886 9.05025 1.05025C8.77689 1.32362 8.77689 1.76684 9.05025 2.0402L13.0101 6L9.05025 9.9598C8.77689 10.2332 8.77689 10.6764 9.05025 10.9497C9.32362 11.2231 9.76684 11.2231 10.0402 10.9497L14.495 6.49497ZM1 6V6.7H14V6V5.3H1V6Z"
+                                fill="currentColor" />
+                            </svg>
+                          </span>
+                          <span class="c-flight-route__city c-flight-route__city--to"> {{
+                            getAllTimedetails[0]?.Citypairs[0]?.FlightSegment[
+                            getAllTimedetails[0]?.Citypairs[0]?.FlightSegment
+                            .length - 1
+                            ]?.DisplayName
+                            }}</span>
+                        </span>
+                        <span class="accordion-drop-icon-wrap">
+                          <span class="accordion-drop-down-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"
+                              fill="none">
+                              <path
+                                d="M1.63605 5.293C1.82358 5.10547 2.07788 5.00016 2.34305 5.00016C2.60821 5.00016 2.86252 5.10547 3.05005 5.293L8.00005 10.243L12.95 5.293C13.1387 5.11084 13.3913 5.01005 13.6535 5.01236C13.9156 5.01467 14.1665 5.1199 14.3519 5.30528C14.5373 5.49066 14.6424 5.74147 14.6447 6.00366C14.647 6.26585 14.5462 6.51846 14.364 6.707L8.70705 12.364C8.51952 12.5515 8.26521 12.6568 8.00005 12.6568C7.73488 12.6568 7.48058 12.5515 7.29305 12.364L1.63605 6.707C1.44858 6.51947 1.34326 6.26516 1.34326 6C1.34326 5.73484 1.44858 5.48053 1.63605 5.293Z"
+                                fill="currentColor" />
+                            </svg>
+                          </span>
+                          <span class="accordion-drop-up-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"
+                              fill="none">
+                              <path
+                                d="M1.63605 10.707C1.82358 10.8945 2.07788 10.9998 2.34305 10.9998C2.60821 10.9998 2.86252 10.8945 3.05005 10.707L8.00005 5.757L12.95 10.707C13.1387 10.8892 13.3913 10.99 13.6535 10.9877C13.9156 10.9854 14.1665 10.8802 14.3519 10.6948C14.5373 10.5094 14.6424 10.2586 14.6447 9.9964C14.647 9.73421 14.5462 9.4816 14.364 9.293L8.70705 3.636C8.51952 3.44853 8.26521 3.34322 8.00005 3.34322C7.73488 3.34322 7.48058 3.44853 7.29305 3.636L1.63605 9.293C1.44858 9.48053 1.34326 9.73484 1.34326 10C1.34326 10.2652 1.44858 10.5195 1.63605 10.707Z"
+                                fill="currentColor" />
+                            </svg>
+                          </span>
+                        </span>
+                      </span>
+                    </button>
+                  </h2>
+                  <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne"
+                    data-bs-parent="#commonAccordion">
+                    <div class="accordion-body">
+                      <div class="c-flight-time">
+                        <div class="c-flight-time__section">
+                          <div class="c-flight-time__header">
+                            <span class="c-flight-time__title">Departure from {{
+                              getAllTimedetails[0]?.Citypairs[0]?.FlightSegment[0]
+                              ?.DepartureDisplayName
+                              }} ({{
+                              getAllTimedetails[0]?.Citypairs[0]?.FlightSegment[0]
+                              ?.DepartureLocationCode
+                              }})</span>
+                            <button type="button" class="c-flight-time__reset"
+                              (click)="resetAlldepartureTime()">Reset</button>
+                          </div>
+                          <div class="c-flight-time__options">
+                            <button class="c-flight-time__option"
+                              [class.c-flight-time__option--selected]="mobileFilters.departureTime.includes('night')"
+                              (click)="toggleDepartureTime('night')">
+                              <span class="c-flight-time__icon c-flight-time__icon--early-morning">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25"
+                                  fill="none">
+                                  <path
+                                    d="M13 5.5C13 5.23478 12.8946 4.98043 12.7071 4.79289C12.5196 4.60536 12.2652 4.5 12 4.5C11.7348 4.5 11.4804 4.60536 11.2929 4.79289C11.1054 4.98043 11 5.23478 11 5.5V6.5C11 6.76522 11.1054 7.01957 11.2929 7.20711C11.4804 7.39464 11.7348 7.5 12 7.5C12.2652 7.5 12.5196 7.39464 12.7071 7.20711C12.8946 7.01957 13 6.76522 13 6.5V5.5Z"
+                                    fill="currentColor" />
+                                  <path fill-rule="evenodd" clip-rule="evenodd"
+                                    d="M9.028 19.5H3C2.73478 19.5 2.48043 19.3946 2.29289 19.2071C2.10536 19.0196 2 18.7652 2 18.5C2 18.2348 2.10536 17.9804 2.29289 17.7929C2.48043 17.6054 2.73478 17.5 3 17.5H6.803C6.27672 16.5879 5.99978 15.5533 6 14.5002C6.00022 13.4471 6.2776 12.4126 6.80427 11.5007C7.33094 10.5888 8.08834 9.83157 9.00037 9.3051C9.9124 8.77863 10.9469 8.50146 12 8.50146C13.0531 8.50146 14.0876 8.77863 14.9996 9.3051C15.9117 9.83157 16.6691 10.5888 17.1957 11.5007C17.7224 12.4126 17.9998 13.4471 18 14.5002C18.0002 15.5533 17.7233 16.5879 17.197 17.5H21C21.2652 17.5 21.5196 17.6054 21.7071 17.7929C21.8946 17.9804 22 18.2348 22 18.5C22 18.7652 21.8946 19.0196 21.7071 19.2071C21.5196 19.3946 21.2652 19.5 21 19.5H9.028ZM12 10.5C11.1875 10.4999 10.3942 10.7473 9.7258 11.2092C9.05735 11.6711 8.54543 12.3256 8.25814 13.0857C7.97085 13.8457 7.92183 14.6752 8.11759 15.4637C8.31335 16.2523 8.74462 16.9626 9.354 17.5H14.646C15.2554 16.9626 15.6866 16.2523 15.8824 15.4637C16.0782 14.6752 16.0292 13.8457 15.7419 13.0857C15.4546 12.3256 14.9426 11.6711 14.2742 11.2092C13.6058 10.7473 12.8125 10.4999 12 10.5Z"
+                                    fill="currentColor" />
+                                  <path
+                                    d="M19.071 8.84301L18.364 9.55001C18.2718 9.64552 18.1614 9.7217 18.0394 9.77411C17.9174 9.82652 17.7862 9.8541 17.6534 9.85526C17.5206 9.85641 17.3889 9.83111 17.266 9.78083C17.1432 9.73055 17.0315 9.65629 16.9376 9.5624C16.8437 9.46851 16.7695 9.35686 16.7192 9.23396C16.6689 9.11106 16.6436 8.97938 16.6447 8.8466C16.6459 8.71383 16.6735 8.58261 16.7259 8.4606C16.7783 8.3386 16.8545 8.22825 16.95 8.13601L17.657 7.42901C17.7492 7.3335 17.8596 7.25731 17.9816 7.2049C18.1036 7.1525 18.2348 7.12491 18.3676 7.12376C18.5004 7.1226 18.6321 7.1479 18.755 7.19818C18.8778 7.24847 18.9895 7.32272 19.0834 7.41661C19.1773 7.5105 19.2515 7.62216 19.3018 7.74505C19.3521 7.86795 19.3774 7.99963 19.3763 8.13241C19.3751 8.26519 19.3475 8.39641 19.2951 8.51841C19.2427 8.64041 19.1665 8.75076 19.071 8.84301ZM4 15.5C4.26522 15.5 4.51957 15.3946 4.70711 15.2071C4.89464 15.0196 5 14.7652 5 14.5C5 14.2348 4.89464 13.9804 4.70711 13.7929C4.51957 13.6054 4.26522 13.5 4 13.5H3C2.73478 13.5 2.48043 13.6054 2.29289 13.7929C2.10536 13.9804 2 14.2348 2 14.5C2 14.7652 2.10536 15.0196 2.29289 15.2071C2.48043 15.3946 2.73478 15.5 3 15.5H4ZM22 14.5C22 14.7652 21.8946 15.0196 21.7071 15.2071C21.5196 15.3946 21.2652 15.5 21 15.5H20C19.7348 15.5 19.4804 15.3946 19.2929 15.2071C19.1054 15.0196 19 14.7652 19 14.5C19 14.2348 19.1054 13.9804 19.2929 13.7929C19.4804 13.6054 19.7348 13.5 20 13.5H21C21.2652 13.5 21.5196 13.6054 21.7071 13.7929C21.8946 13.9804 22 14.2348 22 14.5ZM5.636 9.55001C5.8246 9.73216 6.0772 9.83296 6.3394 9.83068C6.6016 9.8284 6.85241 9.72323 7.03782 9.53783C7.22323 9.35242 7.3284 9.1016 7.33067 8.83941C7.33295 8.57721 7.23216 8.32461 7.05 8.13601L6.343 7.42901C6.25127 7.33133 6.14085 7.25308 6.01829 7.19891C5.89574 7.14474 5.76354 7.11576 5.62956 7.11368C5.49558 7.1116 5.36255 7.13646 5.23837 7.1868C5.11419 7.23714 5.00139 7.31192 4.90668 7.4067C4.81196 7.50148 4.73726 7.61433 4.68701 7.73855C4.63676 7.86277 4.61199 7.99581 4.61417 8.12979C4.61634 8.26377 4.64542 8.39594 4.69968 8.51846C4.75393 8.64098 4.83226 8.75135 4.93 8.84301L5.636 9.55001Z"
+                                    fill="currentColor" />
+                                </svg>
+                              </span>
+                              <div class="c-flight-time__labels">
+                                <span class="c-flight-time__label">Early Morning</span>
+                                <span class="c-flight-time__range">00:01 - 06:00</span>
+                              </div>
+                            </button>
+                            <button class="c-flight-time__option"
+                              [class.c-flight-time__option--selected]="mobileFilters.departureTime.includes('morning')"
+                              (click)="toggleDepartureTime('morning')">
+                              <span class="c-flight-time__icon c-flight-time__icon--morning">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                  fill="none">
+                                  <path
+                                    d="M14.7439 11H15.5C17.9853 11 20 13.0147 20 15.5C20 17.9853 17.9853 20 15.5 20H5.5C3.567 20 2 18.433 2 16.5C2 14.7368 3.30385 13.2781 5 13.0354C5 10.2386 7.23858 8 10 8H10.5C12.4593 8 14.1262 9.25221 14.7439 11ZM14.9725 12C14.9907 12.1642 15 12.331 15 12.5C15 12.7761 14.7761 13 14.5 13C14.2239 13 14 12.7761 14 12.5C14 10.567 12.433 9 10.5 9H10C7.79086 9 6 10.7909 6 13V13.5C6 13.7761 5.77614 14 5.5 14C4.11929 14 3 15.1193 3 16.5C3 17.8807 4.11929 19 5.5 19H15.5C17.433 19 19 17.433 19 15.5C19 13.567 17.433 12 15.5 12H14.9725ZM20.8577 11.496C20.6738 11.702 20.3577 11.7199 20.1518 11.536C19.9458 11.3521 19.9279 11.036 20.1118 10.83C20.6806 10.1929 21 9.37194 21 8.5C21 6.567 19.433 5 17.5 5C15.8929 5 14.5035 6.09253 14.1097 7.62689C14.041 7.89436 13.7685 8.05554 13.501 7.98689C13.2336 7.91824 13.0724 7.64576 13.1411 7.37828C13.6477 5.40431 15.4336 4 17.5 4C19.9853 4 22 6.01472 22 8.5C22 9.62 21.5886 10.6774 20.8577 11.496Z"
+                                    fill="currentColor" stroke="currentColor" stroke-width="0.7" />
+                                </svg>
+                              </span>
+                              <div class="c-flight-time__labels">
+                                <span class="c-flight-time__label">Morning</span>
+                                <span class="c-flight-time__range">06:01 - 12:00</span>
+                              </div>
+                            </button>
+                            <button class="c-flight-time__option"
+                              [class.c-flight-time__option--selected]="mobileFilters.departureTime.includes('afternoon')"
+                              (click)="toggleDepartureTime('afternoon')">
+                              <span class="c-flight-time__icon c-flight-time__icon--afternoon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                  fill="none">
+                                  <g clip-path="url(#clip0_131_2018)">
+                                    <path d="M12.75 1.5H11.25V5.22H12.75V1.5Z" fill="currentColor" />
+                                    <path
+                                      d="M18.8956 4.03756L16.2651 6.668L17.3258 7.72866L19.9562 5.09822L18.8956 4.03756Z"
+                                      fill="currentColor" />
+                                    <path d="M22.4998 11.25H18.7798V12.75H22.4998V11.25Z" fill="currentColor" />
+                                    <path
+                                      d="M17.3302 16.2669L16.2695 17.3276L18.9 19.958L19.9606 18.8974L17.3302 16.2669Z"
+                                      fill="currentColor" />
+                                    <path d="M12.75 18.78H11.25V22.5H12.75V18.78Z" fill="currentColor" />
+                                    <path
+                                      d="M6.6778 16.2713L4.04736 18.9018L5.10802 19.9624L7.73846 17.332L6.6778 16.2713Z"
+                                      fill="currentColor" />
+                                    <path d="M5.22 11.25H1.5V12.75H5.22V11.25Z" fill="currentColor" />
+                                    <path
+                                      d="M5.10363 4.04194L4.04297 5.1026L6.67341 7.73304L7.73407 6.67238L5.10363 4.04194Z"
+                                      fill="currentColor" />
+                                    <path
+                                      d="M12 9C12.5933 9 13.1734 9.17595 13.6667 9.50559C14.1601 9.83524 14.5446 10.3038 14.7716 10.8519C14.9987 11.4001 15.0581 12.0033 14.9424 12.5853C14.8266 13.1672 14.5409 13.7018 14.1213 14.1213C13.7018 14.5409 13.1672 14.8266 12.5853 14.9424C12.0033 15.0581 11.4001 14.9987 10.852 14.7716C10.3038 14.5446 9.83524 14.1601 9.50559 13.6667C9.17595 13.1734 9 12.5933 9 12C9 11.2044 9.31607 10.4413 9.87868 9.87868C10.4413 9.31607 11.2044 9 12 9ZM12 7.5C11.11 7.5 10.24 7.76392 9.49994 8.25839C8.75991 8.75285 8.18314 9.45566 7.84254 10.2779C7.50195 11.1002 7.41283 12.005 7.58647 12.8779C7.7601 13.7508 8.18869 14.5526 8.81802 15.182C9.44736 15.8113 10.2492 16.2399 11.1221 16.4135C11.995 16.5872 12.8998 16.4981 13.7221 16.1575C14.5443 15.8169 15.2471 15.2401 15.7416 14.5001C16.2361 13.76 16.5 12.89 16.5 12C16.5 10.8065 16.0259 9.66193 15.182 8.81802C14.3381 7.97411 13.1935 7.5 12 7.5Z"
+                                      fill="currentColor" />
+                                  </g>
+                                  <defs>
+                                    <clipPath id="clip0_131_2018">
+                                      <rect width="24" height="24" fill="white" />
+                                    </clipPath>
+                                  </defs>
+                                </svg>
+                              </span>
+                              <div class="c-flight-time__labels">
+                                <span class="c-flight-time__label">Afternoon</span>
+                                <span class="c-flight-time__range">12:01 - 18:00</span>
+                              </div>
+                            </button>
+                            <button class="c-flight-time__option"
+                              [class.c-flight-time__option--selected]="mobileFilters.departureTime.includes('evening')"
+                              (click)="toggleDepartureTime('evening')">
+                              <span class="c-flight-time__icon c-flight-time__icon--evening">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                  fill="none">
+                                  <path
+                                    d="M9 6C9 10.9706 13.0294 15 18 15C18.9093 15 19.787 14.8655 20.6144 14.6147C19.4943 18.3103 16.0613 20.9999 12 20.9999C7.02944 20.9999 3 16.9707 3 12.0001C3 7.93883 5.69007 4.50583 9.38561 3.38574C9.13484 4.21311 9 5.09074 9 6Z"
+                                    stroke="currentColor" stroke-width="1.7" stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                                </svg>
+                              </span>
+                              <div class="c-flight-time__labels">
+                                <span class="c-flight-time__label">Evening</span>
+                                <span class="c-flight-time__range">18:01 - 00:00</span>
+                              </div>
+                            </button>
+                          </div>
+                          <hr class="c-flight-time--devider">
+                        </div>
+                        @if(getAllTimedetails[0]?.Direction!='multicity'){
+                        <div class="c-flight-time__section">
+                          <div class="c-flight-time__header">
+                            <span class="c-flight-time__title">Arriving to {{
+                              ((getAllTimedetails[0]?.Citypairs)[0]?.FlightSegment)[
+                              (getAllTimedetails[0]?.Citypairs)[0]?.FlightSegment.length - 1
+                              ]?.DisplayName
+                              }}
+                              ({{
+                              ((getAllTimedetails[0]?.Citypairs)[0]?.FlightSegment)[
+                              (getAllTimedetails[0]?.Citypairs)[0]?.FlightSegment.length - 1
+                              ]?.ArrivalLocationCode
+                              }})</span>
+                            <button type="button" class="c-flight-time__reset"
+                              (click)="resetAllarrivalTime()">Reset</button>
+                          </div>
+                          <div class="c-flight-time__options">
+                            <button class="c-flight-time__option"
+                              [class.c-flight-time__option--selected]="mobileFilters.arrivalTime.includes('night')"
+                              (click)="toggleArrivalTime('night')">
+                              <span class="c-flight-time__icon c-flight-time__icon--early-morning">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25"
+                                  fill="none">
+                                  <path
+                                    d="M13 5.5C13 5.23478 12.8946 4.98043 12.7071 4.79289C12.5196 4.60536 12.2652 4.5 12 4.5C11.7348 4.5 11.4804 4.60536 11.2929 4.79289C11.1054 4.98043 11 5.23478 11 5.5V6.5C11 6.76522 11.1054 7.01957 11.2929 7.20711C11.4804 7.39464 11.7348 7.5 12 7.5C12.2652 7.5 12.5196 7.39464 12.7071 7.20711C12.8946 7.01957 13 6.76522 13 6.5V5.5Z"
+                                    fill="currentColor" />
+                                  <path fill-rule="evenodd" clip-rule="evenodd"
+                                    d="M9.028 19.5H3C2.73478 19.5 2.48043 19.3946 2.29289 19.2071C2.10536 19.0196 2 18.7652 2 18.5C2 18.2348 2.10536 17.9804 2.29289 17.7929C2.48043 17.6054 2.73478 17.5 3 17.5H6.803C6.27672 16.5879 5.99978 15.5533 6 14.5002C6.00022 13.4471 6.2776 12.4126 6.80427 11.5007C7.33094 10.5888 8.08834 9.83157 9.00037 9.3051C9.9124 8.77863 10.9469 8.50146 12 8.50146C13.0531 8.50146 14.0876 8.77863 14.9996 9.3051C15.9117 9.83157 16.6691 10.5888 17.1957 11.5007C17.7224 12.4126 17.9998 13.4471 18 14.5002C18.0002 15.5533 17.7233 16.5879 17.197 17.5H21C21.2652 17.5 21.5196 17.6054 21.7071 17.7929C21.8946 17.9804 22 18.2348 22 18.5C22 18.7652 21.8946 19.0196 21.7071 19.2071C21.5196 19.3946 21.2652 19.5 21 19.5H9.028ZM12 10.5C11.1875 10.4999 10.3942 10.7473 9.7258 11.2092C9.05735 11.6711 8.54543 12.3256 8.25814 13.0857C7.97085 13.8457 7.92183 14.6752 8.11759 15.4637C8.31335 16.2523 8.74462 16.9626 9.354 17.5H14.646C15.2554 16.9626 15.6866 16.2523 15.8824 15.4637C16.0782 14.6752 16.0292 13.8457 15.7419 13.0857C15.4546 12.3256 14.9426 11.6711 14.2742 11.2092C13.6058 10.7473 12.8125 10.4999 12 10.5Z"
+                                    fill="currentColor" />
+                                  <path
+                                    d="M19.071 8.84301L18.364 9.55001C18.2718 9.64552 18.1614 9.7217 18.0394 9.77411C17.9174 9.82652 17.7862 9.8541 17.6534 9.85526C17.5206 9.85641 17.3889 9.83111 17.266 9.78083C17.1432 9.73055 17.0315 9.65629 16.9376 9.5624C16.8437 9.46851 16.7695 9.35686 16.7192 9.23396C16.6689 9.11106 16.6436 8.97938 16.6447 8.8466C16.6459 8.71383 16.6735 8.58261 16.7259 8.4606C16.7783 8.3386 16.8545 8.22825 16.95 8.13601L17.657 7.42901C17.7492 7.3335 17.8596 7.25731 17.9816 7.2049C18.1036 7.1525 18.2348 7.12491 18.3676 7.12376C18.5004 7.1226 18.6321 7.1479 18.755 7.19818C18.8778 7.24847 18.9895 7.32272 19.0834 7.41661C19.1773 7.5105 19.2515 7.62216 19.3018 7.74505C19.3521 7.86795 19.3774 7.99963 19.3763 8.13241C19.3751 8.26519 19.3475 8.39641 19.2951 8.51841C19.2427 8.64041 19.1665 8.75076 19.071 8.84301ZM4 15.5C4.26522 15.5 4.51957 15.3946 4.70711 15.2071C4.89464 15.0196 5 14.7652 5 14.5C5 14.2348 4.89464 13.9804 4.70711 13.7929C4.51957 13.6054 4.26522 13.5 4 13.5H3C2.73478 13.5 2.48043 13.6054 2.29289 13.7929C2.10536 13.9804 2 14.2348 2 14.5C2 14.7652 2.10536 15.0196 2.29289 15.2071C2.48043 15.3946 2.73478 15.5 3 15.5H4ZM22 14.5C22 14.7652 21.8946 15.0196 21.7071 15.2071C21.5196 15.3946 21.2652 15.5 21 15.5H20C19.7348 15.5 19.4804 15.3946 19.2929 15.2071C19.1054 15.0196 19 14.7652 19 14.5C19 14.2348 19.1054 13.9804 19.2929 13.7929C19.4804 13.6054 19.7348 13.5 20 13.5H21C21.2652 13.5 21.5196 13.6054 21.7071 13.7929C21.8946 13.9804 22 14.2348 22 14.5ZM5.636 9.55001C5.8246 9.73216 6.0772 9.83296 6.3394 9.83068C6.6016 9.8284 6.85241 9.72323 7.03782 9.53783C7.22323 9.35242 7.3284 9.1016 7.33067 8.83941C7.33295 8.57721 7.23216 8.32461 7.05 8.13601L6.343 7.42901C6.25127 7.33133 6.14085 7.25308 6.01829 7.19891C5.89574 7.14474 5.76354 7.11576 5.62956 7.11368C5.49558 7.1116 5.36255 7.13646 5.23837 7.1868C5.11419 7.23714 5.00139 7.31192 4.90668 7.4067C4.81196 7.50148 4.73726 7.61433 4.68701 7.73855C4.63676 7.86277 4.61199 7.99581 4.61417 8.12979C4.61634 8.26377 4.64542 8.39594 4.69968 8.51846C4.75393 8.64098 4.83226 8.75135 4.93 8.84301L5.636 9.55001Z"
+                                    fill="currentColor" />
+                                </svg>
+                              </span>
+                              <div class="c-flight-time__labels">
+                                <span class="c-flight-time__label">Early Morning</span>
+                                <span class="c-flight-time__range">00:01 - 06:00</span>
+                              </div>
+                            </button>
+                            <button class="c-flight-time__option"
+                              [class.c-flight-time__option--selected]="mobileFilters.arrivalTime.includes('morning')"
+                              (click)="toggleArrivalTime('morning')">
+                              <span class="c-flight-time__icon c-flight-time__icon--morning">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                  fill="none">
+                                  <path
+                                    d="M14.7439 11H15.5C17.9853 11 20 13.0147 20 15.5C20 17.9853 17.9853 20 15.5 20H5.5C3.567 20 2 18.433 2 16.5C2 14.7368 3.30385 13.2781 5 13.0354C5 10.2386 7.23858 8 10 8H10.5C12.4593 8 14.1262 9.25221 14.7439 11ZM14.9725 12C14.9907 12.1642 15 12.331 15 12.5C15 12.7761 14.7761 13 14.5 13C14.2239 13 14 12.7761 14 12.5C14 10.567 12.433 9 10.5 9H10C7.79086 9 6 10.7909 6 13V13.5C6 13.7761 5.77614 14 5.5 14C4.11929 14 3 15.1193 3 16.5C3 17.8807 4.11929 19 5.5 19H15.5C17.433 19 19 17.433 19 15.5C19 13.567 17.433 12 15.5 12H14.9725ZM20.8577 11.496C20.6738 11.702 20.3577 11.7199 20.1518 11.536C19.9458 11.3521 19.9279 11.036 20.1118 10.83C20.6806 10.1929 21 9.37194 21 8.5C21 6.567 19.433 5 17.5 5C15.8929 5 14.5035 6.09253 14.1097 7.62689C14.041 7.89436 13.7685 8.05554 13.501 7.98689C13.2336 7.91824 13.0724 7.64576 13.1411 7.37828C13.6477 5.40431 15.4336 4 17.5 4C19.9853 4 22 6.01472 22 8.5C22 9.62 21.5886 10.6774 20.8577 11.496Z"
+                                    fill="currentColor" stroke="currentColor" stroke-width="0.7" />
+                                </svg>
+                              </span>
+                              <div class="c-flight-time__labels">
+                                <span class="c-flight-time__label">Morning</span>
+                                <span class="c-flight-time__range">06:01 - 12:00</span>
+                              </div>
+                            </button>
+                            <button class="c-flight-time__option"
+                              [class.c-flight-time__option--selected]="mobileFilters.arrivalTime.includes('afternoon')"
+                              (click)="toggleArrivalTime('afternoon')">
+                              <span class="c-flight-time__icon c-flight-time__icon--afternoon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                  fill="none">
+                                  <g clip-path="url(#clip0_131_2018)">
+                                    <path d="M12.75 1.5H11.25V5.22H12.75V1.5Z" fill="currentColor" />
+                                    <path
+                                      d="M18.8956 4.03756L16.2651 6.668L17.3258 7.72866L19.9562 5.09822L18.8956 4.03756Z"
+                                      fill="currentColor" />
+                                    <path d="M22.4998 11.25H18.7798V12.75H22.4998V11.25Z" fill="currentColor" />
+                                    <path
+                                      d="M17.3302 16.2669L16.2695 17.3276L18.9 19.958L19.9606 18.8974L17.3302 16.2669Z"
+                                      fill="currentColor" />
+                                    <path d="M12.75 18.78H11.25V22.5H12.75V18.78Z" fill="currentColor" />
+                                    <path
+                                      d="M6.6778 16.2713L4.04736 18.9018L5.10802 19.9624L7.73846 17.332L6.6778 16.2713Z"
+                                      fill="currentColor" />
+                                    <path d="M5.22 11.25H1.5V12.75H5.22V11.25Z" fill="currentColor" />
+                                    <path
+                                      d="M5.10363 4.04194L4.04297 5.1026L6.67341 7.73304L7.73407 6.67238L5.10363 4.04194Z"
+                                      fill="currentColor" />
+                                    <path
+                                      d="M12 9C12.5933 9 13.1734 9.17595 13.6667 9.50559C14.1601 9.83524 14.5446 10.3038 14.7716 10.8519C14.9987 11.4001 15.0581 12.0033 14.9424 12.5853C14.8266 13.1672 14.5409 13.7018 14.1213 14.1213C13.7018 14.5409 13.1672 14.8266 12.5853 14.9424C12.0033 15.0581 11.4001 14.9987 10.852 14.7716C10.3038 14.5446 9.83524 14.1601 9.50559 13.6667C9.17595 13.1734 9 12.5933 9 12C9 11.2044 9.31607 10.4413 9.87868 9.87868C10.4413 9.31607 11.2044 9 12 9ZM12 7.5C11.11 7.5 10.24 7.76392 9.49994 8.25839C8.75991 8.75285 8.18314 9.45566 7.84254 10.2779C7.50195 11.1002 7.41283 12.005 7.58647 12.8779C7.7601 13.7508 8.18869 14.5526 8.81802 15.182C9.44736 15.8113 10.2492 16.2399 11.1221 16.4135C11.995 16.5872 12.8998 16.4981 13.7221 16.1575C14.5443 15.8169 15.2471 15.2401 15.7416 14.5001C16.2361 13.76 16.5 12.89 16.5 12C16.5 10.8065 16.0259 9.66193 15.182 8.81802C14.3381 7.97411 13.1935 7.5 12 7.5Z"
+                                      fill="currentColor" />
+                                  </g>
+                                  <defs>
+                                    <clipPath id="clip0_131_2018">
+                                      <rect width="24" height="24" fill="white" />
+                                    </clipPath>
+                                  </defs>
+                                </svg>
+                              </span>
+                              <div class="c-flight-time__labels">
+                                <span class="c-flight-time__label">Afternoon</span>
+                                <span class="c-flight-time__range">12:01 - 18:00</span>
+                              </div>
+                            </button>
+                            <button class="c-flight-time__option"
+                              [class.c-flight-time__option--selected]="mobileFilters.arrivalTime.includes('evening')"
+                              (click)="toggleArrivalTime('evening')">
+                              <span class="c-flight-time__icon c-flight-time__icon--evening">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                  fill="none">
+                                  <path
+                                    d="M9 6C9 10.9706 13.0294 15 18 15C18.9093 15 19.787 14.8655 20.6144 14.6147C19.4943 18.3103 16.0613 20.9999 12 20.9999C7.02944 20.9999 3 16.9707 3 12.0001C3 7.93883 5.69007 4.50583 9.38561 3.38574C9.13484 4.21311 9 5.09074 9 6Z"
+                                    stroke="currentColor" stroke-width="1.7" stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                                </svg>
+                              </span>
+                              <div class="c-flight-time__labels">
+                                <span class="c-flight-time__label">Evening</span>
+                                <span class="c-flight-time__range">18:01 - 00:00</span>
+                              </div>
+                            </button>
+                          </div>
+                          <hr class="c-flight-time--devider">
+                        </div>
+                        }
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                }
+                @if(getAllTimedetails[0]?.Citypairs?.length===2 && getAllTimedetails[0]?.Direction!='multicity'){
+                <div class="accordion-item">
+                  <h2 class="accordion-header" id="headingTwo">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                      data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                      <span class="air-accordion-button-content-wrap">
+                        <span class="c-flight-route">
+                          <span class="c-flight-route__city c-flight-route__city--from">{{
+                            ((getAllTimedetails[0]?.Citypairs)[1]?.FlightSegment)[0]?.DepartureDisplayName }}</span>
+                          <span class="c-flight-route__icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="15" height="12" viewBox="0 0 15 12"
+                              fill="none">
+                              <path
+                                d="M1 5.3C0.613401 5.3 0.3 5.6134 0.3 6C0.3 6.3866 0.613401 6.7 1 6.7V6V5.3ZM14.495 6.49497C14.7683 6.22161 14.7683 5.77839 14.495 5.50503L10.0402 1.05025C9.76684 0.776886 9.32362 0.776886 9.05025 1.05025C8.77689 1.32362 8.77689 1.76684 9.05025 2.0402L13.0101 6L9.05025 9.9598C8.77689 10.2332 8.77689 10.6764 9.05025 10.9497C9.32362 11.2231 9.76684 11.2231 10.0402 10.9497L14.495 6.49497ZM1 6V6.7H14V6V5.3H1V6Z"
+                                fill="currentColor" />
+                            </svg>
+                          </span>
+                          <span class="c-flight-route__city c-flight-route__city--to">{{
+                            ((getAllTimedetails[0]?.Citypairs)[1]?.FlightSegment)[
+                            (getAllTimedetails[0]?.Citypairs)[1]?.FlightSegment.length - 1
+                            ]?.DisplayName
+                            }}</span>
+                        </span>
+                        <span class="accordion-drop-icon-wrap">
+                          <span class="accordion-drop-down-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"
+                              fill="none">
+                              <path
+                                d="M1.63605 5.293C1.82358 5.10547 2.07788 5.00016 2.34305 5.00016C2.60821 5.00016 2.86252 5.10547 3.05005 5.293L8.00005 10.243L12.95 5.293C13.1387 5.11084 13.3913 5.01005 13.6535 5.01236C13.9156 5.01467 14.1665 5.1199 14.3519 5.30528C14.5373 5.49066 14.6424 5.74147 14.6447 6.00366C14.647 6.26585 14.5462 6.51846 14.364 6.707L8.70705 12.364C8.51952 12.5515 8.26521 12.6568 8.00005 12.6568C7.73488 12.6568 7.48058 12.5515 7.29305 12.364L1.63605 6.707C1.44858 6.51947 1.34326 6.26516 1.34326 6C1.34326 5.73484 1.44858 5.48053 1.63605 5.293Z"
+                                fill="currentColor" />
+                            </svg>
+                          </span>
+                          <span class="accordion-drop-up-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"
+                              fill="none">
+                              <path
+                                d="M1.63605 10.707C1.82358 10.8945 2.07788 10.9998 2.34305 10.9998C2.60821 10.9998 2.86252 10.8945 3.05005 10.707L8.00005 5.757L12.95 10.707C13.1387 10.8892 13.3913 10.99 13.6535 10.9877C13.9156 10.9854 14.1665 10.8802 14.3519 10.6948C14.5373 10.5094 14.6424 10.2586 14.6447 9.9964C14.647 9.73421 14.5462 9.4816 14.364 9.293L8.70705 3.636C8.51952 3.44853 8.26521 3.34322 8.00005 3.34322C7.73488 3.34322 7.48058 3.44853 7.29305 3.636L1.63605 9.293C1.44858 9.48053 1.34326 9.73484 1.34326 10C1.34326 10.2652 1.44858 10.5195 1.63605 10.707Z"
+                                fill="currentColor" />
+                            </svg>
+                          </span>
+                        </span>
+                      </span>
+                    </button>
+                  </h2>
+                  <div id="collapseTwo" class="accordion-collapse collapse show" aria-labelledby="headingTwo"
+                    data-bs-parent="#commonAccordion">
+                    <div class="accordion-body">
+                      <div class="c-flight-time">
+                        <div class="c-flight-time__section">
+                          <div class="c-flight-time__header">
+                            <span class="c-flight-time__title">Departure from {{
+                              ((getAllTimedetails[0]?.Citypairs)[1]?.FlightSegment)[0]?.DepartureDisplayName }} ({{
+                              ((getAllTimedetails[0]?.Citypairs)[1]?.FlightSegment)[0]?.DepartureLocationCode
+                              }})</span>
+                            <button type="button" class="c-flight-time__reset"
+                              (click)="resetAllreturnDepartureTime()">Reset</button>
+                          </div>
+                          <div class="c-flight-time__options">
+                            <button class="c-flight-time__option"
+                              [class.c-flight-time__option--selected]="mobileFilters.returnDepartureTime.includes('night')"
+                              (click)="toggleReturnDepartureTime('night')">
+                              <span class="c-flight-time__icon c-flight-time__icon--early-morning">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25"
+                                  fill="none">
+                                  <path
+                                    d="M13 5.5C13 5.23478 12.8946 4.98043 12.7071 4.79289C12.5196 4.60536 12.2652 4.5 12 4.5C11.7348 4.5 11.4804 4.60536 11.2929 4.79289C11.1054 4.98043 11 5.23478 11 5.5V6.5C11 6.76522 11.1054 7.01957 11.2929 7.20711C11.4804 7.39464 11.7348 7.5 12 7.5C12.2652 7.5 12.5196 7.39464 12.7071 7.20711C12.8946 7.01957 13 6.76522 13 6.5V5.5Z"
+                                    fill="currentColor" />
+                                  <path fill-rule="evenodd" clip-rule="evenodd"
+                                    d="M9.028 19.5H3C2.73478 19.5 2.48043 19.3946 2.29289 19.2071C2.10536 19.0196 2 18.7652 2 18.5C2 18.2348 2.10536 17.9804 2.29289 17.7929C2.48043 17.6054 2.73478 17.5 3 17.5H6.803C6.27672 16.5879 5.99978 15.5533 6 14.5002C6.00022 13.4471 6.2776 12.4126 6.80427 11.5007C7.33094 10.5888 8.08834 9.83157 9.00037 9.3051C9.9124 8.77863 10.9469 8.50146 12 8.50146C13.0531 8.50146 14.0876 8.77863 14.9996 9.3051C15.9117 9.83157 16.6691 10.5888 17.1957 11.5007C17.7224 12.4126 17.9998 13.4471 18 14.5002C18.0002 15.5533 17.7233 16.5879 17.197 17.5H21C21.2652 17.5 21.5196 17.6054 21.7071 17.7929C21.8946 17.9804 22 18.2348 22 18.5C22 18.7652 21.8946 19.0196 21.7071 19.2071C21.5196 19.3946 21.2652 19.5 21 19.5H9.028ZM12 10.5C11.1875 10.4999 10.3942 10.7473 9.7258 11.2092C9.05735 11.6711 8.54543 12.3256 8.25814 13.0857C7.97085 13.8457 7.92183 14.6752 8.11759 15.4637C8.31335 16.2523 8.74462 16.9626 9.354 17.5H14.646C15.2554 16.9626 15.6866 16.2523 15.8824 15.4637C16.0782 14.6752 16.0292 13.8457 15.7419 13.0857C15.4546 12.3256 14.9426 11.6711 14.2742 11.2092C13.6058 10.7473 12.8125 10.4999 12 10.5Z"
+                                    fill="currentColor" />
+                                  <path
+                                    d="M19.071 8.84301L18.364 9.55001C18.2718 9.64552 18.1614 9.7217 18.0394 9.77411C17.9174 9.82652 17.7862 9.8541 17.6534 9.85526C17.5206 9.85641 17.3889 9.83111 17.266 9.78083C17.1432 9.73055 17.0315 9.65629 16.9376 9.5624C16.8437 9.46851 16.7695 9.35686 16.7192 9.23396C16.6689 9.11106 16.6436 8.97938 16.6447 8.8466C16.6459 8.71383 16.6735 8.58261 16.7259 8.4606C16.7783 8.3386 16.8545 8.22825 16.95 8.13601L17.657 7.42901C17.7492 7.3335 17.8596 7.25731 17.9816 7.2049C18.1036 7.1525 18.2348 7.12491 18.3676 7.12376C18.5004 7.1226 18.6321 7.1479 18.755 7.19818C18.8778 7.24847 18.9895 7.32272 19.0834 7.41661C19.1773 7.5105 19.2515 7.62216 19.3018 7.74505C19.3521 7.86795 19.3774 7.99963 19.3763 8.13241C19.3751 8.26519 19.3475 8.39641 19.2951 8.51841C19.2427 8.64041 19.1665 8.75076 19.071 8.84301ZM4 15.5C4.26522 15.5 4.51957 15.3946 4.70711 15.2071C4.89464 15.0196 5 14.7652 5 14.5C5 14.2348 4.89464 13.9804 4.70711 13.7929C4.51957 13.6054 4.26522 13.5 4 13.5H3C2.73478 13.5 2.48043 13.6054 2.29289 13.7929C2.10536 13.9804 2 14.2348 2 14.5C2 14.7652 2.10536 15.0196 2.29289 15.2071C2.48043 15.3946 2.73478 15.5 3 15.5H4ZM22 14.5C22 14.7652 21.8946 15.0196 21.7071 15.2071C21.5196 15.3946 21.2652 15.5 21 15.5H20C19.7348 15.5 19.4804 15.3946 19.2929 15.2071C19.1054 15.0196 19 14.7652 19 14.5C19 14.2348 19.1054 13.9804 19.2929 13.7929C19.4804 13.6054 19.7348 13.5 20 13.5H21C21.2652 13.5 21.5196 13.6054 21.7071 13.7929C21.8946 13.9804 22 14.2348 22 14.5ZM5.636 9.55001C5.8246 9.73216 6.0772 9.83296 6.3394 9.83068C6.6016 9.8284 6.85241 9.72323 7.03782 9.53783C7.22323 9.35242 7.3284 9.1016 7.33067 8.83941C7.33295 8.57721 7.23216 8.32461 7.05 8.13601L6.343 7.42901C6.25127 7.33133 6.14085 7.25308 6.01829 7.19891C5.89574 7.14474 5.76354 7.11576 5.62956 7.11368C5.49558 7.1116 5.36255 7.13646 5.23837 7.1868C5.11419 7.23714 5.00139 7.31192 4.90668 7.4067C4.81196 7.50148 4.73726 7.61433 4.68701 7.73855C4.63676 7.86277 4.61199 7.99581 4.61417 8.12979C4.61634 8.26377 4.64542 8.39594 4.69968 8.51846C4.75393 8.64098 4.83226 8.75135 4.93 8.84301L5.636 9.55001Z"
+                                    fill="currentColor" />
+                                </svg>
+                              </span>
+                              <div class="c-flight-time__labels">
+                                <span class="c-flight-time__label">Early Morning</span>
+                                <span class="c-flight-time__range">00:01 - 06:00</span>
+                              </div>
+                            </button>
+                            <button class="c-flight-time__option"
+                              [class.c-flight-time__option--selected]="mobileFilters.returnDepartureTime.includes('morning')"
+                              (click)="toggleReturnDepartureTime('morning')">
+                              <span class="c-flight-time__icon c-flight-time__icon--morning">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                  fill="none">
+                                  <path
+                                    d="M14.7439 11H15.5C17.9853 11 20 13.0147 20 15.5C20 17.9853 17.9853 20 15.5 20H5.5C3.567 20 2 18.433 2 16.5C2 14.7368 3.30385 13.2781 5 13.0354C5 10.2386 7.23858 8 10 8H10.5C12.4593 8 14.1262 9.25221 14.7439 11ZM14.9725 12C14.9907 12.1642 15 12.331 15 12.5C15 12.7761 14.7761 13 14.5 13C14.2239 13 14 12.7761 14 12.5C14 10.567 12.433 9 10.5 9H10C7.79086 9 6 10.7909 6 13V13.5C6 13.7761 5.77614 14 5.5 14C4.11929 14 3 15.1193 3 16.5C3 17.8807 4.11929 19 5.5 19H15.5C17.433 19 19 17.433 19 15.5C19 13.567 17.433 12 15.5 12H14.9725ZM20.8577 11.496C20.6738 11.702 20.3577 11.7199 20.1518 11.536C19.9458 11.3521 19.9279 11.036 20.1118 10.83C20.6806 10.1929 21 9.37194 21 8.5C21 6.567 19.433 5 17.5 5C15.8929 5 14.5035 6.09253 14.1097 7.62689C14.041 7.89436 13.7685 8.05554 13.501 7.98689C13.2336 7.91824 13.0724 7.64576 13.1411 7.37828C13.6477 5.40431 15.4336 4 17.5 4C19.9853 4 22 6.01472 22 8.5C22 9.62 21.5886 10.6774 20.8577 11.496Z"
+                                    fill="currentColor" stroke="currentColor" stroke-width="0.7" />
+                                </svg>
+                              </span>
+                              <div class="c-flight-time__labels">
+                                <span class="c-flight-time__label">Morning</span>
+                                <span class="c-flight-time__range">06:01 - 12:00</span>
+                              </div>
+                            </button>
+                            <button class="c-flight-time__option"
+                              [class.c-flight-time__option--selected]="mobileFilters.returnDepartureTime.includes('afternoon')"
+                              (click)="toggleReturnDepartureTime('afternoon')">
+                              <span class="c-flight-time__icon c-flight-time__icon--afternoon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                  fill="none">
+                                  <g clip-path="url(#clip0_131_2018)">
+                                    <path d="M12.75 1.5H11.25V5.22H12.75V1.5Z" fill="currentColor" />
+                                    <path
+                                      d="M18.8956 4.03756L16.2651 6.668L17.3258 7.72866L19.9562 5.09822L18.8956 4.03756Z"
+                                      fill="currentColor" />
+                                    <path d="M22.4998 11.25H18.7798V12.75H22.4998V11.25Z" fill="currentColor" />
+                                    <path
+                                      d="M17.3302 16.2669L16.2695 17.3276L18.9 19.958L19.9606 18.8974L17.3302 16.2669Z"
+                                      fill="currentColor" />
+                                    <path d="M12.75 18.78H11.25V22.5H12.75V18.78Z" fill="currentColor" />
+                                    <path
+                                      d="M6.6778 16.2713L4.04736 18.9018L5.10802 19.9624L7.73846 17.332L6.6778 16.2713Z"
+                                      fill="currentColor" />
+                                    <path d="M5.22 11.25H1.5V12.75H5.22V11.25Z" fill="currentColor" />
+                                    <path
+                                      d="M5.10363 4.04194L4.04297 5.1026L6.67341 7.73304L7.73407 6.67238L5.10363 4.04194Z"
+                                      fill="currentColor" />
+                                    <path
+                                      d="M12 9C12.5933 9 13.1734 9.17595 13.6667 9.50559C14.1601 9.83524 14.5446 10.3038 14.7716 10.8519C14.9987 11.4001 15.0581 12.0033 14.9424 12.5853C14.8266 13.1672 14.5409 13.7018 14.1213 14.1213C13.7018 14.5409 13.1672 14.8266 12.5853 14.9424C12.0033 15.0581 11.4001 14.9987 10.852 14.7716C10.3038 14.5446 9.83524 14.1601 9.50559 13.6667C9.17595 13.1734 9 12.5933 9 12C9 11.2044 9.31607 10.4413 9.87868 9.87868C10.4413 9.31607 11.2044 9 12 9ZM12 7.5C11.11 7.5 10.24 7.76392 9.49994 8.25839C8.75991 8.75285 8.18314 9.45566 7.84254 10.2779C7.50195 11.1002 7.41283 12.005 7.58647 12.8779C7.7601 13.7508 8.18869 14.5526 8.81802 15.182C9.44736 15.8113 10.2492 16.2399 11.1221 16.4135C11.995 16.5872 12.8998 16.4981 13.7221 16.1575C14.5443 15.8169 15.2471 15.2401 15.7416 14.5001C16.2361 13.76 16.5 12.89 16.5 12C16.5 10.8065 16.0259 9.66193 15.182 8.81802C14.3381 7.97411 13.1935 7.5 12 7.5Z"
+                                      fill="currentColor" />
+                                  </g>
+                                  <defs>
+                                    <clipPath id="clip0_131_2018">
+                                      <rect width="24" height="24" fill="white" />
+                                    </clipPath>
+                                  </defs>
+                                </svg>
+                              </span>
+                              <div class="c-flight-time__labels">
+                                <span class="c-flight-time__label">Afternoon</span>
+                                <span class="c-flight-time__range">12:01 - 18:00</span>
+                              </div>
+                            </button>
+                            <button class="c-flight-time__option"
+                              [class.c-flight-time__option--selected]="mobileFilters.returnDepartureTime.includes('evening')"
+                              (click)="toggleReturnDepartureTime('evening')">
+                              <span class="c-flight-time__icon c-flight-time__icon--evening">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                  fill="none">
+                                  <path
+                                    d="M9 6C9 10.9706 13.0294 15 18 15C18.9093 15 19.787 14.8655 20.6144 14.6147C19.4943 18.3103 16.0613 20.9999 12 20.9999C7.02944 20.9999 3 16.9707 3 12.0001C3 7.93883 5.69007 4.50583 9.38561 3.38574C9.13484 4.21311 9 5.09074 9 6Z"
+                                    stroke="currentColor" stroke-width="1.7" stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                                </svg>
+                              </span>
+                              <div class="c-flight-time__labels">
+                                <span class="c-flight-time__label">Evening</span>
+                                <span class="c-flight-time__range">18:01 - 00:00</span>
+                              </div>
+                            </button>
+                          </div>
+                          <hr class="c-flight-time--devider">
+                        </div>
+
+                        <div class="c-flight-time__section">
+                          <div class="c-flight-time__header">
+                            <span class="c-flight-time__title">Arriving to {{
+                              ((getAllTimedetails[0]?.Citypairs)[1]?.FlightSegment)[
+                              (getAllTimedetails[0]?.Citypairs)[1]?.FlightSegment.length - 1
+                              ]?.DisplayName
+                              }}
+                              ({{
+                              ((getAllTimedetails[0]?.Citypairs)[1]?.FlightSegment)[
+                              (getAllTimedetails[0]?.Citypairs)[1]?.FlightSegment.length - 1
+                              ]?.ArrivalLocationCode
+                              }})</span>
+                            <button type="button" class="c-flight-time__reset"
+                              (click)="resetAllreturnArrivalTime()">Reset</button>
+                          </div>
+                          <div class="c-flight-time__options">
+                            <button class="c-flight-time__option"
+                              [class.c-flight-time__option--selected]="mobileFilters.returnArrivalTime.includes('night')"
+                              (click)="toggleReturnArrivalTime('night')">
+                              <span class="c-flight-time__icon c-flight-time__icon--early-morning">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25"
+                                  fill="none">
+                                  <path
+                                    d="M13 5.5C13 5.23478 12.8946 4.98043 12.7071 4.79289C12.5196 4.60536 12.2652 4.5 12 4.5C11.7348 4.5 11.4804 4.60536 11.2929 4.79289C11.1054 4.98043 11 5.23478 11 5.5V6.5C11 6.76522 11.1054 7.01957 11.2929 7.20711C11.4804 7.39464 11.7348 7.5 12 7.5C12.2652 7.5 12.5196 7.39464 12.7071 7.20711C12.8946 7.01957 13 6.76522 13 6.5V5.5Z"
+                                    fill="currentColor" />
+                                  <path fill-rule="evenodd" clip-rule="evenodd"
+                                    d="M9.028 19.5H3C2.73478 19.5 2.48043 19.3946 2.29289 19.2071C2.10536 19.0196 2 18.7652 2 18.5C2 18.2348 2.10536 17.9804 2.29289 17.7929C2.48043 17.6054 2.73478 17.5 3 17.5H6.803C6.27672 16.5879 5.99978 15.5533 6 14.5002C6.00022 13.4471 6.2776 12.4126 6.80427 11.5007C7.33094 10.5888 8.08834 9.83157 9.00037 9.3051C9.9124 8.77863 10.9469 8.50146 12 8.50146C13.0531 8.50146 14.0876 8.77863 14.9996 9.3051C15.9117 9.83157 16.6691 10.5888 17.1957 11.5007C17.7224 12.4126 17.9998 13.4471 18 14.5002C18.0002 15.5533 17.7233 16.5879 17.197 17.5H21C21.2652 17.5 21.5196 17.6054 21.7071 17.7929C21.8946 17.9804 22 18.2348 22 18.5C22 18.7652 21.8946 19.0196 21.7071 19.2071C21.5196 19.3946 21.2652 19.5 21 19.5H9.028ZM12 10.5C11.1875 10.4999 10.3942 10.7473 9.7258 11.2092C9.05735 11.6711 8.54543 12.3256 8.25814 13.0857C7.97085 13.8457 7.92183 14.6752 8.11759 15.4637C8.31335 16.2523 8.74462 16.9626 9.354 17.5H14.646C15.2554 16.9626 15.6866 16.2523 15.8824 15.4637C16.0782 14.6752 16.0292 13.8457 15.7419 13.0857C15.4546 12.3256 14.9426 11.6711 14.2742 11.2092C13.6058 10.7473 12.8125 10.4999 12 10.5Z"
+                                    fill="currentColor" />
+                                  <path
+                                    d="M19.071 8.84301L18.364 9.55001C18.2718 9.64552 18.1614 9.7217 18.0394 9.77411C17.9174 9.82652 17.7862 9.8541 17.6534 9.85526C17.5206 9.85641 17.3889 9.83111 17.266 9.78083C17.1432 9.73055 17.0315 9.65629 16.9376 9.5624C16.8437 9.46851 16.7695 9.35686 16.7192 9.23396C16.6689 9.11106 16.6436 8.97938 16.6447 8.8466C16.6459 8.71383 16.6735 8.58261 16.7259 8.4606C16.7783 8.3386 16.8545 8.22825 16.95 8.13601L17.657 7.42901C17.7492 7.3335 17.8596 7.25731 17.9816 7.2049C18.1036 7.1525 18.2348 7.12491 18.3676 7.12376C18.5004 7.1226 18.6321 7.1479 18.755 7.19818C18.8778 7.24847 18.9895 7.32272 19.0834 7.41661C19.1773 7.5105 19.2515 7.62216 19.3018 7.74505C19.3521 7.86795 19.3774 7.99963 19.3763 8.13241C19.3751 8.26519 19.3475 8.39641 19.2951 8.51841C19.2427 8.64041 19.1665 8.75076 19.071 8.84301ZM4 15.5C4.26522 15.5 4.51957 15.3946 4.70711 15.2071C4.89464 15.0196 5 14.7652 5 14.5C5 14.2348 4.89464 13.9804 4.70711 13.7929C4.51957 13.6054 4.26522 13.5 4 13.5H3C2.73478 13.5 2.48043 13.6054 2.29289 13.7929C2.10536 13.9804 2 14.2348 2 14.5C2 14.7652 2.10536 15.0196 2.29289 15.2071C2.48043 15.3946 2.73478 15.5 3 15.5H4ZM22 14.5C22 14.7652 21.8946 15.0196 21.7071 15.2071C21.5196 15.3946 21.2652 15.5 21 15.5H20C19.7348 15.5 19.4804 15.3946 19.2929 15.2071C19.1054 15.0196 19 14.7652 19 14.5C19 14.2348 19.1054 13.9804 19.2929 13.7929C19.4804 13.6054 19.7348 13.5 20 13.5H21C21.2652 13.5 21.5196 13.6054 21.7071 13.7929C21.8946 13.9804 22 14.2348 22 14.5ZM5.636 9.55001C5.8246 9.73216 6.0772 9.83296 6.3394 9.83068C6.6016 9.8284 6.85241 9.72323 7.03782 9.53783C7.22323 9.35242 7.3284 9.1016 7.33067 8.83941C7.33295 8.57721 7.23216 8.32461 7.05 8.13601L6.343 7.42901C6.25127 7.33133 6.14085 7.25308 6.01829 7.19891C5.89574 7.14474 5.76354 7.11576 5.62956 7.11368C5.49558 7.1116 5.36255 7.13646 5.23837 7.1868C5.11419 7.23714 5.00139 7.31192 4.90668 7.4067C4.81196 7.50148 4.73726 7.61433 4.68701 7.73855C4.63676 7.86277 4.61199 7.99581 4.61417 8.12979C4.61634 8.26377 4.64542 8.39594 4.69968 8.51846C4.75393 8.64098 4.83226 8.75135 4.93 8.84301L5.636 9.55001Z"
+                                    fill="currentColor" />
+                                </svg>
+                              </span>
+                              <div class="c-flight-time__labels">
+                                <span class="c-flight-time__label">Early Morning</span>
+                                <span class="c-flight-time__range">00:01 - 06:00</span>
+                              </div>
+                            </button>
+                            <button class="c-flight-time__option"
+                              [class.c-flight-time__option--selected]="mobileFilters.returnArrivalTime.includes('morning')"
+                              (click)="toggleReturnArrivalTime('morning')">
+                              <span class="c-flight-time__icon c-flight-time__icon--morning">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                  fill="none">
+                                  <path
+                                    d="M14.7439 11H15.5C17.9853 11 20 13.0147 20 15.5C20 17.9853 17.9853 20 15.5 20H5.5C3.567 20 2 18.433 2 16.5C2 14.7368 3.30385 13.2781 5 13.0354C5 10.2386 7.23858 8 10 8H10.5C12.4593 8 14.1262 9.25221 14.7439 11ZM14.9725 12C14.9907 12.1642 15 12.331 15 12.5C15 12.7761 14.7761 13 14.5 13C14.2239 13 14 12.7761 14 12.5C14 10.567 12.433 9 10.5 9H10C7.79086 9 6 10.7909 6 13V13.5C6 13.7761 5.77614 14 5.5 14C4.11929 14 3 15.1193 3 16.5C3 17.8807 4.11929 19 5.5 19H15.5C17.433 19 19 17.433 19 15.5C19 13.567 17.433 12 15.5 12H14.9725ZM20.8577 11.496C20.6738 11.702 20.3577 11.7199 20.1518 11.536C19.9458 11.3521 19.9279 11.036 20.1118 10.83C20.6806 10.1929 21 9.37194 21 8.5C21 6.567 19.433 5 17.5 5C15.8929 5 14.5035 6.09253 14.1097 7.62689C14.041 7.89436 13.7685 8.05554 13.501 7.98689C13.2336 7.91824 13.0724 7.64576 13.1411 7.37828C13.6477 5.40431 15.4336 4 17.5 4C19.9853 4 22 6.01472 22 8.5C22 9.62 21.5886 10.6774 20.8577 11.496Z"
+                                    fill="currentColor" stroke="currentColor" stroke-width="0.7" />
+                                </svg>
+                              </span>
+                              <div class="c-flight-time__labels">
+                                <span class="c-flight-time__label">Morning</span>
+                                <span class="c-flight-time__range">06:01 - 12:00</span>
+                              </div>
+                            </button>
+                            <button class="c-flight-time__option"
+                              [class.c-flight-time__option--selected]="mobileFilters.returnArrivalTime.includes('afternoon')"
+                              (click)="toggleReturnArrivalTime('afternoon')">
+                              <span class="c-flight-time__icon c-flight-time__icon--afternoon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                  fill="none">
+                                  <g clip-path="url(#clip0_131_2018)">
+                                    <path d="M12.75 1.5H11.25V5.22H12.75V1.5Z" fill="currentColor" />
+                                    <path
+                                      d="M18.8956 4.03756L16.2651 6.668L17.3258 7.72866L19.9562 5.09822L18.8956 4.03756Z"
+                                      fill="currentColor" />
+                                    <path d="M22.4998 11.25H18.7798V12.75H22.4998V11.25Z" fill="currentColor" />
+                                    <path
+                                      d="M17.3302 16.2669L16.2695 17.3276L18.9 19.958L19.9606 18.8974L17.3302 16.2669Z"
+                                      fill="currentColor" />
+                                    <path d="M12.75 18.78H11.25V22.5H12.75V18.78Z" fill="currentColor" />
+                                    <path
+                                      d="M6.6778 16.2713L4.04736 18.9018L5.10802 19.9624L7.73846 17.332L6.6778 16.2713Z"
+                                      fill="currentColor" />
+                                    <path d="M5.22 11.25H1.5V12.75H5.22V11.25Z" fill="currentColor" />
+                                    <path
+                                      d="M5.10363 4.04194L4.04297 5.1026L6.67341 7.73304L7.73407 6.67238L5.10363 4.04194Z"
+                                      fill="currentColor" />
+                                    <path
+                                      d="M12 9C12.5933 9 13.1734 9.17595 13.6667 9.50559C14.1601 9.83524 14.5446 10.3038 14.7716 10.8519C14.9987 11.4001 15.0581 12.0033 14.9424 12.5853C14.8266 13.1672 14.5409 13.7018 14.1213 14.1213C13.7018 14.5409 13.1672 14.8266 12.5853 14.9424C12.0033 15.0581 11.4001 14.9987 10.852 14.7716C10.3038 14.5446 9.83524 14.1601 9.50559 13.6667C9.17595 13.1734 9 12.5933 9 12C9 11.2044 9.31607 10.4413 9.87868 9.87868C10.4413 9.31607 11.2044 9 12 9ZM12 7.5C11.11 7.5 10.24 7.76392 9.49994 8.25839C8.75991 8.75285 8.18314 9.45566 7.84254 10.2779C7.50195 11.1002 7.41283 12.005 7.58647 12.8779C7.7601 13.7508 8.18869 14.5526 8.81802 15.182C9.44736 15.8113 10.2492 16.2399 11.1221 16.4135C11.995 16.5872 12.8998 16.4981 13.7221 16.1575C14.5443 15.8169 15.2471 15.2401 15.7416 14.5001C16.2361 13.76 16.5 12.89 16.5 12C16.5 10.8065 16.0259 9.66193 15.182 8.81802C14.3381 7.97411 13.1935 7.5 12 7.5Z"
+                                      fill="currentColor" />
+                                  </g>
+                                  <defs>
+                                    <clipPath id="clip0_131_2018">
+                                      <rect width="24" height="24" fill="white" />
+                                    </clipPath>
+                                  </defs>
+                                </svg>
+                              </span>
+                              <div class="c-flight-time__labels">
+                                <span class="c-flight-time__label">Afternoon</span>
+                                <span class="c-flight-time__range">12:01 - 18:00</span>
+                              </div>
+                            </button>
+                            <button class="c-flight-time__option"
+                              [class.c-flight-time__option--selected]="mobileFilters.returnArrivalTime.includes('evening')"
+                              (click)="toggleReturnArrivalTime('evening')">
+                              <span class="c-flight-time__icon c-flight-time__icon--evening">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                  fill="none">
+                                  <path
+                                    d="M9 6C9 10.9706 13.0294 15 18 15C18.9093 15 19.787 14.8655 20.6144 14.6147C19.4943 18.3103 16.0613 20.9999 12 20.9999C7.02944 20.9999 3 16.9707 3 12.0001C3 7.93883 5.69007 4.50583 9.38561 3.38574C9.13484 4.21311 9 5.09074 9 6Z"
+                                    stroke="currentColor" stroke-width="1.7" stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                                </svg>
+                              </span>
+                              <div class="c-flight-time__labels">
+                                <span class="c-flight-time__label">Evening</span>
+                                <span class="c-flight-time__range">18:01 - 00:00</span>
+                              </div>
+                            </button>
+                          </div>
+                          <hr class="c-flight-time--devider">
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                }
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="tab-pane fade" id="tab3" role="tabpanel">
+        <div class="o-tabs--content">
+
+          <!-- HEADER -->
+          <div class="o-tabs--content__head-wrap o-tabs--content__head-wrap--duration">
+            <div class="o-tabs--content__head o-tabs--content__head--duration">
+              <h3 class="o-tabs--content__head--title">Duration</h3>
+              <button type="button" class="c-reset-btn" (click)="resetAllDurations()">
+                Reset All
+              </button>
+            </div>
+          </div>
+
+          <!-- DURATION LIST -->
+          <div class="o-tabs--content__duration-item-wrap c-scrollbar o-scrollbar-space" [class.android]="isAndroid">
+
+            <ng-container *ngFor="let dur of finalLayoverFlights?.duration; let i = index">
+
+              <div class="o-tabs--content__duration-item">
+
+                <!-- ROUTE HEADER -->
+                <div class="o-tabs--content__duration-item--destination-wrap">
+                  <div class="o-tabs--content__duration-item--destination">
+
+                    <!-- FROM -->
+                    <div class="o-tabs--content__duration-item--destination__arrival">
+                      {{
+                      getTimeDetails()?.Citypairs?.[i]?.FlightSegment?.[0]?.DepartureDisplayName
+                      }}
+                    </div>
+
+                    <!-- ICON -->
+                    <div class="o-tabs--content__duration-item--destination__icon">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="15" height="12" viewBox="0 0 15 12" fill="none">
+                        <path
+                          d="M1 5.3C0.613401 5.3 0.3 5.6134 0.3 6C0.3 6.3866 0.613401 6.7 1 6.7V6V5.3ZM14.495 6.49497C14.7683 6.22161 14.7683 5.77839 14.495 5.50503L10.0402 1.05025C9.76684 0.776886 9.32362 0.776886 9.05025 1.05025C8.77689 1.32362 8.77689 1.76684 9.05025 2.0402L13.0101 6L9.05025 9.9598C8.77689 10.2332 8.77689 10.6764 9.05025 10.9497C9.32362 11.2231 9.76684 11.2231 10.0402 10.9497L14.495 6.49497ZM1 6V6.7H14V6V5.3H1V6Z"
+                          fill="currentColor" />
+                      </svg>
+                    </div>
+
+                    <!-- TO -->
+                    <div class="o-tabs--content__duration-item--destination__departure">
+                      {{
+                      getTimeDetails()?.Citypairs?.[i]?.FlightSegment?.[
+                      getTimeDetails()?.Citypairs?.[i]?.FlightSegment?.length - 1
+                      ]?.DisplayName
+                      }}
+                    </div>
+
+                  </div>
+
+                  <!-- RESET SINGLE -->
+                  <button type="button" class="c-reset-btn c-reset-btn--single" (click)="resetDuration(dur.type)">
+                    Reset
+                  </button>
+                </div>
+
+                <!-- RANGE CONTENT -->
+                <div class="o-tabs--content__duration-item--range-content">
+                  <div class="o-tabs--content__duration-item--range-content__wrap">
+
+                    <!-- TITLE -->
+                    <div class="o-tabs--content__duration-item--range-content__title">
+                      Total Trip Time
+                    </div>
+
+                    <!-- VALUE -->
+                    <div class="o-tabs--content__duration-item--range-content__value">
+                      upto
+                      <span class="o-tabs--content__duration-item--range-content__value--hour">
+                        {{ formatDuration(getCurrentDuration(dur.type)).hours }}h
+                      </span>
+                      <span class="o-tabs--content__duration-item--range-content__value--minute">
+                        {{ formatDuration(getCurrentDuration(dur.type)).minutes }}m
+                      </span>
+                    </div>
+
+                    <!-- SLIDER -->
+                    <div class="o-tabs--content__duration-item--range">
+                      <div class="c-range">
+                        <input type="range" class="c-range__input" min="0" [max]="getMaxMinutes(dur.highestDuration)"
+                          step="10" [(ngModel)]="mobileFilters.durations[dur.type]" [style.--fill-percent.%]="getFillPercent(
+                        mobileFilters.durations?.[dur.type] || 0,
+                        getMaxMinutes(dur.highestDuration)
+                      )" (input)="onDurationChange(dur.type, $event)" />
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+
+              </div>
+
+            </ng-container>
+
+          </div>
+        </div>
+      </div>
+
+
+      <div class="tab-pane fade" id="tab4" role="tabpanel">
+       <div class="o-tabs--content">
+          <div class="o-tabs--content__head-wrap">
+            <div class="o-tabs--content__head">
+              <h3 class="o-tabs--content__head--title">Price</h3>
+              <button type="button" class="c-reset-btn" (click)="resetPrice()">Reset All</button>
+            </div>
+          </div>
+          <div class="o-tabs--content__price-item-wrap c-scrollbar o-scrollbar-space" [class.android]="isAndroid">
+            <div class="o-tabs--content__price-item">
+              <div class="o-tabs--content__price-item--range-content">
+                <div class="o-tabs--content__price-item--range-content__wrap">
+                  <div class="o-tabs--content__price-item--range-content__title">Select price</div>
+
+
+
+
+                  <div class="o-tabs--content__price-item--range">
+               <div class="price-slider-value-wrap d-flex align-items-center justify-content-between">
+                      <div class="c-price-range__thumb-label c-price-range__thumb-label--min">
+                       ${{ getTotalPrice(priceRange[0])| number: '1.2-2' }}
+                      </div>
+                      <div class="c-price-range__thumb-label c-price-range__thumb-label--max">
+                        ${{ getTotalPrice(priceRange[1])| number: '1.2-2' }}
+                      </div>
+                    </div>
+
+
+                    <div class="c-price-range">
+
+                      <!-- PrimeNG slider -->
+                      <p-slider [(ngModel)]="priceRange" [min]="lowestPrice" [max]="highestPrice" [range]="true"
+                        [step]="10" (onSlideEnd)="onPriceChange($event)"></p-slider>
+
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="tab-pane fade" id="tab5" role="tabpanel">
+        <div class="o-tabs--content">
+          <div class="o-tabs--content__head-wrap">
+            <div class="o-tabs--content__head border-0">
+              <h3 class="o-tabs--content__head--title">Airlines</h3>
+              <button type="button" class="c-reset-btn" (click)="onClearAirlines()">Reset All</button>
+            </div>
+          </div>
+
+          <!-- 🔍 Search Box -->
+          <div class="c-tab-search">
+            <div class="c-tab-search--input-wrap">
+              <input type="text" class="form-control c-tab-search--input" placeholder="Search Airlines"
+                [(ngModel)]="searchAirline" (input)="filterAirlines()" />
+              <div class="c-tab-search--input-btn">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                  <path
+                    d="M8.43565 10.8074C8.43565 11.4134 8.555 12.0134 8.78687 12.5732C9.01875 13.133 9.35862 13.6416 9.78707 14.0701C10.2155 14.4985 10.7242 14.8384 11.284 15.0703C11.8438 15.3022 12.4438 15.4215 13.0497 15.4215C13.6556 15.4215 14.2556 15.3022 14.8154 15.0703C15.3752 14.8384 15.8839 14.4985 16.3123 14.0701C16.7408 13.6416 17.0806 13.133 17.3125 12.5732C17.5444 12.0134 17.6637 11.4134 17.6637 10.8074C17.6637 9.58373 17.1776 8.41013 16.3123 7.54482C15.447 6.67952 14.2734 6.1934 13.0497 6.1934C11.826 6.1934 10.6524 6.67952 9.78707 7.54482C8.92177 8.41013 8.43565 9.58373 8.43565 10.8074ZM9.27694 15.6676L6.52389 18.4206C6.4529 18.494 6.36801 18.5525 6.27416 18.5928C6.18031 18.633 6.07938 18.6542 5.97728 18.655C5.87517 18.6558 5.77392 18.6363 5.67944 18.5975C5.58496 18.5588 5.49914 18.5016 5.42699 18.4294C5.35483 18.3571 5.29779 18.2712 5.25919 18.1767C5.2206 18.0822 5.20121 17.9809 5.20217 17.8788C5.20313 17.7767 5.22441 17.6758 5.26478 17.582C5.30515 17.4882 5.36379 17.4034 5.43729 17.3325L8.19033 14.5794C7.23073 13.3432 6.77831 11.7878 6.92517 10.2297C7.07203 8.67169 7.80713 7.22818 8.98083 6.19306C10.1545 5.15793 11.6786 4.609 13.2428 4.65802C14.807 4.70704 16.2937 5.35031 17.4002 6.4569C18.5068 7.56348 19.1501 9.05019 19.1991 10.6144C19.2481 12.1785 18.6992 13.7026 17.6641 14.8763C16.629 16.05 15.1855 16.7851 13.6274 16.932C12.0694 17.0788 10.5139 16.6264 9.27771 15.6668L9.27694 15.6676Z"
+                    fill="currentColor" />
+                </svg>
+              </div>
+            </div>
+          </div>
+
+          <!-- ✅ Dynamic Airline List -->
+          <div class="o-tabs--content__items-wrap c-scrollbar o-scrollbar-space air-list-wrap"
+            [class.android]="isAndroid">
+            @for (carrier of filteredAirlines; track $index) {
+            <div class="c-checkbox--item">
+              <label class="c-checkbox">
+                <input type="checkbox" class="c-checkbox__input" [value]="carrier.ValidatingCarrierName"
+                  [checked]="mobileFilters.airlines.includes(carrier.ValidatingCarrierName)"
+                  (change)="toggleAirlineSelection(carrier.ValidatingCarrierName, $event)" />
+                <span class="c-checkbox__box"></span>
+                <span class="c-checkbox__label-text">{{ carrier.ValidatingCarrierName }}</span>
+              </label>
+              <div class="c-checkbox--item__value">
+                ${{ getTotalPrice(carrier.lowestFare) | number: '1.0-2' }}
+              </div>
+            </div>
+            }
+
+            @if (filteredAirlines.length === 0) {
+            <div class="no-results text-center py-3">
+              <small>No airlines found.</small>
+            </div>
+            }
+          </div>
+        </div>
+      </div>
+
+      <div class="tab-pane fade" id="tab6" role="tabpanel">
+        <div class="o-tabs--content">
+
+          <div class="o-tabs--content__head-wrap">
+            <div class="o-tabs--content__head">
+              <h3 class="o-tabs--content__head--title">Airports</h3>
+              <div class="o-filter-select-content--wrap">
+                @if(mobileFilters.getNearbyfaredepart.length!=0||mobileFilters.getNearbyfarereturn.length!=0||mobileFilters.connectingAirports.length!=0){
+                <div class="o-filter-select-content--title o-filter-select-content--title__active"
+                  (click)="selectNoneAirports()">Select None</div>
+                <div class="o-filter-select-content--devider">|</div>}
+                <button type="button" class="c-reset-btn" (click)="selectAllAirports()">Select All</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="o-air-tab-inner-content-wrap c-scrollbar o-scrollbar-space" [class.android]="isAndroid">
+    
+
+            <div>
+              <div class="o-modal-tab-subsec-title-wrap">
+                <h3 class="c-modal-tab-subtitle">Connecting In</h3>
+              </div>
+
+              <div class="o-tabs--content__items-wrap o-tabs--content__items-wrap--gap-16 air-list-wrap">
+                <div *ngFor="let s of finalLayoverFlights.segment" class="c-checkbox--item">
+                  <label class="c-checkbox">
+                    <input type="checkbox" class="c-checkbox__input" [value]="s.DepartureLocationCode"
+                      [checked]="mobileFilters.connectingAirports.includes(s.DepartureLocationCode)"
+                      (change)="toggleConnectingAirport(s.DepartureLocationCode, $event)" />
+                    <span class="c-checkbox__box"></span>
+                    <span class="c-checkbox__label-text filter-airport-code-name-text">{{ s.DepartureLocationCode }} -
+                      {{ s.OriginAirportName }}</span>
+                  </label>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="c-filter-modal--footer c-filter-modal--footer__fixed" [class.android]="isAndroid">
+    <button type="button" class="c-filter-btn" (click)="onApplyClick()">Apply Filter</button>
+  </div>
+</div>
+<!-- == === -->

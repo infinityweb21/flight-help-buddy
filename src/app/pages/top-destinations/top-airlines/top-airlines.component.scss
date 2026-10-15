@@ -1,0 +1,87 @@
+@import url('../../top-destinations/top-destination-body.scss');
+.why-bookwith1 h2 {
+	font-size: 16px;
+	color: #091e1e;
+	text-transform: uppercase;
+	margin-bottom: 0;
+	font-weight: 700;
+}
+
+.y-book1 p {
+	font-size: 12px;
+	color: #333;
+	font-weight: 500;
+	line-height: 18px;
+	margin-top: 10px;
+}
+
+.y-book1 {
+	display: flex;
+	background: #f4f2f2;
+	padding: 15px;
+	border-radius: 10px;
+	align-items: center;
+}
+
+.y-book1 img {
+	width: 70px;
+	height: 70px;
+	margin: 0px 20px 0 0px;
+}
+.callbg {
+	width: 100%;
+	background: #05083a;
+	text-align: center;
+	color: #fff;
+	padding: 10px 0 10px;
+	margin-top: 30px;
+}
+.callbg p {
+    margin: 0;
+    font-size: 18px;
+}
+.content-tabs p {
+    margin-bottom: 8px;
+}
+.callbg h2 {
+    margin: 0;
+}
+.callbg i {
+    margin-right: 10px;
+}
+@media (max-width: 991px) {
+.y-book1 {
+    margin-bottom: 20px;
+}
+}
+@media (max-width: 767px) {
+	.cmn-details-sec {
+    margin-top: 0 !important;
+    margin-bottom: 15px !important;
+}
+.y-book1 {
+    margin-bottom: 10px;
+}
+.why-bookwith1 h2 {
+    font-size: 14px;
+}
+.y-book1  img {
+    width: 50px;
+    height: 50px;
+}
+.content-tabs p {
+    font-size: 13px;
+}
+.callbg p {
+    margin: 0;
+    font-size: 14px;
+}
+.callbg a {
+    font-size: 19px;
+}
+.callbg i {
+    margin-right: 10px;
+    font-size: 19px;
+}
+}
+    

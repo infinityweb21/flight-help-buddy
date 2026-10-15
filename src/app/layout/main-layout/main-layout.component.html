@@ -1,0 +1,18 @@
+@if(deviceReady){
+<app-header />
+<main class="main-wrapper">
+  <app-spinner />
+  <router-outlet />
+
+  @if (showCookies) {
+    <app-cookies></app-cookies>
+  }
+
+@if (showQuickContact()) {
+  <app-quick-contact></app-quick-contact>
+}
+</main>
+
+<app-footer />
+
+}

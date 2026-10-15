@@ -1,0 +1,284 @@
+<!--=========== Banner Section Start  ==============-->
+<section
+  class="inf-hero-section"
+  [ngStyle]="{ 'background-image': 'url(assets/images/deals/Top-Routes.webp)' }"
+>
+  <div class="container">
+    <div class="row justify-content-end align-items-center">
+      <div class="col-lg-6 col-md-7">
+        <div class="inf-hero-content">
+          <h1>Get The Benifits Of Exclusive Deals</h1>
+          <p>
+            Plan you next trip and avail the best deals with us. Plan big,
+            travel more and spend less
+          </p>
+        </div>
+
+        <div class="inf-call-widget">
+          <h2>Purchase Best <span>Deals</span></h2>
+          <form
+            name="inf-call-form"
+            action="#"
+            method="post"
+            novalidate
+            [formGroup]="contactForm"
+          >
+            <div class="form-row">
+              <div class="row g-2 g-lg-3">
+                <div class="col-md-6">
+                  <input
+                    type="text"
+                    name="sub_name"
+                    placeholder="Your Name"
+                    class="form-control"
+                    required
+                    formControlName="name"
+                    [class.is-invalid]="isInvalid('name')"
+                  />
+                  <div *ngIf="isInvalid('name')" class="text-danger">
+                    Name is required.
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="wrapper top-routes-tell">
+                    <ngx-intl-tel-input
+                      [cssClass]="'form-control'"
+                      [preferredCountries]="preferredCountries"
+                      [enableAutoCountrySelect]="true"
+                      [enablePlaceholder]="true"
+                      [searchCountryFlag]="true"
+                      [searchCountryField]="[
+                        SearchCountryField.Iso2,
+                        SearchCountryField.Name
+                      ]"
+                      [selectFirstCountry]="false"
+                      [selectedCountryISO]="CountryISO.UnitedStates"
+                      [maxLength]="15"
+                      [phoneValidation]="true"
+                      [separateDialCode]="separateDialCode"
+                      [numberFormat]="PhoneNumberFormat.National"
+                      name="phone"
+                      formControlName="phone"
+                      [class.is-invalid]="isInvalid('phone')"
+                    >
+                    </ngx-intl-tel-input>
+                  </div>
+                  <div *ngIf="isInvalid('phone')" class="text-danger">
+                    Phone number is required.
+                  </div>
+                  <div
+                    *ngIf="contactForm.get('phone')?.errors?.['invalidPhoneLength']"
+                    class="text-danger"
+                  >
+                    Please enter a valid phone number (6–15 digits).
+                  </div>
+                </div>
+              </div>
+              <button
+                type="submit"
+                class="banner-form-submit-btn"
+                (click)="submitContactForm()"
+              >
+                Get a Call
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<div
+  class="container container-xxl py-3 mt-4 newfiltersec"
+  style="background-color: #bfbfbf1f"
+>
+  <app-flights-tab></app-flights-tab>
+</div>
+
+<section class="travel-best cmn-gap pb-0">
+  <div class="container container-xxl">
+    <div
+      class="common-slider-container d-flex align-items-center justify-content-between"
+    >
+      @for (feature of travelFeatures; track $index) {
+      <div class="w-100">
+        <div class="travel-feature-card">
+          <div class="travel-feature-card-wrap">
+            <div
+              class="travel-feature-card-icon-box travel-feature-card-orange-icon"
+            >
+              <img [src]="feature.icon" alt="" class="feico" />
+            </div>
+            <div class="travel-feature-card-content-box">
+              <h4 class="travel-feature-card-title">{{ feature.title }}</h4>
+              <p class="travel-feature-card-desc">{{ feature.description }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      }
+    </div>
+  </div>
+</section>
+
+<section class="policy-content">
+  <div class="container container-xxl">
+    <div class="page-content">
+      <!-- <div class="container container-xxl product-detail tour-single">
+        <div class="row">
+          <div id="content1" class="col-md-12 col-sm-12 col-xs-12">
+            <div class="detail-content1">
+              <div class="content-tabs">
+                <div class="tab-content brdr-0">
+                  <div class="flyrt">
+                    <p>
+                      <strong>Fly Smarter with Special Deals! Everyday!</strong>
+                    </p>
+                    <p>
+                      Here’s something special — just for you. If you're gearing
+                      up for your next trip to that dream destination, we’ve
+                      lined up some exciting deals to make your journey even
+                      sweeter. These aren’t just any offers; they’re tailor-made
+                      to give you more value, more comfort, and more reasons to
+                      get packing.
+                    </p>
+                    <p>
+                      Travel comes with its fair share of planning. That’s why
+                      we’re here to make the process easier and more enjoyable
+                      for you. With smooth booking options, helpful updates, and
+                      travel deals that actually make sense, we’re all about
+                      giving you a better way to fly. These offers are designed
+                      to add more value, more comfort, and a little extra
+                      excitement to your next adventure.
+                    </p>
+                    <p>Let’s get moving.</p>
+                    <div class="row fly-main">
+                      <div class="col-md-12">
+                        <p>
+                          <strong><span>What do we have for you?</span></strong>
+                        </p>
+                        <p>
+                          <span
+                            >Whether you're planning a business trip, flying
+                            home to see loved ones, or just craving for a
+                            well-earned getaway, now’s the time to make it
+                            happen. We’re making travel simple, flexible, and
+                            affordable, just the way it should be.</span
+                          >
+                        </p>
+                        <p>
+                          <span
+                            >Booking with Infinity Travels means easy access to
+                            flights, payment options that fit your needs, and
+                            real-time updates so you’re always in the loop. Our
+                            budget-friendly deals are made for travelers like
+                            you who want more value without compromising
+                            comfort.
+                          </span>
+                        </p>
+                        <p>
+                          And guess what? You can avail the special deals
+                          whenever you want. Head to our site, browse the latest
+                          deals, and pick the one that feels right. From there,
+                          tracking your booking is a breeze with your ID, and
+                          you’re good to go. Let’s make that trip a reality.
+                        </p>
+
+                        <p>
+                          <strong
+                            ><span
+                              >When can you grab these special deals?</span
+                            ></strong
+                          >
+                        </p>
+                        <p>
+                          <span
+                            >You can grab the deal whenever you want. Our
+                            special offers are available throughout the day, so
+                            you can check in anytime. All it takes is a quick
+                            visit to our site, and you’ll find the latest deals
+                            ready and waiting.</span
+                          >
+                        </p>
+                        <p>
+                          So why wait? Let’s turn your next trip into one of the
+                          best memories you’ve ever made. Great deals, smooth
+                          bookings, and travel that actually feels exciting
+                          again, it’s all here for you.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div> -->
+      <section>
+        <div class="container container-xxl">
+          <div class="callbg mt-4 mb-5">
+            <div class="row align-items-center">
+              <div class="col-lg-6 col-xs-12">
+                <div class="lt-text-bestdeal">
+                  <p class="callerhead">
+                    You Dream it, We’ll Guide it! Call to Speak with Our Travel
+                    Partner:
+                  </p>
+                </div>
+              </div>
+              <div class="col-lg-6 col-xs-12">
+                <div class="phone">
+                  <h2 class="text-white">
+                    <b
+                      ><i class="fa fa-volume-control-phone"></i>
+                      <a
+                        class="text-white"
+                        href="tel:{{ getData?.phoneNumber }}"
+                        >{{ getData?.phoneNumber }}</a
+                      ></b
+                    >
+                  </h2>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- Top Destinations -->
+      <div class="top-destination-wrapper">
+        <h2 class="title">
+          <strong>Top</strong>
+          <span class="highlight"> Deals</span>
+        </h2>
+        <div class="destination-card-wrap">
+          <a
+            class="destination-card"
+            *ngFor="let deal of destinations"
+            [routerLink]="['/deals', deal.Slug]"
+            (click)="onDestinationClick(deal)"
+          >
+            <div class="banner">
+              <img
+                [src]="
+                  imageBasePath +
+                  (deal.Banner ? deal.Banner : 'https://placehold.co/600x400')
+                "
+                [alt]="deal.Name || 'Deal Banner'"
+              />
+            </div>
+            <div class="card-content">
+              <h3 class="deal-title">{{ deal.Name }}</h3>
+              <p class="deal-desc">
+                {{
+                  deal.MetaDescription ||
+                    deal.Name + " - Special fares available now!"
+                }}
+              </p>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

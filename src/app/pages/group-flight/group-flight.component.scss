@@ -1,0 +1,525 @@
+.exp-feature-sec .flight-features .card {
+  border: none;
+  border-radius: 12px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05) !important;
+}
+
+/* .exp-feature-sec .flight-features .card:hover {
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+  } */
+
+.exp-feature-sec .feature-main-card img {
+  object-fit: cover;
+  height: 100%;
+  border-radius: 12px 12px 0px 0px;
+}
+
+.exp-feature-sec .feature-main-card {
+  background: linear-gradient(135deg, #f9f9f9, #ffffff);
+}
+
+.exp-feature-sec .feature-card img {
+  height: 200px;
+  object-fit: cover;
+  border-radius: 12px 12px 0 0;
+}
+
+.exp-feature-sec .feature-card .card-body {
+  padding: 1rem;
+}
+
+.exp-feature-sec .card-title {
+  font-weight: 600;
+  color: #303030;
+  font-size: 16px;
+}
+
+.exp-feature-sec .card-text {
+  font-size: 0.85rem;
+  color: #4b5563;
+  margin-bottom: 5px;
+}
+.feature-main-card .card-body {
+  padding: 16px;
+}
+.heading-cmn-flex h2.u-sec-title-text {
+  font-size: 18px;
+}
+
+/* == ===== */
+/* .booking-container {
+    max-width: 1200px;
+    margin: auto;
+    padding: 4rem 1rem;
+  } */
+
+.booking-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  align-items: flex-start;
+}
+
+.booking-content {
+  flex: 1 1 60%;
+}
+
+.booking-heading {
+  margin-bottom: 6px;
+}
+
+.booking-subtitle {
+  font-size: 1rem;
+  color: #888;
+  margin: 0;
+}
+
+.booking-title {
+  font-size: 18px;
+  font-weight: 600;
+  margin: 0px;
+  color: #303030;
+}
+
+.booking-intro {
+  font-size: 14px;
+  margin-bottom: 2rem;
+  color: #333;
+}
+
+.booking-step {
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  padding: 16px;
+  border-radius: 8px;
+  width: 100%;
+}
+
+.step-title {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.step-description {
+  font-size: 12px;
+  color: #555;
+  line-height: 1.6;
+}
+
+.booking-button-wrapper {
+  margin-top: 20px;
+}
+
+.booking-button {
+  width: max-content;
+  padding: 0.75rem 2rem;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+/*   
+  .booking-button:hover {
+    background-color: #003f99;
+  } */
+
+.booking-image-wrapper {
+  flex: 1 1 35%;
+  text-align: center;
+}
+
+.booking-image {
+  width: 100%;
+  max-width: 400px;
+  border-radius: 12px;
+  object-fit: cover;
+}
+
+/* == ===== */
+/* == ===== */
+.booking-section {
+  padding: 20px 0;
+  background: #f9f9f9;
+}
+
+.section-title {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 20px;
+  color: #303030;
+  line-height: normal;
+}
+
+.benefits-wrapper .benefit-card {
+  background: #fff;
+  border-radius: 8px;
+  padding: 20px 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s;
+}
+.benefits-wrapper {
+  margin-bottom: 24px;
+}
+.benefit-card:hover {
+  transform: translateY(-5px);
+}
+.newsletter-wrapper .deals-title {
+  margin-bottom: 7px;
+}
+.icon {
+  font-size: 28px;
+  color: #FF6A19;
+  margin-bottom: 10px;
+}
+
+.icon-img {
+  width: 32px;
+  height: auto;
+  margin-bottom: 10px;
+}
+
+.benefit-card p {
+  font-size: 0.9rem;
+  color: #444;
+  margin: 0;
+}
+
+.newsletter-wrapper .subtitle {
+  font-size: 0.95rem;
+  color: #666;
+  margin-bottom: 20px;
+}
+
+.newsletter-form .input-group {
+  display: flex;
+  max-width: 100%;
+  gap: 0px;
+}
+
+.newsletter-input {
+  flex: 1;
+  padding: 10px 14px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  border-right: 0px;
+}
+
+.newsletter-btn {
+  padding: 10px 20px;
+  font-size: 0.95rem;
+  border-radius: 6px;
+ background-color: #FF6A19;
+   border: 1px solid #FF6A19;
+  color: #fff;
+  border: none;
+  font-weight: 600;
+}
+.md-title-text {
+  margin-bottom: 18px;
+}
+.newsletter-wrapper .subtitle {
+  margin-bottom: 18px;
+}
+.section-title.deals-title {
+  font-size: 18px;
+}
+/* == ===== */
+/* == ===== */
+/* ===== Layout Containers ===== */
+.fly-section {
+  padding: 0;
+}
+
+.fly-container {
+  padding: 1rem 1rem 0px;
+  /* margin: 0 auto; */
+  /* background-color: #fff; */
+  /* border-radius: 8px; */
+  /* padding: 2rem; */
+  /* box-shadow: 0 0 10px rgba(0,0,0,0.05); */
+}
+
+.fly-row {
+  display: flex;
+  flex-direction: column;
+}
+
+.fly-article {
+  width: 100%;
+}
+
+.fly-flex {
+  display: flex;
+  flex-direction: column;
+}
+
+.fly-main {
+  width: 100%;
+}
+
+/* ===== Typography ===== */
+.fly-title {
+  font-size: 18px;
+  color: #303030;
+  margin-bottom: 9px;
+  font-weight: 600;
+}
+
+.fly-text p {
+  margin-bottom: 0.3rem;
+  color: #444;
+  font-size: 12px;
+}
+
+/* ===== FAQ Section ===== */
+.fly-faq {
+  margin-top: 2rem;
+}
+
+.fly-faq-item {
+  /* background-color: #f0f4f8; */
+  /* padding: 1rem 1.5rem; */
+  /* border-left: 4px solid #0056b3; */
+  /* border-radius: 4px; */
+  margin-bottom: 1.5rem;
+}
+
+.fly-faq-item:last-child {
+  margin-bottom: 0px;
+}
+.fly-faq-question {
+  font-size: 18px;
+  color: #303030;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.fly-faq-answer p,
+.fly-faq-answer ul {
+  /* margin-left: 1rem; */
+  color: #555;
+}
+
+/* ===== Lists ===== */
+.fly-tip-list {
+  /* list-style: decimal inside; */
+  padding-left: 2px;
+}
+
+.fly-tip-list li {
+  margin-bottom: 0.3rem;
+  font-size: 12px;
+}
+
+.fly-dest-list {
+  list-style: disc inside;
+  padding-left: 2px;
+}
+
+.fly-dest-list li {
+  margin-bottom: 0.2rem;
+  font-size: 12px;
+}
+
+/* ===== Responsive ===== */
+/* @media (max-width: 768px) {
+    .fly-container {
+      padding: 1.5rem;
+    }
+  
+    .fly-title {
+      font-size: 1.75rem;
+    }
+  
+    .fly-faq-question {
+      font-size: 1.1rem;
+    }
+  } */
+/* == ===== */
+
+/* == === */
+
+.amenity-card {
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.section-header h2 {
+  color: #303030;
+  font-size: 18px;
+  line-height: normal;
+  margin-bottom: 0;
+  font-weight: 600;
+}
+.section-header p {
+  font-size: 14px;
+}
+/* .section-header p {
+    color: #64748b;
+    font-size: 1.1rem;
+    max-width: 600px;
+    margin: 0 auto 40px;
+  } */
+
+.amenity-card .card-body {
+  padding: 16px;
+}
+
+.amenity-card .card-icon {
+  width: 50px;
+  height: 50px;
+  border: 1.5px solid #FF6A19;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px;
+  color: #FF6A19;
+  font-size: 18px;
+}
+
+.amenity-card .card-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: #303030;
+  margin-bottom: 12px;
+}
+
+.amenity-card .card-text {
+  font-size: 12px;
+  color: #4b5563;
+  line-height: 1.6;
+}
+
+/* == === */
+
+@media (min-width: 992px) {
+  .section-header h2 {
+    font-size: 24px;
+  }
+  .section-header p {
+    font-size: 15px;
+  }
+  .amenity-card .card-body {
+    padding: 20px;
+  }
+  .amenity-card .card-title {
+    font-size: 15px;
+  }
+  .amenity-card .card-text {
+    font-size: 13px;
+  }
+  .amenity-card .card-icon {
+    width: 50px;
+    height: 50px;
+    font-size: 24px;
+  }
+  .exp-feature-sec .card-text {
+    margin-bottom: 16px;
+  }
+  .heading-cmn-flex h2.u-sec-title-text {
+    font-size: 25px;
+  }
+  .booking-title {
+    font-size: 20px;
+  }
+  .booking-intro {
+    font-size: 1.1rem;
+    margin: 0.2rem 0 1rem 0;
+  }
+  .booking-heading {
+    margin-bottom: 1rem;
+  }
+  .step-title {
+    font-size: 1.1rem;
+  }
+  .step-description {
+    font-size: 1rem;
+  }
+  .booking-button-wrapper {
+    margin-top: 2rem;
+  }
+  .fly-title {
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .fly-text p {
+    font-size: 14px;
+    margin-bottom: 1rem;
+  }
+
+  .fly-tip-list li {
+    font-size: 14px;
+    margin-bottom: 0.75rem;
+  }
+
+  .fly-faq-question {
+    font-size: 1.25rem;
+  }
+  .fly-dest-list li {
+    margin-bottom: 0.5rem;
+    font-size: 14px;
+  }
+  .fly-section {
+    padding: 4rem 0;
+  }
+
+  .fly-container {
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+  }
+}
+
+@media (min-width: 992px) {
+  .exp-feature-sec .feature-main-card img {
+    border-radius: 12px 0px 0px 12px;
+  }
+  .feature-main-card .card-body {
+    padding: 24px;
+  }
+  .exp-feature-sec .card-title {
+    font-weight: 600;
+    color: #000000;
+    font-size: 16px;
+  }
+  .exp-feature-sec .card-text {
+    font-size: 14px;
+    color: #4b5563;
+  }
+  .section-title {
+    font-size: 16px;
+    color: #303030;
+    line-height: normal;
+    margin-bottom: 0;
+    font-weight: 600;
+  }
+  .booking-section {
+    padding: 60px 0;
+    background: #f9f9f9;
+  }
+  .section-title.md-title-text {
+    font-size: 24px;
+  }
+  .md-title-text {
+    margin-bottom: 20px;
+  }
+  .newsletter-wrapper .subtitle {
+    margin-bottom: 20px;
+  }
+  .section-title.deals-title {
+    font-size: 24px;
+  }
+  .newsletter-wrapper .deals-title {
+    margin-bottom: 20px;
+  }
+}
+@media(max-width:767px){
+      .cmn-gap {
+        padding: 20px 0;
+    }
+}

@@ -1,0 +1,599 @@
+.hotel-details-skeleton {
+  &__content-wrap {
+    margin-top: 56px;
+    background-color: #f7f7f7;
+    padding: 0px 0px 32px;
+    min-height: 100vh;
+  }
+  &__back-btn-wrap {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 25px;
+  }
+  &__gallery {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 4px;
+    height: 420px;
+    margin-top: 18px;
+    position: relative;
+    &--image-count-badge {
+      position: absolute;
+      right: 20px;
+      bottom: 16px;
+      z-index: 5;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      min-height: 40px;
+      border-radius: 8px;
+    }
+  }
+  &__gallery-side {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    gap: 4px;
+  }
+  &__tabs-wrap {
+    background-color: #fff;
+    align-items: center;
+    border-bottom: 1px solid #e8e8e8;
+  }
+  &__tabs {
+    width: 100%;
+    padding: 14px 0;
+    display: flex;
+    align-items: center;
+    gap: 32px;
+    overflow: hidden;
+  }
+  &__overview-amenities-price-card-wrap {
+    display: flex;
+    width: 100%;
+    gap: 20px;
+    position: relative;
+    margin-top: 25px;
+  }
+  &__overview-amenities-content-wrap {
+    flex: 1 1 0;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+  &__price-card {
+    border-radius: 8px;
+    background-color: #fff;
+    padding: 23px 16px;
+    width: 340px;
+    flex: 0 0 340px;
+    display: flex;
+    flex-direction: column;
+    gap: 19px;
+    height: max-content;
+    position: sticky;
+    top: 79px;
+  }
+  &__overview-card {
+    background-color: #fff;
+    padding: 40px 32px;
+    border-radius: 8px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  &__amenities-card {
+    background-color: #fff;
+    padding: 40px 32px;
+    border-radius: 8px;
+    width: 100%;
+  }
+  &__overview-title-review-content-wrap {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+  }
+  &__overview-title-rating-address-content-wrap {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  &__overview-title {
+    display: flex;
+  }
+  &__overview-rating {
+    display: flex;
+    gap: 8px;
+  }
+
+  &__overview-review-content {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  &__overview-review-badge {
+    display: flex;
+  }
+  &__overview-review-text-wrap {
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 4px;
+  }
+  &__overview-text-meta {
+    display: flex;
+  }
+  &__overview-text-reviews {
+    display: flex;
+  }
+  &__overview-facility-chips-wrap {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 3px 0 16px;
+  }
+  &__overview-facility-chips-group {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+
+  &__sec-title-desc-wrap {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-top: 16px;
+  }
+  &__mob-sec-title-desc-wrap {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-top: 16px;
+  }
+
+  &__sec-description {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  &__check-in-out-box-wrap {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 12px;
+    margin-top: 17px;
+  }
+
+  &__overview-bed-details {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 16px;
+    margin-top: 24px;
+  }
+  &__overview-bed-desc-wrap {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 3px;
+  }
+  &__amenities-card-wrap {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  &__amenities-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+  &__price-lines {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  &__price-btn-groups-lines {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  &__mob-banner-slider-card {
+    width: 100%;
+    height: 293px;
+    display: block;
+    object-fit: cover;
+    position: relative;
+    background-color: #e8e8e8;
+  }
+  &__mob-slider-back-btn {
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    z-index: 30;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+    border: none;
+    cursor: pointer;
+  }
+  &__mob-slider-badge {
+    position: absolute;
+    top: 24px;
+    right: 16px;
+    z-index: 30;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  &__mob-slider-count {
+    position: absolute;
+    left: 50%;
+    bottom: 16px;
+    transform: translateX(-50%);
+    z-index: 30;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    margin: 0 !important;
+    padding: 6px 12px !important;
+    background-color: #fff;
+    border-radius: 40px;
+  }
+  &__mob-overview-card {
+    padding: 24px 0px 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+  &__mob-overview-card-content-wrap {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+  }
+  &__mob-overview-card-ratings {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 4px;
+  }
+  &__mob-overview-card-review-address-wrap {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 4px;
+    margin-top: 4px;
+  }
+  &__mob-overview-card-review-wrap {
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+    flex-direction: column;
+    gap: 6px;
+  }
+  &__location-map-wrap {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 16px;
+  }
+  &__location-title-wrap {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  &__mob-card-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  &__mob-price-strip {
+    margin: auto;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    z-index: 999999;
+    width: 100%;
+    background-color: #e8e8e8;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 16px;
+  }
+  &__mob-price-wrap {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    gap: 5px;
+  }
+  &__mob-actual-price {
+  }
+  &__mob-price-label {
+  }
+  &__mob-price-submit-btn {
+  }
+}
+
+:host ::ng-deep {
+  .hotel-details-skeleton-back-btn {
+    width: 42px !important;
+    height: 42px !important;
+    background: #f7f7f7;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+  .hotel-details-skeleton-title {
+    width: 240px !important;
+    height: 24px !important;
+    background: #f7f7f7;
+    display: block;
+  }
+  .hotel-details-skeleton-gallery-main {
+    width: 100% !important;
+    height: 100% !important;
+    background: #f7f7f7;
+    border-radius: 12px;
+    display: block;
+  }
+
+  .hotel-details-skeleton-gallery-item {
+    width: 100% !important;
+    height: 100% !important;
+    border-radius: 12px;
+    display: block;
+    background: #f7f7f7;
+  }
+  .hotel-details-skeleton-image-count-badge {
+    width: 147px !important;
+    height: 42px !important;
+    background: #e8e8e8;
+    border-radius: 8px;
+  }
+  .hotel-details-skeleton-tab {
+    width: 90px !important;
+    height: 18px !important;
+    background: #f7f7f7;
+    flex-shrink: 0;
+    border-radius: 4px;
+  }
+  .hotel-details-skeleton-heading {
+    width: 280px !important;
+    height: 24px !important;
+    background: #f7f7f7;
+  }
+  .hotel-details-skeleton-star {
+    width: 16px !important;
+    height: 16px !important;
+    background: #f7f7f7;
+  }
+  .hotel-details-skeleton-address {
+    width: 60% !important;
+    height: 18px !important;
+    background: #f7f7f7;
+  }
+
+  .hotel-details-skeleton-badge {
+    width: 100px !important;
+    height: 32px !important;
+    background: #f7f7f7;
+  }
+  .hotel-details-skeleton-review-score {
+    width: 56px !important;
+    height: 56px !important;
+    background: #f7f7f7;
+    border-radius: 10px;
+  }
+  .hotel-details-skeleton-review-text {
+    width: 80px !important;
+    height: 16px !important;
+    background: #f7f7f7;
+  }
+
+  .hotel-details-skeleton-review-subtext {
+    width: 120px !important;
+    height: 14px !important;
+    background: #f7f7f7;
+  }
+  .hotel-details-skeleton-facility-chips-arrow-btn {
+    width: 24px !important;
+    height: 24px !important;
+    background: #f7f7f7;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+  .hotel-details-skeleton-section-title {
+    width: 180px !important;
+    height: 24px !important;
+    background: #f7f7f7;
+  }
+  .hotel-details-skeleton-paragraph {
+    width: 80% !important;
+    height: 14px !important;
+    background: #f7f7f7;
+  }
+  .hotel-details-skeleton-check-card {
+    width: 180px !important;
+    height: 80px !important;
+    background: #f7f7f7;
+  }
+  .hotel-details-skeleton-section-devider {
+    width: 100% !important;
+    height: 2px !important;
+    background: #f7f7f7;
+  }
+  .hotel-details-skeleton-overview-bed-status-icon {
+    width: 20px !important;
+    height: 20px !important;
+    background: #f7f7f7;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+  .hotel-details-skeleton-overview-bed-category {
+    width: 150px !important;
+    height: 20px !important;
+    background: #f7f7f7;
+  }
+  .hotel-details-skeleton-amenity {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .hotel-details-skeleton-amenity-icon {
+    width: 20px !important;
+    height: 20px !important;
+    background: #f7f7f7;
+  }
+
+  .hotel-details-skeleton-amenity-text {
+    width: 180px !important;
+    height: 16px !important;
+    background: #f7f7f7;
+  }
+  .hotel-details-skeleton-price {
+    width: 120px !important;
+    height: 32px !important;
+    background: #f7f7f7;
+  }
+
+  .hotel-details-skeleton-price-small {
+    width: 180px !important;
+    height: 18px !important;
+    background: #f7f7f7;
+  }
+
+  .hotel-details-skeleton-price-line {
+    width: 100% !important;
+    height: 18px !important;
+    background: #f7f7f7;
+  }
+
+  .hotel-details-skeleton-button {
+    width: 100% !important;
+    height: 44px !important;
+    background: #f7f7f7;
+  }
+  .hotel-details-mob-skeleton-dot {
+    width: 6px !important;
+    height: 6px !important;
+    background: #e8e8e8;
+    border-radius: 50%;
+    aspect-ratio: 1/1;
+    flex-shrink: 0;
+  }
+  .hotel-details-mob-skeleton-back-btn {
+    width: 40px !important;
+    height: 40px !important;
+    background: #f7f7f7;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+  .hotel-details-mob-skeleton-badge {
+    width: 90px !important;
+    height: 24px !important;
+    border-radius: 20px;
+    background: #f7f7f7;
+  }
+  .hotel-details-skeleton-mob-heading {
+    width: 150px !important;
+    height: 18px !important;
+    background: #e8e8e8;
+  }
+  .hotel-details-skeleton-mob-star {
+    width: 14px !important;
+    height: 14px !important;
+    background: #e8e8e8;
+  }
+  .hotel-details-skeleton-mob-address-icon {
+    width: 16px !important;
+    height: 16px !important;
+    background: #e8e8e8;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+  .hotel-details-skeleton-mob-address {
+    width: 120px !important;
+    height: 21px !important;
+    background: #e8e8e8;
+  }
+  .hotel-details-skeleton-mob-review-badge {
+    width: 28px !important;
+    height: 24px !important;
+    background: #e8e8e8;
+  }
+  .hotel-details-skeleton-mob-review-label {
+    width: 52px !important;
+    height: 15px !important;
+    background: #e8e8e8;
+  }
+  .hotel-details-mob-location-left-title {
+    width: 80px !important;
+    height: 28px !important;
+    background: #e8e8e8;
+  }
+  .hotel-details-mob-location-right-title {
+    width: 99px !important;
+    height: 20px !important;
+    background: #e8e8e8;
+  }
+  .hotel-details-mob-location-map {
+    width: 100% !important;
+    height: 150px !important;
+    background: #e8e8e8;
+  }
+  .hotel-details-skeleton-mob-check-card {
+    width: 100px !important;
+    height: 80px !important;
+    background: #e8e8e8;
+  }
+  .hotel-details-skeleton-mob-paragraph {
+    width: 80% !important;
+    height: 14px !important;
+    background: #e8e8e8;
+  }
+  .hotel-details-skeleton-mob-section-title {
+    width: 180px !important;
+    height: 24px !important;
+    background: #e8e8e8;
+  }
+  .hotel-details-skeleton-mob-tab {
+    width: 90px !important;
+    height: 18px !important;
+    background: #e8e8e8;
+    flex-shrink: 0;
+    border-radius: 4px;
+  }
+  .hotel-details-skeleton-mob-actual-price {
+    width: 66px !important;
+    height: 24px !important;
+    background: #f7f7f7;
+  }
+  .hotel-details-skeleton-mob-price-label {
+    width: 98px !important;
+    height: 15px !important;
+    background: #f7f7f7;
+  }
+  .hotel-details-skeleton-mob-price-submit-btn {
+    width: 114px !important;
+    height: 45px !important;
+    background: #f7f7f7;
+  }
+}
+
+@media (min-width: 992px) {
+  .hotel-details-skeleton {
+    &__content-wrap {
+      margin-top: 62px;
+      padding: 18px 0px 62px;
+      background-color: #e8e8e8;
+    }
+    &__tabs {
+      margin-top: 24px;
+      padding: 25px 0;
+      gap: 32px;
+    }
+  }
+}

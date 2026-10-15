@@ -1,0 +1,102 @@
+<!--=========== Banner Section Start  ==============-->
+<!-- @if(ishome){
+  <app-main-filter/>
+} -->
+
+<!--=========== Banner Section End  ==============-->
+
+<!--=========== Banner Bottom Section Start  ==============-->
+<section class="destinations pb-0 cmn-gap">
+  <div class="container container-xxl">
+    <div class="cmn-heading">
+      <div class="heading-cmn-flex">
+        <h2 class="new-title-content">Global Vacation Hotspots</h2>
+        <!-- <a href="#">See all</a> -->
+      </div>
+    </div>
+    <p-carousel
+      [value]="destinations"
+      [numVisible]="4"
+      [numScroll]="1"
+      [circular]="true"
+      [showIndicators]="false"
+      [showNavigators]="true"
+      [responsiveOptions]="vactionResponsiveOptions"
+    >
+      <ng-template pTemplate='item' let-destination>
+        <div
+          class="destination-slider mx-2"
+          routerLink="{{ destination?.route }}"
+        >
+          <div class="destination-item">
+            <img
+              [src]="destination.image"
+              [alt]="destination.name"
+              class="w-100"
+            />
+            <div class="destination-info text-center">
+              <div class="destination-content">
+                <h5 class="mb-1 text-white">{{ destination.name }}</h5>
+              </div>
+              <div class="destination-overlay bg-white mt-2">
+                <div class="d-flex">
+                  <div class="col border-end">
+                    <div class="count-info text-center">
+                      <span class="d-block mb-1">
+                        <i class="fa-solid fa-plane-up"></i>
+                      </span>
+                      <h6 class="fs-13 fw-medium">
+                        {{ destination.flights }} Flights
+                      </h6>
+                    </div>
+                  </div>
+                  <div class="col border-end">
+                    <div class="count-info text-center">
+                      <span class="d-block mb-1">
+                        <i class="fa-solid fa-building"></i>
+                      </span>
+                      <h6 class="fs-13 fw-medium">
+                        {{ destination.hotels }} Hotels
+                      </h6>
+                    </div>
+                  </div>
+                  <div class="col">
+                    <div class="count-info text-center">
+                      <span class="d-block mb-1">
+                        <i class="fa-solid fa-ship"></i>
+                      </span>
+                      <h6 class="fs-13 fw-medium">
+                        {{ destination.cruises }} Cruises
+                      </h6>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </ng-template>
+    </p-carousel>
+    <!-- === Add List Card Start == -->
+    <!-- <div class="dealassist-item">
+      <a href="tel:000-000-000-000" role="button" class="dealassist-card">
+        <div class="dealassist-icon"></div>
+        <div class="dealassist-details">
+          <div class="dealassist-title">Need assistance finding the best deals?</div>
+          <div class="dealassist-subtitle">Our experts are standing by to help you score the perfect phone deal.</div>
+          <div class="dealassist-msg">Ready to book? Give us a call!</div>
+        </div>
+        <div class="dealassist-actions">
+          <div class="dealassist-callbtn">
+            <div class="dealassist-dialicon"></div>
+            <div class="dealassist-number">000-000-000-0000</div>
+          </div>
+          <div class="dealassist-availability">Expert assistance available 24/7</div>
+        </div>
+      </a> 
+    </div> -->
+
+    <!-- === Add List Card End == -->
+  </div>
+</section>
+<!--=========== Banner Bottom Section End  ==============-->

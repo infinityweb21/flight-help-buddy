@@ -1,0 +1,676 @@
+@import url(../hotel/hotel.component.scss);
+
+.marina-specs-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  margin-top: 12px;
+}
+
+.marina-spec-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+}
+
+.marina-spec-icon {
+  font-size: 12px;
+  color: rgba(var(--second-color), 1);
+}
+
+.marina-spec-label {
+  color: #64748b;
+}
+
+.marina-spec-value {
+  color: #1e293b;
+  font-weight: 600;
+}
+
+.card-journey-small .card-info .card-program .card-location {
+  margin-bottom: 20px;
+}
+
+.card-journey-small .card-image img {
+  object-position: top;
+}
+
+.cruiselinetab .popular-hotel > img {
+  object-fit: contain;
+  background: #ededed;
+}
+
+@media (max-width: 320px) {
+  .marina-spec-item {
+    font-size: 10px;
+  }
+  .marina-specs-grid {
+    gap: 6px;
+  }
+}
+
+
+
+.book-with-us{
+  background-color: rgb(255, 248, 243);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// cruise-why-choose-section Start
+
+.cruise-why-choose-section {
+    background: rgba(var(--main-color), 0.05);
+}
+
+.cruise-why-choose-section .common-heading-box {
+    margin-bottom: 55px;
+}
+
+.cruise-reasons-wrapper {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+    align-items: start;
+    margin-top: 75px;
+}
+
+.cruise-reason-card {
+    position: relative;
+    background: rgba(var(--white-color), 1);
+    border-radius:20px;
+    min-height: 220px;
+    text-align: center;
+    padding: 55px 15px 28px;
+    box-shadow: 0 8px 25px rgba(var(--main-color), 0.06);
+}
+
+.cruise-reason-card:nth-child(2) {
+    margin-top: 18px;
+}
+
+.cruise-reason-card:nth-child(3) {
+    margin-top: 0;
+}
+
+.cruise-reason-card:nth-child(4) {
+    margin-top: 18px;
+}
+
+.cruise-reason-icon {
+    position: absolute;
+    top: -48px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 96px;
+    height: 96px;
+    border-radius: 50%;
+    background: rgba(var(--white-color), 1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+}
+
+.cruise-reason-icon::after {
+    content: "";
+    position: absolute;
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+    background: rgba(var(--main-color), 0.03);
+    z-index: -1;
+}
+
+.cruise-reason-icon i {
+    font-size: 30px;
+    color: rgba(var(--second-color), 1);
+}
+
+.cruise-reason-content h4 {
+    margin: 0 auto;
+    min-height: 48px;
+    max-width: 245px;
+    font-family: var(--Overlock-font);
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 1.25;
+    color: rgba(var(--main-color), 1);
+    margin-bottom: 12px;
+}
+
+.cruise-reason-content p {
+    margin: 0 auto;
+    max-width: 275px;
+    font-family: var(--Inter-font);
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.6;
+    color: rgba(var(--black-color), 1);
+}
+
+
+/* =========================================
+   Responsive
+========================================= */
+
+@media (max-width: 1199px) {
+
+    .cruise-reasons-wrapper {
+        grid-template-columns: repeat(2, 1fr);
+        column-gap: 24px;
+        row-gap: 65px;
+    }
+
+    .cruise-reason-card:nth-child(2),
+    .cruise-reason-card:nth-child(4) {
+        margin-top: 18px;
+    }
+
+    .cruise-reason-card:nth-child(3) {
+        margin-top: 0;
+    }
+
+}
+
+
+@media (max-width: 767px) {
+
+    .cruise-why-choose-section .common-heading-box {
+        margin-bottom: 40px;
+    }
+
+    .cruise-reasons-wrapper {
+        grid-template-columns: 1fr;
+        gap: 65px;
+        margin-top: 65px;
+    }
+
+    .cruise-reason-card,
+    .cruise-reason-card:nth-child(2),
+    .cruise-reason-card:nth-child(3),
+    .cruise-reason-card:nth-child(4) {
+        margin-top: 0;
+    }
+
+}
+
+
+@media (max-width: 575px) {
+
+    .cruise-reasons-wrapper {
+        gap: 60px;
+        margin-top: 60px;
+    }
+
+    .cruise-reason-card {
+        min-height: auto;
+        padding: 55px 20px 28px;
+    }
+
+    .cruise-reason-icon {
+        width: 88px;
+        height: 88px;
+        top: -44px;
+    }
+
+    .cruise-reason-icon::after {
+        width: 66px;
+        height: 66px;
+    }
+
+    .cruise-reason-content h4 {
+        font-size: 19px;
+    }
+
+    .cruise-reason-content p {
+        font-size: 13px;
+    }
+
+}
+// cruise-why-choose-section end
+
+
+
+
+// cruise-destination-section Start
+.cruise-destination-section {
+    background: rgba(var(--white-color), 1);
+}
+
+.cruise-destination-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 45px;
+}
+
+.cruise-destination-content {
+    width: 350px;
+    flex: 0 0 350px;
+}
+
+.cruise-destination-content .common-heading-box {
+    margin: 0;
+}
+
+.cruise-destination-content .common-heading-title {
+    // max-width: 260px;
+    margin-bottom: 20px;
+}
+
+.cruise-destination-content p {
+    // max-width: 280px;
+    margin: 0;
+    line-height: 1.6;
+}
+
+.cruise-destination-list {
+    flex: 1;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 18px;
+    align-items: start;
+}
+
+.cruise-destination-item {
+    text-align: center;
+}
+
+.cruise-destination-image {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    border-radius: 50%;
+    padding: 4px;
+    border: none;
+    overflow: hidden;
+}
+
+.cruise-destination-image img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.cruise-destination-image::after {
+    content: "";
+    position: absolute;
+    inset: 4px;
+    border-radius: 50%;
+    background: linear-gradient(
+        180deg,
+        transparent 55%,
+        rgba(var(--black-color), 0.7) 100%
+    );
+    pointer-events: none;
+}
+
+.cruise-destination-image::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    padding: 2px;
+    background: repeating-conic-gradient(
+        from 0deg,
+        rgba(var(--second-color), 1) 0deg 18deg,
+        transparent 24deg 28deg
+    );
+    -webkit-mask: linear-gradient(#fff 0 0) content-box,
+        linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+    z-index: 3;
+}
+
+.cruise-destination-item:hover .cruise-destination-image::before {
+    animation: cruiseCircleRotate 15s linear infinite;
+}
+
+@keyframes cruiseCircleRotate {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.cruise-destination-image span {
+    position: absolute;
+    left: 50%;
+    bottom: 13px;
+    transform: translateX(-50%);
+    z-index: 4;
+    font-family: var(--Inter-font);
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 1;
+    color: rgba(var(--white-color), 1);
+}
+
+.cruise-destination-item h4 {
+    margin: 14px 0 0;
+    font-family: var(--Overlock-font);
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 1.25;
+    color: rgba(var(--main-color), 1);
+}
+
+
+/* Responsive */
+
+@media (max-width: 1199px) {
+    .cruise-destination-wrapper {
+        gap: 30px;
+    }
+
+    .cruise-destination-content {
+        width: 250px;
+        flex: 0 0 250px;
+    }
+
+    .cruise-destination-list {
+        gap: 12px;
+    }
+
+    .cruise-destination-item h4 {
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 991px) {
+    .cruise-destination-wrapper {
+        display: block;
+    }
+
+    .cruise-destination-content {
+        width: 100%;
+        margin-bottom: 35px;
+    }
+
+    .cruise-destination-content .common-heading-title,
+    .cruise-destination-content p {
+        max-width: 600px;
+    }
+}
+
+@media (max-width: 767px) {
+    .cruise-destination-list {
+        grid-template-columns: repeat(4, 1fr);
+        row-gap: 30px;
+    }
+
+    .cruise-destination-content .common-heading-title {
+        margin-bottom: 15px;
+    }
+
+    .cruise-destination-content {
+        margin-bottom: 25px;
+    }
+}
+
+@media (max-width: 575px) {
+    .cruise-destination-list {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px 15px;
+    }
+
+    .cruise-destination-image {
+        max-width: 170px;
+        margin: 0 auto;
+    }
+}
+
+
+/* cruise-destination-section End */
+
+
+// cruise-experience-section Start
+.cruise-experience-section {
+    background: rgba(var(--main-color), 0.05);
+}
+
+.cruise-experience-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 70px;
+}
+
+.cruise-experience-content {
+    width: 50%;
+    order: 1;
+}
+
+.cruise-experience-content .common-heading-box {
+    margin-bottom: 30px;
+}
+
+.cruise-experience-content .common-heading-title {
+    max-width: 360px;
+    margin-bottom: 18px;
+}
+
+.cruise-experience-content .common-heading-box p {
+    max-width: 650px;
+    margin: 0;
+    line-height: 1.7;
+}
+
+.cruise-experience-points {
+    margin-top: 25px;
+}
+
+.cruise-experience-point {
+    display: flex;
+    align-items: flex-start;
+    gap: 15px;
+    padding: 18px 0;
+    border-bottom: 1px solid rgba(var(--main-color), 0.1);
+}
+
+.cruise-experience-point:first-child {
+    padding-top: 0;
+}
+
+.cruise-experience-point:last-child {
+    border-bottom: 0;
+}
+
+.cruise-experience-point-icon {
+    flex: 0 0 24px;
+    margin-top: 2px;
+}
+
+.cruise-experience-point-icon i {
+    font-size: 22px;
+    color: rgba(var(--second-color), 1);
+}
+
+.cruise-experience-point-content h4 {
+    margin: 0 0 7px;
+    font-family: var(--Overlock-font);
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 1.3;
+    color: rgba(var(--main-color), 1);
+}
+
+.cruise-experience-point-content p {
+    margin: 0;
+    font-family: var(--Inter-font);
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.6;
+    color: rgba(var(--black-color), 0.65);
+}
+
+.cruise-experience-images {
+    width: 50%;
+    min-height: 470px;
+    position: relative;
+    order: 2;
+}
+
+.cruise-experience-image {
+    position: absolute;
+    overflow: hidden;
+    border-radius: 20px;
+}
+
+.cruise-experience-image img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+}
+
+.cruise-experience-image-one {
+    width: 46%;
+    height: 350px;
+    left: 0;
+    bottom: 0;
+}
+
+.cruise-experience-image-two {
+    width: 58%;
+    height: 430px;
+    right: 0;
+    top: 0;
+    z-index: -1;
+}
+
+.cruise-experience-image-one::after,
+.cruise-experience-image-two::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        180deg,
+        transparent 55%,
+        rgba(var(--black-color), 0.18) 100%
+    );
+    pointer-events: none;
+}
+
+
+/* Responsive */
+
+@media (max-width: 1199px) {
+    .cruise-experience-wrapper {
+        gap: 45px;
+    }
+
+    .cruise-experience-images {
+        min-height: 420px;
+    }
+
+    .cruise-experience-image-one {
+        height: 310px;
+    }
+
+    .cruise-experience-image-two {
+        height: 380px;
+    }
+}
+
+@media (max-width: 991px) {
+    .cruise-experience-wrapper {
+        display: block;
+    }
+
+    .cruise-experience-content {
+        width: 100%;
+        margin-bottom:30px;
+    }
+
+    .cruise-experience-content .common-heading-title {
+        max-width: 650px;
+    }
+
+    .cruise-experience-images {
+        width: 100%;
+        max-width: 700px;
+        min-height: 450px;
+        margin: 0 auto;
+    }
+
+    .cruise-experience-image-one {
+        width: 45%;
+        height: 340px;
+    }
+
+    .cruise-experience-image-two {
+        width: 58%;
+        height: 410px;
+    }
+}
+
+@media (max-width: 767px) {
+    .cruise-experience-content {
+        margin-bottom: 20px;
+    }
+
+    .cruise-experience-point {
+        padding: 15px 0;
+    }
+
+    .cruise-experience-images {
+        min-height: 380px;
+    }
+
+    .cruise-experience-image-one {
+        height: 290px;
+    }
+
+    .cruise-experience-image-two {
+        height: 350px;
+    }
+}
+
+@media (max-width: 575px) {
+    .cruise-experience-images {
+        min-height: auto;
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .cruise-experience-image-one,
+    .cruise-experience-image-two {
+        position: relative;
+        width: 100%;
+        height: 260px;
+        left: auto;
+        right: auto;
+        top: auto;
+        bottom: auto;
+    }
+
+    .cruise-experience-point-content h4 {
+        font-size: 17px;
+    }
+
+    .cruise-experience-point-content p {
+        font-size: 13px;
+    }
+}
+
+// cruise-experience-section Start

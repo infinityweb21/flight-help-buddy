@@ -1,0 +1,226 @@
+<div [formGroup]="formGroup">
+  <!-- <p-autoComplete
+    [formControlName]="controlName"
+    [suggestions]="airports"
+    (completeMethod)="filterAirports($event)"
+    (onSelect)="onSelectAirport($event)"
+    field="displayName"
+    [panelStyleClass]="'airport-autocomplete-panel'"
+    [placeholder]="placeholder"
+    class="form-control"
+    [class.is-invalid]="
+      (formGroup.get(controlName)?.touched || submitted) &&
+      formGroup.get(controlName)?.invalid
+    "
+  >
+    <ng-template let-airport pTemplate="item">
+      @if (airport.type === 'main') {
+        <div class="airport-item">
+          <div class="airport-icon"><i class="pi pi-map-marker"></i></div>
+          <div class="airport-text">
+            <div class="city-country">
+              {{ airport.city ? airport.city + ', ' + airport.country : airport.country }}
+            </div>
+            <div class="airport-name">{{ airport.airport_name }}</div>
+          </div>
+          <div class="airport-code">{{ airport.code }}</div>
+        </div>
+      }
+      @if (airport.type === 'label') {
+        <div class="airport-label">{{ airport.text }}</div>
+      }
+      @if (airport.type === 'nearby') {
+        <div class="airport-item nearby">
+          <div class="airport-icon"><i class="pi pi-map-marker"></i></div>
+          <div class="airport-text">
+            <div class="city-country">
+              {{ airport.city ? airport.city + ', ' + airport.country : airport.country }}
+            </div>
+            <div class="airport-name">{{ airport.airport_name }}</div>
+          </div>
+          <div class="airport-code">{{ airport.code }}</div>
+        </div>
+      }
+    </ng-template>
+  </p-autoComplete> -->
+
+  <!-- title -->
+  <ng-content *ngTemplateOutlet="titleTemplate"></ng-content>
+  <!-- content Design goes here -->
+
+
+
+  <!-- ===== ====== -->
+  <div class="origin-form-content-wrap" [class.inputActive]="isActive" [ngClass]="{
+    isInvalidWrap: 
+      (formGroup.get(controlName)?.touched || submitted) &&
+      formGroup.get(controlName)?.invalid
+  }">
+    <div class="common-form-content">
+      <div class="add-departure-content-wrap">
+        <span class="common-input-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path
+              fill-rule="evenodd"
+              clip-rule="evenodd"
+              d="M7.953 5.552C8.992 4.592 10.388 4 12 4C13.612 4 15.008 4.592 16.047 5.552L16.054 5.558C16.6667 6.10959 17.1566 6.78387 17.4919 7.53707C17.8271 8.29027 18.0003 9.10556 18 9.93C18 11.487 17.336 12.962 16.359 14.392C15.379 15.825 13.941 17.417 12 19.166C10.059 17.416 8.62 15.825 7.641 14.392C6.661 12.958 6 11.492 6 9.929C6.00002 9.10489 6.17327 8.29 6.50851 7.53716C6.84376 6.78432 7.33351 6.11037 7.946 5.559L7.953 5.552ZM12 2C9.88 2 8.002 2.785 6.6 4.08C5.78142 4.81889 5.12703 5.72137 4.67916 6.72907C4.2313 7.73677 3.99992 8.82726 4 9.93C4 12.07 4.908 13.936 5.99 15.52C7.206 17.298 8.991 19.21 11.344 21.255C11.526 21.4131 11.7589 21.5002 12 21.5002C12.2411 21.5002 12.474 21.4131 12.656 21.255C15.009 19.21 16.794 17.298 18.01 15.52C19.09 13.938 20 12.063 20 9.93C20.0001 8.82726 19.7687 7.73677 19.3208 6.72907C18.873 5.72137 18.2186 4.81889 17.4 4.08C15.999 2.785 14.12 2 12 2ZM12 12C12.5304 12 13.0391 11.7893 13.4142 11.4142C13.7893 11.0391 14 10.5304 14 10C14 9.46957 13.7893 8.96086 13.4142 8.58579C13.0391 8.21071 12.5304 8 12 8C11.4696 8 10.9609 8.21071 10.5858 8.58579C10.2107 8.96086 10 9.46957 10 10C10 10.5304 10.2107 11.0391 10.5858 11.4142C10.9609 11.7893 11.4696 12 12 12Z"
+              fill="currentColor"
+            />
+          </svg>
+        </span>
+        <!-- <input type="text" class="form-control" placeholder="New York (NYC - All Airports)" /> -->
+<p-autoComplete
+  [pAutoFocus]="true"
+  [formControlName]="controlName"
+  [suggestions]="[]"
+  (completeMethod)="filterAirports($event)"
+  (keypress)="allowOnlyLetters($event)"
+  (paste)="sanitizePaste($event)"
+  field="displayName"
+  placeholder="Enter a valid airport/City name or 3 letter code as per IATA."
+  class="form-control"
+  [class.is-invalid]="
+    (formGroup.get(controlName)?.touched || submitted) &&
+    formGroup.get(controlName)?.invalid
+  "
+  (onFocus)="highlightText($event)"
+  (mousedown)="handleClick($event)"
+  (keydown)="clearIfHighlightedOnKey($event)"
+  (click)="onInputClick()"
+></p-autoComplete>
+
+
+
+
+
+@if(formGroup.get(controlName)?.value){
+
+        <span class="close-searchresult-btn" (click)="remove()">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M12 3C6.98571 3 3 6.98571 3 12C3 17.0143 6.98571 21 12 21C17.0143 21 21 17.0143 21 12C21 6.98571 17.0143 3 12 3ZM15.4714 16.5L12 13.0286L8.52857 16.5L7.5 15.4714L10.9714 12L7.5 8.52857L8.52857 7.5L12 10.9714L15.4714 7.5L16.5 8.52857L13.0286 12L16.5 15.4714L15.4714 16.5Z"
+              fill="currentcolor"
+            />
+          </svg>
+        </span>
+      }
+      </div>
+    </div>
+
+  
+@if(airports.length){
+    <div class="search-result-list-container" >
+      <h6 class="search-result-list-title" >Suggested Airports</h6>
+      <div class="flight-search-result c-scrollbar">
+       
+        <ul class="fd-airport-list" [class.android]="isAndroid">
+           @for (airport of airports; track $index) {
+          <li>
+             @if (airport.type === 'main') {
+            <div class="fd-airport-item " [ngClass]="{
+    'active': formGroup.get(controlName)?.value?.displayName === airport.displayName
+  }" (click)="onSelectAirport(airport)">
+              <div class="fd-airport-icon">
+                <svg width="26" height="25" viewBox="0 0 26 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path
+                    d="M15.4397 7.78263L22.0951 5.73602C23.0871 5.431 24.1521 5.90413 24.5907 6.84474C25.0293 7.78535 24.7072 8.90531 23.8359 9.46914L17.9901 13.2519L17.956 21.3496C17.9529 22.1081 17.5122 22.7967 16.8246 23.1174C15.7076 23.6383 14.3926 23.0108 14.0949 21.8146L12.3825 14.9346L7.46012 17.2299L7.33346 20.1623C7.32159 20.4364 7.12628 20.6681 6.85795 20.7262L5.26196 21.071C4.92834 21.1432 4.60143 20.9245 4.54057 20.5886L3.80733 16.5362L1.19212 13.391C0.967221 13.1206 1.02036 12.716 1.30738 12.5127L2.62075 11.5826C2.83369 11.4318 3.11935 11.435 3.32897 11.5903L5.62385 13.292L10.5462 10.9967L6.67871 5.82082C5.93291 4.82291 6.29284 3.39175 7.42192 2.86525C8.09224 2.55268 8.88126 2.64317 9.46338 3.09933L15.4397 7.78263Z"
+                    stroke="currentColor"
+                    stroke-width="1.5"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+              </div>
+              <div class="fd-airport-details">
+                <span class="fd-airport-name">{{ airport.airport_name }}</span>
+                <div class="fd-single-airport-meta">
+                  <span class="fd-airport-location">{{airport.city ? airport.city +
+        (airport.state ? ', ' + airport.state : '') +
+        ', ' + airport.country
+      : (airport.state
+          ? airport.state + ', ' + airport.country
+          : airport.country)
+  }}</span>
+                  <span class="fd-single-airport-code">{{ airport.code }}</span>
+                </div>
+              </div>
+            </div>
+          }
+             @if (airport.nearbyAirports.length>0) {
+            <ul class="fd-airport-sub-info-list">
+              @for (item of airport.nearbyAirports; track $index) {
+              <li>
+                <div class="fd-airport-sub-info" (click)="onSelectAirport(item)">
+                  <div class="fd-airport-sub-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path
+                        fill-rule="evenodd"
+                        clip-rule="evenodd"
+                        d="M7.953 5.552C8.992 4.592 10.388 4 12 4C13.612 4 15.008 4.592 16.047 5.552L16.054 5.558C16.6667 6.10959 17.1566 6.78387 17.4919 7.53707C17.8271 8.29027 18.0003 9.10556 18 9.93C18 11.487 17.336 12.962 16.359 14.392C15.379 15.825 13.941 17.417 12 19.166C10.059 17.416 8.62 15.825 7.641 14.392C6.661 12.958 6 11.492 6 9.929C6.00002 9.10489 6.17327 8.29 6.50851 7.53716C6.84376 6.78432 7.33351 6.11037 7.946 5.559L7.953 5.552ZM12 2C9.88 2 8.002 2.785 6.6 4.08C5.78142 4.81889 5.12703 5.72137 4.67916 6.72907C4.2313 7.73677 3.99992 8.82726 4 9.93C4 12.07 4.908 13.936 5.99 15.52C7.206 17.298 8.991 19.21 11.344 21.255C11.526 21.4131 11.7589 21.5002 12 21.5002C12.2411 21.5002 12.474 21.4131 12.656 21.255C15.009 19.21 16.794 17.298 18.01 15.52C19.09 13.938 20 12.063 20 9.93C20.0001 8.82726 19.7687 7.73677 19.3208 6.72907C18.873 5.72137 18.2186 4.81889 17.4 4.08C15.999 2.785 14.12 2 12 2ZM12 12C12.5304 12 13.0391 11.7893 13.4142 11.4142C13.7893 11.0391 14 10.5304 14 10C14 9.46957 13.7893 8.96086 13.4142 8.58579C13.0391 8.21071 12.5304 8 12 8C11.4696 8 10.9609 8.21071 10.5858 8.58579C10.2107 8.96086 10 9.46957 10 10C10 10.5304 10.2107 11.0391 10.5858 11.4142C10.9609 11.7893 11.4696 12 12 12Z"
+                        fill="currentColor"
+                      />
+                    </svg>
+                  </div>
+                  <div class="fd-airport-sub-details">
+                    <span class="fd-sub-airport-name">{{ item.airport_name }}</span>
+                    <div class="fd-sub-airport-meta">
+                      <span class="fd-sub-airport-distance">{{item?.distanceInfoText}}</span>
+                      <span class="fd-sub-airport-code">{{ item.code }}</span>
+                    </div>
+                  </div>
+                </div>
+              </li>
+            }
+              <!-- <li>
+                <div class="fd-airport-sub-info">
+                  <div class="fd-airport-sub-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path
+                        fill-rule="evenodd"
+                        clip-rule="evenodd"
+                        d="M7.953 5.552C8.992 4.592 10.388 4 12 4C13.612 4 15.008 4.592 16.047 5.552L16.054 5.558C16.6667 6.10959 17.1566 6.78387 17.4919 7.53707C17.8271 8.29027 18.0003 9.10556 18 9.93C18 11.487 17.336 12.962 16.359 14.392C15.379 15.825 13.941 17.417 12 19.166C10.059 17.416 8.62 15.825 7.641 14.392C6.661 12.958 6 11.492 6 9.929C6.00002 9.10489 6.17327 8.29 6.50851 7.53716C6.84376 6.78432 7.33351 6.11037 7.946 5.559L7.953 5.552ZM12 2C9.88 2 8.002 2.785 6.6 4.08C5.78142 4.81889 5.12703 5.72137 4.67916 6.72907C4.2313 7.73677 3.99992 8.82726 4 9.93C4 12.07 4.908 13.936 5.99 15.52C7.206 17.298 8.991 19.21 11.344 21.255C11.526 21.4131 11.7589 21.5002 12 21.5002C12.2411 21.5002 12.474 21.4131 12.656 21.255C15.009 19.21 16.794 17.298 18.01 15.52C19.09 13.938 20 12.063 20 9.93C20.0001 8.82726 19.7687 7.73677 19.3208 6.72907C18.873 5.72137 18.2186 4.81889 17.4 4.08C15.999 2.785 14.12 2 12 2ZM12 12C12.5304 12 13.0391 11.7893 13.4142 11.4142C13.7893 11.0391 14 10.5304 14 10C14 9.46957 13.7893 8.96086 13.4142 8.58579C13.0391 8.21071 12.5304 8 12 8C11.4696 8 10.9609 8.21071 10.5858 8.58579C10.2107 8.96086 10 9.46957 10 10C10 10.5304 10.2107 11.0391 10.5858 11.4142C10.9609 11.7893 11.4696 12 12 12Z"
+                        fill="currentColor"
+                      />
+                    </svg>
+                  </div>
+                  <div class="fd-airport-sub-details">
+                    <span class="fd-sub-airport-name">New York (John F. Kennedy In...</span>
+                    <div class="fd-sub-airport-meta">
+                      <span class="fd-sub-airport-distance">20 km from city centre</span>
+                      <span class="fd-sub-airport-code">JFK</span>
+                    </div>
+                  </div>
+                </div>
+              </li>
+              <li>
+                <div class="fd-airport-sub-info">
+                  <div class="fd-airport-sub-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path
+                        fill-rule="evenodd"
+                        clip-rule="evenodd"
+                        d="M7.953 5.552C8.992 4.592 10.388 4 12 4C13.612 4 15.008 4.592 16.047 5.552L16.054 5.558C16.6667 6.10959 17.1566 6.78387 17.4919 7.53707C17.8271 8.29027 18.0003 9.10556 18 9.93C18 11.487 17.336 12.962 16.359 14.392C15.379 15.825 13.941 17.417 12 19.166C10.059 17.416 8.62 15.825 7.641 14.392C6.661 12.958 6 11.492 6 9.929C6.00002 9.10489 6.17327 8.29 6.50851 7.53716C6.84376 6.78432 7.33351 6.11037 7.946 5.559L7.953 5.552ZM12 2C9.88 2 8.002 2.785 6.6 4.08C5.78142 4.81889 5.12703 5.72137 4.67916 6.72907C4.2313 7.73677 3.99992 8.82726 4 9.93C4 12.07 4.908 13.936 5.99 15.52C7.206 17.298 8.991 19.21 11.344 21.255C11.526 21.4131 11.7589 21.5002 12 21.5002C12.2411 21.5002 12.474 21.4131 12.656 21.255C15.009 19.21 16.794 17.298 18.01 15.52C19.09 13.938 20 12.063 20 9.93C20.0001 8.82726 19.7687 7.73677 19.3208 6.72907C18.873 5.72137 18.2186 4.81889 17.4 4.08C15.999 2.785 14.12 2 12 2ZM12 12C12.5304 12 13.0391 11.7893 13.4142 11.4142C13.7893 11.0391 14 10.5304 14 10C14 9.46957 13.7893 8.96086 13.4142 8.58579C13.0391 8.21071 12.5304 8 12 8C11.4696 8 10.9609 8.21071 10.5858 8.58579C10.2107 8.96086 10 9.46957 10 10C10 10.5304 10.2107 11.0391 10.5858 11.4142C10.9609 11.7893 11.4696 12 12 12Z"
+                        fill="currentColor"
+                      />
+                    </svg>
+                  </div>
+                  <div class="fd-airport-sub-details">
+                    <span class="fd-sub-airport-name">New York ( LaGuardia Airpo...</span>
+                    <div class="fd-sub-airport-meta">
+                      <span class="fd-sub-airport-distance">13 km from city centre</span>
+                      <span class="fd-sub-airport-code">LGA</span>
+                    </div>
+                  </div>
+                </div>
+              </li> -->
+            </ul>
+          }
+          </li>
+        }
+        </ul>
+      
+      </div>
+    </div>
+  }
+  </div>
+  <!-- ===== ====== -->
+</div>

@@ -1,0 +1,393 @@
+/* =============================================================
+   HERO / rs-hero
+============================================================= */
+.rs-hero {
+  position: relative;
+  background-image:
+    linear-gradient(
+      90deg,
+      rgba(var(--fourth-color), 0.85) 0%,
+      rgba(var(--fourth-color), 0.45) 55%,
+      rgba(var(--fourth-color), 0.15) 100%
+    ),
+    url("../../../../public/assets/images/tickets/ticketbanner.jpg");
+  background-size: cover;
+  background-position: 50% 70%;
+  padding-block: 4rem;
+  min-height: 420px;
+  display: flex;
+  align-items: center;
+}
+
+.rs-hero__overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(var(--fourth-color), 0.15);
+  z-index: 0;
+}
+
+.rs-hero__content {
+  position: relative;
+  z-index: 1;
+  max-width: 620px;
+}
+
+.rs-hero__badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  color: rgba(var(--fifth-color), 1);
+  font-weight: 700;
+  font-size: 0.85rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  margin-bottom: 0.75rem;
+}
+
+.rs-hero__badge-icon {
+  font-size: 0.75rem;
+}
+
+.rs-hero__title {
+  font-size: 2.75rem;
+  line-height: 1.1;
+  font-weight: 800;
+  color: rgba(var(--white-color), 1);
+  margin-bottom: 1rem;
+}
+
+.rs-hero__title-highlight {
+  color: rgba(var(--second-color), 1);
+}
+
+.rs-hero__list-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: rgba(var(--white-color), 0.92);
+  font-size: 0.95rem;
+  margin-bottom: 0.45rem;
+}
+
+.rs-hero__list-icon {
+  color: rgba(var(--fifth-color), 1);
+}
+
+.rs-hero__cta {
+  margin-top: 1.5rem;
+}
+
+.rs-btn {
+  display: inline-block;
+  border-radius: 6px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  transition: var(--transition-05s);
+}
+
+.rs-btn--call {
+  background-color: rgba(var(--second-color), 1);
+  color: rgba(var(--fourth-color), 1);
+  padding: 0.9rem 2.25rem;
+}
+
+.rs-btn--call:hover {
+  background-color: rgba(var(--second-color), 0.85);
+  color: rgba(var(--fourth-color), 1);
+}
+
+.rs-hero__phone {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: rgba(var(--white-color), 1);
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+
+.rs-hero__phone-icon {
+  color: rgba(var(--second-color), 1);
+}
+
+.rs-hero__phone:hover {
+  color: rgba(var(--second-color), 1);
+}
+
+/* =============================================================
+   SECTION TITLES (shared)
+============================================================= */
+.rs-section-title {
+  font-size: 1.9rem;
+  font-weight: 800;
+  color: rgba(var(--fourth-color), 1);
+  margin-bottom: 0.5rem;
+}
+
+.rs-section-title-highlight {
+  color: rgba(var(--second-color), 1);
+}
+
+/* =============================================================
+   WHY CHOOSE / rs-why
+============================================================= */
+.rs-why__card {
+  border: 1px solid var(--rs-border);
+  border-radius: 10px;
+  padding: 1.75rem 1.25rem;
+  text-align: center;
+  transition: var(--transition-05s);
+}
+
+.rs-why__card:hover {
+  border-color: rgba(var(--fifth-color), 0.6);
+  box-shadow: 0 10px 25px rgba(var(--black-color), 0.06);
+}
+
+.rs-why__icon {
+  width: 56px;
+  height: 56px;
+  margin: 0 auto 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  background-color: rgba(var(--second-color), 0.15);
+  color: rgba(var(--second-color), 1);
+  font-size: 1.4rem;
+}
+
+.rs-why__title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: rgba(var(--second-color), 1);
+  margin-bottom: 0.5rem;
+}
+
+.rs-why__text {
+  font-size: 0.8rem;
+  color: rgba(var(--black-color), 0.85);
+  margin: 0;
+}
+
+/* =============================================================
+   HELP FOR / rs-help
+============================================================= */
+.rs-help {
+  background-color: var(--rs-amber-bg);
+}
+
+.rs-help__card {
+  background-color: rgba(var(--white-color), 1);
+  border: 1px solid var(--rs-border);
+  border-radius: 10px;
+  padding: 1.25rem 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  transition: var(--transition-05s);
+}
+
+.rs-help__card:hover {
+  box-shadow: 0 10px 20px rgba(var(--black-color), 0.06);
+}
+
+.rs-help__icon {
+  flex: 0 0 auto;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  background-color: var(--rs-blue-bg);
+  color: rgba(var(--main-color), 1);
+  font-size: 1.1rem;
+}
+
+.rs-help__text {
+  font-weight: 600;
+  font-size: 0.9rem;
+  margin: 0;
+  color: rgba(var(--fourth-color), 1);
+}
+
+/* =============================================================
+   CUSTOMER SERVICE / rs-service
+============================================================= */
+.rs-service {
+  position: relative;
+}
+
+.rs-service__card {
+  background-color: var(--rs-amber-bg);
+  border-radius: 10px;
+  padding: 1.5rem 1rem;
+  text-align: center;
+}
+
+.rs-service__icon {
+  width: 48px;
+  height: 48px;
+  margin: 0 auto 0.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background-color: rgba(var(--second-color), 1);
+  color: rgba(var(--white-color), 1);
+  font-size: 1.2rem;
+}
+
+.rs-service__title {
+  font-weight: 700;
+  font-size: 0.9rem;
+  margin: 0;
+  color: rgba(var(--fourth-color), 1);
+}
+
+.rs-service__popup {
+  position: absolute;
+  right: 1rem;
+  bottom: -1rem;
+  width: 250px;
+  background-color: rgba(var(--white-color), 1);
+  border-radius: 10px;
+  box-shadow: 0 15px 35px rgba(var(--black-color), 0.18);
+  overflow: hidden;
+  z-index: 2;
+}
+
+.rs-service__popup-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: rgba(var(--second-color), 1);
+  color: rgba(var(--white-color), 1);
+  font-weight: 700;
+  font-size: 0.85rem;
+  padding: 0.6rem 0.9rem;
+}
+
+.rs-service__popup-close {
+  background: none;
+  border: 0;
+  color: rgba(var(--white-color), 1);
+  font-size: 1.1rem;
+  line-height: 1;
+}
+
+.rs-service__popup-link {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.6rem 0.9rem;
+  font-weight: 600;
+  font-size: 0.85rem;
+  color: rgba(var(--fourth-color), 1);
+  border-top: 1px solid var(--rs-border);
+}
+
+.rs-service__popup-link:hover {
+  background-color: var(--rs-blue-bg);
+  color: rgba(var(--fourth-color), 1);
+}
+
+.rs-service__flag {
+  font-size: 1rem;
+}
+
+/* =============================================================
+   TEXT CONTENT / rs-content
+============================================================= */
+.rs-content__title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.rs-content__title-highlight {
+  color: rgba(var(--second-color), 1);
+}
+
+.rs-content__subtitle {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: rgba(var(--fourth-color), 1);
+  margin-top: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.rs-content__text {
+  font-size: 0.85rem;
+  line-height: 1.6;
+  color: var(--rs-muted);
+}
+
+.rs-content__list {
+  padding-left: 1.15rem;
+  color: var(--rs-muted);
+  font-size: 0.85rem;
+  line-height: 1.8;
+  list-style: disc;
+}
+
+/* =============================================================
+   RESPONSIVE — DESKTOP (>= lg, matches image 1)
+============================================================= */
+@media (min-width: 992px) {
+  .rs-hero {
+    min-height: 460px;
+  }
+
+  .rs-service__popup {
+    right: 2rem;
+  }
+}
+
+/* =============================================================
+   RESPONSIVE — MOBILE (< lg, matches image 2)
+============================================================= */
+@media (max-width: 991.98px) {
+  .rs-hero {
+    min-height: 340px;
+    padding-block: 3rem 2rem;
+    text-align: left;
+  }
+
+  .rs-hero__title {
+    font-size: 1.9rem;
+  }
+
+  .rs-hero__cta {
+    flex-direction: column;
+    align-items: flex-start !important;
+  }
+
+  .rs-section-title {
+    font-size: 1.5rem;
+  }
+
+  .rs-content__title {
+    font-size: 1.25rem;
+  }
+
+  .rs-service__popup {
+    position: static;
+    width: 100%;
+    margin-top: 1rem;
+  }
+}
+
+::ng-deep {
+  .MainHeader {
+    display: none !important;
+  }
+}
+
+@media (min-width: 991.98px) {
+  .rs-help,
+  .rs-service {
+    display: none;
+  }
+}

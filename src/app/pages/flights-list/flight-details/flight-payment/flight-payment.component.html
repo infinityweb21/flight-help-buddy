@@ -1,0 +1,2144 @@
+
+<section class="timer-sec">
+  <div class="container">
+    <div class="flex-div">
+
+      <!-- <div class="backbtn">
+        <a href="flight-list.html"><i class="fa-solid fa-angle-left"></i> Back to all flights</a>
+      </div> -->
+      <div class="timer-box">
+        <!-- SVG Icon -->
+        <span class="timer-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+            class="icon icon-tabler icons-tabler-outline icon-tabler-stopwatch">
+            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+            <path d="M5 13a7 7 0 1 0 14 0a7 7 0 0 0 -14 0z" />
+            <path d="M14.5 10.5l-2.5 2.5" />
+            <path d="M17 8l1 -1" />
+            <path d="M14 3h-4" />
+          </svg>
+        </span>
+
+        <span class="text-sec-timer"> These deals may not last! </span>
+
+        <span id="dealTimer">
+          {{ minutes | number:'2.0-0' }}:{{ seconds | number:'2.0-0' }}
+        </span>
+      </div>
+    </div>
+  </div>
+</section>
+@if(isSkeleton){
+<app-flight-payment-skeleton></app-flight-payment-skeleton>
+}@if(iscommonSkeleton){
+
+<app-payment-loader></app-payment-loader>
+}@if(!isSkeleton&&!iscommonSkeleton) {
+<section class="common-section Booking-info-section">
+  <div class="container">
+    <div class="row directionrow">
+      <!-- LEFT FORM -->
+      <div class="col-lg-8">
+        <!-- STEP 1 -->
+        <div class="bk-step-content active">
+          <form [formGroup]="bookingForm" novalidate>
+            <div class="ct-card">
+              <div class="ct-head">
+                <span class="ct-sub"><svg fill="#a3a3a3" height="18px" width="18px" version="1.1" id="Capa_1"
+                    xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                    viewBox="0 0 472.609 472.609" xml:space="preserve" stroke="#a3a3a3">
+                    <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                    <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                    <g id="SVGRepo_iconCarrier">
+                      <g>
+                        <g>
+                          <path
+                            d="M143.279,122.125L96.516,350.484h329.326l46.768-228.359H143.279z M429.4,179.689l-146.154,75.225L166.77,178.973 c-6.494-4.232-8.309-12.913-4.084-19.395c4.219-6.49,12.904-8.318,19.396-4.087l102.824,67.041l131.674-67.77 c6.889-3.538,15.336-0.831,18.871,6.05C439.004,167.7,436.293,176.146,429.4,179.689z">
+                          </path>
+                          <polygon points="127.914,122.125 6.981,122.125 0,142.578 123.428,142.578 "></polygon>
+                          <polygon points="119.279,161.828 60.492,161.828 53.498,182.28 114.789,182.28 "></polygon>
+                        </g>
+                        <g>
+                          <polygon points="109.273,202.971 19.41,202.971 12.416,223.426 104.787,223.426 "></polygon>
+                        </g>
+                      </g>
+                    </g>
+                  </svg>
+                  For all bookings</span>
+                <h3>Booking Details Will Be Sent To</h3>
+                <p>This is where your confirmation will be sent</p>
+                <span class="ct-required">*Required field</span>
+              </div>
+
+              <div formGroupName="contactInfo">
+                <div class="row g-2">
+                  <div class="col-md-3">
+                    <div class="ct-field">
+                      <label for="name">Full Name *</label>
+                      <input type="text" id="name" placeholder="Enter name" formControlName="firstName"
+                        appValidate="name" [class.is-invalid]="
+                      (contactInfo.get('firstName')?.touched || submitted) && contactInfo.get('firstName')?.invalid
+                    " />
+                      <div
+                        *ngIf="(contactInfo.get('firstName')?.touched || submitted) && contactInfo.get('firstName')?.invalid"
+                        class="invalid-feedback">
+                        <div *ngIf="contactInfo.get('firstName')?.errors?.['required']">Please provide a valid name.
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-3">
+                    <div class="ct-field">
+                      <label for="email">Email *</label>
+                      <input type="text" id="email" class="c-payment-details-contact__input"
+                        placeholder="Enter email address" formControlName="email" appValidate="email"
+                        [class.is-invalid]="(contactInfo.get('email')?.touched || submitted) && contactInfo.get('email')?.invalid" />
+                      <div *ngIf="(contactInfo.get('email')?.touched || submitted) && contactInfo.get('email')?.invalid"
+                        class="invalid-feedback">
+                        <div *ngIf="contactInfo.get('email')?.errors?.['required']">Please provide a valid email
+                          address.
+                        </div>
+                        <div *ngIf="contactInfo.get('email')?.errors?.['email']">Please provide a valid email address.
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-2">
+                    <div class="ct-field ct-intl">
+                      <label for="code">Code *</label>
+                      <ngx-intl-tel-input [cssClass]="'c-payment-details-contact__input'"
+                        [preferredCountries]="preferredCountries" [enableAutoCountrySelect]="true"
+                        [enablePlaceholder]="false" [searchCountryFlag]="true"
+                        [searchCountryField]="[SearchCountryField.Iso2, SearchCountryField.Name]"
+                        [selectFirstCountry]="true" [selectedCountryISO]="selectedCountryISO" [separateDialCode]="true"
+                        [phoneValidation]="false" formControlName="phoneCode" name="phoneCode"
+                        (countryChange)="onCountryChange($event)" (click)="addActiveClass()">
+                      </ngx-intl-tel-input>
+
+                    </div>
+                  </div>
+
+                  <div class="col-md-4">
+                    <div class="ct-field ct-intl">
+                      <label for="phone">Mobile number *</label>
+                      <input type="tel" id="phone" inputmode="numeric" placeholder="Enter phone number"
+                        formControlName="phoneNumber" maxlength="15" appValidate="number" [class.is-invalid]="
+                        (contactInfo.get('phoneNumber')?.touched || submitted) && contactInfo.get('phoneNumber')?.invalid
+                      " />
+                      <div *ngIf="contactInfo.get('phoneNumber')?.touched && contactInfo.get('phoneNumber')?.invalid"
+                        class="text-danger">
+                        <div *ngIf="contactInfo.get('phoneNumber')?.errors?.['required']">
+                          Please provide a valid phone number.
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <p class="ct-note mb-0">
+                  Please make sure your contact information is correct.
+                  We'll use it to send your booking confirmation and
+                  reminders.
+                </p>
+              </div>
+            </div>
+            <div class="ct-card">
+              <div class="ct-head">
+                <span class="ct-sub"><svg width="18px" height="18px" viewBox="0 0 32 32"
+                    enable-background="new 0 0 32 32" id="_x3C_Layer_x3E_" version="1.1" xml:space="preserve"
+                    xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="#000000">
+                    <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                    <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                    <g id="SVGRepo_iconCarrier">
+                      <g id="Airplane_x2C__plane_x2C__flight_1_">
+                        <g id="XMLID_94_">
+                          <path d=" M17.542,8.382L2.958,4.902l-1.25,1.26c-0.18,0.17-0.14,0.45,0.07,0.58l11.083,6.465"
+                            fill="none" id="XMLID_95_" stroke="#263238" stroke-linecap="round" stroke-linejoin="round"
+                            stroke-miterlimit="10"></path>
+                          <path d=" M17.884,17.581l7.374,12.642c0.13,0.209,0.41,0.25,0.58,0.07l1.26-1.25l-3.903-16.359"
+                            fill="none" id="XMLID_96_" stroke="#263238" stroke-linecap="round" stroke-linejoin="round"
+                            stroke-miterlimit="10"></path>
+                          <path d=" M9.134,19.857l-6.336-0.715l-1.19,1.189c-0.18,0.18-0.13,0.48,0.09,0.6l3.787,1.975"
+                            fill="none" id="XMLID_97_" stroke="#263238" stroke-linecap="round" stroke-linejoin="round"
+                            stroke-miterlimit="10"></path>
+                          <path d=" M8.109,24.625l2.958,5.677c0.12,0.221,0.42,0.271,0.6,0.091l1.19-1.19l-0.715-6.333"
+                            fill="none" id="XMLID_98_" stroke="#263238" stroke-linecap="round" stroke-linejoin="round"
+                            stroke-miterlimit="10"></path>
+                          <path
+                            d=" M7.328,24.673l0.4-0.011c0.12-0.01,2.81-0.14,4.88-2.22c0.63-0.58,14.51-13.32,15.99-14.811c2.2-2.2,2.15-5.149,1.54-5.77 c-0.61-0.61-3.58-0.66-5.77,1.54c-1.5,1.5-14.23,15.359-14.82,16c-0.644,0.649-1.104,1.354-1.43,2.024"
+                            fill="none" id="XMLID_99_" stroke="#263238" stroke-linecap="round" stroke-linejoin="round"
+                            stroke-miterlimit="10"></path>
+                          <line fill="none" id="XMLID_1645_" stroke="#263238" stroke-linecap="round"
+                            stroke-linejoin="round" stroke-miterlimit="10" x1="10.5" x2="4" y1="21.5" y2="28">
+                          </line>
+                          <path d=" M27.498,3.502c0.552,0,1,0.448,1,1" fill="none" id="XMLID_100_" stroke="#263238"
+                            stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10"></path>
+                        </g>
+                      </g>
+                    </g>
+                  </svg>
+                  Flight(s)</span>
+                <h3>Who's Travelling (Adults)</h3>
+                <p>
+                  Passenger details must match your passport or photo ID
+                </p>
+                <span class="ct-required">*Required field</span>
+              </div>
+
+              <div formArrayName="travelers">
+                <ng-container *ngFor="let traveler of travelers.controls; let i = index" [formGroupName]="i">
+                  <!-- Traveler Header -->
+                  <div class="ct-head">
+                    <h3>
+                      Traveler-{{ i + 1 }}
+                      ({{
+                      traveler.get("PaxType")?.value === "ADT"
+                      ? "Adult"
+                      : traveler.get("PaxType")?.value === "CHD"
+                      ? "Child"
+                      : traveler.get("PaxType")?.value === "INF"
+                      ? "Infant"
+                      : ""
+                      }})
+                    </h3>
+                  </div>
+
+                  <div class="row g-2">
+
+                    <!-- Title -->
+                    <div class="col-md-2">
+                      <div class="ct-field">
+                        <label [for]="'title-' + i">Title *</label>
+
+                        <p-dropdown [id]="'title-' + i" [options]="titles" placeholder="Select"
+                          formControlName="UserTitle" optionLabel="label" optionValue="value" [styleClass]="'ct-select'"
+                          appendTo="body" (onShow)="onTitleDropdownShow()" (onHide)="onTitleDropdownHide()"
+                          [class.is-invalid]="
+            (getControl(traveler, 'UserTitle')?.touched || submitted) &&
+            getControl(traveler, 'UserTitle')?.invalid
+          "></p-dropdown>
+
+                        <div *ngIf="
+            (getControl(traveler, 'UserTitle')?.touched || submitted) &&
+            getControl(traveler, 'UserTitle')?.invalid
+          " class="invalid-feedback">
+                          Please provide valid title.
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- First Name -->
+                    <div class="col-md-4">
+                      <div class="ct-field">
+                        <label [for]="'firstName-' + i">
+                          First Name *
+                        </label>
+
+                        <input type="text" [id]="'firstName-' + i" class="ct-input" placeholder="Enter first name"
+                          formControlName="firstName" appValidate="name" [class.is-invalid]="
+            (getControl(traveler, 'firstName')?.touched || submitted) &&
+            getControl(traveler, 'firstName')?.invalid
+          " />
+
+                        <div *ngIf="
+            (getControl(traveler, 'firstName')?.touched || submitted) &&
+            getControl(traveler, 'firstName')?.invalid
+          " class="invalid-feedback">
+                          Please provide a valid first name.
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- Last Name -->
+                    <div class="col-md-4">
+                      <div class="ct-field">
+                        <label [for]="'lastName-' + i">
+                          Last Name *
+                        </label>
+
+                        <input type="text" [id]="'lastName-' + i" class="ct-input" placeholder="Enter last name"
+                          formControlName="lastName" appValidate="name" [class.is-invalid]="
+            (getControl(traveler, 'lastName')?.touched || submitted) &&
+            getControl(traveler, 'lastName')?.invalid
+          " />
+
+                        <div *ngIf="
+            (getControl(traveler, 'lastName')?.touched || submitted) &&
+            getControl(traveler, 'lastName')?.invalid
+          " class="invalid-feedback">
+                          Please provide a valid last name.
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- Gender -->
+                    <div class="col-md-2">
+                      <div class="ct-field">
+                        <label [for]="'gender-' + i">
+                          Gender *
+                        </label>
+
+                        <p-dropdown [id]="'gender-' + i" [options]="gender" placeholder="Select"
+                          formControlName="gender" optionLabel="label" optionValue="value" [styleClass]="'ct-select'"
+                          appendTo="body" [class.is-invalid]="
+            (getControl(traveler, 'gender')?.touched || submitted) &&
+            getControl(traveler, 'gender')?.invalid
+          "></p-dropdown>
+
+                        <div *ngIf="
+            (getControl(traveler, 'gender')?.touched || submitted) &&
+            getControl(traveler, 'gender')?.invalid
+          " class="invalid-feedback">
+                          Please provide a valid gender.
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- DOB -->
+                    <div class="dob-row">
+
+                      <label class="dob-label">
+                        Date of birth *
+                      </label>
+
+                      <div class="dob-fields">
+
+                        <!-- Day -->
+                        <div class="dob-field ct-field">
+                          <p-dropdown [id]="'day-' + i" [options]="daysList" optionLabel="label" optionValue="value"
+                            formControlName="day" placeholder="Day" (onChange)="onMonthOrYearChange(i)"
+                            [styleClass]="'ct-select'" appendTo="body" [class.is-invalid]="
+              (getControl(traveler, 'day')?.touched || submitted) &&
+              (
+                getControl(traveler, 'day')?.invalid ||
+                getControl(traveler, 'dateOfBirth')?.errors?.['ageRange'] ||
+                getControl(traveler, 'dateOfBirth')?.errors?.['infantTooOld'] ||
+                getControl(traveler, 'dateOfBirth')?.errors?.['infantFutureDate'] ||
+                getControl(traveler, 'dateOfBirth')?.errors?.['childTooOld'] ||
+                getControl(traveler, 'dateOfBirth')?.errors?.['childTooYoung']
+              )
+            "></p-dropdown>
+                        </div>
+
+                        <!-- Month -->
+                        <div class="dob-field ct-field dob-select">
+                          <p-dropdown [id]="'month-' + i" [options]="months" optionLabel="label" optionValue="value"
+                            formControlName="month" placeholder="Month" (onChange)="onMonthOrYearChange(i)"
+                            [styleClass]="'ct-select'" appendTo="body" [class.is-invalid]="
+              (getControl(traveler, 'month')?.touched || submitted) &&
+              (
+                getControl(traveler, 'month')?.invalid ||
+                getControl(traveler, 'dateOfBirth')?.errors?.['ageRange'] ||
+                getControl(traveler, 'dateOfBirth')?.errors?.['infantTooOld'] ||
+                getControl(traveler, 'dateOfBirth')?.errors?.['infantFutureDate'] ||
+                getControl(traveler, 'dateOfBirth')?.errors?.['childTooOld'] ||
+                getControl(traveler, 'dateOfBirth')?.errors?.['childTooYoung']
+              )
+            "></p-dropdown>
+                        </div>
+
+                        <!-- Year -->
+                        <div class="dob-field ct-field">
+                          <p-dropdown [id]="'year-' + i" [options]="years" optionLabel="label" optionValue="value"
+                            formControlName="year" placeholder="Year" (onChange)="onMonthOrYearChange(i)"
+                            [styleClass]="'ct-select'" appendTo="body" [class.is-invalid]="
+              (getControl(traveler, 'year')?.touched || submitted) &&
+              (
+                getControl(traveler, 'year')?.invalid ||
+                getControl(traveler, 'dateOfBirth')?.errors?.['ageRange'] ||
+                getControl(traveler, 'dateOfBirth')?.errors?.['infantTooOld'] ||
+                getControl(traveler, 'dateOfBirth')?.errors?.['infantFutureDate'] ||
+                getControl(traveler, 'dateOfBirth')?.errors?.['childTooOld'] ||
+                getControl(traveler, 'dateOfBirth')?.errors?.['childTooYoung']
+              )
+            "></p-dropdown>
+                        </div>
+
+                        <!-- Nationality -->
+                        <div class="dob-field ct-field dob-select dob-nationality">
+
+                          <p-dropdown [id]="'nationality-' + i" [options]="country" placeholder="Nationality *"
+                            formControlName="nationality" optionLabel="nationality" optionValue="code2" [filter]="true"
+                            [styleClass]="'ct-select'" appendTo="body" [class.is-invalid]="
+              (getControl(traveler, 'nationality')?.touched || submitted) &&
+              getControl(traveler, 'nationality')?.invalid
+            "></p-dropdown>
+
+                        </div>
+
+                      </div>
+
+
+
+                    </div>
+                    <!-- Passport Details -->
+                    @if (!isDomestic) {
+                    <div formGroupName="passportDetails" class="ct-passport-details">
+                      <div class="row g-2">
+
+                        <!-- Passport Number -->
+                        <div class="col-md-4">
+                          <div class="ct-field">
+                            <label [for]="'passportNumber-' + i">
+                              Passport Number
+                            </label>
+
+                            <input type="text" [id]="'passportNumber-' + i" class="ct-input"
+                              placeholder="Enter passport number" formControlName="passportNumber" maxlength="9" nospace
+                              appValidate="common" [class.is-invalid]="
+              (getPassportControl(traveler, 'passportNumber')?.touched || submitted) &&
+              getPassportControl(traveler, 'passportNumber')?.invalid
+            " />
+
+                            <div *ngIf="
+              (getPassportControl(traveler, 'passportNumber')?.touched || submitted) &&
+              getPassportControl(traveler, 'passportNumber')?.invalid
+            " class="invalid-feedback">
+                              Please provide a valid passport number.
+                            </div>
+                          </div>
+                        </div>
+
+                        <!-- Issuing Date -->
+                        <div class="col-md-4">
+                          <div class="ct-field">
+                            <label [for]="'issuingDate-' + i">
+                              Issuing Date
+                            </label>
+
+                            <input type="text" [id]="'issuingDate-' + i" class="ct-input" inputmode="numeric"
+                              formControlName="issuingDate" maxlength="10" placeholder="MM/DD/YYYY" appMMDDYYYY
+                              [class.is-invalid]="
+              (getPassportControl(traveler, 'issuingDate')?.touched || submitted) &&
+              getPassportControl(traveler, 'issuingDate')?.invalid
+            " />
+
+                            <div *ngIf="
+              (getPassportControl(traveler, 'issuingDate')?.touched || submitted) &&
+              getPassportControl(traveler, 'issuingDate')?.hasError('required')
+            " class="invalid-feedback">
+                              Please provide a valid issuing date.
+                            </div>
+
+                            <div *ngIf="
+              (getPassportControl(traveler, 'issuingDate')?.touched || submitted) &&
+              !getPassportControl(traveler, 'issuingDate')?.hasError('required') &&
+              getPassportControl(traveler, 'issuingDate')?.hasError('invalidDate')
+            " class="invalid-feedback">
+                              Please provide a valid issuing date (MM/DD/YYYY).
+                            </div>
+
+                            <div *ngIf="
+              (getPassportControl(traveler, 'issuingDate')?.touched || submitted) &&
+              getPassportControl(traveler, 'issuingDate')?.hasError('futureDate')
+            " class="invalid-feedback">
+                              Issuing date cannot be in the future.
+                            </div>
+                          </div>
+                        </div>
+
+                        <!-- Expiry Date -->
+                        <div class="col-md-4">
+                          <div class="ct-field">
+                            <label [for]="'expiryDate-' + i">
+                              Expiry Date
+                            </label>
+
+                            <input type="text" [id]="'expiryDate-' + i" class="ct-input" inputmode="numeric"
+                              formControlName="expiryDate" maxlength="10" placeholder="MM/DD/YYYY" appMMDDYYYY
+                              [class.is-invalid]="
+              (getPassportControl(traveler, 'expiryDate')?.touched || submitted) &&
+              (
+                getPassportControl(traveler, 'expiryDate')?.invalid ||
+                traveler.get('passportDetails')?.hasError('issuingAfterExpiry') ||
+                traveler.get('passportDetails')?.hasError('expiryBeforeMinimum')
+              )
+            " />
+
+                            <!-- Required -->
+                            <div *ngIf="
+              (getPassportControl(traveler, 'expiryDate')?.touched || submitted) &&
+              getPassportControl(traveler, 'expiryDate')?.hasError('required')
+            " class="invalid-feedback">
+                              Please provide a valid expiry date.
+                            </div>
+
+                            <!-- Invalid Date -->
+                            <div *ngIf="
+              (getPassportControl(traveler, 'expiryDate')?.touched || submitted) &&
+              !getPassportControl(traveler, 'expiryDate')?.hasError('required') &&
+              getPassportControl(traveler, 'expiryDate')?.hasError('invalidDate')
+            " class="invalid-feedback">
+                              Please provide a valid expiry date (MM/DD/YYYY).
+                            </div>
+
+                            <!-- Past Date -->
+                            <div *ngIf="
+              (getPassportControl(traveler, 'expiryDate')?.touched || submitted) &&
+              !getPassportControl(traveler, 'expiryDate')?.hasError('invalidDate') &&
+              getPassportControl(traveler, 'expiryDate')?.hasError('pastDate')
+            " class="invalid-feedback">
+                              Expiry date cannot be in the past.
+                            </div>
+
+                            <!-- Issuing After Expiry -->
+                            <div *ngIf="
+              (traveler.get('passportDetails')?.touched || submitted) &&
+              traveler.get('passportDetails')?.hasError('issuingAfterExpiry') &&
+              !getPassportControl(traveler, 'expiryDate')?.hasError('required') &&
+              !getPassportControl(traveler, 'expiryDate')?.hasError('pastDate')
+            " class="invalid-feedback">
+                              Expiry date must be later than issuing date.
+                            </div>
+
+                            <!-- Minimum Expiry -->
+                            <div *ngIf="
+              (traveler.get('passportDetails')?.touched || submitted) &&
+              traveler.get('passportDetails')?.hasError('expiryBeforeMinimum') &&
+              !getPassportControl(traveler, 'expiryDate')?.hasError('required') &&
+              !getPassportControl(traveler, 'expiryDate')?.hasError('invalidDate') &&
+              !getPassportControl(traveler, 'expiryDate')?.hasError('pastDate')
+            " class="invalid-feedback">
+                              Expiry date must be at least 10 years from the issuing date.
+                            </div>
+
+                          </div>
+                        </div>
+
+                      </div>
+                    </div>
+                    }
+
+                  </div>
+                </ng-container>
+
+
+
+                <p class="ct-note mb-0">
+                  Please provide accurate information.
+                </p>
+              </div>
+            </div>
+
+            <div class="rs-card">
+              <div class="ct-head">
+                <span class="ct-sub"><i class="fa-solid fa-shield-halved"></i>
+                  Refundable Shield</span>
+                <h3>Refundable Upgrade</h3>
+                <!-- <p>This is where your confirmation will be sent</p> -->
+                <p class="rs-card__price">$269.<sup>18</sup></p>
+              </div>
+
+              <hr class="rs-card__divider">
+
+              <p class="rs-card__desc">
+                Upgrade your booking and receive a 100% refund if you cannot attend for one of the many reasons in
+                our
+                <a href="/terms-and-conditions">Terms and Conditions</a>, which you accept when you select a Refundable
+                Booking.
+              </p>
+
+              <div class="rs-card__reasons">
+                <div class="rs-reason">
+                  <span class="rs-reason__icon rs-reason__icon--green"><i class="fa-solid fa-clock"></i></span>
+                  <span class="rs-reason__label">Last Minute Emergency</span>
+                </div>
+                <div class="rs-reason">
+                  <span class="rs-reason__icon rs-reason__icon--red"><i class="fa-solid fa-notes-medical"></i></span>
+                  <span class="rs-reason__label">Pre-existing Medical Conditions</span>
+                </div>
+
+                <div class="rs-reason">
+                  <span class="rs-reason__icon rs-reason__icon--amber"><i class="fa-solid fa-people-roof"></i></span>
+                  <span class="rs-reason__label">Family Emergency</span>
+                </div>
+                <div class="rs-reason">
+                  <span class="rs-reason__icon rs-reason__icon--blue"><i class="fa-solid fa-umbrella-beach"></i></span>
+                  <span class="rs-reason__label">Personal Emergency</span>
+                </div>
+
+                <div class="rs-reason">
+                  <span class="rs-reason__icon rs-reason__icon--amber"><i class="fa-solid fa-plane-slash"></i></span>
+                  <span class="rs-reason__label">Transport Failure</span>
+                </div>
+                <div class="rs-reason">
+                  <span class="rs-reason__icon rs-reason__icon--red"><i class="fa-solid fa-suitcase-medical"></i></span>
+                  <span class="rs-reason__label">Accident, Illness &amp; Injury</span>
+                </div>
+
+                <div class="rs-reason">
+                  <span class="rs-reason__icon rs-reason__icon--amber"><i
+                      class="fa-solid fa-house-chimney-crack"></i></span>
+                  <span class="rs-reason__label">Home Emergency</span>
+                </div>
+                <div class="rs-reason">
+                  <span class="rs-reason__icon rs-reason__icon--green"><i class="fa-solid fa-cloud-bolt"></i></span>
+                  <span class="rs-reason__label">Adverse Weather</span>
+                </div>
+
+                <div class="rs-reason">
+                  <span class="rs-reason__icon rs-reason__icon--blue"><i class="fa-solid fa-ellipsis"></i></span>
+                  <span class="rs-reason__label">Many More Reasons</span>
+                </div>
+              </div>
+
+              <div class="rs-options">
+                <div class="rs-opt">
+                  <input class="rs-opt__input" type="radio" name="rs-choice" id="rs-yes"
+                    [checked]="travelProtectionAdded" (change)="onTravelProtectionChange(true)">
+                  <label class="rs-opt__card" for="rs-yes">
+                    <span class="rs-opt__check"><i class="fa-solid fa-check"></i></span>
+                    <span>
+                      <span class="rs-opt__text">Yes, protect my booking</span>
+                    </span>
+                  </label>
+                </div>
+
+                <div class="rs-opt">
+                  <input class="rs-opt__input" type="radio" name="rs-choice" id="rs-no"
+                    [checked]="!travelProtectionAdded" (change)="onTravelProtectionChange(false)">
+                  <label class="rs-opt__card" for="rs-no">
+                    <span class="rs-opt__check"><i class="fa-solid fa-check"></i></span>
+                    <span>
+                      <span class="rs-opt__text">No, continue without</span>
+                    </span>
+                  </label>
+                </div>
+              </div>
+
+            </div>
+            @if (isSeatPreferenceOpen) {
+            <div class="sp-card">
+              <div class="ct-head">
+                <span class="ct-sub">
+                  <svg fill="#a3a3a3" width="25px" height="25px" viewBox="0 0 512 512"
+                    enable-background="new 0 0 512 512" id="seat_x5F_class" version="1.1" xml:space="preserve"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <g>
+                      <path
+                        d="M355.604,312.941c2.415,0,4.373-1.959,4.373-4.375v-17.08c0-2.416-1.958-4.375-4.373-4.375h-43.736l11.973,25.83H355.604z">
+                      </path>
+                      <path
+                        d="M138.159,461.049c0,4.919,3.988,8.906,8.907,8.906H357.85c4.92,0,8.907-3.987,8.907-8.906v-14.945H138.159V461.049z">
+                      </path>
+                      <path
+                        d="M147.34,121.659l-13.479-0.049l32.257,83.041l10.591-3.958c5.783-2.161,8.719-8.601,6.557-14.384l-20.021-53.571 C160.763,126.096,154.429,121.684,147.34,121.659z">
+                      </path>
+                      <path
+                        d="M374.184,366.359c-1.084-6.89-6.309-12.395-13.132-13.839l-26.825-5.675c-5.186-1.097-9.551-4.574-11.779-9.385 l-10.309-22.259l-1.049-2.261l-11.973-25.83l-4.778-10.308c-4.811-10.047-14.958-16.464-26.12-16.464h-80.542 c-7.519,0-14.263-4.628-16.968-11.644l-14.56-37.766l-33.67-86.679c-2.702-4.527-7.605-7.397-13.002-7.397l-33.275,3.856 c-7.531,0-12.891,7.32-10.617,14.5l46.017,141.405c3.121,9.85,4.708,20.12,4.708,30.453v105.4c0,12.073,9.787,21.859,21.86,21.859 h-0.011v0.209h228.598v-0.209h2.82c8.034,0,14.169-7.175,12.921-15.112L374.184,366.359z">
+                      </path>
+                      <path
+                        d="M412.709,62.423c-35.895-29.134-88.77-26.764-121.973,5.403c-33.387,32.343-36.835,82.997-11.472,119.151l-10.259,34.611 c-0.763,2.572,1.738,4.91,4.253,3.977l33.844-12.56c36.499,22.105,84.696,16.467,114.998-15.942 C458.366,158.275,454.667,96.479,412.709,62.423z M363.922,103.157l38.786,4.253c1.726-0.08,3.424,0.442,4.807,1.475l4.753,3.551 c1.281,0.958,0.85,2.977-0.711,3.328l-32.169,1.512c-2.468,0.116-4.884-0.74-6.729-2.383l-9.997-8.904 C361.48,104.935,362.348,102.984,363.922,103.157z M416.471,153.134l-11.579,7.558c-7.087,4.626-16.292,4.409-23.151-0.547 l-30.059-21.717l-0.357,44.326c-0.016,1.918-2.273,2.936-3.721,1.676l-5.367-4.671c-1.562-1.36-2.604-3.219-2.947-5.261 l-8.639-51.264l-30.149-21.783c-0.762-0.551-1.426-1.241-1.918-2.042c-0.038-0.063-0.076-0.125-0.112-0.187 c-2.501-4.193-0.453-9.5,4.217-10.923c2.594-0.791,5.205-1.121,7.7-1.156c7.842-0.112,15.417,2.865,21.394,7.942l61.346,52.111 l13.238-2.525c3.455-0.66,7.004,0.545,9.344,3.173l1.275,1.431C418.029,150.448,417.785,152.275,416.471,153.134z">
+                      </path>
+                    </g>
+                  </svg>
+                  Seat Preference
+                </span>
+                <h3>Seat Preference</h3>
+                <p>Optional — no extra charge to request</p>
+              </div>
+
+              <div class="sp-banner">
+                Share your preferred seating for the entire journey and we'll forward it to the airline.
+                <strong>Reference request only</strong> — final assignment sits with the airline and may carry a fee.
+              </div>
+
+              <!-- Direction Tabs -->
+              <ul class="nav sp-tabs" id="legTab" role="tablist">
+                @if ((getMainDetails?.Citypairs?.length ?? 0) >= 1) {
+                <li class="nav-item" role="presentation">
+                  <button class="nav-link" [class.active]="activeDirectionIndex === 0"
+                    (click)="selectDirection('depart')" type="button">
+                    {{ getMainDetails?.Citypairs?.[0]?.FlightSegment?.[0]?.DepartureLocationCode }} to
+                    {{ getMainDetails?.Citypairs?.[0]?.FlightSegment?.[getMainDetails.Citypairs[0].FlightSegment.length
+                    - 1]?.ArrivalLocationCode }}
+                  </button>
+                </li>
+                }
+
+                @if (getMainDetails?.Citypairs?.length === 2) {
+                <li class="nav-item" role="presentation">
+                  <button class="nav-link" [class.active]="activeDirectionIndex === 1"
+                    (click)="selectDirection('return')" type="button">
+                    {{ getMainDetails?.Citypairs?.[1]?.FlightSegment?.[0]?.DepartureLocationCode }} to
+                    {{ getMainDetails?.Citypairs?.[1]?.FlightSegment?.[getMainDetails.Citypairs[1].FlightSegment.length
+                    - 1]?.ArrivalLocationCode }}
+                  </button>
+                </li>
+                }
+              </ul>
+
+              <!-- Active Direction Content -->
+              @if (activeDirectionIndex !== -1) {
+              <div class="tab-content" id="legTabContent" [formGroup]="getSeatDirectionGroup(activeDirectionIndex)">
+                @for (t of travellersForActive; track $index; let ti = $index) {
+                <div class="o-traveler-block mb-4">
+                  <p class="sp-traveler">Traveler {{ ti + 1 }} <span>— {{ t.get('name')?.value }}</span></p>
+
+                  <div class="sp-seats">
+                    <!-- Window Option -->
+                    <div class="sp-seat">
+                      <input class="sp-seat__input" type="radio"
+                        [name]="'seat-dir-' + activeDirectionIndex + '-trav-' + ti"
+                        [id]="'dir-' + activeDirectionIndex + '-trav-' + ti + '-window'"
+                        [checked]="t.get('seatPreference')?.value === 'Window'"
+                        (click)="toggleSeatPreference(t, 'Window')" />
+                      <label class="sp-seat__card" [for]="'dir-' + activeDirectionIndex + '-trav-' + ti + '-window'">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="seat-glyph" viewBox="0 0 60 62" fill="none">
+                          <path
+                            d="M56.3959 2.39312C58.4329 4.07962 59.5911 6.53915 59.9545 9.1198C59.9673 9.43159 59.9738 9.74338 59.9751 10.0552C59.9764 10.1454 59.9764 10.2355 59.9776 10.3283C59.9789 10.6246 59.9802 10.921 59.9802 11.2186C59.9815 11.3719 59.9815 11.3719 59.9815 11.5278C59.9841 12.0702 59.9854 12.6113 59.9854 13.1525C59.9867 13.7077 59.9892 14.263 59.9931 14.817C59.9957 15.2474 59.9957 15.679 59.9957 16.1093C59.997 16.3129 59.9983 16.5177 59.9995 16.7213C60.0227 19.7799 59.1453 22.5667 57.0182 24.8278C54.8061 26.915 52.0927 27.8723 49.0908 27.8298C46.4676 27.7435 43.8432 26.486 42.0459 24.5805C40.3864 22.6505 39.3338 20.2863 39.3196 17.7198C39.3183 17.6296 39.3183 17.5394 39.317 17.4467C39.3158 17.1503 39.3145 16.854 39.3145 16.5564C39.3145 16.4546 39.3132 16.3528 39.3132 16.2472C39.3106 15.7047 39.3106 15.1636 39.3093 14.6225C39.3093 14.0672 39.3055 13.5119 39.3016 12.9579C39.299 12.5276 39.299 12.096 39.299 11.6657C39.2977 11.4621 39.2977 11.2572 39.2951 11.0537C39.272 8.05043 40.112 5.27267 42.194 3.03731C46.2421 -0.872945 51.9793 -0.920615 56.3959 2.39312ZM43.0598 5.19665C41.6812 7.06997 41.3398 9.0966 41.3463 11.3693C41.345 11.5703 41.345 11.7713 41.3437 11.971C41.3424 12.3897 41.3437 12.8072 41.345 13.2259C41.3463 13.7554 41.3437 14.2849 41.3398 14.8145C41.3372 15.228 41.3372 15.6416 41.3372 16.0565C41.3372 16.251 41.3372 16.4456 41.336 16.6414C41.3179 19.1563 41.9209 21.4059 43.6873 23.2779C45.299 24.909 47.3424 25.7297 49.6229 25.7967C51.9226 25.7735 53.9029 24.9116 55.561 23.3178C57.4344 21.3608 57.9562 19.0352 57.9484 16.4056C57.9497 16.2046 57.9497 16.0037 57.951 15.804C57.9523 15.3852 57.9523 14.9678 57.951 14.5491C57.9497 14.0195 57.9523 13.49 57.9562 12.9605C57.9575 12.5469 57.9575 12.1333 57.9575 11.7185C57.9575 11.5239 57.9575 11.3294 57.96 11.1335C57.9781 8.54904 57.3261 6.29436 55.4979 4.38497C53.7882 2.79123 51.7564 1.95893 49.4103 1.98084C46.8554 2.07489 44.6909 3.24861 43.0598 5.19665Z"
+                            fill="currentColor"></path>
+                          <path
+                            d="M7.9037 3.06493C9.77187 4.32497 10.2486 6.38253 10.7124 8.45039C10.7665 8.67973 10.8193 8.90906 10.8734 9.13839C10.983 9.61381 11.0925 10.0905 11.2007 10.5659C11.3385 11.1753 11.479 11.7835 11.6207 12.3916C11.756 12.9752 11.8913 13.5601 12.0253 14.1438C12.0639 14.3087 12.0639 14.3087 12.1026 14.4775C12.1747 14.7906 12.2456 15.1049 12.3164 15.418C12.3486 15.5546 12.3486 15.5546 12.3809 15.6937C12.5148 16.2915 12.6025 16.8855 12.6707 17.4949C12.8009 17.4949 12.8009 17.4949 12.9323 17.4936C15.0401 17.4859 17.1479 17.4794 19.2557 17.4743C20.2761 17.473 21.2952 17.4704 22.3143 17.4652C23.2033 17.4614 24.0923 17.4588 24.9813 17.4588C25.4516 17.4575 25.9218 17.4562 26.3921 17.4537C26.9177 17.4511 27.4434 17.4511 27.9704 17.4511C28.2023 17.4485 28.2023 17.4485 28.438 17.4472C29.7535 17.4511 30.837 17.6559 31.8626 18.514C32.6975 19.3682 33.151 20.4131 33.1961 21.6023C33.1677 22.7386 32.7387 23.7217 31.9966 24.581C30.8563 25.5666 29.6427 25.7998 28.1739 25.7844C28.0283 25.7844 27.8815 25.7844 27.732 25.7844C27.2527 25.7844 26.7734 25.7818 26.2955 25.7779C25.9618 25.7779 25.6281 25.7766 25.2944 25.7766C24.5085 25.7754 23.7238 25.7728 22.9379 25.7689C22.0425 25.7638 21.147 25.7625 20.2516 25.7599C18.4118 25.756 16.572 25.7496 14.7322 25.7406C14.7528 25.8269 14.7747 25.9132 14.7953 26.0034C15.013 26.9014 15.2308 27.8007 15.4472 28.6987C15.5284 29.035 15.6096 29.37 15.692 29.7062C15.808 30.1881 15.9239 30.6687 16.0412 31.1505C16.0953 31.3773 16.0953 31.3773 16.152 31.6079C16.1855 31.747 16.219 31.8862 16.2537 32.0305C16.2834 32.1529 16.313 32.2766 16.3439 32.4028C16.4071 32.6979 16.4071 32.6979 16.4071 32.9555C16.581 32.9555 16.581 32.9555 16.7575 32.9543C19.5752 32.9465 22.3929 32.9401 25.2093 32.9349C26.5725 32.9336 27.9356 32.9311 29.2974 32.9259C30.4853 32.922 31.6732 32.9195 32.8611 32.9195C33.4898 32.9182 34.1185 32.9169 34.7473 32.9143C35.3399 32.9117 35.9313 32.9117 36.524 32.9117C36.7404 32.9117 36.9582 32.9104 37.1746 32.9092C38.9964 32.8976 40.5399 33.1089 41.9468 34.3728C43.0174 35.4962 43.4851 36.7421 43.471 38.2779C43.4697 38.4402 43.4684 38.6013 43.4684 38.7675C43.4658 38.9517 43.4658 38.9517 43.4632 39.1398C43.5856 39.1385 43.5856 39.1385 43.7093 39.1359C44.9925 39.1785 46.2255 39.7119 47.1918 40.5648C48.22 41.714 48.6619 43.1544 48.6438 44.6644C48.5511 46.0366 47.9069 47.2554 46.9174 48.1985C46.2487 48.7589 45.3894 49.3181 44.4939 49.3181C44.4952 49.4662 44.4952 49.4662 44.4965 49.617C44.5042 50.5536 44.5107 51.4903 44.5146 52.4257C44.5158 52.9075 44.5184 53.3881 44.5236 53.87C44.5274 54.3351 44.53 54.8002 44.53 55.2653C44.5313 55.4418 44.5326 55.6183 44.5352 55.7961C44.5545 57.5303 44.2633 58.9771 43.0767 60.299C41.894 61.4264 40.612 61.8348 39.008 61.8335C38.8959 61.8335 38.7851 61.8348 38.6704 61.8348C38.2981 61.8361 37.9257 61.8361 37.5534 61.8361C37.2867 61.8373 37.0187 61.8373 36.752 61.8386C36.0266 61.8399 35.3013 61.8412 34.5746 61.8412C34.1211 61.8412 33.6676 61.8425 33.2141 61.8425C31.7943 61.8451 30.3758 61.8464 28.956 61.8464C27.3184 61.8464 25.6796 61.8489 24.0421 61.8528C22.7756 61.8554 21.5091 61.8567 20.2426 61.8567C19.4863 61.8567 18.73 61.858 17.975 61.8605C17.2626 61.8618 16.5514 61.8631 15.8402 61.8618C15.5786 61.8618 15.3184 61.8618 15.0581 61.8631C13.1075 61.8721 11.4597 61.7665 9.93549 60.3982C9.09804 59.5195 8.41262 58.36 8.42164 57.1128C8.42937 56.9982 8.4371 56.8822 8.44612 56.7637C8.77465 51.2726 8.03125 46.1435 6.85753 40.7825C6.82017 40.6176 6.78409 40.4527 6.74673 40.2826C6.40273 38.7159 6.05358 37.1518 5.70056 35.5877C5.06023 32.7507 4.4534 29.9085 3.86074 27.0612C3.83884 26.9542 3.81565 26.8473 3.79246 26.7365C3.56828 25.6581 3.3441 24.581 3.11992 23.5026C2.71794 21.5675 2.31339 19.6323 1.90754 17.6972C1.81349 17.2475 1.71944 16.7992 1.62539 16.3508C1.57256 16.097 1.51974 15.8432 1.46563 15.5906C1.39734 15.2621 1.32906 14.9349 1.26077 14.6076C1.09586 13.823 0.930946 13.0396 0.760879 12.2576C0.677133 11.8711 0.594676 11.4845 0.510931 11.098C0.470991 10.9138 0.431051 10.7296 0.391111 10.5466C-0.0959001 8.32155 -0.33554 6.50106 0.946406 4.48216C2.43836 2.50319 5.73277 1.77783 7.9037 3.06493ZM2.7669 5.51029C2.20903 6.26529 1.9346 7.11305 2.00289 8.05744C2.07117 8.47487 2.1562 8.88458 2.24639 9.29815C2.28247 9.46822 2.31725 9.63829 2.35204 9.80835C2.43449 10.2065 2.51824 10.6046 2.60199 11.0014C2.76819 11.7822 2.92924 12.5629 3.09028 13.3437C3.45361 15.0959 3.81951 16.8481 4.1867 18.6003C4.38254 19.5331 4.57837 20.4659 4.77292 21.3987C5.27797 23.8144 5.78431 26.2289 6.29064 28.6433C6.38083 29.0723 6.47102 29.5027 6.5612 29.9317C6.85882 31.3528 7.15644 32.7739 7.45535 34.195C7.47596 34.2929 7.49657 34.3921 7.51719 34.4939C8.41906 38.7919 9.32093 43.0887 10.2228 47.3855C14.5196 47.3971 18.8164 47.4061 23.1131 47.4113C23.6208 47.4126 24.1284 47.4126 24.636 47.4138C24.7378 47.4138 24.8383 47.4138 24.9426 47.4138C26.5776 47.4164 28.2126 47.4203 29.8475 47.4254C31.5263 47.4306 33.2038 47.4332 34.8826 47.4345C35.9171 47.4345 36.953 47.437 37.9876 47.4409C38.7825 47.4448 39.5762 47.4448 40.3711 47.4435C40.6958 47.4435 41.0217 47.4448 41.3477 47.4473C41.7922 47.4499 42.2367 47.4486 42.6812 47.4473C42.81 47.4486 42.9389 47.4499 43.0703 47.4525C44.0482 47.4435 44.8379 47.2296 45.5968 46.5931C46.308 45.7505 46.6314 45.1076 46.603 43.9906C46.4626 42.9908 45.9086 42.277 45.1587 41.6367C44.4592 41.1909 43.7776 41.1639 42.9762 41.1677C42.8641 41.1677 42.7507 41.1664 42.6361 41.1664C42.2599 41.1652 41.885 41.1652 41.5087 41.1664C41.2395 41.1652 40.9689 41.1652 40.6996 41.1639C40.1199 41.1626 39.5388 41.1626 38.959 41.1626C38.0417 41.1613 37.1256 41.16 36.2083 41.1561C33.9304 41.151 31.6539 41.1458 29.376 41.1433C27.6057 41.142 25.8355 41.1381 24.0653 41.1329C23.1531 41.1304 22.2409 41.1291 21.3287 41.1291C20.7618 41.1291 20.1949 41.1278 19.6293 41.1252C19.3652 41.1239 19.1024 41.1239 18.8395 41.1252C18.4801 41.1252 18.1219 41.1239 17.7637 41.1226C17.6581 41.1226 17.5537 41.1239 17.4455 41.1239C17.0268 41.1201 16.7189 41.102 16.3478 40.901C16.0412 40.5686 15.9896 40.2285 15.8878 39.7917C15.8672 39.7015 15.8453 39.6114 15.8234 39.5173C15.7513 39.2158 15.683 38.9131 15.6134 38.6103C15.5632 38.3964 15.5129 38.1825 15.4627 37.9687C15.33 37.4005 15.1986 36.8323 15.0684 36.2641C14.9667 35.8145 14.8623 35.3661 14.7579 34.9178C14.3701 33.2493 13.9888 31.5808 13.6074 29.9111C13.4798 29.3506 13.351 28.7902 13.2222 28.2297C13.1513 27.9179 13.0805 27.6062 13.0096 27.2944C12.9658 27.1063 12.9233 26.9182 12.8795 26.7313C12.8241 26.4853 12.8241 26.4853 12.7661 26.234C12.7081 25.8849 12.7081 25.8849 12.5419 25.7406C12.2662 25.7238 11.9892 25.7109 11.7122 25.7006C10.447 25.6156 9.32995 25.2407 8.41906 24.3233C7.66535 23.272 7.37547 22.1279 7.51719 20.8447C7.63701 20.3834 7.81094 19.9776 8.03254 19.5563C8.08021 19.4648 8.1266 19.3734 8.17555 19.278C8.736 18.38 9.67395 18.0334 10.6093 17.6237C10.4083 16.4217 10.1391 15.2376 9.86592 14.051C9.84273 13.9505 9.81954 13.85 9.79506 13.7457C9.67137 13.2123 9.54898 12.6789 9.42529 12.1455C9.29774 11.5979 9.17277 11.0504 9.0465 10.5015C8.94988 10.0776 8.85067 9.65246 8.75275 9.22729C8.70637 9.0263 8.65999 8.82403 8.61361 8.62175C8.20905 6.59898 8.20905 6.59898 7.00183 4.99751C5.67608 4.21417 3.84013 4.37264 2.7669 5.51029ZM9.86077 20.3293C9.4356 20.9117 9.37762 21.427 9.44977 22.1331C9.68941 22.8121 10.0424 23.1367 10.6093 23.5503C11.019 23.6869 11.3102 23.6959 11.7418 23.6972C11.8964 23.6985 12.0523 23.6985 12.2134 23.6998C12.3847 23.6998 12.5574 23.6998 12.73 23.6998C12.9117 23.701 13.0933 23.701 13.275 23.7023C13.7684 23.7036 14.2619 23.7049 14.7554 23.7049C15.0646 23.7049 15.3725 23.7062 15.6817 23.7062C16.6467 23.7088 17.6117 23.7101 18.5767 23.7101C19.6899 23.7101 20.8031 23.7126 21.9175 23.7165C22.7782 23.7191 23.6388 23.7204 24.5007 23.7204C25.0148 23.7204 25.5289 23.7217 26.0429 23.7242C26.5261 23.7255 27.0105 23.7268 27.4937 23.7255C27.6714 23.7255 27.8492 23.7255 28.0258 23.7268C28.2693 23.7281 28.5115 23.7281 28.7537 23.7268C28.9573 23.7268 28.9573 23.7268 29.1647 23.7268C29.7818 23.6495 30.2985 23.4009 30.6837 22.9061C31.1089 22.3238 31.1668 21.8084 31.0947 21.1024C30.8551 20.4234 30.502 20.0987 29.9351 19.6851C29.5254 19.5486 29.2343 19.5396 28.8027 19.5383C28.648 19.537 28.4922 19.537 28.3311 19.5357C28.1597 19.5357 27.9871 19.5357 27.8145 19.5357C27.6328 19.5344 27.4511 19.5344 27.2695 19.5331C26.776 19.5318 26.2826 19.5305 25.7891 19.5305C25.4799 19.5305 25.172 19.5292 24.8628 19.5292C23.8978 19.5267 22.9328 19.5254 21.9678 19.5254C20.8546 19.5254 19.7414 19.5228 18.627 19.5189C17.7663 19.5164 16.9057 19.5151 16.0437 19.5151C15.5297 19.5151 15.0156 19.5138 14.5015 19.5112C14.0184 19.5099 13.534 19.5086 13.0508 19.5099C12.873 19.5099 12.6952 19.5099 12.5187 19.5086C12.2752 19.5073 12.033 19.5073 11.7908 19.5086C11.5872 19.5086 11.5872 19.5086 11.3798 19.5086C10.7626 19.5859 10.246 19.8346 9.86077 20.3293ZM16.9224 35.017C16.9417 35.2025 16.9624 35.3867 16.983 35.5723C16.9984 35.7269 16.9984 35.7269 17.0165 35.8853C17.0577 36.2306 17.1234 36.5656 17.2007 36.9057C17.2278 37.0294 17.2561 37.1518 17.2857 37.2794C17.3141 37.4044 17.3437 37.5293 17.3734 37.6582C17.403 37.787 17.4313 37.9158 17.461 38.0485C17.5512 38.6386 17.5512 38.6386 17.8243 39.1398C18.1296 39.1527 18.4298 39.1566 18.7352 39.1553C18.8318 39.1553 18.9272 39.1553 19.0264 39.1553C19.3523 39.1553 19.6783 39.1553 20.003 39.154C20.2362 39.154 20.4681 39.154 20.7 39.154C21.3326 39.154 21.9652 39.154 22.5978 39.1527C23.2587 39.1527 23.9197 39.1514 24.5793 39.1514C25.8316 39.1514 27.0827 39.1501 28.335 39.1488C29.7586 39.1475 31.1836 39.1475 32.6086 39.1462C35.5396 39.145 38.4707 39.1424 41.4018 39.1398C41.407 38.8731 41.4108 38.6077 41.4134 38.341C41.416 38.1928 41.4173 38.0447 41.4198 37.8914C41.3799 36.947 40.9998 36.3711 40.3221 35.7333C39.6174 35.1162 38.9487 34.9848 38.0249 34.986C37.9335 34.986 37.8433 34.986 37.7505 34.9848C37.4477 34.9848 37.1463 34.986 36.8435 34.9873C36.627 34.9873 36.4093 34.9873 36.1916 34.9873C35.6041 34.9873 35.0153 34.9886 34.4265 34.9912C33.8119 34.9925 33.1961 34.9925 32.5802 34.9925C31.4155 34.9938 30.2508 34.9964 29.0861 34.9989C27.7591 35.0015 26.4333 35.0028 25.1063 35.0041C22.3787 35.0067 19.6499 35.0118 16.9224 35.017ZM10.4805 49.4469C9.86334 53.9589 9.86334 53.9589 11.2728 58.7955C11.3669 58.8753 11.4622 58.9552 11.5602 59.0377C11.6529 59.1201 11.747 59.2013 11.8449 59.2863C12.5445 59.7592 13.226 59.7914 14.0403 59.7888C14.1511 59.7888 14.2619 59.7901 14.3753 59.7901C14.7438 59.7914 15.1122 59.7914 15.482 59.7914C15.7461 59.7927 16.0115 59.7927 16.2757 59.794C16.9946 59.7965 17.7135 59.7965 18.4324 59.7965C18.8808 59.7978 19.3304 59.7978 19.7801 59.7991C21.3468 59.8004 22.9147 59.8017 24.4827 59.8017C25.9437 59.8017 27.4035 59.8043 28.8645 59.8081C30.1181 59.812 31.373 59.8133 32.6279 59.8133C33.3764 59.8133 34.1263 59.8133 34.8748 59.8159C35.5796 59.8184 36.2843 59.8184 36.9891 59.8172C37.2468 59.8172 37.5057 59.8172 37.7634 59.8184C38.1164 59.821 38.4694 59.8197 38.8237 59.8172C38.9242 59.8184 39.026 59.821 39.1304 59.8223C40.0232 59.8107 40.7872 59.5389 41.474 58.9617C41.5538 58.8676 41.6337 58.7723 41.7162 58.6744C41.8386 58.5339 41.8386 58.5339 41.9648 58.3896C43.6346 55.9159 42.4325 52.4321 42.4325 49.4469C31.8883 49.4469 21.3442 49.4469 10.4805 49.4469Z"
+                            fill="currentColor"></path>
+                          <path
+                            d="M53.8181 5.62815C55.0395 6.73745 55.7597 8.29769 55.8577 9.94167C55.8705 10.4635 55.8744 10.984 55.8744 11.5058C55.8757 11.699 55.877 11.8936 55.8783 12.0868C55.8796 12.4914 55.8796 12.8959 55.8796 13.3005C55.8796 13.8146 55.8834 14.3286 55.8873 14.8414C55.8899 15.2421 55.8912 15.6415 55.8912 16.0409C55.8912 16.2303 55.8924 16.4197 55.8937 16.6091C55.9143 18.6731 55.4351 20.415 54.0281 21.9636C52.6998 23.2314 51.0159 23.7506 49.2173 23.7197C47.5282 23.5754 46.0556 22.7946 44.8948 21.5784C43.6515 19.9924 43.4221 18.3291 43.4196 16.3823C43.4196 16.1852 43.4183 15.9894 43.417 15.7922C43.4157 15.3812 43.4157 14.969 43.4157 14.558C43.4157 14.0349 43.4118 13.5131 43.408 12.99C43.4041 12.5842 43.4041 12.177 43.4041 11.7712C43.4041 11.5792 43.4028 11.386 43.4002 11.194C43.3809 9.1171 43.8499 7.36876 45.2671 5.8111C47.6944 3.49458 51.2581 3.58219 53.8181 5.62815ZM46.3532 7.65994C45.4526 8.79758 45.4668 10.1903 45.4732 11.5766C45.4732 11.7622 45.4732 11.9477 45.472 12.1332C45.472 12.521 45.472 12.9075 45.4745 13.2953C45.4758 13.7875 45.4758 14.281 45.4732 14.7744C45.472 15.1571 45.472 15.5397 45.4732 15.9224C45.4732 16.104 45.4732 16.2857 45.472 16.4674C45.4668 17.9374 45.5763 19.1691 46.5439 20.3235C47.3981 21.1584 48.4417 21.6119 49.6309 21.6583C50.7685 21.6286 51.7516 21.2009 52.6109 20.4588C53.7138 19.182 53.8297 17.8395 53.822 16.2071C53.822 16.0203 53.822 15.8335 53.8233 15.6479C53.8233 15.2589 53.822 14.871 53.8207 14.482C53.8181 13.9872 53.8194 13.4925 53.822 12.9964C53.8233 12.6125 53.8233 12.2286 53.822 11.8446C53.822 11.663 53.822 11.48 53.8233 11.2971C53.8284 9.73553 53.6262 8.53991 52.6109 7.31722C51.7863 6.50296 50.7969 6.15252 49.6476 6.10872C48.2858 6.16154 47.2847 6.67174 46.3532 7.65994Z"
+                            fill="currentColor"></path>
+                        </svg>
+                        <span class="sp-seat__label">Window</span>
+                      </label>
+                    </div>
+
+                    <!-- Middle Option -->
+                    <div class="sp-seat">
+                      <input class="sp-seat__input" type="radio"
+                        [name]="'seat-dir-' + activeDirectionIndex + '-trav-' + ti"
+                        [id]="'dir-' + activeDirectionIndex + '-trav-' + ti + '-middle'"
+                        [checked]="t.get('seatPreference')?.value === 'Middle'"
+                        (click)="toggleSeatPreference(t, 'Middle')" />
+                      <label class="sp-seat__card" [for]="'dir-' + activeDirectionIndex + '-trav-' + ti + '-middle'">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="seat-glyph" viewBox="0 0 60 60" fill="none">
+                          <g clip-path="url(#clip0_1853_1071)">
+                            <mask id="mask0_1853_1071" maskUnits="userSpaceOnUse" x="0" y="0" width="60" height="60"
+                              style="mask-type: luminance;">
+                              <path d="M60 0H0V60H60V0Z" fill="white"></path>
+                            </mask>
+                            <g mask="url(#mask0_1853_1071)">
+                              <mask id="mask1_1853_1071" maskUnits="userSpaceOnUse" x="0" y="0" width="60" height="60"
+                                style="mask-type: alpha;">
+                                <path d="M59.4444 0.555664H0.555542V59.4446H59.4444V0.555664Z" fill="#D9D9D9"
+                                  stroke="currentColor"></path>
+                              </mask>
+                              <g mask="url(#mask1_1853_1071)">
+                                <path
+                                  d="M55.1768 0.922362C55.2652 0.922362 55.3522 0.921169 55.4428 0.921169C55.7363 0.919977 56.0308 0.919977 56.3254 0.919977C56.5353 0.918784 56.7464 0.918784 56.9575 0.917592C57.5299 0.916399 58.1036 0.915207 58.6762 0.915207C59.0339 0.915207 59.3929 0.914014 59.7507 0.914014C60.8718 0.912822 61.9928 0.911629 63.1139 0.910437C64.4079 0.910437 65.7008 0.908052 66.9936 0.904475C67.9943 0.902089 68.9949 0.900897 69.9944 0.900897C70.5918 0.900897 71.1882 0.899705 71.7857 0.897319C72.3475 0.896127 72.9104 0.894935 73.4722 0.896127C73.6773 0.896127 73.8836 0.896127 74.0887 0.894935C75.7847 0.885395 76.9964 1.03684 78.2689 2.22454C79.3543 3.34903 79.4318 4.65716 79.4163 6.13941C79.4127 6.42441 79.4163 6.70821 79.4187 6.99321C79.421 8.293 79.3102 9.46877 78.4287 10.5015C78.319 10.6326 78.319 10.6326 78.2082 10.7674C78.1533 10.8294 78.0984 10.8914 78.0412 10.9558C78.1104 11.0404 78.1104 11.0404 78.1819 11.1263C78.9572 12.1113 79.3686 13.0343 79.3686 14.2912C79.3686 14.4175 79.3686 14.4175 79.3686 14.5451C79.3686 14.8254 79.3674 15.1056 79.3674 15.3858C79.3674 15.5873 79.3674 15.7876 79.3674 15.9892C79.3674 16.5342 79.3662 17.0803 79.3662 17.6264C79.3651 18.1964 79.365 18.7664 79.365 19.3364C79.365 20.4168 79.3638 21.4959 79.3626 22.5764C79.3614 23.8058 79.3603 25.0353 79.3603 26.2647C79.3578 28.7939 79.3566 31.3219 79.3531 33.8512C79.4639 33.8869 79.5749 33.9215 79.6894 33.9585C80.5147 34.2435 81.1349 34.8027 81.6192 35.5206C81.9578 36.2731 82.0306 36.8932 82.0269 37.7135C82.0282 37.8339 82.0294 37.9544 82.0306 38.0785C82.0329 38.4732 82.0329 38.8691 82.0329 39.2649C82.0342 39.5416 82.0354 39.8183 82.0365 40.0949C82.0377 40.6733 82.0377 41.2516 82.0377 41.8312C82.0365 42.5705 82.0402 43.3098 82.0448 44.0492C82.0485 44.6203 82.0485 45.1915 82.0485 45.7615C82.0485 46.0346 82.0496 46.3076 82.0521 46.5795C82.0544 46.9623 82.0533 47.3439 82.0508 47.7255C82.0521 47.8376 82.0544 47.9485 82.0556 48.0629C82.0437 48.9621 81.7837 49.7396 81.1755 50.4169C80.17 51.3781 78.9809 51.3065 77.6834 51.2838C77.5104 51.2814 77.3363 51.2803 77.1622 51.2791C76.7399 51.2743 76.3178 51.2683 75.8944 51.2612C75.9516 51.3781 76.0089 51.4949 76.0685 51.6154C76.2808 52.0482 76.4919 52.4823 76.7042 52.9163C76.7948 53.1035 76.8867 53.2919 76.9785 53.4792C77.1109 53.7486 77.2421 54.0194 77.3745 54.2888C77.4151 54.3723 77.4567 54.4558 77.4985 54.5428C77.9446 55.4611 78.1139 56.4078 77.8372 57.4155C77.4532 58.3385 76.7842 58.9323 75.8944 59.3699C75.4126 59.4916 74.9569 59.5047 74.4608 59.5071C74.3368 59.5071 74.3368 59.5071 74.2092 59.5083C73.9325 59.5095 73.6546 59.5095 73.3779 59.5106C73.1787 59.5106 72.9796 59.5118 72.7804 59.5131C72.1268 59.5154 71.4744 59.5166 70.8208 59.5178C70.5955 59.5178 70.3713 59.5191 70.1458 59.5191C69.0867 59.5214 68.0288 59.5226 66.9709 59.5237C65.7509 59.5249 64.5308 59.5285 63.3107 59.5333C62.3674 59.5369 61.4228 59.5381 60.4794 59.5393C59.9153 59.5393 59.3524 59.5405 58.7894 59.5428C58.2587 59.5464 57.7292 59.5464 57.1984 59.5453C57.004 59.5453 56.8108 59.5464 56.6164 59.5476C55.3689 59.5572 54.3897 59.4475 53.3164 58.7594C52.683 58.0809 52.3049 57.2784 52.2704 56.3435C52.3097 55.1665 52.9848 54.0683 53.4953 53.0356C53.5739 52.8734 53.6527 52.7124 53.7314 52.5514C53.9234 52.1603 54.1154 51.7704 54.3074 51.3804C54.206 51.3793 54.1035 51.3781 53.9985 51.3768C53.6133 51.3721 53.2293 51.3649 52.8453 51.3554C52.6795 51.3518 52.5137 51.3494 52.3492 51.3482C51.1326 51.3351 50.0246 51.2552 49.0753 50.4193C47.9936 49.1588 48.1569 47.5549 48.1665 45.9953C48.1665 45.7376 48.1665 45.4813 48.1653 45.2237C48.1653 44.6859 48.1677 44.1493 48.17 43.6115C48.1736 42.9246 48.1725 42.2389 48.1713 41.5521C48.17 41.0215 48.1713 40.4908 48.1725 39.9602C48.1736 39.7074 48.1736 39.4546 48.1736 39.2017C48.1725 38.8476 48.1748 38.4934 48.1773 38.1393C48.1773 38.0355 48.176 37.9329 48.176 37.8268C48.1892 36.6629 48.4849 35.6577 49.2983 34.8052C49.8004 34.3544 50.182 34.0908 50.8487 33.9704C50.8487 33.8691 50.8487 33.7677 50.8487 33.6627C50.8428 31.1919 50.8392 28.7199 50.8368 26.2492C50.8356 25.0543 50.8345 23.8583 50.8308 22.6634C50.8285 21.6212 50.8273 20.5789 50.8273 19.5367C50.826 18.9858 50.826 18.4349 50.8237 17.8828C50.8225 17.3629 50.8225 16.8429 50.8225 16.3231C50.8225 16.1335 50.8213 15.9438 50.8213 15.7531C50.8082 13.0486 50.8082 13.0486 51.4307 12.1042C51.4939 12.0075 51.5559 11.9109 51.6204 11.8108C51.8292 11.5151 52.0438 11.2288 52.2799 10.9558C52.2263 10.9009 52.1714 10.8461 52.1142 10.7888C50.9048 9.50216 50.8285 8.1356 50.8273 6.44706C50.826 6.31232 50.8237 6.17875 50.8225 6.04043C50.8202 4.65002 50.9656 3.29895 51.9245 2.21857C52.8846 1.31468 53.8697 0.924746 55.1768 0.922362ZM53.3008 3.62807C52.7534 4.40079 52.8417 5.26891 52.8345 6.1728C52.8333 6.35405 52.8297 6.5365 52.8249 6.71775C52.7475 8.04377 52.7475 8.04377 53.2817 9.20643C53.8984 9.8456 54.4589 10.0531 55.3498 10.0781C55.7303 10.0841 56.1095 10.0829 56.4888 10.0805C56.6987 10.0817 56.9086 10.0829 57.1185 10.0841C57.6874 10.0877 58.255 10.0877 58.824 10.0865C59.2987 10.0853 59.7734 10.0865 60.2492 10.0865C61.3703 10.0889 62.4914 10.0889 63.6125 10.0865C64.7669 10.0829 65.9226 10.0853 67.0772 10.0901C68.0706 10.0936 69.064 10.0948 70.0576 10.0936C70.6503 10.0924 71.2418 10.0924 71.8346 10.096C72.3927 10.0984 72.9497 10.0972 73.5067 10.0936C73.7106 10.0924 73.9146 10.0936 74.1185 10.0948C75.5331 10.1127 75.533 10.1127 76.7769 9.48546C77.5856 8.6424 77.5152 7.57872 77.4973 6.47687C77.4985 6.32424 77.4997 6.1728 77.4997 6.01539C77.4937 5.10554 77.4854 4.29943 76.895 3.5601C76.8283 3.50644 76.7615 3.45277 76.6923 3.39912C76.6267 3.34307 76.5611 3.28822 76.4931 3.23217C75.9063 2.87443 75.3422 2.8172 74.6672 2.81481C74.5813 2.81362 74.4966 2.81362 74.4095 2.81242C74.1257 2.81123 73.8418 2.81004 73.5592 2.81004C73.3553 2.81004 73.1513 2.80884 72.9474 2.80765C72.3952 2.80526 71.8417 2.80407 71.2896 2.80288C70.9437 2.80288 70.5978 2.80168 70.2519 2.80168C69.045 2.79811 67.838 2.79692 66.631 2.79573C65.5076 2.79573 64.3853 2.79215 63.2618 2.78739C62.2958 2.78261 61.3297 2.78142 60.3637 2.78142C59.7876 2.78142 59.2116 2.78023 58.6356 2.77665C58.0929 2.77307 57.5503 2.77307 57.0088 2.77545C56.8096 2.77545 56.6116 2.77426 56.4136 2.77307C54.7094 2.7528 54.7094 2.7528 53.3008 3.62807ZM53.2496 12.8708C52.8691 13.3979 52.8619 13.7605 52.8619 14.3961C52.8619 14.4795 52.8619 14.5629 52.8619 14.6501C52.8619 14.9303 52.8632 15.2105 52.8632 15.4919C52.8632 15.6923 52.8632 15.8938 52.8632 16.0942C52.8632 16.6403 52.8644 17.1864 52.8644 17.7326C52.8655 18.3037 52.8655 18.8737 52.8655 19.4449C52.8655 20.5253 52.8667 21.6057 52.8679 22.6873C52.869 23.9167 52.8703 25.1474 52.8703 26.3779C52.8715 28.9084 52.8738 31.4399 52.8763 33.9704C52.9979 34.0276 52.9979 34.0276 53.1219 34.0861C53.228 34.1374 53.3343 34.1886 53.4439 34.2411C53.5501 34.2924 53.655 34.3425 53.7636 34.3937C54.7535 34.9518 54.9932 35.7663 55.3808 36.8323C55.4202 39.1934 55.4595 41.5545 55.5 43.9872C61.8759 43.9872 68.2519 43.9872 74.821 43.9872C74.8806 40.3274 74.8806 40.3274 74.9403 36.5938C75.4757 35.2558 75.8288 34.6812 77.0871 34.0896C77.2052 34.0503 77.3232 34.0109 77.4448 33.9704C77.4532 31.3577 77.4604 28.7438 77.4639 26.1312C77.4663 24.9172 77.4687 23.7045 77.4723 22.4905C77.4758 21.4328 77.4783 20.3751 77.4794 19.3185C77.4794 18.7581 77.4806 18.1976 77.4831 17.6384C77.4854 17.1113 77.4866 16.5843 77.4854 16.0559C77.4854 15.8628 77.4866 15.6696 77.4877 15.4764C77.4902 15.2117 77.4889 14.9482 77.4889 14.6834C77.4889 14.5356 77.4889 14.3877 77.4889 14.2351C77.4067 13.4468 77.0989 12.9078 76.4907 12.3867C75.9922 12.0206 75.6284 11.9837 75.0142 11.9825C74.9259 11.9825 74.8389 11.9813 74.7483 11.9813C74.456 11.9789 74.1627 11.9802 73.8693 11.9813C73.6594 11.9802 73.4495 11.9789 73.2396 11.9789C72.6683 11.9765 72.0982 11.9765 71.5269 11.9765C71.051 11.9777 70.5739 11.9765 70.0969 11.9765C68.9723 11.9742 67.8488 11.9742 66.7242 11.9754C65.5637 11.9777 64.4044 11.9754 63.2452 11.9729C62.2493 11.9694 61.2534 11.9694 60.2576 11.9694C59.6624 11.9706 59.0673 11.9694 58.4734 11.9682C57.914 11.9658 57.3546 11.9658 56.7953 11.9682C56.5902 11.9694 56.385 11.9682 56.1799 11.9669C55.8996 11.9658 55.6194 11.9669 55.339 11.9694C55.1816 11.9694 55.0254 11.9694 54.8632 11.9694C54.2156 12.0576 53.6586 12.3426 53.2496 12.8708ZM50.8487 35.9976C50.256 36.6379 50.2345 37.0875 50.2322 37.9354C50.2309 38.0498 50.2297 38.1643 50.2297 38.2824C50.2274 38.6616 50.2262 39.0419 50.225 39.4212C50.2238 39.5512 50.2238 39.6799 50.2226 39.8135C50.2203 40.4979 50.219 41.1836 50.2178 41.8681C50.2166 42.5764 50.2118 43.2847 50.2072 43.9931C50.2047 44.5368 50.2035 45.0806 50.2035 45.6244C50.2024 45.8855 50.2012 46.1467 50.1987 46.4078C50.1964 46.7739 50.1964 47.1388 50.1964 47.5037C50.1952 47.6123 50.1939 47.7207 50.1928 47.8316C50.1928 48.4291 50.1928 48.4291 50.4803 48.9394C50.9918 49.2984 51.4546 49.2518 52.0605 49.2518C52.2334 49.2518 52.2334 49.2518 52.4087 49.2531C52.7952 49.2543 53.1816 49.2543 53.5679 49.2554C53.8447 49.2554 54.1202 49.2566 54.3969 49.2578C55.1483 49.2591 55.9008 49.2614 56.6534 49.2614C57.122 49.2626 57.5919 49.2626 58.0619 49.2638C59.3607 49.2662 60.6607 49.2674 61.9607 49.2686C62.2982 49.2686 62.6357 49.2686 62.9733 49.2697C63.0567 49.2697 63.1402 49.2697 63.2273 49.2697C64.5857 49.2709 65.9442 49.2733 67.3025 49.2769C68.6967 49.2817 70.0909 49.2828 71.4852 49.2841C72.2687 49.2841 73.0512 49.2853 73.8347 49.2876C74.5705 49.2912 75.3076 49.2912 76.0435 49.2901C76.3142 49.2901 76.5849 49.2912 76.8557 49.2924C77.2242 49.2948 77.5927 49.2936 77.9625 49.2924C78.0698 49.2936 78.1772 49.2948 78.2868 49.2959C78.9547 49.2888 79.3185 49.1934 79.8302 48.7569C80.0329 48.3515 79.9697 47.8888 79.9708 47.4429C79.972 47.2759 79.972 47.2759 79.9733 47.1054C79.9756 46.7346 79.9768 46.3649 79.9781 45.9941C79.9792 45.8676 79.9792 45.7413 79.9804 45.6113C79.9828 44.9423 79.9839 44.2733 79.9852 43.6044C79.9864 42.9139 79.9912 42.2235 79.9959 41.5318C79.9983 41.0012 79.9995 40.4694 79.9995 39.9387C80.0007 39.6835 80.0018 39.4295 80.0043 39.1743C80.0066 38.8178 80.0066 38.4613 80.0055 38.1047C80.0078 37.9997 80.0091 37.8948 80.0103 37.7863C80.0043 37.0923 79.8718 36.6893 79.4724 36.1168C79.1109 35.7937 78.7269 35.6375 78.2392 35.6434C77.6142 35.7519 77.2433 35.9618 76.8485 36.4746C76.6076 36.9599 76.5802 37.3606 76.5802 37.8996C76.5802 37.9795 76.5789 38.0606 76.5789 38.1441C76.5778 38.3193 76.5778 38.4946 76.5778 38.6687C76.5778 38.9454 76.5766 39.2221 76.5742 39.4987C76.5694 40.2845 76.5658 41.0715 76.5646 41.8574C76.5646 42.3392 76.5611 42.8209 76.5575 43.3026C76.5563 43.4863 76.5563 43.6687 76.5563 43.8524C76.5575 44.1087 76.5552 44.3652 76.5527 44.6203C76.5527 44.7669 76.5515 44.9125 76.5515 45.0627C76.4907 45.4181 76.4907 45.4181 76.3046 45.6161C75.9147 45.8307 75.5653 45.8247 75.131 45.8199C74.9975 45.8199 74.9975 45.8199 74.8616 45.8212C74.5622 45.8223 74.2628 45.8199 73.9647 45.8187C73.75 45.8187 73.5354 45.8187 73.3206 45.8187C72.7386 45.8199 72.1566 45.8176 71.5746 45.8164C70.9652 45.8139 70.3569 45.8139 69.7475 45.8139C68.7254 45.8139 67.7021 45.8116 66.6799 45.8092C65.3668 45.8056 64.0537 45.8044 62.7406 45.8044C61.6124 45.8033 60.4842 45.8021 59.3559 45.8008C58.9922 45.7997 58.6296 45.7997 58.267 45.7997C57.6969 45.7985 57.1268 45.7973 56.5568 45.7961C56.3468 45.7949 56.1369 45.7949 55.9283 45.7949C55.642 45.7949 55.3569 45.7937 55.0719 45.7925C54.9885 45.7925 54.9049 45.7925 54.819 45.7925C54.4327 45.7902 54.082 45.7746 53.7112 45.6566C53.7112 45.5528 53.7112 45.4491 53.7099 45.3417C53.7064 44.3592 53.6992 43.3766 53.6896 42.3939C53.6848 41.8896 53.6813 41.3839 53.6789 40.8795C53.6777 40.3918 53.6729 39.9042 53.6682 39.4152C53.6658 39.2304 53.6646 39.0444 53.6646 38.8595C53.6634 37.2676 53.6634 37.2676 52.8393 35.9452C52.1165 35.5254 51.5644 35.5934 50.8487 35.9976ZM56.5735 51.2612C56.2586 51.8908 55.9437 52.5204 55.6194 53.1692C55.4942 53.4195 55.3689 53.6687 55.24 53.9264C55.1279 54.1529 55.0158 54.3807 54.9037 54.6073C54.8465 54.7229 54.788 54.8386 54.7273 54.9566C54.4243 55.5791 54.2013 56.0502 54.3074 56.7465C54.5674 57.0602 54.7785 57.2796 55.1423 57.4621C55.4035 57.4739 55.6635 57.4787 55.9235 57.4787C56.0046 57.4787 56.0857 57.4799 56.1692 57.4799C56.4423 57.4811 56.7154 57.4811 56.9885 57.4811C57.1842 57.4823 57.3797 57.4823 57.5753 57.4835C58.106 57.4846 58.6379 57.4858 59.1698 57.4858C59.5014 57.4858 59.8329 57.4871 60.1645 57.4871C61.2034 57.4894 62.2409 57.4906 63.2797 57.4906C64.4784 57.4906 65.6769 57.4931 66.8767 57.4966C67.8023 57.4989 68.7289 57.5002 69.6556 57.5002C70.2091 57.5002 70.7624 57.5014 71.3158 57.5037C71.8371 57.5049 72.3569 57.5062 72.8782 57.5049C73.069 57.5049 73.2598 57.5049 73.4506 57.5062C73.7118 57.5073 73.973 57.5073 74.2343 57.5062C74.3797 57.5062 74.5264 57.5062 74.6767 57.5062C75.0989 57.4573 75.3195 57.3606 75.6558 57.1043C75.9719 56.7024 75.9719 56.7024 75.8944 55.9118C75.1466 54.3771 74.3988 52.8424 73.6284 51.2612C68.0003 51.2612 62.3722 51.2612 56.5735 51.2612Z"
+                                  fill="currentColor"></path>
+                              </g>
+                            </g>
+                          </g>
+                          <defs>
+                            <clipPath id="clip0_1853_1071">
+                              <rect width="60" height="60" fill="white"></rect>
+                            </clipPath>
+                          </defs>
+                        </svg>
+                        <span class="sp-seat__label">Middle</span>
+                      </label>
+                    </div>
+
+                    <!-- Aisle Option -->
+                    <div class="sp-seat">
+                      <input class="sp-seat__input" type="radio"
+                        [name]="'seat-dir-' + activeDirectionIndex + '-trav-' + ti"
+                        [id]="'dir-' + activeDirectionIndex + '-trav-' + ti + '-aisle'"
+                        [checked]="t.get('seatPreference')?.value === 'Aisle'"
+                        (click)="toggleSeatPreference(t, 'Aisle')" />
+                      <label class="sp-seat__card" [for]="'dir-' + activeDirectionIndex + '-trav-' + ti + '-aisle'">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="seat-glyph" viewBox="0 0 60 60" fill="none">
+                          <g clip-path="url(#clip0_1853_1094)">
+                            <mask id="mask0_1853_1094" maskUnits="userSpaceOnUse" x="0" y="0" width="60" height="60"
+                              style="mask-type: luminance;">
+                              <path d="M60 0H0V60H60V0Z" fill="white"></path>
+                            </mask>
+                            <g mask="url(#mask0_1853_1094)">
+                              <mask id="mask1_1853_1094" maskUnits="userSpaceOnUse" x="0" y="0" width="60" height="60"
+                                style="mask-type: alpha;">
+                                <path d="M59.4444 0.555664H0.555542V59.4446H59.4444V0.555664Z" fill="#D9D9D9"
+                                  stroke="currentColor"></path>
+                              </mask>
+                              <g mask="url(#mask1_1853_1094)">
+                                <path
+                                  d="M47.7305 0.922362C47.8189 0.922362 47.9059 0.921169 47.9965 0.921169C48.29 0.919977 48.5845 0.919977 48.8791 0.919977C49.089 0.918784 49.3001 0.918784 49.5112 0.917592C50.0836 0.916399 50.6573 0.915207 51.2299 0.915207C51.5876 0.915207 51.9466 0.914014 52.3044 0.914014C53.4255 0.912822 54.5465 0.911629 55.6676 0.910437C56.9616 0.910437 58.2545 0.908052 59.5473 0.904475C60.548 0.902089 61.5486 0.900897 62.5481 0.900897C63.1455 0.900897 63.7419 0.899705 64.3394 0.897319C64.9012 0.896127 65.4641 0.894935 66.0259 0.896127C66.231 0.896127 66.4373 0.896127 66.6424 0.894935C68.3384 0.885395 69.5501 1.03684 70.8227 2.22454C71.908 3.34903 71.9855 4.65716 71.97 6.13941C71.9664 6.42441 71.97 6.70821 71.9724 6.99321C71.9748 8.293 71.8639 9.46877 70.9824 10.5015C70.8728 10.6326 70.8728 10.6326 70.7619 10.7674C70.707 10.8294 70.6521 10.8914 70.5949 10.9558C70.6641 11.0404 70.6641 11.0404 70.7356 11.1263C71.5109 12.1113 71.9223 13.0343 71.9223 14.2912C71.9223 14.4175 71.9223 14.4175 71.9223 14.5451C71.9223 14.8254 71.9211 15.1056 71.9211 15.3858C71.9211 15.5873 71.9211 15.7876 71.9211 15.9892C71.9211 16.5342 71.9199 17.0803 71.9199 17.6264C71.9188 18.1964 71.9188 18.7664 71.9188 19.3364C71.9188 20.4168 71.9175 21.4959 71.9163 22.5764C71.9151 23.8058 71.914 25.0353 71.914 26.2647C71.9115 28.7939 71.9103 31.3219 71.9068 33.8512C72.0177 33.8869 72.1286 33.9215 72.2431 33.9585C73.0684 34.2435 73.6886 34.8027 74.1729 35.5206C74.5115 36.2731 74.5843 36.8932 74.5807 37.7135C74.5819 37.8339 74.5831 37.9544 74.5843 38.0785C74.5866 38.4732 74.5866 38.8691 74.5866 39.2649C74.5879 39.5416 74.5891 39.8183 74.5902 40.0949C74.5914 40.6733 74.5914 41.2516 74.5914 41.8312C74.5902 42.5705 74.5939 43.3098 74.5985 44.0492C74.6022 44.6203 74.6022 45.1915 74.6022 45.7615C74.6022 46.0346 74.6033 46.3076 74.6058 46.5795C74.6081 46.9623 74.607 47.3439 74.6045 47.7255C74.6058 47.8376 74.6081 47.9485 74.6093 48.0629C74.5974 48.9621 74.3374 49.7396 73.7292 50.4169C72.7238 51.3781 71.5346 51.3065 70.2371 51.2838C70.0641 51.2814 69.89 51.2803 69.7159 51.2791C69.2936 51.2743 68.8715 51.2683 68.4481 51.2612C68.5053 51.3781 68.5627 51.4949 68.6222 51.6154C68.8345 52.0482 69.0456 52.4823 69.2579 52.9163C69.3485 53.1035 69.4404 53.2919 69.5322 53.4792C69.6646 53.7486 69.7958 54.0194 69.9282 54.2888C69.9688 54.3723 70.0104 54.4558 70.0522 54.5428C70.4983 55.4611 70.6676 56.4078 70.3909 57.4155C70.0069 58.3385 69.3379 58.9323 68.4481 59.3699C67.9663 59.4916 67.5107 59.5047 67.0145 59.5071C66.8905 59.5071 66.8905 59.5071 66.7629 59.5083C66.4862 59.5095 66.2083 59.5095 65.9316 59.5106C65.7324 59.5106 65.5333 59.5118 65.3341 59.5131C64.6805 59.5154 64.0281 59.5166 63.3745 59.5178C63.1492 59.5178 62.925 59.5191 62.6995 59.5191C61.6404 59.5214 60.5825 59.5226 59.5246 59.5237C58.3046 59.5249 57.0845 59.5285 55.8644 59.5333C54.9211 59.5369 53.9765 59.5381 53.0331 59.5393C52.469 59.5393 51.9061 59.5405 51.3431 59.5428C50.8124 59.5464 50.2829 59.5464 49.7521 59.5453C49.5578 59.5453 49.3645 59.5464 49.1701 59.5476C47.9226 59.5572 46.9434 59.4475 45.8701 58.7594C45.2368 58.0809 44.8586 57.2784 44.8241 56.3435C44.8634 55.1665 45.5385 54.0683 46.049 53.0356C46.1276 52.8734 46.2064 52.7124 46.2851 52.5514C46.4771 52.1603 46.6691 51.7704 46.8611 51.3804C46.7598 51.3793 46.6572 51.3781 46.5522 51.3768C46.167 51.3721 45.783 51.3649 45.399 51.3554C45.2332 51.3518 45.0674 51.3494 44.9029 51.3482C43.6863 51.3351 42.5783 51.2552 41.629 50.4193C40.5473 49.1588 40.7106 47.5549 40.7202 45.9953C40.7202 45.7376 40.7202 45.4813 40.719 45.2237C40.719 44.6859 40.7214 44.1493 40.7238 43.6115C40.7273 42.9246 40.7262 42.2389 40.725 41.5521C40.7238 41.0215 40.725 40.4908 40.7262 39.9602C40.7273 39.7074 40.7273 39.4546 40.7273 39.2017C40.7262 38.8476 40.7285 38.4934 40.731 38.1393C40.731 38.0355 40.7298 37.9329 40.7298 37.8268C40.7429 36.6629 41.0386 35.6577 41.852 34.8052C42.3541 34.3544 42.7358 34.0908 43.4024 33.9704C43.4024 33.8691 43.4024 33.7677 43.4024 33.6627C43.3965 31.1919 43.3929 28.7199 43.3905 26.2492C43.3893 25.0543 43.3882 23.8583 43.3845 22.6634C43.3822 21.6212 43.381 20.5789 43.381 19.5367C43.3798 18.9858 43.3798 18.4349 43.3774 17.8828C43.3762 17.3629 43.3762 16.8429 43.3762 16.3231C43.3762 16.1335 43.375 15.9438 43.375 15.7531C43.3619 13.0486 43.3619 13.0486 43.9844 12.1042C44.0476 12.0075 44.1096 11.9109 44.1741 11.8108C44.3829 11.5151 44.5975 11.2288 44.8336 10.9558C44.78 10.9009 44.7251 10.8461 44.6679 10.7888C43.4585 9.50216 43.3822 8.1356 43.381 6.44706C43.3798 6.31232 43.3774 6.17875 43.3762 6.04043C43.3739 4.65002 43.5193 3.29895 44.4782 2.21857C45.4383 1.31468 46.4234 0.924746 47.7305 0.922362ZM45.8545 3.62807C45.3071 4.40079 45.3954 5.26891 45.3882 6.1728C45.387 6.35405 45.3834 6.5365 45.3786 6.71775C45.3012 8.04377 45.3012 8.04377 45.8354 9.20643C46.4521 9.8456 47.0126 10.0531 47.9035 10.0781C48.284 10.0841 48.6632 10.0829 49.0425 10.0805C49.2524 10.0817 49.4623 10.0829 49.6722 10.0841C50.2411 10.0877 50.8088 10.0877 51.3778 10.0865C51.8524 10.0853 52.3271 10.0865 52.8029 10.0865C53.924 10.0889 55.0451 10.0889 56.1662 10.0865C57.3206 10.0829 58.4763 10.0853 59.6309 10.0901C60.6243 10.0936 61.6178 10.0948 62.6113 10.0936C63.204 10.0924 63.7955 10.0924 64.3883 10.096C64.9464 10.0984 65.5034 10.0972 66.0604 10.0936C66.2643 10.0924 66.4683 10.0936 66.6722 10.0948C68.0868 10.1127 68.0868 10.1127 69.3306 9.48546C70.1393 8.6424 70.0689 7.57872 70.051 6.47687C70.0522 6.32424 70.0534 6.1728 70.0534 6.01539C70.0474 5.10554 70.0391 4.29943 69.4488 3.5601C69.382 3.50644 69.3152 3.45277 69.246 3.39912C69.1804 3.34307 69.1148 3.28822 69.0468 3.23217C68.46 2.87443 67.8959 2.8172 67.2209 2.81481C67.135 2.81362 67.0503 2.81362 66.9632 2.81242C66.6794 2.81123 66.3955 2.81004 66.1129 2.81004C65.909 2.81004 65.705 2.80884 65.5011 2.80765C64.9489 2.80526 64.3954 2.80407 63.8433 2.80288C63.4974 2.80288 63.1515 2.80168 62.8056 2.80168C61.5988 2.79811 60.3918 2.79692 59.1848 2.79573C58.0613 2.79573 56.939 2.79215 55.8155 2.78739C54.8495 2.78261 53.8834 2.78142 52.9174 2.78142C52.3413 2.78142 51.7653 2.78023 51.1893 2.77665C50.6466 2.77307 50.104 2.77307 49.5625 2.77545C49.3633 2.77545 49.1653 2.77426 48.9673 2.77307C47.2631 2.7528 47.2631 2.7528 45.8545 3.62807ZM45.8033 12.8708C45.4228 13.3979 45.4156 13.7605 45.4156 14.3961C45.4156 14.4795 45.4156 14.5629 45.4156 14.6501C45.4156 14.9303 45.4169 15.2105 45.4169 15.4919C45.4169 15.6923 45.4169 15.8938 45.4169 16.0942C45.4169 16.6403 45.4181 17.1864 45.4181 17.7326C45.4192 18.3037 45.4192 18.8737 45.4192 19.4449C45.4192 20.5253 45.4204 21.6057 45.4216 22.6873C45.4228 23.9167 45.424 25.1474 45.424 26.3779C45.4252 28.9084 45.4275 31.4399 45.43 33.9704C45.5516 34.0276 45.5516 34.0276 45.6756 34.0861C45.7818 34.1374 45.888 34.1886 45.9976 34.2411C46.1038 34.2924 46.2088 34.3425 46.3173 34.3937C47.3072 34.9518 47.5469 35.7663 47.9345 36.8323C47.9739 39.1934 48.0132 41.5545 48.0538 43.9872C54.4296 43.9872 60.8056 43.9872 67.3748 43.9872C67.4343 40.3274 67.4343 40.3274 67.494 36.5938C68.0294 35.2558 68.3825 34.6812 69.6408 34.0896C69.7589 34.0503 69.8769 34.0109 69.9985 33.9704C70.0069 31.3577 70.0141 28.7438 70.0176 26.1312C70.02 24.9172 70.0224 23.7045 70.026 22.4905C70.0295 21.4328 70.032 20.3751 70.0331 19.3185C70.0331 18.7581 70.0343 18.1976 70.0368 17.6384C70.0391 17.1113 70.0403 16.5843 70.0391 16.0559C70.0391 15.8628 70.0403 15.6696 70.0414 15.4764C70.0439 15.2117 70.0426 14.9482 70.0426 14.6834C70.0426 14.5356 70.0426 14.3877 70.0426 14.2351C69.9604 13.4468 69.6526 12.9078 69.0444 12.3867C68.5459 12.0206 68.1821 11.9837 67.5679 11.9825C67.4797 11.9825 67.3926 11.9813 67.302 11.9813C67.0098 11.9789 66.7164 11.9802 66.423 11.9813C66.2131 11.9802 66.0032 11.9789 65.7933 11.9789C65.222 11.9765 64.6519 11.9765 64.0806 11.9765C63.6048 11.9777 63.1276 11.9765 62.6506 11.9765C61.526 11.9742 60.4025 11.9742 59.2779 11.9754C58.1174 11.9777 56.9581 11.9754 55.7989 11.9729C54.803 11.9694 53.8071 11.9694 52.8113 11.9694C52.2161 11.9706 51.621 11.9694 51.0271 11.9682C50.4678 11.9658 49.9083 11.9658 49.349 11.9682C49.1439 11.9694 48.9388 11.9682 48.7336 11.9669C48.4533 11.9658 48.1731 11.9669 47.8928 11.9694C47.7353 11.9694 47.5791 11.9694 47.4169 11.9694C46.7693 12.0576 46.2123 12.3426 45.8033 12.8708ZM43.4024 35.9976C42.8098 36.6379 42.7882 37.0875 42.7859 37.9354C42.7846 38.0498 42.7834 38.1643 42.7834 38.2824C42.7811 38.6616 42.7799 39.0419 42.7788 39.4212C42.7775 39.5512 42.7775 39.6799 42.7763 39.8135C42.774 40.4979 42.7728 41.1836 42.7715 41.8681C42.7703 42.5764 42.7655 43.2847 42.7609 43.9931C42.7584 44.5368 42.7572 45.0806 42.7572 45.6244C42.7561 45.8855 42.7549 46.1467 42.7524 46.4078C42.7501 46.7739 42.7501 47.1388 42.7501 47.5037C42.7489 47.6123 42.7476 47.7207 42.7465 47.8316C42.7465 48.4291 42.7465 48.4291 43.034 48.9394C43.5455 49.2984 44.0083 49.2518 44.6142 49.2518C44.7871 49.2518 44.7871 49.2518 44.9624 49.2531C45.3489 49.2543 45.7353 49.2543 46.1216 49.2554C46.3984 49.2554 46.6739 49.2566 46.9506 49.2578C47.702 49.2591 48.4545 49.2614 49.2071 49.2614C49.6758 49.2626 50.1456 49.2626 50.6156 49.2638C51.9144 49.2662 53.2144 49.2674 54.5144 49.2686C54.8519 49.2686 55.1894 49.2686 55.527 49.2697C55.6104 49.2697 55.6939 49.2697 55.781 49.2697C57.1394 49.2709 58.4979 49.2733 59.8562 49.2769C61.2504 49.2817 62.6446 49.2828 64.0389 49.2841C64.8224 49.2841 65.6049 49.2853 66.3884 49.2876C67.1242 49.2912 67.8613 49.2912 68.5972 49.2901C68.8679 49.2901 69.1386 49.2912 69.4094 49.2924C69.7779 49.2948 70.1464 49.2936 70.5162 49.2924C70.6235 49.2936 70.7309 49.2948 70.8405 49.2959C71.5084 49.2888 71.8722 49.1934 72.3839 48.7569C72.5866 48.3515 72.5234 47.8888 72.5245 47.4429C72.5258 47.2759 72.5258 47.2759 72.527 47.1054C72.5293 46.7346 72.5305 46.3649 72.5318 45.9941C72.5329 45.8676 72.5329 45.7413 72.5341 45.6113C72.5365 44.9423 72.5377 44.2733 72.5389 43.6044C72.5401 42.9139 72.5449 42.2235 72.5496 41.5318C72.552 41.0012 72.5532 40.4694 72.5532 39.9387C72.5544 39.6835 72.5555 39.4295 72.558 39.1743C72.5603 38.8178 72.5603 38.4613 72.5592 38.1047C72.5615 37.9997 72.5628 37.8948 72.564 37.7863C72.558 37.0923 72.4255 36.6893 72.0261 36.1168C71.6646 35.7937 71.2806 35.6375 70.7929 35.6434C70.1679 35.7519 69.797 35.9618 69.4022 36.4746C69.1613 36.9599 69.1339 37.3606 69.1339 37.8996C69.1339 37.9795 69.1326 38.0606 69.1326 38.1441C69.1315 38.3193 69.1315 38.4946 69.1315 38.6687C69.1315 38.9454 69.1303 39.2221 69.1279 39.4987C69.1231 40.2845 69.1195 41.0715 69.1183 41.8574C69.1183 42.3392 69.1148 42.8209 69.1112 43.3026C69.11 43.4863 69.11 43.6687 69.11 43.8524C69.1112 44.1087 69.1089 44.3652 69.1064 44.6203C69.1064 44.7669 69.1052 44.9125 69.1052 45.0627C69.0444 45.4181 69.0444 45.4181 68.8583 45.6161C68.4684 45.8307 68.119 45.8247 67.6848 45.8199C67.5512 45.8199 67.5512 45.8199 67.4153 45.8212C67.1159 45.8223 66.8165 45.8199 66.5184 45.8187C66.3038 45.8187 66.0891 45.8187 65.8743 45.8187C65.2923 45.8199 64.7103 45.8176 64.1283 45.8164C63.5189 45.8139 62.9107 45.8139 62.3012 45.8139C61.2791 45.8139 60.2558 45.8116 59.2337 45.8092C57.9205 45.8056 56.6074 45.8044 55.2943 45.8044C54.1661 45.8033 53.0379 45.8021 51.9096 45.8008C51.5459 45.7997 51.1833 45.7997 50.8208 45.7997C50.2506 45.7985 49.6805 45.7973 49.1105 45.7961C48.9005 45.7949 48.6906 45.7949 48.482 45.7949C48.1958 45.7949 47.9106 45.7937 47.6256 45.7925C47.5422 45.7925 47.4586 45.7925 47.3728 45.7925C46.9864 45.7902 46.6358 45.7746 46.2649 45.6566C46.2649 45.5528 46.2649 45.4491 46.2636 45.3417C46.2601 44.3592 46.2529 43.3766 46.2433 42.3939C46.2385 41.8896 46.235 41.3839 46.2326 40.8795C46.2314 40.3918 46.2266 39.9042 46.2219 39.4152C46.2195 39.2304 46.2183 39.0444 46.2183 38.8595C46.2171 37.2676 46.2171 37.2676 45.393 35.9452C44.6702 35.5254 44.1181 35.5934 43.4024 35.9976ZM49.1272 51.2612C48.8123 51.8908 48.4974 52.5204 48.1731 53.1692C48.0479 53.4195 47.9226 53.6687 47.7938 53.9264C47.6816 54.1529 47.5695 54.3807 47.4574 54.6073C47.4002 54.7229 47.3418 54.8386 47.281 54.9566C46.978 55.5791 46.755 56.0502 46.8611 56.7465C47.1211 57.0602 47.3322 57.2796 47.696 57.4621C47.9572 57.4739 48.2172 57.4787 48.4772 57.4787C48.5583 57.4787 48.6394 57.4799 48.7229 57.4799C48.996 57.4811 49.2691 57.4811 49.5422 57.4811C49.7379 57.4823 49.9334 57.4823 50.129 57.4835C50.6598 57.4846 51.1916 57.4858 51.7235 57.4858C52.0551 57.4858 52.3867 57.4871 52.7182 57.4871C53.7571 57.4894 54.7946 57.4906 55.8334 57.4906C57.0321 57.4906 58.2306 57.4931 59.4304 57.4966C60.356 57.4989 61.2827 57.5002 62.2093 57.5002C62.7628 57.5002 63.3161 57.5014 63.8695 57.5037C64.3908 57.5049 64.9107 57.5062 65.4319 57.5049C65.6228 57.5049 65.8135 57.5049 66.0043 57.5062C66.2655 57.5073 66.5268 57.5073 66.788 57.5062C66.9334 57.5062 67.0801 57.5062 67.2304 57.5062C67.6526 57.4573 67.8732 57.3606 68.2095 57.1043C68.5257 56.7024 68.5257 56.7024 68.4481 55.9118C67.7003 54.3771 66.9525 52.8424 66.1821 51.2612C60.554 51.2612 54.9259 51.2612 49.1272 51.2612Z"
+                                  fill="currentColor"></path>
+                                <path
+                                  d="M13.0246 0.922362C13.1128 0.922362 13.1999 0.921169 13.2905 0.921169C13.5839 0.919977 13.8785 0.919977 14.173 0.919977C14.383 0.918784 14.594 0.918784 14.8051 0.917592C15.3777 0.916399 15.9514 0.915207 16.5238 0.915207C16.8816 0.915207 17.2406 0.914014 17.5984 0.914014C18.7195 0.912822 19.8406 0.911629 20.9616 0.910437C22.2557 0.910437 23.5485 0.908052 24.8414 0.904475C25.8419 0.902089 26.8426 0.900897 27.842 0.900897C28.4396 0.900897 29.0359 0.899705 29.6334 0.897319C30.1951 0.896127 30.758 0.894935 31.3198 0.896127C31.5249 0.896127 31.7313 0.896127 31.9364 0.894935C33.6324 0.885395 34.844 1.03684 36.1166 2.22454C37.2019 3.34903 37.2795 4.65716 37.2639 6.13941C37.2604 6.42441 37.2639 6.70821 37.2664 6.99321C37.2687 8.293 37.1578 9.46877 36.2765 10.5015C36.1667 10.6326 36.1667 10.6326 36.0558 10.7674C36.0009 10.8294 35.946 10.8914 35.8888 10.9558C35.958 11.0404 35.958 11.0404 36.0296 11.1263C36.8048 12.1113 37.2163 13.0343 37.2163 14.2912C37.2163 14.4175 37.2163 14.4175 37.2163 14.5451C37.2163 14.8254 37.215 15.1056 37.215 15.3858C37.215 15.5873 37.215 15.7876 37.215 15.9892C37.215 16.5342 37.2139 17.0803 37.2139 17.6264C37.2127 18.1964 37.2127 18.7664 37.2127 19.3364C37.2127 20.4168 37.2115 21.4959 37.2103 22.5764C37.2091 23.8058 37.2079 25.0353 37.2079 26.2647C37.2055 28.7939 37.2044 31.3219 37.2007 33.8512C37.3117 33.8869 37.4226 33.9215 37.537 33.9585C38.3624 34.2435 38.9826 34.8027 39.4668 35.5206C39.8055 36.2731 39.8783 36.8932 39.8747 37.7135C39.8758 37.8339 39.877 37.9544 39.8783 38.0785C39.8806 38.4732 39.8806 38.8691 39.8806 39.2649C39.8818 39.5416 39.883 39.8183 39.8843 40.0949C39.8854 40.6733 39.8854 41.2516 39.8854 41.8312C39.8843 42.5705 39.8878 43.3098 39.8926 44.0492C39.8961 44.6203 39.8961 45.1915 39.8961 45.7615C39.8961 46.0346 39.8974 46.3076 39.8997 46.5795C39.9021 46.9623 39.9009 47.3439 39.8985 47.7255C39.8997 47.8376 39.9021 47.9485 39.9033 48.0629C39.8914 48.9621 39.6314 49.7396 39.0231 50.4169C38.0177 51.3781 36.8287 51.3065 35.531 51.2838C35.3581 51.2814 35.184 51.2803 35.0098 51.2791C34.5877 51.2743 34.1655 51.2683 33.742 51.2612C33.7994 51.3781 33.8566 51.4949 33.9161 51.6154C34.1285 52.0482 34.3396 52.4823 34.5519 52.9163C34.6425 53.1035 34.7344 53.2919 34.8261 53.4792C34.9586 53.7486 35.0898 54.0194 35.2221 54.2888C35.2627 54.3723 35.3045 54.4558 35.3461 54.5428C35.7923 55.4611 35.9616 56.4078 35.6849 57.4155C35.3008 58.3385 34.6318 58.9323 33.742 59.3699C33.2603 59.4916 32.8047 59.5047 32.3085 59.5071C32.1845 59.5071 32.1845 59.5071 32.0568 59.5083C31.7801 59.5095 31.5023 59.5095 31.2256 59.5106C31.0264 59.5106 30.8273 59.5118 30.628 59.5131C29.9745 59.5154 29.3221 59.5166 28.6686 59.5178C28.4431 59.5178 28.2189 59.5191 27.9935 59.5191C26.9345 59.5214 25.8766 59.5226 24.8187 59.5237C23.5986 59.5249 22.3785 59.5285 21.1585 59.5333C20.215 59.5369 19.2705 59.5381 18.327 59.5393C17.7629 59.5393 17.2 59.5405 16.6371 59.5428C16.1064 59.5464 15.5768 59.5464 15.0461 59.5453C14.8517 59.5453 14.6585 59.5464 14.464 59.5476C13.2166 59.5572 12.2374 59.4475 11.164 58.7594C10.5307 58.0809 10.1527 57.2784 10.118 56.3435C10.1575 55.1665 10.8325 54.0683 11.3429 53.0356C11.4216 52.8734 11.5004 52.7124 11.579 52.5514C11.771 52.1603 11.9631 51.7704 12.1551 51.3804C12.0537 51.3793 11.9511 51.3781 11.8463 51.3768C11.461 51.3721 11.0769 51.3649 10.6929 51.3554C10.5271 51.3518 10.3614 51.3494 10.1968 51.3482C8.98026 51.3351 7.87237 51.2552 6.92293 50.4193C5.84126 49.1588 6.00459 47.5549 6.01415 45.9953C6.01415 45.7376 6.01415 45.4813 6.01293 45.2237C6.01293 44.6859 6.01537 44.1493 6.0177 43.6115C6.02137 42.9246 6.02015 42.2389 6.01893 41.5521C6.0177 41.0215 6.01893 40.4908 6.02015 39.9602C6.02137 39.7074 6.02137 39.4546 6.02137 39.2017C6.02015 38.8476 6.02248 38.4934 6.02493 38.1393C6.02493 38.0355 6.0237 37.9329 6.0237 37.8268C6.03681 36.6629 6.33259 35.6577 7.14604 34.8052C7.64815 34.3544 8.0297 34.0908 8.69648 33.9704C8.69648 33.8691 8.69648 33.7677 8.69648 33.6627C8.69048 31.1919 8.68693 28.7199 8.68448 26.2492C8.68337 25.0543 8.68215 23.8583 8.67859 22.6634C8.67615 21.6212 8.67493 20.5789 8.67493 19.5367C8.67381 18.9858 8.67381 18.4349 8.67137 17.8828C8.67015 17.3629 8.67015 16.8429 8.67015 16.3231C8.67015 16.1335 8.66904 15.9438 8.66904 15.7531C8.65593 13.0486 8.65593 13.0486 9.27848 12.1042C9.3417 12.0075 9.4037 11.9109 9.46804 11.8108C9.67681 11.5151 9.89148 11.2288 10.1276 10.9558C10.0739 10.9009 10.019 10.8461 9.96181 10.7888C8.75248 9.50216 8.67615 8.1356 8.67493 6.44706C8.67381 6.31232 8.67137 6.17875 8.67015 6.04043C8.66781 4.65002 8.81337 3.29895 9.77226 2.21857C10.7323 1.31468 11.7174 0.924746 13.0246 0.922362ZM11.1485 3.62807C10.6011 4.40079 10.6894 5.26891 10.6821 6.1728C10.681 6.35405 10.6775 6.5365 10.6727 6.71775C10.5951 8.04377 10.5951 8.04377 11.1295 9.20643C11.746 9.8456 12.3066 10.0531 13.1975 10.0781C13.5779 10.0841 13.9573 10.0829 14.3365 10.0805C14.5464 10.0817 14.7563 10.0829 14.9661 10.0841C15.535 10.0877 16.1028 10.0877 16.6717 10.0865C17.1464 10.0853 17.621 10.0865 18.0969 10.0865C19.218 10.0889 20.339 10.0889 21.4601 10.0865C22.6147 10.0829 23.7704 10.0853 24.9248 10.0901C25.9183 10.0936 26.9118 10.0948 27.9053 10.0936C28.498 10.0924 29.0896 10.0924 29.6823 10.096C30.2405 10.0984 30.7974 10.0972 31.3544 10.0936C31.5584 10.0924 31.7623 10.0936 31.9663 10.0948C33.3807 10.1127 33.3807 10.1127 34.6246 9.48546C35.4333 8.6424 35.3629 7.57872 35.345 6.47687C35.3461 6.32424 35.3474 6.1728 35.3474 6.01539C35.3414 5.10554 35.333 4.29943 34.7427 3.5601C34.6759 3.50644 34.6091 3.45277 34.5399 3.39912C34.4744 3.34307 34.4088 3.28822 34.3408 3.23217C33.754 2.87443 33.1899 2.8172 32.5148 2.81481C32.4289 2.81362 32.3443 2.81362 32.2573 2.81242C31.9734 2.81123 31.6895 2.81004 31.4068 2.81004C31.2029 2.81004 30.9989 2.80884 30.795 2.80765C30.2428 2.80526 29.6895 2.80407 29.1373 2.80288C28.7914 2.80288 28.4455 2.80168 28.0997 2.80168C26.8927 2.79811 25.6857 2.79692 24.4788 2.79573C23.3553 2.79573 22.233 2.79215 21.1095 2.78739C20.1435 2.78261 19.1775 2.78142 18.2114 2.78142C17.6354 2.78142 17.0593 2.78023 16.4833 2.77665C15.9406 2.77307 15.3979 2.77307 14.8565 2.77545C14.6573 2.77545 14.4594 2.77426 14.2614 2.77307C12.557 2.7528 12.557 2.7528 11.1485 3.62807ZM11.0973 12.8708C10.7168 13.3979 10.7096 13.7605 10.7096 14.3961C10.7096 14.4795 10.7096 14.5629 10.7096 14.6501C10.7096 14.9303 10.7108 15.2105 10.7108 15.4919C10.7108 15.6923 10.7108 15.8938 10.7108 16.0942C10.7108 16.6403 10.712 17.1864 10.712 17.7326C10.7133 18.3037 10.7133 18.8737 10.7133 19.4449C10.7133 20.5253 10.7144 21.6057 10.7156 22.6873C10.7168 23.9167 10.7179 25.1474 10.7179 26.3779C10.7191 28.9084 10.7216 31.4399 10.7239 33.9704C10.8456 34.0276 10.8456 34.0276 10.9696 34.0861C11.0758 34.1374 11.1819 34.1886 11.2916 34.2411C11.3978 34.2924 11.5027 34.3425 11.6113 34.3937C12.6011 34.9518 12.8409 35.7663 13.2285 36.8323C13.2678 39.1934 13.3073 41.5545 13.3478 43.9872C19.7237 43.9872 26.0996 43.9872 32.6687 43.9872C32.7284 40.3274 32.7284 40.3274 32.7879 36.5938C33.3235 35.2558 33.6765 34.6812 34.9347 34.0896C35.0528 34.0503 35.1708 34.0109 35.2925 33.9704C35.3008 31.3577 35.308 28.7438 35.3116 26.1312C35.314 24.9172 35.3164 23.7045 35.3199 22.4905C35.3235 21.4328 35.3259 20.3751 35.3271 19.3185C35.3271 18.7581 35.3283 18.1976 35.3307 17.6384C35.333 17.1113 35.3343 16.5843 35.333 16.0559C35.333 15.8628 35.3343 15.6696 35.3355 15.4764C35.3378 15.2117 35.3366 14.9482 35.3366 14.6834C35.3366 14.5356 35.3366 14.3877 35.3366 14.2351C35.2544 13.4468 34.9467 12.9078 34.3384 12.3867C33.8399 12.0206 33.4761 11.9837 32.8619 11.9825C32.7736 11.9825 32.6866 11.9813 32.5959 11.9813C32.3037 11.9789 32.0104 11.9802 31.7169 11.9813C31.507 11.9802 31.2971 11.9789 31.0873 11.9789C30.5159 11.9765 29.9458 11.9765 29.3746 11.9765C28.8987 11.9777 28.4217 11.9765 27.9446 11.9765C26.8199 11.9742 25.6965 11.9742 24.5718 11.9754C23.4114 11.9777 22.252 11.9754 21.0928 11.9729C20.0969 11.9694 19.1011 11.9694 18.1053 11.9694C17.5101 11.9706 16.915 11.9694 16.321 11.9682C15.7617 11.9658 15.2024 11.9658 14.643 11.9682C14.4378 11.9694 14.2327 11.9682 14.0276 11.9669C13.7473 11.9658 13.467 11.9669 13.1868 11.9694C13.0294 11.9694 12.8731 11.9694 12.7109 11.9694C12.0633 12.0576 11.5064 12.3426 11.0973 12.8708ZM8.69648 35.9976C8.1037 36.6379 8.08226 37.0875 8.07981 37.9354C8.07859 38.0498 8.07748 38.1643 8.07748 38.2824C8.07504 38.6616 8.07393 39.0419 8.0727 39.4212C8.07148 39.5512 8.07148 39.6799 8.07026 39.8135C8.06793 40.4979 8.0667 41.1836 8.06548 41.8681C8.06437 42.5764 8.05959 43.2847 8.05481 43.9931C8.05237 44.5368 8.05126 45.0806 8.05126 45.6244C8.05004 45.8855 8.04881 46.1467 8.04648 46.4078C8.04404 46.7739 8.04404 47.1388 8.04404 47.5037C8.04281 47.6123 8.0417 47.7207 8.04048 47.8316C8.04048 48.4291 8.04048 48.4291 8.32793 48.9394C8.83959 49.2984 9.30226 49.2518 9.90815 49.2518C10.0811 49.2518 10.0811 49.2518 10.2564 49.2531C10.6428 49.2543 11.0293 49.2543 11.4157 49.2554C11.6924 49.2554 11.9679 49.2566 12.2446 49.2578C12.9959 49.2591 13.7485 49.2614 14.501 49.2614C14.9698 49.2626 15.4397 49.2626 15.9096 49.2638C17.2084 49.2662 18.5084 49.2674 19.8084 49.2686C20.1458 49.2686 20.4834 49.2686 20.8209 49.2697C20.9044 49.2697 20.9879 49.2697 21.0749 49.2697C22.4334 49.2709 23.7918 49.2733 25.1503 49.2769C26.5445 49.2817 27.9386 49.2828 29.3328 49.2841C30.1164 49.2841 30.8988 49.2853 31.6824 49.2876C32.4183 49.2912 33.1553 49.2912 33.8911 49.2901C34.1619 49.2901 34.4326 49.2912 34.7034 49.2924C35.0719 49.2948 35.4404 49.2936 35.8101 49.2924C35.9175 49.2936 36.0248 49.2948 36.1345 49.2959C36.8024 49.2888 37.1661 49.1934 37.6778 48.7569C37.8806 48.3515 37.8174 47.8888 37.8186 47.4429C37.8197 47.2759 37.8197 47.2759 37.8209 47.1054C37.8234 46.7346 37.8245 46.3649 37.8257 45.9941C37.8269 45.8676 37.8269 45.7413 37.828 45.6113C37.8305 44.9423 37.8317 44.2733 37.8328 43.6044C37.834 42.9139 37.8388 42.2235 37.8436 41.5318C37.8459 41.0012 37.8471 40.4694 37.8471 39.9387C37.8484 39.6835 37.8496 39.4295 37.8519 39.1743C37.8544 38.8178 37.8544 38.4613 37.8531 38.1047C37.8555 37.9997 37.8567 37.8948 37.8579 37.7863C37.8519 37.0923 37.7196 36.6893 37.32 36.1168C36.9587 35.7937 36.5746 35.6375 36.0868 35.6434C35.4619 35.7519 35.0909 35.9618 34.6961 36.4746C34.4553 36.9599 34.4278 37.3606 34.4278 37.8996C34.4278 37.9795 34.4267 38.0606 34.4267 38.1441C34.4255 38.3193 34.4255 38.4946 34.4255 38.6687C34.4255 38.9454 34.4243 39.2221 34.4219 39.4987C34.4171 40.2845 34.4135 41.0715 34.4124 41.8574C34.4124 42.3392 34.4088 42.8209 34.4051 43.3026C34.404 43.4863 34.404 43.6687 34.404 43.8524C34.4051 44.1087 34.4028 44.3652 34.4004 44.6203C34.4004 44.7669 34.3993 44.9125 34.3993 45.0627C34.3384 45.4181 34.3384 45.4181 34.1524 45.6161C33.7624 45.8307 33.4129 45.8247 32.9788 45.8199C32.8451 45.8199 32.8451 45.8199 32.7093 45.8212C32.4099 45.8223 32.1105 45.8199 31.8124 45.8187C31.5977 45.8187 31.383 45.8187 31.1684 45.8187C30.5864 45.8199 30.0043 45.8176 29.4223 45.8164C28.8128 45.8139 28.2046 45.8139 27.5951 45.8139C26.573 45.8139 25.5498 45.8116 24.5277 45.8092C23.2146 45.8056 21.9015 45.8044 20.5884 45.8044C19.4601 45.8033 18.3318 45.8021 17.2036 45.8008C16.8398 45.7997 16.4773 45.7997 16.1147 45.7997C15.5446 45.7985 14.9746 45.7973 14.4045 45.7961C14.1946 45.7949 13.9846 45.7949 13.7759 45.7949C13.4897 45.7949 13.2047 45.7937 12.9196 45.7925C12.8361 45.7925 12.7526 45.7925 12.6668 45.7925C12.2804 45.7902 11.9297 45.7746 11.5588 45.6566C11.5588 45.5528 11.5588 45.4491 11.5576 45.3417C11.554 44.3592 11.5468 43.3766 11.5374 42.3939C11.5326 41.8896 11.5289 41.3839 11.5266 40.8795C11.5254 40.3918 11.5206 39.9042 11.5158 39.4152C11.5135 39.2304 11.5123 39.0444 11.5123 38.8595C11.511 37.2676 11.511 37.2676 10.6869 35.9452C9.96426 35.5254 9.41204 35.5934 8.69648 35.9976ZM14.4211 51.2612C14.1063 51.8908 13.7915 52.5204 13.467 53.1692C13.3418 53.4195 13.2166 53.6687 13.0878 53.9264C12.9757 54.1529 12.8636 54.3807 12.7515 54.6073C12.6941 54.7229 12.6357 54.8386 12.5749 54.9566C12.272 55.5791 12.0489 56.0502 12.1551 56.7465C12.4151 57.0602 12.6263 57.2796 12.9899 57.4621C13.2511 57.4739 13.5111 57.4787 13.7711 57.4787C13.8523 57.4787 13.9334 57.4799 14.0168 57.4799C14.2899 57.4811 14.563 57.4811 14.8361 57.4811C15.0318 57.4823 15.2274 57.4823 15.4229 57.4835C15.9537 57.4846 16.4856 57.4858 17.0176 57.4858C17.3491 57.4858 17.6807 57.4871 18.0123 57.4871C19.051 57.4894 20.0886 57.4906 21.1274 57.4906C22.326 57.4906 23.5246 57.4931 24.7245 57.4966C25.6499 57.4989 26.5766 57.5002 27.5034 57.5002C28.0567 57.5002 28.6101 57.5014 29.1635 57.5037C29.6847 57.5049 30.2047 57.5062 30.7258 57.5049C30.9167 57.5049 31.1075 57.5049 31.2984 57.5062C31.5595 57.5073 31.8207 57.5073 32.0819 57.5062C32.2274 57.5062 32.3741 57.5062 32.5244 57.5062C32.9466 57.4573 33.1673 57.3606 33.5036 57.1043C33.8196 56.7024 33.8196 56.7024 33.742 55.9118C32.9943 54.3771 32.2465 52.8424 31.476 51.2612C25.8479 51.2612 20.2198 51.2612 14.4211 51.2612Z"
+                                  fill="currentColor"></path>
+                                <path
+                                  d="M53.1295 15.3179C53.238 15.3167 53.3466 15.3156 53.4575 15.3143C53.8129 15.3119 54.1683 15.3119 54.5237 15.3119C54.7718 15.3108 55.021 15.3108 55.2703 15.3096C55.7915 15.3071 56.3127 15.3071 56.8339 15.3083C57.4982 15.3083 58.1625 15.3048 58.8268 15.3C59.3408 15.2977 59.8548 15.2977 60.3689 15.2977C60.6146 15.2977 60.859 15.2965 61.1036 15.294C62.6957 15.2821 64.1746 15.2965 65.4043 16.4662C66.35 17.5752 66.5766 18.6926 66.573 20.1092C66.5743 20.2332 66.5743 20.3585 66.5755 20.4872C66.5766 20.8987 66.5766 21.31 66.5766 21.7202C66.5766 22.0077 66.5778 22.295 66.5778 22.5825C66.579 23.1835 66.579 23.7845 66.5778 24.3855C66.5778 25.1546 66.579 25.9226 66.5826 26.6917C66.5838 27.2843 66.5838 27.877 66.5838 28.4697C66.5838 28.7535 66.5849 29.0372 66.5862 29.3199C66.5874 29.7169 66.5861 30.114 66.5849 30.5111C66.5861 30.6268 66.5874 30.7425 66.5874 30.8617C66.5778 32.2367 66.1724 33.3146 65.2289 34.3282C64.2892 35.0532 63.3863 35.318 62.2175 35.3168C62.1089 35.318 62.0005 35.318 61.8884 35.3191C61.5305 35.3216 61.1727 35.3216 60.8137 35.3228C60.5633 35.3228 60.314 35.3239 60.0636 35.3251C59.54 35.3263 59.0153 35.3263 58.4917 35.3263C57.8214 35.3263 57.1523 35.3299 56.4833 35.3335C55.9668 35.3359 55.4493 35.337 54.9328 35.337C54.6859 35.337 54.439 35.3382 54.1934 35.3395C53.8463 35.3418 53.5004 35.3418 53.1546 35.3407C53.0544 35.3418 52.953 35.343 52.8493 35.3442C51.6292 35.3311 50.7358 34.8458 49.8676 34.0146C48.9195 32.995 48.7346 31.9958 48.7358 30.6411C48.7346 30.5136 48.7334 30.3847 48.7334 30.2523C48.731 29.829 48.7298 29.4057 48.7298 28.9823C48.7298 28.6867 48.7286 28.3909 48.7275 28.0963C48.7263 27.4775 48.7263 26.8586 48.7263 26.2397C48.7263 25.4491 48.7227 24.6573 48.719 23.8667C48.7155 23.2561 48.7155 22.6468 48.7155 22.0362C48.7155 21.7453 48.7144 21.4531 48.7119 21.1622C48.7096 20.7531 48.7107 20.3441 48.7119 19.9363C48.7107 19.8171 48.7096 19.6967 48.7084 19.5738C48.719 18.3599 49.1317 17.3331 49.963 16.4412C50.8862 15.5802 51.8879 15.3131 53.1295 15.3179ZM51.1699 18.1405C50.6345 18.8977 50.6428 19.8625 50.644 20.7508C50.6428 20.8688 50.6416 20.9857 50.6416 21.1061C50.6393 21.4913 50.638 21.8765 50.638 22.2617C50.638 22.5311 50.6368 22.7995 50.6357 23.0689C50.6345 23.6318 50.6345 24.1947 50.6345 24.7575C50.6345 25.4777 50.6309 26.198 50.6274 26.9182C50.6237 27.4739 50.6237 28.0285 50.6237 28.5841C50.6237 28.85 50.6226 29.1148 50.6202 29.3807C50.6178 29.7516 50.6189 30.1236 50.6202 30.4957C50.6189 30.6041 50.6178 30.7127 50.6166 30.8248C50.6237 31.6046 50.7859 32.2498 51.319 32.8412C51.9989 33.4518 52.712 33.5292 53.5923 33.5281C53.6913 33.5292 53.789 33.5292 53.8904 33.5305C54.2148 33.5328 54.538 33.5328 54.8624 33.534C55.089 33.534 55.3156 33.5352 55.541 33.5365C56.0157 33.5376 56.4892 33.5376 56.9639 33.5376C57.5697 33.5376 58.1744 33.5412 58.7803 33.5448C59.2478 33.5471 59.7153 33.5483 60.1828 33.5483C60.4058 33.5483 60.6289 33.5496 60.8519 33.5507C62.4727 33.6235 62.4727 33.6235 63.917 33.0165C64.5897 32.2677 64.7364 31.6153 64.7208 30.6303C64.722 30.504 64.7233 30.3776 64.7233 30.2465C64.7256 29.8302 64.722 29.414 64.7185 28.9979C64.7185 28.7081 64.7185 28.4171 64.7197 28.1262C64.7197 27.5192 64.7173 26.9111 64.7125 26.3041C64.7066 25.5255 64.7066 24.7479 64.7089 23.9705C64.7089 23.3707 64.7077 22.7708 64.7054 22.171C64.7042 21.8848 64.7042 21.5975 64.7042 21.3112C64.7054 20.9093 64.7018 20.5087 64.6983 20.108C64.6983 19.99 64.6994 19.8719 64.6994 19.7503C64.6887 19.0217 64.5814 18.5889 64.1556 17.9915C63.4769 17.3475 62.8592 17.2401 61.9468 17.2413C61.8454 17.2401 61.7452 17.2401 61.6403 17.239C61.3075 17.2366 60.9747 17.2366 60.642 17.2353C60.4095 17.2353 60.178 17.2342 59.9455 17.233C59.4589 17.2318 58.9723 17.2318 58.4857 17.2318C57.8644 17.2318 57.2417 17.2282 56.6204 17.2247C56.1409 17.2222 55.6615 17.2211 55.1808 17.2211C54.9519 17.2211 54.7229 17.2199 54.4939 17.2187C54.1719 17.2163 53.851 17.2163 53.529 17.2175C53.3895 17.2163 53.3895 17.2163 53.2452 17.2139C52.4044 17.2235 51.7078 17.4739 51.1699 18.1405Z"
+                                  fill="currentColor"></path>
+                                <path
+                                  d="M18.4233 15.3179C18.5319 15.3167 18.6404 15.3156 18.7513 15.3143C19.1068 15.3119 19.4622 15.3119 19.8175 15.3119C20.0656 15.3108 20.3149 15.3108 20.5642 15.3096C21.0853 15.3071 21.6065 15.3071 22.1278 15.3083C22.7921 15.3083 23.4563 15.3048 24.1206 15.3C24.6346 15.2977 25.1488 15.2977 25.6628 15.2977C25.9084 15.2977 26.153 15.2965 26.3974 15.294C27.9896 15.2821 29.4685 15.2965 30.6981 16.4662C31.6439 17.5752 31.8705 18.6926 31.8669 20.1092C31.8681 20.2332 31.8681 20.3585 31.8693 20.4872C31.8705 20.8987 31.8705 21.31 31.8705 21.7202C31.8705 22.0077 31.8716 22.295 31.8716 22.5825C31.8729 23.1835 31.8729 23.7845 31.8716 24.3855C31.8716 25.1546 31.8729 25.9226 31.8764 26.6917C31.8776 27.2843 31.8776 27.877 31.8776 28.4697C31.8776 28.7535 31.8789 29.0372 31.88 29.3199C31.8812 29.7169 31.88 30.114 31.8789 30.5111C31.88 30.6268 31.8812 30.7425 31.8812 30.8617C31.8716 32.2367 31.4662 33.3146 30.5228 34.3282C29.583 35.0532 28.6802 35.318 27.5113 35.3168C27.4029 35.318 27.2943 35.318 27.1822 35.3191C26.8244 35.3216 26.4666 35.3216 26.1076 35.3228C25.8572 35.3228 25.6079 35.3239 25.3574 35.3251C24.8339 35.3263 24.3091 35.3263 23.7855 35.3263C23.1152 35.3263 22.4462 35.3299 21.7771 35.3335C21.2606 35.3359 20.7431 35.337 20.2266 35.337C19.9798 35.337 19.7329 35.3382 19.4872 35.3395C19.1402 35.3418 18.7943 35.3418 18.4484 35.3407C18.3482 35.3418 18.2469 35.343 18.1431 35.3442C16.923 35.3311 16.0298 34.8458 15.1614 34.0146C14.2133 32.995 14.0284 31.9958 14.0296 30.6411C14.0284 30.5136 14.0273 30.3847 14.0273 30.2523C14.0249 29.829 14.0236 29.4057 14.0236 28.9823C14.0236 28.6867 14.0225 28.3909 14.0213 28.0963C14.0201 27.4775 14.0201 26.8586 14.0201 26.2397C14.0201 25.4491 14.0165 24.6573 14.013 23.8667C14.0094 23.2561 14.0094 22.6468 14.0094 22.0362C14.0094 21.7453 14.0082 21.4531 14.0058 21.1622C14.0034 20.7531 14.0046 20.3441 14.0058 19.9363C14.0046 19.8171 14.0034 19.6967 14.0022 19.5738C14.013 18.3599 14.4256 17.3331 15.2569 16.4412C16.18 15.5802 17.1819 15.3131 18.4233 15.3179ZM16.4639 18.1405C15.9283 18.8977 15.9366 19.8625 15.9379 20.7508C15.9366 20.8688 15.9355 20.9857 15.9355 21.1061C15.9331 21.4913 15.9319 21.8765 15.9319 22.2617C15.9319 22.5311 15.9308 22.7995 15.9295 23.0689C15.9283 23.6318 15.9283 24.1947 15.9283 24.7575C15.9283 25.4777 15.9248 26.198 15.9212 26.9182C15.9176 27.4739 15.9176 28.0285 15.9176 28.5841C15.9176 28.85 15.9164 29.1148 15.914 29.3807C15.9116 29.7516 15.9129 30.1236 15.914 30.4957C15.9129 30.6041 15.9116 30.7127 15.9104 30.8248C15.9176 31.6046 16.0798 32.2498 16.6129 32.8412C17.2928 33.4518 18.006 33.5292 18.8861 33.5281C18.9851 33.5292 19.0829 33.5292 19.1843 33.5305C19.5086 33.5328 19.8319 33.5328 20.1563 33.534C20.3829 33.534 20.6095 33.5352 20.8349 33.5365C21.3095 33.5376 21.7831 33.5376 22.2578 33.5376C22.8636 33.5376 23.4683 33.5412 24.0741 33.5448C24.5416 33.5471 25.0092 33.5483 25.4766 33.5483C25.6998 33.5483 25.9228 33.5496 26.1458 33.5507C27.7665 33.6235 27.7665 33.6235 29.2109 33.0165C29.8835 32.2677 30.0302 31.6153 30.0148 30.6303C30.0159 30.504 30.0171 30.3776 30.0171 30.2465C30.0195 29.8302 30.0159 29.414 30.0123 28.9979C30.0123 28.7081 30.0123 28.4171 30.0135 28.1262C30.0135 27.5192 30.0112 26.9111 30.0064 26.3041C30.0004 25.5255 30.0004 24.7479 30.0028 23.9705C30.0028 23.3707 30.0016 22.7708 29.9992 22.171C29.998 21.8848 29.998 21.5975 29.998 21.3112C29.9992 20.9093 29.9956 20.5087 29.9921 20.108C29.9921 19.99 29.9932 19.8719 29.9932 19.7503C29.9825 19.0217 29.8752 18.5889 29.4494 17.9915C28.7708 17.3475 28.153 17.2401 27.2406 17.2413C27.1392 17.2401 27.0391 17.2401 26.9341 17.239C26.6013 17.2366 26.2686 17.2366 25.9359 17.2353C25.7033 17.2353 25.4719 17.2342 25.2393 17.233C24.7528 17.2318 24.2662 17.2318 23.7795 17.2318C23.1582 17.2318 22.5356 17.2282 21.9142 17.2247C21.4348 17.2222 20.9553 17.2211 20.4748 17.2211C20.2458 17.2211 20.0168 17.2199 19.7878 17.2187C19.4658 17.2163 19.1449 17.2163 18.8229 17.2175C18.6833 17.2163 18.6833 17.2163 18.5391 17.2139C17.6982 17.2235 17.0018 17.4739 16.4639 18.1405Z"
+                                  fill="currentColor"></path>
+                                <path
+                                  d="M52.7577 1.53516C52.8364 1.57451 52.9151 1.61386 52.9962 1.6544C52.524 2.12662 52.0516 2.59883 51.5651 3.08537C51.5651 2.64177 51.6688 2.56544 51.9598 2.24348C52.0695 2.11947 52.0695 2.11947 52.1828 1.99307C52.3998 1.77366 52.3998 1.77366 52.7577 1.53516Z"
+                                  fill="currentColor"></path>
+                                <path
+                                  d="M58.0053 15.9644C58.0841 16.0037 58.1628 16.043 58.2439 16.0836C57.811 16.5165 57.378 16.9494 56.932 17.3952C56.932 16.9756 56.9976 16.9159 57.2671 16.613C57.3613 16.5057 57.3613 16.5057 57.4556 16.396C57.6476 16.2028 57.6476 16.2028 58.0053 15.9644Z"
+                                  fill="currentColor"></path>
+                              </g>
+                            </g>
+                          </g>
+                          <defs>
+                            <clipPath id="clip0_1853_1094">
+                              <rect width="60" height="60" fill="white"></rect>
+                            </clipPath>
+                          </defs>
+                        </svg>
+                        <span class="sp-seat__label">Aisle</span>
+                      </label>
+                    </div>
+                  </div>
+                </div>
+                }
+              </div>
+              }
+            </div>
+            }
+
+
+            <div class="ct-card">
+              <div class="ct-head">
+                <span class="ct-sub"><svg width="18px" height="18px" viewBox="0 0 1024 1024" fill="#000000" class="icon"
+                    version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                    <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                    <g id="SVGRepo_iconCarrier">
+                      <path
+                        d="M935.974 815.98h-166.006c-11.264 0-25.17-6.514-32.386-15.17l-59.498-71.402c-8.154-9.764-8.154-25.076 0-34.842l59.498-71.402c7.216-8.654 21.124-15.17 32.386-15.17h166.006c13.234 0 23.998 10.766 23.998 23.998v159.99c0 13.234-10.764 23.998-23.998 23.998z m-166.006-191.988c-6.42 0-15.982 4.484-20.108 9.422l-59.496 71.402c-3.188 3.812-3.188 10.532 0 14.344l59.496 71.4c4.124 4.938 13.688 9.422 20.108 9.422h166.006c4.406 0 8-3.594 8-8v-159.99c0-4.406-3.594-8-8-8h-166.006z"
+                        fill=""></path>
+                      <path
+                        d="M807.982 767.984c-30.874 0-55.996-25.124-55.996-55.996s25.124-55.996 55.996-55.996 55.998 25.124 55.998 55.996-25.124 55.996-55.998 55.996z m0-95.994c-22.06 0-39.998 17.936-39.998 39.998 0 22.06 17.938 39.996 39.998 39.996s39.998-17.936 39.998-39.996c0-22.062-17.938-39.998-39.998-39.998z"
+                        fill=""></path>
+                      <path
+                        d="M807.982 735.986c-13.232 0-23.998-10.766-23.998-23.998 0-13.234 10.766-24 23.998-24 13.234 0 23.998 10.766 23.998 24 0 13.232-10.764 23.998-23.998 23.998z m0-31.998c-4.404 0-7.998 3.594-7.998 8s3.594 8 7.998 8c4.406 0 8-3.594 8-8s-3.594-8-8-8zM312.49 304.012c-4.414 0-8.078-3.578-8.078-8 0-4.422 3.5-8 7.922-8h0.156a7.994 7.994 0 0 1 7.998 8c0 4.422-3.578 8-7.998 8zM312.49 272.014c-4.414 0-8.078-3.578-8.078-8 0-4.422 3.5-8 7.922-8h0.156a7.994 7.994 0 0 1 7.998 8c0 4.422-3.578 8-7.998 8zM312.49 240.016c-4.414 0-8.078-3.578-8.078-8 0-4.422 3.5-8 7.922-8h0.156a7.994 7.994 0 0 1 7.998 8c0 4.422-3.578 8-7.998 8zM312.49 208.018c-4.414 0-8.078-3.578-8.078-8 0-4.422 3.5-8 7.922-8h0.156a7.994 7.994 0 0 1 7.998 8c0 4.422-3.578 8-7.998 8zM312.49 176.02c-4.414 0-8.078-3.578-8.078-8 0-4.422 3.5-8 7.922-8h0.156a7.994 7.994 0 0 1 7.998 8c0 4.422-3.578 8-7.998 8zM312.49 144.022c-4.414 0-8.078-3.578-8.078-8 0-4.422 3.5-8 7.922-8h0.156a7.994 7.994 0 0 1 7.998 8c0 4.422-3.578 8-7.998 8z"
+                        fill=""></path>
+                      <path
+                        d="M583.996 352.01c-4.422 0-8-3.578-8-8V79.23c-15.654-3.204-27.996-15.546-31.184-31.202H255.21c-3.188 15.656-15.544 27.998-31.194 31.202v264.78c0 4.422-3.578 8-7.998 8-4.422 0-8-3.578-8-8V72.028c0-4.422 3.578-8 8-8 13.232 0 23.998-10.766 23.998-23.998 0-4.422 3.578-8 8-8h303.98c4.422 0 8 3.578 8 8 0 13.232 10.766 23.998 23.998 23.998 4.422 0 8 3.578 8 8v271.982a7.992 7.992 0 0 1-7.998 8z"
+                        fill=""></path>
+                      <path
+                        d="M615.994 352.01a7.994 7.994 0 0 1-7.998-8V16.03H192.02v327.98c0 4.422-3.578 8-7.998 8-4.422 0-8-3.578-8-8V8.032c0-4.422 3.578-8 8-8h431.972c4.422 0 8 3.578 8 8v335.978c0 4.422-3.578 8-8 8z"
+                        fill=""></path>
+                      <path
+                        d="M488.002 320.012c-4.422 0-8-3.578-8-8V120.024c0-4.42 3.578-8 8-8s8 3.578 8 8v191.988c0 4.422-3.578 8-8 8zM440.006 304.012h-79.996c-4.422 0-8-3.578-8-8 0-4.422 3.578-8 8-8h79.996a7.994 7.994 0 0 1 7.998 8c0 4.422-3.578 8-7.998 8zM416.006 256.016h-31.998c-17.646 0-31.998-14.358-31.998-31.998s14.352-31.998 31.998-31.998h31.998c17.648 0 31.998 14.358 31.998 31.998s-14.35 31.998-31.998 31.998z m-31.998-47.998c-8.818 0-15.998 7.17-15.998 16s7.18 16 15.998 16h31.998c8.82 0 16-7.17 16-16s-7.18-16-16-16h-31.998zM416.006 176.02h-31.998c-17.646 0-31.998-14.358-31.998-31.998s14.352-31.998 31.998-31.998h31.998c17.648 0 31.998 14.358 31.998 31.998s-14.35 31.998-31.998 31.998z m-31.998-47.996c-8.818 0-15.998 7.172-15.998 16s7.18 16 15.998 16h31.998c8.82 0 16-7.172 16-16s-7.18-16-16-16h-31.998z"
+                        fill=""></path>
+                      <path
+                        d="M376.01 320.012a7.976 7.976 0 0 1-5.656-2.344l-16-16a8 8 0 1 1 11.312-11.312l15.998 16a8 8 0 0 1-5.654 13.656zM440.006 320.012c-4.422 0-8-3.578-8-8v-31.998c0-4.42 3.578-8 8-8a7.994 7.994 0 0 1 7.998 8v31.998c0 4.422-3.578 8-7.998 8zM735.52 352.01c-0.688 0-1.376-0.094-2.062-0.266a7.994 7.994 0 0 1-5.656-9.812l43.714-163.146c-6.984-3.454-12.794-8.89-16.78-15.78-3.984-6.906-5.782-14.656-5.282-22.436l-98.682-26.436a7.994 7.994 0 0 1-5.656-9.812c1.124-4.25 5.562-6.704 9.782-5.656l105.65 28.31c2.062 0.562 3.81 1.89 4.874 3.734s1.344 4.032 0.782 6.078c-1.656 6.202-0.812 12.67 2.39 18.216s8.376 9.5 14.578 11.156a7.986 7.986 0 0 1 5.658 9.812l-45.592 170.114a8.002 8.002 0 0 1-7.718 5.924z"
+                        fill=""></path>
+                      <path
+                        d="M768.672 352.01c-0.688 0-1.376-0.094-2.062-0.266a7.984 7.984 0 0 1-5.654-9.796L818.78 126.024l-168.006-45.012a7.992 7.992 0 0 1-5.656-9.812c1.124-4.25 5.562-6.704 9.782-5.656l175.738 47.09a7.982 7.982 0 0 1 5.656 9.796l-59.902 223.642c-0.938 3.578-4.188 5.938-7.72 5.938zM903.976 512c-4.422 0-8-3.578-8-8 0-39.7-32.292-71.996-71.994-71.996-4.422 0-8-3.578-8-8 0-4.422 3.578-8 8-8 48.528 0 87.994 39.482 87.994 87.994a7.996 7.996 0 0 1-8 8.002z"
+                        fill=""></path>
+                      <path
+                        d="M823.982 1023.968H120.026c-4.422 0-8-3.578-8-8s3.578-8 8-8h703.958c39.702 0 71.994-32.292 71.994-71.994 0-4.422 3.578-8 8-8s8 3.578 8 8c-0.002 48.512-39.468 87.994-87.996 87.994z"
+                        fill=""></path>
+                      <path
+                        d="M903.976 441.348c-4.422 0-8-3.578-8-8v-25.342c0-39.7-32.292-71.996-71.994-71.996-4.422 0-8-3.578-8-8 0-4.422 3.578-8 8-8 48.528 0 87.994 39.482 87.994 87.994v25.342a7.996 7.996 0 0 1-8 8.002z"
+                        fill=""></path>
+                      <path
+                        d="M120.026 432.004c-30.874 0-55.998-25.124-55.998-55.998 0-4.42 3.578-8 8-8s8 3.578 8 8c0 22.062 17.944 39.998 39.998 39.998a7.994 7.994 0 0 1 7.998 8c0 4.422-3.578 8-7.998 8z"
+                        fill=""></path>
+                      <path
+                        d="M120.026 1023.968c-30.874 0-55.998-25.124-55.998-55.996 0-4.422 3.578-8 8-8s8 3.578 8 8c0 22.06 17.944 39.996 39.998 39.996 4.42 0 7.998 3.578 7.998 8s-3.578 8-7.998 8z"
+                        fill=""></path>
+                      <path
+                        d="M72.028 384.008c-4.422 0-8-3.578-8-8 0-30.874 25.124-55.996 55.998-55.996a7.994 7.994 0 0 1 7.998 8c0 4.42-3.578 8-7.998 8-22.054 0-39.998 17.936-39.998 39.998a7.994 7.994 0 0 1-8 7.998z"
+                        fill=""></path>
+                      <path
+                        d="M823.982 432.004H120.026c-4.422 0-8-3.578-8-8 0-4.422 3.578-8 8-8h703.958a7.994 7.994 0 0 1 7.998 8 7.998 7.998 0 0 1-8 8z"
+                        fill=""></path>
+                      <path
+                        d="M807.982 384.008H136.024c-4.422 0-8-3.578-8-8 0-4.42 3.578-8 8-8h671.958c4.422 0 8 3.578 8 8 0 4.422-3.578 8-8 8z"
+                        fill=""></path>
+                      <path
+                        d="M72.028 975.972c-4.422 0-8-3.578-8-8V376.008c0-4.42 3.578-8 8-8s8 3.578 8 8v591.964c0 4.422-3.578 8-8 8z"
+                        fill=""></path>
+                      <path
+                        d="M823.982 336.01h-16a7.994 7.994 0 0 1-7.998-8c0-4.422 3.578-8 7.998-8h16a7.994 7.994 0 0 1 7.998 8c0 4.422-3.578 8-7.998 8z"
+                        fill=""></path>
+                      <path
+                        d="M152.024 336.01H120.026c-4.422 0-8-3.578-8-8 0-4.422 3.578-8 8-8h31.998a7.994 7.994 0 0 1 7.998 8c0 4.422-3.578 8-7.998 8z"
+                        fill=""></path>
+                      <path
+                        d="M152.024 480.002h-16c-4.422 0-8-3.578-8-8 0-4.42 3.578-8 8-8h16a7.994 7.994 0 0 1 7.998 8c0 4.422-3.578 8-7.998 8zM776.734 480.002h-31.216a7.984 7.984 0 0 1-7.998-8c0-4.42 3.56-8 7.998-8h31.216c4.438 0 8 3.578 8 8 0 4.422-3.562 8-8 8z m-62.464 0h-31.232a7.994 7.994 0 0 1-7.998-8c0-4.42 3.576-8 7.998-8h31.232c4.422 0 8 3.578 8 8 0 4.422-3.578 8-8 8z m-62.466 0h-31.248c-4.406 0-8-3.578-8-8 0-4.42 3.594-8 8-8h31.248c4.406 0 8 3.578 8 8 0 4.422-3.594 8-8 8z m-62.48 0h-31.232c-4.422 0-8-3.578-8-8 0-4.42 3.578-8 8-8h31.232c4.422 0 8 3.578 8 8 0 4.422-3.578 8-8 8z m-62.472 0H495.62c-4.422 0-8-3.578-8-8 0-4.42 3.578-8 8-8h31.232a7.984 7.984 0 0 1 7.992 8c0 4.422-3.562 8-7.992 8z m-62.474 0h-31.232c-4.422 0-8-3.578-8-8 0-4.42 3.578-8 8-8h31.232c4.422 0 8 3.578 8 8 0 4.422-3.578 8-8 8z m-62.472 0h-31.232c-4.422 0-8-3.578-8-8 0-4.42 3.578-8 8-8h31.232c4.422 0 8 3.578 8 8 0 4.422-3.578 8-8 8z m-62.472 0h-31.232c-4.422 0-8-3.578-8-8 0-4.42 3.578-8 8-8h31.232c4.422 0 8 3.578 8 8 0 4.422-3.578 8-8 8z m-62.474 0h-31.232c-4.422 0-8-3.578-8-8 0-4.42 3.578-8 8-8h31.232a7.994 7.994 0 0 1 7.998 8c0 4.422-3.576 8-7.998 8z m-62.472 0H183.256c-4.422 0-8-3.578-8-8 0-4.42 3.578-8 8-8h31.232a7.994 7.994 0 0 1 7.998 8c0 4.422-3.576 8-7.998 8zM823.982 480.002h-16a7.994 7.994 0 0 1-7.998-8c0-4.42 3.578-8 7.998-8h16a7.994 7.994 0 0 1 7.998 8c0 4.422-3.578 8-7.998 8z"
+                        fill=""></path>
+                      <path
+                        d="M152.024 975.988h-16c-4.422 0-8-3.578-8-8s3.578-8 8-8h16c4.42 0 7.998 3.578 7.998 8s-3.578 8-7.998 8zM776.734 975.988h-31.216c-4.438 0-7.998-3.578-7.998-8s3.56-8 7.998-8h31.216c4.438 0 8 3.578 8 8s-3.562 8-8 8z m-62.464 0h-31.232c-4.422 0-7.998-3.578-7.998-8s3.576-8 7.998-8h31.232c4.422 0 8 3.578 8 8s-3.578 8-8 8z m-62.466 0h-31.248c-4.406 0-8-3.578-8-8s3.594-8 8-8h31.248c4.406 0 8 3.578 8 8s-3.594 8-8 8z m-62.48 0h-31.232c-4.422 0-8-3.578-8-8s3.578-8 8-8h31.232c4.422 0 8 3.578 8 8s-3.578 8-8 8z m-62.472 0H495.62c-4.422 0-8-3.578-8-8s3.578-8 8-8h31.232c4.43 0 7.992 3.578 7.992 8s-3.562 8-7.992 8z m-62.474 0h-31.232c-4.422 0-8-3.578-8-8s3.578-8 8-8h31.232c4.422 0 8 3.578 8 8s-3.578 8-8 8z m-62.472 0h-31.232c-4.422 0-8-3.578-8-8s3.578-8 8-8h31.232c4.422 0 8 3.578 8 8s-3.578 8-8 8z m-62.472 0h-31.232c-4.422 0-8-3.578-8-8s3.578-8 8-8h31.232c4.422 0 8 3.578 8 8s-3.578 8-8 8z m-62.474 0h-31.232c-4.422 0-8-3.578-8-8s3.578-8 8-8h31.232c4.422 0 7.998 3.578 7.998 8s-3.576 8-7.998 8z m-62.472 0H183.256c-4.422 0-8-3.578-8-8s3.578-8 8-8h31.232c4.422 0 7.998 3.578 7.998 8s-3.576 8-7.998 8zM823.982 975.988h-16c-4.42 0-7.998-3.578-7.998-8s3.578-8 7.998-8h16c4.42 0 7.998 3.578 7.998 8s-3.578 8-7.998 8z"
+                        fill=""></path>
+                      <path
+                        d="M903.976 591.996c-4.422 0-8-3.578-8-8V504c0-4.42 3.578-8 8-8s8 3.578 8 8v79.996c0 4.422-3.578 8-8 8z"
+                        fill=""></path>
+                      <path
+                        d="M903.976 943.972c-4.422 0-8-3.578-8-7.998V839.98c0-4.422 3.578-8 8-8s8 3.578 8 8v95.994a7.994 7.994 0 0 1-8 7.998z"
+                        fill=""></path>
+                    </g>
+                  </svg>
+                  Payment Details
+                </span>
+                <h3>Payment Information</h3>
+                <p>Secured Encrypted Transaction</p>
+                <span class="ct-required">*Required field</span>
+              </div>
+
+              <div>
+                <div class="row g-3" formGroupName="billingInfo">
+                  <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12">
+                    <div class="ct-field">
+                      <label for="cardNumber">Credit / Debit Card Number *</label>
+                      <input type="text" id="cardNumber" class="card-name-input" placeholder="•••• •••• •••• ••••"
+                        formControlName="CardNumber" appCardNumber minlength="18" maxlength="19" inputmode="numeric"
+                        (input)="onCardNumberInput()" [class.is-invalid]="
+                                          (billingInfo.get('CardNumber')?.touched || submitted) &&
+                                          billingInfo.get('CardNumber')?.invalid
+                                        " />
+                      @if (billingInfo.get('CardNumber')?.errors?.['invalidCardType']) {
+                      <div class="text-danger">Invalid card number.</div>
+                      } @if ( billingInfo.get('CardNumber')?.touched &&
+                      billingInfo.get('CardNumber')?.invalid )
+                      {
+
+                      <!-- Required -->
+                      @if (billingInfo.get('CardNumber')?.errors?.['required']) {
+                      <div class="text-danger">Please provide a valid card number.</div>
+                      }
+
+                      <!-- Invalid length (only show if card type IS valid) -->
+                      @if ( !billingInfo.get('CardNumber')?.errors?.['invalidCardType'] &&
+                      billingInfo.get('CardNumber')?.errors?.['invalidLength'] ) {
+                      <div class="text-danger">Invalid card number length.</div>
+                      } }
+                    </div>
+                  </div>
+                  <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12">
+                    <div class="ct-field">
+                      <label for="cardName">Card Holder's Name *</label>
+                      <input type="text" id="cardName" placeholder="Matthew Jose" formControlName="cardHolder"
+                        appValidate="name" [class.is-invalid]="
+                                          (billingInfo.get('cardHolder')?.touched || submitted) &&
+                                          billingInfo.get('cardHolder')?.invalid
+                                        " />
+                      @if (billingInfo.get('cardHolder')?.touched && billingInfo.get('cardHolder')?.invalid)
+                      {
+                      <div class="text-danger">Please provide the name on your card.</div>
+                      }
+                    </div>
+                  </div>
+
+
+                  <div class="col-xl-3 col-lg-4 col-md-4 col-sm-4">
+                    <div class="dob-field ct-field">
+                      <label for="cvvexpiry">Expiry *</label>
+
+                      <span class="dob-placeholder">Expiry *</span>
+                      <input type="text" id="cvvexpiry" inputmode="numeric" placeholder="MM/YY"
+                        formControlName="ExpiryDate" maxlength="5" (input)="onExpiryInput($event)" [class.is-invalid]="
+                                          (billingInfo.get('ExpiryDate')?.touched || submitted) &&
+                                          billingInfo.get('ExpiryDate')?.invalid
+                                        " />
+                      @if (billingInfo.get('ExpiryDate')?.touched && billingInfo.get('ExpiryDate')?.invalid)
+                      {
+                      <div class="text-danger">
+                        @if (billingInfo.get('ExpiryDate')?.errors?.['required']) {
+                        <div>Please select a valid expiration date.</div>
+                        } @if ( billingInfo.get('ExpiryDate')?.touched &&
+                        billingInfo.get('ExpiryDate')?.errors?.['pattern']) {
+                        <div>Format must be MM/YY.</div>
+                        } @if (billingInfo.get('ExpiryDate')?.touched &&
+                        !billingInfo.get('ExpiryDate')?.errors?.['pattern'] &&
+                        billingInfo.get('ExpiryDate')?.errors?.['yearRange']) { Expiration year must be
+                        within
+                        the next 30 years. }
+                      </div>
+                      }
+                    </div>
+                  </div>
+
+                  <div class="col-xl-3 col-lg-4 col-md-4 col-sm-4">
+                    <div class="ct-field">
+                      <label for="cvv">CVV Code *</label>
+                      <input type="text" id="cvv" placeholder="•••" inputmode="numeric" formControlName="CVV"
+                        minlength="3" maxlength="4" (input)="onCvvInput($event)" [class.is-invalid]="
+                                            (billingInfo.get('CVV')?.touched || submitted) && billingInfo.get('CVV')?.invalid
+                                          " />
+                      @if (billingInfo.get('CVV')?.touched && billingInfo.get('CVV')?.invalid) {
+                      <div class="text-danger">
+                        @if (billingInfo.get('CVV')?.errors?.['required']) {
+                        <div>Please provide a valid security code.</div>
+                        } @if (billingInfo.get('CVV')?.errors?.['minlength']) {
+                        <div>Invalid.</div>
+                        } @if (billingInfo.get('CVV')?.errors?.['maxlength']) {
+                        <div>Invalid.</div>
+                        }
+                      </div>
+                      }
+                    </div>
+                  </div>
+                </div>
+
+                <p class="ct-note mb-0">
+                  Your card may be charged by the domain or directly by the airline, depending on the fare selected.
+                </p>
+              </div>
+            </div>
+            <div class="ct-card" [formGroup]="billingInfo">
+              <div class="ct-head">
+                <span class="ct-sub">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="18px" height="18px" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                    class="icon icon-tabler icons-tabler-outline icon-tabler-receipt">
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                    <path
+                      d="M5 21v-16a2 2 0 0 1 2 -2h10a2 2 0 0 1 2 2v16l-3 -2l-2 2l-2 -2l-2 2l-2 -2l-3 2m4 -14h6m-6 4h6m-2 4h2" />
+                  </svg>
+                  Billing Information
+                </span>
+
+                <h3>Billing Details</h3>
+                <p>As per the bank records or credit card company</p>
+                <span class="ct-required">*Required field</span>
+              </div>
+
+              <div class="row g-3">
+
+                <!-- Country -->
+                <div class="col-md-4">
+                  <div class="ct-field">
+                    <label for="billingCountry">
+                      Country <span class="u-required">*</span>
+                    </label>
+
+                    <p-dropdown id="billingCountry" [options]="country" placeholder="Select Country"
+                      formControlName="Country" optionLabel="name" optionValue="code2" [filter]="true" appendTo="body"
+                      (onChange)="onCountryState($event.value)" [class.is-invalid]="
+            (billingInfo.get('Country')?.touched || submitted) &&
+            billingInfo.get('Country')?.invalid
+          ">
+                    </p-dropdown>
+
+                    @if (billingInfo.get('Country')?.touched &&
+                    billingInfo.get('Country')?.invalid) {
+                    <div class="text-danger">
+                      @if (billingInfo.get('Country')?.errors?.['required']) {
+                      <div>Please select country.</div>
+                      }
+                    </div>
+                    }
+                  </div>
+                </div>
+
+                <!-- State -->
+                <div class="col-md-4">
+                  @if (hasStates) {
+                  <div class="ct-field">
+                    <label for="billingState">
+                      State <span class="u-required">*</span>
+                    </label>
+
+                    <p-dropdown id="billingState" [options]="state" placeholder="Select State" formControlName="State"
+                      optionLabel="name" optionValue="code" [filter]="true" appendTo="body" [class.is-invalid]="
+              (billingInfo.get('State')?.touched || submitted) &&
+              billingInfo.get('State')?.invalid
+            ">
+                    </p-dropdown>
+
+                    @if (billingInfo.get('State')?.touched &&
+                    billingInfo.get('State')?.invalid) {
+                    <div class="text-danger">
+                      @if (billingInfo.get('State')?.errors?.['required']) {
+                      <div>Please select state.</div>
+                      }
+                    </div>
+                    }
+                  </div>
+                  }
+
+                  @if (!hasStates) {
+                  <div class="ct-field">
+                    <label for="billingState">State</label>
+
+                    <input type="text" id="billingState" class="ct-input" placeholder="Enter state"
+                      formControlName="State" maxlength="100" nospace appValidate="city" />
+                  </div>
+                  }
+                </div>
+
+                <!-- Street Address -->
+                <div class="col-md-4">
+                  <div class="ct-field">
+                    <label for="billingStreet">
+                      Address <span class="u-required">*</span>
+                    </label>
+
+                    <input type="text" id="billingStreet" class="ct-input" placeholder="Enter address"
+                      formControlName="street" nospace [class.is-invalid]="
+            (billingInfo.get('street')?.touched || submitted) &&
+            billingInfo.get('street')?.invalid
+          " />
+
+                    @if (billingInfo.get('street')?.touched &&
+                    billingInfo.get('street')?.invalid) {
+                    <div class="text-danger">
+                      @if (billingInfo.get('street')?.errors?.['required']) {
+                      <div>Please provide valid street.</div>
+                      }
+                    </div>
+                    }
+                  </div>
+                </div>
+
+                <!-- City -->
+                <div class="col-md-4">
+                  <div class="ct-field">
+                    <label for="billingCity">
+                      City <span class="u-required">*</span>
+                    </label>
+
+                    <input type="text" id="billingCity" class="ct-input" placeholder="Enter city" formControlName="City"
+                      maxlength="100" nospace appValidate="city" [class.is-invalid]="
+            (billingInfo.get('City')?.touched || submitted) &&
+            billingInfo.get('City')?.invalid
+          " />
+
+                    @if (billingInfo.get('City')?.touched &&
+                    billingInfo.get('City')?.invalid) {
+                    <div class="text-danger">
+                      @if (billingInfo.get('City')?.errors?.['required']) {
+                      <div>Please provide valid City.</div>
+                      }
+
+                      @if (billingInfo.get('City')?.errors?.['pattern']) {
+                      <div>Please provide valid City.</div>
+                      }
+                    </div>
+                    }
+                  </div>
+                </div>
+
+                <!-- Zip Code -->
+                @if (hasZipCode) {
+                <div class="col-md-4">
+                  <div class="ct-field">
+                    <label for="billingZip">
+                      Zipcode <span class="u-required">*</span>
+                    </label>
+
+                    <input type="text" id="billingZip" class="ct-input" placeholder="Enter Zip Code"
+                      formControlName="ZipCode" maxlength="11" [class.is-invalid]="
+              (billingInfo.get('ZipCode')?.touched || submitted) &&
+              billingInfo.get('ZipCode')?.invalid
+            " />
+
+                    @if (billingInfo.get('ZipCode')?.touched &&
+                    billingInfo.get('ZipCode')?.invalid) {
+                    <div class="text-danger">
+                      @if (billingInfo.get('ZipCode')?.errors?.['required']) {
+                      <div>Please provide valid Zip Code.</div>
+                      }
+
+                      @if (billingInfo.get('ZipCode')?.errors?.['pattern']) {
+                      <div>Please provide valid Zip Code.</div>
+                      }
+                    </div>
+                    }
+                  </div>
+                </div>
+                }
+
+                <!-- Email -->
+                <div class="col-md-4">
+                  <div class="ct-field">
+                    <label for="billingEmail">
+                      Email Address <span class="u-required">*</span>
+                    </label>
+
+                    <input type="email" id="billingEmail" class="ct-input" placeholder="Enter email address"
+                      formControlName="BillingEmail" appValidate="email" [class.is-invalid]="
+            (billingInfo.get('BillingEmail')?.touched || submitted) &&
+            billingInfo.get('BillingEmail')?.invalid
+          " />
+
+                    @if (billingInfo.get('BillingEmail')?.touched &&
+                    billingInfo.get('BillingEmail')?.invalid) {
+                    <div class="text-danger">
+                      @if (billingInfo.get('BillingEmail')?.errors?.['required']) {
+                      <div>Please provide valid email.</div>
+                      }
+
+                      @if (billingInfo.get('BillingEmail')?.errors?.['email']) {
+                      <div>Please provide valid email.</div>
+                      }
+                    </div>
+                    }
+                  </div>
+                </div>
+
+                <!-- Contact Phone -->
+                <div class="col-md-4">
+                  <div class="ct-field">
+                    <label for="billingPhone">
+                      Contact Phone <span class="u-required">*</span>
+                    </label>
+
+                    <input type="tel" id="billingPhone" inputmode="numeric" class="ct-input" placeholder="Enter number"
+                      formControlName="BillingPhoneNum" appValidate="number" maxlength="15" [class.is-invalid]="
+            (billingInfo.get('BillingPhoneNum')?.touched || submitted) &&
+            billingInfo.get('BillingPhoneNum')?.invalid
+          " />
+
+                    @if (billingInfo.get('BillingPhoneNum')?.touched &&
+                    billingInfo.get('BillingPhoneNum')?.invalid) {
+                    <div class="text-danger">
+                      @if (billingInfo.get('BillingPhoneNum')?.errors?.['required']) {
+                      <div>Please provide valid contact number.</div>
+                      }
+
+                      @if (billingInfo.get('BillingPhoneNum')?.errors?.['pattern']) {
+                      <div>Please provide valid contact number.</div>
+                      }
+                    </div>
+                    }
+                  </div>
+                </div>
+
+              </div>
+              <!-- 
+              <p class="ct-note">
+                Please make sure your contact information is correct.
+                We'll use it to send your booking confirmation and reminders.
+              </p> -->
+            </div>
+
+            <div class="belowconf-info">
+              <div class="text-sec-links">
+                By selecting “Complete Booking”, you agree to the <a href="/terms-and-conditions">Terms & Conditions</a>
+                and <a href="/privacy-policy">Privacy Policy</a>. It also gives
+                Domain and its affiliates permission to process the full booking amount using your chosen payment
+                method.
+              </div>
+              <button type="button" class="btn-primarysec bk-next" (click)="onComplete($event)">
+                Continue to Payment @if(loading){ <span class="spinner spinner-bottom-price"></span> }
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <!-- RIGHT FLIGHT CARD -->
+      <div class="col-lg-4">
+        <div class="fs-sticky-wrapper">
+          <div class="fs-card">
+            <h3 class="fs-title">Flight Details</h3>
+
+            <div class="fs-promo">
+              <span class="fs-promo-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                  viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                  stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-circle-check">
+                  <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                  <path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" />
+                  <path d="M9 12l2 2l4 -4" />
+                </svg></span>
+              <p>
+                Book now with our <strong>Price Match Promise</strong> and
+                24 hours cancellation (fee applies)
+              </p>
+            </div>
+            @for (cp of getMainDetails?.Citypairs; track $index;let isLast = $last) {
+
+            @if (cp?.FlightSegment?.length > 0) {
+            <div class="fs-route">
+              <h4>{{ (cp?.FlightSegment)[0]?.DepartureDisplayName }} ({{
+                (cp?.FlightSegment)[0]?.DepartureLocationCode }}) → {{
+                (cp?.FlightSegment)[
+                cp?.FlightSegment.length - 1
+                ]?.DisplayName
+                }} ({{
+                (cp?.FlightSegment)[
+                cp?.FlightSegment.length - 1
+                ]?.ArrivalLocationCode
+                }})</h4>
+              <span class="fs-date"> {{ (cp?.FlightSegment)[0]?.DepartureDateTime | date: "EEEE, MMM "
+                }}<span class="fd-flight-details__date-highlight">{{
+                  (cp?.FlightSegment)[0]?.DepartureDateTime | date: " d, "
+                  }}</span>{{ (cp?.FlightSegment)[0]?.DepartureDateTime | date: " y" }}</span>
+              <p class="fs-duration">Journey Duration: {{ cp?.Duration | durationToHours }} · @if (cp?.NoOfStops == 0) {
+                Non stop
+                } @else if (cp?.NoOfStops > 0) {
+
+                {{ cp?.NoOfStops }}
+                {{ cp?.NoOfStops > 1 ? "Stops" : "Stop" }}
+
+                }</p>
+            </div>
+
+            <div class="fs-time-row">
+              <div>
+                <strong>{{ (cp?.FlightSegment)[0]?.DepartureDateTime | date: "HH:mm" }}
+                </strong>
+                <span>{{
+                  (cp?.FlightSegment)[0]?.DepartureLocationCode }}</span>
+              </div>
+              <div class="fs-arrow">→</div>
+              <div>
+                <strong>{{
+                  (cp?.FlightSegment)[
+                  cp?.FlightSegment.length - 1
+                  ]?.ArrivalDateTime | date: "HH:mm"
+                  }}<span *ngIf="getSegmentDurationParts(cp?.FlightSegment).days > 0">+{{
+                    getSegmentDurationParts(cp?.FlightSegment).days }}</span></strong>
+                <span>{{
+                  (cp?.FlightSegment)[
+                  cp?.FlightSegment.length - 1
+                  ]?.ArrivalLocationCode
+                  }}</span>
+              </div>
+            </div>
+
+
+            <div class="fs-airline">
+              <img [src]="imageUrl + (cp?.FlightSegment)[0]?.FlightLogoName"
+                [alt]="(cp?.FlightSegment)[0]?.FlightLogoName" />
+              <div>
+                <strong>{{ (cp?.FlightSegment)[0]?.MarketingAirlineName }}</strong>
+                <!-- <span>Flight 1650 · Aircraft A321</span> -->
+              </div>
+            </div>
+
+            <!-- <div class="fs-meta">
+              <div>
+                <label>Cabin</label>
+                <span>Coach</span>
+              </div>
+              <div>
+                <label>Brand</label>
+                <span>Basic</span>
+              </div>
+            </div> -->
+            @if (!isLast) {
+            <div class="fs-divider"></div>
+            }
+            }}
+
+            <a data-bs-toggle="offcanvas" data-bs-target="#fdOffcanvas" class="fs-fare-link">View flight details &
+              policies</a>
+          </div>
+          <div class="pd-fixed-card">
+            <div class="pd-fixed-header">
+              <h4>Price Details (USD)</h4>
+            </div>
+
+            <div class="pd-fixed-body">
+              <div class="pd-fixed-section">
+                <h5>Price Summary</h5>
+                @if(selectedAdults > 0){
+                <div class="pd-fixed-row">
+                  <span> {{
+                    selectedAdults > 1 ? "Adults" : "Adult" }} ({{ selectedAdults }})</span>
+                  <strong>${{
+                    getFormattedPrice(getFareSubtotal("ADT", selectedAdults)).integer }}.{{
+                    getFormattedPrice(getFareSubtotal("ADT", selectedAdults)).decimal }}</strong>
+                </div>
+                }
+                @if(selectedChildren > 0){
+                <div class="pd-fixed-row">
+                  <span> {{
+                    selectedChildren > 1 ? "Childs" : "Child" }} ({{ selectedChildren }})</span>
+                  <strong>${{
+                    getFormattedPrice(getFareSubtotal("CHD", selectedChildren)).integer }}.{{
+                    getFormattedPrice(getFareSubtotal("CHD", selectedChildren)).decimal }}</strong>
+                </div>
+                }
+                @if(selectedInfants > 0){
+                <div class="pd-fixed-row">
+                  <span> {{
+                    selectedInfants > 1 ? "Infs" : "Inf" }} ({{ selectedInfants }})</span>
+                  <strong>${{
+                    getFormattedPrice(getFareSubtotal("INF", selectedInfants)).integer }}.{{
+                    getFormattedPrice(getFareSubtotal("INF", selectedInfants)).decimal }}</strong>
+                </div>
+                }
+              </div>
+
+              <div class="pd-fixed-divider"></div>
+
+              <div class="pd-fixed-row pd-fixed-fees">
+                <span>Sub Total</span>
+                <strong>${{
+                  getFormattedPrice(getsubTotal()).integer }}.{{
+                  getFormattedPrice(getsubTotal()).decimal }}</strong>
+              </div>
+              @if(travelProtectionAdded){
+              <div class="pd-fixed-row pd-fixed-fees">
+                <span>Refund Shield</span>
+                <strong>${{
+                  getFormattedPrice(getTravelProtectionTotal()).integer
+                  }}.{{
+                  getFormattedPrice(getTravelProtectionTotal()).decimal }}</strong>
+              </div>
+              }
+              <div class="pd-fixed-total">
+                <span>Total Amount</span>
+                <strong>${{
+                  getFormattedPrice(getTotal()).integer }}.{{
+                  getFormattedPrice(getTotal()).decimal }}</strong>
+              </div>
+
+              <p class="pd-fixed-note">
+                All fares are shown in <strong>US Dollars</strong>. Additional <a href="/baggage" style="color:rgb(255, 94, 0) !important;"> baggage fees</a> can be applied depending on the airline. Your
+                total payment may appear as multiple charges that add up to the final booking amount.
+              </p>
+              <button type="button" class="btn-primarysec w-100" style="width: 100% !important"
+                (click)="onComplete($event)">
+                Complete Booking @if(loading){ <span class="spinner spinner-bottom-price"></span> }
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="psc-sheet">
+
+    <!-- Expandable Price Summary Panel -->
+    <div class="psc-panel" id="pscPanel" [class.is-open]="pscPanelOpen">
+      <div class="psc-panel__handle"><span></span></div>
+      <h3 class="psc-panel__title">Price Summary</h3>
+      <div class="psc-panel__body">
+        @if(selectedAdults > 0){
+        <div class="psc-row">
+          <span class="psc-row__label">{{
+            selectedAdults > 1 ? "Adults" : "Adult" }} ({{ selectedAdults }})</span>
+          <span class="psc-row__value">${{
+            getFormattedPrice(getFareSubtotal("ADT", selectedAdults)).integer }}<sup>.{{
+              getFormattedPrice(getFareSubtotal("ADT", selectedAdults)).decimal }}</sup></span>
+        </div>
+        }
+        @if(selectedChildren > 0){
+        <div class="psc-row">
+          <span class="psc-row__label">{{
+            selectedChildren > 1 ? "Children" : "Child" }} ({{ selectedChildren }})</span>
+          <span class="psc-row__value">${{
+            getFormattedPrice(getFareSubtotal("CHD", selectedChildren)).integer }}<sup>.{{
+              getFormattedPrice(getFareSubtotal("CHD", selectedChildren)).decimal }}</sup></span>
+        </div>
+        }
+        @if(selectedInfants > 0){
+        <div class="psc-row">
+          <span class="psc-row__label">{{
+            selectedInfants > 1 ? "Infants" : "Infant" }} ({{ selectedInfants }})</span>
+          <span class="psc-row__value">${{
+            getFormattedPrice(getFareSubtotal("INF", selectedInfants)).integer }}<sup>.{{
+              getFormattedPrice(getFareSubtotal("INF", selectedInfants)).decimal }}</sup></span>
+        </div>
+        }
+        <div class="psc-row">
+          <span class="psc-row__label psc-row__label--muted">Subtotal</span>
+          <span class="psc-row__value psc-row__value--muted">${{
+            getFormattedPrice(getFareSubtotal("ADT", selectedAdults)).integer }}<sup>.{{
+              getFormattedPrice(getFareSubtotal("ADT", selectedAdults)).decimal }}</sup></span>
+        </div>
+        @if(travelProtectionAdded){
+        <div class="psc-row">
+          <span class="psc-row__label psc-row__label--muted">Refund Shield</span>
+          <span class="psc-row__value psc-row__value--muted">${{
+            getFormattedPrice(getTravelProtectionTotal()).integer }}<sup>.{{
+              getFormattedPrice(getTravelProtectionTotal()).decimal }}</sup></span>
+        </div>
+        }
+        <div class="psc-row psc-row--total">
+          <span class="psc-row__label">Total <i class="fa-regular fa-circle-question"></i></span>
+          <span class="psc-row__value">${{
+            getFormattedPrice(getTotal()).integer }}<sup>.{{
+              getFormattedPrice(getTotal()).decimal }}</sup></span>
+        </div>
+      </div>
+    </div>
+
+
+
+    <div class="psc-sheet">
+
+      <!-- Expandable Price Summary Panel -->
+      <div class="psc-panel" id="pscPanel">
+        <div class="psc-panel__handle"><span></span></div>
+        <h3 class="psc-panel__title">Price Summary</h3>
+        <div class="psc-panel__body">
+          @if(selectedAdults > 0){
+          <div class="psc-row">
+            <span class="psc-row__label">{{
+              selectedAdults > 1 ? "Adults" : "Adult" }} ({{ selectedAdults }})</span>
+            <span class="psc-row__value">${{
+              getFormattedPrice(getFareSubtotal("ADT", selectedAdults)).integer }}<sup>.{{
+                getFormattedPrice(getFareSubtotal("ADT", selectedAdults)).decimal }}</sup></span>
+          </div>
+          }
+          @if(selectedChildren > 0){
+          <div class="psc-row">
+            <span class="psc-row__label">{{
+              selectedChildren > 1 ? "Children" : "Child" }} ({{ selectedChildren }})</span>
+            <span class="psc-row__value">${{
+              getFormattedPrice(getFareSubtotal("CHD", selectedChildren)).integer }}<sup>.{{
+                getFormattedPrice(getFareSubtotal("CHD", selectedChildren)).decimal }}</sup></span>
+          </div>
+          }
+          @if(selectedInfants > 0){
+          <div class="psc-row">
+            <span class="psc-row__label">{{
+              selectedInfants > 1 ? "Infants" : "Infant" }} ({{ selectedInfants }})</span>
+            <span class="psc-row__value">${{
+              getFormattedPrice(getFareSubtotal("INF", selectedInfants)).integer }}<sup>.{{
+                getFormattedPrice(getFareSubtotal("INF", selectedInfants)).decimal }}</sup></span>
+          </div>
+          }
+          <div class="psc-row">
+            <span class="psc-row__label psc-row__label--muted">Subtotal</span>
+            <span class="psc-row__value psc-row__value--muted">${{
+              getFormattedPrice(getFareSubtotal("ADT", selectedAdults)).integer }}<sup>.{{
+                getFormattedPrice(getFareSubtotal("ADT", selectedAdults)).decimal }}</sup></span>
+          </div>
+          @if(travelProtectionAdded){
+          <div class="psc-row">
+            <span class="psc-row__label psc-row__label--muted">Refund Shield</span>
+            <span class="psc-row__value psc-row__value--muted">${{
+              getFormattedPrice(getTravelProtectionTotal()).integer }}<sup>.{{
+                getFormattedPrice(getTravelProtectionTotal()).decimal }}</sup></span>
+          </div>
+          }
+          <div class="psc-row psc-row--total">
+            <span class="psc-row__label">Total <i class="fa-regular fa-circle-question"></i></span>
+            <span class="psc-row__value">${{
+              getFormattedPrice(getTotal()).integer }}<sup>.{{
+                getFormattedPrice(getTotal()).decimal }}</sup></span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sticky Bottom Bar -->
+      <div class="psc-bar" id="pscToggle" (click)="togglePscPanel($event)">
+        <div class="psc-bar__price-block">
+          <span class="psc-bar__price">${{
+            getFormattedPrice(getTotal()).integer }}<sup>.{{
+              getFormattedPrice(getTotal()).decimal }}</sup> <i class="fa-solid fa-chevron-up" id="pscChevron"
+              [class.is-rotated]="pscPanelOpen"></i></span>
+          <span class="psc-bar__label">Total Price</span>
+        </div>
+        <button type="button" class="psc-bar__btn" id="pscCompleteBtn" (click)="onComplete($event)">
+          Complete Booking @if(loading){ <span class="spinner spinner-bottom-price"></span> }</button>
+      </div>
+
+    </div>
+
+
+  </div>
+</section>
+
+
+
+
+
+<!-- ===== All modal & Offcanvas (Mobile)  ===== -->
+<div class="offcanvas offcanvas-end fd-offcanvas" tabindex="-1" id="fdOffcanvas">
+  <div class="fd-offcanvas-header">
+    <h5>Flight details</h5>
+    <button type="button" class="fd-close" data-bs-dismiss="offcanvas">
+      ×
+    </button>
+  </div>
+
+  <!-- Scroll Tabs -->
+  <div class="fd-scroll-tabs">
+
+    <button type="button" data-target="#fd-route" (click)="onFlightTabClick($event)">
+      Route
+    </button>
+
+    <button type="button" data-target="#fd-baggage" (click)="onFlightTabClick($event)">
+      Baggage
+    </button>
+
+    <button type="button" data-target="#fd-policy" (click)="onFlightTabClick($event)">
+      Policies
+    </button>
+
+  </div>
+
+  <!-- Scrollable Body -->
+  <div class="fd-offcanvas-body">
+    <!-- Route -->
+    <section id="fd-route" class="fd-section">
+
+      <div class="fd-card">
+
+        <!-- ================= DEPARTURE ================= -->
+        @if (getMainDetails?.Citypairs?.length >= 1) {
+
+        <!-- Segment 1 / Departure -->
+        <div class="fd-segment">
+
+          <div class="inline-flex-sec">
+
+            <div class="dtitle">
+              Depart ·
+              {{
+              getMainDetails?.Citypairs[0]?.FlightSegment[0]?.DepartureDateTime
+              | date : "EEE, d MMM"
+              }}
+            </div>
+
+            <span class="duration-size">
+              Journey Duration:
+              {{ getMainDetails?.Citypairs[0]?.Duration | durationToHours }}
+            </span>
+
+          </div>
+
+
+          @for (
+          flight of getMainDetails?.Citypairs[0]?.FlightSegment;
+          track $index;
+          let i = $index
+          ) {
+
+          <!-- ================= FLIGHT SEGMENT ================= -->
+          <div class="fd-segment">
+
+            <div class="fd-seg-head">
+
+              <img [src]="imageUrl + flight.FlightLogoName" class="fd-air-logo" [alt]="flight.FlightLogoName" />
+
+              <span>
+                {{ flight.MarketingAirlineName }}
+                {{ flight.FlightNumber }}
+              </span>
+
+              <span class="fd-chip">
+                {{ flight.AirEquipmentType }}
+              </span>
+
+              <div class="fd-icons">
+                <!-- Keep your existing SVG icons here -->
+              </div>
+
+            </div>
+
+
+            <div class="fd-seg-body">
+
+              <div class="fd-time-col">
+
+                <strong>
+                  {{ flight.DepartureDateTime | date : "HH:mm" }}
+                </strong>
+
+                <span>
+                  {{ flight.OriginAirportName }}
+                  ({{ flight.DepartureLocationCode }})
+                </span>
+
+              </div>
+
+
+              <div class="fd-mid">
+
+                <span class="fd-flight-icon">
+                  ✈
+                </span>
+
+                <small>
+                  {{ flight.Duration | lowercase }}
+                </small>
+
+                @if (
+                flight.DepartureDateTime &&
+                flight.ArrivalDateTime &&
+                (flight.DepartureDateTime | date : "yyyyMMdd") !==
+                (flight.ArrivalDateTime | date : "yyyyMMdd")
+                ) {
+                <span class="fd-tag">
+                  Overnight flight
+                </span>
+                }
+
+              </div>
+
+
+              <div class="fd-time-col">
+
+                <strong>
+                  {{ flight.ArrivalDateTime | date : "HH:mm" }}
+                </strong>
+
+                <span>
+                  {{ flight.DestinationAirportName }}
+                  ({{ flight.ArrivalLocationCode }})
+                </span>
+
+                @if (
+                flight.DepartureDateTime &&
+                flight.ArrivalDateTime &&
+                (flight.DepartureDateTime | date : "yyyyMMdd") !==
+                (flight.ArrivalDateTime | date : "yyyyMMdd")
+                ) {
+                <small class="fd-arrival">
+                  Arrives
+                  {{ flight.ArrivalDateTime | date : "EEE, d MMM" }}
+                </small>
+                }
+
+              </div>
+
+            </div>
+
+          </div>
+
+
+          <!-- ================= LAYOVER ================= -->
+          @if (
+          i < getMainDetails?.Citypairs[0]?.FlightSegment?.length - 1 ) { <div class="fd-layover">
+
+            {{
+            getMainDetails?.Citypairs[0]?.FlightSegment[i + 1]?.LayoverTime
+            | lowercase
+            }}
+
+            · Change planes in
+
+            {{
+            getMainDetails?.Citypairs[0]?.FlightSegment[i + 1]?.OriginAirportName
+            }}
+
+            (
+            {{
+            getMainDetails?.Citypairs[0]?.FlightSegment[i + 1]?.DepartureLocationCode
+            }}
+            )
+
+            <span class="fd-badge orange">
+              Long stopover
+            </span>
+
+            <span class="fd-badge gray">
+              Self-transfer
+            </span>
+
+        </div>
+
+        }
+
+        }
+
+      </div>
+
+      }
+
+
+      <!-- ================= RETURN ================= -->
+      @if (getMainDetails?.Citypairs?.length === 2) {
+
+      <div class="fd-segment">
+
+        <div class="inline-flex-sec">
+
+          <div class="dtitle">
+            Return ·
+            {{
+            getMainDetails?.Citypairs[1]?.FlightSegment[0]?.DepartureDateTime
+            | date : "EEE, d MMM"
+            }}
+          </div>
+
+          <span class="duration-size">
+            Journey Duration:
+            {{ getMainDetails?.Citypairs[1]?.Duration | durationToHours }}
+          </span>
+
+        </div>
+
+
+        @for (
+        flight of getMainDetails?.Citypairs[1]?.FlightSegment;
+        track $index;
+        let i = $index
+        ) {
+
+        <!-- ================= RETURN FLIGHT SEGMENT ================= -->
+        <div class="fd-segment">
+
+          <div class="fd-seg-head">
+
+            <img [src]="imageUrl + flight.FlightLogoName" class="fd-air-logo" [alt]="flight.FlightLogoName" />
+
+            <span>
+              {{ flight.MarketingAirlineName }}
+              {{ flight.FlightNumber }}
+            </span>
+
+            <span class="fd-chip">
+              {{ flight.AirEquipmentType }}
+            </span>
+
+            <!-- <span class="fd-amenity">
+
+              <img src="assets/images/flight/food-svgrepo-com.svg" alt="" />
+
+              Light meal available
+
+            </span> -->
+
+          </div>
+
+
+          <div class="fd-seg-body">
+
+            <div class="fd-time-col">
+
+              <strong>
+                {{ flight.DepartureDateTime | date : "HH:mm" }}
+              </strong>
+
+              <span>
+                {{ flight.OriginAirportName }}
+                ({{ flight.DepartureLocationCode }})
+              </span>
+
+            </div>
+
+
+            <div class="fd-mid">
+
+              <span class="fd-flight-icon">
+                ✈
+              </span>
+
+              <small>
+                {{ flight.Duration | lowercase }}
+              </small>
+
+              @if (
+              flight.DepartureDateTime &&
+              flight.ArrivalDateTime &&
+              (flight.DepartureDateTime | date : "yyyyMMdd") !==
+              (flight.ArrivalDateTime | date : "yyyyMMdd")
+              ) {
+              <span class="fd-tag">
+                Overnight flight
+              </span>
+              }
+
+            </div>
+
+
+            <div class="fd-time-col">
+
+              <strong>
+                {{ flight.ArrivalDateTime | date : "HH:mm" }}
+              </strong>
+
+              <span>
+                {{ flight.DestinationAirportName }}
+                ({{ flight.ArrivalLocationCode }})
+              </span>
+
+              @if (
+              flight.DepartureDateTime &&
+              flight.ArrivalDateTime &&
+              (flight.DepartureDateTime | date : "yyyyMMdd") !==
+              (flight.ArrivalDateTime | date : "yyyyMMdd")
+              ) {
+              <small class="fd-arrival">
+                Arrives
+                {{ flight.ArrivalDateTime | date : "EEE, d MMM" }}
+              </small>
+              }
+
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <!-- ================= RETURN LAYOVER ================= -->
+        @if (
+        i < getMainDetails?.Citypairs[1]?.FlightSegment?.length - 1 ) { <div class="fd-layover">
+
+          {{
+          getMainDetails?.Citypairs[1]?.FlightSegment[i + 1]?.LayoverTime
+          | lowercase
+          }}
+
+          · Change planes in
+
+          {{
+          getMainDetails?.Citypairs[1]?.FlightSegment[i + 1]?.OriginAirportName
+          }}
+
+          (
+          {{
+          getMainDetails?.Citypairs[1]?.FlightSegment[i + 1]?.DepartureLocationCode
+          }}
+          )
+
+          <span class="fd-badge orange">
+            Long stopover
+          </span>
+
+          <span class="fd-badge gray">
+            Self-transfer
+          </span>
+
+      </div>
+
+      }
+
+      }
+
+  </div>
+
+  }
+
+</div>
+
+
+</section>
+
+<!-- Baggage -->
+<section id="fd-baggage" class="fd-section">
+  <div class="tab-pane fade show active" id="baggage" role="tabpanel" aria-labelledby="baggage-tab">
+
+    <div class="fd-card">
+      @if(flightBaggage){
+      <div class="fd-segment">
+
+        <div class="inline-flex-sec">
+
+          <div class="dtitle">
+            Baggage Information
+          </div>
+
+        </div>
+
+        @if(allRoutes.length>0){
+        <div class="rt-tabnav" role="tablist" #routeList>
+
+          @for (route of allRoutes; track $index) {
+          <button class="rt-tab" type="button" [class.active]="$index === selectedRouteIndex"
+            (click)="selectRoute($index, routeItem)" #routeItem>
+            <i class="fa-solid fa-plane"></i>
+            {{ route.departure }} to {{ route.arrival }}
+          </button>
+          }
+
+
+
+        </div>
+
+        @if(selectedRoute){
+        <div class="bg-card">
+
+          <div class="bg-card__header">
+
+            <div class="bg-card__airline">
+
+              <div class="bg-card__logo">
+
+                <img [src]="imageUrl + selectedRoute.flights.FlightLogoName"
+                  [alt]="selectedRoute.flights.FlightLogoName" />
+
+              </div>
+
+              <div class="bg-card__name">
+                {{
+                selectedRoute.flights.MarketingAirlineName
+                }}
+              </div>
+
+            </div>
+
+            <div class="bg-card__class">
+              {{
+              classMap[(selectedRoute.flights?.CabinClass)] || selectedRoute.flights?.CabinClass
+              }} @if(selectedRoute.flights?.BookingClass!='' &&
+              selectedRoute.flights?.BookingClass!=null){
+              ({{ selectedRoute.flights.BookingClass }})
+              }
+            </div>
+
+          </div>
+
+
+          <!-- Check-in Bag -->
+          <div class="bg-row">
+
+            <div class="bg-row__left">
+
+              <div class="bg-row__icon">
+
+                <i class="fa-solid fa-suitcase-rolling"></i>
+                @let bagicon = getBag('CHECKIN', selectedRoute.bags);
+                @if (bagicon?.count>0) {
+                <i class="fa-solid fa-circle-check"></i>
+                }@else{
+                <i class="fa-solid fa-circle-exclamation"></i>
+                }
+              </div>
+
+              <div>
+
+                <p class="bg-row__title">
+                  Check-in Bag
+                </p>
+
+                <p class="bg-row__sub">
+                  @if (hasCheckinBag(selectedRoute.bags)) {
+                  @let bag = getBag('CHECKIN', selectedRoute.bags);
+
+                  @if (bag?.description1 || bag?.description2) {
+                  {{ toTitleCase(bag.description1 || bag.description2) }}
+                  } @else {
+                  Kindly check with the airline.
+                  }
+
+                  } @else {
+                  Kindly check with the airline.
+                  }
+                </p>
+
+              </div>
+
+            </div>
+            @let bag = getBag('CHECKIN', selectedRoute.bags);
+            @if (bag?.count>0) {
+            <div class="bg-row__status bg-row__status--ok">
+              Included
+            </div>
+            } @else {
+            <div class="bg-row__status bg-row__status--no">
+              Not Included
+            </div>
+            }
+
+
+          </div>
+
+
+          <!-- Carry-on Bag -->
+          <div class="bg-row">
+
+            <div class="bg-row__left">
+
+              <div class="bg-row__icon">
+
+                <i class="fa-solid fa-briefcase"></i>
+
+                @let bagiconcarryon = getBag('CARRYON', selectedRoute.bags);
+                @if (bagiconcarryon?.count>0) {
+                <i class="fa-solid fa-circle-check"></i>
+                }@else{
+                <i class="fa-solid fa-circle-exclamation"></i>
+                }
+
+              </div>
+
+              <div>
+
+                <p class="bg-row__title">
+                  Carry-on Bag
+                </p>
+
+                <p class="bg-row__sub">
+                  @if (hasCarryOnBag(selectedRoute.bags)) {
+                  @let bag = getBag('CARRYON', selectedRoute.bags);
+
+                  @if (bag?.description1 || bag?.description2) {
+                  {{ toTitleCase(bag.description1 || bag.description2) }}
+                  } @else {
+                  Kindly check with the airline.
+
+                  }
+
+                  } @else {
+                  Kindly check with the airline.
+
+                  }
+                </p>
+
+              </div>
+
+            </div>
+
+            @let bagcarryon = getBag('CARRYON', selectedRoute.bags);
+            @if (bagcarryon?.count>0) {
+            <div class="bg-row__status bg-row__status--ok">
+              Included
+            </div>
+            } @else {
+            <div class="bg-row__status bg-row__status--no">
+              Not Included
+            </div>
+            }
+
+          </div>
+
+
+          <div class="bg-card__note">
+
+            All prices are quoted in USD. Baggage allowance and fee
+            amounts are not guaranteed and are subject to change by
+            the airline. Be sure to verify the actual fees with your
+            airline(s) before you travel.
+
+          </div>
+          <div class="bg-card__confirm">
+
+            Confirm bag fees, weight and size restrictions with
+            <a (click)="onrouteBagage()">
+              {{
+              selectedRoute.flights.MarketingAirlineName
+              }}
+            </a>
+
+          </div>
+
+        </div>
+        }
+        }@else{<p class="c-baggage-item__note">
+
+          Kindly check with the airline.
+        </p>
+        }
+      </div>
+      }@else{ <p class="c-baggage-item__note">
+
+        Kindly check with the airline.
+      </p>
+      }
+    </div>
+
+  </div>
+</section>
+
+<!-- Policy -->
+<section id="fd-policy" class="fd-section">
+  <div class="fd-card">
+    <div class="fd-segment">
+      <div class="inline-flex-sec">
+        <div class="dtitle">
+          Ticket policies
+        </div>
+      </div>
+      <table class="fd-table">
+        <tr>
+          <td>Cancellation policy</td>
+          <td>Refundable with cancellation charges.</td>
+        </tr>
+        <tr>
+          <td>Change policy</td>
+          <td>Changes allowed with per-ticket charges.</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</section>
+</div>
+</div>
+}

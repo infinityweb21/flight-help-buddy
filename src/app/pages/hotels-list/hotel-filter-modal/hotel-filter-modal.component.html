@@ -1,0 +1,406 @@
+<div class="c-hotel-filter-tab">
+    <div class="c-hotel-filter-tab__title-icon-wrap">
+        <span class="c-hotel-filter-tab__filter-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="17" viewBox="0 0 18 17" fill="none">
+                <path
+                    d="M16.75 8.24957L6.0646 8.24957M2.29292 8.24957L0.75 8.24957M2.29292 8.24957C2.29292 7.75611 2.49156 7.28286 2.84514 6.93393C3.19872 6.585 3.67828 6.38898 4.17832 6.38898C4.67837 6.38898 5.15793 6.585 5.51151 6.93393C5.86509 7.28286 6.06373 7.75611 6.06373 8.24957C6.06373 8.74303 5.86509 9.21628 5.51151 9.56521C5.15793 9.91414 4.67837 10.1102 4.17833 10.1102C3.67828 10.1102 3.19872 9.91414 2.84514 9.56521C2.49156 9.21628 2.29292 8.74303 2.29292 8.24957ZM16.75 13.8885L11.7788 13.8885M11.7788 13.8885C11.7788 14.3821 11.5796 14.8559 11.226 15.2049C10.8723 15.5539 10.3926 15.75 9.89249 15.75C9.39245 15.75 8.91289 15.5531 8.5593 15.2042C8.20572 14.8553 8.00708 14.382 8.00708 13.8885M11.7788 13.8885C11.7788 13.395 11.5796 12.922 11.226 12.573C10.8723 12.224 10.3926 12.028 9.89249 12.028C9.39245 12.028 8.91289 12.224 8.5593 12.5729C8.20572 12.9218 8.00708 13.3951 8.00708 13.8885M8.00708 13.8885L0.750001 13.8885M16.75 2.6106L14.0646 2.6106M10.2929 2.6106L0.75 2.6106M10.2929 2.6106C10.2929 2.11714 10.4916 1.64389 10.8451 1.29496C11.1987 0.946026 11.6783 0.75 12.1783 0.75C12.4259 0.749999 12.6711 0.798125 12.8998 0.891629C13.1286 0.985133 13.3364 1.12218 13.5115 1.29496C13.6866 1.46773 13.8255 1.67284 13.9202 1.89858C14.015 2.12432 14.0637 2.36626 14.0637 2.6106C14.0637 2.85493 14.015 3.09688 13.9202 3.32262C13.8255 3.54835 13.6866 3.75347 13.5115 3.92624C13.3364 4.09901 13.1286 4.23606 12.8998 4.32956C12.6711 4.42307 12.4259 4.47119 12.1783 4.47119C11.6783 4.47119 11.1987 4.27517 10.8451 3.92624C10.4916 3.57731 10.2929 3.10406 10.2929 2.6106Z"
+                    stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" />
+            </svg>
+        </span>
+        <span class="c-hotel-filter-tab__filter-title">Filter</span>
+    </div>
+    <!-- Tabs -->
+    <ul class="nav nav-tabs o-hotel-filters-tab" id="filterTabs" role="tablist">
+        <!-- <li class="nav-item" role="presentation">
+            <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#hotelName" type="button">
+                <span class="o-tab-btn-text-element">Hotel Name</span>
+                @if(hasHotelNameFilter()){
+                <span class="o-filter-status o-filter-status--select"></span>
+                }
+            </button>
+        </li> -->
+        <li class="nav-item" role="presentation">
+            <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#price" type="button">
+                <span class="o-tab-btn-text-element">Price Range</span>
+                @if(hasPriceFilter()){
+                <span class="o-filter-status o-filter-status--select"></span>
+                }
+
+            </button>
+        </li>
+        @if(filtersData?.starRating?.length>0){
+        <li class="nav-item">
+            <button class="nav-link" data-bs-toggle="tab" data-bs-target="#hotelRating">
+                <span class="o-tab-btn-text-element">Hotel Rating</span>
+                @if(hasStarFilter()){
+                <span class="o-filter-status o-filter-status--select"></span>
+                }
+            </button>
+        </li>
+        } @if(filtersData?.guestRating?.length>0){
+        <li class="nav-item">
+            <button class="nav-link" data-bs-toggle="tab" data-bs-target="#guestRating">
+                <span class="o-tab-btn-text-element"> Guest Rating</span>
+                @if(hasGuestFilter()){
+                <span class="o-filter-status o-filter-status--select"></span>
+                }
+            </button>
+        </li>
+        } @if(filtersData?.amenities?.length>0){
+        <li class="nav-item">
+            <button class="nav-link" data-bs-toggle="tab" data-bs-target="#amenities">
+                <span class="o-tab-btn-text-element">Amenities</span>
+                @if(hasAmenitiesFilter()){
+                <span class="o-filter-status o-filter-status--select"></span>
+                }
+            </button>
+        </li>
+        } @if(filtersData?.mealPlan?.length>0){
+        <li class="nav-item">
+            <button class="nav-link" data-bs-toggle="tab" data-bs-target="#meal">
+                <span class="o-tab-btn-text-element">Room Type</span>
+                @if(hasMealFilter()){
+                <span class="o-filter-status o-filter-status--select"></span>
+                }
+            </button>
+        </li>}
+        @if(filtersData?.property?.length>0){
+        <li class="nav-item">
+            <button class="nav-link" data-bs-toggle="tab" data-bs-target="#property">
+                <span class="o-tab-btn-text-element"> Property Type</span>
+                @if(hasPropertyFilter()){
+                <span class="o-filter-status o-filter-status--select"></span>
+                }
+            </button>
+        </li>
+        } @if(filtersData?.location?.length>0){
+        <li class="nav-item">
+            <button class="nav-link" data-bs-toggle="tab" data-bs-target="#location">
+                <span class="o-tab-btn-text-element">Location</span>
+                @if(hasLocationFilter()){
+                <span class="o-filter-status o-filter-status--select"></span>
+                }
+            </button>
+        </li>
+        } @if(filtersData?.popularLandmark?.length>0){
+        <li class="nav-item">
+            <button class="nav-link" data-bs-toggle="tab" data-bs-target="#landmark">
+                <span class="o-tab-btn-text-element">Popular Landmark</span>
+                @if(hasLandmarkFilter()){
+                <span class="o-filter-status o-filter-status--select"></span>
+                }
+            </button>
+        </li>
+        }
+    </ul>
+</div>
+
+<!-- Tab Content -->
+<div class="tab-content o-hotel-filters-tab-content">
+
+    <!-- <div class="tab-pane fade show active" id="hotelName">
+        <div class="o-hotel-filter-tab-content__inner-content--wrap">
+            <div class="o-hotel-filter-tab-content__inner-content--title-wrap">
+                <h3 class="o-hotel-filter-tab-content__inner-content--title">Hotel Name</h3>
+                <button type="button" class="o-hotel-filter-reset-all-btn" (click)="resetHotelName()">Reset All</button>
+            </div>
+            <div class="o-hotel-name-search-wrap">
+                <div class="o-hotel-name-search">
+                    <span class="o-hotel-name-search-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 512 512">
+                        <path d="M0 0h512v512H0z" fill="none" />
+                        <path fill="currentColor" d="M456.69 421.39L362.6 327.3a173.8 173.8 0 0 0 34.84-104.58C397.44 126.38 319.06 48 222.72 48S48 126.38 48 222.72s78.38 174.72 174.72 174.72A173.8 173.8 0 0 0 327.3 362.6l94.09 94.09a25 25 0 0 0 35.3-35.3M97.92 222.72a124.8 124.8 0 1 1 124.8 124.8a124.95 124.95 0 0 1-124.8-124.8" />
+                        </svg>
+                    </span>
+                    <input type="text" class="form-control" placeholder="Search Hotel" [(ngModel)]="selectedHotelName"
+  >
+                </div>
+            </div>
+        </div>
+    </div> -->
+    <div class="tab-pane fade show active" id="price">
+        <div class="o-hotel-filter-tab-content__inner-content--wrap">
+            <div class="o-hotel-filter-tab-content__inner-content--title-wrap">
+                <h3 class="o-hotel-filter-tab-content__inner-content--title">Price range</h3>
+                <button type="button" class="o-hotel-filter-reset-all-btn" (click)="resetPrice()">Reset All</button>
+            </div>
+            <span class="o-hotel-filter-tab-content__inner-content--avg-price">The average nightly price is <span
+                    class="o-hotel-filter-tab-content__inner-content--avg-price__value">${{averagePrice}}</span></span>
+            <div class="o-price-graph-box-content-wrap">
+                <div class="o-price-graph-box">
+                    <div class="c-price-chart">
+
+                        <!-- Bars wrapper (important for layering) -->
+                        <div class="c-price-chart__bars-wrapper">
+
+                            <!-- RANGE OVERLAY -->
+                            <div class="c-price-chart__overlay" [style.left.%]="minPercent"
+                                [style.width.%]="maxPercent - minPercent"></div>
+
+                            <!-- Bars -->
+                            <div class="c-price-chart__bars">
+                                <div *ngFor="let item of data" class="c-price-chart__bar"
+                                    [class.c-price-chart__bar--active]="isActiveBar(item)" [style.height.%]="item">
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <!-- Slider -->
+                        <div class="c-price-chart__range">
+
+                            <div class="c-price-chart__track"></div>
+
+                            <div class="c-price-chart__range-active" [style.left.%]="minPercent"
+                                [style.width.%]="maxPercent - minPercent"></div>
+
+                            <input type="range" class="c-price-chart__input" [min]="min" [max]="max" [value]="minValue"
+                                (input)="onMinChange($any($event.target).value)" />
+
+                            <input type="range" class="c-price-chart__input" [min]="min" [max]="max" [value]="maxValue"
+                                (input)="onMaxChange($any($event.target).value)" />
+
+                        </div>
+
+                    </div>
+                </div>
+                <div class="c-price-range-slider"></div>
+                <div class="o-hotel-price-display__range-value-content-wrap">
+                    <span class="o-hotel-price-display__range-value-wrap">
+                        <span class="o-hotel-price-display__range-start-value">${{ minValue }}</span>
+                        <span class="o-hotel-price-display__range-value-devider"></span>
+                        <span class="o-hotel-price-display__range-end-value">${{ maxValue }}</span>
+                    </span>
+                    <span class="o-hotel-price-display__range-per-night-text">per night</span>
+                </div>
+                <div class="o-hotel-price-display__initial-btn-value-content-wrap">
+                    <button class="o-hotel-price-display__initial-start-value-btn">
+                        <span class="o-hotel-price-display__initial-value-btn-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none">
+                                <path
+                                    d="M12.75 16.1531C13.686 15.8971 14.25 15.1781 14.25 14.5001C14.25 13.8221 13.686 13.1031 12.75 12.8481V16.1531ZM11.25 11.1521V7.84808C10.314 8.10308 9.75 8.82208 9.75 9.50008C9.75 10.1781 10.314 10.8971 11.25 11.1521Z"
+                                    fill="currentColor" />
+                                <path fill-rule="evenodd" clip-rule="evenodd"
+                                    d="M2 12C2 6.477 6.477 2 12 2C17.523 2 22 6.477 22 12C22 17.523 17.523 22 12 22C6.477 22 2 17.523 2 12ZM12 18.75C11.8011 18.75 11.6103 18.671 11.4697 18.5303C11.329 18.3897 11.25 18.1989 11.25 18V17.683C9.62 17.391 8.25 16.166 8.25 14.5C8.25 14.3011 8.32902 14.1103 8.46967 13.9697C8.61032 13.829 8.80109 13.75 9 13.75C9.19891 13.75 9.38968 13.829 9.53033 13.9697C9.67098 14.1103 9.75 14.3011 9.75 14.5C9.75 15.178 10.314 15.897 11.25 16.153V12.683C9.62 12.391 8.25 11.166 8.25 9.5C8.25 7.834 9.62 6.609 11.25 6.317V6C11.25 5.80109 11.329 5.61032 11.4697 5.46967C11.6103 5.32902 11.8011 5.25 12 5.25C12.1989 5.25 12.3897 5.32902 12.5303 5.46967C12.671 5.61032 12.75 5.80109 12.75 6V6.317C14.38 6.609 15.75 7.834 15.75 9.5C15.75 9.69891 15.671 9.88968 15.5303 10.0303C15.3897 10.171 15.1989 10.25 15 10.25C14.8011 10.25 14.6103 10.171 14.4697 10.0303C14.329 9.88968 14.25 9.69891 14.25 9.5C14.25 8.822 13.686 8.103 12.75 7.848V11.317C14.38 11.609 15.75 12.834 15.75 14.5C15.75 16.166 14.38 17.391 12.75 17.683V18C12.75 18.1989 12.671 18.3897 12.5303 18.5303C12.3897 18.671 12.1989 18.75 12 18.75Z"
+                                    fill="currentColor" />
+                            </svg>
+                        </span>
+                        <span class="o-hotel-price-display__initial-start-value">
+                            ${{min}}
+                        </span>
+                    </button>
+                    <button class="o-hotel-price-display__initial-end-value-btn">
+                        <span class="o-hotel-price-display__initial-value-btn-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none">
+                                <path
+                                    d="M12.75 16.1531C13.686 15.8971 14.25 15.1781 14.25 14.5001C14.25 13.8221 13.686 13.1031 12.75 12.8481V16.1531ZM11.25 11.1521V7.84808C10.314 8.10308 9.75 8.82208 9.75 9.50008C9.75 10.1781 10.314 10.8971 11.25 11.1521Z"
+                                    fill="currentColor" />
+                                <path fill-rule="evenodd" clip-rule="evenodd"
+                                    d="M2 12C2 6.477 6.477 2 12 2C17.523 2 22 6.477 22 12C22 17.523 17.523 22 12 22C6.477 22 2 17.523 2 12ZM12 18.75C11.8011 18.75 11.6103 18.671 11.4697 18.5303C11.329 18.3897 11.25 18.1989 11.25 18V17.683C9.62 17.391 8.25 16.166 8.25 14.5C8.25 14.3011 8.32902 14.1103 8.46967 13.9697C8.61032 13.829 8.80109 13.75 9 13.75C9.19891 13.75 9.38968 13.829 9.53033 13.9697C9.67098 14.1103 9.75 14.3011 9.75 14.5C9.75 15.178 10.314 15.897 11.25 16.153V12.683C9.62 12.391 8.25 11.166 8.25 9.5C8.25 7.834 9.62 6.609 11.25 6.317V6C11.25 5.80109 11.329 5.61032 11.4697 5.46967C11.6103 5.32902 11.8011 5.25 12 5.25C12.1989 5.25 12.3897 5.32902 12.5303 5.46967C12.671 5.61032 12.75 5.80109 12.75 6V6.317C14.38 6.609 15.75 7.834 15.75 9.5C15.75 9.69891 15.671 9.88968 15.5303 10.0303C15.3897 10.171 15.1989 10.25 15 10.25C14.8011 10.25 14.6103 10.171 14.4697 10.0303C14.329 9.88968 14.25 9.69891 14.25 9.5C14.25 8.822 13.686 8.103 12.75 7.848V11.317C14.38 11.609 15.75 12.834 15.75 14.5C15.75 16.166 14.38 17.391 12.75 17.683V18C12.75 18.1989 12.671 18.3897 12.5303 18.5303C12.3897 18.671 12.1989 18.75 12 18.75Z"
+                                    fill="currentColor" />
+                            </svg>
+                        </span>
+                        <span class="o-hotel-price-display__initial-end-value">
+                            ${{max}}
+                        </span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="tab-pane fade" id="hotelRating">
+        <div class="o-hotel-filter-tab-content__inner-content--wrap">
+            <div class="o-hotel-filter-tab-content__inner-content--title-wrap">
+                <h3 class="o-hotel-filter-tab-content__inner-content--title">Hotel Rating</h3>
+                <button type="button" class="o-hotel-filter-reset-all-btn" (click)="resetHotelRating()">Reset
+                    All</button>
+            </div>
+            <div class="o-tabs--content__items-wrap c-scrollbar o-scrollbar-space" [class.android]="isAndroid">
+                <div class="c-checkbox--item ng-star-inserted" *ngFor="let item of filtersData?.starRating">
+                    <label class="c-checkbox">
+                        <input type="checkbox" class="c-checkbox__input"
+                            [checked]="selectedStarRatings.includes(item.rating)" (change)="toggleSelection(
+    selectedStarRatings,
+    item.rating,
+    $any($event.target).checked
+  )">
+                        <span class="c-checkbox__box"></span>
+                        <span class="c-checkbox__label-text">{{ item.rating }} Star</span>
+                    </label>
+                    <div class="c-checkbox--item__value">{{ item?.count }} </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="tab-pane fade" id="guestRating">
+        <div class="o-hotel-filter-tab-content__inner-content--wrap">
+            <div class="o-hotel-filter-tab-content__inner-content--title-wrap">
+                <h3 class="o-hotel-filter-tab-content__inner-content--title">Guest Rating</h3>
+                <button type="button" class="o-hotel-filter-reset-all-btn" (click)="resetGuestRating()">Reset
+                    All</button>
+            </div>
+            <div class="o-tabs--content__items-wrap c-scrollbar o-scrollbar-space" [class.android]="isAndroid">
+                <div class="c-checkbox--item ng-star-inserted" *ngFor="let item of filtersData?.guestRating">
+                    <label class="c-checkbox">
+                        <input type="checkbox" class="c-checkbox__input"
+                            [checked]="selectedGuestRatings.includes(item.rating)" (change)="toggleSelection(
+    selectedGuestRatings,
+    item.rating,
+    $any($event.target).checked
+  )">
+                        <span class="c-checkbox__box"></span>
+                        <span class="c-checkbox__label-text">{{ item.rating }}+</span>
+                    </label>
+                    <div class="c-checkbox--item__value"> {{ item?.count }} </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="tab-pane fade" id="amenities">
+        <div class="o-hotel-filter-tab-content__inner-content--wrap">
+            <div class="o-hotel-filter-tab-content__inner-content--title-wrap">
+                <h3 class="o-hotel-filter-tab-content__inner-content--title">Amenities</h3>
+                <button type="button" class="o-hotel-filter-reset-all-btn" (click)="resetAmenities()">Reset All</button>
+            </div>
+            <div class="o-tabs--content__items-wrap c-scrollbar o-scrollbar-space" [class.android]="isAndroid">
+                <div class="c-checkbox--item ng-star-inserted" *ngFor="let item of filtersData?.amenities">
+                    <label class="c-checkbox">
+                        <input type="checkbox" class="c-checkbox__input"
+                            [checked]="selectedAmenities.includes(item?.code)" (change)="toggleSelection(
+        selectedAmenities,
+        item?.code,
+        $any($event.target).checked
+      )">
+                        <span class="c-checkbox__box"></span>
+                        <span class="c-checkbox__label-text">{{ item?.name }}</span>
+                    </label>
+                    <div class="c-checkbox--item__value">{{ item?.count }} </div>
+                </div>
+
+            </div>
+            <div class="hotel-amenitiesshow-more">
+                <button type="button" class="item-show-more-btn">Show more 30+</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="tab-pane fade" id="meal">
+        <div class="o-hotel-filter-tab-content__inner-content--wrap">
+            <div class="o-hotel-filter-tab-content__inner-content--title-wrap">
+                <h3 class="o-hotel-filter-tab-content__inner-content--title">Room Type</h3>
+                <button type="button" class="o-hotel-filter-reset-all-btn" (click)="resetMealPlan()">Reset All</button>
+            </div>
+            <div class="o-tabs--content__items-wrap c-scrollbar o-scrollbar-space" [class.android]="isAndroid">
+                <div class="c-checkbox--item ng-star-inserted" *ngFor="let item of filtersData?.mealPlan">
+                    <label class="c-checkbox">
+                        <input type="checkbox" class="c-checkbox__input"
+                            [checked]="selectedMealPlans.includes(item?.key)" (change)="toggleSelection(
+        selectedMealPlans,
+        item?.key,
+        $any($event.target).checked
+      )">
+                        <span class="c-checkbox__box"></span>
+                        <span class="c-checkbox__label-text"> {{ item?.name }}</span>
+                    </label>
+                    <div class="c-checkbox--item__value">{{ item?.count }} </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="tab-pane fade" id="property">
+        <div class="o-hotel-filter-tab-content__inner-content--wrap">
+            <div class="o-hotel-filter-tab-content__inner-content--title-wrap">
+                <h3 class="o-hotel-filter-tab-content__inner-content--title">Property Type</h3>
+                <button type="button" class="o-hotel-filter-reset-all-btn" (click)="resetPropertyType()">Reset
+                    All</button>
+            </div>
+            <div class="o-tabs--content__items-wrap c-scrollbar o-scrollbar-space" [class.android]="isAndroid">
+                <div class="c-checkbox--item ng-star-inserted" *ngFor="let item of filtersData?.property">
+                    <label class="c-checkbox">
+                        <input type="checkbox" class="c-checkbox__input"
+                            [checked]="selectedPropertyTypes.includes(item?.name)" (change)="toggleSelection(
+        selectedPropertyTypes,
+        item?.name,
+        $any($event.target).checked
+      )">
+                        <span class="c-checkbox__box"></span>
+                        <span class="c-checkbox__label-text">{{ item?.name }}</span>
+                    </label>
+                    <div class="c-checkbox--item__value">{{ item?.count }} </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="tab-pane fade" id="location">
+        <div class="o-hotel-filter-tab-content__inner-content--wrap">
+            <div class="o-hotel-filter-tab-content__inner-content--title-wrap">
+                <h3 class="o-hotel-filter-tab-content__inner-content--title u-pb-6">Location</h3>
+                <button type="button" class="o-hotel-filter-reset-all-btn" (click)="resetLocation()">Reset All</button>
+            </div>
+            <div class="o-location-content-wrap c-scrollbar o-scrollbar-space" [class.android]="isAndroid">
+                <div class="o-tabs--content__items-wrap c-scrollbar o-scrollbar-space" [class.android]="isAndroid">
+                    <div class="c-checkbox--item ng-star-inserted" *ngFor="let item of filtersData?.location">
+                        <label class="c-checkbox">
+                            <input type="checkbox" class="c-checkbox__input"
+                                [checked]="selectedLocations.includes(item?.name)" (change)="toggleSelection(
+        selectedLocations,
+        item?.name,
+        $any($event.target).checked
+      )">
+                            <span class="c-checkbox__box"></span>
+                            <span class="c-checkbox__label-text">{{ item?.name }}</span>
+                        </label>
+                        <div class="c-checkbox--item__value">{{ item?.count }} </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="tab-pane fade" id="landmark">
+        <div class="o-hotel-filter-tab-content__inner-content--wrap">
+            <div class="o-hotel-filter-tab-content__inner-content--title-wrap">
+                <h3 class="o-hotel-filter-tab-content__inner-content--title u-pb-6">Popular Landmarks</h3>
+                <button type="button" class="o-hotel-filter-reset-all-btn" (click)="resetLandmark()">Reset All</button>
+            </div>
+            <div class="o-location-content-wrap c-scrollbar o-scrollbar-space" [class.android]="isAndroid">
+                <div class="o-tabs--content__items-wrap c-scrollbar o-scrollbar-space" [class.android]="isAndroid">
+                    <div class="c-checkbox--item ng-star-inserted" *ngFor="let item of filtersData?.popularLandmark">
+                        <label class="c-checkbox">
+                            <input type="checkbox" class="c-checkbox__input"
+                                [checked]="selectedLandmarks.includes(item?.name)" (change)="toggleSelection(
+        selectedLandmarks,
+        item?.name,
+        $any($event.target).checked
+      )">
+                            <span class="c-checkbox__box"></span>
+                            <span class="c-checkbox__label-text">{{ item?.name }}</span>
+                        </label>
+                        <div class="c-checkbox--item__value">{{ item?.count }} </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="c-hotel-filter__footer" [class.android]="isAndroid">
+        <button class="c-hotel-filter__footer--hotel-apply-filter-btn" (click)="applyFilters()">
+
+            Apply Filter
+
+        </button>
+    </div>
+</div>

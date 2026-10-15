@@ -1,0 +1,557 @@
+<!--=========== Banner Section Start  ==============-->
+<app-main-filter />
+<!--=========== Banner Section End  ==============-->
+
+
+
+
+<section class="common-section tab-section-box">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-6 col-md-6 col-12">
+        <div class="common-heading-box">
+          <h2 class="common-heading-title">Book Your Next Flight Online to Travel Smoothly
+          </h2>
+          <p>Fly more & spend less on the next trip</p>
+        </div>
+      </div>
+      <div class="col-lg-6 col-md-6 col-12">
+        <div class="flex-end-sec">
+          <ul class="nav nav-pills travel-type-tabs__nav" id="travelTypeTab" role="tablist">
+
+            <!-- Domestic -->
+            <li class="nav-item" role="presentation">
+              <button class="nav-link active travel-type-tabs__item" id="domestic-tab" data-bs-toggle="pill"
+                data-bs-target="#domestic" type="button" role="tab" aria-controls="domestic" aria-selected="true">
+                <span class="travel-type-tabs__content">
+                  <strong>Domestic</strong>
+                </span>
+              </button>
+            </li>
+
+            <!-- International -->
+            <li class="nav-item" role="presentation">
+              <button class="nav-link travel-type-tabs__item" id="international-tab" data-bs-toggle="pill"
+                data-bs-target="#international" type="button" role="tab" aria-controls="international"
+                aria-selected="false">
+                <span class="travel-type-tabs__content">
+                  <strong>International</strong>
+                </span>
+              </button>
+            </li>
+
+          </ul>
+          <div class="common-nav-arrow-box">
+            <button type="button" class="domestic-tabflight-prev" (click)="domesticRoutePrevious()"
+              aria-label="Previous">
+              <i class="fa-solid fa-chevron-left"></i>
+            </button>
+
+            <button type="button" class="domestic-tabflight-next" (click)="domesticRouteNext()" aria-label="Next">
+              <i class="fa-solid fa-chevron-right"></i>
+            </button>
+
+          </div>
+        </div>
+      </div>
+      <div class="col-12">
+        <!-- Tab Content -->
+        <div class="tab-content travel-type-tabs__content-area" id="travelTypeTabContent">
+
+          <div class="tab-pane fade show active" id="domestic" role="tabpanel" aria-labelledby="domestic-tab">
+
+            <!-- Domestic content -->
+            <div class="domestic-tabflight-slider owl-carousel">
+
+              <a href="tel:{{ getData?.phoneNumber }}" class="route-card" *ngFor="let route of domesticRoutes">
+
+                <div class="route-card__image">
+
+                  <img [src]="route.image" [alt]="route.alt" loading="lazy" />
+
+                </div>
+
+                <div class="route-card__details">
+
+                  <h3 class="route-card__title">
+                    {{ route.title }}
+                  </h3>
+
+                  <p class="route-card__meta">
+
+                    {{ getDynamicRouteDate(
+                    route.startDay,
+                    route.endDay,
+                    route.endMonthOffset
+                    ) }}
+
+                    <span>•</span>
+
+                    {{ route.tripType }}
+
+                  </p>
+
+                </div>
+
+              </a>
+
+            </div>
+
+          </div>
+
+          <div class="tab-pane fade" id="international" role="tabpanel" aria-labelledby="international-tab">
+
+            <!-- International content -->
+            <div class="domestic-tabflight-slider owl-carousel">
+
+              <a href="tel:{{ getData?.phoneNumber }}" class="route-card" *ngFor="let route of internationalRoutes">
+
+                <div class="route-card__image">
+
+                  <img [src]="route.image" [alt]="route.alt" loading="lazy" />
+
+                </div>
+
+                <div class="route-card__details">
+
+                  <h3 class="route-card__title">
+                    {{ route.title }}
+                  </h3>
+
+                  <p class="route-card__meta">
+
+                    {{ getDynamicRouteDate(
+                    route.startDay,
+                    route.endDay,
+                    route.endMonthOffset
+                    ) }}
+
+                    <span>•</span>
+
+                    {{ route.tripType }}
+
+                  </p>
+
+                </div>
+
+              </a>
+
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="common-section text-section">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12 col-md-12 col-12">
+        <div class="main-box-card">
+          <h2 class="tp-trust-title">
+            Start Your Journey With <span>Better Fares</span>
+          </h2>
+
+          <ul class="tp-trust-box">
+
+            <li class="tp-trust-item">
+              <span class="tp-trust-icon"><i class="fa-solid fa-file-circle-check"></i></span>
+              <div class="tp-trust-info">
+                <h3>Best Deals</h3>
+                <p>Get fares that’ll make you happy</p>
+              </div>
+            </li>
+
+            <li class="tp-trust-item">
+              <span class="tp-trust-icon"><i class="fa-solid fa-headset"></i></span>
+              <div class="tp-trust-info">
+                <h3>Get Help, Anytime</h3>
+                <p>Our experts are always there to assist you</p>
+              </div>
+            </li>
+
+            <li class="tp-trust-item">
+              <span class="tp-trust-icon"><i class="fa-solid fa-medal"></i></span>
+              <div class="tp-trust-info">
+                <h3>Get Your Rewards</h3>
+                <p>Earn more points through bookings for your next trip</p>
+              </div>
+            </li>
+
+            <li class="tp-trust-item">
+              <span class="tp-trust-icon"><i class="fa-solid fa-suitcase-rolling"></i></span>
+              <div class="tp-trust-info">
+                <h3>Flexible Bookings</h3>
+                <p>Make easy changes and cancellations when you need them</p>
+              </div>
+            </li>
+
+          </ul>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="common-section flight-list-section">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-6 col-md-6 col-sm-8 col-9">
+        <div class="common-heading-box">
+          <h2 class="common-heading-title">Plan Your Next Adventure With Us
+          </h2>
+          <p>Book cheap domestic and international flights</p>
+        </div>
+      </div>
+      <div class="col-lg-6 col-md-6 col-sm-4 col-3">
+        <div class="flex-end-sec">
+          <div class="common-nav-arrow-box">
+            <button type="button" class="flight-ai-prev" (click)="flightPrevious()">
+              <i class="fa-solid fa-arrow-left"></i>
+            </button>
+
+            <button type="button" class="flight-ai-next" (click)="flightNext()">
+              <i class="fa-solid fa-arrow-right"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="col-12 mt-2">
+        <div class="flight-slider owl-carousel">
+
+          <a href="tel:{{ getData?.phoneNumber }}" class="flight-card-link" *ngFor="let flight of flightCards"
+            [attr.aria-label]="'Call to book ' + flight.from + ' to ' + flight.to">
+
+            <article class="flight-card-box">
+
+              <!-- IMAGE -->
+              <div class="flight-card-img">
+                <img [src]="flight.image" [alt]="flight.from + ' to ' + flight.to" class="flight-card-plane"
+                  loading="lazy" />
+
+                <span class="flight-card-tag">{{ flight.tag }}</span>
+
+                <span class="flight-card-rating">
+                  <i class="fa fa-star"></i>{{ flight.rating }}
+                </span>
+              </div>
+
+              <!-- ROUTE (boarding-pass strip) -->
+              <div class="flight-card-route">
+
+                <div class="flight-card-point">
+                  <small>From</small>
+                  <strong [title]="flight.from">{{ flight.from }}</strong>
+                </div>
+
+                <div class="flight-card-path">
+                  <span class="flight-card-track">
+                    <i class="fa fa-plane"></i>
+                  </span>
+                  <span class="flight-card-stop">{{ flight.stop }}</span>
+                </div>
+
+                <div class="flight-card-point flight-card-point--end">
+                  <small>To</small>
+                  <strong [title]="flight.to">{{ flight.to }}</strong>
+                </div>
+
+              </div>
+
+              <!-- BODY -->
+              <div class="flight-card-body">
+
+                <h5 class="flight-card-title">{{ flight.title }}</h5>
+
+                <div class="flight-card-footer">
+
+                  <div class="flight-card-airline">
+                    <img [src]="flight.airlineLogo" [alt]="flight.airline" class="flight-card-logo" />
+                    <span>{{ flight.airline }}</span>
+                  </div>
+
+                  <span class="flight-card-cta">
+                    <i class="fa fa-phone-alt"></i> Call to book
+                  </span>
+
+                </div>
+
+              </div>
+
+            </article>
+
+          </a>
+
+        </div>
+
+        <!-- <div class="div-text"><strong>*Note:</strong> The prices displayed are in USD. The fares are
+                            subject to change based on availability
+                            during your reservation.</div> -->
+      </div>
+    </div>
+  </div>
+</section>
+<section class="common-section feature-section">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <div class="tp-feature-strip">
+
+          <div class="tp-feature-item">
+
+            <div class="tp-feature-icon">
+              <img src="assets/images/search-icon.png" alt="Search">
+            </div>
+
+            <div class="tp-feature-content">
+              <h4>Get Multiple Options</h4>
+              <p>Book flights from a wide selection of airlines</p>
+            </div>
+
+          </div>
+
+          <div class="tp-feature-item">
+
+            <div class="tp-feature-icon">
+              <img src="assets/images/fees-icon.png" alt="Fees">
+            </div>
+
+            <div class="tp-feature-content">
+              <h4>No Hidden Fees</h4>
+              <p>There’ll be no surprise charges with us</p>
+            </div>
+
+          </div>
+
+          <div class="tp-feature-item">
+
+            <div class="tp-feature-icon">
+              <img src="assets/images/flexible-icon.png" alt="Flexible">
+            </div>
+
+            <div class="tp-feature-content">
+              <h4>More Flexibility</h4>
+              <p>Change your travel dates smoothly</p>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="common-section">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-7 col-md-6 col-sm-8 col-8">
+        <div class="common-heading-box">
+          <h2 class="common-heading-title">Hurry & Book Your Flights Now!
+          </h2>
+          <p>Find cheap flights for your next bookings</p>
+        </div>
+      </div>
+      <div class="col-lg-5 col-md-6 col-sm-4 col-4">
+        <div class="flex-end-sec">
+          <a href="tel:{{ getData?.phoneNumber }}" class="common-bgBtn"><span>view more</span></a>
+        </div>
+      </div>
+
+      <div class="col-12">
+        <div class="tp-route-grid">
+          <a href="tel:{{ getData?.phoneNumber }}" class="tp-route-card">
+            <div class="tp-route-city">
+              <span class="tp-route-label">From</span>
+              <h5>New York</h5>
+            </div>
+            <div class="tp-route-flight">
+              <span class="tp-route-line"></span>
+              <i class="fa-solid fa-plane"></i>
+              <span class="tp-route-line"></span>
+            </div>
+            <div class="tp-route-city">
+              <span class="tp-route-label">To</span>
+              <h5>London, United Kingdom</h5>
+            </div>
+          </a>
+
+          <a href="tel:{{ getData?.phoneNumber }}" class="tp-route-card">
+            <div class="tp-route-city">
+              <span class="tp-route-label">From</span>
+              <h5>Los Angeles</h5>
+            </div>
+            <div class="tp-route-flight">
+              <span class="tp-route-line"></span>
+              <i class="fa-solid fa-plane"></i>
+              <span class="tp-route-line"></span>
+            </div>
+            <div class="tp-route-city">
+              <span class="tp-route-label">To</span>
+              <h5>Tokyo, Japan</h5>
+            </div>
+          </a>
+
+          <a href="tel:{{ getData?.phoneNumber }}" class="tp-route-card">
+            <div class="tp-route-city">
+              <span class="tp-route-label">From</span>
+              <h5>Chicago</h5>
+            </div>
+            <div class="tp-route-flight">
+              <span class="tp-route-line"></span>
+              <i class="fa-solid fa-plane"></i>
+              <span class="tp-route-line"></span>
+            </div>
+            <div class="tp-route-city">
+              <span class="tp-route-label">To</span>
+              <h5>Paris, France</h5>
+            </div>
+          </a>
+
+          <a href="tel:{{ getData?.phoneNumber }}" class="tp-route-card">
+            <div class="tp-route-city">
+              <span class="tp-route-label">From</span>
+              <h5>San Francisco</h5>
+            </div>
+            <div class="tp-route-flight">
+              <span class="tp-route-line"></span>
+              <i class="fa-solid fa-plane"></i>
+              <span class="tp-route-line"></span>
+            </div>
+            <div class="tp-route-city">
+              <span class="tp-route-label">To</span>
+              <h5>Hong Kong, China</h5>
+            </div>
+          </a>
+
+          <a href="tel:{{ getData?.phoneNumber }}" class="tp-route-card">
+            <div class="tp-route-city">
+              <span class="tp-route-label">From</span>
+              <h5>Boston</h5>
+            </div>
+            <div class="tp-route-flight">
+              <span class="tp-route-line"></span>
+              <i class="fa-solid fa-plane"></i>
+              <span class="tp-route-line"></span>
+            </div>
+            <div class="tp-route-city">
+              <span class="tp-route-label">To</span>
+              <h5>Dublin, Ireland</h5>
+            </div>
+          </a>
+
+          <a href="tel:{{ getData?.phoneNumber }}" class="tp-route-card">
+            <div class="tp-route-city">
+              <span class="tp-route-label">From</span>
+              <h5>Los Angeles</h5>
+            </div>
+            <div class="tp-route-flight">
+              <span class="tp-route-line"></span>
+              <i class="fa-solid fa-plane"></i>
+              <span class="tp-route-line"></span>
+            </div>
+            <div class="tp-route-city">
+              <span class="tp-route-label">To</span>
+              <h5>Seoul, South Korea</h5>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="common-section text-section">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-7 col-md-10 col-12">
+        <div class="common-heading-box">
+          <h2 class="common-heading-title">Frequently Asked Questions
+          </h2>
+          <p>Find cheap flights online for domestic.</p>
+        </div>
+      </div>
+      <!-- Column 1 -->
+      <div class="col-lg-6">
+        <div class="cst-acc-col-title">General Information</div>
+        <div class="accordion" id="cstAccLeft">
+
+          <div class="cst-acc__item">
+            <h2 class="cst-acc__header" id="lHead1">
+              <button class="cst-acc__btn" type="button" data-bs-toggle="collapse" data-bs-target="#lCol1"
+                aria-expanded="true" aria-controls="lCol1">
+                <span class="cst-acc__title">How can I book a flight online?</span>
+                <i class="fa-solid fa-chevron-down cst-acc__chevron"></i>
+              </button>
+            </h2>
+            <div id="lCol1" class="collapse show" aria-labelledby="lHead1" data-bs-parent="#cstAccLeft">
+              <div class="cst-acc__body">
+                Search for your preferred route and travel dates, compare available flights, select the best option, and
+                complete your booking securely online.
+              </div>
+            </div>
+          </div>
+
+          <div class="cst-acc__item">
+            <h2 class="cst-acc__header" id="lHead2">
+              <button class="cst-acc__btn collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#lCol2"
+                aria-expanded="false" aria-controls="lCol2">
+                <span class="cst-acc__title">Can I cancel my flight booking?</span>
+                <i class="fa-solid fa-chevron-down cst-acc__chevron"></i>
+              </button>
+            </h2>
+            <div id="lCol2" class="collapse" aria-labelledby="lHead2" data-bs-parent="#cstAccLeft">
+              <div class="cst-acc__body">
+                Cancellation options depend on the airline's fare rules and ticket conditions. Review your booking terms
+                for applicable cancellation policies.
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Column 2 -->
+      <div class="col-lg-6">
+        <div class="cst-acc-col-title">Cancellation &amp; Support</div>
+        <div class="accordion" id="cstAccRight">
+
+          <div class="cst-acc__item">
+            <h2 class="cst-acc__header" id="rHead1">
+              <button class="cst-acc__btn" type="button" data-bs-toggle="collapse" data-bs-target="#rCol1"
+                aria-expanded="true" aria-controls="rCol1">
+                <span class="cst-acc__title">Can I choose my preferred airline when booking a flight?</span>
+                <i class="fa-solid fa-chevron-down cst-acc__chevron"></i>
+              </button>
+            </h2>
+            <div id="rCol1" class="collapse show" aria-labelledby="rHead1" data-bs-parent="#cstAccRight">
+              <div class="cst-acc__body">
+                Yes, you can compare flights from different airlines and select the option that best suits your travel
+                plans.
+              </div>
+            </div>
+          </div>
+
+          <div class="cst-acc__item">
+            <h2 class="cst-acc__header" id="rHead2">
+              <button class="cst-acc__btn collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#rCol2"
+                aria-expanded="false" aria-controls="rCol2">
+                <span class="cst-acc__title">How will I receive my flight confirmation?</span>
+                <i class="fa-solid fa-chevron-down cst-acc__chevron"></i>
+              </button>
+            </h2>
+            <div id="rCol2" class="collapse" aria-labelledby="rHead2" data-bs-parent="#cstAccRight">
+              <div class="cst-acc__body">
+                After completing your booking, your confirmation and ticket details are generally sent to the email
+                address provided during the booking process.
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

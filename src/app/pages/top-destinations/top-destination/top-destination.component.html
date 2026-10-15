@@ -1,0 +1,245 @@
+<!--=========== Banner Section Start  ==============-->
+<section
+  class="inf-hero-section"
+  [ngStyle]="{ 'background-image': 'url(' + backgroundImageUrl + ')' }"
+>
+  <div class="container">
+    <div class="row justify-content-end align-items-center">
+      <div class="col-lg-6 col-md-7">
+        <div class="inf-hero-content">
+          <h1>{{ headerText }}</h1>
+          <p>{{ subHeaderText }}</p>
+        </div>
+
+        <div class="inf-call-widget">
+          <h2>Purchase Best <span>Deals</span></h2>
+          <form
+            name="inf-call-form"
+            action="#"
+            method="post"
+            novalidate
+            [formGroup]="contactForm"
+          >
+            <div class="form-row">
+              <div class="row g-2 g-lg-3">
+                <div class="col-md-6">
+                  <input
+                    type="text"
+                    name="sub_name"
+                    placeholder="Your Name"
+                    class="form-control"
+                    required
+                    formControlName="name"
+                    [class.is-invalid]="isInvalid('name')"
+                  />
+                  <div *ngIf="isInvalid('name')" class="text-danger">
+                    Name is required.
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="wrapper">
+                    <ngx-intl-tel-input
+                      [cssClass]="'form-control'"
+                      [preferredCountries]="preferredCountries"
+                      [enableAutoCountrySelect]="true"
+                      [enablePlaceholder]="true"
+                      [searchCountryFlag]="true"
+                      [searchCountryField]="[
+                        SearchCountryField.Iso2,
+                        SearchCountryField.Name
+                      ]"
+                      [selectFirstCountry]="false"
+                      [selectedCountryISO]="CountryISO.UnitedStates"
+                      [maxLength]="15"
+                      [phoneValidation]="true"
+                      [separateDialCode]="separateDialCode"
+                      [numberFormat]="PhoneNumberFormat.National"
+                      name="phone"
+                      formControlName="phone"
+                      [class.is-invalid]="isInvalid('phone')"
+                    >
+                    </ngx-intl-tel-input>
+                  </div>
+                  <div *ngIf="isInvalid('phone')" class="text-danger">
+                    Phone number is required.
+                  </div>
+                  <div
+                    *ngIf="contactForm.get('phone')?.errors?.['invalidPhoneLength']"
+                    class="text-danger"
+                  >
+                    Please enter a valid phone number (6–15 digits).
+                  </div>
+                </div>
+              </div>
+              <button
+                type="submit"
+                class="banner-form-submit-btn"
+                (click)="submitContactForm()"
+              >
+                Get a Call
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<div
+  class="container container-xxl py-3 mt-4 newfiltersec"
+  style="background-color: #bfbfbf1f"
+>
+  <app-flights-tab></app-flights-tab>
+</div>
+
+<section class="travel-best cmn-gap pb-0 pt-5">
+  <div class="container container-xxl">
+    <div
+      class="common-slider-container d-flex align-items-center justify-content-between"
+    >
+      @for (feature of travelFeatures; track $index) {
+      <div class="w-100">
+        <div class="travel-feature-card">
+          <div class="travel-feature-card-wrap">
+            <div
+              class="travel-feature-card-icon-box travel-feature-card-orange-icon"
+            >
+              <img [src]="feature.icon" alt="" class="feico" />
+            </div>
+            <div class="travel-feature-card-content-box">
+              <h4 class="travel-feature-card-title">{{ feature.title }}</h4>
+              <p class="travel-feature-card-desc">{{ feature.description }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      }
+    </div>
+  </div>
+</section>
+
+<!--=========== Contact ==============-->
+<section class="policy-content">
+  <div class="container container-xxl">
+    <div class="page-content m-0">
+      <!-- <h1>Find Cheap Flights from New York to Los Angeles</h1> -->
+
+      <p>
+        If you do have the zeal in you to dive across the globe, then Infinity
+        Travels is the one-stop destination for you now. After a complete halt
+        of almost a year, now It’s the right time to explore the globe with
+        full enthusiasm. We do have the best of the services for you now as we
+        take you along with us around the globe, in the next few days, to
+        accomplish all your dreams and wishes. With many of the countries
+        reopening their borders, It’s now the time to be more intuitive and
+        captivate the best moments of life, as you travel. After a prolonged
+        period of not being able to travel, We’re not reopening for you only to
+        develop the key interest in you to fly again. It’s now the idea time as
+        many of the countrymen are now eagerly waiting to be connected with
+        their loved ones, and are also desperately anticipating for the same.
+      </p>
+
+      <h5>What do you expect from Infinity Travels?</h5>
+      <p>
+        With us, by your side, you do get to have the best resources for your
+        next trip that you have been planning since the initial time of the
+        pandemic. You do also get to experience the cheap deals and also the
+        indulgency in flying exuberantly, as there is more special deliverables
+        that are being prepared for you only this time. As the main focus is
+        mainly on the mode of traveling, hence, it can be said that there is
+        also the mandate rule to follow all the definite type of the guidelines
+        and also the specific type of the protocols that can boost your key
+        interest level to travel more and more.
+      </p>
+
+      <h5>Can you travel with our planned budget to our dream vacations?</h5>
+      <p>
+        Through the easy bookings via our site, Infinity Travels, you do get to
+        experience the world-class flying mode within your own planned budget.
+        This shall also allow you to enjoy and travel across the world in your
+        own way. Having the liability of planning your own budget can boost your
+        key interest of visiting all the places that you have been wishing for
+        all these years.
+      </p>
+
+      <h5>Where in the world can you wander with us?</h5>
+      <p>
+        With us, by your side, you do get to explore all the countries across
+        the planet, through the convenient packages that we do bring to you.
+        Infinity Travels can take you to all the countries that you have been
+        wishing to travel. From the rich deserts of the Middle East to the
+        exotic sunsets of the Southern West, you can experience it all with us.
+        All you need to do is visit the website and purchase the great offers
+        that we do bring to you for the next trip that you do have been planning
+        for a long time.
+      </p>
+
+      <section>
+        <div class="container container-xxl">
+          <div class="callbg mt-4 mb-5">
+            <div class="row align-items-center">
+              <div class="col-lg-6 col-xs-12">
+                <div class="lt-text-bestdeal">
+                  <p class="callerhead">
+                    You Dream it, We’ll Guide it! Call to Speak with Our Travel
+                    Partner:
+                  </p>
+                </div>
+              </div>
+              <div class="col-lg-6 col-xs-12">
+                <div class="phone">
+                  <h2 class="text-white">
+                    <b
+                      ><i class="fa fa-volume-control-phone"></i>
+                      <a
+                        class="text-white"
+                        href="tel:{{ getData?.phoneNumber }}"
+                        >{{ getData?.phoneNumber }}</a
+                      ></b
+                    >
+                  </h2>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- Top Destinations -->
+      <div class="top-destination-wrapper pt-0" *ngIf="flightData?.length">
+        <h2 class="title">
+          <strong>Top</strong>
+          <span class="highlight"> Destinations</span>
+        </h2>
+
+        <div class="destination-table-wrap table-responsive c-scrollbar">
+  <table class="destination-table">
+    <tbody>
+      <tr *ngFor="let row of flightData">
+        <td
+          *ngFor="let route of row"
+          [class.current-destination-cell]="route?.slug === currentSlug"
+        >
+          <ng-container *ngIf="route?.slug !== currentSlug; else disabledLink">
+            <a
+              class="destination-link"
+              [routerLink]="['/top-destinations', route?.slug]"
+              (click)="onDestinationClick(route)"
+            >
+              {{ route.name | titlecase }}
+            </a>
+          </ng-container>
+          <ng-template #disabledLink>
+            <span class="current-destination">{{ route.name | titlecase }}</span>
+          </ng-template>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+      </div>
+
+     
+    </div>
+  </div>
+</section>
+<!--=========== Contact ==============-->

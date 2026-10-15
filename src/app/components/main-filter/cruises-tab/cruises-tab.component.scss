@@ -1,0 +1,70 @@
+@import url(../../../common-scss/search-engine.css);
+
+::ng-deep .fsr-field__value .commonDatePicker,
+::ng-deep .fsr-field__value .commonselect {
+  border: 0px !important;
+  padding: 0 !important;
+  box-shadow: none !important;
+  background: transparent !important;
+  font-size: 13px;
+  font-weight: 500;
+  color: rgba(var(--black-color), 1);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  border-radius: 0px;
+  width: 100%;
+}
+::ng-deep .fsr-field__value .commonDatePicker::placeholder {
+  color: #262b33;
+}
+::ng-deep .flatpickr-day.selected {
+  background: rgba(var(--main-color), 1) !important;
+}
+
+::ng-deep .airport-name {
+  color: #6b7280;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 1.2;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  white-space: normal;
+  font-size: 11px;
+  font-weight: 500;
+}
+::ng-deep .fsr-field .p-overlay{
+    max-width: 330px !important;
+    width: max-content;
+}
+
+
+
+@media (max-width: 768px) {
+  .fsr-field p-autocomplete,
+  .fsr-field .p-autocomplete,
+  .fsr-field .p-autocomplete-input,
+  .fsr-field .p-inputwrapper {
+    position: absolute !important;
+    top: 16px;
+    height: max-content;
+  }
+  .fsr-field {
+    align-items: self-start;
+  }
+  ::ng-deep .fsr-field .p-overlay {
+    min-width: 290px !important;
+    left: -42px !important;
+    width: 100%;
+  }
+  ::ng-deep {
+    .airport-code {
+      display: none;
+    }
+    .fsr-field .isinvalid-text,
+    .fsr-field .text-danger {
+      top: calc(100% + 30px) !important;
+    }
+  }
+}

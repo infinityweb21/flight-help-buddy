@@ -1,0 +1,279 @@
+<!--=========== Banner Section Start  ==============-->
+<section
+  class="inf-hero-section"
+  [ngStyle]="{ 'background-image': 'url(' + backgroundImageUrl + ')' }"
+>
+  <div class="container">
+    <div class="row justify-content-end align-items-center">
+      <div class="col-lg-6 col-md-7">
+        <div class="inf-hero-content">
+          <h1>{{ headerText }}</h1>
+          <p>{{ subHeaderText }}</p>
+        </div>
+
+        <div class="inf-call-widget">
+          <h2>Purchase Best <span>Deals</span></h2>
+          <form
+            name="inf-call-form"
+            action="#"
+            method="post"
+            novalidate
+            [formGroup]="contactForm"
+          >
+            <div class="form-row">
+              <div class="row g-2 g-lg-3">
+                <div class="col-md-6">
+                  <input
+                    type="text"
+                    name="sub_name"
+                    placeholder="Your Name"
+                    class="form-control"
+                    required
+                    formControlName="name"
+                    [class.is-invalid]="isInvalid('name')"
+                  />
+                  <div *ngIf="isInvalid('name')" class="text-danger">
+                    Name is required.
+                  </div>
+                </div>
+                <div class="col-md-6">
+                             <div class="wrapper">
+                                            <ngx-intl-tel-input [cssClass]="'form-control'"
+                                                [preferredCountries]="preferredCountries"
+                                                [enableAutoCountrySelect]="true" [enablePlaceholder]="true"
+                                                [searchCountryFlag]="true" [searchCountryField]="[
+          SearchCountryField.Iso2,
+          SearchCountryField.Name
+        ]" [selectFirstCountry]="false" [selectedCountryISO]="CountryISO.UnitedStates" [maxLength]="15"
+                                                [phoneValidation]="true" [separateDialCode]="separateDialCode"
+                                                [numberFormat]="PhoneNumberFormat.National" name="phone"
+                                                formControlName="phone" [class.is-invalid]="isInvalid('phone')">
+                                            </ngx-intl-tel-input>
+                                        </div>
+                         <div *ngIf="isInvalid('phone')" class="text-danger">Phone number is required.</div>
+  <div *ngIf="contactForm.get('phone')?.errors?.['invalidPhoneLength']" class="text-danger">
+      Please enter a valid phone number (6–15 digits).
+    </div>
+                </div>
+              </div>
+              <button
+                type="submit"
+                class="banner-form-submit-btn"
+                (click)="submitContactForm()"
+              >
+                Get a Call
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<div class="container container-xxl py-3 app-top-destinations-label" style="background-color: #bfbfbf1f;"> <app-cruises-tab></app-cruises-tab> </div>
+
+
+<section class="travel-best cmn-gap pb-4 pt-4">
+  <div class="container container-xxl">
+    <div
+      class="common-slider-container d-flex align-items-center justify-content-between"
+    >
+      @for (feature of travelFeatures; track $index) {
+      <div class="w-100">
+        <div class="travel-feature-card">
+          <div class="travel-feature-card-wrap">
+            <div
+              class="travel-feature-card-icon-box travel-feature-card-orange-icon"
+            >
+              <img [src]="feature.icon" alt="feature" class="feico" />
+            </div>
+            <div class="travel-feature-card-content-box">
+              <h4 class="travel-feature-card-title">{{ feature.title }}</h4>
+              <p class="travel-feature-card-desc">{{ feature.description }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      }
+    </div>
+  </div>
+</section>
+
+<!--=========== Contact ==============-->
+<section class="policy-content common-sec-pb-space">
+  <div class="container container-xxl">
+    <div class="page-content m-0 p-0">
+     <p><strong>Your Dream Cruise is Just a Click Away! </strong></p>
+								<p>If the idea of exploring your favorite destination is calling, we’re here to make it a reality with dedication and memorable cruise experiences. At Infinity Travels, we’re committed to delivering the most exotic cruise packages that will excite and encourage you to travel with us. Cruising becomes a journey filled with excitement and best deals at your convenience with us by your side. </p>
+								<div class="row fly-main">
+									<div class="col-md-12">
+										<p><strong><span>Sailing with the Best in the Industry </span></strong></p>
+										<p><span>We’ve partnered with some of the world's leading cruise lines and travel networks to bring you smooth access to global destinations. Our planned itineraries are there for you whether you sail through the Caribbean or witness the majestic fjords of Alaska. Our partnerships allow you to provide quality service as per unique preferences of each traveler. </span></p>
+										
+									
+										<p><strong><span>Where Can You Cruise with Us?  </span></strong></p>
+										<p><span>We’re here to make your dreams come true with flexible plans and thoughtful strategies to make sure a safe and enjoyable journey for all our guests. We travel from the northern lights of Scandinavia to the beaches of the Mediterranean and from the coasts of Canada to the cultures of South America.</span></p>
+									
+										<p><strong><span>Top Domestic Cruise Destinations </span></strong></p>
+                                        <p>Travelers can choose from a various cruise packages that take you from the ports of New England to the waters of the Florida Keys and also see the Alaskan glaciers or explore the hospitality along the Mississippi River. We offer the best prices and exclusive discounts that is perfect for everyone to enjoy the domestic voyage within reach.  </p>
+                                        <p><strong>Top International Cruise Destinations </strong></p>
+                                        <p>Check out our top global cruises that fits to every traveler and it can be on European river cruise or experience the culture of the Caribbean islands with us to the world’s most iconic places within your budget and on your terms.</p>
+                                        
+                                        <p><strong>How to Get the Best Cruise Deals of the Day </strong></p>
+                                        <p>Try to keep an eye on our website for daily updates on discounted fares, flash sales and exclusive seasonal offers as it can vary throughout the day. We recommend staying connected with our 24/7 customer care team who are always ready to assist you in planning your perfect journey.  </p>
+									</div>
+								</div>
+<section>
+	<div class="container container-xxl">
+		<div class="callbg mt-4 mb-5">
+			<div class="row align-items-center">
+				<div class="col-lg-6 col-xs-12">
+					<div class="lt-text-bestdeal">
+					<p class="callerhead">You Dream it, We’ll Guide it! Call to Speak with Our Travel Partner:</p>
+					</div>
+				</div>
+				<div class="col-lg-6 col-xs-12">
+					<div class="phone">
+						<h2 class="text-white"><b><i class="fa fa-volume-control-phone"></i> <a class="text-white" href="tel:{{getData?.phoneNumber}}">{{getData?.phoneNumber}}</a></b></h2>
+					</div>
+				</div>
+			</div> 
+		</div>
+	</div>
+</section>
+
+
+     <!-- Top Destinations -->
+<div class="container container-xxl">
+
+<div class="top-destination-wrapper pb-0 p-0" *ngIf="flightData?.length">
+  <h2 class="title">
+    <strong>Top</strong>
+    <span class="highlight"> Cruise</span>
+  </h2>
+
+  <div class="destination-card-grid">
+    <div *ngFor="let row of flightData" class="row">
+      <a
+        *ngFor="let route of row"
+        class="col-md-4 mb-3"
+        [routerLink]="['/cruise-lines', route?.slug]"
+      >
+        <div class="card cruise-card h-100">
+         <div class="position-relative">
+    <img
+      [src]="route.image || 'assets/images/default-cruise.jpg'"
+      class="card-img-top"
+      alt="{{ route.name }}"
+    />
+    <img
+      *ngIf="route.logo"
+      [src]="route.logo"
+      class="cruise-logo"
+      alt="{{ route.name }} Logo"
+    />
+  </div>
+          <div class="card-body">
+            <h5 class="card-title">{{ route.name }}</h5>
+            <p class="card-text">
+              {{ route.description || 'Explore beautiful cruise routes worldwide.' }}
+            </p>
+            <!-- <button class="btn btn-primary">
+              View Cruise <i class="bi bi-arrow-right"></i>
+            </button> -->
+          </div>
+        </div>
+      </a>
+    </div>
+  </div>
+</div>
+</div>
+      <!-- <div class="faq-wrapper">
+        <h2 class="title">
+          <strong
+            >Frequently <span class="highlight">Asked</span> Questions</strong
+          >
+        </h2>
+        <div class="accordion ltc-accordion" id="ltcAccordion">
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="services">
+              <button
+                class="accordion-button collapsed"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#servicesOne"
+                aria-expanded="false"
+                aria-controls="servicesOne"
+              >
+                What services do you offer?
+              </button>
+            </h2>
+            <div
+              id="servicesOne"
+              class="accordion-collapse collapse"
+              aria-labelledby="faqOne"
+              data-bs-parent="#ltcAccordion"
+            >
+              <div class="accordion-body">
+                We offer complete UI/UX design, web development, and product
+                design system implementation for startups and enterprise
+                clients.
+              </div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="faqTwo">
+              <button
+                class="accordion-button collapsed"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#servicesTwo"
+                aria-expanded="false"
+                aria-controls="servicesTwo"
+              >
+                Do you provide support after delivery?
+              </button>
+            </h2>
+            <div
+              id="servicesTwo"
+              class="accordion-collapse collapse"
+              aria-labelledby="faqTwo"
+              data-bs-parent="#ltcAccordion"
+            >
+              <div class="accordion-body">
+                Yes, we offer ongoing support and maintenance services to ensure
+                your product remains up-to-date and fully functional.
+              </div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="faqThree">
+              <button
+                class="accordion-button collapsed"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#servicesThree"
+                aria-expanded="false"
+                aria-controls="servicesThree"
+              >
+                What is your pricing model?
+              </button>
+            </h2>
+            <div
+              id="servicesThree"
+              class="accordion-collapse collapse"
+              aria-labelledby="faqThree"
+              data-bs-parent="#ltcAccordion"
+            >
+              <div class="accordion-body">
+                We offer project-based, hourly, and retainer pricing options
+                based on your project needs and scope.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div> -->
+    </div>
+  </div>
+</section>
+<!--=========== Contact ==============-->

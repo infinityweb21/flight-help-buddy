@@ -1,0 +1,569 @@
+<ng-container *ngIf="isSkeleton">
+    <app-hotel-list-skeleton></app-hotel-list-skeleton>
+</ng-container>
+
+<ng-container *ngIf="!isdialogopen">
+    <section class="common-section text-section top-searchbar">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 onlymobhide">
+                    <app-car-tab></app-car-tab>
+                </div>
+
+                <div class="onlymobactive">
+                    <div class="fsr-card" data-bs-toggle="offcanvas" data-bs-target="#fsrOffcanvas" role="button"
+                        tabindex="0" aria-controls="fsrOffcanvas">
+                        <span class="fsr-card__icon"><i class="fa-solid fa-magnifying-glass"></i></span>
+                        <div class="fsr-card__body">
+                            <span class="fsr-card__route">{{ carSearchData?.pickupLocation?.name}} - {{
+                                carSearchData?.dropoffLocation?.name}}</span>
+                            <span class="fsr-card__meta">{{ carSearchData?.pickup_datetime | date:'MMM d' }} –
+                                {{carSearchData?.dropoff_datetime | date:'d' }}
+                                &middot; {{ carSearchData?.driver_age }} Driver Age</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+</ng-container>
+
+<section class="fiter-sec-list-section common-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3 col-md-3 col-12 dmobnone">
+                <aside class="fs-filter-panel">
+                    <form class="fs-filter-form" method="get" (submit)="$event.preventDefault()">
+                        <div class="fs-filter-header">
+                            <h6>Filters</h6>
+                            <button type="button" class="fs-clear-btn" (click)="clearAllFilters()">Clear All</button>
+                        </div>
+
+                        <!-- Search by Car Name -->
+                        <div class="fs-block">
+                            <h6 class="fs-title">Search by Car Name</h6>
+                            <div class="search-box-unique">
+                                <input type="text" placeholder="Enter car name" [(ngModel)]="carNameSearch"
+                                    (ngModelChange)="applyFilters()" name="carNameSearch" />
+                                <button type="button" class="search-icon-btn">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round">
+                                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                        <path d="M10 10m-7 0a7 7 0 1 0 14 0a7 7 0 1 0 -14 0"></path>
+                                        <path d="M21 21l-6 -6"></path>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Car Brands -->
+                        <div class="fs-block">
+                            <h6 class="fs-title">Car Brands</h6>
+
+                            <label class="fs-checkbox"
+                                *ngFor="let brand of (showAllBrands ? brandOptions : brandOptions.slice(0, 5))">
+                                <input type="checkbox" [checked]="selectedBrands.includes(brand)"
+                                    (change)="onBrandToggle(brand, $any($event.target).checked)" />
+                                <span></span>
+                                {{ brand }}
+                            </label>
+
+                            <button *ngIf="brandOptions.length > 5" type="button" class="filter-toggle-btn"
+                                (click)="showAllBrands = !showAllBrands">
+                                {{ showAllBrands ? 'View Less' : 'View More' }}
+                            </button>
+                        </div>
+
+                        <!-- Rental car company -->
+                        <div class="fs-block">
+                            <h6 class="fs-title">Rental car company</h6>
+
+                            <label class="fs-checkbox"
+                                *ngFor="let vendor of (showAllVendors ? vendorOptions : vendorOptions.slice(0, 3))">
+                                <input type="checkbox" [checked]="selectedVendors.includes(vendor)"
+                                    (change)="onVendorToggle(vendor, $any($event.target).checked)" />
+                                <span></span>
+                                {{ vendor }}
+                            </label>
+
+                            <button *ngIf="vendorOptions.length > 3" type="button" class="filter-toggle-btn"
+                                (click)="showAllVendors = !showAllVendors">
+                                {{ showAllVendors ? 'View Less' : 'View More' }}
+                            </button>
+                        </div>
+
+                        <!-- Car Type -->
+                        <div class="fs-block">
+                            <h6 class="fs-title">Car Type</h6>
+
+                            <label class="fs-checkbox-main"
+                                *ngFor="let type of (showAllCarTypes ? carTypeOptions : carTypeOptions.slice(0, 3))">
+                                <div class="fs-checkbox">
+                                    <input type="checkbox" [checked]="selectedCarTypes.includes(type)"
+                                        (change)="onCarTypeToggle(type, $any($event.target).checked)" />
+                                    <span></span>
+                                    {{ type }}
+                                </div>
+                            </label>
+
+                            <button *ngIf="carTypeOptions.length > 3" type="button" class="filter-toggle-btn"
+                                (click)="showAllCarTypes = !showAllCarTypes">
+                                {{ showAllCarTypes ? 'View Less' : 'View More' }}
+                            </button>
+                        </div>
+
+                        <!-- Fuel -->
+                        <div class="fs-block">
+                            <h6 class="fs-title">Fuel</h6>
+
+                            <label class="fs-checkbox-main"
+                                *ngFor="let fuel of (showAllFuel ? fuelOptions : fuelOptions.slice(0, 3))">
+                                <div class="fs-checkbox">
+                                    <input type="checkbox" [checked]="selectedFuelTypes.includes(fuel)"
+                                        (change)="onFuelToggle(fuel, $any($event.target).checked)" />
+                                    <span></span>
+                                    {{ fuel }}
+                                </div>
+                            </label>
+
+                            <button *ngIf="fuelOptions.length > 3" type="button" class="filter-toggle-btn"
+                                (click)="showAllFuel = !showAllFuel">
+                                {{ showAllFuel ? 'View Less' : 'View More' }}
+                            </button>
+                        </div>
+
+                        <!-- Gear -->
+                        <div class="fs-block">
+                            <h6 class="fs-title">Gear</h6>
+
+                            <label class="fs-checkbox-main" *ngFor="let gear of transmissionOptions">
+                                <div class="fs-checkbox">
+                                    <input type="checkbox" [checked]="selectedTransmissions.includes(gear)"
+                                        (change)="onTransmissionToggle(gear, $any($event.target).checked)" />
+                                    <span></span>
+                                    {{ gear }}
+                                </div>
+                            </label>
+                        </div>
+
+                        <!-- Capacity -->
+                        <div class="fs-block">
+                            <h6 class="fs-title">Capacity</h6>
+
+                            <label class="fs-checkbox-main fs-airline" *ngFor="let seat of seatOptions">
+                                <div class="fs-checkbox">
+                                    <input type="checkbox" [checked]="selectedSeats.includes(seat)"
+                                        (change)="onSeatToggle(seat, $any($event.target).checked)" />
+                                    <span></span>
+                                    {{ seat }}
+                                </div>
+                            </label>
+                        </div>
+
+                        <!-- Reviews -->
+                        <div class="fs-block">
+                            <h6 class="fs-title">Reviews</h6>
+
+                            <label class="fs-checkbox-main" *ngFor="let rating of ratingOptions">
+                                <div class="fs-checkbox">
+                                    <input type="checkbox" [checked]="selectedRatings.includes(rating)"
+                                        (change)="onRatingToggle(rating, $any($event.target).checked)" />
+                                    <span></span>
+                                    {{ rating }} Star
+                                </div>
+                            </label>
+                        </div>
+                    </form>
+                </aside>
+            </div>
+
+            <div class="col-lg-7 col-md-12 col-12">
+                <div class="mainsb-wrapper">
+                    <div class="sb-wrapper">
+                        <label class="sb-label">Sort by</label>
+
+                        <p-select [options]="sortOptions" [(ngModel)]="sortBy" optionLabel="label" optionValue="value"
+                            (onChange)="onSortChange()" placeholder="Recommended" [styleClass]="'sb-p-select'"
+                            appendTo="body">
+                        </p-select>
+                    </div>
+                    <div class="searchresult">
+                        <span>{{ filteredCarList.length }}</span> Cars Found on Your Search
+                    </div>
+                </div>
+
+                <div class="list-flight-main-wrapper">
+                    <ng-container *ngIf="filteredCarList.length === 0">
+                        <div class="col-12">
+                            <p class="text-center mt-5">No cars found. Please adjust your search criteria.</p>
+                        </div>
+                    </ng-container>
+
+                    <h3 class="common-title" *ngIf="filteredCarList.length > 0">Recommended Cars</h3>
+
+                    <ng-container *ngFor="let car of paginatedCarList">
+                        <div class="car-rental-container">
+                            <div class="car-rental-card">
+                                <div class="car-card-content">
+                                    <div class="car-card-header">
+                                        <div class="car-card-image-wrapper">
+                                            <div class="car-image-carousel owl-carousel owl-theme">
+                                                <div class="car-carousel-item" *ngFor="let image of getCarImages(car)">
+                                                    <img [src]="image" alt="Car Image" loading="lazy" />
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="car-card-info">
+                                            <div class="cartos">
+                                                <h2 class="car-card-title">
+                                                    {{ car?.carDetails?.carModel || car?.carDetails?.CarFleet?.CarName
+                                                    }}
+                                                </h2>
+                                                <span class="car-card-badge">{{ car?.carDetails?.sizeName }}</span>
+                                            </div>
+
+                                            <div class="car-card-features">
+                                                <div class="car-feature-item">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                        viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                                        class="car-feature-icon">
+                                                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                                        <path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0" />
+                                                        <path d="M16 19h6" />
+                                                        <path d="M19 16v6" />
+                                                        <path d="M6 21v-2a4 4 0 0 1 4 -4h4" />
+                                                    </svg>
+                                                    <span>{{ car?.carDetails?.passengerQuantity || '-' }} seats</span>
+                                                </div>
+                                                <div class="car-feature-item">
+                                                    <i class="fas fa-cog car-feature-icon"></i>
+                                                    <span>{{ car?.carDetails?.transmissionType || '-' }}</span>
+                                                </div>
+                                                <div class="car-feature-item">
+                                                    <i class="fas fa-suitcase car-feature-icon"></i>
+                                                    <span>{{ car?.carDetails?.baggageQuantity || '0' }} bag</span>
+                                                </div>
+                                                <div class="car-feature-item">
+                                                    <i class="fas fa-tachometer-alt car-feature-icon"></i>
+                                                    <span>{{ hasAc(car) ? 'A/C' : 'Non A/C' }}</span>
+                                                </div>
+                                            </div>
+
+                                            <div class="car-card-location">
+                                                <div class="car-location-name">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                        viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                                        class="car-feature-icon">
+                                                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                                        <path d="M12 18.5l-3 -1.5l-6 3v-13l6 -3l6 3l6 -3v7.5" />
+                                                        <path d="M9 4v13" />
+                                                        <path d="M15 7v5.5" />
+                                                        <path
+                                                            d="M21.121 20.121a3 3 0 1 0 -4.242 0c.418 .419 1.125 1.045 2.121 1.879c1.051 -.89 1.759 -1.516 2.121 -1.879" />
+                                                        <path d="M19 18v.01" />
+                                                    </svg>
+                                                    {{ car?.pickup?.address || '-' }}
+                                                </div>
+                                                <div class="car-location-type"> <i
+                                                        class="fa-solid fa-magnifying-glass-location car-feature-icon"></i>
+                                                    {{ car?.pickup?.locationName || '-' }}
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="car-card-pricing">
+                                            <div class="car-price-label">Price Per Day</div>
+                                            <div class="car-price-amount">
+                                                <span class="car-price-currency">{{ car.fees?.currencyCode }}</span>
+                                               {{ truncateAmount(getPerDayPrice(car), 2) }}
+                                            </div>
+                                            <button class="car-view-deal-btn" (click)="navigateToDetails(car)">View
+                                                deal</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="car-card-footer">
+                                    <div class="car-card-footer-left">
+                                        <div class="car-rating-section">
+                                            <div class="car-rating-logo">
+                                                <img [src]="car?.vendor?.vendorImage" alt="vendor">
+                                            </div>
+                                            <span class="car-rating-badge"> <i class="fa-regular fa-star"></i>
+                                                {{car?.vendor?.reviewsOverall}} </span>
+                                            <div>
+                                                <div class="car-rating-text"> {{car?.vendor?.reviewsOverall <= 4
+                                                        ? 'Good' : 'Very Good' }} </div>
+                                                        <div class="car-rating-reviews">{{car?.vendor?.reviewsTotal}} +
+                                                            reviews</div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="car-card-actions">
+                                            <a href="tel:{{getData?.phoneNumber}}" class="car-action-link">
+                                                <i class="fa-solid fa-phone car-action-icon"></i>
+                                                <span>Call Now</span>
+                                            </a>
+                                            <a href="/contact" class="car-action-link">
+                                                <i class="fa-solid fa-headset car-action-icon"></i>
+                                                <span>Get a quote</span>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="fd-ad-banner">
+                                <div class="fd-ad-left">
+                                    <div class="fd-ad-icon">
+                                        <i class="fa-solid fa-indian-rupee-sign"></i>
+                                    </div>
+                                    <div class="fd-ad-text">
+                                        <div class="fd-ad-title">Get the Best Deals Here</div>
+                                        <div class="fd-ad-desc">
+                                            Start your road trip now with your dream car at best prices
+                                        </div>
+                                    </div>
+                                </div>
+                                <a href="tel:{{ getData?.phoneNumber }}" class="fd-ad-btn">Book Your Car Rental</a>
+                            </div>
+                    </ng-container>
+
+                    <!-- PrimeNG 19 Paginator -->
+                    <p-paginator *ngIf="filteredCarList.length > 0" [first]="first" [rows]="rows"
+                        [totalRecords]="filteredCarList.length" [rowsPerPageOptions]="rowsPerPageOptions"
+                        [showCurrentPageReport]="true" (onPageChange)="onPageChange($event)">
+                    </p-paginator>
+                </div>
+            </div>
+
+            <div class="col-lg-2 col-md-4 col-12 dmobnone">
+                <div class="ofr-ad-wrapper">
+                    <div class="ofr-ad-card">
+                        <img src="assets/images/ads/ad3.jpg" class="ofr-bg" />
+                        <div class="ofr-overlay"></div>
+                        <div class="ofr-content">
+                            <span class="ofr-tag">Holiday Special</span>
+                            <h3>Car Rental Deals</h3>
+                            <p>Book Now & Save More!</p>
+                            <a href="tel:{{getData?.phoneNumber}}" class="ofr-btn">Call Us</a>
+                        </div>
+                    </div>
+
+                    <div class="ofr-ad-card">
+                        <img src="assets/images/ads/ad4.webp" class="ofr-bg" />
+                        <div class="ofr-overlay"></div>
+                        <div class="ofr-content">
+                            <span class="ofr-tag">Travel Deal Alert</span>
+                            <h3>Car Rental Deals</h3>
+                            <p>Great Cars at the Best Price</p>
+                            <a href="tel:{{getData?.phoneNumber}}" class="ofr-btn">Call Us</a>
+                        </div>
+                    </div>
+
+                    <div class="ofr-ad-card">
+                        <img src="assets/images/ads/ad5.webp" class="ofr-bg" />
+                        <div class="ofr-overlay"></div>
+                        <div class="ofr-content">
+                            <span class="ofr-tag">Holiday {{ currentYear }}</span>
+                            <h3>Car Rental Offers</h3>
+                            <p>Your Ride, Set For The Journey</p>
+                            <a href="tel:{{getData?.phoneNumber}}" class="ofr-btn">Call Us</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- ===== All modal & Offcanvas (Mobile)  ===== -->
+<div class="offcanvas offcanvas-start filterofcanvas" tabindex="-1" id="offcanvasfilter"
+    aria-labelledby="offcanvasfilterLabel">
+    <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="offcanvasfilterLabel">Filters</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body">
+        <aside class="fs-filter-panel">
+            <form class="fs-filter-form" method="get" (submit)="$event.preventDefault()">
+                <div class="fs-filter-header">
+                    <h6>Filters</h6>
+                    <button type="button" class="fs-clear-btn" (click)="clearAllFilters()">Clear All</button>
+                </div>
+
+                <!-- Search by Car Name -->
+                <div class="fs-block">
+                    <h6 class="fs-title">Search by Car Name</h6>
+                    <div class="search-box-unique">
+                        <input type="text" placeholder="Enter car name" [(ngModel)]="carNameSearch"
+                            (ngModelChange)="applyFilters()" name="carNameSearch" />
+                        <button type="button" class="search-icon-btn">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                <path d="M10 10m-7 0a7 7 0 1 0 14 0a7 7 0 1 0 -14 0"></path>
+                                <path d="M21 21l-6 -6"></path>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Car Brands -->
+                <div class="fs-block">
+                    <h6 class="fs-title">Car Brands</h6>
+
+                    <label class="fs-checkbox"
+                        *ngFor="let brand of (showAllBrands ? brandOptions : brandOptions.slice(0, 5))">
+                        <input type="checkbox" [checked]="selectedBrands.includes(brand)"
+                            (change)="onBrandToggle(brand, $any($event.target).checked)" />
+                        <span></span>
+                        {{ brand }}
+                    </label>
+
+                    <button *ngIf="brandOptions.length > 5" type="button" class="filter-toggle-btn"
+                        (click)="showAllBrands = !showAllBrands">
+                        {{ showAllBrands ? 'View Less' : 'View More' }}
+                    </button>
+                </div>
+
+                <!-- Rental car company -->
+                <div class="fs-block">
+                    <h6 class="fs-title">Rental car company</h6>
+
+                    <label class="fs-checkbox"
+                        *ngFor="let vendor of (showAllVendors ? vendorOptions : vendorOptions.slice(0, 3))">
+                        <input type="checkbox" [checked]="selectedVendors.includes(vendor)"
+                            (change)="onVendorToggle(vendor, $any($event.target).checked)" />
+                        <span></span>
+                        {{ vendor }}
+                    </label>
+
+                    <button *ngIf="vendorOptions.length > 3" type="button" class="filter-toggle-btn"
+                        (click)="showAllVendors = !showAllVendors">
+                        {{ showAllVendors ? 'View Less' : 'View More' }}
+                    </button>
+                </div>
+
+                <!-- Car Type -->
+                <div class="fs-block">
+                    <h6 class="fs-title">Car Type</h6>
+
+                    <label class="fs-checkbox-main"
+                        *ngFor="let type of (showAllCarTypes ? carTypeOptions : carTypeOptions.slice(0, 3))">
+                        <div class="fs-checkbox">
+                            <input type="checkbox" [checked]="selectedCarTypes.includes(type)"
+                                (change)="onCarTypeToggle(type, $any($event.target).checked)" />
+                            <span></span>
+                            {{ type }}
+                        </div>
+                    </label>
+
+                    <button *ngIf="carTypeOptions.length > 3" type="button" class="filter-toggle-btn"
+                        (click)="showAllCarTypes = !showAllCarTypes">
+                        {{ showAllCarTypes ? 'View Less' : 'View More' }}
+                    </button>
+                </div>
+
+                <!-- Price Per Day -->
+                <div class="fs-block">
+                    <h6 class="fs-title">Price Per Day</h6>
+                    <div class="fs-range">
+                        <div class="price-range-inputs">
+                            <input type="number" [(ngModel)]="selectedMinPrice" [min]="minPrice"
+                                [max]="selectedMaxPrice" (ngModelChange)="updateCarRange()" name="minPrice" />
+                            <input type="number" [(ngModel)]="selectedMaxPrice" [min]="selectedMinPrice"
+                                [max]="maxPrice" (ngModelChange)="updateCarRange()" name="maxPrice" />
+                        </div>
+                        <div class="fs-range-values">
+                            <span>${{ selectedMinPrice }}</span>
+                            <span>${{ selectedMaxPrice }}</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Fuel -->
+                <div class="fs-block">
+                    <h6 class="fs-title">Fuel</h6>
+
+                    <label class="fs-checkbox-main"
+                        *ngFor="let fuel of (showAllFuel ? fuelOptions : fuelOptions.slice(0, 3))">
+                        <div class="fs-checkbox">
+                            <input type="checkbox" [checked]="selectedFuelTypes.includes(fuel)"
+                                (change)="onFuelToggle(fuel, $any($event.target).checked)" />
+                            <span></span>
+                            {{ fuel }}
+                        </div>
+                    </label>
+
+                    <button *ngIf="fuelOptions.length > 3" type="button" class="filter-toggle-btn"
+                        (click)="showAllFuel = !showAllFuel">
+                        {{ showAllFuel ? 'View Less' : 'View More' }}
+                    </button>
+                </div>
+
+                <!-- Gear -->
+                <div class="fs-block">
+                    <h6 class="fs-title">Gear</h6>
+
+                    <label class="fs-checkbox-main" *ngFor="let gear of transmissionOptions">
+                        <div class="fs-checkbox">
+                            <input type="checkbox" [checked]="selectedTransmissions.includes(gear)"
+                                (change)="onTransmissionToggle(gear, $any($event.target).checked)" />
+                            <span></span>
+                            {{ gear }}
+                        </div>
+                    </label>
+                </div>
+
+                <!-- Capacity -->
+                <div class="fs-block">
+                    <h6 class="fs-title">Capacity</h6>
+
+                    <label class="fs-checkbox-main fs-airline" *ngFor="let seat of seatOptions">
+                        <div class="fs-checkbox">
+                            <input type="checkbox" [checked]="selectedSeats.includes(seat)"
+                                (change)="onSeatToggle(seat, $any($event.target).checked)" />
+                            <span></span>
+                            {{ seat }}
+                        </div>
+                    </label>
+                </div>
+
+                <!-- Reviews -->
+                <div class="fs-block">
+                    <h6 class="fs-title">Reviews</h6>
+
+                    <label class="fs-checkbox-main" *ngFor="let rating of ratingOptions">
+                        <div class="fs-checkbox">
+                            <input type="checkbox" [checked]="selectedRatings.includes(rating)"
+                                (change)="onRatingToggle(rating, $any($event.target).checked)" />
+                            <span></span>
+                            {{ rating }} Star
+                        </div>
+                    </label>
+                </div>
+            </form>
+        </aside>
+    </div>
+</div>
+
+<!-- Offcanvas: top to bottom -->
+<div class="offcanvas offcanvas-top fsr-offcanvas" tabindex="-1" id="fsrOffcanvas" aria-labelledby="fsrOffcanvasLabel">
+    <div class="fsr-offcanvas__header">
+        <h5 class="fsr-offcanvas__title" id="fsrOffcanvasLabel">Edit your search</h5>
+        <button type="button" class="btn-close fsr-offcanvas__close" data-bs-dismiss="offcanvas"
+            aria-label="Close"></button>
+    </div>
+
+    <div class="fsr-offcanvas__body">
+        <app-car-tab></app-car-tab>
+    </div>
+</div>

@@ -1,0 +1,63 @@
+<section class="thankyou">
+
+    <!-- background photo (decorative) -->
+    <img class="thankyou__bg" src="assets/images/thank-you.webp" alt="" aria-hidden="true" />
+
+    <div class="thankyou__card">
+
+        <img src="assets/images/logo-dark.png" alt="Infinity Travels" class="thankyou__logo" />
+
+        <!-- animated success tick -->
+        <div class="thankyou__check" aria-hidden="true">
+            <svg viewBox="0 0 52 52">
+                <circle class="thankyou__check-circle" cx="26" cy="26" r="24" />
+                <path class="thankyou__check-mark" d="M15 27l7 7 15-15" />
+            </svg>
+        </div>
+
+        <h1 class="thankyou__title">Thank you!</h1>
+
+        <p class="thankyou__lead">
+            It’s great to see you’ve started planning your next getaway, and we’re delighted you
+            chose Infinity Travels for your next adventure.
+        </p>
+
+        <!-- what happens next -->
+        <ol class="thankyou__steps">
+            <li class="is-done">
+                <span class="thankyou__step-icon"><i class="fa-solid fa-check"></i></span>
+                <span>Request received</span>
+            </li>
+            <li>
+                <span class="thankyou__step-icon"><i class="fa-solid fa-headset"></i></span>
+                <span>Our team connects with you shortly</span>
+            </li>
+            <li>
+                <span class="thankyou__step-icon"><i class="fa-solid fa-route"></i></span>
+                <span>A smooth trip, customized for you</span>
+            </li>
+        </ol>
+
+        <!-- help line -->
+        <div class="thankyou__help">
+            <span class="thankyou__help-icon"><i class="fa-solid fa-headset"></i></span>
+            <div class="thankyou__help-text">
+                <span>Need help or have a question? Call us anytime</span>
+                <a href="tel:{{ getData?.phoneNumber }}">{{ getData?.phoneNumber }}</a>
+            </div>
+        </div>
+
+        <div class="thankyou__actions">
+            <a href="tel:{{ getData?.phoneNumber }}" class="thankyou__btn thankyou__btn--primary">
+                <i class="fa-solid fa-phone"></i>
+                Call now
+            </a>
+            <a routerLink="/" class="thankyou__btn thankyou__btn--ghost">
+                <i class="fa-solid fa-house"></i>
+                Back to home
+            </a>
+        </div>
+
+    </div>
+
+</section>

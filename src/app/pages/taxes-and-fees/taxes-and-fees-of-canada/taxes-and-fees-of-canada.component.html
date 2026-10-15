@@ -1,0 +1,303 @@
+<!--=========== Banner Section Start  ==============-->
+<!-- <section class="banner banner-content-wrap innerbannersection">
+  <div
+    class="section-shape section-shape1 top-inherit bottom-0"
+    style="background-image: url(assets/images/Careers/shape8.png)"
+  ></div>
+  <div class="innerbannerimgbox">
+    <img
+      src="assets/images/inner-banner/our-service.webp"
+      alt="Our Service Image"
+      class="innerbannerimg"
+    />
+  </div>
+  <div class="container container-xxl">
+    <div class="row justify-content-center">
+      <div class="col-lg-8 col-md-6 col-12">
+        <div class="innerbanner-txt">
+          <h1>
+            Booking <span class="subtitletext">Charges And Terms</span>
+          </h1>
+          <div class="breadcrumbssec">
+            <ol class="breadcrumb bg-transparent justify-content-center">
+              <li class="breadcrumb-item">
+                <a routerLink="/" class="currentpagesec"
+                  ><i class="fa-solid fa-house"></i> Home</a
+                >
+              </li>
+              <li class="breadcrumb-item active" aria-current="page">
+                Taxes & Fees
+              </li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section> -->
+<!--=========== Banner Section End  ==============-->
+
+<!--=========== Contact ==============-->
+@if (loading) {
+<div class="d-flex justify-content-center align-items-center my-5">
+  <p-progress-spinner ariaLabel="loading" strokeWidth="4" fill="transparent" animationDuration=".8s"
+    [style]="{ width: '50px', height: '50px' }" />
+</div>}
+@if (!loading) {
+@if(country=='US'){
+<section class="post_ticketing_section post-ticket-fees-wrap mt-3 pt-5 pb-4">
+  <div class="container container-xxl">
+    <div class="row">
+      <div class="col-12">
+        <div class="pt-5">
+          <h1 class="head-text1">Taxes and Fees - Infinity Travels</h1>
+          <p class="head-text2">Effective from: 01-05-2026</p>
+          <p class="head-text3">The following outlines common USA and international government-imposed taxes, as well
+            as fees and charges, that may be applicable to your booking. Such amounts are in addition to Infinity
+            Travels’ service or transaction fees.</p>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12">
+        <div class="main_table_wrap w-100">
+          <h3 class="tabel-top-title">Government-Imposed Taxes & Fees</h3>
+          <div class="table-responsive">
+            <table class="table table-bordered">
+              <thead>
+                <tr>
+                  <th>Name & Description</th>
+                  <th>May Apply To</th>
+                  <th>Code</th>
+                  <th>Amount</th>
+                </tr>
+              </thead>
+              <tbody>
+                @for (fee of taxesAndFees; track $index) {
+                <tr>
+                  <td>
+                    <b>{{ fee.name }}</b> <br />{{ fee.description }}
+                  </td>
+                  <td>{{ fee.may_apply_to }}</td>
+                  <td>{{ fee.code }}</td>
+                  <td>{{ fee.amount }}</td>
+                </tr>
+                }
+              </tbody>
+            </table>
+          </div>
+          <h3 class="tabel-top-title">Infinity Travels Service Fees</h3>
+          <div class="table-responsive">
+            <table class="table table-bordered">
+              <thead>
+                <tr>
+                  <th>Service Type</th>
+                  <th>Applies To</th>
+                  <th>Fee Range</th>
+                  <!-- <th>Amount</th> -->
+                </tr>
+              </thead>
+              <tbody>
+                @for (fee of ourFees; track $index) {
+                <tr>
+                  <td>
+                    <!-- <b>{{ fee.name }}</b> <br />{{ fee.description }} -->
+                    <br />{{ fee.description }}
+                  </td>
+                  <td>{{ fee.may_apply_to }}</td>
+                  <!-- <td>{{ fee.code }}</td> -->
+                  <td>{{ fee.amount }}</td>
+                </tr>
+                }
+              </tbody>
+            </table>
+          </div>
+
+          <div class="page-content mt-0 p-0">
+
+          </div>
+          <div class="page-content mt-0 p-0">
+            <h4>Disclaimers</h4>
+            <ul class="disc-list">
+              <div class="mb-0">These amounts are approximate; actual charges may vary based on applicable
+                circumstances. </div>
+              <li><b>Applicable Passenger Categories:</b>Adults, children, seniors, infants, students, and military
+                personnel.</li>
+              <li><b>Non-Refundability:</b> All transaction fees are nonrefundable, except otherwise required by law.
+              </li>
+              <li><b>Government-Imposed Taxes and Fees:</b> Such taxes and fees are subject to change without prior
+                notice.</li>
+              <li><b>Currency Conversion:</b> All fees shall be converted to the passenger's local currency at the time
+                of checkout.</li>
+              <li><b>Final Price Guarantee:</b> The passenger shall be charged solely the final total price as displayed
+                at checkout or as quoted by the agent.</li>
+            </ul>
+            <!-- @for (note of pageContent.notes; track $index) {
+            <div>
+              <p>{{ note }}</p>
+            </div>
+            }
+ 
+            <h4>{{ pageContent.exceptions.title }}</h4>
+            <ul>
+              @for (item of pageContent.exceptions.items; track $index) {
+              <li>
+                {{ item }}
+              </li>
+              }
+            </ul>
+ 
+            <h4>{{ pageContent.contactCenter.title }}</h4>
+            <p>{{ pageContent.contactCenter.description }}</p>
+ 
+            <p>
+              <b>{{ pageContent.importantNote.title }}</b>
+              {{ pageContent.importantNote.description }}
+            </p> -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+}@else {
+<section class="post_ticketing_section canada-sec post-ticket-fees-wrap pt-5">
+  <div class="container container-xxl">
+    <div class="row">
+      <div class="col-12">
+        <div class="pt-5 pb-3">
+          <h2 class="head-text1 mb-3">Canada Taxes and Fees </h2>
+          <p class="head-text2">Our fees will be converted into your local currency on the payment page, reflecting an
+            approximate amount. </p>
+          <p class="head-text3">**Please note the following categories for passenger types: Adult, Child, Senior,
+            Infant, Student, and Military.</p>
+          <p class="head-text3">‡ Our fees are strictly non-refundable and are subject to change without prior notice.
+          </p>
+          <p class="head-text3">These fees may be subject to GST/HST/QST/PST, and any government-imposed taxes and fees
+            are also subject to change. You will only be charged the final total as indicated in the relevant Charge.
+          </p>
+
+        </div>
+      </div>
+    </div>
+
+
+
+    <div class="row">
+      <div class="col-12">
+        <div class="main_table_wrap w-100">
+          <div class="table-responsive">
+            <table class="table table-bordered">
+              <thead>
+                <tr>
+                  <th>Taxes & Fees</th>
+                  <th>May Apply To</th>
+                  <th>Code</th>
+                  <th>Amount</th>
+                </tr>
+              </thead>
+              <tbody>
+                @for (fee of taxesAndFees; track $index) {
+                <tr>
+                  <td>
+                    <b>{{ fee.name }}</b> <br />{{ fee.description }}
+                  </td>
+                  <td>{{ fee.may_apply_to }}</td>
+                  <td>{{ fee.code }}</td>
+                  <td>{{ fee.amount }}</td>
+                </tr>
+                }
+              </tbody>
+            </table>
+          </div>
+          <div class="table-responsive">
+            <table class="table table-bordered">
+              <thead>
+                <tr>
+                  <th>Our Fees included in Charges</th>
+                  <th>May Apply To</th>
+                  <th>Code</th>
+                  <th>Amount</th>
+                </tr>
+              </thead>
+              <tbody>
+                @for (fee of ourFees; track $index) {
+                <tr>
+                  <td>
+                    <b>{{ fee.name }}</b> <br />{{ fee.description }}
+                  </td>
+                  <td>{{ fee.may_apply_to }}</td>
+                  <td>{{ fee.code }}</td>
+                  <td>{{ fee.amount }}</td>
+                </tr>
+                }
+              </tbody>
+            </table>
+          </div>
+
+          <!-- <div class="page-content mt-0 p-0">
+              @for (note of pageContent.notes; track $index) {
+              <div>
+                <p>{{ note }}</p>
+              </div>
+              }
+   
+              <h4>{{ pageContent.exceptions.title }}</h4>
+              <ul>
+                @for (item of pageContent.exceptions.items; track $index) {
+                <li>
+                  {{ item }}
+                </li>
+                }
+              </ul>
+   
+              <h4>{{ pageContent.contactCenter.title }}</h4>
+              <p>{{ pageContent.contactCenter.description }}</p>
+   
+              <p>
+                <b>{{ pageContent.importantNote.title }}</b>
+                {{ pageContent.importantNote.description }}
+              </p>
+            </div> -->
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="policy-content ">
+  <div class="container container-xxl">
+    <div class="page-content m-0 p-0 pb-5">
+      <div class="fees-notice">
+        <h4>Certain exceptions to Our Fees above apply:</h4>
+        <ul>
+          <li><b>Online vacation packages:</b> Fees may reach up to C$50 per passenger.</li>
+          <li><b>Business and First Class Airfares:</b> Fees are up to C$200 per passenger on all passenger type
+            tickets.</li>
+          <li><b>Multi-city trips:</b> Fees are up to C$100 per passenger on all passenger type tickets.</li>
+          <li><b>Multi-airline trips / Cities with high fraud rates:</b> Fees are up to C$50 per passenger on all
+            passenger type tickets.</li>
+          <li><b>Foreign Origination (outside the USA or Canada):</b> Fees are up to C$50 per passenger for all
+            passenger
+            types.</li>
+          <li><b>Contact Center Fees:</b> Fees for travel services, including complex multi-stop and round-the-world
+            itineraries, may exceed those of online bookings. These fees range from C$10 to C$275 per passenger (a
+            maximum of C$125 for senior citizens). Please note that bookings made through our contact center include
+            premium package benefits.</li>
+        </ul>
+
+        <p><b>Important Note:</b> Our Fees may change without prior notification. <strong>YOUR FINAL CHARGE WILL REFLECT
+            THE AMOUNT STATED AT THE TIME OF YOUR TRANSACTION, IRRESPECTIVE OF ANY CHANGES OR DISCREPANCIES IN THE
+            FEES.</strong></p>
+
+        <p>Please review the total final amount carefully.</p>
+
+      </div>
+
+    </div>
+  </div>
+</section>
+}
+
+
+}
