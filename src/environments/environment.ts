@@ -3,7 +3,7 @@ export const environment = {
   environment:'production',
   production: true,
   isStaging:false,
-  providerName:'infinitytravels',
+  providerName: 'flighthelpbuddy(campaign)',
 
     // API_URL: "https://infinity-hotel-backend.webvio.in/",
   API_URL: "https://backend.theinfinitytravel.com/",

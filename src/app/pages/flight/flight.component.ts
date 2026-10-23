@@ -1,4 +1,3 @@
-
 import {
   Component,
   CUSTOM_ELEMENTS_SCHEMA,
@@ -17,10 +16,7 @@ import { ActivatedRoute, Router } from "@angular/router";
 import { Meta, Title } from "@angular/platform-browser";
 import { SharedService } from "../../services/shared/shared.service";
 
-import {
-  FormGroup,
-  FormBuilder,
-} from "@angular/forms";
+import { FormGroup, FormBuilder } from "@angular/forms";
 
 import { SearchService } from "../../services/search.service";
 import { CarouselModule } from "primeng/carousel";
@@ -32,12 +28,7 @@ declare var $: any;
 @Component({
   selector: "app-flight",
 
-  imports: [
-    MainFilterComponent,
-    NgFor,
-    CommonModule,
-    CarouselModule,
-  ],
+  imports: [MainFilterComponent, NgFor, CommonModule, CarouselModule],
 
   templateUrl: "./flight.component.html",
 
@@ -59,7 +50,7 @@ export class FlightComponent implements AfterViewInit, OnDestroy {
   private deviceService = inject(DeviceService);
 
   private cdr: ChangeDetectorRef = inject(ChangeDetectorRef);
-  
+
   ngOnInit() {
     this.getData = this.shareService.getcompanyName();
   }
@@ -78,7 +69,7 @@ export class FlightComponent implements AfterViewInit, OnDestroy {
 
   selectedCabin = {
     name: "Economy",
-    value: "E"
+    value: "E",
   };
 
   inputValue: string = "";
@@ -92,213 +83,175 @@ export class FlightComponent implements AfterViewInit, OnDestroy {
    * DOMESTIC ROUTE SLIDER DATA
    * ============================================
    */
-getDynamicRouteDate(
-  startDay: number,
-  endDay: number,
-  endMonthOffset: number = 0
-): string {
+  getDynamicRouteDate(
+    startDay: number,
+    endDay: number,
+    endMonthOffset: number = 0,
+  ): string {
+    const now = new Date();
 
-  const now = new Date();
+    // Start date in next month
+    const startDate = new Date(now.getFullYear(), now.getMonth() + 1, startDay);
 
-  const startDate = new Date(
-    now.getFullYear(),
-    now.getMonth(),
-    startDay
-  );
+    // End date based on the start month + offset
+    const endDate = new Date(
+      now.getFullYear(),
+      now.getMonth() + 1 + endMonthOffset,
+      endDay,
+    );
 
-  const endDate = new Date(
-    now.getFullYear(),
-    now.getMonth() + endMonthOffset,
-    endDay
-  );
+    const options: Intl.DateTimeFormatOptions = {
+      month: "short",
+      day: "numeric",
+    };
 
-  const options: Intl.DateTimeFormatOptions = {
-    month: 'short',
-    day: 'numeric'
-  };
+    const start = startDate.toLocaleDateString("en-US", options);
+    const end = endDate.toLocaleDateString("en-US", options);
 
-  const start = startDate.toLocaleDateString('en-US', options);
-  const end = endDate.toLocaleDateString('en-US', options);
-
-  return `${start} - ${end}`;
-}
-
-
-domesticRoutes = [
-  {
-    image: "assets/images/flight/california.jpg",
-    title: "California",
-    alt: "California",
-    startDay: 11,
-    endDay: 2,
-    endMonthOffset: 1,
-    tripType: "Round-trip",
-  },
-  {
-    image: "assets/images/flight/hawaii.jpg",
-    title: "Hawaii",
-    alt: "Hawaii",
-    startDay: 16,
-    endDay: 20,
-    endMonthOffset: 1,
-    tripType: "Round-trip",
-  },
-  {
-    image: "assets/images/flight/arizona.jpg",
-    title: "Arizona",
-    alt: "Arizona",
-    startDay: 8,
-    endDay: 11,
-    endMonthOffset: 0,
-    tripType: "Round-trip",
-  },
-  {
-    image: "assets/images/flight/alaska.jpg",
-    title: "Alaska",
-    alt: "Alaska",
-    startDay: 8,
-    endDay: 14,
-    endMonthOffset: 1,
-    tripType: "Round-trip",
-  },
-  {
-    image: "assets/images/flight/oregon.webp",
-    title: "Oregon",
-    alt: "Oregon",
-    startDay: 10,
-    endDay: 16,
-    endMonthOffset: 1,
-    tripType: "Round-trip",
+    return `${start} - ${end}`;
   }
-];
 
-internationalRoutes = [
-  {
-    image: "assets/images/flight/japan.jpg",
-    title: "Japan",
-    alt: "Japan",
-    startDay: 11,
-    endDay: 20,
-    endMonthOffset: 1,
-    tripType: "Round-trip",
-  },
-  {
-    image: "assets/images/flight/france.jpg",
-    title: "France",
-    alt: "France",
-    startDay: 11,
-    endDay: 2,
-    endMonthOffset: 1,
-    tripType: "Round-trip",
-  },
-  {
-    image: "assets/images/flight/italy.jpg",
-    title: "Italy",
-    alt: "Italy",
-    startDay: 8,
-    endDay: 11,
-    endMonthOffset: 0,
-    tripType: "Round-trip",
-  },
-  {
-    image: "assets/images/flight/spain.jpg",
-    title: "Spain",
-    alt: "Spain",
-    startDay: 8,
-    endDay: 14,
-    endMonthOffset: 1,
-    tripType: "Round-trip",
-  },
-];
+  domesticRoutes = [
+    {
+      image: "assets/images/newyork.jpg",
+      title: "New York",
+      alt: "New York",
+      startDay: 11,
+      endDay: 2,
+      endMonthOffset: 1,
+      tripType: "Round-trip",
+    },
+    {
+      image: "assets/images/losangeles.jpg",
+      title: "Los Angeles",
+      alt: "Los Angeles",
+      startDay: 16,
+      endDay: 20,
+      endMonthOffset: 1,
+      tripType: "Round-trip",
+    },
+    {
+      image: "assets/images/miami.jpg",
+      title: "Miami",
+      alt: "Miami",
+      startDay: 8,
+      endDay: 11,
+      endMonthOffset: 0,
+      tripType: "Round-trip",
+    },
+    {
+      image: "assets/images/sanfrancisco.jpg",
+      title: "San Francisco",
+      alt: "San Francisco",
+      startDay: 8,
+      endDay: 14,
+      endMonthOffset: 1,
+      tripType: "Round-trip",
+    },
+    {
+      image: "assets/images/flight/oregon.webp",
+      title: "Oregon",
+      alt: "Oregon",
+      startDay: 10,
+      endDay: 16,
+      endMonthOffset: 1,
+      tripType: "Round-trip",
+    },
+  ];
 
+  internationalRoutes = [
+    {
+      image: "assets/images/flight/canada.jpg",
+      title: "Canada",
+      alt: "Canada",
+      startDay: 11,
+      endDay: 20,
+      endMonthOffset: 1,
+      tripType: "Round-trip",
+    },
+    {
+      image: "assets/images/flight/united-kingdom.jpg",
+      title: "United Kingdom",
+      alt: "United Kingdom",
+      startDay: 11,
+      endDay: 2,
+      endMonthOffset: 1,
+      tripType: "Round-trip",
+    },
+    {
+      image: "assets/images/flight/germany.jpg",
+      title: "Germany",
+      alt: "Germany",
+      startDay: 8,
+      endDay: 11,
+      endMonthOffset: 0,
+      tripType: "Round-trip",
+    },
+    {
+      image: "assets/images/flight/australia.jpg",
+      title: "Australia",
+      alt: "Australia",
+      startDay: 8,
+      endDay: 14,
+      endMonthOffset: 1,
+      tripType: "Round-trip",
+    },
+  ];
 
-flightCards = [
-  {
-    tag: "Cheapest",
-    rating: 4.5,
-    image: "assets/images/flight/flight-01.jpg",
-    alt: "Delta Air Lines flight from Miami to Tokyo",
-    from: "Miami",
-    to: "Tokyo",
-    title: "Delta Express 901",
-    airlineLogo: "assets/images/flight/delta-logo.png",
-    airline: "Delta Air Lines",
-    stop: "1-stop at Seoul",
-    departureDate: "Sep 22, 2026",
-    returnDate: "Sep 24, 2026"
-  },
-  {
-    tag: "Best Value",
-    rating: 4.4,
-    image: "assets/images/flight/flight-02.jpg",
-    alt: "Alaska Airlines flight from Los Angeles to New York",
-    from: "Los Angeles",
-    to: "New York",
-    title: "Alaska Airlines 245",
-    airlineLogo: "assets/images/flight/alaska-airlines-logo.png",
-    airline: "Alaska Airlines",
-    stop: "Non-stop",
-    departureDate: "Oct 05, 2026",
-    returnDate: "Oct 08, 2026"
-  },
-  {
-    tag: "Popular",
-    rating: 4.3,
-    image: "assets/images/flight/flight-03.jpg",
-    alt: "JetBlue Airways flight from Boston to Orlando",
-    from: "Boston",
-    to: "Orlando",
-    title: "JetBlue Airways 672",
-    airlineLogo: "assets/images/flight/jetblue-logo.png",
-    airline: "JetBlue Airways",
-    stop: "1-stop at New York",
-    departureDate: "Oct 12, 2026",
-    returnDate: "Oct 15, 2026"
-  },
-  {
-    tag: "Cheapest",
-    rating: 4.2,
-    image: "assets/images/flight/flight-04.jpg",
-    alt: "Frontier Airlines flight from Chicago to Las Vegas",
-    from: "Chicago",
-    to: "Las Vegas",
-    title: "Frontier Airlines 318",
-    airlineLogo: "assets/images/flight/frontier-airlines-logo.png",
-    airline: "Frontier Airlines",
-    stop: "Non-stop",
-    departureDate: "Oct 18, 2026",
-    returnDate: "Oct 21, 2026"
-  },
-  {
-    tag: "Best Deal",
-    rating: 4.1,
-    image: "assets/images/flight/flight-05.jpg",
-    alt: "Allegiant Air flight from Los Angeles to Honolulu",
-    from: "Los Angeles",
-    to: "Honolulu",
-    title: "Allegiant Air 524",
-    airlineLogo: "assets/images/flight/allegiant-air-logo.png",
-    airline: "Allegiant Air",
-    stop: "1-stop at Phoenix",
-    departureDate: "Nov 02, 2026",
-    returnDate: "Nov 06, 2026"
-  },
-  {
-    tag: "Popular",
-    rating: 4.5,
-    image: "assets/images/flight/flight-06.jpg",
-    alt: "Air Canada flight from Toronto to Vancouver",
-    from: "Toronto",
-    to: "Vancouver",
-    title: "Air Canada 781",
-    airlineLogo: "assets/images/flight/air-canada-logo.png",
-    airline: "Air Canada",
-    stop: "Non-stop",
-    departureDate: "Nov 10, 2026",
-    returnDate: "Nov 13, 2026"
-  }
-];
-
+  flightCards = [
+    {
+      tag: "Best Value",
+      rating: 4.5,
+      image: "assets/images/flight/flight-01.jpg",
+      from: "Miami",
+      to: "New York",
+      title: "American Airlines 901",
+      airlineLogo: "assets/images/flight/american-airlines-logo.png",
+      airline: "American Airlines",
+      stop: "1-stop at Atlanta",
+      departureDate: "Sep 22, 2026",
+      returnDate: "Sep 24, 2026",
+    },
+    {
+      tag: "Best Value",
+      rating: 4.4,
+      image: "assets/images/flight/flight-02.jpg",
+      from: "Los Angeles",
+      to: "New York",
+      title: "Alaska Airlines 245",
+      airlineLogo: "assets/images/flight/alaska-airlines-logo.png",
+      airline: "Alaska Airlines",
+      stop: "Non-stop",
+      departureDate: "Oct 05, 2026",
+      returnDate: "Oct 08, 2026",
+    },
+    {
+      tag: "Popular",
+      rating: 4.3,
+      image: "assets/images/flight/flight-03.jpg",
+      from: "Boston",
+      to: "Orlando",
+      title: "JetBlue Airways 672",
+      airlineLogo: "assets/images/flight/jetblue-logo.png",
+      airline: "JetBlue Airways",
+      stop: "1-stop at Charlotte",
+      departureDate: "Oct 12, 2026",
+      returnDate: "Oct 15, 2026",
+    },
+    {
+      tag: "Cheapest",
+      rating: 4.2,
+      image: "assets/images/flight/flight-04.jpg",
+      from: "Chicago",
+      to: "Las Vegas",
+      title: "Frontier Airlines 318",
+      airlineLogo: "assets/images/flight/frontier-airlines-logo.png",
+      airline: "Frontier Airlines",
+      stop: "Non-stop",
+      departureDate: "Oct 18, 2026",
+      returnDate: "Oct 21, 2026",
+    },
+  ];
   /*
    * ============================================
    * CABIN OPTIONS
@@ -308,22 +261,22 @@ flightCards = [
   cabinOptions = [
     {
       name: "Economy",
-      value: "E"
+      value: "E",
     },
 
     {
       name: "First",
-      value: "F"
+      value: "F",
     },
 
     {
       name: "Business",
-      value: "B"
+      value: "B",
     },
 
     {
       name: "Premium Economy",
-      value: "P"
+      value: "P",
     },
   ];
 
@@ -339,7 +292,6 @@ flightCards = [
     @Inject(PLATFORM_ID)
     private platformId: Object,
   ) {
-
     /*
      * ============================================
      * FLIGHT FORM
@@ -347,7 +299,6 @@ flightCards = [
      */
 
     this.flightForm = this.fb.group({
-
       tripType: ["oneway"],
 
       departureAirport: [""],
@@ -361,7 +312,6 @@ flightCards = [
       directFlightsOnly: [false],
 
       passengers: this.fb.group({
-
         adults: [this.selectedAdults],
 
         children: [this.selectedChildren],
@@ -369,11 +319,9 @@ flightCards = [
         infants: [this.selectedInfants],
 
         cabin: ["E"],
-
       }),
 
       multiCitySegments: this.fb.array([]),
-
     });
 
     this.updateInput();
@@ -386,10 +334,7 @@ flightCards = [
    */
 
   get passengersGroup(): FormGroup {
-
-    return this.flightForm.get(
-      "passengers"
-    ) as FormGroup;
+    return this.flightForm.get("passengers") as FormGroup;
   }
 
   /*
@@ -399,30 +344,20 @@ flightCards = [
    */
 
   updateInput(): void {
-
     const total =
-      this.selectedAdults +
-      this.selectedChildren +
-      this.selectedInfants;
+      this.selectedAdults + this.selectedChildren + this.selectedInfants;
 
-    const selectedCabin =
-      this.passengersGroup
-        .get("cabin")
-        ?.value;
+    const selectedCabin = this.passengersGroup.get("cabin")?.value;
 
-    this.selectedCabin =
-      selectedCabin;
+    this.selectedCabin = selectedCabin;
 
     const cabinName =
-      this.cabinOptions.find(
-        (option) =>
-          option.value === selectedCabin
-      )?.name || "";
+      this.cabinOptions.find((option) => option.value === selectedCabin)
+        ?.name || "";
 
-    this.inputValue =
-      `${total} Passenger${
-        total !== 1 ? "s" : ""
-      } ${cabinName}`;
+    this.inputValue = `${total} Passenger${
+      total !== 1 ? "s" : ""
+    } ${cabinName}`;
   }
 
   /*
@@ -432,41 +367,26 @@ flightCards = [
    */
 
   buildFlightPayload(): any {
+    const formValue = this.flightForm.value;
 
-    const formValue =
-      this.flightForm.value;
+    const passengers = formValue.passengers;
 
-    const passengers =
-      formValue.passengers;
+    console.log("passengers", passengers);
 
-    console.log(
-      "passengers",
-      passengers
-    );
+    const tripType = formValue.tripType;
 
-    const tripType =
-      formValue.tripType;
-
-    console.log(
-      "tripType",
-      tripType
-    );
+    console.log("tripType", tripType);
 
     const payload: any = {
-
       CurrencyCode: "USD",
 
-      NoOfAdults:
-        passengers.adults,
+      NoOfAdults: passengers.adults,
 
-      NoOfInfants:
-        passengers.infants,
+      NoOfInfants: passengers.infants,
 
-      NoOfChildren:
-        passengers.children,
+      NoOfChildren: passengers.children,
 
-      tripType:
-        tripType,
+      tripType: tripType,
 
       source: "mondee",
 
@@ -475,42 +395,27 @@ flightCards = [
       OriginDestination: [],
     };
 
-    const formatDate = (
-      date: string
-    ) => {
-
+    const formatDate = (date: string) => {
       if (!date) {
         return "";
       }
 
-      const d =
-        new Date(date);
+      const d = new Date(date);
 
-      return `${String(
-        d.getDate()
-      ).padStart(2, "0")}/${String(
-        d.getMonth() + 1
+      return `${String(d.getDate()).padStart(2, "0")}/${String(
+        d.getMonth() + 1,
       ).padStart(2, "0")}/${d.getFullYear()}`;
     };
 
-    if (
-      tripType === "oneway"
-    ) {
-
+    if (tripType === "oneway") {
       payload.OriginDestination.push({
+        DepartureTime: formValue.departureDate,
 
-        DepartureTime:
-          formValue.departureDate,
+        DepartureLocationCode: formValue.departureAirport,
 
-        DepartureLocationCode:
-          formValue.departureAirport,
+        ArrivalLocationCode: formValue.arrivalAirport,
 
-        ArrivalLocationCode:
-          formValue.arrivalAirport,
-
-        CabinClass:
-          passengers.cabin,
-
+        CabinClass: passengers.cabin,
       });
     }
 
@@ -523,46 +428,31 @@ flightCards = [
    * ============================================
    */
 
-  onDestinationClick(
-    destination: any
-  ): void {
-
+  onDestinationClick(destination: any): void {
     // Get date 15 days from today
 
-    const today =
-      new Date();
+    const today = new Date();
 
-    const departureDate =
-      new Date(today);
+    const departureDate = new Date(today);
 
-    departureDate.setDate(
-      today.getDate() + 15
-    );
+    departureDate.setDate(today.getDate() + 15);
 
     // Format date YYYY-MM-DD
 
-    const formattedDate =
-      departureDate
-        .toISOString()
-        .split("T")[0];
+    const formattedDate = departureDate.toISOString().split("T")[0];
 
     this.flightForm.patchValue({
-
       tripType: "oneway",
 
-      arrivalAirport:
-        destination.arrivalAirport,
+      arrivalAirport: destination.arrivalAirport,
 
-      departureAirport:
-        destination.detpartureAirport,
+      departureAirport: destination.detpartureAirport,
 
-      departureDate:
-        formattedDate,
+      departureDate: formattedDate,
 
       arrivalDate: "",
 
       passengers: {
-
         adults: 1,
 
         children: 0,
@@ -570,14 +460,10 @@ flightCards = [
         infants: 0,
 
         cabin: "E",
-
       },
     });
 
-    console.log(
-      "flightForm--------",
-      destination
-    );
+    console.log("flightForm--------", destination);
 
     this.updateInput();
 
@@ -591,26 +477,15 @@ flightCards = [
    */
 
   searchFlights(): void {
+    const payload = this.buildFlightPayload();
 
-    const payload =
-      this.buildFlightPayload();
+    console.warn("Final Payload:", payload);
 
-    console.warn(
-      "Final Payload:",
-      payload
-    );
+    this.searchService.setSearchData(payload);
 
-    this.searchService
-      .setSearchData(payload);
+    console.log("this.flightForm.value", this.flightForm.value);
 
-    console.log(
-      "this.flightForm.value",
-      this.flightForm.value
-    );
-
-    this.router.navigate([
-      "/flights-list"
-    ]);
+    this.router.navigate(["/flights-list"]);
   }
 
   /*
@@ -620,21 +495,14 @@ flightCards = [
    */
 
   scrollToFlightForm(): void {
-
-    if (
-      !isPlatformBrowser(
-        this.platformId
-      )
-    ) {
+    if (!isPlatformBrowser(this.platformId)) {
       return;
     }
 
     window.scrollTo({
-
       top: 0,
 
       behavior: "smooth",
-
     });
   }
 
@@ -645,12 +513,7 @@ flightCards = [
    */
 
   ngAfterViewInit(): void {
-
-    if (
-      !isPlatformBrowser(
-        this.platformId
-      )
-    ) {
+    if (!isPlatformBrowser(this.platformId)) {
       return;
     }
 
@@ -660,14 +523,10 @@ flightCards = [
      */
 
     setTimeout(() => {
-
       this.initDomesticRouteCarousel();
-
     }, 0);
-     setTimeout(() => {
-
+    setTimeout(() => {
       this.initFlightCarousel();
-
     }, 0);
   }
 
@@ -678,12 +537,7 @@ flightCards = [
    */
 
   private initDomesticRouteCarousel(): void {
-
-    if (
-      !isPlatformBrowser(
-        this.platformId
-      )
-    ) {
+    if (!isPlatformBrowser(this.platformId)) {
       return;
     }
 
@@ -691,13 +545,8 @@ flightCards = [
      * Check jQuery
      */
 
-    if (
-      typeof $ === "undefined"
-    ) {
-
-      console.error(
-        "jQuery is not loaded."
-      );
+    if (typeof $ === "undefined") {
+      console.error("jQuery is not loaded.");
 
       return;
     }
@@ -706,14 +555,8 @@ flightCards = [
      * Check Owl Carousel
      */
 
-    if (
-      !$.fn ||
-      !$.fn.owlCarousel
-    ) {
-
-      console.error(
-        "Owl Carousel is not loaded."
-      );
+    if (!$.fn || !$.fn.owlCarousel) {
+      console.error("Owl Carousel is not loaded.");
 
       return;
     }
@@ -722,8 +565,7 @@ flightCards = [
      * Find slider
      */
 
-    const slider =
-      $(".domestic-tabflight-slider");
+    const slider = $(".domestic-tabflight-slider");
 
     if (!slider.length) {
       return;
@@ -733,11 +575,7 @@ flightCards = [
      * Prevent duplicate initialization
      */
 
-    if (
-      slider.hasClass(
-        "owl-loaded"
-      )
-    ) {
+    if (slider.hasClass("owl-loaded")) {
       return;
     }
 
@@ -746,7 +584,6 @@ flightCards = [
      */
 
     slider.owlCarousel({
-
       loop: true,
 
       margin: 15,
@@ -760,7 +597,6 @@ flightCards = [
       smartSpeed: 600,
 
       responsive: {
-
         0: {
           items: 1.3,
           margin: 8,
@@ -780,9 +616,7 @@ flightCards = [
           items: 4,
           margin: 15,
         },
-
       },
-
     });
   }
 
@@ -793,34 +627,18 @@ flightCards = [
    */
 
   domesticRouteNext(): void {
-
-    if (
-      !isPlatformBrowser(
-        this.platformId
-      )
-    ) {
+    if (!isPlatformBrowser(this.platformId)) {
       return;
     }
 
-    if (
-      typeof $ === "undefined"
-    ) {
+    if (typeof $ === "undefined") {
       return;
     }
 
-    const slider =
-      $(".domestic-tabflight-slider");
+    const slider = $(".domestic-tabflight-slider");
 
-    if (
-      slider.length &&
-      slider.hasClass(
-        "owl-loaded"
-      )
-    ) {
-
-      slider.trigger(
-        "next.owl.carousel"
-      );
+    if (slider.length && slider.hasClass("owl-loaded")) {
+      slider.trigger("next.owl.carousel");
     }
   }
 
@@ -831,34 +649,18 @@ flightCards = [
    */
 
   domesticRoutePrevious(): void {
-
-    if (
-      !isPlatformBrowser(
-        this.platformId
-      )
-    ) {
+    if (!isPlatformBrowser(this.platformId)) {
       return;
     }
 
-    if (
-      typeof $ === "undefined"
-    ) {
+    if (typeof $ === "undefined") {
       return;
     }
 
-    const slider =
-      $(".domestic-tabflight-slider");
+    const slider = $(".domestic-tabflight-slider");
 
-    if (
-      slider.length &&
-      slider.hasClass(
-        "owl-loaded"
-      )
-    ) {
-
-      slider.trigger(
-        "prev.owl.carousel"
-      );
+    if (slider.length && slider.hasClass("owl-loaded")) {
+      slider.trigger("prev.owl.carousel");
     }
   }
 
@@ -869,134 +671,106 @@ flightCards = [
    */
 
   ngOnDestroy(): void {
-
-    if (
-      !isPlatformBrowser(
-        this.platformId
-      )
-    ) {
+    if (!isPlatformBrowser(this.platformId)) {
       return;
     }
 
-    if (
-      typeof $ === "undefined"
-    ) {
+    if (typeof $ === "undefined") {
       return;
     }
 
-    if (
-      !$.fn ||
-      !$.fn.owlCarousel
-    ) {
+    if (!$.fn || !$.fn.owlCarousel) {
       return;
     }
 
-    const slider =
-      $(".domestic-tabflight-slider");
+    const slider = $(".domestic-tabflight-slider");
 
-    if (
-      slider.length &&
-      slider.hasClass(
-        "owl-loaded"
-      )
-    ) {
-
-      slider.trigger(
-        "destroy.owl.carousel"
-      );
+    if (slider.length && slider.hasClass("owl-loaded")) {
+      slider.trigger("destroy.owl.carousel");
     }
   }
 
-
-private initFlightCarousel(): void {
-
-  if (typeof $ === "undefined") {
-    console.error("jQuery is not loaded.");
-    return;
-  }
-
-  if (!$.fn || !$.fn.owlCarousel) {
-    console.error("Owl Carousel is not loaded.");
-    return;
-  }
-
-  const slider = $(".flight-slider");
-
-  if (!slider.length) {
-    return;
-  }
-
-  if (slider.hasClass("owl-loaded")) {
-    return;
-  }
-
-  slider.owlCarousel({
-    loop: true,
-    margin: 15,
-    nav: false,
-    dots: false,
-    autoplay: false,
-    smartSpeed: 600,
-
-    responsive: {
-      0: {
-        items: 1.3,
-        margin: 8
-      },
-
-      600: {
-        items: 2.3,
-        margin: 15
-      },
-
-      992: {
-        items: 3,
-        margin: 15
-      },
-
-      1200: {
-        items: 4,
-        margin: 15
-      }
+  private initFlightCarousel(): void {
+    if (typeof $ === "undefined") {
+      console.error("jQuery is not loaded.");
+      return;
     }
-  });
-}
-flightNext(): void {
-  if (!isPlatformBrowser(this.platformId)) {
-    return;
+
+    if (!$.fn || !$.fn.owlCarousel) {
+      console.error("Owl Carousel is not loaded.");
+      return;
+    }
+
+    const slider = $(".flight-slider");
+
+    if (!slider.length) {
+      return;
+    }
+
+    if (slider.hasClass("owl-loaded")) {
+      return;
+    }
+
+    slider.owlCarousel({
+      loop: true,
+      margin: 15,
+      nav: false,
+      dots: false,
+      autoplay: false,
+      smartSpeed: 600,
+
+      responsive: {
+        0: {
+          items: 1.3,
+          margin: 8,
+        },
+
+        600: {
+          items: 2.3,
+          margin: 15,
+        },
+
+        992: {
+          items: 3,
+          margin: 15,
+        },
+
+        1200: {
+          items: 4,
+          margin: 15,
+        },
+      },
+    });
+  }
+  flightNext(): void {
+    if (!isPlatformBrowser(this.platformId)) {
+      return;
+    }
+
+    if (typeof $ === "undefined") {
+      return;
+    }
+
+    const slider = $(".flight-slider");
+
+    if (slider.length && slider.hasClass("owl-loaded")) {
+      slider.trigger("next.owl.carousel");
+    }
   }
 
-  if (typeof $ === "undefined") {
-    return;
+  flightPrevious(): void {
+    if (!isPlatformBrowser(this.platformId)) {
+      return;
+    }
+
+    if (typeof $ === "undefined") {
+      return;
+    }
+
+    const slider = $(".flight-slider");
+
+    if (slider.length && slider.hasClass("owl-loaded")) {
+      slider.trigger("prev.owl.carousel");
+    }
   }
-
-  const slider = $(".flight-slider");
-
-  if (
-    slider.length &&
-    slider.hasClass("owl-loaded")
-  ) {
-    slider.trigger("next.owl.carousel");
-  }
-}
-
-flightPrevious(): void {
-  if (!isPlatformBrowser(this.platformId)) {
-    return;
-  }
-
-  if (typeof $ === "undefined") {
-    return;
-  }
-
-  const slider = $(".flight-slider");
-
-  if (
-    slider.length &&
-    slider.hasClass("owl-loaded")
-  ) {
-    slider.trigger("prev.owl.carousel");
-  }
-}
-
 }

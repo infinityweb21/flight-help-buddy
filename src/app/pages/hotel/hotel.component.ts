@@ -47,13 +47,10 @@ declare global {
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class HotelComponent implements AfterViewInit, OnDestroy {
-
-getData: any;
+  getData: any;
   ngOnInit(): void {
     this.getData = this.shareService.getcompanyName();
-    
   }
-
 
   toggleWishlist(hotel: any, event: MouseEvent): void {
     event.preventDefault();
@@ -88,16 +85,20 @@ getData: any;
   getDynamicDateRange(startDay: number, endDay: number): string {
     const now = new Date();
 
-    const startDate = new Date(now.getFullYear(), now.getMonth(), startDay);
+    // Start and end dates in next month
+    const startDate = new Date(now.getFullYear(), now.getMonth() + 1, startDay);
 
-    const endDate = new Date(now.getFullYear(), now.getMonth(), endDay);
+    const endDate = new Date(now.getFullYear(), now.getMonth() + 1, endDay);
 
     const options: Intl.DateTimeFormatOptions = {
       month: "short",
       day: "numeric",
     };
 
-    return `${startDate.toLocaleDateString("en-US", options)}-${endDate.toLocaleDateString("en-US", options)}`;
+    const start = startDate.toLocaleDateString("en-US", options);
+    const end = endDate.toLocaleDateString("en-US", options);
+
+    return `${start} - ${end}`;
   }
   /*
    * ============================================
@@ -150,7 +151,7 @@ getData: any;
       guests: "2 adults",
       available: "122 available",
     },
-    
+
     {
       image: "assets/images/hotel/guest-houses.jpg",
       title: "Guest Houses",
@@ -166,67 +167,67 @@ getData: any;
   // NEW HOTEL SLIDER DATA
   // ============================================
 
-hotelSliderCards = [
-  {
-    label: "Top Rated",
-    image: "assets/images/hotel/northamerica-hotel5.webp",
-    alt: "The Langham Chicago hotel in Chicago, Illinois",
-    rating: "4.96",
-    reviews: "672",
-    title: "The Langham Chicago",
-    location: "Chicago, Illinois",
-    price: "$285.00",
-    priceUnit: "/ night",
-  },
+  hotelSliderCards = [
+    {
+      label: "Top Rated",
+      image: "assets/images/hotel/northamerica-hotel5.webp",
+      alt: "The Langham Chicago hotel in Chicago, Illinois",
+      rating: "4.96",
+      reviews: "672",
+      title: "The Langham Chicago",
+      location: "Chicago, Illinois",
+      price: "$285.00",
+      priceUnit: "/ night",
+    },
 
-  {
-    label: "Top Rated",
-    image: "assets/images/hotel/northamerica-hotel3.webp",
-    alt: "The Beverly Hills Hotel in Beverly Hills, California",
-    rating: "4.95",
-    reviews: "589",
-    title: "The Beverly Hills Hotel",
-    location: "Beverly Hills, California",
-    price: "$495.00",
-    priceUnit: "/ night",
-  },
+    {
+      label: "Top Rated",
+      image: "assets/images/hotel/northamerica-hotel3.webp",
+      alt: "The Beverly Hills Hotel in Beverly Hills, California",
+      rating: "4.95",
+      reviews: "589",
+      title: "The Beverly Hills Hotel",
+      location: "Beverly Hills, California",
+      price: "$495.00",
+      priceUnit: "/ night",
+    },
 
-  {
-    label: "Top Rated",
-    image: "assets/images/hotel/international-hotel1.webp",
-    alt: "Rosewood Hong Kong luxury hotel in Hong Kong",
-    rating: "4.94",
-    reviews: "524",
-    title: "Rosewood Hong Kong",
-    location: "Hong Kong",
-    price: "$420.00",
-    priceUnit: "/ night",
-  },
+    {
+      label: "Top Rated",
+      image: "assets/images/hotel/international-hotel1.webp",
+      alt: "Rosewood Hong Kong luxury hotel in Hong Kong",
+      rating: "4.94",
+      reviews: "524",
+      title: "Rosewood Hong Kong",
+      location: "Hong Kong",
+      price: "$420.00",
+      priceUnit: "/ night",
+    },
 
-  {
-    label: "Top Rated",
-    image: "assets/images/hotel/asia-hotel1.webp",
-    alt: "Amanpuri luxury resort in Phuket, Thailand",
-    rating: "4.93",
-    reviews: "478",
-    title: "Amanpuri",
-    location: "Phuket, Thailand",
-    price: "$650.00",
-    priceUnit: "/ night",
-  },
+    {
+      label: "Top Rated",
+      image: "assets/images/hotel/asia-hotel1.webp",
+      alt: "Amanpuri luxury resort in Phuket, Thailand",
+      rating: "4.93",
+      reviews: "478",
+      title: "Amanpuri",
+      location: "Phuket, Thailand",
+      price: "$650.00",
+      priceUnit: "/ night",
+    },
 
-  {
-    label: "Top Rated",
-    image: "assets/images/hotel/middleeast-hotel1.webp",
-    alt: "Emirates Palace Mandarin Oriental in Abu Dhabi, UAE",
-    rating: "4.92",
-    reviews: "615",
-    title: "Emirates Palace Mandarin Oriental",
-    location: "Abu Dhabi, UAE",
-    price: "$385.00",
-    priceUnit: "/ night",
-  },
-];
+    {
+      label: "Top Rated",
+      image: "assets/images/hotel/middleeast-hotel1.webp",
+      alt: "Emirates Palace Mandarin Oriental in Abu Dhabi, UAE",
+      rating: "4.92",
+      reviews: "615",
+      title: "Emirates Palace Mandarin Oriental",
+      location: "Abu Dhabi, UAE",
+      price: "$385.00",
+      priceUnit: "/ night",
+    },
+  ];
 
   /*
    * ============================================

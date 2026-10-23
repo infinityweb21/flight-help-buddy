@@ -22,11 +22,11 @@ export const routes: Routes = [
         path: "",
         loadComponent: () =>
           import("./pages/home/home.component").then((m) => m.HomeComponent),
-        title: "Book Your Next Trip Online | Flighthelpbuddy",
+        title: "Book Cheap Flights, Compare Fares & Explore Destinations | Flighthelpbuddy",
         data: {
-          metaTitle: "Book Your Next Trip Online | Flighthelpbuddy",
+          metaTitle: "Book Cheap Flights, Compare Fares & Explore Destinations | Flighthelpbuddy",
           metaDescription:
-            "Find affordable flights, hotel deals, car rentals, and cruises for your next journey. Compare your options and book with a simple online experience.",
+            "Discover affordable domestic and international flights, compare fares, explore top destinations, and find cruise and car rental options with expert travel support.",
         },
       },
       {
@@ -35,11 +35,11 @@ export const routes: Routes = [
           import("./pages/flight/flight.component").then(
             (m) => m.FlightComponent,
           ),
-        title: "Book Cheap Flights Online | Flighthelpbuddy",
+        title: "Book Flights Online | Compare Fares & Find Deals | Flighthelpbuddy",
         data: {
-          metaTitle: "Book Cheap Flights Online | Flighthelpbuddy",
+          metaTitle: "Book Flights Online | Compare Fares & Find Deals | Flighthelpbuddy",
           metaDescription:
-            "Find and compare cheap flights from hundreds of airlines. Explore affordable airfare and book domestic or international flights with ease.",
+            "Compare flight fares, explore popular destinations, and find affordable flight deals. Get flexible booking options and 24/7 expert support for your next trip.",
         },
       },
 
@@ -67,7 +67,7 @@ export const routes: Routes = [
         data: {
           metaTitle: "Buy Cheap Airline Tickets | Flighthelpbuddy",
           metaDescription:
-            "Buy cheap airline tickets for one-way or round-trip flights with Flighthelpbuddy. Call 1 (800) 645-3851 for the best deals on domestic and international fares.",
+            "Buy cheap airline tickets for one-way or round-trip flights with Flighthelpbuddy. Call 0 (000) 000-0000 for the best deals on domestic and international fares.",
         },
       },
       {
@@ -80,7 +80,7 @@ export const routes: Routes = [
         data: {
           metaTitle: "Cheap International Flights Tickets| Flighthelpbuddy",
           metaDescription:
-            "Find cheap international flights with Flighthelpbuddy. Get the best fares worldwide—call 1 (800) 645-3851 now for deals and 24/7 booking support!",
+            "Find cheap international flights with Flighthelpbuddy. Get the best fares worldwide—call 0 (000) 000-0000 now for deals and 24/7 booking support!",
         },
       },
       {
@@ -93,7 +93,7 @@ export const routes: Routes = [
         data: {
           metaTitle: "Cheap International Flights Tickets| Flighthelpbuddy",
           metaDescription:
-            "Find cheap international flights with Flighthelpbuddy. Get the best fares worldwide—call 1 (800) 645-3851 now for deals and 24/7 booking support!",
+            "Find cheap international flights with Flighthelpbuddy. Get the best fares worldwide—call 0 (000) 000-0000 now for deals and 24/7 booking support!",
         },
       },
       {
@@ -147,7 +147,7 @@ export const routes: Routes = [
         data: {
           metaTitle: "Buy Cheap Airline Tickets | Flighthelpbuddy",
           metaDescription:
-            "Buy cheap airline tickets for one-way or round-trip flights with Flighthelpbuddy. Call 1 (800) 645-3851 for the best deals on domestic and international fares.",
+            "Buy cheap airline tickets for one-way or round-trip flights with Flighthelpbuddy. Call 0 (000) 000-0000 for the best deals on domestic and international fares.",
         },
       },
       {
@@ -160,7 +160,7 @@ export const routes: Routes = [
         data: {
           metaTitle: "Buy Cheap Airline Tickets | Flighthelpbuddy",
           metaDescription:
-            "Buy cheap airline tickets for one-way or round-trip flights with Flighthelpbuddy. Call 1 (800) 645-3851 for the best deals on domestic and international fares.",
+            "Buy cheap airline tickets for one-way or round-trip flights with Flighthelpbuddy. Call 0 (000) 000-0000 for the best deals on domestic and international fares.",
         },
       },
 
@@ -174,7 +174,7 @@ export const routes: Routes = [
         data: {
           metaTitle: "Buy Cheap Airline Tickets | Flighthelpbuddy",
           metaDescription:
-            "Buy cheap airline tickets for one-way or round-trip flights with Flighthelpbuddy. Call 1 (800) 645-3851 for the best deals on domestic and international fares.",
+            "Buy cheap airline tickets for one-way or round-trip flights with Flighthelpbuddy. Call 0 (000) 000-0000 for the best deals on domestic and international fares.",
         },
       },
       {
@@ -187,7 +187,7 @@ export const routes: Routes = [
         data: {
           metaTitle: "Buy Cheap Airline Tickets | Flighthelpbuddy",
           metaDescription:
-            "Buy cheap airline tickets for one-way or round-trip flights with Flighthelpbuddy. Call 1 (800) 645-3851 for the best deals on domestic and international fares.",
+            "Buy cheap airline tickets for one-way or round-trip flights with Flighthelpbuddy. Call 0 (000) 000-0000 for the best deals on domestic and international fares.",
         },
       },
       {
@@ -200,19 +200,19 @@ export const routes: Routes = [
         data: {
           metaTitle: "Buy Cheap Airline Tickets | Flighthelpbuddy",
           metaDescription:
-            "Buy cheap airline tickets for one-way or round-trip flights with Flighthelpbuddy. Call 1 (800) 645-3851 for the best deals on domestic and international fares.",
+            "Buy cheap airline tickets for one-way or round-trip flights with Flighthelpbuddy. Call 0 (000) 000-0000 for the best deals on domestic and international fares.",
         },
       },
       {
         path: "hotel",
         loadComponent: () =>
           import("./pages/hotel/hotel.component").then((m) => m.HotelComponent),
-        title: "Book Hotels Online at Great Prices | Flighthelpbuddy",
+        title: "Find the Best Hotel Deals | Compare Hotels & Stays | Flighthelpbuddy",
 
         data: {
-          metaTitle: "Book Hotels Online at Great Prices | Flighthelpbuddy",
+          metaTitle: "Find the Best Hotel Deals | Compare Hotels & Stays | Flighthelpbuddy",
           metaDescription:
-            "Find and book hotels worldwide at great prices. Compare stays, explore rooms, and choose the perfect hotel for your next trip.",
+            "Explore hotels for every budget, from luxury resorts to beachfront and family-friendly stays. Compare prices, discover great deals, and find your perfect hotel.",
         },
       },
       {
@@ -315,7 +315,7 @@ export const routes: Routes = [
         data: {
           metaTitle: "Buy Cheap Airline Tickets | Flighthelpbuddy",
           metaDescription:
-            "Buy cheap airline tickets for one-way or round-trip flights with Flighthelpbuddy. Call 1 (800) 645-3851 for the best deals on domestic and international fares.",
+            "Buy cheap airline tickets for one-way or round-trip flights with Flighthelpbuddy. Call 0 (000) 000-0000 for the best deals on domestic and international fares.",
         },
       },
       {
@@ -879,13 +879,13 @@ export const routes: Routes = [
             (m) => m.PackagesComponent,
           ),
         title:
-          "Vacation Packages & Cheap Travel Deals | Book Flights, Hotels & Cars | Flighthelpbuddy",
+          "Holiday Packages | Flight and Hotel Deals | Flighthelpbuddy",
 
         data: {
           metaTitle:
-            "Vacation Packages & Cheap Travel Deals | Book Flights, Hotels & Cars | Flighthelpbuddy",
+            "Holiday Packages | Flight and Hotel Deals | Flighthelpbuddy",
           metaDescription:
-            "Discover affordable vacation packages with bundled rates on flights, hotels, and car rentals. Enjoy transparent pricing and 24/7 expert travel support.",
+            "Explore affordable holiday packages with round-trip flights and hotel stays. Compare prices, customize your trip, and get expert support for easy travel planning.",
         },
       },
       {
@@ -1234,7 +1234,7 @@ export const routes: Routes = [
         data: {
           metaTitle: "Find Group Flight Booking Discount | Flighthelpbuddy",
           metaDescription:
-            "Save big on group flight bookings with Flighthelpbuddy! Call 1 (800) 645-3851 now for exclusive discounts on travel for families, friends, or corporate groups.",
+            "Save big on group flight bookings with Flighthelpbuddy! Call 0 (000) 000-0000 now for exclusive discounts on travel for families, friends, or corporate groups.",
         },
       },
       {
@@ -1249,7 +1249,7 @@ export const routes: Routes = [
           metaTitle:
             "Cheap International Flights in USA - Airlines Tickets | Flighthelpbuddy",
           metaDescription:
-            "Find cheap international flights with Flighthelpbuddy. Get the best fares worldwide—call 1 (800) 645-3851 now for deals and 24/7 booking support!",
+            "Find cheap international flights with Flighthelpbuddy. Get the best fares worldwide—call 0 (000) 000-0000 now for deals and 24/7 booking support!",
         },
       },
       {
@@ -1262,7 +1262,7 @@ export const routes: Routes = [
         data: {
           metaTitle: "Taxes & Fees - Airlines Tickets | Flighthelpbuddy",
           metaDescription:
-            "Find information about taxes and fees for flights with Flighthelpbuddy. Call 1 (800) 645-3851 for assistance!",
+            "Find information about taxes and fees for flights with Flighthelpbuddy. Call 0 (000) 000-0000 for assistance!",
         },
       },
       {
@@ -1275,7 +1275,7 @@ export const routes: Routes = [
         data: {
           metaTitle: "Taxes & Fees - Airlines Tickets | Flighthelpbuddy",
           metaDescription:
-            "Find information about taxes and fees for flights with Flighthelpbuddy. Call 1 (800) 645-3851 for assistance!",
+            "Find information about taxes and fees for flights with Flighthelpbuddy. Call 0 (000) 000-0000 for assistance!",
         },
       },
       {
@@ -1295,7 +1295,7 @@ export const routes: Routes = [
         data: {
           metaTitle: "Affiliate Program - Airlines Tickets | Flighthelpbuddy",
           metaDescription:
-            "Find information about affiliate program for flights with Flighthelpbuddy. Call 1 (800) 645-3851 for assistance!",
+            "Find information about affiliate program for flights with Flighthelpbuddy. Call 0 (000) 000-0000 for assistance!",
         },
       },
       {

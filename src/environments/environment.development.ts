@@ -2,7 +2,7 @@ export const environment = {
 
   environment: 'local',
   production: false,
-  providerName: 'infinitytravels',
+  providerName: 'flighthelpbuddy(campaign)',
   isStaging: false,
   //  API_URL: 'http://localhost:3000/',
   // API_URL: 'https://infinitybackend.webvio.in/',

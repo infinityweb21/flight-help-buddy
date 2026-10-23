@@ -290,6 +290,8 @@ export class HotelsListComponent implements OnInit {
     //       this.mainsource = res?.source || 'Mondee';
     //       this.applyFilters();
     if (this.packageTabActive) {
+        this.flightLoading = true;      // add this line
+  this.syncSkeleton();            // and this one
       const paramsData = this.searchService.getCurrentParamsData();
       console.log("Params Data:", paramsData);
       this.tripType=paramsData?.tripType;
@@ -298,7 +300,9 @@ export class HotelsListComponent implements OnInit {
           value: "E",
         };
         this.departureCity=paramsData?.departureCity;
-      this.searchService.searchData$.subscribe((searchData) => {
+    this.searchService.searchData$
+    .pipe(takeUntilDestroyed(this.destroyRef))   // add this, the subscription leaks without it
+    .subscribe((searchData) => {
         console.log("Received Flight Data:", searchData);
         const originDest = searchData?.originDestination || [];
         if (searchData) {
@@ -326,6 +330,8 @@ export class HotelsListComponent implements OnInit {
           const total=paramsData?.NoOfAdults+paramsData?.NoOfChildren+paramsData?.NoOfInfants;
           this.inputValue = `${total} Traveler${total !== 1 ? "s" : ""} `;
           this.getFlights(paramsData, searchData);
+
+          
         }
       });
     }
@@ -351,9 +357,26 @@ export class HotelsListComponent implements OnInit {
 
         // total guests
         this.getGuestSummary(data);
-        this.getHotelList(data, 1);
+        this.initialgetHotelList(data, 1);
       });
   }
+
+private hotelLoading = false;
+private flightLoading = false;
+private hotelReq = 0;     // ignore stale responses from older searches
+private flightReq = 0;
+
+private syncSkeleton(): void {
+  // Package tab: wait for both. Other tabs: hotels only.
+  const busy = this.hotelLoading || (this.packageTabActive && this.flightLoading);
+  this.isSkeleton = busy;
+  if (!busy) {
+    document.documentElement.classList.remove("overflow-hidden");
+    document.body.classList.remove("overflow-hidden");
+  }
+    setTimeout(() => this.initHotelCarousel(), 0);
+  this.cdr.markForCheck();
+}
     formatToAPIDate(dateString: string): string {
     if (!dateString) return "";
 
@@ -365,11 +388,15 @@ export class HotelsListComponent implements OnInit {
   visibleSegments: any = "";
 
   getFlights(routedata: any, payload: any) {
+    const reqId = ++this.flightReq;
+  this.flightLoading = true;
+  this.syncSkeleton();
     this.flightService
       .getflightList(routedata, payload)
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe({
         next: (res) => {
+           if (reqId !== this.flightReq) return;
           // this.isSkeleton = false;
           this.storeFullData = res;
 
@@ -415,16 +442,21 @@ export class HotelsListComponent implements OnInit {
           );
           this.visibleSegments = cheapestSorted[0];
           console.log("this.visibleSegments", this.visibleSegments);
+
+           this.flightLoading = false;
+        this.syncSkeleton();
+
           this.cdr.markForCheck();
           this.cdr.detectChanges();
         },
         error: (err) => {
           // this.isSkeleton = false;
-          this.cdr.markForCheck();
-          this.cdr.detectChanges();
-          this.getMainDetails = [];
-          this.getNearbyDetails = [];
-          this.visibleSegments = "";
+          if (reqId !== this.flightReq) return;
+        this.getMainDetails = [];
+        this.getNearbyDetails = [];
+        this.visibleSegments = "";
+        this.flightLoading = false;
+        this.syncSkeleton();
         },
       });
   }
@@ -618,7 +650,279 @@ export class HotelsListComponent implements OnInit {
     this.filtersForModal = null;
   }
   /* === ==== */
+  private initialgetHotelList(formData: any, page: number = 1) {
+    this.onCloseClick();
+    this.filtersData = [];
+    this.propertiesAll = [];
 
+    this.data = [];
+    //               const cached = this.hotelService.gethotels();
+    //     // const cached = this.staticdata;
+    //     if (cached) {
+    //       const res = cached;
+    //       this.storeFullData = res;
+    //        console.log('HOTEL RESPONSE:', res);
+    //         this.cityName=res?.data?.scope?.cityName;
+    //         this.propertiesAll =
+    //           res?.data?.properties || [];
+    //   this.totalRecords =
+    //     res?.data?.totalRecords ||
+    //     res?.data?.total ||
+    //     this.propertiesAll.length;
+
+    //   this.currentPage = page;
+
+    //   this.first =
+    //     (page - 1) * this.rows;
+    //         this.filtersData =
+    //           res?.data?.filters || {};
+
+    //         this.requestId =
+    //           res?.data?.requestId;
+
+    //         this.mainsource =
+    //           res?.data?.source || 'Mondee';
+    //  this.generatePriceChartData(
+    //           this.propertiesAll
+    //         );
+    //         // ======================
+    //         // PRICE FILTER
+    //         // ======================
+
+    //         const priceFilter =
+    //           this.filtersData?.priceFilter;
+
+    //         if (priceFilter) {
+
+    //           this.min =
+    //             priceFilter?.minPrice || 0;
+
+    //           this.max =
+    //             priceFilter?.maxPrice || 0;
+
+    //          const savedFilters =
+    //   this.hotelFilterService
+    //     .getFilterData();
+
+    // if (
+    //   savedFilters?.rangeValues?.length === 2
+    // ) {
+
+    //   const savedMin =
+    //     savedFilters.rangeValues[0];
+
+    //   const savedMax =
+    //     savedFilters.rangeValues[1];
+
+    //   // adjust within latest backend range
+    //   this.minValue = Math.max(
+    //     this.min,
+    //     savedMin
+    //   );
+
+    //   this.maxValue = Math.min(
+    //     this.max,
+    //     savedMax
+    //   );
+
+    //   // safety check
+    //   if (this.minValue > this.maxValue) {
+    //     this.minValue = this.min;
+    //     this.maxValue = this.max;
+    //   }
+
+    // } else {
+
+    //   this.minValue =
+    //     priceFilter?.selectedMinPrice || this.min;
+
+    //   this.maxValue =
+    //     priceFilter?.selectedMaxPrice || this.max;
+
+    // }
+
+    // this.minPrice = this.minValue;
+    // this.maxPrice = this.maxValue;
+
+    //               this.averagePrice = priceFilter?.averagePrice || 0;
+    //         }
+
+    //         this.applyFilters();
+    //                     this.cdr.markForCheck();
+    //     } else {
+
+const reqId = ++this.hotelReq;
+this.hotelLoading = true;
+this.syncSkeleton();
+    //       const html = document.documentElement;
+    // const body = document.body;
+    //       html.classList.add("overflow-hidden");
+    //   body.classList.add("overflow-hidden");
+    this.cdr.markForCheck();
+
+    const payload: any = {
+      checkin: formData.checkIn,
+      checkout: formData.checkOut,
+
+      countryCode: formData.destination.countrycode,
+
+      preferCached: true,
+      includeFilters: true,
+
+      page: page,
+      limit: this.rows,
+
+      guest: formData.rooms.map((room: any) => ({
+        adults: room.adults,
+        children: room.childAges || [],
+      })),
+    };
+
+    // Set destination based on type
+    if (formData.destination.type === "city") {
+      this.cityName = formData.destination.name || "";
+      this.cityNameShow = formData.destination.city || "";
+      payload.cityName = formData.destination.name;
+    } else if (formData.destination.type === "hotel") {
+      this.cityNameShow = formData.destination.city || "";
+      payload.hotelId = formData.destination.code;
+    }
+
+    // ======================
+    // APPLY FILTERS
+    // ======================
+
+    if (this.selectedStarRatings?.length) {
+      payload.starRatings = this.selectedStarRatings;
+    }
+
+    if (this.selectedGuestRatings?.length) {
+      payload.guestRatings = this.selectedGuestRatings;
+    }
+
+    if (this.selectedMealPlans?.length) {
+      payload.mealPlans = this.selectedMealPlans;
+    }
+
+    if (this.selectedAmenities?.length) {
+      payload.amenityCodes = this.selectedAmenities;
+    }
+
+    if (this.selectedPropertyTypes?.length) {
+      payload.propertyTypes = this.selectedPropertyTypes;
+    }
+
+    if (this.selectedLocations?.length) {
+      payload.locations = this.selectedLocations;
+    }
+
+    if (this.selectedLandmarks?.length) {
+      payload.popularLandmarks = this.selectedLandmarks;
+    }
+
+    if (this.minPrice > this.min || this.maxPrice < this.max) {
+      payload.minPrice = this.minPrice;
+      payload.maxPrice = this.maxPrice;
+    }
+    if (this.selectedSort) {
+      payload.isLowToHigh = this.selectedSort === "highToLow";
+    }
+    const hotelName = (this.hotelName || "")
+      .replace(/[^a-zA-Z0-9\s]/g, "")
+      .replace(/\s+/g, " ")
+      .trim();
+
+    if (hotelName.replace(/\s/g, "").length >= 3) {
+      payload.hotelName = hotelName;
+    }
+    payload.source = this.source;
+
+    this.hotelService
+      .hotelList(payload)
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe({
+        next: (res) => {
+          const html = document.documentElement;
+          const body = document.body;
+          html.classList.remove("overflow-hidden");
+          body.classList.remove("overflow-hidden");
+ if (reqId !== this.hotelReq) return;     // a newer search replaced this one
+  this.storeFullData = res;
+          // this.cityName=res?.data?.scope?.cityName||'';
+          this.propertiesAll = res?.data?.properties || [];
+          this.totalRecords =
+            res?.data?.totalRecords ||
+            res?.data?.total ||
+            this.propertiesAll.length;
+
+          this.currentPage = page;
+
+          this.first = (page - 1) * this.rows;
+          this.filtersData = res?.data?.filters || {};
+
+          this.requestId = res?.data?.requestId;
+
+          this.mainsource = res?.data?.source || "Mondee";
+          this.generatePriceChartData(this.propertiesAll);
+          // ======================
+          // PRICE FILTER
+          // ======================
+
+          const priceFilter = this.filtersData?.priceFilter;
+
+          if (priceFilter) {
+            this.min = priceFilter?.minPrice || 0;
+
+            this.max = priceFilter?.maxPrice || 0;
+
+            const savedFilters = this.hotelFilterService.getFilterData();
+
+            if (savedFilters?.rangeValues?.length === 2) {
+              const savedMin = savedFilters.rangeValues[0];
+
+              const savedMax = savedFilters.rangeValues[1];
+
+              // adjust within latest backend range
+              this.minValue = Math.max(this.min, savedMin);
+
+              this.maxValue = Math.min(this.max, savedMax);
+
+              // safety check
+              if (this.minValue > this.maxValue) {
+                this.minValue = this.min;
+                this.maxValue = this.max;
+              }
+            } else {
+              this.minValue = priceFilter?.selectedMinPrice || this.min;
+
+              this.maxValue = priceFilter?.selectedMaxPrice || this.max;
+            }
+
+            this.minPrice = this.minValue;
+            this.maxPrice = this.maxValue;
+            this.averagePrice = priceFilter?.averagePrice || 0;
+          }
+   this.hotelName = "";
+  this.applyFilters();
+  setTimeout(() => this.initHotelCarousel(), 0);
+  this.hotelLoading = false;
+  this.syncSkeleton();
+          this.cdr.markForCheck();
+        },
+
+        error: (err) => {
+   if (reqId !== this.hotelReq) return;
+  this.hotelName = "";
+  this.hotelLoading = false;
+  this.syncSkeleton();
+          const html = document.documentElement;
+          const body = document.body;
+          html.classList.remove("overflow-hidden");
+          body.classList.remove("overflow-hidden");
+        },
+      });
+    // }
+  }
   private getHotelList(formData: any, page: number = 1) {
     this.onCloseClick();
     this.filtersData = [];

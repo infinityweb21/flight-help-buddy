@@ -74,33 +74,34 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
    */
   aiCards = [
     {
-      title: "Make Your Travel Plans",
-      description: "One-stop solution for all your trips",
+      title: "Instant Booking",
+      description: "Quick and fast booking process",
       image: "assets/images/3d1.webp",
     },
     {
-      title: "Travel Smartly",
-      description: "Ask your questions & get quick answers",
+      title: "Secure Payment",
+      description:
+        "Pay without worrying with our safe and reliable payment process",
       image: "assets/images/3d2.webp",
     },
     {
-      title: "Best Time to Travel",
-      description: "Know the right time to travel",
+      title: "Expert Guidance",
+      description: "Our travel experts will offer you end to end support",
       image: "assets/images/3d3.webp",
     },
     {
-      title: "Explore More",
-      description: "Choose your destination within budget",
+      title: "Travel Planning",
+      description: "Plan your journey with confidence",
       image: "assets/images/3d4.webp",
     },
     {
-      title: "Secure Booking",
-      description: "Keep your payment process safe when booking",
+      title: "24/7 Customer Support",
+      description: "Get instant assistance whenever you need",
       image: "assets/images/3d5.webp",
     },
     {
-      title: "Get Best Deals",
-      description: "Enjoy best discounts for your next getaway",
+      title: "No Hidden Fees",
+      description: "Enjoy transparent pricing with us",
       image: "assets/images/3d6.webp",
     },
   ];
@@ -111,15 +112,15 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
 
   flightCards = [
     {
-      tag: "Cheapest",
+      tag: "Best Value",
       rating: 4.5,
       image: "assets/images/flight/flight-01.jpg",
       from: "Miami",
-      to: "Tokyo",
-      title: "Delta Express 901",
-      airlineLogo: "assets/images/flight/delta-logo.png",
-      airline: "Delta Air Lines",
-      stop: "1-stop at Seoul",
+      to: "New York",
+      title: "American Airlines 901",
+      airlineLogo: "assets/images/flight/american-airlines-logo.png",
+      airline: "American Airlines",
+      stop: "1-stop at Atlanta",
       departureDate: "Sep 22, 2026",
       returnDate: "Sep 24, 2026",
     },
@@ -145,7 +146,7 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
       title: "JetBlue Airways 672",
       airlineLogo: "assets/images/flight/jetblue-logo.png",
       airline: "JetBlue Airways",
-      stop: "1-stop at New York",
+      stop: "1-stop at Charlotte",
       departureDate: "Oct 12, 2026",
       returnDate: "Oct 15, 2026",
     },
@@ -161,32 +162,6 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
       stop: "Non-stop",
       departureDate: "Oct 18, 2026",
       returnDate: "Oct 21, 2026",
-    },
-    {
-      tag: "Best Deal",
-      rating: 4.1,
-      image: "assets/images/flight/flight-05.jpg",
-      from: "Los Angeles",
-      to: "Honolulu",
-      title: "Allegiant Air 524",
-      airlineLogo: "assets/images/flight/allegiant-air-logo.png",
-      airline: "Allegiant Air",
-      stop: "1-stop at Phoenix",
-      departureDate: "Nov 02, 2026",
-      returnDate: "Nov 06, 2026",
-    },
-    {
-      tag: "Popular",
-      rating: 4.5,
-      image: "assets/images/flight/flight-06.jpg",
-      from: "Toronto",
-      to: "Vancouver",
-      title: "Air Canada 781",
-      airlineLogo: "assets/images/flight/air-canada-logo.png",
-      airline: "Air Canada",
-      stop: "Non-stop",
-      departureDate: "Nov 10, 2026",
-      returnDate: "Nov 13, 2026",
     },
   ];
   // Add this property to your component class
@@ -225,28 +200,28 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
   // Add this property to your component class
   destinations = [
     {
-      name: "California",
-      country: "United States",
-      properties: 160,
-      image: "assets/images/california.jpg",
-    },
-    {
-      name: "Alaska",
-      country: "United States",
-      properties: 85,
-      image: "assets/images/alaska.jpg",
-    },
-    {
-      name: "New York",
+      name: "New York City",
       country: "United States",
       properties: 195,
       image: "assets/images/newyork.jpg",
     },
     {
-      name: "Colorado",
+      name: "Orlando",
       country: "United States",
-      properties: 98,
-      image: "assets/images/colorado.jpg",
+      properties: 120,
+      image: "assets/images/orlando.jpg",
+    },
+    {
+      name: "Las Vegas",
+      country: "United States",
+      properties: 145,
+      image: "assets/images/lasvegas.jpg",
+    },
+    {
+      name: "Miami",
+      country: "United States",
+      properties: 110,
+      image: "assets/images/miami.jpg",
     },
   ];
   constructor(

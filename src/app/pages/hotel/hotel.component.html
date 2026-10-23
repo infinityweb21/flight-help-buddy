@@ -6,8 +6,8 @@
         <div class="row">
             <div class="col-lg-7 col-md-6 col-sm-7 col-8">
                 <div class="common-heading-box">
-                    <h2 class="common-heading-title">Find Your Right Hotel Easily</h2>
-                    <p>From villas to cabin stays, you’ll get everything</p>
+                    <h2 class="common-heading-title">Find Perfect Hotels For You</h2>
+                    <p>Get wide range of hotel choices</p>
                 </div>
             </div>
             <div class="col-lg-5 col-md-6 col-sm-5 col-4">
@@ -71,10 +71,11 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-12 col-md-12 col-12">
-                 <div class="main-box-card">
+                <div class="main-box-card">
 
                     <h2 class="tp-trust-title">
-                        Start Your Journey With <span>Better Fares</span>
+                        Great Hotel Deals
+                        <span> for Every Getaway</span>
                     </h2>
 
                     <ul class="tp-trust-box">
@@ -82,32 +83,41 @@
                         <li class="tp-trust-item">
                             <span class="tp-trust-icon"><i class="fa-solid fa-file-circle-check"></i></span>
                             <div class="tp-trust-info">
-                                <h3>Best Deals</h3>
-                                <p>Get fares that’ll make you happy</p>
+                                <h3>Best Pricing</h3>
+                                <p>Get fares that will help you save a lot</p>
                             </div>
                         </li>
 
                         <li class="tp-trust-item">
-                            <span class="tp-trust-icon"><i class="fa-solid fa-headset"></i></span>
+                            <span class="tp-trust-icon">
+                                <i class="fa-solid fa-headset" aria-hidden="true"></i>
+                            </span>
                             <div class="tp-trust-info">
-                                <h3>Get Help, Anytime</h3>
-                                <p>Our experts are always there to assist you</p>
+                                <h3>Round-the-Clock Support</h3>
+                                <p>Get assistance from our travel experts whenever you need help with your hotel
+                                    booking.</p>
                             </div>
                         </li>
 
                         <li class="tp-trust-item">
-                            <span class="tp-trust-icon"><i class="fa-solid fa-medal"></i></span>
+                            <span class="tp-trust-icon">
+                                <i class="fa-solid fa-calendar-check" aria-hidden="true"></i>
+                            </span>
                             <div class="tp-trust-info">
-                                <h3>Get Your Rewards</h3>
-                                <p>Earn more points through bookings for your next trip</p>
+                                <h3>More Flexibility</h3>
+                                <p>Get assistance with room modifications and cancellations, subject to hotel policies
+                                    and applicable fees.</p>
                             </div>
                         </li>
 
                         <li class="tp-trust-item">
-                            <span class="tp-trust-icon"><i class="fa-solid fa-suitcase-rolling"></i></span>
+                            <span class="tp-trust-icon">
+                                <i class="fa-solid fa-scale-balanced" aria-hidden="true"></i>
+                            </span>
                             <div class="tp-trust-info">
-                                <h3>Flexible Bookings</h3>
-                                <p>Make easy changes and cancellations when you need them</p>
+                                <h3>Price Comparison</h3>
+                                <p>Compare hotel prices and amenities to find a stay that suits your budget and travel
+                                    plans.</p>
                             </div>
                         </li>
 
@@ -147,7 +157,8 @@
             <div class="col-12 mt-2">
                 <div class="hotel-slider owl-carousel">
 
-                    <a href="tel:{{ getData?.phoneNumber }}" class="card-journey-small" *ngFor="let hotel of hotelSliderCards">
+                    <a href="tel:{{ getData?.phoneNumber }}" class="card-journey-small"
+                        *ngFor="let hotel of hotelSliderCards">
 
                         <!-- IMAGE -->
                         <div class="card-image">
@@ -276,9 +287,8 @@
                     </a>
 
                 </div>
-                <div class="div-text m-0"><strong>*Note:</strong> The prices displayed are in USD. The fares are
-                    subject to change based on availability
-                    during your reservation.</div>
+                <div class="div-text m-0"><strong>*Note:</strong> The prices displayed are in USD. The prices can change
+                    depending on availability.</div>
             </div>
         </div>
     </div>
@@ -287,48 +297,40 @@
     <div class="container">
         <div class="row">
             <div class="col-12">
-                <div class="tp-feature-strip">
-
-                    <div class="tp-feature-item">
-
-                        <div class="tp-feature-icon">
-                            <img src="assets/images/search-icon.png" alt="Search">
-                        </div>
-
+                <ol class="tp-feature-strip">
+                    <li class="tp-feature-item">
+                        <span class="tp-feature-icon">
+                            <img src="assets/images/search-icon.png" alt="" aria-hidden="true" />
+                        </span>
                         <div class="tp-feature-content">
-                            <h4>Search a huge selection</h4>
-                            <p>Easily compare flights, airlines, and prices – all in one place.</p>
+                            <h3>Explore More Options</h3>
+                            <p>Compare flight prices across different airlines and travel dates to find an option that
+                                suits your plans.</p>
                         </div>
+                    </li>
 
-                    </div>
-
-                    <div class="tp-feature-item">
-
-                        <div class="tp-feature-icon">
-                            <img src="assets/images/fees-icon.png" alt="Fees">
-                        </div>
-
+                    <li class="tp-feature-item">
+                        <span class="tp-feature-icon">
+                            <img src="assets/images/fees-icon.png" alt="" aria-hidden="true" />
+                        </span>
                         <div class="tp-feature-content">
-                            <h4>Pay no hidden fees</h4>
-                            <p>Get a clear price breakdown every step of the way.</p>
+                            <h3>Know What You're Paying For</h3>
+                            <p>Review fare details, baggage allowances, and applicable fees before completing your
+                                booking.</p>
                         </div>
+                    </li>
 
-                    </div>
-
-                    <div class="tp-feature-item">
-
-                        <div class="tp-feature-icon">
-                            <img src="assets/images/flexible-icon.png" alt="Flexible">
-                        </div>
-
+                    <li class="tp-feature-item">
+                        <span class="tp-feature-icon">
+                            <img src="assets/images/flexible-icon.png" alt="" aria-hidden="true" />
+                        </span>
                         <div class="tp-feature-content">
-                            <h4>Get more flexibility</h4>
-                            <p>Change your travel dates with the Flexible ticket option.</p>
+                            <h3>Make Easy Changes</h3>
+                            <p>Get assistance with flight changes and cancellations, subject to airline rules and
+                                applicable fees.</p>
                         </div>
-
-                    </div>
-
-                </div>
+                    </li>
+                </ol>
             </div>
         </div>
     </div>
@@ -961,49 +963,56 @@
 <section class="common-section text-section">
     <div class="container">
         <div class="row">
+
+            <!-- Section Heading -->
             <div class="col-lg-7 col-md-10 col-12">
                 <div class="common-heading-box">
-                    <h2 class="common-heading-title">Frequently asked questions
-                    </h2>
-                    <p>Find cheap flights online for domestic.</p>
+                    <h2 class="common-heading-title">Frequently Asked Questions - FAQs</h2>
+                    <p>Find quick answers to your hotel booking questions.</p>
                 </div>
             </div>
 
             <!-- Column 1 -->
             <div class="col-lg-6">
                 <div class="cst-acc-col-title">General Information</div>
+
                 <div class="accordion" id="cstAccLeft">
 
+                    <!-- FAQ 1 -->
                     <div class="cst-acc__item">
                         <h2 class="cst-acc__header" id="lHead1">
                             <button class="cst-acc__btn" type="button" data-bs-toggle="collapse" data-bs-target="#lCol1"
                                 aria-expanded="true" aria-controls="lCol1">
-                                <span class="cst-acc__title">Can I cancel my hotel booking?</span>
-                                <i class="fa-solid fa-chevron-down cst-acc__chevron"></i>
+                                <span class="cst-acc__title">How can I find the best hotel deals?</span>
+                                <i class="fa-solid fa-chevron-down cst-acc__chevron" aria-hidden="true"></i>
                             </button>
                         </h2>
+
                         <div id="lCol1" class="collapse show" aria-labelledby="lHead1" data-bs-parent="#cstAccLeft">
                             <div class="cst-acc__body">
-                                Yes. Cancellation policies vary by hotel and room type. Check the cancellation terms
-                                before
-                                completing your booking.
+                                Compare hotel prices, locations, amenities, and available offers
+                                to find a stay that fits your budget. Reviewing different
+                                properties and travel dates can help you find suitable
+                                accommodation options.
                             </div>
                         </div>
                     </div>
 
+                    <!-- FAQ 2 -->
                     <div class="cst-acc__item">
                         <h2 class="cst-acc__header" id="lHead2">
                             <button class="cst-acc__btn collapsed" type="button" data-bs-toggle="collapse"
                                 data-bs-target="#lCol2" aria-expanded="false" aria-controls="lCol2">
-                                <span class="cst-acc__title">What is included in my hotel booking?</span>
-                                <i class="fa-solid fa-chevron-down cst-acc__chevron"></i>
+                                <span class="cst-acc__title">Can I book a hotel online?</span>
+                                <i class="fa-solid fa-chevron-down cst-acc__chevron" aria-hidden="true"></i>
                             </button>
                         </h2>
+
                         <div id="lCol2" class="collapse" aria-labelledby="lHead2" data-bs-parent="#cstAccLeft">
                             <div class="cst-acc__body">
-                                Your booking may include the room and selected amenities or services. Check your
-                                reservation
-                                details to see whether breakfast, Wi-Fi, taxes, or other services are included.
+                                Yes, you can search for available hotels, compare room options,
+                                check prices and amenities, and complete your booking online.
+                                Review your reservation details before confirming your stay.
                             </div>
                         </div>
                     </div>
@@ -1014,37 +1023,45 @@
             <!-- Column 2 -->
             <div class="col-lg-6">
                 <div class="cst-acc-col-title">Cancellation &amp; Support</div>
+
                 <div class="accordion" id="cstAccRight">
 
+                    <!-- FAQ 3 -->
                     <div class="cst-acc__item">
                         <h2 class="cst-acc__header" id="rHead1">
                             <button class="cst-acc__btn" type="button" data-bs-toggle="collapse" data-bs-target="#rCol1"
                                 aria-expanded="true" aria-controls="rCol1">
-                                <span class="cst-acc__title">Can I request early check-in or late check-out?</span>
-                                <i class="fa-solid fa-chevron-down cst-acc__chevron"></i>
+                                <span class="cst-acc__title">Can I cancel or change my hotel reservation?</span>
+                                <i class="fa-solid fa-chevron-down cst-acc__chevron" aria-hidden="true"></i>
                             </button>
                         </h2>
+
                         <div id="rCol1" class="collapse show" aria-labelledby="rHead1" data-bs-parent="#cstAccRight">
                             <div class="cst-acc__body">
-                                You can usually request this directly with the hotel. Approval depends on availability
-                                and
-                                the property's policy, and additional charges may apply.
+                                Yes, depending on the hotel's booking policy and the terms
+                                of your reservation, you may be able to change or cancel
+                                your booking. Check the cancellation conditions and any
+                                applicable fees before requesting a modification.
                             </div>
                         </div>
                     </div>
 
+                    <!-- FAQ 4 -->
                     <div class="cst-acc__item">
                         <h2 class="cst-acc__header" id="rHead2">
                             <button class="cst-acc__btn collapsed" type="button" data-bs-toggle="collapse"
                                 data-bs-target="#rCol2" aria-expanded="false" aria-controls="rCol2">
-                                <span class="cst-acc__title">Can I book hotels for long stays?</span>
-                                <i class="fa-solid fa-chevron-down cst-acc__chevron"></i>
+                                <span class="cst-acc__title">What should I check before booking a hotel?</span>
+                                <i class="fa-solid fa-chevron-down cst-acc__chevron" aria-hidden="true"></i>
                             </button>
                         </h2>
+
                         <div id="rCol2" class="collapse" aria-labelledby="rHead2" data-bs-parent="#cstAccRight">
                             <div class="cst-acc__body">
-                                Yes. Many properties offer extended-stay options. Availability, pricing, and included
-                                amenities may vary depending on the hotel and length of stay.
+                                Check the hotel's location, guest reviews, available amenities,
+                                total price, check-in and check-out times, and cancellation
+                                policy. Reviewing these details helps you choose accommodation
+                                that matches your preferences and travel requirements.
                             </div>
                         </div>
                     </div>
@@ -1055,6 +1072,3 @@
         </div>
     </div>
 </section>
-
-
-<app-quick-contact></app-quick-contact>
