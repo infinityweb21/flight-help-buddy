@@ -53,10 +53,10 @@ export class PackagesComponent implements AfterViewInit, OnDestroy {
   }
   packageList = [
     {
-      image: "assets/images/hotel/hotel5.jpg",
+      image: "assets/images/hotel/The-Tower-Hotel.jpg",
       badge: "Flight + Hotel",
       location: "London",
-      title: "The Tower Hotel",
+      title: "The Tower Hotel + Flight",
       rating: "8.5",
       ratingLabel: "Very Good",
       refundable: true,
@@ -68,10 +68,10 @@ export class PackagesComponent implements AfterViewInit, OnDestroy {
     },
 
     {
-      image: "assets/images/hotel/hotel1.png",
+      image: "assets/images/hotel/Novotel-Paris.jpg",
       badge: "Flight + Hotel",
       location: "Paris",
-      title: "Novotel Paris Centre Tour Eiffel",
+      title: "Novotel Paris Centre Tour Eiffel + Flight",
       rating: "8.2",
       ratingLabel: "Very Good",
       refundable: false,
@@ -83,10 +83,10 @@ export class PackagesComponent implements AfterViewInit, OnDestroy {
     },
 
     {
-      image: "assets/images/hotel/hotel4.jpg",
+      image: "assets/images/hotel/Shinjuku-Hotel.jpg",
       badge: "Flight + Hotel",
       location: "Tokyo",
-      title: "Shinjuku Washington Hotel",
+      title: "Shinjuku Washington Hotel + Flight",
       rating: "8.3",
       ratingLabel: "Very Good",
       refundable: true,
@@ -98,10 +98,10 @@ export class PackagesComponent implements AfterViewInit, OnDestroy {
     },
 
     {
-      image: "assets/images/hotel/hotel3.png",
+      image: "assets/images/hotel/Artemide-Hotel.jpg",
       badge: "Flight + Hotel",
       location: "Rome",
-      title: "Hotel Artemide",
+      title: "Hotel Artemide + Flight",
       rating: "9.2",
       ratingLabel: "Wonderful",
       refundable: true,
@@ -113,10 +113,10 @@ export class PackagesComponent implements AfterViewInit, OnDestroy {
     },
 
     {
-      image: "assets/images/hotel/hotel2.jpeg",
+      image: "assets/images/hotel/Hyatt-Ziva.jpg",
       badge: "Flight + Hotel",
       location: "Cancun",
-      title: "Hyatt Ziva Cancun",
+      title: "Hyatt Ziva Cancun + Flight",
       rating: "9.0",
       ratingLabel: "Wonderful",
       refundable: true,
@@ -127,6 +127,7 @@ export class PackagesComponent implements AfterViewInit, OnDestroy {
       priceNote: "Round trip Flight + Hotel · Taxes & fees included",
     },
   ];
+
 
   // =====================================================
   // Owl Carousel
