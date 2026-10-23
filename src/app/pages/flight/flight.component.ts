@@ -21,6 +21,11 @@ import { FormGroup, FormBuilder } from "@angular/forms";
 import { SearchService } from "../../services/search.service";
 import { CarouselModule } from "primeng/carousel";
 import { DeviceService } from "../../services/shared/device.service";
+import {
+  FlightCardComponent,
+  FlightCard,
+  DEFAULT_FLIGHT_CARDS,
+} from "../../components/flight-card/flight-card.component";
 
 // Owl Carousel / jQuery
 declare var $: any;
@@ -28,7 +33,7 @@ declare var $: any;
 @Component({
   selector: "app-flight",
 
-  imports: [MainFilterComponent, NgFor, CommonModule, CarouselModule],
+  imports: [MainFilterComponent, NgFor, CommonModule, CarouselModule,FlightCardComponent],
 
   templateUrl: "./flight.component.html",
 
@@ -198,60 +203,7 @@ export class FlightComponent implements AfterViewInit, OnDestroy {
     },
   ];
 
-  flightCards = [
-    {
-      tag: "Best Value",
-      rating: 4.5,
-      image: "assets/images/flight/flight-01.jpg",
-      from: "Miami",
-      to: "New York",
-      title: "American Airlines 901",
-      airlineLogo: "assets/images/flight/american-airlines-logo.png",
-      airline: "American Airlines",
-      stop: "1-stop at Atlanta",
-      departureDate: "Sep 22, 2026",
-      returnDate: "Sep 24, 2026",
-    },
-    {
-      tag: "Best Value",
-      rating: 4.4,
-      image: "assets/images/flight/flight-02.jpg",
-      from: "Los Angeles",
-      to: "New York",
-      title: "Alaska Airlines 245",
-      airlineLogo: "assets/images/flight/alaska-airlines-logo.png",
-      airline: "Alaska Airlines",
-      stop: "Non-stop",
-      departureDate: "Oct 05, 2026",
-      returnDate: "Oct 08, 2026",
-    },
-    {
-      tag: "Popular",
-      rating: 4.3,
-      image: "assets/images/flight/flight-03.jpg",
-      from: "Boston",
-      to: "Orlando",
-      title: "JetBlue Airways 672",
-      airlineLogo: "assets/images/flight/jetblue-logo.png",
-      airline: "JetBlue Airways",
-      stop: "1-stop at Charlotte",
-      departureDate: "Oct 12, 2026",
-      returnDate: "Oct 15, 2026",
-    },
-    {
-      tag: "Cheapest",
-      rating: 4.2,
-      image: "assets/images/flight/flight-04.jpg",
-      from: "Chicago",
-      to: "Las Vegas",
-      title: "Frontier Airlines 318",
-      airlineLogo: "assets/images/flight/frontier-airlines-logo.png",
-      airline: "Frontier Airlines",
-      stop: "Non-stop",
-      departureDate: "Oct 18, 2026",
-      returnDate: "Oct 21, 2026",
-    },
-  ];
+
   /*
    * ============================================
    * CABIN OPTIONS
@@ -279,7 +231,7 @@ export class FlightComponent implements AfterViewInit, OnDestroy {
       value: "P",
     },
   ];
-
+  flightCards: FlightCard[] = DEFAULT_FLIGHT_CARDS;
   constructor(
     private fb: FormBuilder,
 

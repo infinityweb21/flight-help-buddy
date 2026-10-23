@@ -230,68 +230,7 @@
       <div class="col-12 mt-2">
         <div class="flight-slider owl-carousel">
 
-          <a href="tel:{{ getData?.phoneNumber }}" class="flight-card-link" *ngFor="let flight of flightCards"
-            [attr.aria-label]="'Call to book ' + flight.from + ' to ' + flight.to">
-
-            <article class="flight-card-box">
-
-              <!-- IMAGE -->
-              <div class="flight-card-img">
-                <img [src]="flight.image" [alt]="flight.from + ' to ' + flight.to" class="flight-card-plane"
-                  loading="lazy" />
-
-                <span class="flight-card-tag">{{ flight.tag }}</span>
-
-                <span class="flight-card-rating">
-                  <i class="fa fa-star"></i>{{ flight.rating }}
-                </span>
-              </div>
-
-              <!-- ROUTE (boarding-pass strip) -->
-              <div class="flight-card-route">
-
-                <div class="flight-card-point">
-                  <small>From</small>
-                  <strong [title]="flight.from">{{ flight.from }}</strong>
-                </div>
-
-                <div class="flight-card-path">
-                  <span class="flight-card-track">
-                    <i class="fa fa-plane"></i>
-                  </span>
-                  <span class="flight-card-stop">{{ flight.stop }}</span>
-                </div>
-
-                <div class="flight-card-point flight-card-point--end">
-                  <small>To</small>
-                  <strong [title]="flight.to">{{ flight.to }}</strong>
-                </div>
-
-              </div>
-
-              <!-- BODY -->
-              <div class="flight-card-body">
-
-                <h5 class="flight-card-title">{{ flight.title }}</h5>
-
-                <div class="flight-card-footer">
-
-                  <div class="flight-card-airline">
-                    <img [src]="flight.airlineLogo" [alt]="flight.airline" class="flight-card-logo" />
-                    <span>{{ flight.airline }}</span>
-                  </div>
-
-                  <span class="flight-card-cta">
-                    <i class="fa fa-phone-alt"></i> Call to book
-                  </span>
-
-                </div>
-
-              </div>
-
-            </article>
-
-          </a>
+           <app-flight-card *ngFor="let flight of flightCards" [flight]="flight"></app-flight-card>
 
         </div>
 
