@@ -157,7 +157,7 @@ export class HotelComponent implements OnInit, AfterViewInit, OnDestroy {
       available: "159 available",
     },
     {
-      image: "assets/images/hotel/heritage-hotels.avif",
+      image: "assets/images/hotel/heritage-hotels.jpg",
       title: "Heritage Stays",
       alt: "Heritage Stays",
       startDay: 22,
