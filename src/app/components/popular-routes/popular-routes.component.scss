@@ -1,0 +1,19 @@
+/*
+ * Move your existing .tp-route-grid / .tp-route-card / .tp-route-*
+ * styles here from the page's .scss file.
+ * (Angular scopes styles per component, so styles left in the
+ *  page's .scss will no longer reach these cards.)
+ */
+
+:host {
+  display: block;
+}
+
+.tp-route-card {
+  cursor: pointer;
+}
+
+.tp-route-card.is-loading {
+  opacity: 0.6;
+  pointer-events: none;
+}

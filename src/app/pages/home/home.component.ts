@@ -25,6 +25,15 @@ import { FlightFilterService } from "../../services/flight/flight-filter.service
 import { FlightService } from "../../services/flight/flight.service";
 import { SearchService } from "../../services/search.service";
 import { DeviceService } from "../../services/shared/device.service";
+import { HotelService } from "../../services/hotel/hotel.service";
+import { HotelFilterService } from "../../services/hotel/hotel-filter.service";
+import { TosterService } from "../../services/common/toaster.service";
+import { PopularRoutesComponent } from "../../components/popular-routes/popular-routes.component";
+import {
+  FlightCardComponent,
+  FlightCard,
+  DEFAULT_FLIGHT_CARDS,
+} from "../../components/flight-card/flight-card.component";
 
 Swiper.use([Navigation]);
 
@@ -40,7 +49,12 @@ declare global {
 
 @Component({
   selector: "app-home",
-  imports: [HeroComponent, CommonModule],
+  imports: [
+    HeroComponent,
+    CommonModule,
+    PopularRoutesComponent,
+    FlightCardComponent,
+  ],
   templateUrl: "./home.component.html",
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   styleUrl: "./home.component.scss",
@@ -62,6 +76,9 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
   private flightFilter: FlightFilterService = inject(FlightFilterService);
   private router = inject(Router);
   private deviceService = inject(DeviceService);
+  private hotelService: HotelService = inject(HotelService);
+  private hotelFilterService: HotelFilterService = inject(HotelFilterService);
+  private toasterService: TosterService = inject(TosterService);
 
   deviceReady = false;
   isMobile = true;
@@ -74,129 +91,45 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
    */
   aiCards = [
     {
-      title: "Instant Booking",
-      description: "Quick and fast booking process",
+      title: "Make Your Travel Plans",
+      description: "One-stop solution for all your trips",
       image: "assets/images/3d1.webp",
     },
     {
-      title: "Secure Payment",
-      description:
-        "Pay without worrying with our safe and reliable payment process",
+      title: "Travel Smartly",
+      description: "Ask your questions & get quick answers",
       image: "assets/images/3d2.webp",
     },
     {
-      title: "Expert Guidance",
-      description: "Our travel experts will offer you end to end support",
+      title: "Best Time to Travel",
+      description: "Know the right time to travel",
       image: "assets/images/3d3.webp",
     },
     {
-      title: "Travel Planning",
-      description: "Plan your journey with confidence",
+      title: "Explore More",
+      description: "Choose your destination within budget",
       image: "assets/images/3d4.webp",
     },
     {
-      title: "24/7 Customer Support",
-      description: "Get instant assistance whenever you need",
+      title: "Secure Booking",
+      description: "Keep your payment process safe when booking",
       image: "assets/images/3d5.webp",
     },
     {
-      title: "No Hidden Fees",
-      description: "Enjoy transparent pricing with us",
+      title: "Get Best Deals",
+      description: "Enjoy best discounts for your next getaway",
       image: "assets/images/3d6.webp",
     },
   ];
 
   // ============================================
-  // FLIGHT CARD SLIDER DATA
+  // HOTEL DESTINATIONS
   // ============================================
 
-  flightCards = [
-    {
-      tag: "Best Value",
-      rating: 4.5,
-      image: "assets/images/flight/flight-01.jpg",
-      from: "Miami",
-      to: "New York",
-      title: "American Airlines 901",
-      airlineLogo: "assets/images/flight/american-airlines-logo.png",
-      airline: "American Airlines",
-      stop: "1-stop at Atlanta",
-      departureDate: "Sep 22, 2026",
-      returnDate: "Sep 24, 2026",
-    },
-    {
-      tag: "Best Value",
-      rating: 4.4,
-      image: "assets/images/flight/flight-02.jpg",
-      from: "Los Angeles",
-      to: "New York",
-      title: "Alaska Airlines 245",
-      airlineLogo: "assets/images/flight/alaska-airlines-logo.png",
-      airline: "Alaska Airlines",
-      stop: "Non-stop",
-      departureDate: "Oct 05, 2026",
-      returnDate: "Oct 08, 2026",
-    },
-    {
-      tag: "Popular",
-      rating: 4.3,
-      image: "assets/images/flight/flight-03.jpg",
-      from: "Boston",
-      to: "Orlando",
-      title: "JetBlue Airways 672",
-      airlineLogo: "assets/images/flight/jetblue-logo.png",
-      airline: "JetBlue Airways",
-      stop: "1-stop at Charlotte",
-      departureDate: "Oct 12, 2026",
-      returnDate: "Oct 15, 2026",
-    },
-    {
-      tag: "Cheapest",
-      rating: 4.2,
-      image: "assets/images/flight/flight-04.jpg",
-      from: "Chicago",
-      to: "Las Vegas",
-      title: "Frontier Airlines 318",
-      airlineLogo: "assets/images/flight/frontier-airlines-logo.png",
-      airline: "Frontier Airlines",
-      stop: "Non-stop",
-      departureDate: "Oct 18, 2026",
-      returnDate: "Oct 21, 2026",
-    },
-  ];
-  // Add this property to your component class
-  cruisePorts = [
-    {
-      city: "Portland",
-      region: "Maine",
-      image: "assets/images/cruise/portland.webp",
-    },
-    {
-      city: "Miami",
-      region: "Florida",
-      image: "assets/images/cruise/miami.webp",
-    },
-    {
-      city: "Galveston",
-      region: "Texas",
-      image: "assets/images/cruise/florida_galveston.webp",
-    },
-    {
-      city: "Barcelona",
-      region: "Spain",
-      image: "assets/images/cruise/barcelona.webp",
-    },
-    {
-      city: "Boston",
-      region: "Massachusetts",
-      image: "assets/images/cruise/boston.webp",
-    },
-    {
-      city: "Fort Lauderdale",
-      region: "Florida",
-      image: "assets/images/cruise/fort_lauderdale.webp",
-    },
-  ];
+  loadingDestination: string | null = null;
+
+
+
   // Add this property to your component class
   destinations = [
     {
@@ -224,6 +157,17 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
       image: "assets/images/miami.jpg",
     },
   ];
+  // ============================================
+  // FLIGHT CARD SLIDER DATA
+  // --------------------------------------------
+  // Each card is <app-flight-card [flight]="...">
+  // inside <div class="flight-slider owl-carousel">.
+  // Same 6 cards as the flight page; replace with
+  // your own FlightCard[] list if needed.
+  // ============================================
+
+  flightCards: FlightCard[] = DEFAULT_FLIGHT_CARDS;
+
   constructor(
     private meta: Meta,
     private title: Title,
@@ -490,7 +434,8 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
 
     /*
      * Angular needs to finish rendering the *ngFor
-     * before Owl Carousel is initialized.
+     * (including every <app-flight-card>) before
+     * Owl Carousel is initialized.
      */
     setTimeout(() => {
       this.initAiCardCarousel();
@@ -568,6 +513,8 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
 
   // ============================================
   // FLIGHT CAROUSEL INITIALIZATION
+  // (cards inside are <app-flight-card>; their
+  //  click-to-search also works on Owl's copies)
   // ============================================
 
   private initFlightCarousel(): void {
@@ -605,15 +552,19 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
       responsive: {
         0: {
           items: 1.3,
+          margin: 8,
         },
         600: {
           items: 2.3,
+          margin: 15,
         },
         992: {
           items: 3,
+          margin: 15,
         },
         1200: {
           items: 4,
+          margin: 15,
         },
       },
     });
@@ -648,11 +599,11 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   // ============================================
-  // NEXT BUTTON
+  // AI NEXT / PREVIOUS
   // ============================================
 
   aiNext(): void {
-    if (!this.isBrowser) {
+    if (!this.isBrowser || typeof $ === "undefined") {
       return;
     }
 
@@ -663,12 +614,8 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
     }
   }
 
-  // ============================================
-  // PREVIOUS BUTTON
-  // ============================================
-
   aiPrevious(): void {
-    if (!this.isBrowser) {
+    if (!this.isBrowser || typeof $ === "undefined") {
       return;
     }
 
@@ -707,8 +654,16 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
   // DATE METHODS
   // ============================================
 
+  // Local date (YYYY-MM-DD) — toISOString() uses UTC and can shift a day
   private getFormattedDate(date: Date): string {
-    return date.toISOString().split("T")[0];
+    return this.formatLocalDate(date);
+  }
+
+  private formatLocalDate(date: Date): string {
+    const y = date.getFullYear();
+    const m = String(date.getMonth() + 1).padStart(2, "0");
+    const d = String(date.getDate()).padStart(2, "0");
+    return `${y}-${m}-${d}`;
   }
 
   private addDays(date: Date, days: number): Date {
@@ -797,30 +752,14 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
   // ============================================
 
   airlines = [
-    {
-      logo: "/assets/images/homeimages/american_logo.png",
-    },
-    {
-      logo: "/assets/images/homeimages/delta_logo.png",
-    },
-    {
-      logo: "/assets/images/homeimages/southwest_airlines_logo.png",
-    },
-    {
-      logo: "/assets/images/homeimages/united_airlines_logo.png",
-    },
-    {
-      logo: "/assets/images/homeimages/american_logo.png",
-    },
-    {
-      logo: "/assets/images/homeimages/delta_logo.png",
-    },
-    {
-      logo: "/assets/images/homeimages/southwest_airlines_logo.png",
-    },
-    {
-      logo: "/assets/images/homeimages/united_airlines_logo.png",
-    },
+    { logo: "/assets/images/homeimages/american_logo.png" },
+    { logo: "/assets/images/homeimages/delta_logo.png" },
+    { logo: "/assets/images/homeimages/southwest_airlines_logo.png" },
+    { logo: "/assets/images/homeimages/united_airlines_logo.png" },
+    { logo: "/assets/images/homeimages/american_logo.png" },
+    { logo: "/assets/images/homeimages/delta_logo.png" },
+    { logo: "/assets/images/homeimages/southwest_airlines_logo.png" },
+    { logo: "/assets/images/homeimages/united_airlines_logo.png" },
   ];
 
   getStars(rating: number): number[] {
@@ -858,6 +797,86 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   // ============================================
+  // SEARCH HOTEL FROM DESTINATION CARD
+  // ============================================
+
+  searchHotelFromDestination(dest: any): void {
+    if (this.loadingDestination) {
+      return; // prevent double clicks
+    }
+
+    this.loadingDestination = dest.name;
+    const query = (dest.searchCity || dest.name).toLowerCase();
+
+    this.hotelService
+      .hotel_cityList(query)
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe({
+        next: (res: any) => {
+          this.loadingDestination = null;
+
+          if (!res?.success || !res.data?.length) {
+            this.toasterService.showError(`No hotels found for ${dest.name}`);
+            return;
+          }
+
+          // Prefer a city match, then any city, then the first result
+          const match =
+            res.data.find(
+              (item: any) =>
+                item.type !== "hotel" &&
+                item.name?.toLowerCase().includes(query),
+            ) ||
+            res.data.find((item: any) => item.type !== "hotel") ||
+            res.data[0];
+
+          const destinationObj = {
+            displayName:
+              match.type === "hotel"
+                ? match.name
+                : match.state?.trim()
+                  ? `${match.city}, ${match.state}, ${match.country}`
+                  : `${match.city}, ${match.country}`,
+            name: match.name,
+            type: match.type,
+            country: match.country,
+            countrycode: match.countryCode || match.countrycode,
+            city: match.city,
+            code: match.code || match.cityid,
+            destinationCode: match.destinationCode,
+          };
+
+          // Same-day check-in is blocked in your hotel form,
+          // so default to a 2-night stay starting 7 days from today
+          const checkInDate = this.addDays(new Date(), 7);
+          const checkOutDate = this.addDays(checkInDate, 2);
+
+          const formData = {
+            checkIn: this.formatLocalDate(checkInDate),
+            checkOut: this.formatLocalDate(checkOutDate),
+            rooms: [{ adults: 2, childAges: [] }],
+            destination: destinationObj,
+          };
+
+          this.searchService.setSearchHotelData(formData);
+          this.hotelFilterService.resetFilters();
+
+          this.router.navigate(["/hotels-list"], {
+            queryParams: { source: "etg" },
+          });
+        },
+
+        error: (err) => {
+          this.loadingDestination = null;
+          console.error("Hotel city search error:", err);
+          this.toasterService.showError(
+            "Unable to search hotels. Please try again.",
+          );
+        },
+      });
+  }
+
+  // ============================================
   // SEARCH FROM DEAL
   // ============================================
 
@@ -872,17 +891,12 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
       originDestination: [
         {
           DepartureTime: formatDate(deal.ob),
-
           DepartureLocationCode: deal.from,
-
           ArrivalLocationCode: deal.to,
         },
-
         {
           DepartureTime: formatDate(deal.ib),
-
           DepartureLocationCode: deal.to,
-
           ArrivalLocationCode: deal.from,
         },
       ],
@@ -892,25 +906,15 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
 
     const queryParams = {
       CabinClass: "E",
-
       NoOfAdults: 1,
-
       NoOfChildren: 0,
-
       NoOfInfants: 0,
-
       tripType: "roundtrip",
-
       source: "all",
-
       providers: "",
-
       CurrencyCode: "USD",
-
       maxResultsPerProvider: 40,
-
       limit: 120,
-
       tag: "",
     };
 

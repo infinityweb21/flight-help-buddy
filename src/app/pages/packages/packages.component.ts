@@ -28,7 +28,29 @@ export class PackagesComponent implements AfterViewInit, OnDestroy {
   // =====================================================
   // Dynamic Flight + Hotel Package Data
   // =====================================================
+  // Dynamic date range
+  dealDateRange = this.getDynamicDateRange(20, 24);
 
+  private getDynamicDateRange(startDay: number, endDay: number): string {
+    const now = new Date();
+
+    // Next month
+    const targetYear = now.getFullYear() + (now.getMonth() === 11 ? 1 : 0);
+    const targetMonth = (now.getMonth() + 1) % 12;
+
+    const startDate = new Date(targetYear, targetMonth, startDay);
+    const endDate = new Date(targetYear, targetMonth, endDay);
+
+    const dateFormat: Intl.DateTimeFormatOptions = {
+      day: "numeric",
+      month: "short",
+    };
+
+    const start = startDate.toLocaleDateString("en-GB", dateFormat);
+    const end = endDate.toLocaleDateString("en-GB", dateFormat);
+
+    return `${start} · ${end}`;
+  }
   packageList = [
     {
       image: "assets/images/hotel/hotel5.jpg",

@@ -1,0 +1,12 @@
+app-flight-card {
+  display: block;
+}
+
+app-flight-card .flight-card-link {
+  cursor: pointer;
+}
+
+app-flight-card .flight-card-link.is-loading {
+  opacity: 0.6;
+  pointer-events: none;
+}

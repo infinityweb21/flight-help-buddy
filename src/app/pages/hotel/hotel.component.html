@@ -136,7 +136,7 @@
                 <div class="common-heading-box">
                     <h2 class="common-heading-title">Stay at our top unique properties
                     </h2>
-                    <p>From castles and villas to boats and igloos, we have it all</p>
+                    <p>From cozy cabins and luxury villas to beachfront resorts and unique stays, discover the perfect place for your next getaway.</p>
                 </div>
             </div>
             <div class="col-lg-5 col-md-6 col-sm-5 col-4">
@@ -157,8 +157,9 @@
             <div class="col-12 mt-2">
                 <div class="hotel-slider owl-carousel">
 
-                    <a href="tel:{{ getData?.phoneNumber }}" class="card-journey-small"
-                        *ngFor="let hotel of hotelSliderCards">
+                    <a *ngFor="let hotel of hotelSliderCards" class="card-journey-small" role="button" tabindex="0"
+                        style="cursor: pointer" (click)="openHotelSearch(hotel)"
+                        (keydown.enter)="openHotelSearch(hotel)">
 
                         <!-- IMAGE -->
                         <div class="card-image">
@@ -272,8 +273,10 @@
                                     <!-- BOOK -->
                                     <div class="card-button">
 
-                                        <button type="button" class="btn common-bgbookBtn" (click)="bookHotel(hotel)">
-                                            Book Now
+                                        <button type="button" class="btn common-bgbookBtn"
+                                            [disabled]="loadingHotel === hotel.title"
+                                            (click)="bookHotel(hotel, $event)">
+                                            {{ loadingHotel === hotel.title ? 'Searching...' : 'Book Now' }}
                                         </button>
 
                                     </div>
@@ -415,537 +418,33 @@
                     </li>
 
                 </ul>
+                <!-- Replace your whole <div class="tab-content travel-type-tabs__content-area"> block with this -->
+
                 <div class="tab-content travel-type-tabs__content-area" id="travelTypeTabContent">
 
-
-                    <div class="tab-pane fade show active" id="domestic" role="tabpanel" aria-labelledby="domestic-tab">
-
-                        <div class="popular-hotels__grid">
-
-                            <a href="tel:{{ getData?.phoneNumber }}" class="popular-hotel">
-                                <img src="assets/images/hotel/domestic-hotel1.webp" alt="The Langham Chicago">
-
-                                <div class="popular-hotel__info">
-                                    <h3>The Langham Chicago</h3>
-                                    <p>Chicago, Illinois</p>
-                                    <span>8.1 Very Good · 9,842 reviews</span>
-                                </div>
-                            </a>
-
-                            <a href="tel:{{ getData?.phoneNumber }}" class="popular-hotel">
-                                <img src="assets/images/hotel/domestic-hotel2.webp" alt="The Beverly Hills Hotel">
-
-                                <div class="popular-hotel__info">
-                                    <h3>The Beverly Hills Hotel</h3>
-                                    <p>Beverly Hills, California</p>
-                                    <span>8.7 Very Good · 3,426 reviews</span>
-                                </div>
-                            </a>
-
-                            <a href="tel:{{ getData?.phoneNumber }}" class="popular-hotel">
-                                <img src="assets/images/hotel/domestic-hotel3.webp" alt="Mandarin Oriental, New York">
-
-                                <div class="popular-hotel__info">
-                                    <h3>Mandarin Oriental, New York</h3>
-                                    <p>New York City</p>
-                                    <span>8.9 Excellent · 6,318 reviews</span>
-                                </div>
-                            </a>
-
-                            <a href="tel:{{ getData?.phoneNumber }}" class="popular-hotel">
-                                <img src="assets/images/hotel/domestic-hotel4.webp"
-                                    alt="Four Seasons Hotel at The Surf Club">
-
-                                <div class="popular-hotel__info">
-                                    <h3>Four Seasons Hotel at The Surf Club</h3>
-                                    <p>Surfside, Florida</p>
-                                    <span>9.1 Excellent · 4,275 reviews</span>
-                                </div>
-                            </a>
-
-                            <a href="tel:{{ getData?.phoneNumber }}" class="popular-hotel">
-                                <img src="assets/images/hotel/domestic-hotel5.webp" alt="Amangiri">
-
-                                <div class="popular-hotel__info">
-                                    <h3>Amangiri</h3>
-                                    <p>Canyon Point, Utah</p>
-                                    <span>9.3 Excellent · 1,864 reviews</span>
-                                </div>
-                            </a>
-
-                            <a href="tel:{{ getData?.phoneNumber }}" class="popular-hotel">
-                                <img src="assets/images/hotel/domestic-hotel6.webp" alt="Auberge du Soleil">
-
-                                <div class="popular-hotel__info">
-                                    <h3>Auberge du Soleil</h3>
-                                    <p>Napa Valley, California</p>
-                                    <span>8.8 Excellent · 2,753 reviews</span>
-                                </div>
-                            </a>
-
-                            <a href="tel:{{ getData?.phoneNumber }}" class="popular-hotel">
-                                <img src="assets/images/hotel/domestic-hotel7.webp"
-                                    alt="Rancho Valencia Resort &amp; Spa">
-
-                                <div class="popular-hotel__info">
-                                    <h3>Rancho Valencia Resort &amp; Spa</h3>
-                                    <p>Rancho Santa Fe, California</p>
-                                    <span>9.0 Excellent · 1,592 reviews</span>
-                                </div>
-                            </a>
-
-                            <a href="tel:{{ getData?.phoneNumber }}" class="popular-hotel">
-                                <img src="assets/images/hotel/domestic-hotel8.webp" alt="Montage Palmetto Bluff">
-
-                                <div class="popular-hotel__info">
-                                    <h3>Montage Palmetto Bluff</h3>
-                                    <p>Bluffton, South Carolina</p>
-                                    <span>8.6 Excellent · 3,187 reviews</span>
-                                </div>
-                            </a>
-
-                        </div>
-                    </div>
-
-
-
-
-                    <div class="tab-pane fade" id="international" role="tabpanel" aria-labelledby="international-tab">
-                        <div class="popular-hotels__grid">
-
-                            <a href="tel:{{ getData?.phoneNumber }}" class="popular-hotel">
-                                <img src="assets/images/hotel/international-hotel1.webp" alt="Rosewood Hong Kong">
-
-                                <div class="popular-hotel__info">
-                                    <h3>Rosewood Hong Kong</h3>
-                                    <p>Hong Kong</p>
-                                    <span>8.2 Very Good · 5,842 reviews</span>
-                                </div>
-                            </a>
-
-                            <a href="tel:{{ getData?.phoneNumber }}" class="popular-hotel">
-                                <img src="assets/images/hotel/international-hotel2.webp" alt="Capella Bangkok">
-
-                                <div class="popular-hotel__info">
-                                    <h3>Capella Bangkok</h3>
-                                    <p>Bangkok, Thailand</p>
-                                    <span>9.1 Excellent · 3,275 reviews</span>
-                                </div>
-                            </a>
-
-                            <a href="tel:{{ getData?.phoneNumber }}" class="popular-hotel">
-                                <img src="assets/images/hotel/international-hotel3.webp" alt="Passalacqua">
-
-                                <div class="popular-hotel__info">
-                                    <h3>Passalacqua</h3>
-                                    <p>Lake Como, Italy</p>
-                                    <span>9.4 Excellent · 1,684 reviews</span>
-                                </div>
-                            </a>
-
-                            <a href="tel:{{ getData?.phoneNumber }}" class="popular-hotel">
-                                <img src="assets/images/hotel/international-hotel4.webp" alt="Park Hyatt Tokyo">
-
-                                <div class="popular-hotel__info">
-                                    <h3>Park Hyatt Tokyo</h3>
-                                    <p>Tokyo, Japan</p>
-                                    <span>8.8 Excellent · 4,921 reviews</span>
-                                </div>
-                            </a>
-
-                            <a href="tel:{{ getData?.phoneNumber }}" class="popular-hotel">
-                                <img src="assets/images/hotel/international-hotel5.webp" alt="Claridge’s">
-
-                                <div class="popular-hotel__info">
-                                    <h3>Claridge’s</h3>
-                                    <p>London, UK</p>
-                                    <span>9.0 Excellent · 2,638 reviews</span>
-                                </div>
-                            </a>
-
-                            <a href="tel:{{ getData?.phoneNumber }}" class="popular-hotel">
-                                <img src="assets/images/hotel/international-hotel6.webp" alt="Atlantis The Royal">
-
-                                <div class="popular-hotel__info">
-                                    <h3>Atlantis The Royal</h3>
-                                    <p>Dubai, UAE</p>
-                                    <span>8.9 Excellent · 7,452 reviews</span>
-                                </div>
-                            </a>
-
-                            <a href="tel:{{ getData?.phoneNumber }}" class="popular-hotel">
-                                <img src="assets/images/hotel/international-hotel7.webp" alt="Four Seasons Firenze">
-
-                                <div class="popular-hotel__info">
-                                    <h3>Four Seasons Firenze</h3>
-                                    <p>Florence, Italy</p>
-                                    <span>9.2 Excellent · 2,147 reviews</span>
-                                </div>
-                            </a>
-
-                            <a href="tel:{{ getData?.phoneNumber }}" class="popular-hotel">
-                                <img src="assets/images/hotel/international-hotel8.webp" alt="Le Bristol Paris">
-
-                                <div class="popular-hotel__info">
-                                    <h3>Le Bristol Paris</h3>
-                                    <p>Paris, France</p>
-                                    <span>9.3 Excellent · 3,816 reviews</span>
-                                </div>
-                            </a>
-
-                        </div>
-                    </div>
-
-                    <!-- ==================== ASIA ==================== -->
-
-                    <div class="tab-pane fade" id="asia" role="tabpanel" aria-labelledby="asia-tab">
+                    <div *ngFor="let tab of popularHotelTabs; let first = first" class="tab-pane fade"
+                        [class.show]="first" [class.active]="first" [id]="tab.id" role="tabpanel"
+                        [attr.aria-labelledby]="tab.id + '-tab'">
 
                         <div class="popular-hotels__grid">
 
-                            <a href="tel:{{ getData?.phoneNumber }}" class="popular-hotel">
-                                <img src="assets/images/hotel/asia-hotel1.webp" alt="Amanpuri">
+                            <a *ngFor="let hotel of tab.hotels" class="popular-hotel" role="button" tabindex="0"
+                                style="cursor: pointer" (click)="openHotelSearch(hotel)"
+                                (keydown.enter)="openHotelSearch(hotel)">
+
+                                <img [src]="hotel.image" [alt]="hotel.title" loading="lazy">
 
                                 <div class="popular-hotel__info">
-                                    <h3>Amanpuri</h3>
-                                    <p>Phuket, Thailand</p>
-                                    <span>9.1 Excellent · 4,286 reviews</span>
-                                </div>
-                            </a>
-
-                            <a href="tel:{{ getData?.phoneNumber }}" class="popular-hotel">
-                                <img src="assets/images/hotel/asia-hotel2.webp" alt="The Taj Mahal Palace">
-
-                                <div class="popular-hotel__info">
-                                    <h3>The Taj Mahal Palace</h3>
-                                    <p>Mumbai, India</p>
-                                    <span>8.9 Excellent · 6,742 reviews</span>
-                                </div>
-                            </a>
-
-                            <a href="tel:{{ getData?.phoneNumber }}" class="popular-hotel">
-                                <img src="assets/images/hotel/asia-hotel3.webp" alt="The Oberoi Rajvilas">
-
-                                <div class="popular-hotel__info">
-                                    <h3>The Oberoi Rajvilas</h3>
-                                    <p>Jaipur, India</p>
-                                    <span>9.2 Excellent · 3,518 reviews</span>
-                                </div>
-                            </a>
-
-                            <a href="tel:{{ getData?.phoneNumber }}" class="popular-hotel">
-                                <img src="assets/images/hotel/asia-hotel4.webp" alt="Park Hyatt Tokyo">
-
-                                <div class="popular-hotel__info">
-                                    <h3>Park Hyatt Tokyo</h3>
-                                    <p>Tokyo, Japan</p>
-                                    <span>8.8 Excellent · 5,164 reviews</span>
-                                </div>
-                            </a>
-
-                            <a href="tel:{{ getData?.phoneNumber }}" class="popular-hotel">
-                                <img src="assets/images/hotel/asia-hotel5.webp" alt="The Peninsula Hong Kong">
-
-                                <div class="popular-hotel__info">
-                                    <h3>The Peninsula Hong Kong</h3>
-                                    <p>Hong Kong</p>
-                                    <span>9.0 Excellent · 4,735 reviews</span>
-                                </div>
-                            </a>
-
-                            <a href="tel:{{ getData?.phoneNumber }}" class="popular-hotel">
-                                <img src="assets/images/hotel/asia-hotel6.webp" alt="Bvlgari Resort Bali">
-
-                                <div class="popular-hotel__info">
-                                    <h3>Bvlgari Resort Bali</h3>
-                                    <p>Bali, Indonesia</p>
-                                    <span>9.3 Excellent · 2,846 reviews</span>
-                                </div>
-                            </a>
-
-                            <a href="tel:{{ getData?.phoneNumber }}" class="popular-hotel">
-                                <img src="assets/images/hotel/asia-hotel7.webp" alt="Aman Kyoto">
-
-                                <div class="popular-hotel__info">
-                                    <h3>Aman Kyoto</h3>
-                                    <p>Kyoto, Japan</p>
-                                    <span>9.1 Excellent · 2,174 reviews</span>
-                                </div>
-                            </a>
-
-                            <a href="tel:{{ getData?.phoneNumber }}" class="popular-hotel">
-                                <img src="assets/images/hotel/asia-hotel8.webp"
-                                    alt="The Ritz-Carlton Maldives, Fari Islands">
-
-                                <div class="popular-hotel__info">
-                                    <h3>The Ritz-Carlton Maldives, Fari Islands</h3>
-                                    <p>Maldives</p>
-                                    <span>9.4 Excellent · 1,963 reviews</span>
-                                </div>
-                            </a>
-
-                        </div>
-                    </div>
-
-
-                    <!-- ==================== EUROPE ==================== -->
-                    <div class="tab-pane fade" id="europe" role="tabpanel" aria-labelledby="europe-tab">
-                        <div class="popular-hotels__grid">
-
-                            <a href="tel:{{ getData?.phoneNumber }}" class="popular-hotel">
-                                <img src="assets/images/hotel/europe-hotel1.webp" alt="Akelarre">
-
-                                <div class="popular-hotel__info">
-                                    <h3>Akelarre</h3>
-                                    <p>San Sebastián, Spain</p>
-                                    <span>9.1 Excellent · 4,286 reviews</span>
-                                </div>
-                            </a>
-
-                            <a href="tel:{{ getData?.phoneNumber }}" class="popular-hotel">
-                                <img src="assets/images/hotel/europe-hotel2.webp" alt="Aman Venice">
-
-                                <div class="popular-hotel__info">
-                                    <h3>Aman Venice</h3>
-                                    <p>Venice, Italy</p>
-                                    <span>9.3 Excellent · 2,741 reviews</span>
-                                </div>
-                            </a>
-
-                            <a href="tel:{{ getData?.phoneNumber }}" class="popular-hotel">
-                                <img src="assets/images/hotel/europe-hotel3.webp" alt="Borgo Egnazia">
-
-                                <div class="popular-hotel__info">
-                                    <h3>Borgo Egnazia</h3>
-                                    <p>Puglia, Italy</p>
-                                    <span>9.0 Excellent · 3,518 reviews</span>
-                                </div>
-                            </a>
-
-                            <a href="tel:{{ getData?.phoneNumber }}" class="popular-hotel">
-                                <img src="assets/images/hotel/europe-hotel4.webp"
-                                    alt="The Carlton Cannes, a Regent Hotel">
-
-                                <div class="popular-hotel__info">
-                                    <h3>The Carlton Cannes, a Regent Hotel</h3>
-                                    <p>Cannes, France</p>
-                                    <span>9.2 Excellent · 2,864 reviews</span>
-                                </div>
-                            </a>
-
-                            <a href="tel:{{ getData?.phoneNumber }}" class="popular-hotel">
-                                <img src="assets/images/hotel/europe-hotel5.webp" alt="Airelles Gordes, La Bastide">
-
-                                <div class="popular-hotel__info">
-                                    <h3>Airelles Gordes, La Bastide</h3>
-                                    <p>Gordes, France</p>
-                                    <span>9.4 Excellent · 1,925 reviews</span>
-                                </div>
-                            </a>
-
-                            <a href="tel:{{ getData?.phoneNumber }}" class="popular-hotel">
-                                <img src="assets/images/hotel/europe-hotel6.webp" alt="Castelfalfi">
-
-                                <div class="popular-hotel__info">
-                                    <h3>Castelfalfi</h3>
-                                    <p>Tuscany, Italy</p>
-                                    <span>8.9 Excellent · 2,637 reviews</span>
-                                </div>
-                            </a>
-
-                            <a href="tel:{{ getData?.phoneNumber }}" class="popular-hotel">
-                                <img src="assets/images/hotel/europe-hotel7.webp" alt="Fairmont Golden Prague">
-
-                                <div class="popular-hotel__info">
-                                    <h3>Fairmont Golden Prague</h3>
-                                    <p>Prague, Czechia</p>
-                                    <span>9.0 Excellent · 3,184 reviews</span>
-                                </div>
-                            </a>
-
-                            <a href="tel:{{ getData?.phoneNumber }}" class="popular-hotel">
-                                <img src="assets/images/hotel/europe-hotel8.webp" alt="Mandarin Oriental, Vienna">
-
-                                <div class="popular-hotel__info">
-                                    <h3>Mandarin Oriental, Vienna</h3>
-                                    <p>Vienna, Austria</p>
-                                    <span>9.2 Excellent · 2,418 reviews</span>
-                                </div>
-                            </a>
-
-                        </div>
-                    </div>
-
-                    <div class="tab-pane fade" id="middleeast" role="tabpanel" aria-labelledby="middleeast-tab">
-                        <div class="popular-hotels__grid">
-
-                            <a href="tel:{{ getData?.phoneNumber }}" class="popular-hotel">
-                                <img src="assets/images/hotel/middleeast-hotel1.webp"
-                                    alt="Emirates Palace Mandarin Oriental">
-
-                                <div class="popular-hotel__info">
-                                    <h3>Emirates Palace Mandarin Oriental</h3>
-                                    <p>Abu Dhabi, UAE</p>
-                                    <span>9.2 Excellent · 5,846 reviews</span>
-                                </div>
-                            </a>
-
-                            <a href="tel:{{ getData?.phoneNumber }}" class="popular-hotel">
-                                <img src="assets/images/hotel/middleeast-hotel2.webp" alt="Burj Al Arab Jumeirah">
-
-                                <div class="popular-hotel__info">
-                                    <h3>Burj Al Arab Jumeirah</h3>
-                                    <p>Dubai, UAE</p>
-                                    <span>9.4 Excellent · 7,325 reviews</span>
-                                </div>
-                            </a>
-
-                            <a href="tel:{{ getData?.phoneNumber }}" class="popular-hotel">
-                                <img src="assets/images/hotel/middleeast-hotel3.webp" alt="Atlantis The Royal">
-
-                                <div class="popular-hotel__info">
-                                    <h3>Atlantis The Royal</h3>
-                                    <p>Dubai, UAE</p>
-                                    <span>9.1 Excellent · 6,742 reviews</span>
-                                </div>
-                            </a>
-
-                            <a href="tel:{{ getData?.phoneNumber }}" class="popular-hotel">
-                                <img src="assets/images/hotel/middleeast-hotel4.webp" alt="Jumeirah Al Qasr">
-
-                                <div class="popular-hotel__info">
-                                    <h3>Jumeirah Al Qasr</h3>
-                                    <p>Dubai, UAE</p>
-                                    <span>9.0 Excellent · 4,518 reviews</span>
-                                </div>
-                            </a>
-
-                            <a href="tel:{{ getData?.phoneNumber }}" class="popular-hotel">
-                                <img src="assets/images/hotel/middleeast-hotel5.webp"
-                                    alt="The St. Regis Dubai, The Palm">
-
-                                <div class="popular-hotel__info">
-                                    <h3>The St. Regis Dubai, The Palm</h3>
-                                    <p>Dubai, UAE</p>
-                                    <span>8.9 Excellent · 3,864 reviews</span>
-                                </div>
-                            </a>
-
-                            <a href="tel:{{ getData?.phoneNumber }}" class="popular-hotel">
-                                <img src="assets/images/hotel/middleeast-hotel6.webp" alt="Mandarin Oriental Doha">
-
-                                <div class="popular-hotel__info">
-                                    <h3>Mandarin Oriental Doha</h3>
-                                    <p>Doha, Qatar</p>
-                                    <span>9.3 Excellent · 2,741 reviews</span>
-                                </div>
-                            </a>
-
-                            <a href="tel:{{ getData?.phoneNumber }}" class="popular-hotel">
-                                <img src="assets/images/hotel/middleeast-hotel7.webp" alt="The Ritz-Carlton, Doha">
-
-                                <div class="popular-hotel__info">
-                                    <h3>The Ritz-Carlton, Doha</h3>
-                                    <p>Doha, Qatar</p>
-                                    <span>8.8 Excellent · 5,216 reviews</span>
-                                </div>
-                            </a>
-
-                            <a href="tel:{{ getData?.phoneNumber }}" class="popular-hotel">
-                                <img src="assets/images/hotel/middleeast-hotel8.webp" alt="Fairmont Amman">
-
-                                <div class="popular-hotel__info">
-                                    <h3>Fairmont Amman</h3>
-                                    <p>Amman, Jordan</p>
-                                    <span>8.7 Excellent · 3,492 reviews</span>
-                                </div>
-                            </a>
-
-                        </div>
-                    </div>
-
-
-                    <div class="tab-pane fade" id="northamerica" role="tabpanel" aria-labelledby="northamerica-tab">
-                        <div class="popular-hotels__grid">
-
-                            <a href="tel:{{ getData?.phoneNumber }}" class="popular-hotel">
-                                <img src="assets/images/hotel/northamerica-hotel1.webp" alt="Amangiri">
-
-                                <div class="popular-hotel__info">
-                                    <h3>Amangiri</h3>
-                                    <p>Utah, USA</p>
-                                    <span>9.2 Excellent · 4,286 reviews</span>
-                                </div>
-                            </a>
-
-                            <a href="tel:{{ getData?.phoneNumber }}" class="popular-hotel">
-                                <img src="assets/images/hotel/northamerica-hotel2.webp" alt="Four Seasons Resort Lanai">
-
-                                <div class="popular-hotel__info">
-                                    <h3>Four Seasons Resort Lanai</h3>
-                                    <p>Hawaii, USA</p>
-                                    <span>9.1 Excellent · 3,742 reviews</span>
-                                </div>
-                            </a>
-
-                            <a href="tel:{{ getData?.phoneNumber }}" class="popular-hotel">
-                                <img src="assets/images/hotel/northamerica-hotel3.webp" alt="The Beverly Hills Hotel">
-
-                                <div class="popular-hotel__info">
-                                    <h3>The Beverly Hills Hotel</h3>
-                                    <p>Beverly Hills, California, USA</p>
-                                    <span>9.3 Excellent · 5,641 reviews</span>
-                                </div>
-                            </a>
-
-                            <a href="tel:{{ getData?.phoneNumber }}" class="popular-hotel">
-                                <img src="assets/images/hotel/northamerica-hotel4.webp" alt="Waldorf Astoria New York">
-
-                                <div class="popular-hotel__info">
-                                    <h3>Waldorf Astoria New York</h3>
-                                    <p>New York City, USA</p>
-                                    <span>8.9 Excellent · 6,218 reviews</span>
-                                </div>
-                            </a>
-
-                            <a href="tel:{{ getData?.phoneNumber }}" class="popular-hotel">
-                                <img src="assets/images/hotel/northamerica-hotel5.webp" alt="The Langham Chicago">
-
-                                <div class="popular-hotel__info">
-                                    <h3>The Langham Chicago</h3>
-                                    <p>Chicago, Illinois, USA</p>
-                                    <span>9.0 Excellent · 4,875 reviews</span>
-                                </div>
-                            </a>
-
-                            <a href="tel:{{ getData?.phoneNumber }}" class="popular-hotel">
-                                <img src="assets/images/hotel/northamerica-hotel6.webp" alt="Fairmont Banff Springs">
-
-                                <div class="popular-hotel__info">
-                                    <h3>Fairmont Banff Springs</h3>
-                                    <p>Banff, Alberta, Canada</p>
-                                    <span>8.8 Excellent · 7,392 reviews</span>
-                                </div>
-                            </a>
-
-                            <a href="tel:{{ getData?.phoneNumber }}" class="popular-hotel">
-                                <img src="assets/images/hotel/northamerica-hotel7.webp"
-                                    alt="Four Seasons Hotel Toronto">
-
-                                <div class="popular-hotel__info">
-                                    <h3>Four Seasons Hotel Toronto</h3>
-                                    <p>Toronto, Canada</p>
-                                    <span>9.1 Excellent · 3,684 reviews</span>
-                                </div>
-                            </a>
-
-                            <a href="tel:{{ getData?.phoneNumber }}" class="popular-hotel">
-                                <img src="assets/images/hotel/northamerica-hotel8.webp"
-                                    alt="Zadún, a Ritz-Carlton Reserve">
-
-                                <div class="popular-hotel__info">
-                                    <h3>Zadún, a Ritz-Carlton Reserve</h3>
-                                    <p>San José del Cabo, Mexico</p>
-                                    <span>9.4 Excellent · 2,516 reviews</span>
+                                    <h3>{{ hotel.title }}</h3>
+                                    <p>{{ hotel.location }}</p>
+
+                                    <span *ngIf="loadingHotel !== hotel.title">
+                                        {{ hotel.score }} {{ hotel.scoreLabel }} · {{ hotel.reviews }} reviews
+                                    </span>
+
+                                    <span *ngIf="loadingHotel === hotel.title">
+                                        Searching...
+                                    </span>
                                 </div>
                             </a>
 
