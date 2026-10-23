@@ -429,11 +429,11 @@ export const routes: Routes = [
           import("./pages/about-us/about-us.component").then(
             (m) => m.AboutUsComponent,
           ),
-        title: "About Flighthelpbuddy | Your Trusted Travel Booking Partner",
+        title: "About Us | Your Trusted Travel Booking Partner | Flighthelpbuddy",
         data: {
-          metaTitle: "About Flighthelpbuddy | Your Trusted Travel Booking Partner",
+          metaTitle: "About Us | Your Trusted Travel Booking Partner | Flighthelpbuddy",
           metaDescription:
-            "Learn about Flighthelpbuddy, a trusted travel booking assistance platform helping you find great deals on flights, hotels, car rentals, and cruises.",
+            "Discover a simpler way to plan your next trip with affordable flight and hotel deals, flexible travel options, and 24/7 expert support.",
         },
       },
 
@@ -1709,12 +1709,12 @@ export const routes: Routes = [
         path: "faq",
         loadComponent: () =>
           import("./pages/faq/faq.component").then((m) => m.FaqComponent),
-        title: "Book Flights, Hotels, Cars & Vacation Packages | Flighthelpbuddy",
+        title: "Travel FAQs | Flights, Hotels & Holiday Packages | Flighthelpbuddy",
         data: {
           metaTitle:
-            "Book Flights, Hotels, Cars & Vacation Packages | Flighthelpbuddy",
+            "Travel FAQs | Flights, Hotels & Holiday Packages | Flighthelpbuddy",
           metaDescription:
-            "Plan your next journey with Flighthelpbuddy. Easily search, compare, and book affordable flights, hotel stays, rental cars, and vacation bundles - all in one place.",
+            "Find answers to common travel questions about flight bookings, hotel reservations, holiday packages, changes, and cancellations. Get expert travel assistance today.",
         },
       },
       {
