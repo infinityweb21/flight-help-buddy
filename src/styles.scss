@@ -706,6 +706,7 @@ Explore by destination (stay cards)
   font-size: 10.5px;
   font-weight: 600;
   white-space: nowrap;
+  display: none;
   color: rgba(var(--black-color), 0.55);
 }
 
@@ -728,6 +729,7 @@ Explore by destination (stay cards)
   margin: 0 0 12px;
   min-height: calc(14px * 1.35 * 2);
   font-size: 14px;
+  display: none !important;
   font-weight: 800;
   line-height: 1.35;
   color: rgba(var(--black-color), 1);
@@ -742,6 +744,7 @@ Explore by destination (stay cards)
   align-items: center;
   justify-content: space-between;
   gap: 10px;
+    display: none;
 }
 .flight-card-airline {
   min-width: 0;
@@ -750,12 +753,14 @@ Explore by destination (stay cards)
   gap: 8px;
   font-size: 12px;
   font-weight: 600;
+  display: none;
   color: rgba(var(--black-color), 0.7);
 }
 .flight-card-airline span {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+
 }
 .flight-card-logo {
   width: 34px !important; /* overrides owl's img width:100% */
