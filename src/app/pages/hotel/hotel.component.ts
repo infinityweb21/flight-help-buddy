@@ -183,7 +183,7 @@ export class HotelComponent implements OnInit, AfterViewInit, OnDestroy {
   hotelSliderCards = [
     {
       label: "Top Rated",
-      image: "assets/images/hotel/hualalai-hotel1.webp",
+      image: "assets/images/hotel/hualalai-hotel1.jfif",
       alt: "Four Seasons Resort Hualalai luxury hotel in Kailua-Kona, Hawaii",
       rating: "4.98",
       reviews: "1248",
@@ -198,7 +198,7 @@ export class HotelComponent implements OnInit, AfterViewInit, OnDestroy {
     },
     {
       label: "Top Rated",
-      image: "assets/images/hotel/lanai-hotel2.webp",
+      image: "assets/images/hotel/lanai-hotel2.jpeg",
       alt: "Four Seasons Resort Lanai luxury hotel in Lanai City, Hawaii",
       rating: "4.97",
       reviews: "986",
@@ -213,7 +213,7 @@ export class HotelComponent implements OnInit, AfterViewInit, OnDestroy {
     },
     {
       label: "Top Rated",
-      image: "assets/images/hotel/langham-hotel5.webp",
+      image: "assets/images/hotel/langham-hotel5.jfif",
       alt: "The Langham Chicago luxury hotel in Chicago, Illinois",
       rating: "4.96",
       reviews: "672",
@@ -228,7 +228,7 @@ export class HotelComponent implements OnInit, AfterViewInit, OnDestroy {
     },
     {
       label: "Top Rated",
-      image: "assets/images/hotel/oriental-hotel3.webp",
+      image: "assets/images/hotel/oriental-hotel3.jfif",
       alt: "Mandarin Oriental luxury hotel in New York City",
       rating: "4.95",
       reviews: "845",
@@ -243,7 +243,7 @@ export class HotelComponent implements OnInit, AfterViewInit, OnDestroy {
     },
     {
       label: "Top Rated",
-      image: "assets/images/hotel/mandarin-hotel4.webp",
+      image: "assets/images/hotel/mandarin-hotel4.jfif",
       alt: "Mandarin Oriental luxury hotel in Boston, Massachusetts",
       rating: "4.94",
       reviews: "738",
