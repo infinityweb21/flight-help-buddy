@@ -26,6 +26,7 @@ import {
   FlightCard,
   DEFAULT_FLIGHT_CARDS,
 } from "../../components/flight-card/flight-card.component";
+import { PopularRoutesComponent } from "../../components/popular-routes/popular-routes.component";
 
 // Owl Carousel / jQuery
 declare var $: any;
@@ -33,7 +34,7 @@ declare var $: any;
 @Component({
   selector: "app-flight",
 
-  imports: [MainFilterComponent, NgFor, CommonModule, CarouselModule,FlightCardComponent],
+  imports: [MainFilterComponent, NgFor, CommonModule, CarouselModule,FlightCardComponent,PopularRoutesComponent],
 
   templateUrl: "./flight.component.html",
 

@@ -19,8 +19,8 @@
   .support-badge {
     width: 44px;
     height: 44px;
-    background: rgba(var(--main-color), 1);
-    color: #ffffff;
+    background: rgba(var(--main-color), 0.3);
+    color: rgba(var(--main-color), 1);
     border-radius: 10px;
     display: flex;
     align-items: center;
@@ -61,8 +61,8 @@
   height: 38px;
   flex-shrink: 0;
   border-radius: 50%;
-  background: rgba(var(--second-color), 1);
-  color: rgba(var(--white-color), 1);
+  background: rgba(var(--second-color), 0.3);
+  color: rgba(var(--second-color), 1);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -85,12 +85,12 @@
   a {
     font-size: 14px;
     font-weight: 600;
-    color: rgba(var(--main-color), 1);
+    color: #0020ff;
     text-decoration: none;
     word-break: break-word;
 
     &:hover {
-      color: #f6a623;
+      color: #ff0000;
     }
   }
 }
@@ -103,7 +103,7 @@
   width: 100%;
   padding: 11px 15px;
   border-radius: 7px;
-  background: rgba(var(--main-color), 1);
+  background: #0020ff;
   color: #ffffff;
   text-decoration: none;
   font-size: 14px;
@@ -130,35 +130,13 @@
   }
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 .travel-cta-section {
   padding: 15px 0;
   width: 100%;
 }
-
+.common-content-box h2{
+  color: #0020ff;
+}
 .travel-cta-content {
   position: relative;
   display: flex;
@@ -167,11 +145,7 @@
   padding: 30px 40px;
   border-radius: 18px;
   overflow: hidden;
-  background: linear-gradient(
-    110deg,
-    rgba(var(--main-color), 1) 0%,
-    rgba(var(--main-color), 0.82) 100%
-  );
+  background: linear-gradient(110deg, #970000 0%, #000000 100%);
   box-shadow: 0 10px 30px rgba(var(--main-color), 0.12);
 
   &::before {
@@ -289,9 +263,9 @@
 }
 
 .cta-primary-btn {
-  border: 1px solid rgba(var(--second-color), 1);
-  background: rgba(var(--second-color), 1);
-  color: rgba(var(--main-color), 1);
+  border: 1px solid rgba(var(--main-color), 1);
+  background: rgba(var(--main-color), 1);
+  color: rgba(var(--white-color), 1);
 
   i {
     font-size: 12px;
@@ -444,9 +418,8 @@
   }
 }
 
-
-::ng-deep{
-  .tp-footer-bottom{
+::ng-deep {
+  .tp-footer-bottom {
     padding-bottom: 120px !important;
   }
 }

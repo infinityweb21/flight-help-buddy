@@ -1520,3 +1520,11 @@
 .fsr-field__body .c-hotel-destination-dropdown__items-wrap .fsr-hotel:hover {
   background: transparent !important;
 }
+@media (max-width: 768px) {
+  .for-flightandhotel .fsr-swap {
+    border-radius: 0 14px 0 0;
+  }
+  .for-flightandhotel .fsr-explore {
+    border-top-right-radius: 0;
+  }
+}
