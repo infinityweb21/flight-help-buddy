@@ -1,0 +1,17 @@
+<div class="loader-overlay" role="dialog" aria-modal="true" aria-live="polite">
+    <div class="loader-box">
+ 
+      <div class="loader">
+        <div class="ring"></div>
+        <div class="icon">
+          <i [class]="icon()"></i>
+        </div>
+      </div>
+ 
+      <h3>
+        {{ title() }}<span class="dots"><span>.</span><span>.</span><span>.</span></span>
+      </h3>
+      <p>{{ message() }}</p>
+ 
+    </div>
+  </div>

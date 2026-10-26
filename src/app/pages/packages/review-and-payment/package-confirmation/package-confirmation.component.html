@@ -1,0 +1,1721 @@
+@if (isSkeleton) {
+<app-flight-payment-skeleton></app-flight-payment-skeleton>
+}
+@if (iscommonSkeleton) {
+<app-payment-loader></app-payment-loader>
+}
+@if (!isSkeleton && !iscommonSkeleton) {
+<section class="common-section p-0 booking_stessp">
+  <div class="container">
+    <div class="booking-steps">
+      <div class="booking-step success">
+        <span class="step-number"><i class="fa-solid fa-check"></i></span>
+        <span class="step-name">Stay</span>
+      </div>
+
+      <span class="step-arrow active">››</span>
+
+      <div class="booking-step success">
+        <span class="step-number"><i class="fa-solid fa-check"></i></span>
+        <span class="step-name">Flight</span>
+      </div>
+
+      <span class="step-arrow active">››</span>
+
+      <div class="booking-step success ">
+        <span class="step-number">3</span>
+        <span class="step-name">Review & Payment</span>
+      </div>
+      <span class="step-arrow active">››</span>
+      <div class="booking-step success">
+        <span class="step-number">4</span>
+        <span class="step-name">Confirm Booking</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="overflow-visible common-section pt-2 ">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-8 col-12">
+        <div class="pkgrev" tabindex="-1">
+          <!-- Good choice banner -->
+          <!-- ===== Package Booking Confirmation Banner (Flight + Hotel) ===== -->
+          <!-- Needs Font Awesome 6 (you already use fa-solid icons) -->
+
+          <div class="bkconf" role="status" aria-live="polite">
+            <div class="bkconf__icon" aria-hidden="true">
+              <i class="fa-solid fa-check bkconf__tick"></i>
+            </div>
+
+            <div class="bkconf__body">
+              <h2 class="bkconf__title">Package booking confirmed!</h2>
+              <p class="bkconf__sub">Your flight and hotel are booked and ready to go.</p>
+
+              <ul class="bkconf__items">
+                <li class="bkconf__item">
+                  <i class="fa-solid fa-plane-departure"></i>
+                  <span>Flight</span>
+                  <em class="bkconf__ok"><i class="fa-solid fa-circle-check"></i></em>
+                </li>
+                <li class="bkconf__item">
+                  <i class="fa-solid fa-hotel"></i>
+                  <span>Hotel</span>
+                  <em class="bkconf__ok"><i class="fa-solid fa-circle-check"></i></em>
+                </li>
+              </ul>
+
+              <!-- <p class="bkconf__mail">
+                <i class="fa-regular fa-envelope"></i> Confirmation email sent
+              </p> -->
+            </div>
+
+            <div class="bkconf__id">
+              <span class="bkconf__id-label">Booking ID</span>
+              <div class="bkconf__id-row">
+                <strong class="bkconf__id-value" id="bkconfId">{{bookingId}}</strong>
+              </div>
+            </div>
+          </div>
+
+
+          <!-- Hotel card -->
+          <div class="pkgrev__card pkgrev__hotel">
+            <div class="pkgrev__hotel-img">
+              <img [src]="roomDetails?.roomImages[0]?.imageUrl" alt="Room" class="hotel-img" />
+              <span class="pkgrev__hotel-stars"><i class="fa-solid fa-star"></i>{{hotelDetails?.starRating}}</span>
+            </div>
+
+            <div class="pkgrev__hotel-body">
+              <div class="pkgrev__hotel-top">
+                <div>
+                  <p class="pkgrev__hotel-name">{{hotelDetails?.hotelName}}</p>
+                  <p class="pkgrev__hotel-address">
+                    {{hotelDetails?.descriptions?.location}}
+                  </p>
+                </div>
+                <!-- <a class="pkgrev__btn" (click)="onChangeHotel()">Change Hotel</a> -->
+              </div>
+
+              <div class="pkgrev__hotel-meta">
+                <div>
+                  <p class="pkgrev__hotel-room-label">Selected Room</p>
+                  <p class="pkgrev__hotel-room-value">
+                    1 King Bed &ndash; Deluxe Room
+                    <!-- -
+                      <a href="package-hotel-details.html" class="pkgrev__btn"
+                        >Change Room</a
+                      > -->
+                  </p>
+                </div>
+                <div>
+                  <p class="pkgrev__date-label">Check-in</p>
+                  <p class="pkgrev__date-value">{{formatTime(hotelDetails?.checkin)}}</p>
+                </div>
+                <div>
+                  <p class="pkgrev__date-label">Check-out</p>
+                  <p class="pkgrev__date-value">{{formatTime(hotelDetails?.checkout)}} ({{ noOfNights}} Night{{
+                    noOfNights > 1 ?'s' :
+                    '' }})</p>
+                </div>
+              </div>
+
+              <div class="pkgrev__hotel-footer">
+                <button type="button" class="pkgrev__link pkgrev__link--relative"
+                  [attr.aria-expanded]="isTipOpen('tipCancelPolicy')"
+                  (click)="toggleTip('tipCancelPolicy'); $event.stopPropagation()" aria-describedby="tipCancelPolicy">
+                  Hotel Cancellation Policy
+                  <i class="fa-solid fa-circle-info"></i>
+                  <div class="pkgrev__tip pkgrev__tip--right" [class.is-open]="isTipOpen('tipCancelPolicy')"
+                    id="tipCancelPolicy" role="tooltip">
+                    <p class="pkgrev__tip-title">Cancellation Policy</p>
+                    <p class="pkgrev__tip-row">
+                      Free cancellation until 48 hours before check-in.
+                      Cancellations made after this window are subject to a
+                      one-night room charge.
+                    </p>
+                  </div>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Flight card -->
+          <div class="pkgrev__card pkgrev__flight">
+            <div class="pkgrev__flight-header">
+              <p class="pkgrev__flight-title">Flight Details</p>
+              <div class="pkgrev__flight-route">
+                {{getMainDetails?.Citypairs[0]?.FlightSegment[0]?.DepartureLocationCode}} @if
+                (getMainDetails?.Citypairs?.length === 1) { <i class="fa-solid fa-right"></i>}@else{<i
+                  class="fa-solid fa-right-left"></i>}
+                {{getMainDetails?.Citypairs[0]?.FlightSegment[getMainDetails?.Citypairs[0].FlightSegment.length -
+                1]?.ArrivalLocationCode}}
+              </div>
+              <span class="pkgrev__flight-daterange"> @if (getMainDetails?.Citypairs?.length >= 1) {{{
+                getMainDetails?.Citypairs[0]?.FlightSegment[0]
+                ?.DepartureDateTime | date: "EEE, d MMM"
+                }}} @if (getMainDetails?.Citypairs?.length === 2) { - {{
+                getMainDetails?.Citypairs[1]
+                ?.FlightSegment[0]?.DepartureDateTime
+                | date: "EEE, d MMM"
+                }}}</span>
+              <div class="pkgrev__flight-travelers">
+                <i class="fa-solid fa-user"></i> {{totalPassengers}} Travelers
+              </div>
+              <!-- <a class="pkgrev__btn" (click)="onChangeFlight()">Change Flight</a> -->
+            </div>
+
+            @for (cp of getMainDetails?.Citypairs; track $index) {
+
+            @if (cp?.FlightSegment?.length > 0) {
+
+            @let firstSegment = cp.FlightSegment[0];
+            @let lastSegment = cp.FlightSegment[cp.FlightSegment.length - 1];
+            @let duration = getSegmentDurationParts(cp.FlightSegment);
+
+            <div class="pkgrev__leg">
+
+              <!-- Depart / Return -->
+              <div class="pkgrev__leg-label">
+                <i class="fa-solid" [class.fa-plane-departure]="$index === 0" [class.fa-plane-arrival]="$index === 1">
+                </i>
+
+                {{ $index === 0 ? 'Depart' : 'Return' }}
+              </div>
+
+
+              <!-- Airline -->
+              <div class="pkgrev__leg-airline">
+
+                <span class="pkgrev__airline-logo">
+                  <img [src]="imageUrl + firstSegment?.FlightLogoName"
+                    [alt]="firstSegment?.MarketingAirlineName || 'Airline'" />
+                </span>
+
+                <div class="pkgrev__leg-airline-info">
+
+                  {{ firstSegment?.MarketingAirlineName }}
+
+                  <span class="pkgrev__flight-info">
+                    Flight {{ firstSegment?.FlightNumber }}
+
+
+
+                  </span>
+                </div>
+              </div>
+
+
+              <!-- Times -->
+              <div class="pkgrev__leg-times">
+
+                <!-- Departure -->
+                <div class="pkgrev__leg-time">
+
+                  <div class="pkgrev__leg-time-value">
+                    {{ firstSegment?.DepartureDateTime | date:'hh:mm a' }}
+                  </div>
+
+                  <div class="pkgrev__leg-time-code">
+                    {{ firstSegment?.DepartureLocationCode }}
+                  </div>
+
+                </div>
+
+
+                <!-- Duration -->
+                <div class="pkgrev__leg-duration">
+
+                  <div class="pkgrev__leg-duration-line"></div>
+
+                  <div class="pkgrev__leg-duration-text">
+                    {{ cp?.Duration | durationToHours }}
+                  </div>
+
+                  <div class="pkgrev__leg-stop">
+
+                    @if (cp?.NoOfStops === 0) {
+                    Non Stop
+                    } @else {
+                    {{ cp?.NoOfStops }} Stop{{ cp?.NoOfStops > 1 ? 's' : '' }}
+                    }
+
+                  </div>
+
+                </div>
+
+
+                <!-- Arrival -->
+                <div class="pkgrev__leg-time">
+
+                  @if (duration.days > 0) {
+                  <span class="pkgrev__leg-time-nextday">
+                    +{{ duration.days }} day
+                  </span>
+                  }
+
+                  <div class="pkgrev__leg-time-value">
+                    {{ lastSegment?.ArrivalDateTime | date:'hh:mm a' }}
+                  </div>
+
+                  <div class="pkgrev__leg-time-code">
+                    {{ lastSegment?.ArrivalLocationCode }}
+                  </div>
+
+                </div>
+
+              </div>
+
+            </div>
+
+
+            <!-- Divider between Depart and Return -->
+            @if (!$last) {
+            <div class="fs-divider"></div>
+            }
+
+            }
+            }
+
+            <div class="ifo-secbox fr-main-rows pkgrev__leg pb-0 border-0" ata-bs-target="frDetails1">
+              <a class="pkgrev__btn" (click)="toggleFlightDetails($event)">Flight Details</a>
+            </div>
+
+            <!-- ===== FLIGHT DETAILS (ACCORDION) ===== -->
+            <div class="fr-details" id="frDetails1" (click)="$event.stopPropagation()" #dropdownPanel
+              [class.fr-open]="openIndex">
+              <div class="fd-card combocard">
+                <!-- Header -->
+                <div class="fd-header">
+                  <div class="tab-box-sec-inner">
+                    <ul class="nav nav-pills travel-type-tabs__nav" id="travelTypeTab" role="tablist">
+                      <!-- Route -->
+                      <li class="nav-item" role="presentation">
+                        <button class="nav-link active travel-type-tabs__item" id="route-tab" data-bs-toggle="pill"
+                          data-bs-target="#route" type="button" role="tab" aria-controls="route" aria-selected="true">
+                          <span class="travel-type-tabs__content">
+                            <strong>Route</strong>
+                          </span>
+                        </button>
+                      </li>
+
+                      <!-- Baggage -->
+                      <li class="nav-item" role="presentation">
+                        <button class="nav-link travel-type-tabs__item" id="baggage-tab" data-bs-toggle="pill"
+                          data-bs-target="#baggage" type="button" role="tab" aria-controls="baggage"
+                          aria-selected="false">
+                          <span class="travel-type-tabs__content">
+                            <strong>Baggage</strong>
+                          </span>
+                        </button>
+                      </li>
+
+                      <!-- Instant support -->
+                      <li class="nav-item" role="presentation">
+                        <button class="nav-link travel-type-tabs__item" id="is-tab" data-bs-toggle="pill"
+                          data-bs-target="#is" type="button" role="tab" aria-controls="is" aria-selected="false">
+                          <span class="travel-type-tabs__content">
+                            <strong>Instant Support</strong>
+                          </span>
+                        </button>
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="rightclosesec">
+                    <button class="fr-close-btn" (click)="closeFlightDetails($event)">✕</button>
+                  </div>
+                </div>
+
+                <div class="tab-content travel-type-tabs__content-area" id="travelTypeTabContent">
+                  <div class="tab-pane fade show active" id="route" role="tabpanel" aria-labelledby="route-tab">
+                    @if (getMainDetails?.Citypairs?.length >= 1) {
+                    <div class="fd-card p-0">
+                      <!-- ================= DEPARTURE ================= -->
+
+                      <!-- Segment 1 / Departure -->
+                      <div class="fd-segment p-0">
+                        <div class="inline-flex-sec fd-segment pb-0">
+                          <div class="dtitle">
+                            Depart ·
+                            {{
+                            getMainDetails?.Citypairs[0]?.FlightSegment[0]
+                            ?.DepartureDateTime | date: "EEE, d MMM"
+                            }}
+                          </div>
+
+                          <span class="duration-size">
+                            Journey Duration:
+                            {{
+                            getMainDetails?.Citypairs[0]?.Duration
+                            | durationToHours
+                            }}
+                          </span>
+                        </div>
+
+                        @for (
+                        flight of getMainDetails?.Citypairs[0]
+                        ?.FlightSegment;
+                        track $index;
+                        let i = $index
+                        ) {
+                        <!-- ================= FLIGHT SEGMENT ================= -->
+                        <div class="fd-segment">
+                          <div class="fd-seg-head">
+                            <img [src]="imageUrl + flight.FlightLogoName" class="fd-air-logo"
+                              [alt]="flight.FlightLogoName" />
+
+                            <span>
+                              {{ flight.MarketingAirlineName }}
+                              {{ flight.FlightNumber }}
+                            </span>
+
+                            <span class="fd-chip">
+                              {{ flight.AirEquipmentType }}
+                            </span>
+
+                            <div class="fd-icons">
+                              <!-- Keep your existing SVG icons here -->
+                            </div>
+                          </div>
+
+                          <div class="fd-seg-body">
+                            <div class="fd-time-col">
+                              <strong>
+                                {{
+                                flight.DepartureDateTime
+                                | date: "HH:mm"
+                                }}
+                              </strong>
+
+                              <span>
+                                {{ flight.OriginAirportName }}
+                                ({{ flight.DepartureLocationCode }})
+                              </span>
+                            </div>
+
+                            <div class="fd-mid">
+                              <span class="fd-flight-icon"> ✈ </span>
+
+                              <small>
+                                {{ flight.Duration | lowercase }}
+                              </small>
+
+                              @if (
+                              flight.DepartureDateTime &&
+                              flight.ArrivalDateTime &&
+                              (flight.DepartureDateTime
+                              | date: "yyyyMMdd") !==
+                              (flight.ArrivalDateTime
+                              | date: "yyyyMMdd")
+                              ) {
+                              <span class="fd-tag">
+                                Overnight flight
+                              </span>
+                              }
+                            </div>
+
+                            <div class="fd-time-col">
+                              <strong>
+                                {{
+                                flight.ArrivalDateTime
+                                | date: "HH:mm"
+                                }}
+                              </strong>
+
+                              <span>
+                                {{ flight.DestinationAirportName }}
+                                ({{ flight.ArrivalLocationCode }})
+                              </span>
+
+                              @if (
+                              flight.DepartureDateTime &&
+                              flight.ArrivalDateTime &&
+                              (flight.DepartureDateTime
+                              | date: "yyyyMMdd") !==
+                              (flight.ArrivalDateTime
+                              | date: "yyyyMMdd")
+                              ) {
+                              <small class="fd-arrival">
+                                Arrives
+                                {{
+                                flight.ArrivalDateTime
+                                | date: "EEE, d MMM"
+                                }}
+                              </small>
+                              }
+                            </div>
+                          </div>
+                        </div>
+
+                        <!-- ================= LAYOVER ================= -->
+                        @if (
+                        i < getMainDetails?.Citypairs[0]?.FlightSegment ?.length - 1 ) { <div class="fd-layover">
+                          {{
+                          getMainDetails?.Citypairs[0]?.FlightSegment[
+                          i + 1
+                          ]?.LayoverTime | lowercase
+                          }}
+
+                          · Change planes in
+
+                          {{
+                          getMainDetails?.Citypairs[0]?.FlightSegment[
+                          i + 1
+                          ]?.OriginAirportName
+                          }}
+
+                          (
+                          {{
+                          getMainDetails?.Citypairs[0]?.FlightSegment[
+                          i + 1
+                          ]?.DepartureLocationCode
+                          }}
+                          )
+
+                          <span class="fd-badge orange">
+                            Long stopover
+                          </span>
+
+                          <span class="fd-badge gray">
+                            Self-transfer
+                          </span>
+                      </div>
+                      }
+                      }
+                    </div>
+                  </div>
+
+                  <!-- ================= RETURN ================= -->
+                  @if (getMainDetails?.Citypairs?.length === 2) {
+                  <div class="fd-card p-0">
+                    <div class="fd-segment p-0">
+                      <div class="inline-flex-sec fd-segment pb-0">
+                        <div class="dtitle">
+                          Return ·
+                          {{
+                          getMainDetails?.Citypairs[1]
+                          ?.FlightSegment[0]?.DepartureDateTime
+                          | date: "EEE, d MMM"
+                          }}
+                        </div>
+
+                        <span class="duration-size">
+                          Journey Duration:
+                          {{
+                          getMainDetails?.Citypairs[1]?.Duration
+                          | durationToHours
+                          }}
+                        </span>
+                      </div>
+
+                      @for (
+                      flight of getMainDetails?.Citypairs[1]
+                      ?.FlightSegment;
+                      track $index;
+                      let i = $index
+                      ) {
+                      <!-- ================= RETURN FLIGHT SEGMENT ================= -->
+                      <div class="fd-segment">
+                        <div class="fd-seg-head">
+                          <img [src]="
+                                            imageUrl + flight.FlightLogoName
+                                          " class="fd-air-logo" [alt]="flight.FlightLogoName" />
+
+                          <span>
+                            {{ flight.MarketingAirlineName }}
+                            {{ flight.FlightNumber }}
+                          </span>
+
+                          <span class="fd-chip">
+                            {{ flight.AirEquipmentType }}
+                          </span>
+
+                          <!-- <span class="fd-amenity">
+                                          <img
+                                            src="assets/images/flight/food-svgrepo-com.svg"
+                                            alt=""
+                                          />
+
+                                          Light meal available
+                                        </span> -->
+                        </div>
+
+                        <div class="fd-seg-body">
+                          <div class="fd-time-col">
+                            <strong>
+                              {{
+                              flight.DepartureDateTime
+                              | date: "HH:mm"
+                              }}
+                            </strong>
+
+                            <span>
+                              {{ flight.OriginAirportName }}
+                              ({{ flight.DepartureLocationCode }})
+                            </span>
+                          </div>
+
+                          <div class="fd-mid">
+                            <span class="fd-flight-icon">
+                              ✈
+                            </span>
+
+                            <small>
+                              {{ flight.Duration | lowercase }}
+                            </small>
+
+                            @if (
+                            flight.DepartureDateTime &&
+                            flight.ArrivalDateTime &&
+                            (flight.DepartureDateTime
+                            | date: "yyyyMMdd") !==
+                            (flight.ArrivalDateTime
+                            | date: "yyyyMMdd")
+                            ) {
+                            <span class="fd-tag">
+                              Overnight flight
+                            </span>
+                            }
+                          </div>
+
+                          <div class="fd-time-col">
+                            <strong>
+                              {{
+                              flight.ArrivalDateTime
+                              | date: "HH:mm"
+                              }}
+                            </strong>
+
+                            <span>
+                              {{ flight.DestinationAirportName }}
+                              ({{ flight.ArrivalLocationCode }})
+                            </span>
+
+                            @if (
+                            flight.DepartureDateTime &&
+                            flight.ArrivalDateTime &&
+                            (flight.DepartureDateTime
+                            | date: "yyyyMMdd") !==
+                            (flight.ArrivalDateTime
+                            | date: "yyyyMMdd")
+                            ) {
+                            <small class="fd-arrival">
+                              Arrives
+                              {{
+                              flight.ArrivalDateTime
+                              | date: "EEE, d MMM"
+                              }}
+                            </small>
+                            }
+                          </div>
+                        </div>
+                      </div>
+
+                      <!-- ================= RETURN LAYOVER ================= -->
+                      @if (
+                      i < getMainDetails?.Citypairs[1]?.FlightSegment ?.length - 1 ) { <div class="fd-layover">
+                        {{
+                        getMainDetails?.Citypairs[1]
+                        ?.FlightSegment[i + 1]?.LayoverTime
+                        | lowercase
+                        }}
+
+                        · Change planes in
+
+                        {{
+                        getMainDetails?.Citypairs[1]
+                        ?.FlightSegment[i + 1]
+                        ?.OriginAirportName
+                        }}
+
+                        (
+                        {{
+                        getMainDetails?.Citypairs[1]
+                        ?.FlightSegment[i + 1]
+                        ?.DepartureLocationCode
+                        }}
+                        )
+
+                        <span class="fd-badge orange">
+                          Long stopover
+                        </span>
+
+                        <span class="fd-badge gray">
+                          Self-transfer
+                        </span>
+                    </div>
+                    }
+                    }
+                  </div>
+                </div>
+                }
+                }
+              </div>
+              <div class="tab-pane fade" id="baggage" role="tabpanel" aria-labelledby="baggage-tab">
+                <div class="fd-card">
+                  @if (flightBaggage) {
+                  <div class="fd-segment">
+                    <div class="inline-flex-sec">
+                      <div class="dtitle">Baggage Information</div>
+                    </div>
+
+                    @if (allRoutes.length > 0) {
+                    <div class="rt-tabnav" role="tablist" #routeList>
+                      @for (route of allRoutes; track $index) {
+                      <button class="rt-tab" type="button" [class.active]="
+                                          $index === selectedRouteIndex
+                                        " (click)="selectRoute($index, routeItem)" #routeItem>
+                        <i class="fa-solid fa-plane"></i>
+                        {{ route.departure }} to
+                        {{ route.arrival }}
+                      </button>
+                      }
+                    </div>
+
+                    @if (selectedRoute) {
+                    <div class="bg-card">
+                      <div class="bg-card__header">
+                        <div class="bg-card__airline">
+                          <div class="bg-card__logo">
+                            <img [src]="
+                                                imageUrl +
+                                                selectedRoute.flights
+                                                  .FlightLogoName
+                                              " [alt]="
+                                                selectedRoute.flights
+                                                  .FlightLogoName
+                                              " />
+                          </div>
+
+                          <div class="bg-card__name">
+                            {{
+                            selectedRoute.flights
+                            .MarketingAirlineName
+                            }}
+                          </div>
+                        </div>
+
+                        <div class="bg-card__class">
+                          {{
+                          classMap[
+                          selectedRoute.flights?.CabinClass
+                          ] ||
+                          selectedRoute.flights?.CabinClass
+                          }}
+                          @if (
+                          selectedRoute.flights
+                          ?.BookingClass != "" &&
+                          selectedRoute.flights
+                          ?.BookingClass != null
+                          ) {
+                          ({{
+                          selectedRoute.flights
+                          .BookingClass
+                          }})
+                          }
+                        </div>
+                      </div>
+
+                      <!-- Check-in Bag -->
+                      <div class="bg-row">
+                        <div class="bg-row__left">
+                          <div class="bg-row__icon">
+                            <i class="fa-solid fa-suitcase-rolling"></i>
+                            @let bagicon =
+                            getBag(
+                            "CHECKIN",
+                            selectedRoute.bags
+                            );
+                            @if (bagicon?.count > 0) {
+                            <i class="fa-solid fa-circle-check"></i>
+                            } @else {
+                            <i class="fa-solid fa-circle-exclamation"></i>
+                            }
+                          </div>
+
+                          <div>
+                            <p class="bg-row__title">
+                              Check-in Bag
+                            </p>
+
+                            <p class="bg-row__sub">
+                              @if (
+                              hasCheckinBag(
+                              selectedRoute.bags
+                              )
+                              ) {
+                              @let bag =
+                              getBag(
+                              "CHECKIN",
+                              selectedRoute.bags
+                              );
+
+                              @if (
+                              bag?.description1 ||
+                              bag?.description2
+                              ) {
+                              {{
+                              toTitleCase(
+                              bag.description1 ||
+                              bag.description2
+                              )
+                              }}
+                              } @else {
+                              Kindly check with the airline.
+                              }
+                              } @else {
+                              Kindly check with the airline.
+                              }
+                            </p>
+                          </div>
+                        </div>
+                        @let bag =
+                        getBag("CHECKIN", selectedRoute.bags);
+                        @if (bag?.count > 0) {
+                        <div class="bg-row__status bg-row__status--ok">
+                          Included
+                        </div>
+                        } @else {
+                        <div class="bg-row__status bg-row__status--no">
+                          Not Included
+                        </div>
+                        }
+                      </div>
+
+                      <!-- Carry-on Bag -->
+                      <div class="bg-row">
+                        <div class="bg-row__left">
+                          <div class="bg-row__icon">
+                            <i class="fa-solid fa-briefcase"></i>
+
+                            @let bagiconcarryon =
+                            getBag(
+                            "CARRYON",
+                            selectedRoute.bags
+                            );
+                            @if (bagiconcarryon?.count > 0) {
+                            <i class="fa-solid fa-circle-check"></i>
+                            } @else {
+                            <i class="fa-solid fa-circle-exclamation"></i>
+                            }
+                          </div>
+
+                          <div>
+                            <p class="bg-row__title">
+                              Carry-on Bag
+                            </p>
+
+                            <p class="bg-row__sub">
+                              @if (
+                              hasCarryOnBag(
+                              selectedRoute.bags
+                              )
+                              ) {
+                              @let bag =
+                              getBag(
+                              "CARRYON",
+                              selectedRoute.bags
+                              );
+
+                              @if (
+                              bag?.description1 ||
+                              bag?.description2
+                              ) {
+                              {{
+                              toTitleCase(
+                              bag.description1 ||
+                              bag.description2
+                              )
+                              }}
+                              } @else {
+                              Kindly check with the airline.
+                              }
+                              } @else {
+                              Kindly check with the airline.
+                              }
+                            </p>
+                          </div>
+                        </div>
+
+                        @let bagcarryon =
+                        getBag("CARRYON", selectedRoute.bags);
+                        @if (bagcarryon?.count > 0) {
+                        <div class="bg-row__status bg-row__status--ok">
+                          Included
+                        </div>
+                        } @else {
+                        <div class="bg-row__status bg-row__status--no">
+                          Not Included
+                        </div>
+                        }
+                      </div>
+
+                      <div class="bg-card__note">
+                        All prices are quoted in USD. Baggage
+                        allowance and fee amounts are not
+                        guaranteed and are subject to change by
+                        the airline. Be sure to verify the
+                        actual fees with your airline(s) before
+                        you travel.
+                      </div>
+                      <div class="bg-card__confirm">
+                        Confirm bag fees, weight and size
+                        restrictions with
+                        <a (click)="onrouteBagage()">
+                          {{
+                          selectedRoute.flights
+                          .MarketingAirlineName
+                          }}
+                        </a>
+                      </div>
+                    </div>
+                    }
+                    } @else {
+                    <p class="c-baggage-item__note">
+                      Kindly check with the airline.
+                    </p>
+                    }
+                  </div>
+                  } @else {
+                  <p class="c-baggage-item__note">
+                    Kindly check with the airline.
+                  </p>
+                  }
+                </div>
+              </div>
+              <div class="tab-pane fade" id="is" role="tabpanel" aria-labelledby="is-tab">
+                <div class="fd-card">
+                  <div class="isc-card">
+                    <!-- Header -->
+                    <div class="isc-card__header">
+                      <span class="isc-card__icon" aria-hidden="true">
+                        <i class="fa-solid fa-headset"></i>
+                      </span>
+
+                      <div class="isc-card__heading">
+                        <h3 class="isc-card__title">
+                          Instant Support
+                        </h3>
+
+                        <p class="isc-card__subtitle">
+                          We're here to help, anytime you need us.
+                        </p>
+                      </div>
+                    </div>
+
+                    <!-- Agent -->
+                    <div class="isc-agent">
+                      <span class="isc-agent__avatar">
+                        <img src="https://api.dicebear.com/9.x/personas/svg?seed=support-agent&backgroundColor=eaf2ff"
+                          alt="Support agent" />
+
+                        <span class="isc-agent__status" aria-hidden="true"></span>
+                      </span>
+
+                      <p class="isc-agent__text">
+                        <strong> Hi! I'm your travel expert. </strong>
+
+                        I can help with bookings, itineraries &amp;
+                        travel queries — anytime.
+                      </p>
+                    </div>
+
+                    <!-- Features -->
+                    <div class="isc-features">
+                      <div class="isc-features__item">
+                        <span class="isc-features__icon" aria-hidden="true">
+                          <i class="fa-solid fa-bolt"></i>
+                        </span>
+
+                        <span class="isc-features__body">
+                          <span class="isc-features__label">
+                            Quick Response
+                          </span>
+
+                          <span class="isc-features__value">
+                            Under 30 sec
+                          </span>
+                        </span>
+                      </div>
+
+                      <div class="isc-features__item">
+                        <span class="isc-features__icon" aria-hidden="true">
+                          <i class="fa-solid fa-shield-halved"></i>
+                        </span>
+
+                        <span class="isc-features__body">
+                          <span class="isc-features__label">
+                            100% Secure
+                          </span>
+
+                          <span class="isc-features__value">
+                            Data protected
+                          </span>
+                        </span>
+                      </div>
+
+                      <div class="isc-features__item">
+                        <span class="isc-features__icon" aria-hidden="true">
+                          <i class="fa-solid fa-thumbs-up"></i>
+                        </span>
+
+                        <span class="isc-features__body">
+                          <span class="isc-features__label">
+                            Trusted Support
+                          </span>
+
+                          <span class="isc-features__value">
+                            4.9/5 Rating
+                          </span>
+                        </span>
+                      </div>
+                    </div>
+
+                    <!-- CTA -->
+                    <a href="tel:{{ getData?.phoneNumber }}" class="isc-cta">
+                      <i class="fa-solid fa-phone" aria-hidden="true"></i>
+
+                      Call Now
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+
+
+        </div>
+      </div>
+    </div>
+    @if (traveldata?.travelers?.length > 0) {
+    <div class="bktrav">
+      @for (traveler of traveldata.travelers; track $index) {
+
+      <div class="bktrav__card">
+
+        <!-- Header: who -->
+        <div class="bktrav__head">
+          <div class="bktrav__avatar">
+            {{ (traveler.firstName?.charAt(0) || '') + (traveler.lastName?.charAt(0) || '') }}
+          </div>
+
+          <div class="bktrav__who-text">
+            <span class="bktrav__name">
+              {{ traveler.UserTitle ? traveler.UserTitle + ' ' : '' }}
+              {{ traveler.firstName }}
+              {{ traveler.middleName ? traveler.middleName + ' ' : '' }}
+              {{ traveler.lastName }}
+            </span>
+            <span class="bktrav__num">Traveller {{ $index + 1 }}</span>
+          </div>
+
+          <span class="bktrav__type" [class.bktrav__type--chd]="traveler.PaxType === 'CHD'"
+            [class.bktrav__type--inf]="traveler.PaxType === 'INF'">
+            {{
+            traveler.PaxType === 'ADT'
+            ? 'Adult'
+            : traveler.PaxType === 'CHD'
+            ? 'Child'
+            : traveler.PaxType === 'INF'
+            ? 'Infant'
+            : traveler.PaxType
+            }}
+          </span>
+        </div>
+
+        <!-- Body: two separate panels -->
+        <div class="bktrav__panels">
+
+          <!-- Personal details -->
+          <section class="bktrav__panel bktrav__panel--user">
+            <h4 class="bktrav__panel-title">
+              <i class="fa-solid fa-user" aria-hidden="true"></i> Personal details
+            </h4>
+            <div class="bktrav__fields">
+              <div class="bktrav__field">
+                <span class="bktrav__label">Title</span>
+                <span class="bktrav__value"> {{ traveler.UserTitle ? traveler.UserTitle + ' ' : '' }}
+              {{ traveler.firstName }}
+              {{ traveler.middleName ? traveler.middleName + ' ' : '' }}
+              {{ traveler.lastName }}</span>
+              </div>
+              <div class="bktrav__field">
+                <span class="bktrav__label">Date of birth</span>
+                <span class="bktrav__value">
+                  {{ traveler.dateOfBirth ? (traveler.dateOfBirth | date:'dd MMM yyyy') : '-' }}
+                </span>
+              </div>
+              <div class="bktrav__field">
+                <span class="bktrav__label">Gender</span>
+                <span class="bktrav__value">{{ traveler.gender || '-' }}</span>
+              </div>
+            </div>
+          </section>
+
+          <!-- Passport details -->
+          @if (
+          traveler.passportDetails &&
+          (
+          traveler.passportDetails.passportNumber ||
+          traveler.passportDetails.issuingDate ||
+          traveler.passportDetails.expiryDate
+          )
+          ) {
+          <section class="bktrav__panel bktrav__panel--passport">
+            <h4 class="bktrav__panel-title">
+              <i class="fa-solid fa-passport" aria-hidden="true"></i> Passport details
+            </h4>
+            <div class="bktrav__fields">
+              <div class="bktrav__field">
+                <span class="bktrav__label">Passport no.</span>
+                <span class="bktrav__value">{{ traveler.passportDetails.passportNumber || '-' }}</span>
+              </div>
+              <div class="bktrav__field">
+                <span class="bktrav__label">Issued</span>
+                <span class="bktrav__value">
+                  {{ traveler.passportDetails.issuingDate ? (traveler.passportDetails.issuingDate | date:'dd MMM yyyy')
+                  : '-' }}
+                </span>
+              </div>
+              <div class="bktrav__field">
+                <span class="bktrav__label">Expires</span>
+                <span class="bktrav__value">
+                  {{ traveler.passportDetails.expiryDate ? (traveler.passportDetails.expiryDate | date:'dd MMM yyyy') :
+                  '-' }}
+                </span>
+              </div>
+            </div>
+          </section>
+          }
+
+        </div>
+      </div>
+
+      }
+    </div>
+    }
+  </div>
+  <div class="col-lg-4 col-md-4 col-12">
+    <div class="bkprice-sticky">
+
+      <div class="bkprice">
+        <!-- Header -->
+        <div class="bkprice__head">
+          <h4 class="bkprice__title">Price details</h4>
+          <span class="bkprice__currency">USD</span>
+        </div>
+
+        <div class="bkprice__body">
+
+          <!-- ===== Flight ===== -->
+          <div class="bkprice__section">
+            <h5 class="bkprice__section-title">
+              <span class="bkprice__icon"><i class="fa-solid fa-plane"></i></span>
+              Flight
+            </h5>
+
+            @if (selectedAdults > 0) {
+            <div class="bkprice__row">
+              <span>{{ selectedAdults > 1 ? 'Adults' : 'Adult' }} × {{ selectedAdults }}</span>
+              <strong>${{ getFormattedPrice(getFareSubtotal('ADT', selectedAdults)).integer }}.{{
+                getFormattedPrice(getFareSubtotal('ADT', selectedAdults)).decimal }}</strong>
+            </div>
+            }
+
+            @if (selectedChildren > 0) {
+            <div class="bkprice__row">
+              <span>{{ selectedChildren > 1 ? 'Children' : 'Child' }} × {{ selectedChildren }}</span>
+              <strong>${{ getFormattedPrice(getFareSubtotal('CHD', selectedChildren)).integer }}.{{
+                getFormattedPrice(getFareSubtotal('CHD', selectedChildren)).decimal }}</strong>
+            </div>
+            }
+
+            @if (selectedInfants > 0) {
+            <div class="bkprice__row">
+              <span>{{ selectedInfants > 1 ? 'Infants' : 'Infant' }} × {{ selectedInfants }}</span>
+              <strong>${{ getFormattedPrice(getFareSubtotal('INF', selectedInfants)).integer }}.{{
+                getFormattedPrice(getFareSubtotal('INF', selectedInfants)).decimal }}</strong>
+            </div>
+            }
+
+            <div class="bkprice__row bkprice__row--sub">
+              <span>Flight subtotal</span>
+              <strong>${{ getFormattedPrice(getsubTotal()).integer }}.{{
+                getFormattedPrice(getsubTotal()).decimal }}</strong>
+            </div>
+          </div>
+
+          <!-- ===== Hotel ===== -->
+          <div class="bkprice__section">
+            <h5 class="bkprice__section-title">
+              <span class="bkprice__icon"><i class="fa-solid fa-hotel"></i></span>
+              Hotel
+            </h5>
+
+            <div class="bkprice__row">
+              <span>
+                {{ room }} room{{ room > 1 ? 's' : '' }} × {{ noOfNights }} night{{ noOfNights > 1 ? 's' : '' }}
+              </span>
+              <strong>${{ getFormattedPrice(getPricePerNightRate(rateDetails)).integer }}.{{
+                getFormattedPrice(getPricePerNightRate(rateDetails)).decimal }}</strong>
+            </div>
+
+            <div class="bkprice__row">
+              <span>Taxes, fees &amp; charges</span>
+              @if (rateDetails?.includesTaxes) {
+              <strong class="bkprice__included">
+                <i class="fa-solid fa-circle-check"></i> Included
+              </strong>
+              } @else {
+              <strong>${{ getFormattedPrice(rateDetails?.perNightTaxesAndFees).integer }}.{{
+                getFormattedPrice(rateDetails?.perNightTaxesAndFees).decimal }}</strong>
+              }
+            </div>
+
+            <div class="bkprice__row bkprice__row--sub">
+              <span>Hotel subtotal</span>
+              <strong>${{ getFormattedPrice(getTotalPriceRate(rateDetails)).integer }}.{{
+                getFormattedPrice(getTotalPriceRate(rateDetails)).decimal }}</strong>
+            </div>
+          </div>
+
+          <!-- ===== Refund Shield ===== -->
+          @if (travelProtectionAdded) {
+          <div class="bkprice__shield">
+            <span>
+              <i class="fa-solid fa-shield-halved"></i> Refund Shield
+            </span>
+            <strong>${{ getFormattedPrice(getTravelProtectionTotal()).integer }}.{{
+              getFormattedPrice(getTravelProtectionTotal()).decimal }}</strong>
+          </div>
+          }
+
+          <!-- ===== Total ===== -->
+          <div class="bkprice__total">
+            <div>
+              <span class="bkprice__total-label">Total amount</span>
+              <span class="bkprice__total-hint">Flight + hotel package</span>
+            </div>
+            <strong class="bkprice__total-value">
+              <sup>$</sup>{{ getFormattedPrice(getTotal()).integer }}<small>.{{
+                getFormattedPrice(getTotal()).decimal }}</small>
+            </strong>
+          </div>
+
+          <p class="bkprice__note">
+            <i class="fa-solid fa-circle-info"></i>
+            <span>
+              All fares are in <strong>US Dollars</strong>. Some airlines may charge
+              <a href="/baggage">baggage fees</a>. Your card may be billed in multiple charges
+              totaling the final price.
+            </span>
+          </p>
+
+          <div class="bkprice__actions">
+            <!-- buttons go here -->
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+  </div>
+</section>
+
+
+
+<!-- ===== All modal & Offcanvas (Mobile)  ===== -->
+<div class="offcanvas offcanvas-end fd-offcanvas" tabindex="-1" id="fdOffcanvas">
+  <div class="fd-offcanvas-header">
+    <h5>Flight details</h5>
+    <button type="button" class="fd-close" data-bs-dismiss="offcanvas">
+      ×
+    </button>
+  </div>
+
+  <!-- Scroll Tabs -->
+  <div class="fd-scroll-tabs">
+    <button type="button" data-target="#fd-route" (click)="onFlightTabClick($event)">
+      Route
+    </button>
+
+    <button type="button" data-target="#fd-baggage" (click)="onFlightTabClick($event)">
+      Baggage
+    </button>
+
+    <button type="button" data-target="#fd-policy" (click)="onFlightTabClick($event)">
+      Policies
+    </button>
+  </div>
+
+  <!-- Scrollable Body -->
+  <div class="fd-offcanvas-body">
+    <!-- Route -->
+    <section id="fd-route" class="fd-section">
+      <div class="fd-card">
+        <!-- ================= DEPARTURE ================= -->
+        @if (getMainDetails?.Citypairs?.length >= 1) {
+        <!-- Segment 1 / Departure -->
+        <div class="fd-segment">
+          <div class="inline-flex-sec">
+            <div class="dtitle">
+              Depart ·
+              {{
+              getMainDetails?.Citypairs[0]?.FlightSegment[0]
+              ?.DepartureDateTime | date: "EEE, d MMM"
+              }}
+            </div>
+
+            <span class="duration-size">
+              Journey Duration:
+              {{ getMainDetails?.Citypairs[0]?.Duration | durationToHours }}
+            </span>
+          </div>
+
+          @for (
+          flight of getMainDetails?.Citypairs[0]?.FlightSegment;
+          track $index;
+          let i = $index
+          ) {
+          <!-- ================= FLIGHT SEGMENT ================= -->
+          <div class="fd-segment">
+            <div class="fd-seg-head">
+              <img [src]="imageUrl + flight.FlightLogoName" class="fd-air-logo" [alt]="flight.FlightLogoName" />
+
+              <span>
+                {{ flight.MarketingAirlineName }}
+                {{ flight.FlightNumber }}
+              </span>
+
+              <span class="fd-chip">
+                {{ flight.AirEquipmentType }}
+              </span>
+
+              <div class="fd-icons">
+                <!-- Keep your existing SVG icons here -->
+              </div>
+            </div>
+
+            <div class="fd-seg-body">
+              <div class="fd-time-col">
+                <strong>
+                  {{ flight.DepartureDateTime | date: "HH:mm" }}
+                </strong>
+
+                <span>
+                  {{ flight.OriginAirportName }}
+                  ({{ flight.DepartureLocationCode }})
+                </span>
+              </div>
+
+              <div class="fd-mid">
+                <span class="fd-flight-icon"> ✈ </span>
+
+                <small>
+                  {{ flight.Duration | lowercase }}
+                </small>
+
+                @if (
+                flight.DepartureDateTime &&
+                flight.ArrivalDateTime &&
+                (flight.DepartureDateTime | date: "yyyyMMdd") !==
+                (flight.ArrivalDateTime | date: "yyyyMMdd")
+                ) {
+                <span class="fd-tag"> Overnight flight </span>
+                }
+              </div>
+
+              <div class="fd-time-col">
+                <strong>
+                  {{ flight.ArrivalDateTime | date: "HH:mm" }}
+                </strong>
+
+                <span>
+                  {{ flight.DestinationAirportName }}
+                  ({{ flight.ArrivalLocationCode }})
+                </span>
+
+                @if (
+                flight.DepartureDateTime &&
+                flight.ArrivalDateTime &&
+                (flight.DepartureDateTime | date: "yyyyMMdd") !==
+                (flight.ArrivalDateTime | date: "yyyyMMdd")
+                ) {
+                <small class="fd-arrival">
+                  Arrives
+                  {{ flight.ArrivalDateTime | date: "EEE, d MMM" }}
+                </small>
+                }
+              </div>
+            </div>
+          </div>
+
+          <!-- ================= LAYOVER ================= -->
+          @if (
+          i < getMainDetails?.Citypairs[0]?.FlightSegment?.length - 1 ) { <div class="fd-layover">
+            {{
+            getMainDetails?.Citypairs[0]?.FlightSegment[i + 1]
+            ?.LayoverTime | lowercase
+            }}
+
+            · Change planes in
+
+            {{
+            getMainDetails?.Citypairs[0]?.FlightSegment[i + 1]
+            ?.OriginAirportName
+            }}
+
+            (
+            {{
+            getMainDetails?.Citypairs[0]?.FlightSegment[i + 1]
+            ?.DepartureLocationCode
+            }}
+            )
+
+            <span class="fd-badge orange"> Long stopover </span>
+
+            <span class="fd-badge gray"> Self-transfer </span>
+        </div>
+        }
+        }
+      </div>
+      }
+
+      <!-- ================= RETURN ================= -->
+      @if (getMainDetails?.Citypairs?.length === 2) {
+      <div class="fd-segment">
+        <div class="inline-flex-sec">
+          <div class="dtitle">
+            Return ·
+            {{
+            getMainDetails?.Citypairs[1]?.FlightSegment[0]
+            ?.DepartureDateTime | date: "EEE, d MMM"
+            }}
+          </div>
+
+          <span class="duration-size">
+            Journey Duration:
+            {{ getMainDetails?.Citypairs[1]?.Duration | durationToHours }}
+          </span>
+        </div>
+
+        @for (
+        flight of getMainDetails?.Citypairs[1]?.FlightSegment;
+        track $index;
+        let i = $index
+        ) {
+        <!-- ================= RETURN FLIGHT SEGMENT ================= -->
+        <div class="fd-segment">
+          <div class="fd-seg-head">
+            <img [src]="imageUrl + flight.FlightLogoName" class="fd-air-logo" [alt]="flight.FlightLogoName" />
+
+            <span>
+              {{ flight.MarketingAirlineName }}
+              {{ flight.FlightNumber }}
+            </span>
+
+            <span class="fd-chip">
+              {{ flight.AirEquipmentType }}
+            </span>
+
+            <!-- <span class="fd-amenity">
+                      <img
+                        src="assets/assets/images/flight/food-svgrepo-com.svg"
+                        alt=""
+                      />
+
+                      Light meal available
+                    </span> -->
+          </div>
+
+          <div class="fd-seg-body">
+            <div class="fd-time-col">
+              <strong>
+                {{ flight.DepartureDateTime | date: "HH:mm" }}
+              </strong>
+
+              <span>
+                {{ flight.OriginAirportName }}
+                ({{ flight.DepartureLocationCode }})
+              </span>
+            </div>
+
+            <div class="fd-mid">
+              <span class="fd-flight-icon"> ✈ </span>
+
+              <small>
+                {{ flight.Duration | lowercase }}
+              </small>
+
+              @if (
+              flight.DepartureDateTime &&
+              flight.ArrivalDateTime &&
+              (flight.DepartureDateTime | date: "yyyyMMdd") !==
+              (flight.ArrivalDateTime | date: "yyyyMMdd")
+              ) {
+              <span class="fd-tag"> Overnight flight </span>
+              }
+            </div>
+
+            <div class="fd-time-col">
+              <strong>
+                {{ flight.ArrivalDateTime | date: "HH:mm" }}
+              </strong>
+
+              <span>
+                {{ flight.DestinationAirportName }}
+                ({{ flight.ArrivalLocationCode }})
+              </span>
+
+              @if (
+              flight.DepartureDateTime &&
+              flight.ArrivalDateTime &&
+              (flight.DepartureDateTime | date: "yyyyMMdd") !==
+              (flight.ArrivalDateTime | date: "yyyyMMdd")
+              ) {
+              <small class="fd-arrival">
+                Arrives
+                {{ flight.ArrivalDateTime | date: "EEE, d MMM" }}
+              </small>
+              }
+            </div>
+          </div>
+        </div>
+
+        <!-- ================= RETURN LAYOVER ================= -->
+        @if (
+        i < getMainDetails?.Citypairs[1]?.FlightSegment?.length - 1 ) { <div class="fd-layover">
+          {{
+          getMainDetails?.Citypairs[1]?.FlightSegment[i + 1]
+          ?.LayoverTime | lowercase
+          }}
+
+          · Change planes in
+
+          {{
+          getMainDetails?.Citypairs[1]?.FlightSegment[i + 1]
+          ?.OriginAirportName
+          }}
+
+          (
+          {{
+          getMainDetails?.Citypairs[1]?.FlightSegment[i + 1]
+          ?.DepartureLocationCode
+          }}
+          )
+
+          <span class="fd-badge orange"> Long stopover </span>
+
+          <span class="fd-badge gray"> Self-transfer </span>
+      </div>
+      }
+      }
+  </div>
+  }
+</div>
+</section>
+
+<!-- Baggage -->
+<section id="fd-baggage" class="fd-section">
+  <div class="tab-pane fade show active" id="baggage" role="tabpanel" aria-labelledby="baggage-tab">
+    <div class="fd-card">
+      @if (flightBaggage) {
+      <div class="fd-segment">
+        <div class="inline-flex-sec">
+          <div class="dtitle">Baggage Information</div>
+        </div>
+
+        @if (allRoutes.length > 0) {
+        <div class="rt-tabnav" role="tablist" #routeList>
+          @for (route of allRoutes; track $index) {
+          <button class="rt-tab" type="button" [class.active]="$index === selectedRouteIndex"
+            (click)="selectRoute($index, routeItem)" #routeItem>
+            <i class="fa-solid fa-plane"></i>
+            {{ route.departure }} to {{ route.arrival }}
+          </button>
+          }
+        </div>
+
+        @if (selectedRoute) {
+        <div class="bg-card">
+          <div class="bg-card__header">
+            <div class="bg-card__airline">
+              <div class="bg-card__logo">
+                <img [src]="
+                                imageUrl + selectedRoute.flights.FlightLogoName
+                              " [alt]="selectedRoute.flights.FlightLogoName" />
+              </div>
+
+              <div class="bg-card__name">
+                {{ selectedRoute.flights.MarketingAirlineName }}
+              </div>
+            </div>
+
+            <div class="bg-card__class">
+              {{
+              classMap[selectedRoute.flights?.CabinClass] ||
+              selectedRoute.flights?.CabinClass
+              }}
+              @if (
+              selectedRoute.flights?.BookingClass != "" &&
+              selectedRoute.flights?.BookingClass != null
+              ) {
+              ({{ selectedRoute.flights.BookingClass }})
+              }
+            </div>
+          </div>
+
+          <!-- Check-in Bag -->
+          <div class="bg-row">
+            <div class="bg-row__left">
+              <div class="bg-row__icon">
+                <i class="fa-solid fa-suitcase-rolling"></i>
+                @let bagicon =
+                getBag("CHECKIN", selectedRoute.bags);
+                @if (bagicon?.count > 0) {
+                <i class="fa-solid fa-circle-check"></i>
+                } @else {
+                <i class="fa-solid fa-circle-exclamation"></i>
+                }
+              </div>
+
+              <div>
+                <p class="bg-row__title">Check-in Bag</p>
+
+                <p class="bg-row__sub">
+                  @if (hasCheckinBag(selectedRoute.bags)) {
+                  @let bag =
+                  getBag("CHECKIN", selectedRoute.bags);
+
+                  @if (bag?.description1 || bag?.description2) {
+                  {{
+                  toTitleCase(
+                  bag.description1 || bag.description2
+                  )
+                  }}
+                  } @else {
+                  Kindly check with the airline.
+                  }
+                  } @else {
+                  Kindly check with the airline.
+                  }
+                </p>
+              </div>
+            </div>
+            @let bag = getBag("CHECKIN", selectedRoute.bags);
+            @if (bag?.count > 0) {
+            <div class="bg-row__status bg-row__status--ok">
+              Included
+            </div>
+            } @else {
+            <div class="bg-row__status bg-row__status--no">
+              Not Included
+            </div>
+            }
+          </div>
+
+          <!-- Carry-on Bag -->
+          <div class="bg-row">
+            <div class="bg-row__left">
+              <div class="bg-row__icon">
+                <i class="fa-solid fa-briefcase"></i>
+
+                @let bagiconcarryon =
+                getBag("CARRYON", selectedRoute.bags);
+                @if (bagiconcarryon?.count > 0) {
+                <i class="fa-solid fa-circle-check"></i>
+                } @else {
+                <i class="fa-solid fa-circle-exclamation"></i>
+                }
+              </div>
+
+              <div>
+                <p class="bg-row__title">Carry-on Bag</p>
+
+                <p class="bg-row__sub">
+                  @if (hasCarryOnBag(selectedRoute.bags)) {
+                  @let bag =
+                  getBag("CARRYON", selectedRoute.bags);
+
+                  @if (bag?.description1 || bag?.description2) {
+                  {{
+                  toTitleCase(
+                  bag.description1 || bag.description2
+                  )
+                  }}
+                  } @else {
+                  Kindly check with the airline.
+                  }
+                  } @else {
+                  Kindly check with the airline.
+                  }
+                </p>
+              </div>
+            </div>
+
+            @let bagcarryon = getBag("CARRYON", selectedRoute.bags);
+            @if (bagcarryon?.count > 0) {
+            <div class="bg-row__status bg-row__status--ok">
+              Included
+            </div>
+            } @else {
+            <div class="bg-row__status bg-row__status--no">
+              Not Included
+            </div>
+            }
+          </div>
+
+          <div class="bg-card__note">
+            All prices are quoted in USD. Baggage allowance and fee
+            amounts are not guaranteed and are subject to change by
+            the airline. Be sure to verify the actual fees with your
+            airline(s) before you travel.
+          </div>
+          <div class="bg-card__confirm">
+            Confirm bag fees, weight and size restrictions with
+            <a (click)="onrouteBagage()">
+              {{ selectedRoute.flights.MarketingAirlineName }}
+            </a>
+          </div>
+        </div>
+        }
+        } @else {
+        <p class="c-baggage-item__note">
+          Kindly check with the airline.
+        </p>
+        }
+      </div>
+      } @else {
+      <p class="c-baggage-item__note">Kindly check with the airline.</p>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- Policy -->
+<section id="fd-policy" class="fd-section">
+  <div class="fd-card">
+    <div class="fd-segment">
+      <div class="inline-flex-sec">
+        <div class="dtitle">Ticket policies</div>
+      </div>
+      <table class="fd-table">
+        <tr>
+          <td>Cancellation policy</td>
+          <td>Refundable with cancellation charges.</td>
+        </tr>
+        <tr>
+          <td>Change policy</td>
+          <td>Changes allowed with per-ticket charges.</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</section>
+</div>
+</div>
+}

@@ -46,7 +46,8 @@ export const spinnerInterceptor: HttpInterceptorFn = (req, next) => {
     url.includes('/api/v1/hotels/hotel-details')||
     url.includes('/api/v1/hotels/hotel-list')||
     url.includes('api/v1/hotels/search-hotel-city-list')||
-    url.includes('cruise/save_lead')
+    url.includes('cruise/save_lead')||
+    url.includes('api/flight-hotel-car/save')
   ) {
     return next(req);
   }

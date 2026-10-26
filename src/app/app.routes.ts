@@ -190,6 +190,19 @@ export const routes: Routes = [
             "Buy cheap airline tickets for one-way or round-trip flights with Flighthelpbuddy. Call 0 (000) 000-0000 for the best deals on domestic and international fares.",
         },
       },
+           {
+        path: "package-confirmation",
+        loadComponent: () =>
+          import("./pages/packages/review-and-payment/package-confirmation/package-confirmation.component").then(
+            (m) => m.PackageConfirmationComponent,
+          ),
+        title: " Buy Cheap Airline Tickets | farefinder24",
+        data: {
+          metaTitle: "Buy Cheap Airline Tickets | farefinder24",
+          metaDescription:
+            "Buy cheap airline tickets for one-way or round-trip flights with farefinder24. Call 1 (800) 645-3851 for the best deals on domestic and international fares.",
+        },
+      },
       {
         path: "flight-booking-confirmation",
         loadComponent: () =>

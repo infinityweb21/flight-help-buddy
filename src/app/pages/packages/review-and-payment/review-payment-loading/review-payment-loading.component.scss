@@ -1,0 +1,96 @@
+$accent: #3A4BFF;
+$accent-soft: #ECEEFF;
+$ink: #0F1222;
+$muted: #5A6072;
+
+:host {
+  font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+}
+
+/* ---------- Overlay ---------- */
+.loader-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: grid;
+  place-items: center;
+  padding: 20px;
+  background: rgba($ink, 0.55);
+  backdrop-filter: blur(6px);
+  animation: fadeIn 0.3s ease both;
+}
+
+.loader-box {
+  width: 100%;
+  max-width: 340px;
+  background: #fff;
+  border-radius: 24px;
+  padding: 36px 28px 30px;
+  text-align: center;
+  color: $ink;
+  animation: scaleIn 0.35s cubic-bezier(0.2, 0.9, 0.3, 1.2) both;
+
+  h3 {
+    margin: 0 0 8px;
+    font-size: 20px;
+    font-weight: 800;
+  }
+
+  p {
+    margin: 0;
+    color: $muted;
+    font-size: 14px;
+    line-height: 1.5;
+  }
+}
+
+/* ---------- Spinner + icon ---------- */
+.loader {
+  position: relative;
+  width: 96px;
+  height: 96px;
+  margin: 0 auto 24px;
+
+  .ring {
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    border: 5px solid $accent-soft;
+    border-top-color: $accent;
+    animation: spin 1s linear infinite;
+  }
+
+  .icon {
+    position: absolute;
+    inset: 14px;
+    border-radius: 50%;
+    background: $accent;
+    color: #fff;
+    display: grid;
+    place-items: center;
+    font-size: 26px;
+    animation: pulse 1.4s ease-in-out infinite;
+  }
+}
+
+/* Animated dots after the title */
+.dots span {
+  animation: blink 1.2s infinite;
+
+  &:nth-child(2) { animation-delay: 0.2s; }
+  &:nth-child(3) { animation-delay: 0.4s; }
+}
+
+/* ---------- Animations ---------- */
+@keyframes spin    { to { transform: rotate(360deg); } }
+@keyframes pulse   { 0%, 100% { transform: scale(1); } 50% { transform: scale(0.88); } }
+@keyframes blink   { 0%, 100% { opacity: 0.2; } 50% { opacity: 1; } }
+@keyframes fadeIn  { from { opacity: 0; } to { opacity: 1; } }
+@keyframes scaleIn { from { transform: scale(0.9); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}

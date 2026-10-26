@@ -71,7 +71,7 @@ import { MMDDYYYYDirective } from "../../../directives/mmddyyyy.directive";
 import { PaymentLoaderComponent } from "../../flights-list/skeleton/payment-loader/payment-loader.component";
 import { firstValueFrom, take } from "rxjs";
 import { HotelService } from "../../../services/hotel/hotel.service";
-
+import { ReviewPaymentLoadingComponent } from "../review-and-payment/review-payment-loading/review-payment-loading.component";
 @Component({
   selector: 'app-review-and-payment',
    imports: [
@@ -90,6 +90,7 @@ import { HotelService } from "../../../services/hotel/hotel.service";
       NgxCaptureModule,
       MMDDYYYYDirective,
       PaymentLoaderComponent,
+      ReviewPaymentLoadingComponent
     ],
   templateUrl: './review-and-payment.component.html',
   styleUrl: './review-and-payment.component.scss'
@@ -3487,7 +3488,7 @@ createBooking() {
   if (!this.bookingForm.valid) {
     return;
   }
-
+   this.isSkeleton = true;
   const formValue = this.bookingForm.value;
 
   // ============================================================
@@ -4222,7 +4223,7 @@ booking_status
 "Flight Hotel Booking",
 vendor
 : 
-"Flighthelpbuddy.com",
+"farefinder24.com",
     // ----------------------------------------------------------
     // CUSTOMER
     // ----------------------------------------------------------
@@ -4420,39 +4421,19 @@ vendor
     .subscribe({
 
       next: (res) => {
-
         if (res.status === 1) {
-
-          this.flightService.setconfirmData({
-            id:
-              res?.booking
-                ?.booking_details
-                ?.bookingId,
-
-            pnr:
-              res?.booking
-                ?.mondee_booking_info
-                ?.PNR,
-
-            date:
-              res?.booking
-                ?.mondee_booking_info
-                ?.create_date,
-          });
-
-          this.flightService.clearTravelData();
+   this.isSkeleton = false;
+          // this.flightService.clearTravelData();
 
           this._route.navigate(
-            ["/thankyou"],
+            ["/package-confirmation"],
             {
               queryParams: {
                 id:
-                  res?.booking
-                    ?.booking_details
-                    ?.bookingId,
-              },
+                  res?.booking_id,
+              }
 
-              replaceUrl: true,
+            
             }
           );
 
@@ -4470,7 +4451,7 @@ vendor
           );
 
         } else {
-
+   this.isSkeleton = false;
           this.iscommonSkeleton = false;
 
           this.cdr.markForCheck();
@@ -4478,7 +4459,7 @@ vendor
       },
 
       error: (err) => {
-
+   this.isSkeleton = false;
         console.error(
           "Flight + Hotel booking error:",
           err
