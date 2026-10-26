@@ -22,9 +22,11 @@ export const routes: Routes = [
         path: "",
         loadComponent: () =>
           import("./pages/home/home.component").then((m) => m.HomeComponent),
-        title: "Book Cheap Flights, Compare Fares & Explore Destinations | Flighthelpbuddy",
+        title:
+          "Book Cheap Flights, Compare Fares & Explore Destinations | Flighthelpbuddy",
         data: {
-          metaTitle: "Book Cheap Flights, Compare Fares & Explore Destinations | Flighthelpbuddy",
+          metaTitle:
+            "Book Cheap Flights, Compare Fares & Explore Destinations | Flighthelpbuddy",
           metaDescription:
             "Discover affordable domestic and international flights, compare fares, explore top destinations, and find cruise and car rental options with expert travel support.",
         },
@@ -35,9 +37,11 @@ export const routes: Routes = [
           import("./pages/flight/flight.component").then(
             (m) => m.FlightComponent,
           ),
-        title: "Book Flights Online | Compare Fares & Find Deals | Flighthelpbuddy",
+        title:
+          "Book Flights Online | Compare Fares & Find Deals | Flighthelpbuddy",
         data: {
-          metaTitle: "Book Flights Online | Compare Fares & Find Deals | Flighthelpbuddy",
+          metaTitle:
+            "Book Flights Online | Compare Fares & Find Deals | Flighthelpbuddy",
           metaDescription:
             "Compare flight fares, explore popular destinations, and find affordable flight deals. Get flexible booking options and 24/7 expert support for your next trip.",
         },
@@ -49,7 +53,8 @@ export const routes: Routes = [
           import("./pages/routes/routes.component").then(
             (m) => m.RoutesComponent,
           ),
-        title: "Explore International & Domestic Flight Routes | Flighthelpbuddy",
+        title:
+          "Explore International & Domestic Flight Routes | Flighthelpbuddy",
         data: {
           metaTitle:
             "Explore International & Domestic Flight Routes | Flighthelpbuddy",
@@ -190,7 +195,7 @@ export const routes: Routes = [
             "Buy cheap airline tickets for one-way or round-trip flights with Flighthelpbuddy. Call 0 (000) 000-0000 for the best deals on domestic and international fares.",
         },
       },
-           {
+      {
         path: "package-confirmation",
         loadComponent: () =>
           import("./pages/packages/review-and-payment/package-confirmation/package-confirmation.component").then(
@@ -220,10 +225,12 @@ export const routes: Routes = [
         path: "hotel",
         loadComponent: () =>
           import("./pages/hotel/hotel.component").then((m) => m.HotelComponent),
-        title: "Find the Best Hotel Deals | Compare Hotels & Stays | Flighthelpbuddy",
+        title:
+          "Find the Best Hotel Deals | Compare Hotels & Stays | Flighthelpbuddy",
 
         data: {
-          metaTitle: "Find the Best Hotel Deals | Compare Hotels & Stays | Flighthelpbuddy",
+          metaTitle:
+            "Find the Best Hotel Deals | Compare Hotels & Stays | Flighthelpbuddy",
           metaDescription:
             "Explore hotels for every budget, from luxury resorts to beachfront and family-friendly stays. Compare prices, discover great deals, and find your perfect hotel.",
         },
@@ -353,7 +360,8 @@ export const routes: Routes = [
           ),
         title: "Luxury Cruise Deals from Top Cruise Lines | Flighthelpbuddy",
         data: {
-          metaTitle: "Luxury Cruise Deals from Top Cruise Lines | Flighthelpbuddy",
+          metaTitle:
+            "Luxury Cruise Deals from Top Cruise Lines | Flighthelpbuddy",
           metaDescription:
             "Find the best luxury cruise deals with Flighthelpbuddy and save big on top cruise lines. Call (888) 975-1707 now to book your premium cruise vacation.",
         },
@@ -366,7 +374,8 @@ export const routes: Routes = [
           ),
         title: "Luxury Cruise Deals from Top Cruise Lines | Flighthelpbuddy",
         data: {
-          metaTitle: "Luxury Cruise Deals from Top Cruise Lines | Flighthelpbuddy",
+          metaTitle:
+            "Luxury Cruise Deals from Top Cruise Lines | Flighthelpbuddy",
           metaDescription:
             "Find the best luxury cruise deals with Flighthelpbuddy and save big on top cruise lines. Call (888) 975-1707 now to book your premium cruise vacation.",
         },
@@ -379,7 +388,8 @@ export const routes: Routes = [
           ),
         title: "Luxury Cruise Deals from Top Cruise Lines | Flighthelpbuddy",
         data: {
-          metaTitle: "Luxury Cruise Deals from Top Cruise Lines | Flighthelpbuddy",
+          metaTitle:
+            "Luxury Cruise Deals from Top Cruise Lines | Flighthelpbuddy",
           metaDescription:
             "Find the best luxury cruise deals with Flighthelpbuddy and save big on top cruise lines. Call (888) 975-1707 now to book your premium cruise vacation.",
         },
@@ -392,7 +402,8 @@ export const routes: Routes = [
         title: "Affordable Car Rentals & Instant Booking | Flighthelpbuddy",
 
         data: {
-          metaTitle: "Affordable Car Rentals & Instant Booking | Flighthelpbuddy",
+          metaTitle:
+            "Affordable Car Rentals & Instant Booking | Flighthelpbuddy",
           metaDescription:
             "Rent the perfect car for your next trip at prices that fit your budget. Enjoy transparent pricing, 24/7 support, and easy pick-up. Book your ride today!",
         },
@@ -405,7 +416,8 @@ export const routes: Routes = [
           ),
         title: "Car Rental Deals | Book Your Car Online | Flighthelpbuddy",
         data: {
-          metaTitle: "Car Rental Deals | Book Your Car Online | Flighthelpbuddy",
+          metaTitle:
+            "Car Rental Deals | Book Your Car Online | Flighthelpbuddy",
           metaDescription:
             "Find the best car rental deals with Flighthelpbuddy and save big on top car rental companies. Call (888) 975-1707 now to book your premium car rental vacation.",
         },
@@ -418,7 +430,8 @@ export const routes: Routes = [
           ),
         title: "Car Rental Deals | Book Your Car Online | Flighthelpbuddy",
         data: {
-          metaTitle: "Car Rental Deals | Book Your Car Online | Flighthelpbuddy",
+          metaTitle:
+            "Car Rental Deals | Book Your Car Online | Flighthelpbuddy",
           metaDescription:
             "Find the best car rental deals with Flighthelpbuddy and save big on top car rental companies. Call (888) 975-1707 now to book your premium car rental vacation.",
         },
@@ -431,7 +444,8 @@ export const routes: Routes = [
           ),
         title: "Car Rental Deals | Book Your Car Online | Flighthelpbuddy",
         data: {
-          metaTitle: "Car Rental Deals | Book Your Car Online | Flighthelpbuddy",
+          metaTitle:
+            "Car Rental Deals | Book Your Car Online | Flighthelpbuddy",
           metaDescription:
             "Find the best car rental deals with Flighthelpbuddy and save big on top car rental companies. Call (888) 975-1707 now to book your premium car rental vacation.",
         },
@@ -442,9 +456,11 @@ export const routes: Routes = [
           import("./pages/about-us/about-us.component").then(
             (m) => m.AboutUsComponent,
           ),
-        title: "About Us | Your Trusted Travel Booking Partner | Flighthelpbuddy",
+        title:
+          "About Us | Your Trusted Travel Booking Partner | Flighthelpbuddy",
         data: {
-          metaTitle: "About Us | Your Trusted Travel Booking Partner | Flighthelpbuddy",
+          metaTitle:
+            "About Us | Your Trusted Travel Booking Partner | Flighthelpbuddy",
           metaDescription:
             "Discover a simpler way to plan your next trip with affordable flight and hotel deals, flexible travel options, and 24/7 expert support.",
         },
@@ -891,8 +907,7 @@ export const routes: Routes = [
           import("./pages/packages/packages.component").then(
             (m) => m.PackagesComponent,
           ),
-        title:
-          "Holiday Packages | Flight and Hotel Deals | Flighthelpbuddy",
+        title: "Holiday Packages | Flight and Hotel Deals | Flighthelpbuddy",
 
         data: {
           metaTitle:
@@ -1189,7 +1204,8 @@ export const routes: Routes = [
           import("./pages/cheap-red-eye-flights/cheap-red-eye-flights.component").then(
             (m) => m.CheapRedEyeFlightsComponent,
           ),
-        title: "Book Cheap Red-Eye Flights - Airlines tickets | Flighthelpbuddy",
+        title:
+          "Book Cheap Red-Eye Flights - Airlines tickets | Flighthelpbuddy",
         data: {
           metaTitle:
             "Book Cheap Red-Eye Flights - Airlines tickets | Flighthelpbuddy",
@@ -1353,7 +1369,8 @@ export const routes: Routes = [
           import("./pages/airlines/airlines.component").then(
             (m) => m.AirlinesComponent,
           ),
-        title: "Airlines | Book Cheap Airline Tickets & Flights | Flighthelpbuddy",
+        title:
+          "Airlines | Book Cheap Airline Tickets & Flights | Flighthelpbuddy",
         data: {
           metaTitle:
             "Airlines | Book Cheap Airline Tickets & Flights | Flighthelpbuddy",
@@ -1383,7 +1400,8 @@ export const routes: Routes = [
           ),
         title: "Brussels Airlines Flights, Routes & Deals | Flighthelpbuddy",
         data: {
-          metaTitle: "Brussels Airlines Flights, Routes & Deals | Flighthelpbuddy",
+          metaTitle:
+            "Brussels Airlines Flights, Routes & Deals | Flighthelpbuddy",
           metaDescription:
             "Explore Brussels Airlines flights, routes, and affordable booking options with Flighthelpbuddy.",
         },
@@ -1410,7 +1428,8 @@ export const routes: Routes = [
           ),
         title: "Hawaiian Airlines Flights, Routes & Deals | Flighthelpbuddy",
         data: {
-          metaTitle: "Hawaiian Airlines Flights, Routes & Deals | Flighthelpbuddy",
+          metaTitle:
+            "Hawaiian Airlines Flights, Routes & Deals | Flighthelpbuddy",
           metaDescription:
             "Book Hawaiian Airlines flights and explore routes, prices, and deals with Flighthelpbuddy.",
         },
@@ -1586,7 +1605,8 @@ export const routes: Routes = [
           import("./pages/airlines-routes/united-airlines-austin-to-washington-dc/united-airlines-austin-to-washington-dc.component").then(
             (m) => m.UnitedAirlinesAustinToWashingtonDcComponent,
           ),
-        title: "United Airlines Austin To Washington DC Flights | Flighthelpbuddy",
+        title:
+          "United Airlines Austin To Washington DC Flights | Flighthelpbuddy",
         data: {
           metaTitle:
             "United Airlines Austin To Washington DC Flights | Flighthelpbuddy",
@@ -1600,7 +1620,8 @@ export const routes: Routes = [
           import("./pages/airlines-routes/american-airlines-cleveland-to-atlanta/american-airlines-cleveland-to-atlanta.component").then(
             (m) => m.AmericanAirlinesClevelandToAtlantaComponent,
           ),
-        title: "American Airlines Cleveland To Atlanta Flights | Flighthelpbuddy",
+        title:
+          "American Airlines Cleveland To Atlanta Flights | Flighthelpbuddy",
         data: {
           metaTitle:
             "American Airlines Cleveland To Atlanta Flights | Flighthelpbuddy",
@@ -1614,7 +1635,8 @@ export const routes: Routes = [
           import("./pages/airlines-routes/united-airlines-los-angeles-to-orlando/united-airlines-los-angeles-to-orlando.component").then(
             (m) => m.UnitedAirlinesLosAngelesToOrlandoComponent,
           ),
-        title: "United Airlines Los Angeles To Orlando Flights | Flighthelpbuddy",
+        title:
+          "United Airlines Los Angeles To Orlando Flights | Flighthelpbuddy",
         data: {
           metaTitle:
             "United Airlines Los Angeles To Orlando Flights | Flighthelpbuddy",
@@ -1722,7 +1744,8 @@ export const routes: Routes = [
         path: "faq",
         loadComponent: () =>
           import("./pages/faq/faq.component").then((m) => m.FaqComponent),
-        title: "Travel FAQs | Flights, Hotels & Holiday Packages | Flighthelpbuddy",
+        title:
+          "Travel FAQs | Flights, Hotels & Holiday Packages | Flighthelpbuddy",
         data: {
           metaTitle:
             "Travel FAQs | Flights, Hotels & Holiday Packages | Flighthelpbuddy",
@@ -1750,27 +1773,28 @@ export const routes: Routes = [
           import("./pages/online-travel-agency/online-travel-agency.component").then(
             (m) => m.OnlineTravelAgencyComponent,
           ),
-title: "Best Online Travel Agency for Flight Booking | Flighthelpbuddy",
-data: {
-  metaTitle:
-    "Best Online Travel Agency for Flight Booking | Flighthelpbuddy",
-  metaDescription:
-    "Find convenient flight booking options with an online travel agency. Compare available fares, explore travel deals, and plan your next journey.",
-},
+        title: "Best Online Travel Agency for Flight Booking | Flighthelpbuddy",
+        data: {
+          metaTitle:
+            "Best Online Travel Agency for Flight Booking | Flighthelpbuddy",
+          metaDescription:
+            "Find convenient flight booking options with an online travel agency. Compare available fares, explore travel deals, and plan your next journey.",
+        },
       },
-       {
+      {
         path: "cheap-flights",
         loadComponent: () =>
           import("./pages/cheap-flights/cheap-flights.component").then(
             (m) => m.CheapFlightsComponent,
           ),
-title: "Find Cheap Flights for Domestic & International Trips | Flighthelpbuddy",
-data: {
-  metaTitle:
-    "Find Cheap Flights for Domestic & International Trips | Flighthelpbuddy",
-  metaDescription:
-    "Plan your next journey with cheap flights to destinations worldwide. Compare available fares and explore options for domestic and international travel.",
-},
+        title:
+          "Find Cheap Flights for Domestic & International Trips | Flighthelpbuddy",
+        data: {
+          metaTitle:
+            "Find Cheap Flights for Domestic & International Trips | Flighthelpbuddy",
+          metaDescription:
+            "Plan your next journey with cheap flights to destinations worldwide. Compare available fares and explore options for domestic and international travel.",
+        },
       },
       {
         path: "flight-change",
@@ -1778,13 +1802,14 @@ data: {
           import("./pages/flight-change/flight-change.component").then(
             (m) => m.FlightChangeComponent,
           ),
-title: "Flight Change Assistance for Easy Travel Updates | Flighthelpbuddy",
-data: {
-  metaTitle:
-    "Flight Change Assistance for Easy Travel Updates | Flighthelpbuddy",
-  metaDescription:
-    "Make changes to your flight plans with convenient booking assistance. Explore available dates, review change fees, and update your reservation.",
-},
+        title:
+          "Flight Change Assistance for Easy Travel Updates | Flighthelpbuddy",
+        data: {
+          metaTitle:
+            "Flight Change Assistance for Easy Travel Updates | Flighthelpbuddy",
+          metaDescription:
+            "Make changes to your flight plans with convenient booking assistance. Explore available dates, review change fees, and update your reservation.",
+        },
       },
       {
         path: "flight-cancellation",
@@ -1792,310 +1817,310 @@ data: {
           import("./pages/flight-cancellation/flight-cancellation.component").then(
             (m) => m.FlightCancellationComponent,
           ),
-title: "Flight Ticket Cancellation & Refund Assistance | Flighthelpbuddy",
-data: {
-  metaTitle:
-    "Flight Ticket Cancellation & Refund Assistance | Flighthelpbuddy",
-  metaDescription:
-    "Cancel your flight booking with convenient assistance. Learn about airline cancellation policies, applicable charges, and potential refund eligibility.",
-},
+        title:
+          "Flight Ticket Cancellation & Refund Assistance | Flighthelpbuddy",
+        data: {
+          metaTitle:
+            "Flight Ticket Cancellation & Refund Assistance | Flighthelpbuddy",
+          metaDescription:
+            "Cancel your flight booking with convenient assistance. Learn about airline cancellation policies, applicable charges, and potential refund eligibility.",
+        },
       },
 
+      {
+        path: "last-minute-flights",
+        loadComponent: () =>
+          import("./pages/last-minute-flights/last-minute-flights.component").then(
+            (m) => m.LastMinuteFlightsComponent,
+          ),
+        title:
+          "Book Last-Minute Flights with Flexible Options | Flighthelpbuddy",
+        data: {
+          metaTitle:
+            "Book Last-Minute Flights with Flexible Options | Flighthelpbuddy",
+          metaDescription:
+            "Explore available last-minute flight deals with expert booking assistance. Find suitable flights for your schedule & manage unexpected travel plans with ease.",
+        },
+      },
 
+      {
+        path: "international-flights",
+        loadComponent: () =>
+          import("./pages/international-flights/international-flights.component").then(
+            (m) => m.InternationalFlightsComponent,
+          ),
+        title:
+          "Explore International Flight Deals for Your Next Trip | Flighthelpbuddy",
+        data: {
+          metaTitle:
+            "Explore International Flight Deals for Your Next Trip | Flighthelpbuddy",
+          metaDescription:
+            "Discover international flight options with convenient routes, competitive fares, and expert booking assistance to help plan your next overseas journey.",
+        },
+      },
 
+      {
+        path: "domestic-flights",
+        loadComponent: () =>
+          import("./pages/domestic-flights/domestic-flights.component").then(
+            (m) => m.DomesticFlightsComponent,
+          ),
+        title:
+          "Find Convenient Domestic Flight Deals for Your Next Trip | Flighthelpbuddy",
+        data: {
+          metaTitle:
+            "Find Convenient Domestic Flight Deals for Your Next Trip | Flighthelpbuddy",
+          metaDescription:
+            "Explore domestic flight options with competitive fares, convenient routes, and flexible schedules. Get expert booking assistance for your next journey.",
+        },
+      },
 
-{
-  path: "last-minute-flights",
-  loadComponent: () =>
-    import("./pages/last-minute-flights/last-minute-flights.component").then(
-      (m) => m.LastMinuteFlightsComponent,
-    ),
-title: "Book Last-Minute Flights with Flexible Options | Flighthelpbuddy",
-data: {
-  metaTitle:
-    "Book Last-Minute Flights with Flexible Options | Flighthelpbuddy",
-  metaDescription:
-    "Explore available last-minute flight deals with expert booking assistance. Find suitable flights for your schedule & manage unexpected travel plans with ease.",
-},
-},
+      {
+        path: "one-way-deals",
+        loadComponent: () =>
+          import("./pages/one-way-deals/one-way-deals.component").then(
+            (m) => m.OneWayDealsComponent,
+          ),
+        title: "Find One-Way Flight Deals for Your Next Trip | Flighthelpbuddy",
+        data: {
+          metaTitle:
+            "Find One-Way Flight Deals for Your Next Trip | Flighthelpbuddy",
+          metaDescription:
+            "Explore one-way flight deals with competitive fares, convenient routes, and flexible departure times. Get expert guidance to find flights that suit your travel plans.",
+        },
+      },
 
-{
-  path: "international-flights",
-  loadComponent: () =>
-    import("./pages/international-flights/international-flights.component").then(
-      (m) => m.InternationalFlightsComponent,
-    ),
-title: "Explore International Flight Deals for Your Next Trip | Flighthelpbuddy",
-data: {
-  metaTitle:
-    "Explore International Flight Deals for Your Next Trip | Flighthelpbuddy",
-  metaDescription:
-    "Discover international flight options with convenient routes, competitive fares, and expert booking assistance to help plan your next overseas journey.",
-},
-},
+      {
+        path: "round-trip-deals",
+        loadComponent: () =>
+          import("./pages/round-trip-deals/round-trip-deals.component").then(
+            (m) => m.RoundTripDealsComponent,
+          ),
+        title: "Round-Trip Flights & Deals | Flighthelpbuddy",
+        data: {
+          metaTitle: "Round-Trip Flights & Deals | Flighthelpbuddy",
+          metaDescription:
+            "Find round-trip flights at competitive fares. Compare flight options, schedules, and routes to plan your next trip with ease.",
+        },
+      },
 
-{
-  path: "domestic-flights",
-  loadComponent: () =>
-    import("./pages/domestic-flights/domestic-flights.component").then(
-      (m) => m.DomesticFlightsComponent,
-    ),
-title: "Find Convenient Domestic Flight Deals for Your Next Trip | Flighthelpbuddy",
-data: {
-  metaTitle:
-    "Find Convenient Domestic Flight Deals for Your Next Trip | Flighthelpbuddy",
-  metaDescription:
-    "Explore domestic flight options with competitive fares, convenient routes, and flexible schedules. Get expert booking assistance for your next journey.",
-},
-},
+      {
+        path: "ca/cheap-flights",
+        loadComponent: () =>
+          import("./pages/ca/cheap-flights/cheap-flights.component").then(
+            (m) => m.CheapFlightsComponent,
+          ),
+        title: "Cheap Flights & Affordable Flight Deals | Flighthelpbuddy",
+        data: {
+          metaTitle:
+            "Cheap Flights & Affordable Flight Deals | Flighthelpbuddy",
+          metaDescription:
+            "Find cheap flights and affordable airfare. Compare flight options, enjoy flexible schedules, and get expert assistance for easy booking.",
+        },
+      },
+      {
+        path: "ca/flight-change",
+        loadComponent: () =>
+          import("./pages/ca/flight-change/flight-change.component").then(
+            (m) => m.FlightChangeComponent,
+          ),
+        title: "Need to Change Your Flight? Get Help Today | Flighthelpbuddy",
+        data: {
+          metaTitle:
+            "Need to Change Your Flight? Get Help Today | Flighthelpbuddy",
+          metaDescription:
+            "Travel plans changed? Get assistance with flight changes, new travel dates, different flight times, and rebooking options.",
+        },
+      },
+      {
+        path: "ca/flight-cancellation",
+        loadComponent: () =>
+          import("./pages/ca/flight-cancellation/flight-cancellation.component").then(
+            (m) => m.FlightCancellationComponent,
+          ),
+        title:
+          "Flight Cancellation Assistance | Easy Cancellation Support | Flighthelpbuddy",
+        data: {
+          metaTitle:
+            "Flight Cancellation Assistance | Easy Cancellation Support | Flighthelpbuddy",
+          metaDescription:
+            "Get easy flight cancellation assistance with expert guidance, help with cancellation policies, refund options, and 24/7 customer support. Call [CONTACT_NUMBER] for help.",
+        },
+      },
+      {
+        path: "ca/last-minute-flights",
+        loadComponent: () =>
+          import("./pages/ca/last-minute-flights/last-minute-flights.component").then(
+            (m) => m.LastMinuteFlightsComponent,
+          ),
+        title: "Last-Minute Flight Booking | Flighthelpbuddy",
+        data: {
+          metaTitle: "Last-Minute Flight Booking | Flighthelpbuddy",
+          metaDescription:
+            "Traveling on short notice? Explore available last-minute flights, compare options, and get help with your travel plans.",
+        },
+      },
+      {
+        path: "ca/international-flights",
+        loadComponent: () =>
+          import("./pages/ca/international-flights/international-flights.component").then(
+            (m) => m.InternationalFlightsComponent,
+          ),
+        title:
+          "Book International Flights | International Flight Deals | Flighthelpbuddy",
+        data: {
+          metaTitle:
+            "Book International Flights | International Flight Deals | Flighthelpbuddy",
+          metaDescription:
+            "Book international flights with expert assistance, compare multiple flight options, fares, and schedules, and get access to affordable international flight deals with 24/7 support.",
+        },
+      },
+      {
+        path: "ca/domestic-flights",
+        loadComponent: () =>
+          import("./pages/ca/domestic-flights/domestic-flights.component").then(
+            (m) => m.DomesticFlightsComponent,
+          ),
+        title: "Find Domestic Flights at Great Fares | Flighthelpbuddy",
+        data: {
+          metaTitle: "Find Domestic Flights at Great Fares | Flighthelpbuddy",
+          metaDescription:
+            "Explore domestic flights, compare available fares and schedules, and find a flight that fits your travel plans.",
+        },
+      },
+      {
+        path: "ca/one-way-deals",
+        loadComponent: () =>
+          import("./pages/ca/one-way-deals/one-way-deals.component").then(
+            (m) => m.OneWayDealsComponent,
+          ),
+        title:
+          "One-Way Flights - Find Flights That Fit Your Plans | Flighthelpbuddy",
+        data: {
+          metaTitle:
+            "One-Way Flights - Find Flights That Fit Your Plans | Flighthelpbuddy",
+          metaDescription:
+            "Looking for a one-way flight? Explore available routes, fares, and departure times to find an option that works for your trip.",
+        },
+      },
+      {
+        path: "ca/round-trip-deals",
+        loadComponent: () =>
+          import("./pages/ca/round-trip-deals/round-trip-deals.component").then(
+            (m) => m.RoundTripDealsComponent,
+          ),
+        title: "Round Trip Flight Deals | Easy Booking & Great Fares",
+        data: {
+          metaTitle: "Round Trip Flight Deals | Easy Booking & Great Fares",
+          metaDescription:
+            "Find round trip flight deals with flexible travel options, competitive fares, easy booking, and 24/7 travel assistance.",
+        },
+      },
 
-{
-  path: "one-way-deals",
-  loadComponent: () =>
-    import("./pages/one-way-deals/one-way-deals.component").then(
-      (m) => m.OneWayDealsComponent,
-    ),
-title: "Find One-Way Flight Deals for Your Next Trip | Flighthelpbuddy",
-data: {
-  metaTitle:
-    "Find One-Way Flight Deals for Your Next Trip | Flighthelpbuddy",
-  metaDescription:
-    "Explore one-way flight deals with competitive fares, convenient routes, and flexible departure times. Get expert guidance to find flights that suit your travel plans.",
-},
-},
+      {
+        path: "flight-booking",
+        loadComponent: () =>
+          import("./pages/flight-booking/flight-booking.component").then(
+            (m) => m.FlightBookingComponent,
+          ),
+        title:
+          "Easy Flight Booking | Compare Flights & Book Online | Flighthelpbuddy",
+        data: {
+          metaTitle:
+            "Easy Flight Booking | Compare Flights & Book Online | Flighthelpbuddy",
+          metaDescription:
+            "Book flights easily with flexible options, transparent pricing, expert guidance, and 24/7 customer support. Explore flight deals that fit your travel needs.",
+        },
+      },
 
-{
-  path: "round-trip-deals",
-  loadComponent: () =>
-    import("./pages/round-trip-deals/round-trip-deals.component").then(
-      (m) => m.RoundTripDealsComponent,
-    ),
-  title: "Round-Trip Flights & Deals | Flighthelpbuddy",
-  data: {
-    metaTitle:
-      "Round-Trip Flights & Deals | Flighthelpbuddy",
-    metaDescription:
-      "Find round-trip flights at competitive fares. Compare flight options, schedules, and routes to plan your next trip with ease.",
-  },
-},
+      {
+        path: "flight-ca",
+        loadComponent: () =>
+          import("./pages/flight-ca/flight-ca.component").then(
+            (m) => m.FlightCaComponent,
+          ),
+        title:
+          "Explore Flight Options | Easy & Flexible Travel | Flighthelpbuddy",
+        data: {
+          metaTitle:
+            "Explore Flight Options | Easy & Flexible Travel | Flighthelpbuddy",
+          metaDescription:
+            "Explore different flight options, compare fares, and get flexible choices with transparent pricing and 24/7 support from travel experts.",
+        },
+      },
 
+      {
+        path: "flight-au",
+        loadComponent: () =>
+          import("./pages/flight-au/flight-au.component").then(
+            (m) => m.FlightAuComponent,
+          ),
+        title:
+          "Book Affordable Flights Online: Great Deals & Easy Booking | Flighthelpbuddy",
+        data: {
+          metaTitle:
+            "Book Affordable Flights Online: Great Deals & Easy Booking | Flighthelpbuddy",
+          metaDescription:
+            "Find great flight deals for domestic and international travel. Compare fares, explore flexible booking options, and get expert assistance to plan your next trip.",
+        },
+      },
+      {
+        path: "ca/en-ca",
+        loadComponent: () =>
+          import("./pages/ca/en-ca/en-ca.component").then(
+            (m) => m.EnCaComponent,
+          ),
+        title:
+          "Find Affordable Flights Online: Great Fares & Easy Booking | Flighthelpbuddy",
+        data: {
+          metaTitle:
+            "Find Affordable Flights Online: Great Fares & Easy Booking | Flighthelpbuddy",
+          metaDescription:
+            "Explore great flight deals for domestic and international journeys. Compare fares, review flexible options, and get expert assistance for a smoother booking.",
+        },
+      },
 
-
-
-{
-  path: "ca/cheap-flights",
-  loadComponent: () =>
-    import("./pages/ca/cheap-flights/cheap-flights.component").then(
-      (m) => m.CheapFlightsComponent,
-    ),
-  title: "Cheap Flights & Affordable Flight Deals | Flighthelpbuddy",
-  data: {
-    metaTitle: "Cheap Flights & Affordable Flight Deals | Flighthelpbuddy",
-    metaDescription:
-      "Find cheap flights and affordable airfare. Compare flight options, enjoy flexible schedules, and get expert assistance for easy booking.",
-  },
-},
-{
-  path: "ca/flight-change",
-  loadComponent: () =>
-    import("./pages/ca/flight-change/flight-change.component").then(
-      (m) => m.FlightChangeComponent,
-    ),
-  title: "Need to Change Your Flight? Get Help Today | Flighthelpbuddy",
-  data: {
-    metaTitle: "Need to Change Your Flight? Get Help Today | Flighthelpbuddy",
-    metaDescription:
-      "Travel plans changed? Get assistance with flight changes, new travel dates, different flight times, and rebooking options.",
-  },
-},
-{
-  path: "ca/flight-cancellation",
-  loadComponent: () =>
-    import("./pages/ca/flight-cancellation/flight-cancellation.component").then(
-      (m) => m.FlightCancellationComponent,
-    ),
-  title: "Flight Cancellation Assistance | Easy Cancellation Support | Flighthelpbuddy",
-  data: {
-    metaTitle:
-      "Flight Cancellation Assistance | Easy Cancellation Support | Flighthelpbuddy",
-    metaDescription:
-      "Get easy flight cancellation assistance with expert guidance, help with cancellation policies, refund options, and 24/7 customer support. Call [CONTACT_NUMBER] for help.",
-  },
-},
-{
-  path: "ca/last-minute-flights",
-  loadComponent: () =>
-    import("./pages/ca/last-minute-flights/last-minute-flights.component").then(
-      (m) => m.LastMinuteFlightsComponent,
-    ),
-  title: "Last-Minute Flight Booking | Flighthelpbuddy",
-  data: {
-    metaTitle: "Last-Minute Flight Booking | Flighthelpbuddy",
-    metaDescription:
-      "Traveling on short notice? Explore available last-minute flights, compare options, and get help with your travel plans.",
-  },
-},
-{
-  path: "ca/international-flights",
-  loadComponent: () =>
-    import("./pages/ca/international-flights/international-flights.component").then(
-      (m) => m.InternationalFlightsComponent,
-    ),
-  title: "Book International Flights | International Flight Deals | Flighthelpbuddy",
-  data: {
-    metaTitle:
-      "Book International Flights | International Flight Deals | Flighthelpbuddy",
-    metaDescription:
-      "Book international flights with expert assistance, compare multiple flight options, fares, and schedules, and get access to affordable international flight deals with 24/7 support.",
-  },
-},
-{
-  path: "ca/domestic-flights",
-  loadComponent: () =>
-    import("./pages/ca/domestic-flights/domestic-flights.component").then(
-      (m) => m.DomesticFlightsComponent,
-    ),
-  title: "Find Domestic Flights at Great Fares | Flighthelpbuddy",
-  data: {
-    metaTitle: "Find Domestic Flights at Great Fares | Flighthelpbuddy",
-    metaDescription:
-      "Explore domestic flights, compare available fares and schedules, and find a flight that fits your travel plans.",
-  },
-},
-{
-  path: "ca/one-way-deals",
-  loadComponent: () =>
-    import("./pages/ca/one-way-deals/one-way-deals.component").then(
-      (m) => m.OneWayDealsComponent,
-    ),
-  title: "One-Way Flights - Find Flights That Fit Your Plans | Flighthelpbuddy",
-  data: {
-    metaTitle:
-      "One-Way Flights - Find Flights That Fit Your Plans | Flighthelpbuddy",
-    metaDescription:
-      "Looking for a one-way flight? Explore available routes, fares, and departure times to find an option that works for your trip.",
-  },
-},
-{
-  path: "ca/round-trip-deals",
-  loadComponent: () =>
-    import("./pages/ca/round-trip-deals/round-trip-deals.component").then(
-      (m) => m.RoundTripDealsComponent,
-    ),
-  title: "Round Trip Flight Deals | Easy Booking & Great Fares",
-  data: {
-    metaTitle: "Round Trip Flight Deals | Easy Booking & Great Fares",
-    metaDescription:
-      "Find round trip flight deals with flexible travel options, competitive fares, easy booking, and 24/7 travel assistance.",
-  },
-},
-
-
-
-
-{
-  path: "flight-booking",
-  loadComponent: () =>
-    import("./pages/flight-booking/flight-booking.component").then(
-      (m) => m.FlightBookingComponent,
-    ),
-  title: "Easy Flight Booking | Compare Flights & Book Online | Flighthelpbuddy",
-  data: {
-    metaTitle: "Easy Flight Booking | Compare Flights & Book Online | Flighthelpbuddy",
-    metaDescription:
-      "Book flights easily with flexible options, transparent pricing, expert guidance, and 24/7 customer support. Explore flight deals that fit your travel needs.",
-  },
-},
-
-{
-  path: "flight-ca",
-  loadComponent: () =>
-    import("./pages/flight-ca/flight-ca.component").then(
-      (m) => m.FlightCaComponent,
-    ),
-  title: "Explore Flight Options | Easy & Flexible Travel | Flighthelpbuddy",
-  data: {
-    metaTitle: "Explore Flight Options | Easy & Flexible Travel | Flighthelpbuddy",
-    metaDescription:
-      "Explore different flight options, compare fares, and get flexible choices with transparent pricing and 24/7 support from travel experts.",
-  },
-},
-
-
-
-{
-  path: "flight-au",
-  loadComponent: () =>
-    import("./pages/flight-au/flight-au.component").then(
-      (m) => m.FlightAuComponent,
-    ),
-  title: "Book Affordable Flights Online: Great Deals & Easy Booking | Flighthelpbuddy",
-  data: {
-    metaTitle: "Book Affordable Flights Online: Great Deals & Easy Booking | Flighthelpbuddy",
-    metaDescription:
-      "Find great flight deals for domestic and international travel. Compare fares, explore flexible booking options, and get expert assistance to plan your next trip.",
-  },
-},
-{
-  path: "ca/en-ca",
-  loadComponent: () =>
-    import("./pages/ca/en-ca/en-ca.component").then(
-      (m) => m.EnCaComponent,
-    ),
-  title: "Find Affordable Flights Online: Great Fares & Easy Booking | Flighthelpbuddy",
-  data: {
-    metaTitle: "Find Affordable Flights Online: Great Fares & Easy Booking | Flighthelpbuddy",
-    metaDescription:
-      "Explore great flight deals for domestic and international journeys. Compare fares, review flexible options, and get expert assistance for a smoother booking.",
-  },
-},
-
-
-
-
-{
-  path: "en-usa",
-  loadComponent: () =>
-    import("./pages/en-usa/en-usa.component").then(
-      (m) => m.EnUsaComponent,
-    ),
-  title: "Explore Flight Options & Deals | Easy Flight Search | Flighthelpbuddy",
-  data: {
-    metaTitle: "Explore Flight Options & Deals | Easy Flight Search | Flighthelpbuddy",
-    metaDescription:
-      "Explore different flight options, compare routes and fares, and get dedicated travel support for bookings, changes, cancellations, and more.",
-  },
-},
-{
-  path: "ca/flight-booking",
-  loadComponent: () =>
-    import("./pages/ca/flight-booking/flight-booking.component").then(
-      (m) => m.FlightBookingComponent,
-    ),
-  title: "Flight Tickets Booking Online | Flighthelpbuddy",
-  data: {
-    metaTitle: "Flight Tickets Booking Online | Flighthelpbuddy",
-    metaDescription:
-      "Explore flights, compare available fares and schedules, and find a flight that fits your travel plans.",
-  },
-},
-{
-  path: "flight-uk",
-  loadComponent: () =>
-    import("./pages/flight-uk/flight-uk.component").then(
-      (m) => m.FlightUkComponent,
-    ),
-  title: "Book Flights Online at Great Fares | Flighthelpbuddy",
-  data: {
-    metaTitle: "Book Flights Online at Great Fares | Flighthelpbuddy",
-    metaDescription:
-      "Find available flights, compare fares, and choose a schedule that fits your travel plans. Book your next flight with easy assistance.",
-  },
-},
-
-
-
-
+      {
+        path: "en-usa",
+        loadComponent: () =>
+          import("./pages/en-usa/en-usa.component").then(
+            (m) => m.EnUsaComponent,
+          ),
+        title:
+          "Explore Flight Options & Deals | Easy Flight Search | Flighthelpbuddy",
+        data: {
+          metaTitle:
+            "Explore Flight Options & Deals | Easy Flight Search | Flighthelpbuddy",
+          metaDescription:
+            "Explore different flight options, compare routes and fares, and get dedicated travel support for bookings, changes, cancellations, and more.",
+        },
+      },
+      {
+        path: "ca/flight-booking",
+        loadComponent: () =>
+          import("./pages/ca/flight-booking/flight-booking.component").then(
+            (m) => m.FlightBookingComponent,
+          ),
+        title: "Flight Tickets Booking Online | Flighthelpbuddy",
+        data: {
+          metaTitle: "Flight Tickets Booking Online | Flighthelpbuddy",
+          metaDescription:
+            "Explore flights, compare available fares and schedules, and find a flight that fits your travel plans.",
+        },
+      },
+      {
+        path: "flight-uk",
+        loadComponent: () =>
+          import("./pages/flight-uk/flight-uk.component").then(
+            (m) => m.FlightUkComponent,
+          ),
+        title: "Book Flights Online at Great Fares | Flighthelpbuddy",
+        data: {
+          metaTitle: "Book Flights Online at Great Fares | Flighthelpbuddy",
+          metaDescription:
+            "Find available flights, compare fares, and choose a schedule that fits your travel plans. Book your next flight with easy assistance.",
+        },
+      },
     ],
   },
 
