@@ -1725,17 +1725,17 @@ export const routes: Routes = [
             "Plan your next trip with a trusted online travel agent. Find flights and travel options that suit your budget and travel plans. ",
         },
       },
-      {
-        path: "tickets",
-        loadComponent: () =>
-          import("./pages/tickets/tickets.component").then(
-            (m) => m.TicketsComponent,
-          ),
-title: "Book Cheap Flight Tickets Online | Flighthelpbuddy",
+{
+  path: "ca/tickets",
+  loadComponent: () =>
+    import("./pages/ca/tickets/tickets.component").then(
+      (m) => m.TicketsComponent,
+    ),
+title: "Flight Tickets Booking | Compare Fares & Book Easily | Flighthelpbuddy",
 data: {
-  metaTitle: "Book Cheap Flight Tickets Online | Flighthelpbuddy",
+  metaTitle: "Flight Tickets Booking | Compare Fares & Book Easily | Flighthelpbuddy",
   metaDescription:
-    "Find cheap flight tickets for your next trip. Compare airline fares, explore travel options, and book your flights online with ease.",
+    "Explore flight ticket options, compare fares, and get booking assistance. Check travel details and find flights that match your plans and budget.",
 },
       },
       {
@@ -2074,27 +2074,38 @@ data: {
           import("./pages/en-usa/en-usa.component").then(
             (m) => m.EnUsaComponent,
           ),
-        title:
-          "Explore Flight Options & Deals | Easy Flight Search | Flighthelpbuddy",
-        data: {
-          metaTitle:
-            "Explore Flight Options & Deals | Easy Flight Search | Flighthelpbuddy",
-          metaDescription:
-            "Explore different flight options, compare routes and fares, and get dedicated travel support for bookings, changes, cancellations, and more.",
-        },
+title: "Book Flights Easily | Last-Minute Flight Deals | Flighthelpbuddy",
+data: {
+  metaTitle: "Book Flights Easily | Last-Minute Flight Deals | Flighthelpbuddy",
+  metaDescription:
+    "Explore flight options, compare fares, and find affordable last-minute flight deals. Get expert booking assistance and transparent pricing for your trip.",
+},
       },
+      {
+  path: "ca/en-usa",
+  loadComponent: () =>
+    import("./pages/ca/en-usa/en-usa.component").then(
+      (m) => m.EnUsaComponent,
+    ),
+title: "Online Flight Booking Made Easy | Flighthelpbuddy",
+data: {
+  metaTitle: "Online Flight Booking Made Easy | Flighthelpbuddy",
+  metaDescription:
+    "Book flights online with ease. Compare airfares, explore available routes, and find suitable flight options for your next trip.",
+},
+},
       {
         path: "ca/flight-booking",
         loadComponent: () =>
           import("./pages/ca/flight-booking/flight-booking.component").then(
             (m) => m.FlightBookingComponent,
           ),
-        title: "Flight Tickets Booking Online | Flighthelpbuddy",
-        data: {
-          metaTitle: "Flight Tickets Booking Online | Flighthelpbuddy",
-          metaDescription:
-            "Explore flights, compare available fares and schedules, and find a flight that fits your travel plans.",
-        },
+title: "Online Flight Booking for Every Journey | Flighthelpbuddy",
+data: {
+  metaTitle: "Online Flight Booking for Every Journey | Flighthelpbuddy",
+  metaDescription:
+    "Plan your next journey with simple online flight booking. Explore flight options, compare fares, and choose a schedule that works for you.",
+},
       },
       {
         path: "flight-uk",
@@ -2109,8 +2120,23 @@ data: {
             "Find available flights, compare fares, and choose a schedule that fits your travel plans. Book your next flight with easy assistance.",
         },
       },
+
+      {
+  path: "site-map",
+  loadComponent: () =>
+    import("./pages/site-map/site-map.component").then(
+      (m) => m.SiteMapComponent,
+    ),
+  title: "Site Map | Flighthelpbuddy",
+  data: {
+    metaTitle: "Site Map | Flighthelpbuddy",
+    metaDescription:
+      "Explore flight destinations, international ticket deals, and popular flight routes with Flighthelpbuddy.",
+  },
+},
     ],
   },
+
 
   // Auth and NotFound routes under BlankLayout
   {
