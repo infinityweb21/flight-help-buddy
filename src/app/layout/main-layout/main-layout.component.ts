@@ -176,6 +176,7 @@ export class MainLayoutComponent implements OnInit, OnDestroy {
         "/flights-booking",
         "/business-class",
         "/online-travel-agency",
+        "/site-map"
 
       ];
 
