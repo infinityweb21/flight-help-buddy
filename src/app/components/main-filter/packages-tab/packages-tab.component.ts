@@ -1123,7 +1123,7 @@ getallHotel(data: any): void {
       this.flightForm.get("arrivalDate")?.setValue("");
       this.formattedArrivalDate = "";
     }
-    if (this.hotelDatesAutoLinked) {
+    if (this.hotelDatesAutoLinked || this.hotelDatesOutsideFlightDates()) {
   this.syncHotelDatesWithFlightDates();
 }
     this.cdr.detectChanges();
@@ -1183,7 +1183,7 @@ getallHotel(data: any): void {
       // Update formatted display
       this.formattedDepartureDate = event.formattedDeparture;
       this.formattedArrivalDate = event.formattedArrival || '';
-if (this.hotelDatesAutoLinked) {
+if (this.hotelDatesAutoLinked || this.hotelDatesOutsideFlightDates()) {
   this.syncHotelDatesWithFlightDates();
 }
     }
@@ -1231,7 +1231,7 @@ onDatesChanged(event: {
     : null;
 
   // Keep hotel dates linked to flight dates
-  if (this.hotelDatesAutoLinked) {
+  if (this.hotelDatesAutoLinked || this.hotelDatesOutsideFlightDates()) {
     this.syncHotelDatesWithFlightDates();
   }
 }
@@ -3160,6 +3160,14 @@ getCabinLabel(): string {
   }
 }
 
+// Hotel dates must stay within the flight dates (ISO yyyy-mm-dd strings compare correctly)
+private hotelDatesOutsideFlightDates(): boolean {
+  const { departureDate, arrivalDate, checkIn, checkOut } = this.flightForm.value;
+  if (!departureDate) return false;
+  if (checkIn && checkIn < departureDate) return true;
+  if (arrivalDate && checkOut && checkOut > arrivalDate) return true;
+  return false;
+}
 private syncHotelDatesWithFlightDates(): void {
   const departureDate =
     this.flightForm.get('departureDate')?.value || '';

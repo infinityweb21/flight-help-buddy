@@ -27,6 +27,12 @@ import { NgTemplateOutlet, NgClass } from "@angular/common";
 export class DatesDrawerComponent implements OnInit {
   @Input() formGroup!: FormGroup;
   @Input() controlName!: string;
+  /** Form controls used for the range start/end (flight by default, hotel passes checkIn/checkOut) */
+  @Input() startControlName = "departureDate";
+  @Input() endControlName = "arrivalDate";
+  /** Optional bounds, e.g. hotel dates must stay within the flight dates */
+  @Input() minSelectableDate: Date | null = null;
+  @Input() maxSelectableDate: Date | null = null;
   @Input() titleTemplate: TemplateRef<any> | null = null;
   @Input() mode: "single" | "range" | "multiple" = "range";
   @Input() isArrival: boolean = false;
@@ -90,10 +96,10 @@ export class DatesDrawerComponent implements OnInit {
   }
   ngOnInit() {
     this.selectedStartDate = this.parseLocalDate(
-      this.startDate || this.formGroup.get("departureDate")?.value,
+      this.startDate || this.formGroup.get(this.startControlName)?.value,
     );
     this.selectedEndDate = this.parseLocalDate(
-      this.endDate || this.formGroup.get("arrivalDate")?.value,
+      this.endDate || this.formGroup.get(this.endControlName)?.value,
     );
     this.today = this.normalizeDate(new Date())!;
     // this.maxYear = this.today.getFullYear() + 1;
@@ -132,10 +138,10 @@ export class DatesDrawerComponent implements OnInit {
       this.selectedEndDate = null;
     } else if (this.mode === "range") {
       this.selectedStartDate = this.parseLocalDate(
-        this.startDate || this.formGroup.get("departureDate")?.value,
+        this.startDate || this.formGroup.get(this.startControlName)?.value,
       );
       this.selectedEndDate = this.parseLocalDate(
-        this.endDate || this.formGroup.get("arrivalDate")?.value,
+        this.endDate || this.formGroup.get(this.endControlName)?.value,
       );
       this.isRangeWithValue = !!(
         this.selectedStartDate || this.selectedEndDate
@@ -163,10 +169,10 @@ export class DatesDrawerComponent implements OnInit {
     }
     if (changes["startDate"] || changes["endDate"] || changes["formGroup"]) {
       this.selectedStartDate = this.parseLocalDate(
-        this.startDate || this.formGroup.get("departureDate")?.value,
+        this.startDate || this.formGroup.get(this.startControlName)?.value,
       );
       this.selectedEndDate = this.parseLocalDate(
-        this.endDate || this.formGroup.get("arrivalDate")?.value,
+        this.endDate || this.formGroup.get(this.endControlName)?.value,
       );
       this.today = new Date()!;
       // this.maxYear = this.today.getFullYear() + 1;
@@ -205,10 +211,10 @@ export class DatesDrawerComponent implements OnInit {
         this.selectedEndDate = null;
       } else if (this.mode === "range") {
         this.selectedStartDate = this.parseLocalDate(
-          this.startDate || this.formGroup.get("departureDate")?.value,
+          this.startDate || this.formGroup.get(this.startControlName)?.value,
         );
         this.selectedEndDate = this.parseLocalDate(
-          this.endDate || this.formGroup.get("arrivalDate")?.value,
+          this.endDate || this.formGroup.get(this.endControlName)?.value,
         );
         this.isRangeWithValue = !!(
           this.selectedStartDate || this.selectedEndDate
@@ -238,17 +244,17 @@ export class DatesDrawerComponent implements OnInit {
       );
       this.selectedEndDate = null;
     } else if (this.mode === "range") {
-      if (this.formGroup.get("departureDate")?.value) {
+      if (this.formGroup.get(this.startControlName)?.value) {
         this.selectedStartDate = this.parseLocalDate(
-          this.formGroup.get("departureDate")!.value,
+          this.formGroup.get(this.startControlName)!.value,
         );
       } else {
         this.selectedStartDate = null;
       }
 
-      if (this.formGroup.get("arrivalDate")?.value) {
+      if (this.formGroup.get(this.endControlName)?.value) {
         this.selectedEndDate = this.parseLocalDate(
-          this.formGroup.get("arrivalDate")!.value,
+          this.formGroup.get(this.endControlName)!.value,
         );
       } else {
         this.selectedEndDate = null;
@@ -340,6 +346,13 @@ private generateMobileMonths() {
 isPastDate(date: Date): boolean {
   const today = new Date();
   today.setHours(0, 0, 0, 0);
+
+  // Bounds (e.g. hotel dates limited to the flight dates)
+  const min = this.normalizeDate(this.minSelectableDate);
+  const max = this.normalizeDate(this.maxSelectableDate);
+  if (min && date < min) return true;
+  if (max && date > max) return true;
+
   if (!this.isDomestic && this.mode !== 'multiple') {
     const minDate = new Date(today);
     minDate.setDate(today.getDate() + 2); 
@@ -559,8 +572,8 @@ isPastDate(date: Date): boolean {
     if (this.mode === "single") {
       this.formGroup.get(this.controlName)?.setValue(startStr);
     } else {
-      this.formGroup.get("departureDate")?.setValue(startStr);
-      this.formGroup.get("arrivalDate")?.setValue(endStr);
+      this.formGroup.get(this.startControlName)?.setValue(startStr);
+      this.formGroup.get(this.endControlName)?.setValue(endStr);
     }
 
     setTimeout(() => this.closeDrawer.emit(), 100);

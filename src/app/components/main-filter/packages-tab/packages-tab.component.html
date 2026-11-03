@@ -585,7 +585,6 @@
 </div>
 </form>
 
-
 <p-popover #op styleClass="guest-popover guest-popover-wrap" appendTo="body" (onHide)="onGuestPopoverClose()">
   <div class="guest-drawer-content">
     <app-guest-drawer #guestDrawer [formGroup]="passengersGroup" controlName="guest" placeholder="Destination" hea
@@ -635,8 +634,12 @@
       [formGroup]="flightForm"
       controlName="checkIn"
       placeholder="Check-in"
-      [startDate]="departureDateObj"
-      [endDate]="arrivalDateObj"
+      [startDate]="hotelCheckInDateObj"
+      [endDate]="hotelCheckOutDateObj"
+      startControlName="checkIn"
+      endControlName="checkOut"
+      [minSelectableDate]="departureDateObj"
+      [maxSelectableDate]="arrivalDateObj"
       [isArrival]="false"
       [isDomestic]="isDomestic"
       mode="range"
@@ -660,8 +663,12 @@
       [formGroup]="flightForm"
       controlName="checkOut"
       placeholder="Check-out"
-      [startDate]="departureDateObj"
-      [endDate]="arrivalDateObj"
+      [startDate]="hotelCheckInDateObj"
+      [endDate]="hotelCheckOutDateObj"
+      startControlName="checkIn"
+      endControlName="checkOut"
+      [minSelectableDate]="departureDateObj"
+      [maxSelectableDate]="arrivalDateObj"
       [isArrival]="true"
       [isDomestic]="isDomestic"
       mode="range"
@@ -699,6 +706,8 @@
 
 
     <app-dates-drawer [formGroup]="getActiveFormGroup()" controlName="checkIn" placeholder="Destination"
+    startControlName="checkIn" endControlName="checkOut"
+    [minSelectableDate]="departureDateObj" [maxSelectableDate]="arrivalDateObj"
     [titleTemplate]="titleTemplate" [startDate]="hotelCheckInDateObj" [endDate]="hotelCheckOutDateObj" [isArrival]="false"
     [isDomestic]="isDomestic " [mode]="
       flightForm.get('tripType')?.value === 'roundtrip' ? 'range' : 'single'
